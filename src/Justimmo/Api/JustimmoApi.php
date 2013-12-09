@@ -3,7 +3,9 @@
 namespace Justimmo\Api;
 
 use Justimmo\Cache\CacheInterface;
+use Justimmo\Curl\CurlRequest;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Debug\ExceptionHandler;
 
 /**
  * Class JustimmoApi
@@ -11,7 +13,7 @@ use Psr\Log\LoggerInterface;
  *
  * @package Justimmo\Api
  */
-class JustimmoApi
+class JustimmoApi implements JustimmoApiInterface
 {
     /**
      * api versions supported
@@ -78,6 +80,84 @@ class JustimmoApi
             ->setUsername($username)
             ->setPassword($password)
             ->setVersion($version);
+    }
+
+
+    /**
+     * makes a call to objekt list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callObjektList(array $params = array())
+    {
+        return $this->call('objekt/list', $params);
+    }
+
+    /**
+     * @param makes a call to the justimmo api
+     *
+     * @param $url
+     * @param array $params
+     *
+     * @return mixed
+     */
+    protected function call($url, array $params = array())
+    {
+        $url = $this->baseUrl . '/' . $this->version . '/' . $url;
+        $this->logger->debug('begin api call - ' . $url);
+
+        $key = $this->generateCacheKey($url, $params);
+        $this->logger->debug('cache key is ' . $key);
+        $content = $this->cache->get($key);
+        if ($content !== false) {
+            $this->logger->debug('cache found');
+            $this->logger->debug($content);
+
+            return $content;
+        }
+
+        $this->logger->debug('cache not found');
+
+        if (count($params) > 0) {
+            $url .= '?' . http_build_query($params);
+        }
+
+        $this->logger->debug('call api: ' . $url);
+        $request = new CurlRequest($url, array(
+            CURLOPT_USERPWD        => $this->username . ':' . $this->password,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTPAUTH       => CURLAUTH_ANY
+        ));
+
+        $response = $request->get();
+        $this->logger->debug($response);
+
+        if ($request->getError()) {
+            $this->throwError('The Api call returned an error ' . $request->getError());
+        }
+
+        if ($request->getStatusCode() != 200) {
+            $this->throwError('The Api call returned status code ' . $request->getStatusCode());
+        }
+
+        $this->cache->set($key, $response);
+
+        return $response;
+    }
+
+    /**
+     * generates a cache key for the api call
+     *
+     * @param $url
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function generateCacheKey($url, array $params = array())
+    {
+        return 'ji_api_' . sha1($url . implode($params));
     }
 
     /**
