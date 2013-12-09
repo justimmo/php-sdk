@@ -6,6 +6,9 @@
         "php": ">=5.3.3",
         "psr/log": "~1.0"
     },
+    "require-dev": {
+        "symfony/debug": "2.4.*"
+    },
     "autoload": {
         "psr-0": { "Justimmo": "src/" }
     }
