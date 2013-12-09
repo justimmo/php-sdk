@@ -1,0 +1,11 @@
+{
+    "name": "justimmo/php-sdk",
+    "description": "PHP-SDK for the Justimmo API",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": { "Justimmo": "src/" }
+    }
+}
