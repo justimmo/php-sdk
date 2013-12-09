@@ -48,11 +48,10 @@ abstract class AbstractQuery implements QueryInterface
      */
     abstract public function getDetailCall();
 
-
     /**
      * @param JustimmoApiInterface $api
-     * @param WrapperInterface $listWrapper
-     * @param WrapperInterface $detailWrapper
+     * @param WrapperInterface     $listWrapper
+     * @param WrapperInterface     $detailWrapper
      */
     public function __construct(JustimmoApiInterface $api, WrapperInterface $listWrapper, WrapperInterface $detailWrapper)
     {
@@ -86,6 +85,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         $method = $this->getListCall();
         $response = $this->api->$method($this->params);
+
         return $this->listWrapper->transform($response);
     }
 
@@ -93,6 +93,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         $this->setLimit(1);
         $pager = $this->find();
+
         return $pager->offsetGet(0);
     }
 
@@ -119,7 +120,6 @@ abstract class AbstractQuery implements QueryInterface
     {
         return $this->setOffset($offset);
     }
-
 
     /**
      * sets the order of a call

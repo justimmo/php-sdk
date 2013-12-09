@@ -27,7 +27,7 @@ class NullCache implements CacheInterface
      * adds a cache key for a specific lifetime into the cache
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function set($key, $value)
     {

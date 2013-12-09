@@ -5,7 +5,6 @@ namespace Justimmo\Api;
 use Justimmo\Cache\CacheInterface;
 use Justimmo\Curl\CurlRequest;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Debug\ExceptionHandler;
 
 /**
  * Class JustimmoApi
@@ -81,7 +80,6 @@ class JustimmoApi implements JustimmoApiInterface
             ->setPassword($password)
             ->setVersion($version);
     }
-
 
     /**
      * makes a call to objekt list

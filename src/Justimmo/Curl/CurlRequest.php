@@ -158,6 +158,7 @@ class CurlRequest
     public function clearOptions()
     {
         $this->options = array();
+
         return $this;
     }
 
@@ -171,6 +172,7 @@ class CurlRequest
     public function setOptions($options)
     {
         $this->options = $options;
+
         return $this;
     }
 
@@ -185,6 +187,7 @@ class CurlRequest
     public function setOption($key, $value)
     {
         $this->options[$key] = $value;
+
         return $this;
     }
 
@@ -201,6 +204,7 @@ class CurlRequest
         if (!array_key_exists($key, $this->options)) {
             throw new CurlException('The Options ' . $key . ' is not registered in this CurlRequest');
         }
+
         return $this->options[$key];
     }
 
@@ -214,6 +218,7 @@ class CurlRequest
     public function removeOption($key)
     {
         unset($this->options[$key]);
+
         return $this;
     }
 
@@ -227,6 +232,7 @@ class CurlRequest
     public function setParameters($v = array())
     {
         $this->setOption(CURLOPT_POSTFIELDS, $v);
+
         return $this;
     }
 
@@ -238,6 +244,7 @@ class CurlRequest
     public function get()
     {
         $this->setOption(CURLOPT_HTTPGET, true);
+
         return $this->execute();
     }
 
@@ -254,6 +261,7 @@ class CurlRequest
         if ($parameters !== null) {
             $this->setParameters($parameters);
         }
+
         return $this->execute();
     }
 
@@ -270,6 +278,7 @@ class CurlRequest
         if ($parameters !== null) {
             $this->setParameters($parameters);
         }
+
         return $this->execute();
     }
 
