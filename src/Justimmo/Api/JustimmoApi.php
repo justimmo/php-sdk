@@ -67,29 +67,17 @@ class JustimmoApi
      * @param $username
      * @param $password
      * @param LoggerInterface $logger
-     * @param CacheInterface $cache
-     * @param string $version
+     * @param CacheInterface  $cache
+     * @param string          $version
      */
     public function __construct($username, $password, LoggerInterface $logger, CacheInterface $cache, $version = 'v1')
     {
-        $this->logger = $logger;
-        $this->cache = $cache;
-
-        if (mb_strlen($username) == 0) {
-            $this->throwError('Username not set');
-        }
-
-        if (mb_strlen($password) == 0) {
-            $this->throwError('Password not set');
-        }
-
-        if (!in_array($version, $this->supportedVersions)) {
-            $this->throwError('The version ' . $version . ' is not supported by this library');
-        }
-
-        $this->username = $username;
-        $this->password = $password;
-        $this->version  = $version;
+        $this
+            ->setLogger($logger)
+            ->setCache($cache)
+            ->setUsername($username)
+            ->setPassword($password)
+            ->setVersion($version);
     }
 
     /**
@@ -99,7 +87,7 @@ class JustimmoApi
      *
      * @throws \InvalidArgumentException
      */
-    private function throwError($message)
+    protected function throwError($message)
     {
         $this->logger->error($message);
         throw new \InvalidArgumentException($message);
@@ -113,6 +101,7 @@ class JustimmoApi
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
+
         return $this;
     }
 
@@ -131,7 +120,12 @@ class JustimmoApi
      */
     public function setPassword($password)
     {
+        if (mb_strlen($password) == 0) {
+            $this->throwError('Password not set');
+        }
+
         $this->password = $password;
+
         return $this;
     }
 
@@ -150,7 +144,12 @@ class JustimmoApi
      */
     public function setUsername($username)
     {
+        if (mb_strlen($username) == 0) {
+            $this->throwError('Username not set');
+        }
+
         $this->username = $username;
+
         return $this;
     }
 
@@ -169,7 +168,12 @@ class JustimmoApi
      */
     public function setVersion($version)
     {
+        if (!in_array($version, $this->supportedVersions)) {
+            $this->throwError('The version ' . $version . ' is not supported by this library');
+        }
+
         $this->version = $version;
+
         return $this;
     }
 
@@ -189,6 +193,7 @@ class JustimmoApi
     public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
+
         return $this;
     }
 
@@ -200,8 +205,7 @@ class JustimmoApi
     public function setCache(CacheInterface $cache)
     {
         $this->cache = $cache;
+
         return $this;
     }
-
-
 }
