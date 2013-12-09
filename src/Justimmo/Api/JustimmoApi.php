@@ -121,7 +121,9 @@ class JustimmoApi implements JustimmoApiInterface
         $this->logger->debug('cache not found');
 
         if (count($params) > 0) {
-            $url .= '?' . http_build_query($params);
+            $queryString = http_build_query($params);
+            $queryString = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $queryString);
+            $url .= '?' . $queryString;
         }
 
         $this->logger->debug('call api: ' . $url);
@@ -157,7 +159,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     protected function generateCacheKey($url, array $params = array())
     {
-        return 'ji_api_' . sha1($url . implode($params));
+        return 'ji_api_' . sha1($url . http_build_query($params));
     }
 
     /**
