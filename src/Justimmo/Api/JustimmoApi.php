@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api;
 
+use Justimmo\Cache\CacheInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -55,15 +56,24 @@ class JustimmoApi
     protected $password;
 
     /**
+     * Cache class for caching results
+     *
+     * @var \Justimmo\Cache\CacheInterface
+     */
+    protected $cache;
+
+    /**
      *
      * @param $username
      * @param $password
      * @param LoggerInterface $logger
+     * @param CacheInterface $cache
      * @param string $version
      */
-    public function __construct($username, $password, LoggerInterface $logger, $version = 'v1')
+    public function __construct($username, $password, LoggerInterface $logger, CacheInterface $cache, $version = 'v1')
     {
         $this->logger = $logger;
+        $this->cache = $cache;
 
         if (mb_strlen($username) == 0) {
             $this->throwError('Username not set');
@@ -176,9 +186,22 @@ class JustimmoApi
      *
      * @return $this
      */
-    public function setLogger($logger)
+    public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
         return $this;
     }
+
+    /**
+     * @param \Justimmo\Cache\CacheInterface $cache
+     *
+     * @return $this
+     */
+    public function setCache(CacheInterface $cache)
+    {
+        $this->cache = $cache;
+        return $this;
+    }
+
+
 }
