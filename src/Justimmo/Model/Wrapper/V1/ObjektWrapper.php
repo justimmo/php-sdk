@@ -1,6 +1,6 @@
 <?php
 
-namespace Justimmo\Model\Wrapper\v1;
+namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Wrapper\WrapperInterface;
 
