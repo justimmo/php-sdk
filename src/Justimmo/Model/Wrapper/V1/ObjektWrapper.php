@@ -32,6 +32,37 @@ class ObjektWrapper implements WrapperInterface
         'status'             => 'string',
     );
 
+    protected $geoMapping = array(
+        'ort'               => 'string',
+        'plz'               => 'string',
+        'regionaler_zusatz' => 'string',
+        'anzahl_etagen'     => 'int',
+        'etage'             => 'string',
+        'gemarkung'         => 'string',
+        'flur'              => 'string',
+        'flurstueck'        => 'string',
+        'bundesland'        => 'string',
+        'strasse'           => 'string',
+        'tuernummer'        => 'string',
+        'hausnummer'        => 'string',
+    );
+
+    protected $preisMapping = array(
+        'kaufpreis'                  => 'double',
+        'nettokaltmiete'             => 'double',
+        'nebenkosten'                => 'double',
+        'heizkosten'                 => 'double',
+        'wohnbaufoerderung'          => 'double',
+        'rendite'                    => 'double',
+        'nettoertrag_jaehrlich'      => 'double',
+        'nettoertrag_monatlich'      => 'double',
+        'gesamtmiete_ust'            => 'double',
+        'grunderwerbssteuer'         => 'double',
+        'grundbucheintragung'        => 'double',
+        'vertragserrichtungsgebuehr' => 'double',
+        'kaution'                    => 'double',
+    );
+
     /**
      * @param $data
      *
@@ -48,20 +79,7 @@ class ObjektWrapper implements WrapperInterface
         $objekt = new Objekt();
 
         //basic attributes from list view
-        foreach ($this->simpleMapping as $key => $cast) {
-            if (isset($xml->$key)) {
-                $setter = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
-
-                if ($cast == 'string') {
-                    $objekt->$setter((string) $xml->$key);
-                } elseif ($cast == 'int') {
-                    $objekt->$setter((int) $xml->$key);
-                }
-                elseif ($cast == 'double') {
-                    $objekt->$setter((double) $xml->$key);
-                }
-            }
-        }
+        $this->map($this->simpleMapping, $xml, $objekt);
 
         //detailed attributes from detail view, OpenImmo
         if (isset($xml->verwaltung_techn)) {
@@ -89,18 +107,7 @@ class ObjektWrapper implements WrapperInterface
         }
 
         if (isset($xml->geo)) {
-            $objekt->setOrt((string) $xml->geo->ort);
-            $objekt->setPlz((string) $xml->geo->plz);
-            $objekt->setRegionalerZusatz((string) $xml->geo->regionaler_zusatz);
-            $objekt->setAnzahlEtagen((int) $xml->geo->anzahl_etagen);
-            $objekt->setEtage((string) $xml->geo->etage);
-            $objekt->setGemarkung((string) $xml->geo->gemarkung);
-            $objekt->setFlur((string) $xml->geo->flur);
-            $objekt->setFlurstueck((string) $xml->geo->flurstueck);
-            $objekt->setBundesland((string) $xml->geo->bundesland);
-            $objekt->setStrasse((string) $xml->geo->strasse);
-            $objekt->setTuernummer((string) $xml->geo->tuernummer);
-            $objekt->setHausnummer((string) $xml->geo->hausnummer);
+            $this->map($this->geoMapping, $xml->geo, $objekt);
 
             if (isset($xml->geo->geokoordinaten)) {
                 $coord = $this->attributesToArray($xml->geo->geokoordinaten->attributes());
@@ -117,20 +124,8 @@ class ObjektWrapper implements WrapperInterface
         }
 
         if (isset($xml->preise)) {
-            $objekt->setKaufpreis((double) $xml->preise->kaufpreis);
-            $objekt->setGesamtmiete((double) $xml->preise->warmmiete);
-            $objekt->setNettoKaltMiete((double) $xml->preise->nettokaltmiete);
-            $objekt->setNebenkosten((double) $xml->preise->nebenkosten);
-            $objekt->setHeizkosten((double) $xml->preise->heizkosten);
-            $objekt->setWohnbaufoerderung((double) $xml->preise->wohnbaufoerderung);
-            $objekt->setRendite((double) $xml->preise->rendite);
-            $objekt->setNettoertragJaehrlich((double) $xml->preise->nettoertrag_jaehrlich);
-            $objekt->setNettoertrageMonatlich((double) $xml->preise->nettoertrag_monatlich);
-            $objekt->setGesamtMieteUst((double) $xml->preise->gesamtmiete_ust);
-            $objekt->setGrunderwerbssteuer((double) $xml->preise->grunderwerbssteuer);
-            $objekt->setGrundbucheintragung((double) $xml->preise->grundbucheintragung);
-            $objekt->setVertragserrichtungsgebuehr((double) $xml->preise->vertragserrichtungsgebuehr);
-            $objekt->setKaution((double) $xml->preise->kaution);
+            $this->map($this->preisMapping, $xml->preise, $objekt);
+            $objekt->setGesamtmiete($this->cast($xml->preise->warmmiete, 'double'));
 
             if (isset($xml->preise->waehrung)) {
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
@@ -148,6 +143,49 @@ class ObjektWrapper implements WrapperInterface
         }
 
         return $objekt;
+    }
+
+    /**
+     * casts a simple xml element to a type
+     *
+     * @param        $xml
+     * @param string $type
+     *
+     * @return float|int|null|string
+     */
+    protected function cast(\SimpleXMLElement $xml, $type = 'string')
+    {
+        if ($xml->count() == 0) {
+            return null;
+        }
+
+        switch ($type) {
+            case 'string':
+                return (string) $xml;
+            case 'int':
+                return (int) $xml;
+            case 'double':
+                return (double) $xml;
+            default:
+                return $xml;
+        }
+    }
+
+    /**
+     * maps an mapping array between a SimpleXML and Objekt
+     *
+     * @param                   $mapping
+     * @param \SimpleXMLElement $xml
+     * @param Objekt            $objekt
+     */
+    protected function map($mapping, \SimpleXMLElement $xml, Objekt $objekt)
+    {
+        foreach ($mapping as $key => $cast) {
+            if (isset($xml->$key)) {
+                $setter = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
+                $objekt->$setter($this->cast($xml->$key, $cast));
+            }
+        }
     }
 
     /**

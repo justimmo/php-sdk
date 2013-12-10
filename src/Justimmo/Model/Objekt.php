@@ -94,8 +94,6 @@ class Objekt
 
     protected $vertragserrichtungsgebuehr = null;
 
-    //protected
-
     /**
      * @param null $nutzungsart
      *
