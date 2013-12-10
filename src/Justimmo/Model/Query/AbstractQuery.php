@@ -164,16 +164,16 @@ abstract class AbstractQuery implements QueryInterface
     {
         if (is_array($value)) {
             if (array_key_exists('min', $value)) {
-                $this->set('filter[' . $key . '_von]', $value['min']);
+                $this->params['filter'][$key . '_von'] = $value['min'];
             }
             if (array_key_exists('max', $value)) {
-                $this->set('filter[' . $key . '_bis]', $value['max']);
+                $this->params['filter'][$key . '_bis'] = $value['max'];
             }
 
             return $this;
         }
 
-        $this->set('filter[' . $key . ']', $value);
+        $this->params['filter'][$key] = $value;
 
         return $this;
     }
