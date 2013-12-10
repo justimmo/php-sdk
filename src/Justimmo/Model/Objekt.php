@@ -36,6 +36,74 @@ class Objekt
 
     protected $status = null;
 
+    protected $nutzungsart = null;
+
+    protected $vermarktungsart = null;
+
+    protected $objektart = null;
+
+    protected $ausstattBeschr = null;
+
+    /**
+     * @param null $nutzungsart
+     *
+     * @return $this
+     */
+    public function setNutzungsart($nutzungsart)
+    {
+        $this->nutzungsart = $nutzungsart;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNutzungsart()
+    {
+        return $this->nutzungsart;
+    }
+
+    /**
+     * @param null $objektart
+     *
+     * @return $this
+     */
+    public function setObjektart($objektart)
+    {
+        $this->objektart = $objektart;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getObjektart()
+    {
+        return $this->objektart;
+    }
+
+    /**
+     * @param null $vermarktungsart
+     *
+     * @return $this
+     */
+    public function setVermarktungsart($vermarktungsart)
+    {
+        $this->vermarktungsart = $vermarktungsart;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getVermarktungsart()
+    {
+        return $this->vermarktungsart;
+    }
+
     /**
      * @param null $dreizeiler
      *
@@ -356,6 +424,25 @@ class Objekt
         return $this->tuernummer;
     }
 
+    /**
+     * @param null $ausstattBeschr
+     *
+     * @return $this
+     */
+    public function setAusstattBeschr($ausstattBeschr)
+    {
+        $this->ausstattBeschr = $ausstattBeschr;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAusstattBeschr()
+    {
+        return $this->ausstattBeschr;
+    }
 
 
 }
