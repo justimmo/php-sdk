@@ -44,6 +44,28 @@ class Objekt
 
     protected $ausstattBeschr = null;
 
+    protected $breitengrad = null;
+
+    protected $laengengrad = null;
+
+    protected $strasse = null;
+
+    protected $hausnummer = null;
+
+    protected $bundesland = null;
+
+    protected $land = null;
+
+    protected $flur = null;
+
+    protected $flurstueck  = null;
+
+    protected $gemarkung = null;
+
+    protected $anzahlEtagen = null;
+
+    protected $regionalerZusatz = null;
+
     /**
      * @param null $nutzungsart
      *
@@ -443,6 +465,227 @@ class Objekt
     {
         return $this->ausstattBeschr;
     }
+
+    /**
+     * @param null $breitengrad
+     *
+     * @return $this
+     */
+    public function setBreitengrad($breitengrad)
+    {
+        $this->breitengrad = $breitengrad;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBreitengrad()
+    {
+        return $this->breitengrad;
+    }
+
+    /**
+     * @param null $laengengrad
+     *
+     * @return $this
+     */
+    public function setLaengengrad($laengengrad)
+    {
+        $this->laengengrad = $laengengrad;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLaengengrad()
+    {
+        return $this->laengengrad;
+    }
+
+    /**
+     * @param null $anzahlEtagen
+     *
+     * @return $this
+     */
+    public function setAnzahlEtagen($anzahlEtagen)
+    {
+        $this->anzahlEtagen = $anzahlEtagen;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlEtagen()
+    {
+        return $this->anzahlEtagen;
+    }
+
+    /**
+     * @param null $bundesland
+     *
+     * @return $this
+     */
+    public function setBundesland($bundesland)
+    {
+        $this->bundesland = $bundesland;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBundesland()
+    {
+        return $this->bundesland;
+    }
+
+    /**
+     * @param null $flur
+     *
+     * @return $this
+     */
+    public function setFlur($flur)
+    {
+        $this->flur = $flur;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getFlur()
+    {
+        return $this->flur;
+    }
+
+    /**
+     * @param null $flurstueck
+     *
+     * @return $this
+     */
+    public function setFlurstueck($flurstueck)
+    {
+        $this->flurstueck = $flurstueck;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getFlurstueck()
+    {
+        return $this->flurstueck;
+    }
+
+    /**
+     * @param null $gemarkung
+     *
+     * @return $this
+     */
+    public function setGemarkung($gemarkung)
+    {
+        $this->gemarkung = $gemarkung;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGemarkung()
+    {
+        return $this->gemarkung;
+    }
+
+    /**
+     * @param null $hausnummer
+     *
+     * @return $this
+     */
+    public function setHausnummer($hausnummer)
+    {
+        $this->hausnummer = $hausnummer;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getHausnummer()
+    {
+        return $this->hausnummer;
+    }
+
+    /**
+     * @param null $land
+     *
+     * @return $this
+     */
+    public function setLand($land)
+    {
+        $this->land = $land;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLand()
+    {
+        return $this->land;
+    }
+
+    /**
+     * @param null $regionalerZusatz
+     *
+     * @return $this
+     */
+    public function setRegionalerZusatz($regionalerZusatz)
+    {
+        $this->regionalerZusatz = $regionalerZusatz;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRegionalerZusatz()
+    {
+        return $this->regionalerZusatz;
+    }
+
+    /**
+     * @param null $strasse
+     *
+     * @return $this
+     */
+    public function setStrasse($strasse)
+    {
+        $this->strasse = $strasse;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStrasse()
+    {
+        return $this->strasse;
+    }
+
 
 
 }

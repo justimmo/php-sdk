@@ -52,9 +52,9 @@ class ObjektWrapper implements WrapperInterface
                 $setter = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
 
                 if ($cast == 'string') {
-                    $objekt->$setter((string)$xml->$key);
+                    $objekt->$setter((string) $xml->$key);
                 } elseif ($cast == 'int') {
-                    $objekt->$setter((int)$xml->$key);
+                    $objekt->$setter((int) $xml->$key);
                 }
             }
         }
@@ -79,9 +79,37 @@ class ObjektWrapper implements WrapperInterface
         }
 
         if (isset($xml->freitexte)) {
-            $objekt->setTitel((int) $xml->freitexte->objekttitel);
+            $objekt->setTitel((string) $xml->freitexte->objekttitel);
             $objekt->setAusstattBeschr((string) $xml->freitexte->ausstatt_beschr);
             $objekt->setObjektbeschreibung((string) $xml->freitexte->objektbeschreibung);
+        }
+
+        if (isset($xml->geo)) {
+            $objekt->setOrt((string) $xml->geo->ort);
+            $objekt->setPlz((string) $xml->geo->plz);
+            $objekt->setRegionalerZusatz((string) $xml->geo->regionaler_zusatz);
+            $objekt->setAnzahlEtagen((int) $xml->geo->anzahl_etagen);
+            $objekt->setEtage((string) $xml->geo->etage);
+            $objekt->setGemarkung((string) $xml->geo->gemarkung);
+            $objekt->setFlur((string) $xml->geo->flur);
+            $objekt->setFlurstueck((string) $xml->geo->flurstueck);
+            $objekt->setBundesland((string) $xml->geo->bundesland);
+            $objekt->setStrasse((string) $xml->geo->strasse);
+            $objekt->setTuernummer((string) $xml->geo->tuernummer);
+            $objekt->setHausnummer((string) $xml->geo->hausnummer);
+
+            if (isset($xml->geo->geokoordinaten)) {
+                $coord = $this->attributesToArray($xml->geo->geokoordinaten->attributes());
+                $objekt->setBreitengrad((double) $coord['breitengrad']);
+                $objekt->setLaengengrad((double) $coord['laengengrad']);
+            }
+
+            if (isset($xml->geo->land)) {
+                $iso = $this->attributesToArray($xml->geo->land->attributes());
+                if (array_key_exists('iso_land', $iso)) {
+                    $objekt->setLand((string) $iso['iso_land']);
+                }
+            }
         }
 
         return $objekt;
