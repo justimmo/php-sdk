@@ -88,6 +88,14 @@ class Objekt
 
     protected $zusatzkosten = array();
 
+    protected $grunderwerbssteuer = null;
+
+    protected $grundbucheintragung = null;
+
+    protected $vertragserrichtungsgebuehr = null;
+
+    //protected
+
     /**
      * @param null $nutzungsart
      *
@@ -988,4 +996,66 @@ class Objekt
     {
         return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getUst() : null;
     }
+
+    /**
+     * @param null $grundbucheintragung
+     *
+     * @return $this
+     */
+    public function setGrundbucheintragung($grundbucheintragung)
+    {
+        $this->grundbucheintragung = $grundbucheintragung;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGrundbucheintragung()
+    {
+        return $this->grundbucheintragung;
+    }
+
+    /**
+     * @param null $grunderwerbssteuer
+     *
+     * @return $this
+     */
+    public function setGrunderwerbssteuer($grunderwerbssteuer)
+    {
+        $this->grunderwerbssteuer = $grunderwerbssteuer;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGrunderwerbssteuer()
+    {
+        return $this->grunderwerbssteuer;
+    }
+
+    /**
+     * @param null $vertragserrichtungsgebuehr
+     *
+     * @return $this
+     */
+    public function setVertragserrichtungsgebuehr($vertragserrichtungsgebuehr)
+    {
+        $this->vertragserrichtungsgebuehr = $vertragserrichtungsgebuehr;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getVertragserrichtungsgebuehr()
+    {
+        return $this->vertragserrichtungsgebuehr;
+    }
+
+
 }

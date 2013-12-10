@@ -127,6 +127,10 @@ class ObjektWrapper implements WrapperInterface
             $objekt->setNettoertragJaehrlich((double) $xml->preise->nettoertrag_jaehrlich);
             $objekt->setNettoertrageMonatlich((double) $xml->preise->nettoertrag_monatlich);
             $objekt->setGesamtMieteUst((double) $xml->preise->gesamtmiete_ust);
+            $objekt->setGrunderwerbssteuer((double) $xml->preise->grunderwerbssteuer);
+            $objekt->setGrundbucheintragung((double) $xml->preise->grundbucheintragung);
+            $objekt->setVertragserrichtungsgebuehr((double) $xml->preise->vertragserrichtungsgebuehr);
+            $objekt->setKaution((double) $xml->preise->kaution);
 
             if (isset($xml->preise->waehrung)) {
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
