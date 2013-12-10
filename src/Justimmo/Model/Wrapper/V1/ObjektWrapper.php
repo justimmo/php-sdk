@@ -23,8 +23,8 @@ class ObjektWrapper implements WrapperInterface
         'tuernummer'         => 'string',
         'plz'                => 'string',
         'ort'                => 'string',
-        'kaufpreis'          => 'string',
-        'gesamtmiete'        => 'string',
+        'kaufpreis'          => 'double',
+        'gesamtmiete'        => 'double',
         'nutzflaeche'        => 'string',
         'grundflaeche'       => 'string',
         'projekt_id'         => 'int',
@@ -55,6 +55,9 @@ class ObjektWrapper implements WrapperInterface
                     $objekt->$setter((string) $xml->$key);
                 } elseif ($cast == 'int') {
                     $objekt->$setter((int) $xml->$key);
+                }
+                elseif ($cast == 'double') {
+                    $objekt->$setter((double) $xml->$key);
                 }
             }
         }
@@ -108,6 +111,26 @@ class ObjektWrapper implements WrapperInterface
                 $iso = $this->attributesToArray($xml->geo->land->attributes());
                 if (array_key_exists('iso_land', $iso)) {
                     $objekt->setLand((string) $iso['iso_land']);
+                }
+            }
+        }
+
+        if (isset($xml->preise)) {
+            $objekt->setKaufpreis((double) $xml->preise->kaufpreis);
+            $objekt->setGesamtmiete((double) $xml->preise->warmmiete);
+            $objekt->setNettoKaltMiete((double) $xml->preise->nettokaltmiete);
+            $objekt->setNebenkosten((double) $xml->preise->nebenkosten);
+            $objekt->setHeizkosten((double) $xml->preise->heizkosten);
+            $objekt->setWohnbaufoerderung((double) $xml->preise->wohnbaufoerderung);
+            $objekt->setRendite((double) $xml->preise->rendite);
+            $objekt->setNettoertragJaehrlich((double) $xml->preise->nettoertrag_jaehrlich);
+            $objekt->setNettoertrageMonatlich((double) $xml->preise->nettoertrag_monatlich);
+            $objekt->setGesamtMieteUst((double) $xml->preise->gesamtmiete_ust);
+
+            if (isset($xml->preise->waehrung)) {
+                $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
+                if (array_key_exists('iso_waehrung', $iso)) {
+                    $objekt->setWaehrung((string) $iso['iso_waehrung']);
                 }
             }
         }

@@ -66,6 +66,26 @@ class Objekt
 
     protected $regionalerZusatz = null;
 
+    protected $nettoKaltMiete = null;
+
+    protected $nebenkosten = null;
+
+    protected $heizkosten = null;
+
+    protected $waehrung = null;
+
+    protected $kaution = null;
+
+    protected $wohnbaufoerderung = null;
+
+    protected $rendite = null;
+
+    protected $nettoertrageMonatlich = null;
+
+    protected $nettoertragJaehrlich = null;
+
+    protected $gesamtMieteUst = null;
+
     /**
      * @param null $nutzungsart
      *
@@ -685,5 +705,206 @@ class Objekt
     {
         return $this->strasse;
     }
+
+    /**
+     * @param null $gesamtMieteUst
+     *
+     * @return $this
+     */
+    public function setGesamtMieteUst($gesamtMieteUst)
+    {
+        $this->gesamtMieteUst = $gesamtMieteUst;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGesamtMieteUst()
+    {
+        return $this->gesamtMieteUst;
+    }
+
+    /**
+     * @param null $heizkosten
+     *
+     * @return $this
+     */
+    public function setHeizkosten($heizkosten)
+    {
+        $this->heizkosten = $heizkosten;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getHeizkosten()
+    {
+        return $this->heizkosten;
+    }
+
+    /**
+     * @param null $kaution
+     *
+     * @return $this
+     */
+    public function setKaution($kaution)
+    {
+        $this->kaution = $kaution;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getKaution()
+    {
+        return $this->kaution;
+    }
+
+    /**
+     * @param null $nebenkosten
+     *
+     * @return $this
+     */
+    public function setNebenkosten($nebenkosten)
+    {
+        $this->nebenkosten = $nebenkosten;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNebenkosten()
+    {
+        return $this->nebenkosten;
+    }
+
+    /**
+     * @param null $nettoKaltMiete
+     *
+     * @return $this
+     */
+    public function setNettoKaltMiete($nettoKaltMiete)
+    {
+        $this->nettoKaltMiete = $nettoKaltMiete;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNettoKaltMiete()
+    {
+        return $this->nettoKaltMiete;
+    }
+
+    /**
+     * @param null $nettoertragJaehrlich
+     *
+     * @return $this
+     */
+    public function setNettoertragJaehrlich($nettoertragJaehrlich)
+    {
+        $this->nettoertragJaehrlich = $nettoertragJaehrlich;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNettoertragJaehrlich()
+    {
+        return $this->nettoertragJaehrlich;
+    }
+
+    /**
+     * @param null $nettoertrageMonatlich
+     *
+     * @return $this
+     */
+    public function setNettoertrageMonatlich($nettoertrageMonatlich)
+    {
+        $this->nettoertrageMonatlich = $nettoertrageMonatlich;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getNettoertrageMonatlich()
+    {
+        return $this->nettoertrageMonatlich;
+    }
+
+    /**
+     * @param null $rendite
+     *
+     * @return $this
+     */
+    public function setRendite($rendite)
+    {
+        $this->rendite = $rendite;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRendite()
+    {
+        return $this->rendite;
+    }
+
+    /**
+     * @param null $waehrung
+     *
+     * @return $this
+     */
+    public function setWaehrung($waehrung)
+    {
+        $this->waehrung = $waehrung;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getWaehrung()
+    {
+        return $this->waehrung;
+    }
+
+    /**
+     * @param null $wohnbaufoerderung
+     *
+     * @return $this
+     */
+    public function setWohnbaufoerderung($wohnbaufoerderung)
+    {
+        $this->wohnbaufoerderung = $wohnbaufoerderung;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getWohnbaufoerderung()
+    {
+        return $this->wohnbaufoerderung;
+    }
+
 
 }
