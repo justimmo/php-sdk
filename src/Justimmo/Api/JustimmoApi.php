@@ -147,7 +147,7 @@ class JustimmoApi implements JustimmoApiInterface
         $this->logger->debug($response);
 
         if ($request->getError()) {
-            $this->throwError('The Api call returned an error ' . $request->getError());
+            $this->throwError('The Api call returned an error: "' . $request->getError() . '"');
         }
 
         if ($request->getStatusCode() != 200) {
