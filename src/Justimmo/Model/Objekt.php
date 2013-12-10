@@ -686,6 +686,4 @@ class Objekt
         return $this->strasse;
     }
 
-
-
 }
