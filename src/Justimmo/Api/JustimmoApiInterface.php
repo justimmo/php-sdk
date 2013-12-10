@@ -11,4 +11,13 @@ interface JustimmoApiInterface
      * @return mixed
      */
     public function callObjektList(array $params = array());
+
+    /**
+     * calls the detail information of a single objekt
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callObjektDetail($pk);
 }

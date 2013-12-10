@@ -89,12 +89,28 @@ abstract class AbstractQuery implements QueryInterface
         return $this->listWrapper->transform($response);
     }
 
+    /**
+     * @return \Justimmo\Model\Objekt
+     */
     public function findOne()
     {
         $this->setLimit(1);
         $pager = $this->find();
 
         return $pager->offsetGet(0);
+    }
+
+    /**
+     * @param int $pk
+     *
+     * @return \Justimmo\Model\Objekt
+     */
+    public function findPk($pk)
+    {
+        $method = $this->getDetailCall();
+        $response = $this->api->$method($pk);
+
+        return $this->detailWrapper->transform($response);
     }
 
     /**

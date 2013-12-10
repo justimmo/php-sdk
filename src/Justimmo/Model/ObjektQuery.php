@@ -27,6 +27,6 @@ class ObjektQuery extends AbstractQuery
      */
     public function getDetailCall()
     {
-        // TODO: Implement getDetailCall() method.
+        return 'callObjektDetail';
     }
 }

@@ -94,6 +94,18 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * calls the detail information of a single objekt
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callObjektDetail($pk)
+    {
+        return $this->call('objekt/detail', array('objekt_id' => $pk));
+    }
+
+    /**
      * @param makes a call to the justimmo api
      *
      * @param $url
