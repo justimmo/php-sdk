@@ -9,6 +9,9 @@
     "require-dev": {
         "symfony/debug": "2.4.*"
     },
+    "suggest": {
+        "monolog/monolog": "~1.7"
+    },
     "autoload": {
         "psr-0": { "Justimmo": "src/" }
     }
