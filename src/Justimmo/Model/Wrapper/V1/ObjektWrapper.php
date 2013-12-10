@@ -4,6 +4,7 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Objekt;
 use Justimmo\Model\Wrapper\WrapperInterface;
+use Justimmo\Model\Zusatzkosten;
 
 class ObjektWrapper implements WrapperInterface
 {
@@ -131,6 +132,13 @@ class ObjektWrapper implements WrapperInterface
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
                 if (array_key_exists('iso_waehrung', $iso)) {
                     $objekt->setWaehrung((string) $iso['iso_waehrung']);
+                }
+            }
+
+            if (isset($xml->preise->zusatzkosten)) {
+                foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
+                    $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
+                    $objekt->addZusatzkosten($key, new Zusatzkosten((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust));
                 }
             }
         }

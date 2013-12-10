@@ -58,7 +58,7 @@ class Objekt
 
     protected $flur = null;
 
-    protected $flurstueck  = null;
+    protected $flurstueck = null;
 
     protected $gemarkung = null;
 
@@ -85,6 +85,8 @@ class Objekt
     protected $nettoertragJaehrlich = null;
 
     protected $gesamtMieteUst = null;
+
+    protected $zusatzkosten = array();
 
     /**
      * @param null $nutzungsart
@@ -906,5 +908,84 @@ class Objekt
         return $this->wohnbaufoerderung;
     }
 
+    /**
+     * @param array $zusatzkosten
+     *
+     * @return $this
+     */
+    public function setZusatzkosten(array $zusatzkosten)
+    {
+        $this->zusatzkosten = $zusatzkosten;
 
+        return $this;
+    }
+
+    /**
+     * @param string       $key
+     * @param Zusatzkosten $zusatzkosten
+     *
+     * @return $this
+     */
+    public function addZusatzkosten($key, Zusatzkosten $zusatzkosten)
+    {
+        $this->zusatzkosten[$key] = $zusatzkosten;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getZusatzkosten()
+    {
+        return $this->zusatzkosten;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getBetriebskostenBrutto()
+    {
+        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getBrutto() : null;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getBetriebskostenNetto()
+    {
+        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getNetto() : null;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getBetriebskostenUst()
+    {
+        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getUst() : null;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getHeizkostenBrutto()
+    {
+        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getBrutto() : null;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getHeizkostenNetto()
+    {
+        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getNetto() : null;
+    }
+
+    /**
+     * @return double|null
+     */
+    public function getHeizkostenUst()
+    {
+        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getUst() : null;
+    }
 }
