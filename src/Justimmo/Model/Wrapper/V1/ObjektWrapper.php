@@ -47,7 +47,7 @@ class ObjektWrapper implements WrapperInterface
                 $setter = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
 
                 if ($cast == 'string') {
-                    $objekt->$setter(trim((string)$xml->$key));
+                    $objekt->$setter((string)$xml->$key);
                 } elseif ($cast == 'int') {
                     $objekt->$setter((int)$xml->$key);
                 }
