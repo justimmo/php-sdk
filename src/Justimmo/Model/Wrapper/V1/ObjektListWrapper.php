@@ -10,13 +10,15 @@ class ObjektListWrapper implements WrapperInterface
     public function transform($data)
     {
         $xml = new \SimpleXMLElement($data);
+        $singleTransformer = new ObjektWrapper();
 
         $transformed = new ListPager();
         $transformed->setNbResults((int) $xml->{'query-result'}->count);
 
         if (isset($xml->immobilie)) {
             foreach ($xml->immobilie as $immobilie) {
-                $transformed->append($immobilie);
+                $objekt = $singleTransformer->transform($immobilie->asXML());
+                $transformed->append($objekt);
             }
         }
         $transformed->setMaxPerPage($transformed->count());
