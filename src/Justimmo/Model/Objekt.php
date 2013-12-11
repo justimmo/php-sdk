@@ -32,6 +32,10 @@ class Objekt
 
     protected $grundflaeche = null;
 
+    protected $wohnflaeche = null;
+
+    protected $gesamtflaeche = null;
+
     protected $projektId = null;
 
     protected $status = null;
@@ -1130,5 +1134,45 @@ class Objekt
     public function getDocuments()
     {
         return $this->getAttachmentsByType('document');
+    }
+
+    /**
+     * @param null $gesamtflaeche
+     *
+     * @return $this
+     */
+    public function setGesamtflaeche($gesamtflaeche)
+    {
+        $this->gesamtflaeche = $gesamtflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGesamtflaeche()
+    {
+        return $this->gesamtflaeche;
+    }
+
+    /**
+     * @param null $wohnflaeche
+     *
+     * @return $this
+     */
+    public function setWohnflaeche($wohnflaeche)
+    {
+        $this->wohnflaeche = $wohnflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getWohnflaeche()
+    {
+        return $this->wohnflaeche;
     }
 }

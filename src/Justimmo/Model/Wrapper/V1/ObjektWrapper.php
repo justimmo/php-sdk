@@ -64,6 +64,14 @@ class ObjektWrapper implements WrapperInterface
         'kaution'                    => 'double',
     );
 
+    protected $flaechenMapping = array(
+        'nutzflaeche'   => 'string',
+        'grundflaeche'  => 'string',
+        'wohnflaeche'   => 'string',
+        'gesamtflaeche' => 'string',
+
+    );
+
     /**
      * @param $data
      *
@@ -164,6 +172,11 @@ class ObjektWrapper implements WrapperInterface
                 $attachment = new Attachment($this->cast($anhang), 'bilder360');
                 $objekt->addAttachment($attachment);
             }
+        }
+
+        if (isset($xml->flaechen)) {
+            $this->map($this->flaechenMapping, $xml->flaechen, $objekt);
+            $objekt->setGrundflaeche($this->cast($xml->flaechen->grundstuecksflaeche));
         }
 
         return $objekt;
