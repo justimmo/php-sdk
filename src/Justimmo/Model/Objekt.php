@@ -1123,7 +1123,7 @@ class Objekt
     /**
      * @return array
      */
-    public function getVideo()
+    public function getVideos()
     {
         return $this->getAttachmentsByType('video');
     }
