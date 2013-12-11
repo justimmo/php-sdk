@@ -94,6 +94,8 @@ class Objekt
 
     protected $vertragserrichtungsgebuehr = null;
 
+    protected $attachments = array();
+
     /**
      * @param null $nutzungsart
      *
@@ -1055,5 +1057,35 @@ class Objekt
         return $this->vertragserrichtungsgebuehr;
     }
 
+    /**
+     * @param array $attachments
+     *
+     * @return $this
+     */
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
 
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param Attachment $attachment
+     *
+     * @return $this
+     */
+    public function addAttachment(Attachment $attachment)
+    {
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
 }

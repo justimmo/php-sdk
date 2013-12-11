@@ -2,6 +2,7 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
+use Justimmo\Model\Attachment;
 use Justimmo\Model\Objekt;
 use Justimmo\Model\Wrapper\WrapperInterface;
 use Justimmo\Model\Zusatzkosten;
@@ -88,6 +89,10 @@ class ObjektWrapper implements WrapperInterface
             $objekt->setProjektId((int) $xml->verwaltung_techn->projekt_id);
         }
 
+        if (isset($xml->verwaltung_objekt)) {
+            $objekt->setStatus($this->cast($xml->verwaltung_objekt->status));
+        }
+
         if (isset($xml->objektkategorie)) {
             if (isset($xml->objektkategorie->objektart)) {
                 $objekt->setObjektart((string) $xml->objektkategorie->objektart->children()->getName());
@@ -139,6 +144,25 @@ class ObjektWrapper implements WrapperInterface
                     $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
                     $objekt->addZusatzkosten($key, new Zusatzkosten((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust));
                 }
+            }
+        }
+
+        if (isset($xml->anhaenge) && isset($xml->anhaenge->anhang)) {
+            $this->mapAttachmentGroup($xml->anhaenge->anhang, $objekt);
+        }
+
+        if (isset($xml->dokumente) && isset($xml->dokumente->dokument)) {
+            $this->mapAttachmentGroup($xml->dokumente->dokument, $objekt, 'document');
+        }
+
+        if (isset($xml->videos) && isset($xml->videos->video)) {
+            $this->mapAttachmentGroup($xml->videos->video, $objekt, 'video');
+        }
+
+        if (isset($xml->bilder360) && isset($xml->bilder360->pfad)) {
+            foreach ($xml->bilder360->pfad as $anhang) {
+                $attachment = new Attachment($this->cast($anhang), 'bilder360');
+                $objekt->addAttachment($attachment);
             }
         }
 
@@ -200,5 +224,31 @@ class ObjektWrapper implements WrapperInterface
         $array = (array) $xml;
 
         return array_key_exists('@attributes', $array) ? $array['@attributes'] : array();
+    }
+
+    /**
+     * @param \SimpleXMLElement      $xml
+     * @param null                   $type
+     *
+     * @param \Justimmo\Model\Objekt $objekt
+     *
+     * @internal param array $data
+     * @return \Justimmo\Model\Attachment|null
+     */
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Objekt $objekt, $type = null)
+    {
+        foreach ($xml as $anhang) {
+            $data = (array) $anhang->daten;
+            if (array_key_exists('pfad', $data)) {
+                $attachment = new Attachment($data['pfad'], $type);
+                $attachment->setData($data);
+                $attachment->setTitle($this->cast($anhang->anhangtitel));
+                $objekt->addAttachment($attachment);
+            } elseif (isset($anhang->pfad)) {
+                $attachment = new Attachment($this->cast($anhang->pfad), $type);
+                $attachment->setTitle($this->cast($anhang->titel));
+                $objekt->addAttachment($attachment);
+            }
+        }
     }
 }
