@@ -1,15 +1,22 @@
 <?php
 namespace Justimmo\Tests;
 
-class V1ObjektListWrapperTest extends \PHPUnit_Framework_TestCase
+use Justimmo\Model\Wrapper\V1\ObjektListWrapper;
+
+class V1ObjektListWrapperTest extends TestCase
 {
 
-    /**
-     * @expectedException \Justimmo\Exception\AuthenticationException
-     */
-    public function testWrongUserData()
+    public function testTransform()
     {
-        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
-        $api->callObjektList();
+        $wrapper = new ObjektListWrapper();
+        $list = $wrapper->transform($this->getFixtures('v1/objekt_list.xml'));
+        
+        $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
+        $this->assertEquals($list->count(), count($list));
+        $this->assertFalse($list->haveToPaginate());
+
+        foreach($list as $entry) {
+            $this->assertInstanceOf('\Justimmo\Model\Objekt', $entry);
+        }
     }
 }

@@ -1,7 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: smitterhofer
- * Date: 11/12/13
- * Time: 15:13
- */ 
+
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
+$loader->add('Justimmo\Tests', __DIR__);
