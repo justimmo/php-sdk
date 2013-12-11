@@ -84,6 +84,10 @@ class V1ObjektWrapperTest extends TestCase
             $this->assertEquals(0, $zusatzkosten->getUst());
             $i++;
         }
+
+        $this->assertEquals(8, count($objekt->getPictures()));
+        $this->assertEquals(1, count($objekt->getDocuments()));
+        $this->assertEquals(0, count($objekt->getVideos()));
     }
 
 
