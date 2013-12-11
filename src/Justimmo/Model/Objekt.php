@@ -1088,4 +1088,47 @@ class Objekt
 
         return $this;
     }
+
+    /**
+     * @param $type
+     *
+     * @return array
+     */
+    public function getAttachmentsByType($type)
+    {
+        $attachments = array();
+
+        /** @var \Justimmo\Model\Attachment $attachment */
+        foreach ($this->attachments as $attachment) {
+            if ($attachment->getType() == $type) {
+                $attachments[] =  $attachment;
+            }
+        }
+
+        return $attachments;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPictures()
+    {
+        return $this->getAttachmentsByType('picture');
+    }
+
+    /**
+     * @return array
+     */
+    public function getVideo()
+    {
+        return $this->getAttachmentsByType('video');
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocuments()
+    {
+        return $this->getAttachmentsByType('document');
+    }
 }
