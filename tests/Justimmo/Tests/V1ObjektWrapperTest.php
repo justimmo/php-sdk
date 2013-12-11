@@ -65,6 +65,25 @@ class V1ObjektWrapperTest extends TestCase
         $this->assertNull($objekt->getGrundbucheintragung());
         $this->assertNull($objekt->getVertragserrichtungsgebuehr());
         $this->assertNull($objekt->getKaution());
+
+        $this->assertEquals(2, count($objekt->getZusatzkosten()));
+        $i = 1;
+        foreach ($objekt->getZusatzkosten() as $key => $zusatzkosten) {
+            $this->assertInstanceOf('\Justimmo\Model\Zusatzkosten', $zusatzkosten);
+            if ($i == 1) {
+                $this->assertEquals('betriebskosten', $key);
+                $this->assertEquals('betriebskosten', $zusatzkosten->getName());
+                $this->assertEquals(50000, $zusatzkosten->getNetto());
+                $this->assertEquals(50000, $zusatzkosten->getBrutto());
+            } else {
+                $this->assertEquals('heizkosten', $key);
+                $this->assertEquals('heizkosten', $zusatzkosten->getName());
+                $this->assertEquals(10000, $zusatzkosten->getNetto());
+                $this->assertEquals(10000, $zusatzkosten->getBrutto());
+            }
+            $this->assertEquals(0, $zusatzkosten->getUst());
+            $i++;
+        }
     }
 
 
