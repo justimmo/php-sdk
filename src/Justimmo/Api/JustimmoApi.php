@@ -150,8 +150,12 @@ class JustimmoApi implements JustimmoApiInterface
             $this->throwError('The Api call returned an error: "' . $request->getError() . '"');
         }
 
+        if ($request->getStatusCode() == 401) {
+            $this->throwError('Bad Username / Password ' . $request->getStatusCode(), '\Justimmo\Exception\AuthenticationException');
+        }
+
         if ($request->getStatusCode() != 200) {
-            $this->throwError('The Api call returned status code ' . $request->getStatusCode());
+            $this->throwError('The Api call returned status code ' . $request->getStatusCode(), '\Justimmo\Exception\StatusCodeException');
         }
 
         $this->cache->set($key, $response);
@@ -176,13 +180,14 @@ class JustimmoApi implements JustimmoApiInterface
      * throws and logs an error
      *
      * @param $message
+     * @param string $exceptionClass
      *
      * @throws \InvalidArgumentException
      */
-    protected function throwError($message)
+    protected function throwError($message, $exceptionClass = '\InvalidArgumentException')
     {
         $this->logger->error($message);
-        throw new \InvalidArgumentException($message);
+        throw new $exceptionClass($message);
     }
 
     /**
