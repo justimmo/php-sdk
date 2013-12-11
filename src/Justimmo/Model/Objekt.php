@@ -80,7 +80,7 @@ class Objekt
 
     protected $rendite = null;
 
-    protected $nettoertrageMonatlich = null;
+    protected $nettoertragMonatlich = null;
 
     protected $nettoertragJaehrlich = null;
 
@@ -837,13 +837,13 @@ class Objekt
     }
 
     /**
-     * @param null $nettoertrageMonatlich
+     * @param null $nettoertragMonatlich
      *
      * @return $this
      */
-    public function setNettoertrageMonatlich($nettoertrageMonatlich)
+    public function setNettoertragMonatlich($nettoertragMonatlich)
     {
-        $this->nettoertrageMonatlich = $nettoertrageMonatlich;
+        $this->nettoertragMonatlich = $nettoertragMonatlich;
 
         return $this;
     }
@@ -851,9 +851,9 @@ class Objekt
     /**
      * @return null
      */
-    public function getNettoertrageMonatlich()
+    public function getNettoertragMonatlich()
     {
-        return $this->nettoertrageMonatlich;
+        return $this->nettoertragMonatlich;
     }
 
     /**
