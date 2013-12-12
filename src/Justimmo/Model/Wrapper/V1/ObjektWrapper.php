@@ -3,6 +3,7 @@
 namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
+use Justimmo\Model\Energiepass;
 use Justimmo\Model\Objekt;
 use Justimmo\Model\Wrapper\WrapperInterface;
 use Justimmo\Model\Zusatzkosten;
@@ -197,6 +198,23 @@ class ObjektWrapper implements WrapperInterface
                 $objekt->setZustand($data['zustand_art']);
             }
 
+            if (isset($xml->zustand_angaben->energiepass)) {
+                $energiepass = new Energiepass();
+                $energiepass
+                    ->setEpart($this->cast($xml->zustand_angaben->energiepass->epart))
+                    ->setGueltigBis($this->cast($xml->zustand_angaben->energiepass->gueltig_bis, 'datetime'));
+
+                foreach ($xml->zustand_angaben->energiepass->epart->user_defined_simplefield as $simpleField) {
+                    $attributes = $this->attributesToArray($simpleField);
+                    if (array_key_exists('feldname', $attributes)) {
+                        $setter = $this->buildSetter(str_replace('epass_', '', $attributes['feldname']));
+                        $energiepass->$setter($this->cast($simpleField));
+                    }
+                }
+
+                $objekt->setEnergiepass($energiepass);
+            }
+
         }
 
         return $objekt;
@@ -208,7 +226,7 @@ class ObjektWrapper implements WrapperInterface
      * @param        $xml
      * @param string $type
      *
-     * @return float|int|null|string
+     * @return float|int|null|string|\DateTime
      */
     protected function cast(\SimpleXMLElement $xml, $type = 'string')
     {
@@ -223,6 +241,8 @@ class ObjektWrapper implements WrapperInterface
                 return (int) $xml;
             case 'double':
                 return (double) $xml;
+            case 'datetime':
+                return new \DateTime((string) $xml);
             default:
                 return $xml;
         }
@@ -239,10 +259,22 @@ class ObjektWrapper implements WrapperInterface
     {
         foreach ($mapping as $key => $cast) {
             if (isset($xml->$key)) {
-                $setter = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
+                $setter = $this->buildSetter($key);
                 $objekt->$setter($this->cast($xml->$key, $cast));
             }
         }
+    }
+
+    /**
+     * build a setter
+     *
+     * @param $key
+     *
+     * @return string
+     */
+    protected function buildSetter($key)
+    {
+        return 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
     }
 
     /**

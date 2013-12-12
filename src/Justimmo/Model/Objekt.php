@@ -109,6 +109,11 @@ class Objekt
     protected $zustand = null;
 
     /**
+     * @var \Justimmo\Model\Energiepass
+     */
+    protected $energiepass = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -1264,5 +1269,24 @@ class Objekt
         return $this->alter;
     }
 
+    /**
+     * @param \Justimmo\Model\Energiepass $energiepass
+     *
+     * @return $this
+     */
+    public function setEnergiepass(Energiepass $energiepass)
+    {
+        $this->energiepass = $energiepass;
+
+        return $this;
+    }
+
+    /**
+     * @return \Justimmo\Model\Energiepass
+     */
+    public function getEnergiepass()
+    {
+        return $this->energiepass;
+    }
 
 }
