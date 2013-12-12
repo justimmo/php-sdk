@@ -134,7 +134,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function setOffset($offset)
     {
-        return $this->setOffset($offset);
+        return $this->set('offset', $offset);
     }
 
     /**
@@ -219,5 +219,13 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));
+    }
+
+    /**
+     * @return array
+     */
+    public function getParams()
+    {
+        return $this->params;
     }
 }
