@@ -16,8 +16,8 @@ class ObjektWrapperTest extends TestCase
     public function testTransform()
     {
         $wrapper = new ObjektWrapper();
-        $objekt = $wrapper->transform($this->getFixtures('v1/objekt_detail.xml'));
-        
+        $objekt  = $wrapper->transform($this->getFixtures('v1/objekt_detail.xml'));
+
         $this->assertInstanceOf('\Justimmo\Model\Objekt', $objekt);
 
         $this->assertEquals(195439, $objekt->getId());
@@ -37,7 +37,7 @@ class ObjektWrapperTest extends TestCase
             'ANLAGE'  => 0,
         ), $objekt->getNutzungsart());
         $this->assertEquals(array(
-            'KAUF'  => 1,
+            'KAUF'        => 1,
             'MIETE_PACHT' => 1,
         ), $objekt->getVermarktungsart());
         $this->assertNull($objekt->getStrasse());
@@ -96,5 +96,13 @@ class ObjektWrapperTest extends TestCase
         $this->assertEquals('BEDARF', $energiepass->getEpart());
         $this->assertInstanceOf('\DateTime', $energiepass->getGueltigBis());
         $this->assertEquals('2012-09-12', $energiepass->getGueltigBis()->format('Y-m-d'));
+
+        $this->assertEquals(array(
+            'angeschl_gastronomie'     => 'HOTELRESTAURANT',
+            'ausricht_balkon_terrasse' => 'NORD',
+            'boden'                    => 'ESTRICH',
+            'brauereibindung'          => 'brauereibindung',
+            'sicherheitstechnik'       => 'POLIZEIRUF',
+        ), $objekt->getAusstattung());
     }
 }

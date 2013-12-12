@@ -108,6 +108,8 @@ class Objekt
 
     protected $zustand = null;
 
+    protected $ausstattung = array();
+
     /**
      * @var \Justimmo\Model\Energiepass
      */
@@ -1289,4 +1291,36 @@ class Objekt
         return $this->energiepass;
     }
 
+    /**
+     * @param array $ausstattung
+     *
+     * @return $this
+     */
+    public function setAusstattung($ausstattung)
+    {
+        $this->ausstattung = $ausstattung;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAusstattung()
+    {
+        return $this->ausstattung;
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     * @return $this
+     */
+    public function addAusstattung($key, $value)
+    {
+        $this->ausstattung[$key] = $value;
+
+        return $this;
+    }
 }

@@ -8,4 +8,4 @@ php:
 before_script:
     - composer --dev install
 
-script: phpunit --coverage-text
+script: phpunit

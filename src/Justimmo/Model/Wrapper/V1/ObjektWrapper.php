@@ -215,6 +215,28 @@ class ObjektWrapper implements WrapperInterface
                 $objekt->setEnergiepass($energiepass);
             }
 
+            if (isset($xml->ausstattung[0])) {
+                /** @var \SimpleXMLElement $element */
+                foreach ($xml->ausstattung[0] as $key => $element) {
+                    if ((int) $element === 1) {
+                        $objekt->addAusstattung($key, $key);
+                    } elseif ($element->attributes()->count()) {
+                        $attributes = $this->attributesToArray($element);
+                        $value = array();
+                        foreach ($attributes as $k => $v) {
+                            if ($v == 1) {
+                                $value[] = $k;
+                            } else {
+                                $value[$k][] = $v;
+                            }
+                        }
+                        $objekt->addAusstattung($key, count($value) > 1 ? $value : $value[0]);
+                    } else {
+                        $objekt->addAusstattung($key, (string) $element);
+                    }
+                }
+            }
+
         }
 
         return $objekt;
