@@ -106,6 +106,19 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * make a call to the team list with a set of given params
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callMitarbeiterList(array $params = array())
+    {
+        return $this->call('team/list', $params);
+    }
+
+
+    /**
      * @param makes a call to the justimmo api
      *
      * @param $url

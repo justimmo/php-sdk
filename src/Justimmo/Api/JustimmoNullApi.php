@@ -19,4 +19,9 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
+
+    public function callMitarbeiterList(array $params = array())
+    {
+
+    }
 }

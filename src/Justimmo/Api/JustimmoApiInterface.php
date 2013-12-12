@@ -20,4 +20,14 @@ interface JustimmoApiInterface
      * @return mixed
      */
     public function callObjektDetail($pk);
+
+    /**
+     * make a call to the team list with a set of given params
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callMitarbeiterList(array $params = array());
+
 }
