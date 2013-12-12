@@ -106,6 +106,19 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * calls the detail information of a single mitarbeiter
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callMitarbeiterDetail($pk)
+    {
+        return $this->call('team/detail', array('id' => $pk));
+    }
+
+
+    /**
      * make a call to the team list with a set of given params
      *
      * @param array $params

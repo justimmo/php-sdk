@@ -24,4 +24,10 @@ class JustimmoNullApi implements JustimmoApiInterface
     {
 
     }
+
+    public function callMitarbeiterDetail($pk)
+    {
+
+    }
+
 }

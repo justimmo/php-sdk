@@ -30,4 +30,13 @@ interface JustimmoApiInterface
      */
     public function callMitarbeiterList(array $params = array());
 
+    /**
+     * calls the detail information of a single mitarbeiter
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callMitarbeiterDetail($pk);
+
 }

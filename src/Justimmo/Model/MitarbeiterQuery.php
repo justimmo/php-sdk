@@ -14,7 +14,7 @@ class MitarbeiterQuery extends AbstractQuery
 
     public function getDetailCall()
     {
-        // TODO: Implement getDetailCall() method.
+        return 'callMitarbeiterDetail';
     }
 
 }
