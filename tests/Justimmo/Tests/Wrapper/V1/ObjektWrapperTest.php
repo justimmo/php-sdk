@@ -89,7 +89,12 @@ class ObjektWrapperTest extends TestCase
         $this->assertEquals(8, count($objekt->getPictures()));
         $this->assertEquals(1, count($objekt->getDocuments()));
         $this->assertEquals(0, count($objekt->getVideos()));
+
+        $energiepass = $objekt->getEnergiepass();
+
+        $this->assertInstanceOf('\Justimmo\Model\Energiepass', $energiepass);
+        $this->assertEquals('BEDARF', $energiepass->getEpart());
+        $this->assertInstanceOf('\DateTime', $energiepass->getGueltigBis());
+        $this->assertEquals('2012-09-12', $energiepass->getGueltigBis()->format('Y-m-d'));
     }
-
-
 }
