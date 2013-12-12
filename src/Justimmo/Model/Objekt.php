@@ -136,7 +136,7 @@ class Objekt
 
     protected $loggiasFlaeche = null;
 
-    protected $balkonsFlaeche = null;
+    protected $balkonFlaeche = null;
 
     protected $terrassenFlaeche = null;
 
@@ -1563,9 +1563,9 @@ class Objekt
      *
      * @return $this
      */
-    public function setBalkonsFlaeche($balkonsFlaeche)
+    public function setBalkonFlaeche($balkonsFlaeche)
     {
-        $this->balkonsFlaeche = $balkonsFlaeche;
+        $this->balkonFlaeche = $balkonsFlaeche;
 
         return $this;
     }
@@ -1573,9 +1573,9 @@ class Objekt
     /**
      * @return null
      */
-    public function getBalkonsFlaeche()
+    public function getBalkonFlaeche()
     {
-        return $this->balkonsFlaeche;
+        return $this->balkonFlaeche;
     }
 
     /**
