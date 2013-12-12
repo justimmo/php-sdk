@@ -13,7 +13,8 @@ class ObjektListWrapperTest extends TestCase
         $list = $wrapper->transform($this->getFixtures('v1/objekt_list.xml'));
         
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
-        $this->assertEquals($list->count(), count($list));
+        $this->assertEquals(3, $list->count());
+        $this->assertEquals(3, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
         foreach($list as $entry) {
