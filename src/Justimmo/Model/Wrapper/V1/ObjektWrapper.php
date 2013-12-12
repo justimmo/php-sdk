@@ -179,6 +179,26 @@ class ObjektWrapper implements WrapperInterface
             $objekt->setGrundflaeche($this->cast($xml->flaechen->grundstuecksflaeche));
         }
 
+        if (isset($xml->zustand_angaben)) {
+            $objekt->setBaujahr($this->cast($xml->zustand_angaben->baujahr, 'int'));
+
+            $data = $this->attributesToArray($xml->zustand_angaben->zustand);
+            if (array_key_exists('zustand_art', $data)) {
+                $objekt->setZustand($data['zustand_art']);
+            }
+
+            $data = $this->attributesToArray($xml->zustand_angaben->alter);
+            if (array_key_exists('alter_attr', $data)) {
+                $objekt->setZustand($data['alter_attr']);
+            }
+
+            $data = $this->attributesToArray($xml->zustand_angaben->erschliessung);
+            if (array_key_exists('erschl_attr', $data)) {
+                $objekt->setZustand($data['zustand_art']);
+            }
+
+        }
+
         return $objekt;
     }
 

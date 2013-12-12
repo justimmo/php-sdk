@@ -100,6 +100,14 @@ class Objekt
 
     protected $attachments = array();
 
+    protected $baujahr = null;
+
+    protected $alter = null;
+
+    protected $erschließung = null;
+
+    protected $zustand = null;
+
     /**
      * @param null $nutzungsart
      *
@@ -1175,4 +1183,86 @@ class Objekt
     {
         return $this->wohnflaeche;
     }
+
+    /**
+     * @param null $zustand
+     *
+     * @return $this
+     */
+    public function setZustand($zustand)
+    {
+        $this->zustand = $zustand;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getZustand()
+    {
+        return $this->zustand;
+    }
+
+    /**
+     * @param null $erschließung
+     *
+     * @return $this
+     */
+    public function setErschließung($erschließung)
+    {
+        $this->erschließung = $erschließung;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getErschließung()
+    {
+        return $this->erschließung;
+    }
+
+    /**
+     * @param null $baujahr
+     *
+     * @return $this
+     */
+    public function setBaujahr($baujahr)
+    {
+        $this->baujahr = $baujahr;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBaujahr()
+    {
+        return $this->baujahr;
+    }
+
+    /**
+     * @param null $alter
+     *
+     * @return $this
+     */
+    public function setAlter($alter)
+    {
+        $this->alter = $alter;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAlter()
+    {
+        return $this->alter;
+    }
+
+
 }
