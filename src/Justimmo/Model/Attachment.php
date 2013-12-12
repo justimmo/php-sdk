@@ -14,9 +14,9 @@ class Attachment
 
     protected $data = array();
 
-    protected $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg');
+    protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg');
 
-    protected $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
+    protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
 
     public function __construct($path, $type = null)
     {
@@ -47,9 +47,9 @@ class Attachment
      */
     protected function determineTypeByExtension($extension)
     {
-        if (in_array($extension, $this->pictureExtensions)) {
+        if (in_array($extension, static::$pictureExtensions)) {
             return 'picture';
-        } elseif (in_array($extension, $this->videoExtensions)) {
+        } elseif (in_array($extension, static::$videoExtensions)) {
             return 'video';
         }
         return 'document';
