@@ -1,6 +1,7 @@
 {
     "name": "justimmo/php-sdk",
-    "description": "PHP-SDK for the Justimmo API",
+    "description": "PHP-SDK for the JUSTIMMO API",
+    "type": "library",
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
