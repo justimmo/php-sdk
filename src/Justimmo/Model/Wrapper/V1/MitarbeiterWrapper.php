@@ -16,6 +16,7 @@ class MitarbeiterWrapper extends AbstractWrapper
         'position'  => 'string',
         'kategorie' => 'string',
         'email'     => 'string',
+        'titel'     => 'string',
     );
 
     public function transform($data)

@@ -24,6 +24,8 @@ class Mitarbeiter
 
     protected $fax = null;
 
+    protected $titel = null;
+
     /**
      * @param array $attachments
      *
@@ -263,5 +265,24 @@ class Mitarbeiter
         return $this->getAttachmentsByType('picture');
     }
 
+    /**
+     * @param null $titel
+     *
+     * @return $this
+     */
+    public function setTitel($titel)
+    {
+        $this->titel = $titel;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getTitel()
+    {
+        return $this->titel;
+    }
 
 }
