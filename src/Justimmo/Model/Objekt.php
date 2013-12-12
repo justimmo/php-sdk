@@ -110,6 +110,40 @@ class Objekt
 
     protected $ausstattung = array();
 
+    protected $anzahlZimmer = null;
+
+    protected $anzahlBadezimmer = null;
+
+    protected $anzahlSepWc = null;
+
+    protected $anzahlBalkonTerrassen = null;
+
+    protected $balkonTerrassenFlaeche = null;
+
+    protected $anzahlBalkone = null;
+
+    protected $anzahlTerrassen = null;
+
+    protected $gartenflaeche = null;
+
+    protected $kellerflaeche = null;
+
+    protected $bueroflaeche = null;
+
+    protected $lagerflaeche = null;
+
+    protected $anzahlLoggias = null;
+
+    protected $loggiasFlaeche = null;
+
+    protected $balkonsFlaeche = null;
+
+    protected $terrassenFlaeche = null;
+
+    protected $anzahlGaragen = null;
+
+    protected $anzahlAbstellraum = null;
+
     /**
      * @var \Justimmo\Model\Energiepass
      */
@@ -1323,4 +1357,346 @@ class Objekt
 
         return $this;
     }
+
+    /**
+     * @param null $anzahlAbstellraum
+     *
+     * @return $this
+     */
+    public function setAnzahlAbstellraum($anzahlAbstellraum)
+    {
+        $this->anzahlAbstellraum = $anzahlAbstellraum;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlAbstellraum()
+    {
+        return $this->anzahlAbstellraum;
+    }
+
+    /**
+     * @param null $anzahlBadezimmer
+     *
+     * @return $this
+     */
+    public function setAnzahlBadezimmer($anzahlBadezimmer)
+    {
+        $this->anzahlBadezimmer = $anzahlBadezimmer;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlBadezimmer()
+    {
+        return $this->anzahlBadezimmer;
+    }
+
+    /**
+     * @param null $anzahlBalkonTerrassen
+     *
+     * @return $this
+     */
+    public function setAnzahlBalkonTerrassen($anzahlBalkonTerrassen)
+    {
+        $this->anzahlBalkonTerrassen = $anzahlBalkonTerrassen;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlBalkonTerrassen()
+    {
+        return $this->anzahlBalkonTerrassen;
+    }
+
+    /**
+     * @param null $anzahlBalkone
+     *
+     * @return $this
+     */
+    public function setAnzahlBalkone($anzahlBalkone)
+    {
+        $this->anzahlBalkone = $anzahlBalkone;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlBalkone()
+    {
+        return $this->anzahlBalkone;
+    }
+
+    /**
+     * @param null $anzahlGaragen
+     *
+     * @return $this
+     */
+    public function setAnzahlGaragen($anzahlGaragen)
+    {
+        $this->anzahlGaragen = $anzahlGaragen;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlGaragen()
+    {
+        return $this->anzahlGaragen;
+    }
+
+    /**
+     * @param null $anzahlLoggias
+     *
+     * @return $this
+     */
+    public function setAnzahlLoggias($anzahlLoggias)
+    {
+        $this->anzahlLoggias = $anzahlLoggias;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlLoggias()
+    {
+        return $this->anzahlLoggias;
+    }
+
+    /**
+     * @param null $anzahlSepWc
+     *
+     * @return $this
+     */
+    public function setAnzahlSepWc($anzahlSepWc)
+    {
+        $this->anzahlSepWc = $anzahlSepWc;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlSepWc()
+    {
+        return $this->anzahlSepWc;
+    }
+
+    /**
+     * @param null $anzahlTerrassen
+     *
+     * @return $this
+     */
+    public function setAnzahlTerrassen($anzahlTerrassen)
+    {
+        $this->anzahlTerrassen = $anzahlTerrassen;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlTerrassen()
+    {
+        return $this->anzahlTerrassen;
+    }
+
+    /**
+     * @param null $anzahlZimmer
+     *
+     * @return $this
+     */
+    public function setAnzahlZimmer($anzahlZimmer)
+    {
+        $this->anzahlZimmer = $anzahlZimmer;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAnzahlZimmer()
+    {
+        return $this->anzahlZimmer;
+    }
+
+    /**
+     * @param null $balkonTerrassenFlaeche
+     *
+     * @return $this
+     */
+    public function setBalkonTerrassenFlaeche($balkonTerrassenFlaeche)
+    {
+        $this->balkonTerrassenFlaeche = $balkonTerrassenFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBalkonTerrassenFlaeche()
+    {
+        return $this->balkonTerrassenFlaeche;
+    }
+
+    /**
+     * @param null $balkonsFlaeche
+     *
+     * @return $this
+     */
+    public function setBalkonsFlaeche($balkonsFlaeche)
+    {
+        $this->balkonsFlaeche = $balkonsFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBalkonsFlaeche()
+    {
+        return $this->balkonsFlaeche;
+    }
+
+    /**
+     * @param null $bueroflaeche
+     *
+     * @return $this
+     */
+    public function setBueroflaeche($bueroflaeche)
+    {
+        $this->bueroflaeche = $bueroflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBueroflaeche()
+    {
+        return $this->bueroflaeche;
+    }
+
+    /**
+     * @param null $gartenflaeche
+     *
+     * @return $this
+     */
+    public function setGartenflaeche($gartenflaeche)
+    {
+        $this->gartenflaeche = $gartenflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGartenflaeche()
+    {
+        return $this->gartenflaeche;
+    }
+
+    /**
+     * @param null $kellerflaeche
+     *
+     * @return $this
+     */
+    public function setKellerflaeche($kellerflaeche)
+    {
+        $this->kellerflaeche = $kellerflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getKellerflaeche()
+    {
+        return $this->kellerflaeche;
+    }
+
+    /**
+     * @param null $lagerflaeche
+     *
+     * @return $this
+     */
+    public function setLagerflaeche($lagerflaeche)
+    {
+        $this->lagerflaeche = $lagerflaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLagerflaeche()
+    {
+        return $this->lagerflaeche;
+    }
+
+    /**
+     * @param null $loggiasFlaeche
+     *
+     * @return $this
+     */
+    public function setLoggiasFlaeche($loggiasFlaeche)
+    {
+        $this->loggiasFlaeche = $loggiasFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLoggiasFlaeche()
+    {
+        return $this->loggiasFlaeche;
+    }
+
+    /**
+     * @param null $terrassenFlaeche
+     *
+     * @return $this
+     */
+    public function setTerrassenFlaeche($terrassenFlaeche)
+    {
+        $this->terrassenFlaeche = $terrassenFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getTerrassenFlaeche()
+    {
+        return $this->terrassenFlaeche;
+    }
+
+
 }

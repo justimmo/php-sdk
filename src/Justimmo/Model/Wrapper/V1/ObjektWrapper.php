@@ -66,11 +66,27 @@ class ObjektWrapper implements WrapperInterface
     );
 
     protected $flaechenMapping = array(
-        'nutzflaeche'   => 'string',
-        'grundflaeche'  => 'string',
-        'wohnflaeche'   => 'string',
-        'gesamtflaeche' => 'string',
-
+        'nutzflaeche'             => 'double',
+        'grundflaeche'            => 'double',
+        'wohnflaeche'             => 'double',
+        'gesamtflaeche'           => 'double',
+        'anzahl_zimmer'           => 'int',
+        'anzahl_badezimmer'       => 'int',
+        'anzahl_sep_wc'           => 'int',
+        'anzahl_balkon_terrassen' => 'int',
+        'balkon_terrasse_flaeche' => 'double',
+        'anzahl_balkone'          => 'int',
+        'anzahl_terrassen'        => 'int',
+        'gartenflaeche'           => 'double',
+        'kellerflaeche'           => 'double',
+        'bueroflaeche'            => 'double',
+        'lagerflaeche'            => 'double',
+        'anzahl_loggias'          => 'int',
+        'loggias_flaeche'         => 'double',
+        'balkons_flaeche'         => array('type' => 'double', 'setter' => 'setBalkonFlaeche'),
+        'terrassen_flaeche'       => 'double',
+        'anzahl_garagen'          => 'int',
+        'anzahl_abstellraum'      => 'int',
     );
 
     /**
@@ -281,8 +297,13 @@ class ObjektWrapper implements WrapperInterface
     {
         foreach ($mapping as $key => $cast) {
             if (isset($xml->$key)) {
-                $setter = $this->buildSetter($key);
-                $objekt->$setter($this->cast($xml->$key, $cast));
+                if (is_array($cast) && array_key_exists('setter', $cast)) {
+                    $setter = $cast['setter'];
+                    $objekt->$setter($this->cast($xml->$key, $cast['type']));
+                } else {
+                    $setter = $this->buildSetter($key);
+                    $objekt->$setter($this->cast($xml->$key, $cast));
+                }
             }
         }
     }
