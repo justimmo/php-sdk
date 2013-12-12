@@ -107,6 +107,14 @@ class ObjektWrapper implements WrapperInterface
         //basic attributes from list view
         $this->map($this->simpleMapping, $xml, $objekt);
 
+        //list object attachment mapping
+        if (isset($xml->erstes_bild)) {
+            $objekt->addAttachment(new Attachment((string) $xml->erstes_bild));
+        }
+        if (isset($xml->zweites_bild)) {
+            $objekt->addAttachment(new Attachment((string) $xml->zweites_bild));
+        }
+
         //detailed attributes from detail view, OpenImmo
         if (isset($xml->verwaltung_techn)) {
             $objekt->setId((int) $xml->verwaltung_techn->objektnr_intern);
