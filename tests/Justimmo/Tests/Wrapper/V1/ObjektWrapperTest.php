@@ -1,7 +1,8 @@
 <?php
-namespace Justimmo\Tests;
+namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Wrapper\V1\ObjektWrapper;
+use Justimmo\Tests\TestCase;
 
 /**
  * Class V1ObjektWrapperTest
@@ -9,7 +10,7 @@ use Justimmo\Model\Wrapper\V1\ObjektWrapper;
  * @todo provide more fixtures with different values and values not available here
  * @package Justimmo\Tests
  */
-class V1ObjektWrapperTest extends TestCase
+class ObjektWrapperTest extends TestCase
 {
 
     public function testTransform()

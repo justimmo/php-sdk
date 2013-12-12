@@ -1,9 +1,10 @@
 <?php
-namespace Justimmo\Tests;
+namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Wrapper\V1\ObjektListWrapper;
+use Justimmo\Tests\TestCase;
 
-class V1ObjektListWrapperTest extends TestCase
+class ObjektListWrapperTest extends TestCase
 {
 
     public function testTransform()
