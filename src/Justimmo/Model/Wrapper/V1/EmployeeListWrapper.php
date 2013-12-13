@@ -18,7 +18,7 @@ class EmployeeListWrapper extends AbstractWrapper
             foreach ($kategorie->mitarbeiter as $mitarbeiter) {
                 $member = $singleTransformer->transform($mitarbeiter->asXML());
                 if (array_key_exists('name', $attributes)) {
-                    $member->setKategorie($attributes['name']);
+                    $member->setCategory($attributes['name']);
                 }
                 $transformed->append($member);
             }

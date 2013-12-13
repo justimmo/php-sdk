@@ -6,25 +6,25 @@ class Employee
 {
     protected $id;
 
-    protected $kategorie = null;
+    protected $category = null;
 
     protected $attachments = array();
 
-    protected $vorname = null;
+    protected $firstName = null;
 
-    protected $nachname = null;
+    protected $lastName = null;
 
-    protected $tel = null;
+    protected $phone = null;
 
     protected $email = null;
 
     protected $position = null;
 
-    protected $handy = null;
+    protected $mobile = null;
 
     protected $fax = null;
 
-    protected $titel = null;
+    protected $title = null;
 
     /**
      * @param array $attachments
@@ -91,9 +91,9 @@ class Employee
      *
      * @return $this
      */
-    public function setHandy($handy)
+    public function setMobile($handy)
     {
-        $this->handy = $handy;
+        $this->mobile = $handy;
 
         return $this;
     }
@@ -101,9 +101,9 @@ class Employee
     /**
      * @return null
      */
-    public function getHandy()
+    public function getMobile()
     {
-        return $this->handy;
+        return $this->mobile;
     }
 
     /**
@@ -127,13 +127,13 @@ class Employee
     }
 
     /**
-     * @param null $kategorie
+     * @param null $category
      *
      * @return $this
      */
-    public function setKategorie($kategorie)
+    public function setCategory($category)
     {
-        $this->kategorie = $kategorie;
+        $this->category = $category;
 
         return $this;
     }
@@ -141,9 +141,9 @@ class Employee
     /**
      * @return null
      */
-    public function getKategorie()
+    public function getCategory()
     {
-        return $this->kategorie;
+        return $this->category;
     }
 
     /**
@@ -151,9 +151,9 @@ class Employee
      *
      * @return $this
      */
-    public function setNachname($nachname)
+    public function setLastName($nachname)
     {
-        $this->nachname = $nachname;
+        $this->lastName = $nachname;
 
         return $this;
     }
@@ -161,9 +161,9 @@ class Employee
     /**
      * @return null
      */
-    public function getNachname()
+    public function getLastName()
     {
-        return $this->nachname;
+        return $this->lastName;
     }
 
     /**
@@ -191,9 +191,9 @@ class Employee
      *
      * @return $this
      */
-    public function setTel($tel)
+    public function setPhone($tel)
     {
-        $this->tel = $tel;
+        $this->phone = $tel;
 
         return $this;
     }
@@ -201,9 +201,9 @@ class Employee
     /**
      * @return null
      */
-    public function getTel()
+    public function getPhone()
     {
-        return $this->tel;
+        return $this->phone;
     }
 
     /**
@@ -211,9 +211,9 @@ class Employee
      *
      * @return $this
      */
-    public function setVorname($vorname)
+    public function setFirstName($vorname)
     {
-        $this->vorname = $vorname;
+        $this->firstName = $vorname;
 
         return $this;
     }
@@ -221,9 +221,9 @@ class Employee
     /**
      * @return null
      */
-    public function getVorname()
+    public function getFirstName()
     {
-        return $this->vorname;
+        return $this->firstName;
     }
 
     /**
@@ -266,13 +266,13 @@ class Employee
     }
 
     /**
-     * @param null $titel
+     * @param null $title
      *
      * @return $this
      */
-    public function setTitel($titel)
+    public function setTitle($title)
     {
-        $this->titel = $titel;
+        $this->title = $title;
 
         return $this;
     }
@@ -280,9 +280,9 @@ class Employee
     /**
      * @return null
      */
-    public function getTitel()
+    public function getTitle()
     {
-        return $this->titel;
+        return $this->title;
     }
 
 }

@@ -25,12 +25,12 @@ class EmployeeListWrapperTest extends TestCase
         $entry = $list[1];
 
         $this->assertEquals(100123, $entry->getId());
-        $this->assertEquals('Alexander', $entry->getVorname());
-        $this->assertEquals('Diem', $entry->getNachname());
+        $this->assertEquals('Alexander', $entry->getFirstName());
+        $this->assertEquals('Diem', $entry->getLastName());
         $this->assertEquals('Marketing & Sales', $entry->getPosition());
-        $this->assertEquals('Marketing', $entry->getKategorie());
-        $this->assertEquals('+43 1 888 74 72', $entry->getHandy());
-        $this->assertEquals('+43 676 123 45 67', $entry->getTel());
+        $this->assertEquals('Marketing', $entry->getCategory());
+        $this->assertEquals('+43 1 888 74 72', $entry->getMobile());
+        $this->assertEquals('+43 676 123 45 67', $entry->getPhone());
         $this->assertEquals('+43 767 765 43 21', $entry->getFax());
         $this->assertEquals('a.diem@bgcc.at', $entry->getEmail());
         $this->assertEquals(1, count($entry->getAttachments()));

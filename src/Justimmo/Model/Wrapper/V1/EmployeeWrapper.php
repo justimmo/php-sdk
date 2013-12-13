@@ -8,15 +8,15 @@ class EmployeeWrapper extends AbstractWrapper
 {
     protected $simpleMapping = array(
         'id'        => 'int',
-        'vorname'   => 'string',
-        'nachname'  => 'string',
-        'handy'     => 'string',
-        'tel'       => 'string',
-        'fax'       => 'string',
-        'position'  => 'string',
-        'kategorie' => 'string',
         'email'     => 'string',
-        'titel'     => 'string',
+        'position'  => 'string',
+        'vorname'   => array('type' => 'string', 'property' => 'firstName'),
+        'nachname'  => array('type' => 'string', 'property' => 'lastName'),
+        'handy'     => array('type' => 'string', 'property' => 'mobile'),
+        'tel'       => array('type' => 'string', 'property' => 'phone'),
+        'fax'       => array('type' => 'string', 'property' => 'fax'),
+        'kategorie' => array('type' => 'string', 'property' => 'category'),
+        'titel'     => array('type' => 'string', 'property' => 'title'),
     );
 
     public function transform($data)

@@ -18,8 +18,8 @@ abstract class AbstractWrapper implements WrapperInterface
     {
         foreach ($mapping as $key => $cast) {
             if (isset($xml->$key)) {
-                if (is_array($cast) && array_key_exists('setter', $cast)) {
-                    $setter = $cast['setter'];
+                if (is_array($cast) && array_key_exists('property', $cast)) {
+                    $setter = 'set' . ucfirst($cast['property']);
                     $objekt->$setter($this->cast($xml->$key, $cast['type']));
                 } else {
                     $setter = $this->buildSetter($key);

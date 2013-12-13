@@ -82,7 +82,7 @@ class ObjektWrapper extends AbstractWrapper
         'lagerflaeche'            => 'double',
         'anzahl_loggias'          => 'int',
         'loggias_flaeche'         => 'double',
-        'balkons_flaeche'         => array('type' => 'double', 'setter' => 'setBalkonFlaeche'),
+        'balkons_flaeche'         => array('type' => 'double', 'property' => 'setBalkonFlaeche'),
         'terrassen_flaeche'       => 'double',
         'anzahl_garagen'          => 'int',
         'anzahl_abstellraum'      => 'int',
