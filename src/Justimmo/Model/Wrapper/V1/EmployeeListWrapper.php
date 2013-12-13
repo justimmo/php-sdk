@@ -4,12 +4,12 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Pager\ListPager;
 
-class MitarbeiterListWrapper extends AbstractWrapper
+class EmployeeListWrapper extends AbstractWrapper
 {
     public function transform($data)
     {
         $xml = new \SimpleXMLElement($data);
-        $singleTransformer = new MitarbeiterWrapper();
+        $singleTransformer = new EmployeeWrapper();
 
         $transformed = new ListPager();
         foreach($xml->kategorie as $kategorie) {

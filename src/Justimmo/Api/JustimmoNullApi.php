@@ -20,12 +20,12 @@ class JustimmoNullApi implements JustimmoApiInterface
     }
 
 
-    public function callMitarbeiterList(array $params = array())
+    public function callEmployeeList(array $params = array())
     {
 
     }
 
-    public function callMitarbeiterDetail($pk)
+    public function callEmployeeDetail($pk)
     {
 
     }

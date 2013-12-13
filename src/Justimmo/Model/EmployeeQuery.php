@@ -4,17 +4,17 @@ namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
 
-class MitarbeiterQuery extends AbstractQuery
+class EmployeeQuery extends AbstractQuery
 {
 
     public function getListCall()
     {
-        return 'callMitarbeiterList';
+        return 'callEmployeeList';
     }
 
     public function getDetailCall()
     {
-        return 'callMitarbeiterDetail';
+        return 'callEmployeeDetail';
     }
 
 }

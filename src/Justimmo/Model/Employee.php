@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Mitarbeiter
+class Employee
 {
     protected $id;
 

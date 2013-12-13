@@ -1,16 +1,16 @@
 <?php
 namespace Justimmo\Tests\Wrapper\V1;
 
-use Justimmo\Model\Wrapper\V1\MitarbeiterListWrapper;
+use Justimmo\Model\Wrapper\V1\EmployeeListWrapper;
 use Justimmo\Tests\TestCase;
 
-class MitarbeiterListWrapperTest extends TestCase
+class EmployeeListWrapperTest extends TestCase
 {
 
     public function testTransform()
     {
-        $wrapper = new MitarbeiterListWrapper();
-        $list = $wrapper->transform($this->getFixtures('v1/mitarbeiter_list.xml'));
+        $wrapper = new EmployeeListWrapper();
+        $list = $wrapper->transform($this->getFixtures('v1/employee_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
         $this->assertEquals(5, $list->count());
@@ -18,10 +18,10 @@ class MitarbeiterListWrapperTest extends TestCase
         $this->assertFalse($list->haveToPaginate());
 
         foreach($list as $entry) {
-            $this->assertInstanceOf('\Justimmo\Model\Mitarbeiter', $entry);
+            $this->assertInstanceOf('\Justimmo\Model\Employee', $entry);
         }
 
-        /** @var \Justimmo\Model\Mitarbeiter $entry */
+        /** @var \Justimmo\Model\Employee $entry */
         $entry = $list[1];
 
         $this->assertEquals(100123, $entry->getId());

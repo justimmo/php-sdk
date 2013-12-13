@@ -2,9 +2,9 @@
 namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
-use Justimmo\Model\Mitarbeiter;
+use Justimmo\Model\Employee;
 
-class MitarbeiterWrapper extends AbstractWrapper
+class EmployeeWrapper extends AbstractWrapper
 {
     protected $simpleMapping = array(
         'id'        => 'int',
@@ -27,7 +27,7 @@ class MitarbeiterWrapper extends AbstractWrapper
             $xml = $xml->mitarbeiter;
         }
 
-        $mitarbeiter = new Mitarbeiter();
+        $mitarbeiter = new Employee();
         $this->map($this->simpleMapping, $xml, $mitarbeiter);
 
         if (isset($xml->bild) && isset($xml->bild->pfad) && (((string) $xml->bild->pfad) != '')) {

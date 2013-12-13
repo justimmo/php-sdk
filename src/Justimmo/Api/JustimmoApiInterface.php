@@ -28,15 +28,15 @@ interface JustimmoApiInterface
      *
      * @return mixed
      */
-    public function callMitarbeiterList(array $params = array());
+    public function callEmployeeList(array $params = array());
 
     /**
-     * calls the detail information of a single mitarbeiter
+     * calls the detail information of a single employee
      *
      * @param $pk
      *
      * @return mixed
      */
-    public function callMitarbeiterDetail($pk);
+    public function callEmployeeDetail($pk);
 
 }
