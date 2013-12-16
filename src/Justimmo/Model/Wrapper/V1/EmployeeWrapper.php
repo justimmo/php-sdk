@@ -8,16 +8,16 @@ use Justimmo\Pager\ListPager;
 class EmployeeWrapper extends AbstractWrapper
 {
     protected $simpleMapping = array(
-        'id'        => 'int',
-        'email'     => 'string',
-        'position'  => 'string',
-        'vorname'   => array('type' => 'string', 'property' => 'firstName'),
-        'nachname'  => array('type' => 'string', 'property' => 'lastName'),
-        'handy'     => array('type' => 'string', 'property' => 'mobile'),
-        'tel'       => array('type' => 'string', 'property' => 'phone'),
-        'fax'       => array('type' => 'string', 'property' => 'fax'),
-        'kategorie' => array('type' => 'string', 'property' => 'category'),
-        'titel'     => array('type' => 'string', 'property' => 'title'),
+        'id',
+        'email',
+        'position',
+        'vorname',
+        'nachname',
+        'handy',
+        'tel',
+        'fax',
+        'kategorie',
+        'titel',
     );
 
     public function transformSingle($data)
@@ -48,7 +48,7 @@ class EmployeeWrapper extends AbstractWrapper
         $xml = new \SimpleXMLElement($data);
 
         $transformed = new ListPager();
-        foreach($xml->kategorie as $kategorie) {
+        foreach ($xml->kategorie as $kategorie) {
             $attributes = $this->attributesToArray($kategorie);
 
             foreach ($kategorie->mitarbeiter as $mitarbeiter) {

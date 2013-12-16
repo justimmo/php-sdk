@@ -2,11 +2,22 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
+use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
 
 abstract class AbstractWrapper implements WrapperInterface
 {
+    /**
+     * @var MapperInterface
+     */
+    protected $mapper;
+
+    public function __construct(MapperInterface $mapper)
+    {
+        $this->mapper = $mapper;
+    }
+
     /**
      * maps an mapping array between a SimpleXML and Objekt
      *
@@ -16,15 +27,10 @@ abstract class AbstractWrapper implements WrapperInterface
      */
     protected function map($mapping, \SimpleXMLElement $xml, $objekt)
     {
-        foreach ($mapping as $key => $cast) {
+        foreach ($mapping as $key) {
             if (isset($xml->$key)) {
-                if (is_array($cast) && array_key_exists('property', $cast)) {
-                    $setter = 'set' . ucfirst($cast['property']);
-                    $objekt->$setter($this->cast($xml->$key, $cast['type']));
-                } else {
-                    $setter = $this->buildSetter($key);
-                    $objekt->$setter($this->cast($xml->$key, $cast));
-                }
+                $setter = $this->mapper->getSetter($key);
+                $objekt->$setter($this->cast($xml->$key, $this->mapper->getType($key)));
             }
         }
     }
@@ -55,18 +61,6 @@ abstract class AbstractWrapper implements WrapperInterface
             default:
                 return $xml;
         }
-    }
-
-    /**
-     * build a setter
-     *
-     * @param $key
-     *
-     * @return string
-     */
-    protected function buildSetter($key)
-    {
-        return 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
     }
 
     /**

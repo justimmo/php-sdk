@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests\Wrapper\V1;
 
+use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
 use Justimmo\Tests\TestCase;
 
@@ -9,7 +10,7 @@ class EmployeeWrapperTest extends TestCase
 
     public function testTransform()
     {
-        $wrapper = new EmployeeWrapper();
+        $wrapper = new EmployeeWrapper(new EmployeeMapper());
         $list = $wrapper->transformList($this->getFixtures('v1/employee_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
