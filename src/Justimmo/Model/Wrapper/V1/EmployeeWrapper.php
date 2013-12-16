@@ -46,14 +46,13 @@ class EmployeeWrapper extends AbstractWrapper
     public function transformList($data)
     {
         $xml = new \SimpleXMLElement($data);
-        $singleTransformer = new EmployeeWrapper();
 
         $transformed = new ListPager();
         foreach($xml->kategorie as $kategorie) {
             $attributes = $this->attributesToArray($kategorie);
 
             foreach ($kategorie->mitarbeiter as $mitarbeiter) {
-                $member = $singleTransformer->transformSingle($mitarbeiter->asXML());
+                $member = $this->transformSingle($mitarbeiter->asXML());
                 if (array_key_exists('name', $attributes)) {
                     $member->setCategory($attributes['name']);
                 }

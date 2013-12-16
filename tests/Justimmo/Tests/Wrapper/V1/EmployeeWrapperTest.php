@@ -4,7 +4,7 @@ namespace Justimmo\Tests\Wrapper\V1;
 use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
 use Justimmo\Tests\TestCase;
 
-class EmployeeListWrapperTest extends TestCase
+class EmployeeWrapperTest extends TestCase
 {
 
     public function testTransform()
