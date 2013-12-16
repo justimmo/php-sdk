@@ -2,92 +2,88 @@
 namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
 
 class QueryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Justimmo\Api\JustimmoApiInterface
+     * @var \Justimmo\Model\Query\QueryInterface
      */
-    protected $api;
+    protected $query;
 
-    /**
-     * @var \Justimmo\Model\Wrapper\WrapperInterface
-     */
-    protected $wrapper;
 
     public function setUp()
     {
-        $this->api     = new JustimmoNullApi();
-        $this->wrapper = new NullWrapper();
+        $this->query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), new RealtyMapper());
     }
-
 
     public function testSingle()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper);
-        $q->filterByPreis(455);
+        $this->query->clear();
+        
+        $this->query->filterByPrice(455);
 
         $this->assertEquals(array(
             'filter' => array(
                 'preis' => 455
             )
-        ), $q->getParams());
+        ), $this->query->getParams());
     }
 
     public function testRange()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
-        $q->filterByPreis(array('min' => 455, 'max' => 800));
+        $this->query->clear();
+        $this->query->filterByPrice(array('min' => 455, 'max' => 800));
 
         $this->assertEquals(array(
             'filter' => array(
                 'preis_von' => 455,
                 'preis_bis' => 800,
             )
-        ), $q->getParams());
+        ), $this->query->getParams());
     }
 
     public function testMultiple()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
-        $q->filterByPreis(array(455, 800));
+        $this->query->clear();
+        $this->query->filterByPrice(array(455, 800));
 
         $this->assertEquals(array(
             'filter' => array(
                 'preis' => array(455, 800)
             )
-        ), $q->getParams());
+        ), $this->query->getParams());
     }
 
     public function testOrderBy()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
-        $q->setOrderBy('preis');
+        $this->query->clear();
+        $this->query->orderBy('Price');
 
         $this->assertEquals(array(
             'orderby'   => 'preis',
             'ordertype' => 'asc'
-        ), $q->getParams());
+        ), $this->query->getParams());
 
-        $q->setOrderBy('preis', 'desc');
+        $this->query->orderBy('Price', 'desc');
         $this->assertEquals(array(
             'orderby'   => 'preis',
             'ordertype' => 'desc'
-        ), $q->getParams());
+        ), $this->query->getParams());
     }
 
     public function testFull()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
-        $q->set('culture', 'de')
-            ->setOrderBy('preis')
+        $this->query->clear();
+        $this->query->set('culture', 'de')
+            ->orderBy('Price')
             ->setLimit(10)
             ->setOffset(5)
-            ->filterByBundeslandId(5)
-            ->filterByPreis(array('min' => 455, 'max' => 800))
-            ->filterByPlz(array('1020', '1030'));
+            ->filterByFederalStateId(5)
+            ->filterByPrice(array('min' => 455, 'max' => 800))
+            ->filterByZipCode(array('1020', '1030'));
 
         $this->assertEquals(array(
             'limit'     => 10,
@@ -101,7 +97,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                 'bundesland_id' => 5,
                 'plz'           => array('1020', '1030')
             )
-        ), $q->getParams());
+        ), $this->query->getParams());
 
 
     }

@@ -208,18 +208,43 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'storeRoomCount',
                 'type'     => 'int',
             ),
-            'epass_hwbwert'         => array(
+            'epass_hwbwert'              => array(
                 'property' => 'thermalHeatRequirementValue',
             ),
-            'epass_hwbklasse'         => array(
+            'epass_hwbklasse'            => array(
                 'property' => 'thermalHeatRequirementClass',
             ),
-            'epass_fgeewert'         => array(
+            'epass_fgeewert'             => array(
                 'property' => 'energyEfficiencyFactorValue',
             ),
-            'epass_fgeeklasse'         => array(
+            'epass_fgeeklasse'           => array(
                 'property' => 'energyEfficiencyFactorClass',
             ),
         );
     }
+
+    /**
+     * get mapping for filter
+     *
+     * @return array
+     */
+    protected function getFilterMapping()
+    {
+        return array(
+            'Price'          => 'preis',
+            'RealtyTypeId'   => 'objektart_id',
+            'RealtyCategory' => 'objektkategorie',
+            'Tag'            => 'objektkategorie',
+            'ZipCode'        => 'plz',
+            'Rooms'          => 'zimmer',
+            'PropertyNumber' => 'objektnummer',
+            'LivingArea'     => 'wohnflaeche',
+            'FloorArea'      => 'nutzflaeche',
+            'SurfaceArea'    => 'grundflaeche',
+            'Keyword'        => 'stichwort',
+            'FederalStateId' => 'bundesland_id',
+        );
+    }
+
+
 }

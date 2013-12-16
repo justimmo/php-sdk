@@ -30,4 +30,14 @@ interface MapperInterface
      * @return string
      */
     public function getProperty($apiPropertyName);
+
+    /**
+     * gets a filter property name to sent to the api call for a specific model property
+     *
+     * @param $modelPropertyName
+     *
+     * @return string
+     */
+    public function getFilterPropertyName($modelPropertyName);
+
 }

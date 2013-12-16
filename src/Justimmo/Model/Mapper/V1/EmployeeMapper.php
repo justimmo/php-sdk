@@ -29,4 +29,11 @@ class EmployeeMapper extends AbstractMapper
             ),
         );
     }
+
+    protected function getFilterMapping()
+    {
+        return array();
+    }
+
+
 }

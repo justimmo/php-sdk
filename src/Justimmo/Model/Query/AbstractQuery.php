@@ -4,16 +4,10 @@ namespace Justimmo\Model\Query;
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Wrapper\WrapperInterface;
+use Justimmo\Model\Mapper\MapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
 {
-    /**
-     * override to create your mapping
-     *
-     * @var array
-     */
-    protected $filterMapping = array();
-
     /**
      * @var array
      */
@@ -28,6 +22,11 @@ abstract class AbstractQuery implements QueryInterface
      * @var WrapperInterface
      */
     protected $wrapper;
+
+    /**
+     * @var MapperInterface
+     */
+    protected $mapper;
 
     /**
      * returns the method name what should be called on the api class for a list call
@@ -46,13 +45,27 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @param JustimmoApiInterface                     $api
      * @param \Justimmo\Model\Wrapper\WrapperInterface $wrapper
-     *
+     * @param \Justimmo\Model\Mapper\MapperInterface   $mapper
      */
-    public function __construct(JustimmoApiInterface $api, WrapperInterface $wrapper)
+    public function __construct(JustimmoApiInterface $api, WrapperInterface $wrapper, MapperInterface $mapper)
     {
         $this->api     = $api;
         $this->wrapper = $wrapper;
+        $this->mapper = $mapper;
     }
+
+    /**
+     * clears all filter and order parameter
+     *
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->params = array();
+
+        return $this;
+    }
+
 
     /**
      * @param int $page
@@ -84,7 +97,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @return \Justimmo\Model\Objekt
+     * @return \Justimmo\Model\Realty
      */
     public function findOne()
     {
@@ -97,7 +110,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @param int $pk
      *
-     * @return \Justimmo\Model\Objekt
+     * @return \Justimmo\Model\Realty
      */
     public function findPk($pk)
     {
@@ -139,9 +152,9 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return $this
      */
-    public function setOrderBy($column, $direction = 'asc')
+    public function orderBy($column, $direction = 'asc')
     {
-        $this->set('orderby', $column);
+        $this->set('orderby', $this->mapper->getFilterPropertyName($column));
         $this->set('ordertype', $direction);
 
         return $this;
@@ -206,10 +219,8 @@ abstract class AbstractQuery implements QueryInterface
     public function __call($method, $params)
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
-            $key = mb_strtolower(mb_substr($method, 8));
-            if (array_key_exists($key, $this->filterMapping)) {
-                return $this->filter($this->filterMapping[$key], $params[0]);
-            }
+            $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
+            return $this->filter($key, $params[0]);
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));

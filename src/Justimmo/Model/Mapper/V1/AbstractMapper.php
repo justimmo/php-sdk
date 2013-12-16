@@ -14,6 +14,13 @@ abstract class AbstractMapper implements MapperInterface
     abstract protected function getMapping();
 
     /**
+     * get mapping for filter
+     *
+     * @return array
+     */
+    abstract protected function getFilterMapping();
+
+    /**
      * gets the setter for a api property name
      *
      * @param $apiPropertyName
@@ -48,6 +55,14 @@ abstract class AbstractMapper implements MapperInterface
     {
         $values = $this->getValues($apiPropertyName);
         return array_key_exists('property', $values) ? $values['property'] : $apiPropertyName;
+    }
+
+
+    public function getFilterPropertyName($modelPropertyName)
+    {
+        $mapping = $this->getFilterMapping();
+
+        return array_key_exists($modelPropertyName, $mapping) ? $mapping[$modelPropertyName] : $modelPropertyName;
     }
 
     /**

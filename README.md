@@ -37,6 +37,7 @@ $wrapper = new RealtyWrapper(new RealtyMapper());
 $query = new RealtyQuery($api, $wrapper);
 $realties = $query->filterByPrice(array('min' => 500, 'max' => 1500))
     ->filterByZipCode(1020)
+    ->orderBy('price', 'desc')
     ->find();
 
 foreach ($realties as $realty) {
