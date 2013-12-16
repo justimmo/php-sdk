@@ -18,7 +18,7 @@ composer.json
 
 Documentation
 -------------
-tdb
+[Caching](../blob/master/doc/caching.md)
 
 Usage Example
 -------------
