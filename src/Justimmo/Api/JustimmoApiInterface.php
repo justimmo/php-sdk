@@ -4,22 +4,22 @@ namespace Justimmo\Api;
 interface JustimmoApiInterface
 {
     /**
-     * make a call to the objectlist with a set of given params
+     * make a call to the realty list with a set of given params
      *
      * @param array $params
      *
      * @return mixed
      */
-    public function callObjektList(array $params = array());
+    public function callRealtyList(array $params = array());
 
     /**
-     * calls the detail information of a single objekt
+     * calls the detail information of a single realty
      *
      * @param $pk
      *
      * @return mixed
      */
-    public function callObjektDetail($pk);
+    public function callRealtyDetail($pk);
 
     /**
      * make a call to the team list with a set of given params

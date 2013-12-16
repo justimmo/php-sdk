@@ -4,10 +4,10 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
 use Justimmo\Model\Energiepass;
-use Justimmo\Model\Objekt;
+use Justimmo\Model\Realty;
 use Justimmo\Model\Zusatzkosten;
 
-class ObjektWrapper extends AbstractWrapper
+class RealtyWrapper extends AbstractWrapper
 {
     /**
      * simple attributes mostly used in list call
@@ -101,7 +101,7 @@ class ObjektWrapper extends AbstractWrapper
             $xml = $xml->immobilie;
         }
 
-        $objekt = new Objekt();
+        $objekt = new Realty();
 
         //basic attributes from list view
         $this->map($this->simpleMapping, $xml, $objekt);
@@ -269,12 +269,12 @@ class ObjektWrapper extends AbstractWrapper
      * @param \SimpleXMLElement      $xml
      * @param null                   $type
      *
-     * @param \Justimmo\Model\Objekt $objekt
+     * @param \Justimmo\Model\Realty $objekt
      *
      * @internal param array $data
      * @return \Justimmo\Model\Attachment|null
      */
-    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Objekt $objekt, $type = null)
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Realty $objekt, $type = null)
     {
         foreach ($xml as $anhang) {
             $data = (array) $anhang->daten;

@@ -4,22 +4,22 @@ namespace Justimmo\Model;
 use Justimmo\Model\Query\AbstractQuery;
 
 /**
- * Class ObjektQuery
+ * Class RealtyQuery
  * @package Justimmo\Model
  *
- * @method ObjektQuery filterByPreis($value)
- * @method ObjektQuery filterByObjektartId($value)
- * @method ObjektQuery filterByObjektkategorie($value)
- * @method ObjektQuery filterByPlz($value)
- * @method ObjektQuery filterByZimmer($value)
- * @method ObjektQuery filterByObjektnummer($value)
- * @method ObjektQuery filterByWohnflaeche($value)
- * @method ObjektQuery filterByNutzflaeche($value)
- * @method ObjektQuery filterByGrundflaeche($value)
- * @method ObjektQuery filterByStichwort($value)
- * @method ObjektQuery filterByBundeslandId($value)
+ * @method RealtyQuery filterByPreis($value)
+ * @method RealtyQuery filterByObjektartId($value)
+ * @method RealtyQuery filterByObjektkategorie($value)
+ * @method RealtyQuery filterByPlz($value)
+ * @method RealtyQuery filterByZimmer($value)
+ * @method RealtyQuery filterByObjektnummer($value)
+ * @method RealtyQuery filterByWohnflaeche($value)
+ * @method RealtyQuery filterByNutzflaeche($value)
+ * @method RealtyQuery filterByGrundflaeche($value)
+ * @method RealtyQuery filterByStichwort($value)
+ * @method RealtyQuery filterByBundeslandId($value)
  */
-class ObjektQuery extends AbstractQuery
+class RealtyQuery extends AbstractQuery
 {
     protected $filterMapping = array(
         'preis'           => 'preis',

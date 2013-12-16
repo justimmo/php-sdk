@@ -9,12 +9,12 @@ namespace Justimmo\Api;
  */
 class JustimmoNullApi implements JustimmoApiInterface
 {
-    public function callObjektList(array $params = array())
+    public function callRealtyList(array $params = array())
     {
 
     }
 
-    public function callObjektDetail($pk)
+    public function callRealtyDetail($pk)
     {
 
     }

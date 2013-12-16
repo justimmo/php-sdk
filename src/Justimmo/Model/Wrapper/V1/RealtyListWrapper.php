@@ -5,12 +5,12 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Wrapper\WrapperInterface;
 use Justimmo\Pager\ListPager;
 
-class ObjektListWrapper implements WrapperInterface
+class RealtyListWrapper implements WrapperInterface
 {
     public function transform($data)
     {
         $xml = new \SimpleXMLElement($data);
-        $singleTransformer = new ObjektWrapper();
+        $singleTransformer = new RealtyWrapper();
 
         $transformed = new ListPager();
         $transformed->setNbResults((int) $xml->{'query-result'}->count);

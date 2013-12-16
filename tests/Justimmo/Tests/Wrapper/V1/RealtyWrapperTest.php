@@ -1,7 +1,7 @@
 <?php
 namespace Justimmo\Tests\Wrapper\V1;
 
-use Justimmo\Model\Wrapper\V1\ObjektWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
 
 /**
@@ -10,15 +10,15 @@ use Justimmo\Tests\TestCase;
  * @todo provide more fixtures with different values and values not available here
  * @package Justimmo\Tests
  */
-class ObjektWrapperTest extends TestCase
+class RealtyWrapperTest extends TestCase
 {
 
     public function testTransform()
     {
-        $wrapper = new ObjektWrapper();
-        $objekt  = $wrapper->transform($this->getFixtures('v1/objekt_detail.xml'));
+        $wrapper = new RealtyWrapper();
+        $objekt  = $wrapper->transform($this->getFixtures('v1/realty_detail.xml'));
 
-        $this->assertInstanceOf('\Justimmo\Model\Objekt', $objekt);
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
 
         $this->assertEquals(195439, $objekt->getId());
         $this->assertEquals(51, $objekt->getProjektId());

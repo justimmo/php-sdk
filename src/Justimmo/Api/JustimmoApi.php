@@ -82,25 +82,25 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * makes a call to objekt list
+     * makes a call to Realty list
      *
      * @param array $params
      *
      * @return mixed
      */
-    public function callObjektList(array $params = array())
+    public function callRealtyList(array $params = array())
     {
         return $this->call('objekt/list', $params);
     }
 
     /**
-     * calls the detail information of a single objekt
+     * calls the detail information of a single realty
      *
      * @param $pk
      *
      * @return mixed
      */
-    public function callObjektDetail($pk)
+    public function callRealtyDetail($pk)
     {
         return $this->call('objekt/detail', array('objekt_id' => $pk));
     }

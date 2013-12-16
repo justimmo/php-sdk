@@ -27,22 +27,22 @@ Usage Example
 
 use Justimmo\Api\JustimmoApi;
 use Psr\Log\NullLogger;
-use Justimmo\Model\ObjektQuery;
+use Justimmo\Model\RealtyQuery;
 use Justimmo\Cache\NullCache;
-use Justimmo\Model\Wrapper\V1\ObjektListWrapper;
-use Justimmo\Model\Wrapper\V1\ObjektWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyListWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 
 $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
-$query = new ObjektQuery($api, new ObjektListWrapper(), new ObjektWrapper());
-$objekte = $query->filterByPreis(array('min' => 500, 'max' => 1500))
+$query = new RealtyQuery($api, new RealtyListWrapper(), new RealtyWrapper());
+$realties = $query->filterByPreis(array('min' => 500, 'max' => 1500))
     ->filterByPlz(1020)
     ->find();
 
-foreach ($objekte as $objekt) {
+foreach ($realties as $realty) {
     echo $objekt->getTitel() . ' ' . $objekt->getObjektnummer();
     //....
 }
 
-//fetching Objekt by PrimaryKey
+//fetching Realty by PrimaryKey
 $query->findPk(12345);
 ```

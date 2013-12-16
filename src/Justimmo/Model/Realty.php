@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Objekt
+class Realty
 {
     protected $id;
 

@@ -14,6 +14,6 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     public function testWrongUserData()
     {
         $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
-        $api->callObjektList();
+        $api->callRealtyList();
     }
 }

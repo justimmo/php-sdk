@@ -2,7 +2,7 @@
 namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoNullApi;
-use Justimmo\Model\ObjektQuery;
+use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
 
 class QueryTest extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testSingle()
     {
-        $q = new ObjektQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
         $q->filterByPreis(455);
 
         $this->assertEquals(array(
@@ -38,7 +38,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testRange()
     {
-        $q = new ObjektQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
         $q->filterByPreis(array('min' => 455, 'max' => 800));
 
         $this->assertEquals(array(
@@ -51,7 +51,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testMultiple()
     {
-        $q = new ObjektQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
         $q->filterByPreis(array(455, 800));
 
         $this->assertEquals(array(
@@ -63,7 +63,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testOrderBy()
     {
-        $q = new ObjektQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
         $q->setOrderBy('preis');
 
         $this->assertEquals(array(
@@ -80,7 +80,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testFull()
     {
-        $q = new ObjektQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
         $q->set('culture', 'de')
             ->setOrderBy('preis')
             ->setLimit(10)
