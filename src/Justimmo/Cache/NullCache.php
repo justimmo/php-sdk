@@ -43,4 +43,17 @@ class NullCache implements CacheInterface
     {
 
     }
+
+    /**
+     * generates a cache key to store
+     *
+     * @param $url
+     *
+     * @return string
+     */
+    public function generateCacheKey($url)
+    {
+        return null;
+    }
+
 }

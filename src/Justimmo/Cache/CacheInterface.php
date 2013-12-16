@@ -27,4 +27,13 @@ interface CacheInterface
      * @param $key
      */
     public function remove($key);
+
+    /**
+     * generates a cache key
+     *
+     * @param $url
+     *
+     * @return string
+     */
+    public function generateCacheKey($url);
 }

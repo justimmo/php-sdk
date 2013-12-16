@@ -130,21 +130,42 @@ class JustimmoApi implements JustimmoApiInterface
         return $this->call('team/list', $params);
     }
 
+    /**
+     * generates a url for an api request
+     *
+     * @param       $call
+     * @param array $params
+     *
+     * @return string
+     */
+    public function generateUrl($call, array $params = array())
+    {
+        $url = $this->baseUrl . '/' . $this->version . '/' . $call;
+        if (count($params) > 0) {
+            $queryString = http_build_query($params);
+            $queryString = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $queryString);
+            $url .= '?' . $queryString;
+        }
+
+        return $url;
+    }
+
 
     /**
      * @param makes a call to the justimmo api
      *
-     * @param $url
+     * @param $call
      * @param array $params
      *
      * @return mixed
      */
-    protected function call($url, array $params = array())
+    protected function call($call, array $params = array())
     {
-        $url = $this->baseUrl . '/' . $this->version . '/' . $url;
+        $url = $this->generateUrl($call, $params);
+
         $this->logger->debug('begin api call - ' . $url);
 
-        $key = $this->generateCacheKey($url, $params);
+        $key = $this->cache->generateCacheKey($url);
         $this->logger->debug('cache key is ' . $key);
         $content = $this->cache->get($key);
         if ($content !== false) {
@@ -155,12 +176,6 @@ class JustimmoApi implements JustimmoApiInterface
         }
 
         $this->logger->debug('cache not found');
-
-        if (count($params) > 0) {
-            $queryString = http_build_query($params);
-            $queryString = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $queryString);
-            $url .= '?' . $queryString;
-        }
 
         $this->logger->debug('call api: ' . $url);
         $request = new CurlRequest($url, array(
@@ -187,19 +202,6 @@ class JustimmoApi implements JustimmoApiInterface
         $this->cache->set($key, $response);
 
         return $response;
-    }
-
-    /**
-     * generates a cache key for the api call
-     *
-     * @param $url
-     * @param array $params
-     *
-     * @return string
-     */
-    protected function generateCacheKey($url, array $params = array())
-    {
-        return 'ji_api_' . sha1($url . http_build_query($params));
     }
 
     /**
