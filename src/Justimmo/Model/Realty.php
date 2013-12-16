@@ -6,143 +6,143 @@ class Realty
 {
     protected $id;
 
-    protected $objektnummer;
+    protected $propertyNumber;
 
-    protected $titel = null;
+    protected $title = null;
 
-    protected $dreizeiler = null;
+    protected $teaser = null;
 
-    protected $naehe = null;
+    protected $proximity = null;
 
-    protected $objektbeschreibung = null;
+    protected $description = null;
 
-    protected $etage = null;
+    protected $tier = null;
 
-    protected $tuernummer = null;
+    protected $doorNumber = null;
 
-    protected $plz = null;
+    protected $zipCode = null;
 
-    protected $ort = null;
+    protected $place = null;
 
-    protected $kaufpreis = null;
+    protected $purchasePrice = null;
 
-    protected $gesamtmiete = null;
+    protected $totalRent = null;
 
-    protected $nutzflaeche = null;
+    protected $floorArea = null;
 
-    protected $grundflaeche = null;
+    protected $surfaceArea = null;
 
-    protected $wohnflaeche = null;
+    protected $livingArea = null;
 
-    protected $gesamtflaeche = null;
+    protected $totalArea = null;
 
-    protected $projektId = null;
+    protected $projectId = null;
 
     protected $status = null;
 
-    protected $nutzungsart = null;
+    protected $occupancy = null;
 
-    protected $vermarktungsart = null;
+    protected $marketingType = null;
 
-    protected $objektart = null;
+    protected $realtyType = null;
 
-    protected $ausstattBeschr = null;
+    protected $equipmentDescription = null;
 
-    protected $breitengrad = null;
+    protected $latitude = null;
 
-    protected $laengengrad = null;
+    protected $longitude = null;
 
-    protected $strasse = null;
+    protected $street = null;
 
-    protected $hausnummer = null;
+    protected $houseNumber = null;
 
-    protected $bundesland = null;
+    protected $federalState = null;
 
-    protected $land = null;
+    protected $country = null;
 
-    protected $flur = null;
+    protected $hallway = null;
 
-    protected $flurstueck = null;
+    protected $landParcel = null;
 
-    protected $gemarkung = null;
+    protected $district = null;
 
-    protected $anzahlEtagen = null;
+    protected $tierCount = null;
 
-    protected $regionalerZusatz = null;
+    protected $regionalAddition = null;
 
-    protected $nettoKaltMiete = null;
+    protected $netRent = null;
 
-    protected $nebenkosten = null;
+    protected $additionalCharges = null;
 
-    protected $heizkosten = null;
+    protected $heatingCosts = null;
 
-    protected $waehrung = null;
+    protected $currency = null;
 
-    protected $kaution = null;
+    protected $surety = null;
 
-    protected $wohnbaufoerderung = null;
+    protected $buildingSubsidies = null;
 
-    protected $rendite = null;
+    protected $yield = null;
 
-    protected $nettoertragMonatlich = null;
+    protected $netEarningMonthly = null;
 
-    protected $nettoertragJaehrlich = null;
+    protected $netEarningYearly = null;
 
-    protected $gesamtMieteUst = null;
+    protected $totalRentVat = null;
 
     protected $zusatzkosten = array();
 
-    protected $grunderwerbssteuer = null;
+    protected $transferTax = null;
 
-    protected $grundbucheintragung = null;
+    protected $landRegistration = null;
 
-    protected $vertragserrichtungsgebuehr = null;
+    protected $contactEstablishmentCosts = null;
 
     protected $attachments = array();
 
-    protected $baujahr = null;
+    protected $yearBuilt = null;
 
-    protected $alter = null;
+    protected $age = null;
 
-    protected $erschließung = null;
+    protected $infrastructureProvision = null;
 
-    protected $zustand = null;
+    protected $condition = null;
 
     protected $ausstattung = array();
 
-    protected $anzahlZimmer = null;
+    protected $roomCount = null;
 
-    protected $anzahlBadezimmer = null;
+    protected $bathroomCount = null;
 
-    protected $anzahlSepWc = null;
+    protected $toiletRoomCount = null;
 
-    protected $anzahlBalkonTerrassen = null;
+    protected $balconyTerraceCount = null;
 
-    protected $balkonTerrassenFlaeche = null;
+    protected $balconyTerraceArea = null;
 
-    protected $anzahlBalkone = null;
+    protected $balconyCount = null;
 
-    protected $anzahlTerrassen = null;
+    protected $terraceCount = null;
 
-    protected $gartenflaeche = null;
+    protected $gardenArea = null;
 
-    protected $kellerflaeche = null;
+    protected $cellarArea = null;
 
-    protected $bueroflaeche = null;
+    protected $officeArea = null;
 
-    protected $lagerflaeche = null;
+    protected $storageArea = null;
 
-    protected $anzahlLoggias = null;
+    protected $loggiaCount = null;
 
-    protected $loggiasFlaeche = null;
+    protected $loggiaArea = null;
 
-    protected $balkonFlaeche = null;
+    protected $balconyArea = null;
 
-    protected $terrassenFlaeche = null;
+    protected $terraceArea = null;
 
-    protected $anzahlGaragen = null;
+    protected $garageCount = null;
 
-    protected $anzahlAbstellraum = null;
+    protected $storeRoomCount = null;
 
     /**
      * @var \Justimmo\Model\Energiepass
@@ -154,9 +154,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNutzungsart($nutzungsart)
+    public function setOccupancy($nutzungsart)
     {
-        $this->nutzungsart = $nutzungsart;
+        $this->occupancy = $nutzungsart;
 
         return $this;
     }
@@ -164,9 +164,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNutzungsart()
+    public function getOccupancy()
     {
-        return $this->nutzungsart;
+        return $this->occupancy;
     }
 
     /**
@@ -174,9 +174,9 @@ class Realty
      *
      * @return $this
      */
-    public function setObjektart($objektart)
+    public function setRealtyType($objektart)
     {
-        $this->objektart = $objektart;
+        $this->realtyType = $objektart;
 
         return $this;
     }
@@ -184,9 +184,9 @@ class Realty
     /**
      * @return null
      */
-    public function getObjektart()
+    public function getRealtyType()
     {
-        return $this->objektart;
+        return $this->realtyType;
     }
 
     /**
@@ -194,9 +194,9 @@ class Realty
      *
      * @return $this
      */
-    public function setVermarktungsart($vermarktungsart)
+    public function setMarketingType($vermarktungsart)
     {
-        $this->vermarktungsart = $vermarktungsart;
+        $this->marketingType = $vermarktungsart;
 
         return $this;
     }
@@ -204,9 +204,9 @@ class Realty
     /**
      * @return null
      */
-    public function getVermarktungsart()
+    public function getMarketingType()
     {
-        return $this->vermarktungsart;
+        return $this->marketingType;
     }
 
     /**
@@ -214,9 +214,9 @@ class Realty
      *
      * @return $this
      */
-    public function setDreizeiler($dreizeiler)
+    public function setTeaser($dreizeiler)
     {
-        $this->dreizeiler = $dreizeiler;
+        $this->teaser = $dreizeiler;
 
         return $this;
     }
@@ -224,9 +224,9 @@ class Realty
     /**
      * @return null
      */
-    public function getDreizeiler()
+    public function getTeaser()
     {
-        return $this->dreizeiler;
+        return $this->teaser;
     }
 
     /**
@@ -234,9 +234,9 @@ class Realty
      *
      * @return $this
      */
-    public function setEtage($etage)
+    public function setTier($etage)
     {
-        $this->etage = $etage;
+        $this->tier = $etage;
 
         return $this;
     }
@@ -244,9 +244,9 @@ class Realty
     /**
      * @return null
      */
-    public function getEtage()
+    public function getTier()
     {
-        return $this->etage;
+        return $this->tier;
     }
 
     /**
@@ -254,9 +254,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGesamtmiete($gesamtmiete)
+    public function setTotalRent($gesamtmiete)
     {
-        $this->gesamtmiete = $gesamtmiete;
+        $this->totalRent = $gesamtmiete;
 
         return $this;
     }
@@ -264,9 +264,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGesamtmiete()
+    public function getTotalRent()
     {
-        return $this->gesamtmiete;
+        return $this->totalRent;
     }
 
     /**
@@ -274,9 +274,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGrundflaeche($grundflaeche)
+    public function setSurfaceArea($grundflaeche)
     {
-        $this->grundflaeche = $grundflaeche;
+        $this->surfaceArea = $grundflaeche;
 
         return $this;
     }
@@ -284,9 +284,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGrundflaeche()
+    public function getSurfaceArea()
     {
-        return $this->grundflaeche;
+        return $this->surfaceArea;
     }
 
     /**
@@ -314,9 +314,9 @@ class Realty
      *
      * @return $this
      */
-    public function setKaufpreis($kaufpreis)
+    public function setPurchasePrice($kaufpreis)
     {
-        $this->kaufpreis = $kaufpreis;
+        $this->purchasePrice = $kaufpreis;
 
         return $this;
     }
@@ -324,9 +324,9 @@ class Realty
     /**
      * @return null
      */
-    public function getKaufpreis()
+    public function getPurchasePrice()
     {
-        return $this->kaufpreis;
+        return $this->purchasePrice;
     }
 
     /**
@@ -334,9 +334,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNaehe($naehe)
+    public function setProximity($naehe)
     {
-        $this->naehe = $naehe;
+        $this->proximity = $naehe;
 
         return $this;
     }
@@ -344,9 +344,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNaehe()
+    public function getProximity()
     {
-        return $this->naehe;
+        return $this->proximity;
     }
 
     /**
@@ -354,9 +354,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNutzflaeche($nutzflaeche)
+    public function setFloorArea($nutzflaeche)
     {
-        $this->nutzflaeche = $nutzflaeche;
+        $this->floorArea = $nutzflaeche;
 
         return $this;
     }
@@ -364,9 +364,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNutzflaeche()
+    public function getFloorArea()
     {
-        return $this->nutzflaeche;
+        return $this->floorArea;
     }
 
     /**
@@ -374,9 +374,9 @@ class Realty
      *
      * @return $this
      */
-    public function setObjektbeschreibung($objektbeschreibung)
+    public function setDescription($objektbeschreibung)
     {
-        $this->objektbeschreibung = $objektbeschreibung;
+        $this->description = $objektbeschreibung;
 
         return $this;
     }
@@ -384,9 +384,9 @@ class Realty
     /**
      * @return null
      */
-    public function getObjektbeschreibung()
+    public function getDescription()
     {
-        return $this->objektbeschreibung;
+        return $this->description;
     }
 
     /**
@@ -394,9 +394,9 @@ class Realty
      *
      * @return $this
      */
-    public function setObjektnummer($objektnummer)
+    public function setPropertyNumber($objektnummer)
     {
-        $this->objektnummer = $objektnummer;
+        $this->propertyNumber = $objektnummer;
 
         return $this;
     }
@@ -404,9 +404,9 @@ class Realty
     /**
      * @return mixed
      */
-    public function getObjektnummer()
+    public function getPropertyNumber()
     {
-        return $this->objektnummer;
+        return $this->propertyNumber;
     }
 
     /**
@@ -414,9 +414,9 @@ class Realty
      *
      * @return $this
      */
-    public function setOrt($ort)
+    public function setPlace($ort)
     {
-        $this->ort = $ort;
+        $this->place = $ort;
 
         return $this;
     }
@@ -424,9 +424,9 @@ class Realty
     /**
      * @return null
      */
-    public function getOrt()
+    public function getPlace()
     {
-        return $this->ort;
+        return $this->place;
     }
 
     /**
@@ -434,9 +434,9 @@ class Realty
      *
      * @return $this
      */
-    public function setPlz($plz)
+    public function setZipCode($plz)
     {
-        $this->plz = $plz;
+        $this->zipCode = $plz;
 
         return $this;
     }
@@ -444,9 +444,9 @@ class Realty
     /**
      * @return null
      */
-    public function getPlz()
+    public function getZipCode()
     {
-        return $this->plz;
+        return $this->zipCode;
     }
 
     /**
@@ -454,9 +454,9 @@ class Realty
      *
      * @return $this
      */
-    public function setProjektId($projectId)
+    public function setProjectId($projectId)
     {
-        $this->projektId = $projectId;
+        $this->projectId = $projectId;
 
         return $this;
     }
@@ -464,9 +464,9 @@ class Realty
     /**
      * @return null
      */
-    public function getProjektId()
+    public function getProjectId()
     {
-        return $this->projektId;
+        return $this->projectId;
     }
 
     /**
@@ -494,9 +494,9 @@ class Realty
      *
      * @return $this
      */
-    public function setTitel($titel)
+    public function setTitle($titel)
     {
-        $this->titel = $titel;
+        $this->title = $titel;
 
         return $this;
     }
@@ -504,9 +504,9 @@ class Realty
     /**
      * @return null
      */
-    public function getTitel()
+    public function getTitle()
     {
-        return $this->titel;
+        return $this->title;
     }
 
     /**
@@ -514,9 +514,9 @@ class Realty
      *
      * @return $this
      */
-    public function setTuernummer($tuernummer)
+    public function setDoorNumber($tuernummer)
     {
-        $this->tuernummer = $tuernummer;
+        $this->doorNumber = $tuernummer;
 
         return $this;
     }
@@ -524,9 +524,9 @@ class Realty
     /**
      * @return null
      */
-    public function getTuernummer()
+    public function getDoorNumber()
     {
-        return $this->tuernummer;
+        return $this->doorNumber;
     }
 
     /**
@@ -534,9 +534,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAusstattBeschr($ausstattBeschr)
+    public function setEquipmentDescription($ausstattBeschr)
     {
-        $this->ausstattBeschr = $ausstattBeschr;
+        $this->equipmentDescription = $ausstattBeschr;
 
         return $this;
     }
@@ -544,9 +544,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAusstattBeschr()
+    public function getEquipmentDescription()
     {
-        return $this->ausstattBeschr;
+        return $this->equipmentDescription;
     }
 
     /**
@@ -554,9 +554,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBreitengrad($breitengrad)
+    public function setLatitude($breitengrad)
     {
-        $this->breitengrad = $breitengrad;
+        $this->latitude = $breitengrad;
 
         return $this;
     }
@@ -564,9 +564,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBreitengrad()
+    public function getLatitude()
     {
-        return $this->breitengrad;
+        return $this->latitude;
     }
 
     /**
@@ -574,9 +574,9 @@ class Realty
      *
      * @return $this
      */
-    public function setLaengengrad($laengengrad)
+    public function setLongitude($laengengrad)
     {
-        $this->laengengrad = $laengengrad;
+        $this->longitude = $laengengrad;
 
         return $this;
     }
@@ -584,9 +584,9 @@ class Realty
     /**
      * @return null
      */
-    public function getLaengengrad()
+    public function getLongitude()
     {
-        return $this->laengengrad;
+        return $this->longitude;
     }
 
     /**
@@ -594,9 +594,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlEtagen($anzahlEtagen)
+    public function setTierCount($anzahlEtagen)
     {
-        $this->anzahlEtagen = $anzahlEtagen;
+        $this->tierCount = $anzahlEtagen;
 
         return $this;
     }
@@ -604,9 +604,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlEtagen()
+    public function getTierCount()
     {
-        return $this->anzahlEtagen;
+        return $this->tierCount;
     }
 
     /**
@@ -614,9 +614,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBundesland($bundesland)
+    public function setFederalState($bundesland)
     {
-        $this->bundesland = $bundesland;
+        $this->federalState = $bundesland;
 
         return $this;
     }
@@ -624,9 +624,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBundesland()
+    public function getFederalState()
     {
-        return $this->bundesland;
+        return $this->federalState;
     }
 
     /**
@@ -634,9 +634,9 @@ class Realty
      *
      * @return $this
      */
-    public function setFlur($flur)
+    public function setHallway($flur)
     {
-        $this->flur = $flur;
+        $this->hallway = $flur;
 
         return $this;
     }
@@ -644,9 +644,9 @@ class Realty
     /**
      * @return null
      */
-    public function getFlur()
+    public function getHallway()
     {
-        return $this->flur;
+        return $this->hallway;
     }
 
     /**
@@ -654,9 +654,9 @@ class Realty
      *
      * @return $this
      */
-    public function setFlurstueck($flurstueck)
+    public function setLandParcel($flurstueck)
     {
-        $this->flurstueck = $flurstueck;
+        $this->landParcel = $flurstueck;
 
         return $this;
     }
@@ -664,9 +664,9 @@ class Realty
     /**
      * @return null
      */
-    public function getFlurstueck()
+    public function getLandParcel()
     {
-        return $this->flurstueck;
+        return $this->landParcel;
     }
 
     /**
@@ -674,9 +674,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGemarkung($gemarkung)
+    public function setDistrict($gemarkung)
     {
-        $this->gemarkung = $gemarkung;
+        $this->district = $gemarkung;
 
         return $this;
     }
@@ -684,9 +684,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGemarkung()
+    public function getDistrict()
     {
-        return $this->gemarkung;
+        return $this->district;
     }
 
     /**
@@ -694,9 +694,9 @@ class Realty
      *
      * @return $this
      */
-    public function setHausnummer($hausnummer)
+    public function setHouseNumber($hausnummer)
     {
-        $this->hausnummer = $hausnummer;
+        $this->houseNumber = $hausnummer;
 
         return $this;
     }
@@ -704,9 +704,9 @@ class Realty
     /**
      * @return null
      */
-    public function getHausnummer()
+    public function getHouseNumber()
     {
-        return $this->hausnummer;
+        return $this->houseNumber;
     }
 
     /**
@@ -714,9 +714,9 @@ class Realty
      *
      * @return $this
      */
-    public function setLand($land)
+    public function setCountry($land)
     {
-        $this->land = $land;
+        $this->country = $land;
 
         return $this;
     }
@@ -724,9 +724,9 @@ class Realty
     /**
      * @return null
      */
-    public function getLand()
+    public function getCountry()
     {
-        return $this->land;
+        return $this->country;
     }
 
     /**
@@ -734,9 +734,9 @@ class Realty
      *
      * @return $this
      */
-    public function setRegionalerZusatz($regionalerZusatz)
+    public function setRegionalAddition($regionalerZusatz)
     {
-        $this->regionalerZusatz = $regionalerZusatz;
+        $this->regionalAddition = $regionalerZusatz;
 
         return $this;
     }
@@ -744,9 +744,9 @@ class Realty
     /**
      * @return null
      */
-    public function getRegionalerZusatz()
+    public function getRegionalAddition()
     {
-        return $this->regionalerZusatz;
+        return $this->regionalAddition;
     }
 
     /**
@@ -754,9 +754,9 @@ class Realty
      *
      * @return $this
      */
-    public function setStrasse($strasse)
+    public function setStreet($strasse)
     {
-        $this->strasse = $strasse;
+        $this->street = $strasse;
 
         return $this;
     }
@@ -764,9 +764,9 @@ class Realty
     /**
      * @return null
      */
-    public function getStrasse()
+    public function getStreet()
     {
-        return $this->strasse;
+        return $this->street;
     }
 
     /**
@@ -774,9 +774,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGesamtMieteUst($gesamtMieteUst)
+    public function setTotalRentVat($gesamtMieteUst)
     {
-        $this->gesamtMieteUst = $gesamtMieteUst;
+        $this->totalRentVat = $gesamtMieteUst;
 
         return $this;
     }
@@ -784,9 +784,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGesamtMieteUst()
+    public function getTotalRentVat()
     {
-        return $this->gesamtMieteUst;
+        return $this->totalRentVat;
     }
 
     /**
@@ -794,9 +794,9 @@ class Realty
      *
      * @return $this
      */
-    public function setHeizkosten($heizkosten)
+    public function setHeatingCosts($heizkosten)
     {
-        $this->heizkosten = $heizkosten;
+        $this->heatingCosts = $heizkosten;
 
         return $this;
     }
@@ -804,9 +804,9 @@ class Realty
     /**
      * @return null
      */
-    public function getHeizkosten()
+    public function getHeatingCosts()
     {
-        return $this->heizkosten;
+        return $this->heatingCosts;
     }
 
     /**
@@ -814,9 +814,9 @@ class Realty
      *
      * @return $this
      */
-    public function setKaution($kaution)
+    public function setSurety($kaution)
     {
-        $this->kaution = $kaution;
+        $this->surety = $kaution;
 
         return $this;
     }
@@ -824,9 +824,9 @@ class Realty
     /**
      * @return null
      */
-    public function getKaution()
+    public function getSurety()
     {
-        return $this->kaution;
+        return $this->surety;
     }
 
     /**
@@ -834,9 +834,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNebenkosten($nebenkosten)
+    public function setAdditionalCharges($nebenkosten)
     {
-        $this->nebenkosten = $nebenkosten;
+        $this->additionalCharges = $nebenkosten;
 
         return $this;
     }
@@ -844,9 +844,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNebenkosten()
+    public function getAdditionalCharges()
     {
-        return $this->nebenkosten;
+        return $this->additionalCharges;
     }
 
     /**
@@ -854,9 +854,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNettoKaltMiete($nettoKaltMiete)
+    public function setNetRent($nettoKaltMiete)
     {
-        $this->nettoKaltMiete = $nettoKaltMiete;
+        $this->netRent = $nettoKaltMiete;
 
         return $this;
     }
@@ -864,9 +864,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNettoKaltMiete()
+    public function getNetRent()
     {
-        return $this->nettoKaltMiete;
+        return $this->netRent;
     }
 
     /**
@@ -874,9 +874,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNettoertragJaehrlich($nettoertragJaehrlich)
+    public function setNetEarningYearly($nettoertragJaehrlich)
     {
-        $this->nettoertragJaehrlich = $nettoertragJaehrlich;
+        $this->netEarningYearly = $nettoertragJaehrlich;
 
         return $this;
     }
@@ -884,9 +884,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNettoertragJaehrlich()
+    public function getNetEarningYearly()
     {
-        return $this->nettoertragJaehrlich;
+        return $this->netEarningYearly;
     }
 
     /**
@@ -894,9 +894,9 @@ class Realty
      *
      * @return $this
      */
-    public function setNettoertragMonatlich($nettoertragMonatlich)
+    public function setNetEarningMonthly($nettoertragMonatlich)
     {
-        $this->nettoertragMonatlich = $nettoertragMonatlich;
+        $this->netEarningMonthly = $nettoertragMonatlich;
 
         return $this;
     }
@@ -904,9 +904,9 @@ class Realty
     /**
      * @return null
      */
-    public function getNettoertragMonatlich()
+    public function getNetEarningMonthly()
     {
-        return $this->nettoertragMonatlich;
+        return $this->netEarningMonthly;
     }
 
     /**
@@ -914,9 +914,9 @@ class Realty
      *
      * @return $this
      */
-    public function setRendite($rendite)
+    public function setYield($rendite)
     {
-        $this->rendite = $rendite;
+        $this->yield = $rendite;
 
         return $this;
     }
@@ -924,9 +924,9 @@ class Realty
     /**
      * @return null
      */
-    public function getRendite()
+    public function getYield()
     {
-        return $this->rendite;
+        return $this->yield;
     }
 
     /**
@@ -934,9 +934,9 @@ class Realty
      *
      * @return $this
      */
-    public function setWaehrung($waehrung)
+    public function setCurrency($waehrung)
     {
-        $this->waehrung = $waehrung;
+        $this->currency = $waehrung;
 
         return $this;
     }
@@ -944,9 +944,9 @@ class Realty
     /**
      * @return null
      */
-    public function getWaehrung()
+    public function getCurrency()
     {
-        return $this->waehrung;
+        return $this->currency;
     }
 
     /**
@@ -954,9 +954,9 @@ class Realty
      *
      * @return $this
      */
-    public function setWohnbaufoerderung($wohnbaufoerderung)
+    public function setBuildingSubsidies($wohnbaufoerderung)
     {
-        $this->wohnbaufoerderung = $wohnbaufoerderung;
+        $this->buildingSubsidies = $wohnbaufoerderung;
 
         return $this;
     }
@@ -964,9 +964,9 @@ class Realty
     /**
      * @return null
      */
-    public function getWohnbaufoerderung()
+    public function getBuildingSubsidies()
     {
-        return $this->wohnbaufoerderung;
+        return $this->buildingSubsidies;
     }
 
     /**
@@ -1055,9 +1055,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGrundbucheintragung($grundbucheintragung)
+    public function setLandRegistration($grundbucheintragung)
     {
-        $this->grundbucheintragung = $grundbucheintragung;
+        $this->landRegistration = $grundbucheintragung;
 
         return $this;
     }
@@ -1065,9 +1065,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGrundbucheintragung()
+    public function getLandRegistration()
     {
-        return $this->grundbucheintragung;
+        return $this->landRegistration;
     }
 
     /**
@@ -1075,9 +1075,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGrunderwerbssteuer($grunderwerbssteuer)
+    public function setTransferTax($grunderwerbssteuer)
     {
-        $this->grunderwerbssteuer = $grunderwerbssteuer;
+        $this->transferTax = $grunderwerbssteuer;
 
         return $this;
     }
@@ -1085,9 +1085,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGrunderwerbssteuer()
+    public function getTransferTax()
     {
-        return $this->grunderwerbssteuer;
+        return $this->transferTax;
     }
 
     /**
@@ -1095,9 +1095,9 @@ class Realty
      *
      * @return $this
      */
-    public function setVertragserrichtungsgebuehr($vertragserrichtungsgebuehr)
+    public function setContactEstablishmentCosts($vertragserrichtungsgebuehr)
     {
-        $this->vertragserrichtungsgebuehr = $vertragserrichtungsgebuehr;
+        $this->contactEstablishmentCosts = $vertragserrichtungsgebuehr;
 
         return $this;
     }
@@ -1105,9 +1105,9 @@ class Realty
     /**
      * @return null
      */
-    public function getVertragserrichtungsgebuehr()
+    public function getContactEstablishmentCosts()
     {
-        return $this->vertragserrichtungsgebuehr;
+        return $this->contactEstablishmentCosts;
     }
 
     /**
@@ -1190,9 +1190,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGesamtflaeche($gesamtflaeche)
+    public function setTotalArea($gesamtflaeche)
     {
-        $this->gesamtflaeche = $gesamtflaeche;
+        $this->totalArea = $gesamtflaeche;
 
         return $this;
     }
@@ -1200,9 +1200,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGesamtflaeche()
+    public function getTotalArea()
     {
-        return $this->gesamtflaeche;
+        return $this->totalArea;
     }
 
     /**
@@ -1210,9 +1210,9 @@ class Realty
      *
      * @return $this
      */
-    public function setWohnflaeche($wohnflaeche)
+    public function setLivingArea($wohnflaeche)
     {
-        $this->wohnflaeche = $wohnflaeche;
+        $this->livingArea = $wohnflaeche;
 
         return $this;
     }
@@ -1220,9 +1220,9 @@ class Realty
     /**
      * @return null
      */
-    public function getWohnflaeche()
+    public function getLivingArea()
     {
-        return $this->wohnflaeche;
+        return $this->livingArea;
     }
 
     /**
@@ -1230,9 +1230,9 @@ class Realty
      *
      * @return $this
      */
-    public function setZustand($zustand)
+    public function setCondition($zustand)
     {
-        $this->zustand = $zustand;
+        $this->condition = $zustand;
 
         return $this;
     }
@@ -1240,9 +1240,9 @@ class Realty
     /**
      * @return null
      */
-    public function getZustand()
+    public function getCondition()
     {
-        return $this->zustand;
+        return $this->condition;
     }
 
     /**
@@ -1250,9 +1250,9 @@ class Realty
      *
      * @return $this
      */
-    public function setErschließung($erschließung)
+    public function setInfrastructureProvision($erschließung)
     {
-        $this->erschließung = $erschließung;
+        $this->infrastructureProvision = $erschließung;
 
         return $this;
     }
@@ -1260,9 +1260,9 @@ class Realty
     /**
      * @return null
      */
-    public function getErschließung()
+    public function getInfrastructureProvision()
     {
-        return $this->erschließung;
+        return $this->infrastructureProvision;
     }
 
     /**
@@ -1270,9 +1270,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBaujahr($baujahr)
+    public function setYearBuilt($baujahr)
     {
-        $this->baujahr = $baujahr;
+        $this->yearBuilt = $baujahr;
 
         return $this;
     }
@@ -1280,9 +1280,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBaujahr()
+    public function getYearBuilt()
     {
-        return $this->baujahr;
+        return $this->yearBuilt;
     }
 
     /**
@@ -1290,9 +1290,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAlter($alter)
+    public function setAge($alter)
     {
-        $this->alter = $alter;
+        $this->age = $alter;
 
         return $this;
     }
@@ -1300,9 +1300,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAlter()
+    public function getAge()
     {
-        return $this->alter;
+        return $this->age;
     }
 
     /**
@@ -1363,9 +1363,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlAbstellraum($anzahlAbstellraum)
+    public function setStoreRoomCount($anzahlAbstellraum)
     {
-        $this->anzahlAbstellraum = $anzahlAbstellraum;
+        $this->storeRoomCount = $anzahlAbstellraum;
 
         return $this;
     }
@@ -1373,9 +1373,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlAbstellraum()
+    public function getStoreRoomCount()
     {
-        return $this->anzahlAbstellraum;
+        return $this->storeRoomCount;
     }
 
     /**
@@ -1383,9 +1383,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlBadezimmer($anzahlBadezimmer)
+    public function setBathroomCount($anzahlBadezimmer)
     {
-        $this->anzahlBadezimmer = $anzahlBadezimmer;
+        $this->bathroomCount = $anzahlBadezimmer;
 
         return $this;
     }
@@ -1393,9 +1393,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlBadezimmer()
+    public function getBathroomCount()
     {
-        return $this->anzahlBadezimmer;
+        return $this->bathroomCount;
     }
 
     /**
@@ -1403,9 +1403,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlBalkonTerrassen($anzahlBalkonTerrassen)
+    public function setBalconyTerraceCount($anzahlBalkonTerrassen)
     {
-        $this->anzahlBalkonTerrassen = $anzahlBalkonTerrassen;
+        $this->balconyTerraceCount = $anzahlBalkonTerrassen;
 
         return $this;
     }
@@ -1413,9 +1413,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlBalkonTerrassen()
+    public function getBalconyTerraceCount()
     {
-        return $this->anzahlBalkonTerrassen;
+        return $this->balconyTerraceCount;
     }
 
     /**
@@ -1423,9 +1423,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlBalkone($anzahlBalkone)
+    public function setBalconyCount($anzahlBalkone)
     {
-        $this->anzahlBalkone = $anzahlBalkone;
+        $this->balconyCount = $anzahlBalkone;
 
         return $this;
     }
@@ -1433,9 +1433,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlBalkone()
+    public function getBalconyCount()
     {
-        return $this->anzahlBalkone;
+        return $this->balconyCount;
     }
 
     /**
@@ -1443,9 +1443,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlGaragen($anzahlGaragen)
+    public function setGarageCount($anzahlGaragen)
     {
-        $this->anzahlGaragen = $anzahlGaragen;
+        $this->garageCount = $anzahlGaragen;
 
         return $this;
     }
@@ -1453,9 +1453,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlGaragen()
+    public function getGarageCount()
     {
-        return $this->anzahlGaragen;
+        return $this->garageCount;
     }
 
     /**
@@ -1463,9 +1463,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlLoggias($anzahlLoggias)
+    public function setLoggiaCount($anzahlLoggias)
     {
-        $this->anzahlLoggias = $anzahlLoggias;
+        $this->loggiaCount = $anzahlLoggias;
 
         return $this;
     }
@@ -1473,9 +1473,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlLoggias()
+    public function getLoggiaCount()
     {
-        return $this->anzahlLoggias;
+        return $this->loggiaCount;
     }
 
     /**
@@ -1483,9 +1483,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlSepWc($anzahlSepWc)
+    public function setToiletRoomCount($anzahlSepWc)
     {
-        $this->anzahlSepWc = $anzahlSepWc;
+        $this->toiletRoomCount = $anzahlSepWc;
 
         return $this;
     }
@@ -1493,9 +1493,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlSepWc()
+    public function getToiletRoomCount()
     {
-        return $this->anzahlSepWc;
+        return $this->toiletRoomCount;
     }
 
     /**
@@ -1503,9 +1503,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlTerrassen($anzahlTerrassen)
+    public function setTerraceCount($anzahlTerrassen)
     {
-        $this->anzahlTerrassen = $anzahlTerrassen;
+        $this->terraceCount = $anzahlTerrassen;
 
         return $this;
     }
@@ -1513,9 +1513,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlTerrassen()
+    public function getTerraceCount()
     {
-        return $this->anzahlTerrassen;
+        return $this->terraceCount;
     }
 
     /**
@@ -1523,9 +1523,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAnzahlZimmer($anzahlZimmer)
+    public function setRoomCount($anzahlZimmer)
     {
-        $this->anzahlZimmer = $anzahlZimmer;
+        $this->roomCount = $anzahlZimmer;
 
         return $this;
     }
@@ -1533,9 +1533,9 @@ class Realty
     /**
      * @return null
      */
-    public function getAnzahlZimmer()
+    public function getRoomCount()
     {
-        return $this->anzahlZimmer;
+        return $this->roomCount;
     }
 
     /**
@@ -1543,9 +1543,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBalkonTerrassenFlaeche($balkonTerrassenFlaeche)
+    public function setBalconyTerraceArea($balkonTerrassenFlaeche)
     {
-        $this->balkonTerrassenFlaeche = $balkonTerrassenFlaeche;
+        $this->balconyTerraceArea = $balkonTerrassenFlaeche;
 
         return $this;
     }
@@ -1553,9 +1553,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBalkonTerrassenFlaeche()
+    public function getBalconyTerraceArea()
     {
-        return $this->balkonTerrassenFlaeche;
+        return $this->balconyTerraceArea;
     }
 
     /**
@@ -1563,9 +1563,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBalkonFlaeche($balkonsFlaeche)
+    public function setBalconyArea($balkonsFlaeche)
     {
-        $this->balkonFlaeche = $balkonsFlaeche;
+        $this->balconyArea = $balkonsFlaeche;
 
         return $this;
     }
@@ -1573,9 +1573,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBalkonFlaeche()
+    public function getBalconyArea()
     {
-        return $this->balkonFlaeche;
+        return $this->balconyArea;
     }
 
     /**
@@ -1583,9 +1583,9 @@ class Realty
      *
      * @return $this
      */
-    public function setBueroflaeche($bueroflaeche)
+    public function setOfficeArea($bueroflaeche)
     {
-        $this->bueroflaeche = $bueroflaeche;
+        $this->officeArea = $bueroflaeche;
 
         return $this;
     }
@@ -1593,9 +1593,9 @@ class Realty
     /**
      * @return null
      */
-    public function getBueroflaeche()
+    public function getOfficeArea()
     {
-        return $this->bueroflaeche;
+        return $this->officeArea;
     }
 
     /**
@@ -1603,9 +1603,9 @@ class Realty
      *
      * @return $this
      */
-    public function setGartenflaeche($gartenflaeche)
+    public function setGardenArea($gartenflaeche)
     {
-        $this->gartenflaeche = $gartenflaeche;
+        $this->gardenArea = $gartenflaeche;
 
         return $this;
     }
@@ -1613,9 +1613,9 @@ class Realty
     /**
      * @return null
      */
-    public function getGartenflaeche()
+    public function getGardenArea()
     {
-        return $this->gartenflaeche;
+        return $this->gardenArea;
     }
 
     /**
@@ -1623,9 +1623,9 @@ class Realty
      *
      * @return $this
      */
-    public function setKellerflaeche($kellerflaeche)
+    public function setCellarArea($kellerflaeche)
     {
-        $this->kellerflaeche = $kellerflaeche;
+        $this->cellarArea = $kellerflaeche;
 
         return $this;
     }
@@ -1633,9 +1633,9 @@ class Realty
     /**
      * @return null
      */
-    public function getKellerflaeche()
+    public function getCellarArea()
     {
-        return $this->kellerflaeche;
+        return $this->cellarArea;
     }
 
     /**
@@ -1643,9 +1643,9 @@ class Realty
      *
      * @return $this
      */
-    public function setLagerflaeche($lagerflaeche)
+    public function setStorageArea($lagerflaeche)
     {
-        $this->lagerflaeche = $lagerflaeche;
+        $this->storageArea = $lagerflaeche;
 
         return $this;
     }
@@ -1653,9 +1653,9 @@ class Realty
     /**
      * @return null
      */
-    public function getLagerflaeche()
+    public function getStorageArea()
     {
-        return $this->lagerflaeche;
+        return $this->storageArea;
     }
 
     /**
@@ -1663,9 +1663,9 @@ class Realty
      *
      * @return $this
      */
-    public function setLoggiasFlaeche($loggiasFlaeche)
+    public function setLoggiaArea($loggiasFlaeche)
     {
-        $this->loggiasFlaeche = $loggiasFlaeche;
+        $this->loggiaArea = $loggiasFlaeche;
 
         return $this;
     }
@@ -1673,9 +1673,9 @@ class Realty
     /**
      * @return null
      */
-    public function getLoggiasFlaeche()
+    public function getLoggiaArea()
     {
-        return $this->loggiasFlaeche;
+        return $this->loggiaArea;
     }
 
     /**
@@ -1683,9 +1683,9 @@ class Realty
      *
      * @return $this
      */
-    public function setTerrassenFlaeche($terrassenFlaeche)
+    public function setTerraceArea($terrassenFlaeche)
     {
-        $this->terrassenFlaeche = $terrassenFlaeche;
+        $this->terraceArea = $terrassenFlaeche;
 
         return $this;
     }
@@ -1693,9 +1693,9 @@ class Realty
     /**
      * @return null
      */
-    public function getTerrassenFlaeche()
+    public function getTerraceArea()
     {
-        return $this->terrassenFlaeche;
+        return $this->terraceArea;
     }
 
 

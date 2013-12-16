@@ -16,77 +16,77 @@ class RealtyWrapper extends AbstractWrapper
      * @var array
      */
     protected $simpleMapping = array(
-        'id'                 => 'int',
-        'objektnummer'       => 'string',
-        'titel'              => 'string',
-        'dreizeiler'         => 'string',
-        'naehe'              => 'string',
-        'objektbeschreibung' => 'string',
-        'etage'              => 'string',
-        'tuernummer'         => 'string',
-        'plz'                => 'string',
-        'ort'                => 'string',
-        'kaufpreis'          => 'double',
-        'gesamtmiete'        => 'double',
-        'nutzflaeche'        => 'string',
-        'grundflaeche'       => 'string',
-        'projekt_id'         => 'int',
-        'status'             => 'string',
+        'id',
+        'objektnummer',
+        'titel',
+        'dreizeiler',
+        'naehe',
+        'objektbeschreibung',
+        'etage',
+        'tuernummer',
+        'plz',
+        'ort',
+        'kaufpreis',
+        'gesamtmiete',
+        'nutzflaeche',
+        'grundflaeche',
+        'projekt_id',
+        'status',
     );
 
     protected $geoMapping = array(
-        'ort'               => 'string',
-        'plz'               => 'string',
-        'regionaler_zusatz' => 'string',
-        'anzahl_etagen'     => 'int',
-        'etage'             => 'string',
-        'gemarkung'         => 'string',
-        'flur'              => 'string',
-        'flurstueck'        => 'string',
-        'bundesland'        => 'string',
-        'strasse'           => 'string',
-        'tuernummer'        => 'string',
-        'hausnummer'        => 'string',
+        'ort',
+        'plz',
+        'regionaler_zusatz',
+        'anzahl_etagen',
+        'etage',
+        'gemarkung',
+        'flur',
+        'flurstueck',
+        'bundesland',
+        'strasse',
+        'tuernummer',
+        'hausnummer',
     );
 
     protected $preisMapping = array(
-        'kaufpreis'                  => 'double',
-        'nettokaltmiete'             => 'double',
-        'nebenkosten'                => 'double',
-        'heizkosten'                 => 'double',
-        'wohnbaufoerderung'          => 'double',
-        'rendite'                    => 'double',
-        'nettoertrag_jaehrlich'      => 'double',
-        'nettoertrag_monatlich'      => 'double',
-        'gesamtmiete_ust'            => 'double',
-        'grunderwerbssteuer'         => 'double',
-        'grundbucheintragung'        => 'double',
-        'vertragserrichtungsgebuehr' => 'double',
-        'kaution'                    => 'double',
+        'kaufpreis',
+        'nettokaltmiete',
+        'nebenkosten',
+        'heizkosten',
+        'wohnbaufoerderung',
+        'rendite',
+        'nettoertrag_jaehrlich',
+        'nettoertrag_monatlich',
+        'gesamtmiete_ust',
+        'grunderwerbssteuer',
+        'grundbucheintragung',
+        'vertragserrichtungsgebuehr',
+        'kaution',
     );
 
     protected $flaechenMapping = array(
-        'nutzflaeche'             => 'double',
-        'grundflaeche'            => 'double',
-        'wohnflaeche'             => 'double',
-        'gesamtflaeche'           => 'double',
-        'anzahl_zimmer'           => 'int',
-        'anzahl_badezimmer'       => 'int',
-        'anzahl_sep_wc'           => 'int',
-        'anzahl_balkon_terrassen' => 'int',
-        'balkon_terrasse_flaeche' => 'double',
-        'anzahl_balkone'          => 'int',
-        'anzahl_terrassen'        => 'int',
-        'gartenflaeche'           => 'double',
-        'kellerflaeche'           => 'double',
-        'bueroflaeche'            => 'double',
-        'lagerflaeche'            => 'double',
-        'anzahl_loggias'          => 'int',
-        'loggias_flaeche'         => 'double',
-        'balkons_flaeche'         => array('type' => 'double', 'property' => 'setBalkonFlaeche'),
-        'terrassen_flaeche'       => 'double',
-        'anzahl_garagen'          => 'int',
-        'anzahl_abstellraum'      => 'int',
+        'nutzflaeche',
+        'grundflaeche',
+        'wohnflaeche',
+        'gesamtflaeche',
+        'anzahl_zimmer',
+        'anzahl_badezimmer',
+        'anzahl_sep_wc',
+        'anzahl_balkon_terrassen',
+        'balkon_terrasse_flaeche',
+        'anzahl_balkone',
+        'anzahl_terrassen',
+        'gartenflaeche',
+        'kellerflaeche',
+        'bueroflaeche',
+        'lagerflaeche',
+        'anzahl_loggias',
+        'loggias_flaeche',
+        'balkons_flaeche',
+        'terrassen_flaeche',
+        'anzahl_garagen',
+        'anzahl_abstellraum',
     );
 
     public function transformList($data)
@@ -137,7 +137,7 @@ class RealtyWrapper extends AbstractWrapper
         if (isset($xml->verwaltung_techn)) {
             $objekt->setId((int) $xml->verwaltung_techn->objektnr_intern);
             $objekt->setPropertyNumber((string) $xml->verwaltung_techn->objektnr_extern);
-            $objekt->setProjektId((int) $xml->verwaltung_techn->projekt_id);
+            $objekt->setProjectId((int) $xml->verwaltung_techn->projekt_id);
         }
 
         if (isset($xml->verwaltung_objekt)) {
@@ -146,20 +146,20 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->objektkategorie)) {
             if (isset($xml->objektkategorie->objektart)) {
-                $objekt->setObjektart((string) $xml->objektkategorie->objektart->children()->getName());
+                $objekt->setRealtyType((string) $xml->objektkategorie->objektart->children()->getName());
             }
             if (isset($xml->objektkategorie->nutzungsart)) {
-                $objekt->setNutzungsart($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()));
+                $objekt->setOccupancy($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()));
             }
             if (isset($xml->objektkategorie->vermarktungsart)) {
-                $objekt->setVermarktungsart($this->attributesToArray($xml->objektkategorie->vermarktungsart->attributes()));
+                $objekt->setMarketingType($this->attributesToArray($xml->objektkategorie->vermarktungsart->attributes()));
             }
         }
 
         if (isset($xml->freitexte)) {
             $objekt->setTitle((string) $xml->freitexte->objekttitel);
-            $objekt->setAusstattBeschr((string) $xml->freitexte->ausstatt_beschr);
-            $objekt->setObjektbeschreibung((string) $xml->freitexte->objektbeschreibung);
+            $objekt->setEquipmentDescription((string) $xml->freitexte->ausstatt_beschr);
+            $objekt->setDescription((string) $xml->freitexte->objektbeschreibung);
         }
 
         if (isset($xml->geo)) {
@@ -167,26 +167,26 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->geo->geokoordinaten)) {
                 $coord = $this->attributesToArray($xml->geo->geokoordinaten->attributes());
-                $objekt->setBreitengrad((double) $coord['breitengrad']);
-                $objekt->setLaengengrad((double) $coord['laengengrad']);
+                $objekt->setLatitude((double) $coord['breitengrad']);
+                $objekt->setLongitude((double) $coord['laengengrad']);
             }
 
             if (isset($xml->geo->land)) {
                 $iso = $this->attributesToArray($xml->geo->land->attributes());
                 if (array_key_exists('iso_land', $iso)) {
-                    $objekt->setLand((string) $iso['iso_land']);
+                    $objekt->setCountry((string) $iso['iso_land']);
                 }
             }
         }
 
         if (isset($xml->preise)) {
             $this->map($this->preisMapping, $xml->preise, $objekt);
-            $objekt->setGesamtmiete($this->cast($xml->preise->warmmiete, 'double'));
+            $objekt->setTotalRent($this->cast($xml->preise->warmmiete, 'double'));
 
             if (isset($xml->preise->waehrung)) {
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
                 if (array_key_exists('iso_waehrung', $iso)) {
-                    $objekt->setWaehrung((string) $iso['iso_waehrung']);
+                    $objekt->setCurrency((string) $iso['iso_waehrung']);
                 }
             }
 
@@ -219,25 +219,25 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->flaechen)) {
             $this->map($this->flaechenMapping, $xml->flaechen, $objekt);
-            $objekt->setGrundflaeche($this->cast($xml->flaechen->grundstuecksflaeche));
+            $objekt->setSurfaceArea($this->cast($xml->flaechen->grundstuecksflaeche));
         }
 
         if (isset($xml->zustand_angaben)) {
-            $objekt->setBaujahr($this->cast($xml->zustand_angaben->baujahr, 'int'));
+            $objekt->setYearBuilt($this->cast($xml->zustand_angaben->baujahr, 'int'));
 
             $data = $this->attributesToArray($xml->zustand_angaben->zustand);
             if (array_key_exists('zustand_art', $data)) {
-                $objekt->setZustand($data['zustand_art']);
+                $objekt->setCondition($data['zustand_art']);
             }
 
             $data = $this->attributesToArray($xml->zustand_angaben->alter);
             if (array_key_exists('alter_attr', $data)) {
-                $objekt->setZustand($data['alter_attr']);
+                $objekt->setAge($data['alter_attr']);
             }
 
             $data = $this->attributesToArray($xml->zustand_angaben->erschliessung);
             if (array_key_exists('erschl_attr', $data)) {
-                $objekt->setZustand($data['zustand_art']);
+                $objekt->setInfrastructureProvision($data['zustand_art']);
             }
 
             if (isset($xml->zustand_angaben->energiepass)) {
@@ -264,7 +264,7 @@ class RealtyWrapper extends AbstractWrapper
                         $objekt->addAusstattung($key, $key);
                     } elseif ($element->attributes()->count()) {
                         $attributes = $this->attributesToArray($element);
-                        $value = array();
+                        $value      = array();
                         foreach ($attributes as $k => $v) {
                             if ($v == 1) {
                                 $value[] = $k;

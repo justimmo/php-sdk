@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests\Wrapper\V1;
 
+use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
 
@@ -12,11 +13,20 @@ use Justimmo\Tests\TestCase;
  */
 class RealtyWrapperTest extends TestCase
 {
+    /**
+     * @var RealtyWrapper
+     */
+    private $wrapper;
+
+    public function setUp()
+    {
+        $this->wrapper = new RealtyWrapper(new RealtyMapper());
+    }
+
 
     public function testTransformList()
     {
-        $wrapper = new RealtyWrapper();
-        $list = $wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
+        $list = $this->wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
         $this->assertEquals(3, $list->count());
@@ -30,57 +40,57 @@ class RealtyWrapperTest extends TestCase
 
     public function testTransformSingle()
     {
-        $wrapper = new RealtyWrapper();
-        $objekt  = $wrapper->transformSingle($this->getFixtures('v1/realty_detail.xml'));
+        /** @var \Justimmo\Model\Realty $objekt */
+        $objekt  = $this->wrapper->transformSingle($this->getFixtures('v1/realty_detail.xml'));
 
         $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
 
         $this->assertEquals(195439, $objekt->getId());
-        $this->assertEquals(51, $objekt->getProjektId());
-        $this->assertEquals(34, $objekt->getObjektnummer());
-        $this->assertEquals('DEMOOBJEKT! Elegantes Büro neben Bristol und Oper', $objekt->getTitel());
-        $this->assertContains('ausgestattetes 1 bis 2 Personenbüro', $objekt->getObjektbeschreibung());
-        $this->assertNull($objekt->getEtage());
-        $this->assertNull($objekt->getTuernummer());
-        $this->assertEquals(2460, $objekt->getPlz());
-        $this->assertEquals('Wien', $objekt->getOrt());
-        $this->assertEquals('buero_praxen', $objekt->getObjektart());
+        $this->assertEquals(51, $objekt->getProjectId());
+        $this->assertEquals(34, $objekt->getPropertyNumber());
+        $this->assertEquals('DEMOOBJEKT! Elegantes Büro neben Bristol und Oper', $objekt->getTitle());
+        $this->assertContains('ausgestattetes 1 bis 2 Personenbüro', $objekt->getDescription());
+        $this->assertNull($objekt->getTier());
+        $this->assertNull($objekt->getDoorNumber());
+        $this->assertEquals(2460, $objekt->getZipCode());
+        $this->assertEquals('Wien', $objekt->getPlace());
+        $this->assertEquals('buero_praxen', $objekt->getRealtyType());
 
         $this->assertEquals(array(
             'WOHNEN'  => 1,
             'GEWERBE' => 1,
             'ANLAGE'  => 0,
-        ), $objekt->getNutzungsart());
+        ), $objekt->getOccupancy());
         $this->assertEquals(array(
             'KAUF'        => 1,
             'MIETE_PACHT' => 1,
-        ), $objekt->getVermarktungsart());
-        $this->assertNull($objekt->getStrasse());
-        $this->assertEmpty($objekt->getFlur());
-        $this->assertEmpty($objekt->getFlurstueck());
-        $this->assertEmpty($objekt->getGemarkung());
-        $this->assertEquals('AUT', $objekt->getLand());
-        $this->assertEquals(48.0168636, $objekt->getBreitengrad());
-        $this->assertEquals(16.7801812, $objekt->getLaengengrad());
-        $this->assertEquals($objekt->getNutzflaeche(), 15);
-        $this->assertEquals($objekt->getGrundflaeche(), 15);
-        $this->assertNull($objekt->getWohnflaeche());
-        $this->assertNull($objekt->getGesamtflaeche());
+        ), $objekt->getMarketingType());
+        $this->assertNull($objekt->getStreet());
+        $this->assertEmpty($objekt->getHallway());
+        $this->assertEmpty($objekt->getLandParcel());
+        $this->assertEmpty($objekt->getDistrict());
+        $this->assertEquals('AUT', $objekt->getCountry());
+        $this->assertEquals(48.0168636, $objekt->getLatitude());
+        $this->assertEquals(16.7801812, $objekt->getLongitude());
+        $this->assertEquals($objekt->getFloorArea(), 15);
+        $this->assertEquals($objekt->getSurfaceArea(), 15);
+        $this->assertNull($objekt->getLivingArea());
+        $this->assertNull($objekt->getTotalArea());
 
-        $this->assertNull($objekt->getKaufpreis());
-        $this->assertEquals(60000, $objekt->getGesamtmiete());
-        $this->assertNull($objekt->getNettoKaltMiete());
-        $this->assertEquals(50000, $objekt->getNebenkosten());
-        $this->assertEquals(10000, $objekt->getHeizkosten());
-        $this->assertNull($objekt->getWohnbaufoerderung());
-        $this->assertNull($objekt->getRendite());
-        $this->assertNull($objekt->getNettoertragMonatlich());
-        $this->assertNull($objekt->getNettoertragJaehrlich());
-        $this->assertNull($objekt->getGesamtMieteUst());
-        $this->assertNull($objekt->getGrunderwerbssteuer());
-        $this->assertNull($objekt->getGrundbucheintragung());
-        $this->assertNull($objekt->getVertragserrichtungsgebuehr());
-        $this->assertNull($objekt->getKaution());
+        $this->assertNull($objekt->getPurchasePrice());
+        $this->assertEquals(60000, $objekt->getTotalRent());
+        $this->assertNull($objekt->getNetRent());
+        $this->assertEquals(50000, $objekt->getAdditionalCharges());
+        $this->assertEquals(10000, $objekt->getHeatingCosts());
+        $this->assertNull($objekt->getBuildingSubsidies());
+        $this->assertNull($objekt->getYield());
+        $this->assertNull($objekt->getNetEarningMonthly());
+        $this->assertNull($objekt->getNetEarningYearly());
+        $this->assertNull($objekt->getTotalRentVat());
+        $this->assertNull($objekt->getTransferTax());
+        $this->assertNull($objekt->getLandRegistration());
+        $this->assertNull($objekt->getContactEstablishmentCosts());
+        $this->assertNull($objekt->getSurety());
 
         $this->assertEquals(2, count($objekt->getZusatzkosten()));
         $i = 1;
