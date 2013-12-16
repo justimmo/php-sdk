@@ -5,7 +5,7 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Attachment;
 use Justimmo\Model\EnergyPass;
 use Justimmo\Model\Realty;
-use Justimmo\Model\Zusatzkosten;
+use Justimmo\Model\AdditionalCosts;
 use Justimmo\Pager\ListPager;
 
 class RealtyWrapper extends AbstractWrapper
@@ -200,7 +200,7 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
                     $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
-                    $objekt->addZusatzkosten($key, new Zusatzkosten((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust));
+                    $objekt->addAdditionalCosts($key, new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust));
                 }
             }
         }

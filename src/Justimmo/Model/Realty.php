@@ -90,7 +90,7 @@ class Realty
 
     protected $totalRentVat = null;
 
-    protected $zusatzkosten = array();
+    protected $additionalCosts = array();
 
     protected $transferTax = null;
 
@@ -974,22 +974,22 @@ class Realty
      *
      * @return $this
      */
-    public function setZusatzkosten(array $zusatzkosten)
+    public function setAdditionalCosts(array $zusatzkosten)
     {
-        $this->zusatzkosten = $zusatzkosten;
+        $this->additionalCosts = $zusatzkosten;
 
         return $this;
     }
 
     /**
      * @param string       $key
-     * @param Zusatzkosten $zusatzkosten
+     * @param AdditionalCosts $zusatzkosten
      *
      * @return $this
      */
-    public function addZusatzkosten($key, Zusatzkosten $zusatzkosten)
+    public function addAdditionalCosts($key, AdditionalCosts $zusatzkosten)
     {
-        $this->zusatzkosten[$key] = $zusatzkosten;
+        $this->additionalCosts[$key] = $zusatzkosten;
 
         return $this;
     }
@@ -997,9 +997,9 @@ class Realty
     /**
      * @return array
      */
-    public function getZusatzkosten()
+    public function getAdditionalCosts()
     {
-        return $this->zusatzkosten;
+        return $this->additionalCosts;
     }
 
     /**
@@ -1007,7 +1007,7 @@ class Realty
      */
     public function getBetriebskostenBrutto()
     {
-        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getBrutto() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getBrutto() : null;
     }
 
     /**
@@ -1015,7 +1015,7 @@ class Realty
      */
     public function getBetriebskostenNetto()
     {
-        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getNetto() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getNetto() : null;
     }
 
     /**
@@ -1023,7 +1023,7 @@ class Realty
      */
     public function getBetriebskostenUst()
     {
-        return array_key_exists('betriebskosten', $this->zusatzkosten) ? $this->zusatzkosten['betriebskosten']->getUst() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getUst() : null;
     }
 
     /**
@@ -1031,7 +1031,7 @@ class Realty
      */
     public function getHeizkostenBrutto()
     {
-        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getBrutto() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getBrutto() : null;
     }
 
     /**
@@ -1039,7 +1039,7 @@ class Realty
      */
     public function getHeizkostenNetto()
     {
-        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getNetto() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getNetto() : null;
     }
 
     /**
@@ -1047,7 +1047,7 @@ class Realty
      */
     public function getHeizkostenUst()
     {
-        return array_key_exists('heizkosten', $this->zusatzkosten) ? $this->zusatzkosten['heizkosten']->getUst() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getUst() : null;
     }
 
     /**
@@ -1306,19 +1306,19 @@ class Realty
     }
 
     /**
-     * @param \Justimmo\Model\Energiepass $energiepass
+     * @param \Justimmo\Model\EnergyPass $v
      *
      * @return $this
      */
-    public function setEnergyPass(EnergyPass $energiepass)
+    public function setEnergyPass(EnergyPass $v)
     {
-        $this->energyPass = $energiepass;
+        $this->energyPass = $v;
 
         return $this;
     }
 
     /**
-     * @return \Justimmo\Model\Energiepass
+     * @return \Justimmo\Model\EnergyPass
      */
     public function getEnergyPass()
     {

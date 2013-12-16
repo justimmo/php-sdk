@@ -92,22 +92,22 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getContactEstablishmentCosts());
         $this->assertNull($objekt->getSurety());
 
-        $this->assertEquals(2, count($objekt->getZusatzkosten()));
+        $this->assertEquals(2, count($objekt->getAdditionalCosts()));
         $i = 1;
-        foreach ($objekt->getZusatzkosten() as $key => $zusatzkosten) {
-            $this->assertInstanceOf('\Justimmo\Model\Zusatzkosten', $zusatzkosten);
+        foreach ($objekt->getAdditionalCosts() as $key => $zusatzkosten) {
+            $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $zusatzkosten);
             if ($i == 1) {
                 $this->assertEquals('betriebskosten', $key);
                 $this->assertEquals('betriebskosten', $zusatzkosten->getName());
-                $this->assertEquals(50000, $zusatzkosten->getNetto());
-                $this->assertEquals(50000, $zusatzkosten->getBrutto());
+                $this->assertEquals(50000, $zusatzkosten->getNet());
+                $this->assertEquals(50000, $zusatzkosten->getGross());
             } else {
                 $this->assertEquals('heizkosten', $key);
                 $this->assertEquals('heizkosten', $zusatzkosten->getName());
-                $this->assertEquals(10000, $zusatzkosten->getNetto());
-                $this->assertEquals(10000, $zusatzkosten->getBrutto());
+                $this->assertEquals(10000, $zusatzkosten->getNet());
+                $this->assertEquals(10000, $zusatzkosten->getGross());
             }
-            $this->assertEquals(0, $zusatzkosten->getUst());
+            $this->assertEquals(0, $zusatzkosten->getVat());
             $i++;
         }
 

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Zusatzkosten
+class AdditionalCosts
 {
     /**
      * @var string
@@ -12,30 +12,31 @@ class Zusatzkosten
     /**
      * @var double
      */
-    protected $netto;
+    protected $net;
 
     /**
      * @var double
      */
-    protected $brutto;
+    protected $gross;
 
     /**
      * @var double
      */
-    protected $ust;
+    protected $vat;
 
     /**
      * @param      $name
-     * @param null $brutto
-     * @param null $netto
-     * @param null $ust
+     * @param null $gross
+     * @param null $net
+     * @param null $vat
+     *
      */
-    function __construct($name, $brutto = null, $netto = null, $ust = null)
+    function __construct($name, $gross = null, $net = null, $vat = null)
     {
-        $this->brutto = $brutto;
+        $this->gross = $gross;
         $this->name   = $name;
-        $this->netto  = $netto;
-        $this->ust    = $ust;
+        $this->net    = $net;
+        $this->vat    = $vat;
     }
 
 
@@ -44,9 +45,9 @@ class Zusatzkosten
      *
      * @return $this
      */
-    public function setBrutto($brutto)
+    public function setGross($brutto)
     {
-        $this->brutto = $brutto;
+        $this->gross = $brutto;
 
         return $this;
     }
@@ -54,9 +55,9 @@ class Zusatzkosten
     /**
      * @return float
      */
-    public function getBrutto()
+    public function getGross()
     {
-        return $this->brutto;
+        return $this->gross;
     }
 
     /**
@@ -80,13 +81,13 @@ class Zusatzkosten
     }
 
     /**
-     * @param float $netto
+     * @param float $value
      *
      * @return $this
      */
-    public function setNetto($netto)
+    public function setNet($value)
     {
-        $this->netto = $netto;
+        $this->net = $value;
 
         return $this;
     }
@@ -94,19 +95,19 @@ class Zusatzkosten
     /**
      * @return float
      */
-    public function getNetto()
+    public function getNet()
     {
-        return $this->netto;
+        return $this->net;
     }
 
     /**
-     * @param float $ust
+     * @param float $value
      *
      * @return $this
      */
-    public function setUst($ust)
+    public function setVat($value)
     {
-        $this->ust = $ust;
+        $this->vat = $value;
 
         return $this;
     }
@@ -114,11 +115,10 @@ class Zusatzkosten
     /**
      * @return float
      */
-    public function getUst()
+    public function getVat()
     {
-        return $this->ust;
+        return $this->vat;
     }
-
 
 
 }
