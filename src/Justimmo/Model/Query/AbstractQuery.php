@@ -80,7 +80,7 @@ abstract class AbstractQuery implements QueryInterface
         $method = $this->getListCall();
         $response = $this->api->$method($this->params);
 
-        return $this->listWrapper->transform($response);
+        return $this->wrapper->transformList($response);
     }
 
     /**
@@ -104,7 +104,7 @@ abstract class AbstractQuery implements QueryInterface
         $method = $this->getDetailCall();
         $response = $this->api->$method($pk);
 
-        return $this->detailWrapper->transform($response);
+        return $this->wrapper->transformSingle($response);
     }
 
     /**

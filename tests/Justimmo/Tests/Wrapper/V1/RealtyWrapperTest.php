@@ -128,6 +128,6 @@ class RealtyWrapperTest extends TestCase
             'boden'                    => 'ESTRICH',
             'brauereibindung'          => 'brauereibindung',
             'sicherheitstechnik'       => 'POLIZEIRUF',
-        ), $objekt->getAusstattung());
+        ), $objekt->getEquipment());
     }
 }

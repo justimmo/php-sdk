@@ -268,7 +268,7 @@ class RealtyWrapper extends AbstractWrapper
                 /** @var \SimpleXMLElement $element */
                 foreach ($xml->ausstattung[0] as $key => $element) {
                     if ((int) $element === 1) {
-                        $objekt->addAusstattung($key, $key);
+                        $objekt->addEquipment($key, $key);
                     } elseif ($element->attributes()->count()) {
                         $attributes = $this->attributesToArray($element);
                         $value      = array();
@@ -279,9 +279,9 @@ class RealtyWrapper extends AbstractWrapper
                                 $value[$k][] = $v;
                             }
                         }
-                        $objekt->addAusstattung($key, count($value) > 1 ? $value : $value[0]);
+                        $objekt->addEquipment($key, count($value) > 1 ? $value : $value[0]);
                     } else {
-                        $objekt->addAusstattung($key, (string) $element);
+                        $objekt->addEquipment($key, (string) $element);
                     }
                 }
             }

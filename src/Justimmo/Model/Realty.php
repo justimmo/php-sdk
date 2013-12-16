@@ -108,7 +108,7 @@ class Realty
 
     protected $condition = null;
 
-    protected $ausstattung = array();
+    protected $equipment = array();
 
     protected $roomCount = null;
 
@@ -1330,9 +1330,9 @@ class Realty
      *
      * @return $this
      */
-    public function setAusstattung($ausstattung)
+    public function setEquipment($ausstattung)
     {
-        $this->ausstattung = $ausstattung;
+        $this->equipment = $ausstattung;
 
         return $this;
     }
@@ -1340,9 +1340,9 @@ class Realty
     /**
      * @return array
      */
-    public function getAusstattung()
+    public function getEquipment()
     {
-        return $this->ausstattung;
+        return $this->equipment;
     }
 
     /**
@@ -1351,9 +1351,9 @@ class Realty
      *
      * @return $this
      */
-    public function addAusstattung($key, $value)
+    public function addEquipment($key, $value)
     {
-        $this->ausstattung[$key] = $value;
+        $this->equipment[$key] = $value;
 
         return $this;
     }

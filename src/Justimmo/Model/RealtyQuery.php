@@ -42,7 +42,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function getListCall()
     {
-        return 'callObjektList';
+        return 'callRealtyList';
     }
 
     /**
@@ -52,6 +52,6 @@ class RealtyQuery extends AbstractQuery
      */
     public function getDetailCall()
     {
-        return 'callObjektDetail';
+        return 'callRealtyDetail';
     }
 }
