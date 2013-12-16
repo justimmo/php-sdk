@@ -93,7 +93,11 @@ abstract class AbstractQuery implements QueryInterface
         $method = $this->getListCall();
         $response = $this->api->$method($this->params);
 
-        return $this->wrapper->transformList($response);
+        $return = $this->wrapper->transformList($response);
+
+        $this->clear();
+
+        return $return;
     }
 
     /**
@@ -110,14 +114,18 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @param int $pk
      *
-     * @return \Justimmo\Model\Realty
+     * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee
      */
     public function findPk($pk)
     {
         $method = $this->getDetailCall();
         $response = $this->api->$method($pk);
 
-        return $this->wrapper->transformSingle($response);
+        $return = $this->wrapper->transformSingle($response);
+
+        $this->clear();
+
+        return $return;
     }
 
     /**
