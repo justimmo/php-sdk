@@ -29,17 +29,18 @@ use Justimmo\Api\JustimmoApi;
 use Psr\Log\NullLogger;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Cache\NullCache;
-use Justimmo\Model\Wrapper\V1\RealtyListWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
+use Justimmo\Model\Mapper\V1\RealtyMapper;
 
 $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
-$query = new RealtyQuery($api, new RealtyListWrapper(), new RealtyWrapper());
-$realties = $query->filterByPreis(array('min' => 500, 'max' => 1500))
-    ->filterByPlz(1020)
+$wrapper = new RealtyWrapper(new RealtyMapper());
+$query = new RealtyQuery($api, $wrapper);
+$realties = $query->filterByPrice(array('min' => 500, 'max' => 1500))
+    ->filterByZipCode(1020)
     ->find();
 
 foreach ($realties as $realty) {
-    echo $objekt->getTitel() . ' ' . $objekt->getObjektnummer();
+    echo $realty->getTitle() . ' ' . $realty->getPropertyNumber();
     //....
 }
 
