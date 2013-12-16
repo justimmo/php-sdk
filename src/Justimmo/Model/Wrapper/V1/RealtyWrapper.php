@@ -3,7 +3,7 @@
 namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
-use Justimmo\Model\Energiepass;
+use Justimmo\Model\EnergyPass;
 use Justimmo\Model\Realty;
 use Justimmo\Model\Zusatzkosten;
 use Justimmo\Pager\ListPager;
@@ -87,6 +87,13 @@ class RealtyWrapper extends AbstractWrapper
         'terrassen_flaeche',
         'anzahl_garagen',
         'anzahl_abstellraum',
+    );
+
+    protected $energyMapping = array(
+        'epass_hwbwert',
+        'epass_hwbklasse',
+        'epass_fgeewert',
+        'epass_fgeeklasse',
     );
 
     public function transformList($data)
@@ -241,20 +248,20 @@ class RealtyWrapper extends AbstractWrapper
             }
 
             if (isset($xml->zustand_angaben->energiepass)) {
-                $energiepass = new Energiepass();
+                $energiepass = new EnergyPass();
                 $energiepass
                     ->setEpart($this->cast($xml->zustand_angaben->energiepass->epart))
-                    ->setGueltigBis($this->cast($xml->zustand_angaben->energiepass->gueltig_bis, 'datetime'));
+                    ->setValidUntil($this->cast($xml->zustand_angaben->energiepass->gueltig_bis, 'datetime'));
 
                 foreach ($xml->zustand_angaben->energiepass->epart->user_defined_simplefield as $simpleField) {
                     $attributes = $this->attributesToArray($simpleField);
                     if (array_key_exists('feldname', $attributes)) {
-                        $setter = $this->buildSetter(str_replace('epass_', '', $attributes['feldname']));
+                        $setter = $this->mapper->getSetter($attributes['feldname']);
                         $energiepass->$setter($this->cast($simpleField));
                     }
                 }
 
-                $objekt->setEnergiepass($energiepass);
+                $objekt->setEnergyPass($energiepass);
             }
 
             if (isset($xml->ausstattung[0])) {

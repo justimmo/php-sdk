@@ -115,12 +115,12 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(1, count($objekt->getDocuments()));
         $this->assertEquals(0, count($objekt->getVideos()));
 
-        $energiepass = $objekt->getEnergiepass();
+        $energiepass = $objekt->getEnergyPass();
 
-        $this->assertInstanceOf('\Justimmo\Model\Energiepass', $energiepass);
+        $this->assertInstanceOf('\Justimmo\Model\EnergyPass', $energiepass);
         $this->assertEquals('BEDARF', $energiepass->getEpart());
-        $this->assertInstanceOf('\DateTime', $energiepass->getGueltigBis());
-        $this->assertEquals('2012-09-12', $energiepass->getGueltigBis()->format('Y-m-d'));
+        $this->assertInstanceOf('\DateTime', $energiepass->getValidUntil());
+        $this->assertEquals('2012-09-12', $energiepass->getValidUntil()->format('Y-m-d'));
 
         $this->assertEquals(array(
             'angeschl_gastronomie'     => 'HOTELRESTAURANT',

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Energiepass
+class EnergyPass
 {
     /**
      * @var string
@@ -12,27 +12,27 @@ class Energiepass
     /**
      * @var \DateTime
      */
-    protected $gueltigBis = null;
+    protected $validUntil = null;
 
     /**
      * @var double
      */
-    protected $hwbWert = null;
+    protected $thermalHeatRequirementValue = null;
 
     /**
      * @var string
      */
-    protected $hwbKlasse = null;
+    protected $thermalHeatRequirementClass = null;
 
     /**
      * @var double
      */
-    protected $fgeeWert = null;
+    protected $energyEfficiencyFactorValue = null;
 
     /**
      * @var string
      */
-    protected $fgeeKlasse = null;
+    protected $energyEfficiencyFactorClass = null;
 
     /**
      * @param mixed $epart
@@ -59,9 +59,9 @@ class Energiepass
      *
      * @return $this
      */
-    public function setFgeeKlasse($fgeeKlasse)
+    public function setEnergyEfficiencyFactorClass($fgeeKlasse)
     {
-        $this->fgeeKlasse = $fgeeKlasse;
+        $this->energyEfficiencyFactorClass = $fgeeKlasse;
 
         return $this;
     }
@@ -69,9 +69,9 @@ class Energiepass
     /**
      * @return null
      */
-    public function getFgeeKlasse()
+    public function getEnergyEfficiencyFactorClass()
     {
-        return $this->fgeeKlasse;
+        return $this->energyEfficiencyFactorClass;
     }
 
     /**
@@ -79,9 +79,9 @@ class Energiepass
      *
      * @return $this
      */
-    public function setFgeeWert($fgeeWert)
+    public function setEnergyEfficiencyFactorValue($fgeeWert)
     {
-        $this->fgeeWert = $fgeeWert;
+        $this->energyEfficiencyFactorValue = $fgeeWert;
 
         return $this;
     }
@@ -89,9 +89,9 @@ class Energiepass
     /**
      * @return null
      */
-    public function getFgeeWert()
+    public function getEnergyEfficiencyFactorValue()
     {
-        return $this->fgeeWert;
+        return $this->energyEfficiencyFactorValue;
     }
 
     /**
@@ -99,9 +99,9 @@ class Energiepass
      *
      * @return $this
      */
-    public function setGueltigBis($gueltigBis)
+    public function setValidUntil($gueltigBis)
     {
-        $this->gueltigBis = $gueltigBis;
+        $this->validUntil = $gueltigBis;
 
         return $this;
     }
@@ -109,9 +109,9 @@ class Energiepass
     /**
      * @return null
      */
-    public function getGueltigBis()
+    public function getValidUntil()
     {
-        return $this->gueltigBis;
+        return $this->validUntil;
     }
 
     /**
@@ -119,9 +119,9 @@ class Energiepass
      *
      * @return $this
      */
-    public function setHwbKlasse($hwbKlasse)
+    public function setThermalHeatRequirementClass($hwbKlasse)
     {
-        $this->hwbKlasse = $hwbKlasse;
+        $this->thermalHeatRequirementClass = $hwbKlasse;
 
         return $this;
     }
@@ -129,9 +129,9 @@ class Energiepass
     /**
      * @return null
      */
-    public function getHwbKlasse()
+    public function getThermalHeatRequirementClass()
     {
-        return $this->hwbKlasse;
+        return $this->thermalHeatRequirementClass;
     }
 
     /**
@@ -139,9 +139,9 @@ class Energiepass
      *
      * @return $this
      */
-    public function setHwbWert($hwbWert)
+    public function setThermalHeatRequirementValue($hwbWert)
     {
-        $this->hwbWert = $hwbWert;
+        $this->thermalHeatRequirementValue = $hwbWert;
 
         return $this;
     }
@@ -149,9 +149,9 @@ class Energiepass
     /**
      * @return null
      */
-    public function getHwbWert()
+    public function getThermalHeatRequirementValue()
     {
-        return $this->hwbWert;
+        return $this->thermalHeatRequirementValue;
     }
 
 }

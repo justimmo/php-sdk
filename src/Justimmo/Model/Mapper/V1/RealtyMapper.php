@@ -208,6 +208,18 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'storeRoomCount',
                 'type'     => 'int',
             ),
+            'epass_hwbwert'         => array(
+                'property' => 'thermalHeatRequirementValue',
+            ),
+            'epass_hwbklasse'         => array(
+                'property' => 'thermalHeatRequirementClass',
+            ),
+            'epass_fgeewert'         => array(
+                'property' => 'energyEfficiencyFactorValue',
+            ),
+            'epass_fgeeklasse'         => array(
+                'property' => 'energyEfficiencyFactorClass',
+            ),
         );
     }
 }

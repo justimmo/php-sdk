@@ -145,9 +145,9 @@ class Realty
     protected $storeRoomCount = null;
 
     /**
-     * @var \Justimmo\Model\Energiepass
+     * @var \Justimmo\Model\EnergyPass
      */
-    protected $energiepass = null;
+    protected $energyPass = null;
 
     /**
      * @param null $nutzungsart
@@ -1310,9 +1310,9 @@ class Realty
      *
      * @return $this
      */
-    public function setEnergiepass(Energiepass $energiepass)
+    public function setEnergyPass(EnergyPass $energiepass)
     {
-        $this->energiepass = $energiepass;
+        $this->energyPass = $energiepass;
 
         return $this;
     }
@@ -1320,9 +1320,9 @@ class Realty
     /**
      * @return \Justimmo\Model\Energiepass
      */
-    public function getEnergiepass()
+    public function getEnergyPass()
     {
-        return $this->energiepass;
+        return $this->energyPass;
     }
 
     /**
