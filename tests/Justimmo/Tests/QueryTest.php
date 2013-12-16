@@ -26,7 +26,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testSingle()
     {
-        $q = new RealtyQuery($this->api, $this->wrapper, $this->wrapper);
+        $q = new RealtyQuery($this->api, $this->wrapper);
         $q->filterByPreis(455);
 
         $this->assertEquals(array(

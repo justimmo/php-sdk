@@ -13,10 +13,25 @@ use Justimmo\Tests\TestCase;
 class RealtyWrapperTest extends TestCase
 {
 
-    public function testTransform()
+    public function testTransformList()
     {
         $wrapper = new RealtyWrapper();
-        $objekt  = $wrapper->transform($this->getFixtures('v1/realty_detail.xml'));
+        $list = $wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
+
+        $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
+        $this->assertEquals(3, $list->count());
+        $this->assertEquals(3, $list->getNbResults());
+        $this->assertFalse($list->haveToPaginate());
+
+        foreach($list as $entry) {
+            $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+        }
+    }
+
+    public function testTransformSingle()
+    {
+        $wrapper = new RealtyWrapper();
+        $objekt  = $wrapper->transformSingle($this->getFixtures('v1/realty_detail.xml'));
 
         $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
 

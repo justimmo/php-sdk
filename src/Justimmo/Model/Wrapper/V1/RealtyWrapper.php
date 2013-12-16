@@ -6,6 +6,7 @@ use Justimmo\Model\Attachment;
 use Justimmo\Model\Energiepass;
 use Justimmo\Model\Realty;
 use Justimmo\Model\Zusatzkosten;
+use Justimmo\Pager\ListPager;
 
 class RealtyWrapper extends AbstractWrapper
 {
@@ -88,12 +89,30 @@ class RealtyWrapper extends AbstractWrapper
         'anzahl_abstellraum'      => 'int',
     );
 
+    public function transformList($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $transformed = new ListPager();
+        $transformed->setNbResults((int) $xml->{'query-result'}->count);
+
+        if (isset($xml->immobilie)) {
+            foreach ($xml->immobilie as $immobilie) {
+                $objekt = $this->transformSingle($immobilie->asXML());
+                $transformed->append($objekt);
+            }
+        }
+        $transformed->setMaxPerPage($transformed->count());
+
+        return $transformed;
+    }
+
     /**
      * @param $data
      *
      * @return Objekt
      */
-    public function transform($data)
+    public function transformSingle($data)
     {
         $xml = new \SimpleXMLElement($data);
 
@@ -117,7 +136,7 @@ class RealtyWrapper extends AbstractWrapper
         //detailed attributes from detail view, OpenImmo
         if (isset($xml->verwaltung_techn)) {
             $objekt->setId((int) $xml->verwaltung_techn->objektnr_intern);
-            $objekt->setObjektnummer((string) $xml->verwaltung_techn->objektnr_extern);
+            $objekt->setPropertyNumber((string) $xml->verwaltung_techn->objektnr_extern);
             $objekt->setProjektId((int) $xml->verwaltung_techn->projekt_id);
         }
 
@@ -138,7 +157,7 @@ class RealtyWrapper extends AbstractWrapper
         }
 
         if (isset($xml->freitexte)) {
-            $objekt->setTitel((string) $xml->freitexte->objekttitel);
+            $objekt->setTitle((string) $xml->freitexte->objekttitel);
             $objekt->setAusstattBeschr((string) $xml->freitexte->ausstatt_beschr);
             $objekt->setObjektbeschreibung((string) $xml->freitexte->objektbeschreibung);
         }

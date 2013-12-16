@@ -3,6 +3,7 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
 use Justimmo\Model\Employee;
+use Justimmo\Pager\ListPager;
 
 class EmployeeWrapper extends AbstractWrapper
 {
@@ -19,7 +20,7 @@ class EmployeeWrapper extends AbstractWrapper
         'titel'     => array('type' => 'string', 'property' => 'title'),
     );
 
-    public function transform($data)
+    public function transformSingle($data)
     {
         $xml = new \SimpleXMLElement($data);
 
@@ -40,6 +41,30 @@ class EmployeeWrapper extends AbstractWrapper
         }
 
         return $mitarbeiter;
+    }
+
+    public function transformList($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+        $singleTransformer = new EmployeeWrapper();
+
+        $transformed = new ListPager();
+        foreach($xml->kategorie as $kategorie) {
+            $attributes = $this->attributesToArray($kategorie);
+
+            foreach ($kategorie->mitarbeiter as $mitarbeiter) {
+                $member = $singleTransformer->transformSingle($mitarbeiter->asXML());
+                if (array_key_exists('name', $attributes)) {
+                    $member->setCategory($attributes['name']);
+                }
+                $transformed->append($member);
+            }
+        }
+
+        $transformed->setMaxPerPage($transformed->count());
+        $transformed->setNbResults($transformed->count());
+
+        return $transformed;
     }
 
 }

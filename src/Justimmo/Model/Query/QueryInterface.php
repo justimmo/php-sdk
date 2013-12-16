@@ -6,7 +6,7 @@ use Justimmo\Model\Wrapper\WrapperInterface;
 
 interface QueryInterface
 {
-    public function __construct(JustimmoApiInterface $api, WrapperInterface $listWrapper, WrapperInterface $detailWrapper);
+    public function __construct(JustimmoApiInterface $api, WrapperInterface $wrapper);
 
     public function find();
 

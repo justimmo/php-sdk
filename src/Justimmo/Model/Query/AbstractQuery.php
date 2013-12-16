@@ -27,12 +27,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var WrapperInterface
      */
-    protected $listWrapper;
-
-    /**
-     * @var WrapperInterface
-     */
-    protected $detailWrapper;
+    protected $wrapper;
 
     /**
      * returns the method name what should be called on the api class for a list call
@@ -49,15 +44,14 @@ abstract class AbstractQuery implements QueryInterface
     abstract public function getDetailCall();
 
     /**
-     * @param JustimmoApiInterface $api
-     * @param WrapperInterface     $listWrapper
-     * @param WrapperInterface     $detailWrapper
+     * @param JustimmoApiInterface                     $api
+     * @param \Justimmo\Model\Wrapper\WrapperInterface $wrapper
+     *
      */
-    public function __construct(JustimmoApiInterface $api, WrapperInterface $listWrapper, WrapperInterface $detailWrapper)
+    public function __construct(JustimmoApiInterface $api, WrapperInterface $wrapper)
     {
-        $this->api           = $api;
-        $this->listWrapper   = $listWrapper;
-        $this->detailWrapper = $detailWrapper;
+        $this->api     = $api;
+        $this->wrapper = $wrapper;
     }
 
     /**

@@ -4,7 +4,12 @@ namespace Justimmo\Model\Wrapper;
 
 class NullWrapper implements WrapperInterface
 {
-    public function transform($data)
+    public function transformList($data)
+    {
+
+    }
+
+    public function transformSingle($data)
     {
 
     }
