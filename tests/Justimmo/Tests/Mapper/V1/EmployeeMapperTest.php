@@ -2,6 +2,7 @@
 namespace Justimmo\Tests\Mapper\V1;
 
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
+use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Tests\TestCase;
 
 class EmployeeMapperTest extends TestCase
@@ -32,5 +33,12 @@ class EmployeeMapperTest extends TestCase
     {
         $this->assertEquals('int', $this->mapper->getType('id'));
         $this->assertEquals('string', $this->mapper->getType('test'));
+    }
+
+    public function testGetFilterProperty()
+    {
+        $mapper = new RealtyMapper();
+        $this->assertEquals('preis', $mapper->getFilterPropertyName('Price'));
+        $this->assertEquals('Test', $mapper->getFilterPropertyName('Test'));
     }
 }
