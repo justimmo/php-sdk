@@ -6,26 +6,44 @@ class EmployeeMapper extends AbstractMapper
     protected function getMapping()
     {
         return array(
-            'id'        => array(
+            'id'             => array(
                 'type' => 'int',
             ),
-            'vorname'   => array(
+            'vorname'        => array(
                 'property' => 'firstName',
             ),
-            'nachname'  => array(
+            'nachname'       => array(
                 'property' => 'lastName',
             ),
-            'handy'     => array(
+            'name'           => array(
+                'property' => 'lastName',
+            ),
+            'handy'          => array(
                 'property' => 'mobile',
             ),
-            'tel'       => array(
+            'tel_handy'      => array(
+                'property' => 'mobile',
+            ),
+            'tel_fax'        => array(
+                'property' => 'fax',
+            ),
+            'tel'            => array(
                 'property' => 'phone',
             ),
-            'kategorie' => array(
+            'tel_zentrale'   => array(
+                'property' => 'phone',
+            ),
+            'kategorie'      => array(
                 'property' => 'category',
             ),
-            'titel'     => array(
+            'titel'          => array(
                 'property' => 'title',
+            ),
+            'email_direkt'   => array(
+                'property' => 'email',
+            ),
+            'personennummer' => array(
+                'property' => 'id',
             ),
         );
     }

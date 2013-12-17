@@ -18,6 +18,12 @@ class EmployeeWrapper extends AbstractWrapper
         'fax',
         'kategorie',
         'titel',
+        'tel_zentrale',
+        'email_direkt',
+        'tel_fax',
+        'tel_handy',
+        'name',
+        'personennummer',
     );
 
     public function transformSingle($data)
@@ -37,7 +43,16 @@ class EmployeeWrapper extends AbstractWrapper
                 $attachment->addData('medium', (string) $xml->bild->pfad_medium);
             }
             $mitarbeiter->addAttachment($attachment);
-
+        }
+        if (isset($xml->bild) && isset($xml->bild->medium) && (((string) $xml->bild->medium) != '')) {
+            $attachment = new Attachment((string) $xml->bild->medium);
+            if (isset($xml->bild->small)) {
+                $attachment->addData('small', (string) $xml->bild->small);
+            }
+            if (isset($xml->bild->big)) {
+                $attachment->addData('big', (string) $xml->bild->big);
+            }
+            $mitarbeiter->addAttachment($attachment);
         }
 
         return $mitarbeiter;

@@ -129,5 +129,16 @@ class RealtyWrapperTest extends TestCase
             'brauereibindung'          => 'brauereibindung',
             'sicherheitstechnik'       => 'POLIZEIRUF',
         ), $objekt->getEquipment());
+
+        $contact = $objekt->getContact();
+        $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);
+        $this->assertEquals(100123, $contact->getId());
+        $this->assertEquals('Alexander', $contact->getFirstName());
+        $this->assertEquals('Diem', $contact->getLastName());
+        $this->assertEquals('+43 1 888 74 72', $contact->getMobile());
+        $this->assertEquals('+43 676 123 45 67', $contact->getPhone());
+        $this->assertEquals('+43 767 765 43 21', $contact->getFax());
+        $this->assertEquals('a.diem@bgcc.at', $contact->getEmail());
+        $this->assertEquals(1, count($contact->getAttachments()));
     }
 }

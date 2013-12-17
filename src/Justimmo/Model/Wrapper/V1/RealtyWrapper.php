@@ -4,6 +4,7 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
 use Justimmo\Model\EnergyPass;
+use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Realty;
 use Justimmo\Model\AdditionalCosts;
 use Justimmo\Pager\ListPager;
@@ -285,7 +286,12 @@ class RealtyWrapper extends AbstractWrapper
                     }
                 }
             }
+        }
 
+        if (isset($xml->kontaktperson)) {
+            $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
+            $contact = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $objekt->setContact($contact);
         }
 
         return $objekt;

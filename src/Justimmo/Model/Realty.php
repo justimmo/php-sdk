@@ -150,6 +150,11 @@ class Realty
     protected $energyPass = null;
 
     /**
+     * @var \Justimmo\Model\Employee
+     */
+    protected $contact = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -1698,5 +1703,23 @@ class Realty
         return $this->terraceArea;
     }
 
+    /**
+     * @param \Justimmo\Model\Employee $value
+     *
+     * @return $this
+     */
+    public function setContact($value)
+    {
+        $this->contact = $value;
 
+        return $this;
+    }
+
+    /**
+     * @return \Justimmo\Model\Employee
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
 }
