@@ -18,7 +18,7 @@ composer.json
 
 Documentation
 -------------
-[Caching](../blob/master/doc/caching.md)
+[Caching](doc/caching.md)
 
 Usage Example
 -------------
