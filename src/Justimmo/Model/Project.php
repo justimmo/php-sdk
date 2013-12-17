@@ -35,6 +35,11 @@ class Project
     protected $place = null;
 
     /**
+     * @var array
+     */
+    protected $attachments = array();
+
+    /**
      * @param mixed $value
      *
      * @return $this
@@ -154,6 +159,36 @@ class Project
         return $this->zipCode;
     }
 
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setAttachments($value)
+    {
+        $this->attachments = $value;
 
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param Attachment $attachment
+     *
+     * @return $this
+     */
+    public function addAttachment(Attachment $attachment)
+    {
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
 
 }

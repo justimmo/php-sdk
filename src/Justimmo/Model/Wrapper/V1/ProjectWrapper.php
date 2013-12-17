@@ -27,6 +27,10 @@ class ProjectWrapper extends AbstractWrapper
         $project = new Project();
         $this->map($this->simpleMapping, $xml, $project);
 
+        if (isset($xml->erstes_bild) && (((string) $xml->erstes_bild) != '')) {
+            $project->addAttachment(new Attachment((string) $xml->erstes_bild));
+        }
+
         return $project;
     }
 

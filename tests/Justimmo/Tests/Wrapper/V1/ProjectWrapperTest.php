@@ -30,5 +30,6 @@ class ProjectWrapperTest extends TestCase
         $this->assertContains('Duis ultrices consequat odio quis dapibus', $entry->getDescription());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
+        $this->assertEquals(1, count($entry->getAttachments()));
     }
 }
