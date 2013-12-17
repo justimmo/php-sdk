@@ -60,9 +60,15 @@ abstract class AbstractMapper implements MapperInterface
 
     public function getFilterPropertyName($modelPropertyName)
     {
+        $lowerModelPropertyName = mb_strtolower($modelPropertyName);
         $mapping = $this->getFilterMapping();
+        foreach ($mapping as $key => $value) {
+            if ($lowerModelPropertyName == mb_strtolower($key)) {
+                return $value;
+            }
+        }
 
-        return array_key_exists($modelPropertyName, $mapping) ? $mapping[$modelPropertyName] : $modelPropertyName;
+        return $modelPropertyName;
     }
 
     /**
