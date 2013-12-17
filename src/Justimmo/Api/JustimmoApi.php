@@ -131,6 +131,18 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * make a call to the project list with a set of given params
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callProjectList(array $params = array())
+    {
+        return $this->call('projekt/list', $params);
+    }
+
+    /**
      * generates a url for an api request
      *
      * @param       $call

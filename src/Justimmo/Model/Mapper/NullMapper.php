@@ -13,7 +13,7 @@ class NullMapper implements MapperInterface
      */
     public function getSetter($apiPropertyName)
     {
-        return $apiPropertyName;
+        return 'set' . ucfirst($apiPropertyName);
     }
 
     /**

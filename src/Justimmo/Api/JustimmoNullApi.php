@@ -30,4 +30,8 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
+    public function callProjectList(array $params = array())
+    {
+
+    }
 }
