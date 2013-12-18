@@ -2,6 +2,7 @@
 namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\Attachment;
+use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Project;
 use Justimmo\Pager\ListPager;
 
@@ -30,6 +31,16 @@ class ProjectWrapper extends AbstractWrapper
         if (isset($xml->erstes_bild) && (((string) $xml->erstes_bild) != '')) {
             $project->addAttachment(new Attachment((string) $xml->erstes_bild));
         }
+
+
+        if (isset($xml->immobilien->immobilie)) {
+            $wrapper = new RealtyWrapper(new RealtyMapper());
+            foreach($xml->immobilien->immobilie as $immobilie) {
+                $realty = $wrapper->transformSingle($immobilie->asXML());
+                $project->addRealty($realty);
+            }
+        }
+
 
         return $project;
     }

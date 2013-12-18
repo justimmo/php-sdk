@@ -40,6 +40,11 @@ class Project
     protected $attachments = array();
 
     /**
+     * @var array
+     */
+    protected $realties = array();
+
+    /**
      * @param mixed $value
      *
      * @return $this
@@ -191,4 +196,43 @@ class Project
         return $this;
     }
 
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setRealties($value)
+    {
+        $this->realties = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRealties()
+    {
+        return $this->realties;
+    }
+
+    /**
+     * @param Realty $realty
+     *
+     * @return $this
+     */
+    public function addRealty(Realty $realty)
+    {
+        $this->realties[] = $realty;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function countRealties()
+    {
+        return count($this->realties);
+    }
 }

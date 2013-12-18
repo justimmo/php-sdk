@@ -31,5 +31,16 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals(1, count($entry->getAttachments()));
+        $this->assertEquals(4, $entry->countRealties());
+
+        $realties = $entry->getRealties();
+        /** @var \Justimmo\Model\Realty $realty */
+        $realty = $realties[0];
+
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $realty);
+        $this->assertEquals(60000, $realty->getTotalRent());
+        $this->assertEquals(2460, $realty->getZipCode());
+        $this->assertEquals($entry->getId(), $realty->getProjectId());
+        $this->assertEquals('verkauft', $realty->getStatus());
     }
 }
