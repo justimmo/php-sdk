@@ -1,11 +1,8 @@
 <?php
 namespace Justimmo\Tests;
 
-use Justimmo\Api\JustimmoApi;
-use Justimmo\Cache\NullCache;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
-use Psr\Log\NullLogger;
 
 class ListPagerTest extends TestCase
 {
@@ -13,7 +10,6 @@ class ListPagerTest extends TestCase
      * @var \Justimmo\Pager\ListPager
      */
     protected $pager;
-
 
     public function setUp()
     {

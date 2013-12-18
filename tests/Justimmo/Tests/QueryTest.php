@@ -13,7 +13,6 @@ class QueryTest extends \PHPUnit_Framework_TestCase
      */
     protected $query;
 
-
     public function setUp()
     {
         $this->query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), new RealtyMapper());
@@ -22,7 +21,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function testSingle()
     {
         $this->query->clear();
-        
+
         $this->query->filterByPrice(455);
 
         $this->assertEquals(array(
@@ -98,7 +97,6 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                 'plz'           => array('1020', '1030')
             )
         ), $this->query->getParams());
-
 
     }
 }

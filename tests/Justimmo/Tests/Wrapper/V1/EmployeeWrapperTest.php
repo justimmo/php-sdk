@@ -18,7 +18,7 @@ class EmployeeWrapperTest extends TestCase
         $this->assertEquals(5, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
-        foreach($list as $entry) {
+        foreach ($list as $entry) {
             $this->assertInstanceOf('\Justimmo\Model\Employee', $entry);
         }
 

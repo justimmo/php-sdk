@@ -105,7 +105,7 @@ interface JustimmoApiInterface
     /**
      * retrieves the expose for a realty
      *
-     * @param        $pk
+     * @param   $pk
      *
      * @return mixed
      */

@@ -18,7 +18,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(2, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
-        foreach($list as $entry) {
+        foreach ($list as $entry) {
             $this->assertInstanceOf('\Justimmo\Model\Project', $entry);
         }
 

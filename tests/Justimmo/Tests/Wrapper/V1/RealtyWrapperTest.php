@@ -23,7 +23,6 @@ class RealtyWrapperTest extends TestCase
         $this->wrapper = new RealtyWrapper(new RealtyMapper());
     }
 
-
     public function testTransformList()
     {
         $list = $this->wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
@@ -33,7 +32,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(3, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
-        foreach($list as $entry) {
+        foreach ($list as $entry) {
             $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
         }
     }

@@ -225,7 +225,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * retrieves the expose for a realty
      *
-     * @param        $pk
+     * @param   $pk
      *
      * @return mixed
      */
@@ -463,6 +463,5 @@ class JustimmoApi implements JustimmoApiInterface
     {
         return $this->culture;
     }
-
 
 }

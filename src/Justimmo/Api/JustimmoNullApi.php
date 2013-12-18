@@ -69,5 +69,4 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
-
 }

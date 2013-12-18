@@ -2,7 +2,6 @@
 namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoApi;
-use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Cache\NullCache;
 use Psr\Log\NullLogger;
 

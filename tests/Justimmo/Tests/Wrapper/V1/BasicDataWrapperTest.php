@@ -16,7 +16,6 @@ class BasicDataWrapperTest extends TestCase
         $this->wrapper = new BasicDataWrapper();
     }
 
-
     public function testCountries()
     {
         $list = $this->wrapper->transformCountries($this->getFixtures('v1/countries.xml'));

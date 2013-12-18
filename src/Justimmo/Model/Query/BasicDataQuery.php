@@ -35,7 +35,7 @@ class BasicDataQuery
     protected $mapper;
 
     /**
-     * @param JustimmoApiInterface                     $api
+     * @param JustimmoApiInterface                              $api
      * @param \Justimmo\Model\Wrapper\BasicDataWrapperInterface $wrapper
      * @param \Justimmo\Model\Mapper\MapperInterface MapperInterface
      */
@@ -57,7 +57,6 @@ class BasicDataQuery
 
         return $this;
     }
-
 
     /**
      * defines wether the call should retrieve all available data or only available data where there are active realties
