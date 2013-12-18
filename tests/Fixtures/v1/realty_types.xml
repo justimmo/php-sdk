@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo><objektart><id>5</id><name>Büro / Praxis</name><key>buero_praxen</key><attributename>buero_typ</attributename></objektart><objektart><id>3</id><name>Haus</name><key>haus</key><attributename>haustyp</attributename></objektart><objektart><id>2</id><name>Wohnung</name><key>wohnung</key><attributename>wohnungtyp</attributename></objektart></justimmo>

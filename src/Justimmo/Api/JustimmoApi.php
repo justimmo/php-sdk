@@ -210,7 +210,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callRealtyTypes(array $params = array())
     {
-        // TODO: Implement callRealtyTypes() method.
+        return $this->call('objekt/objektarten', $params);
     }
 
 

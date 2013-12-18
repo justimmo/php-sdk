@@ -58,6 +58,15 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals('12., Meidling', $list[68]);
         $this->assertEquals('2., Leopoldstadt', $list[58]);
         $this->assertEquals('22., Donaustadt', $list[12]);
+    }
 
+    public function testRealtyTypes()
+    {
+        $list = $this->wrapper->transformRealtyTypes($this->getFixtures('v1/realty_types.xml'));
+
+        $this->assertEquals(3, count($list));
+        $this->assertEquals('Haus', $list[3]['name']);
+        $this->assertEquals('haus', $list[3]['key']);
+        $this->assertEquals('haustyp', $list[3]['attribute']);
     }
 }

@@ -67,4 +67,20 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
         return $return;
     }
+
+    public function transformRealtyTypes($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $return = array();
+        foreach ($xml->objektart as $objektart) {
+            $return[(int) $objektart->id] = array(
+                'name'      => (string) $objektart->name,
+                'key'       => (string) $objektart->key,
+                'attribute' => (string) $objektart->attributename,
+            );
+        }
+
+        return $return;
+    }
 }

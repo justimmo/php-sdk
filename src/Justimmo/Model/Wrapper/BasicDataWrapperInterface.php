@@ -11,4 +11,6 @@ interface BasicDataWrapperInterface
     public function transformZipCodes($data);
 
     public function transformRegions($data);
+
+    public function transformRealtyTypes($data);
 }

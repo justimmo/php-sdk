@@ -150,6 +150,20 @@ class BasicDataQuery
     }
 
     /**
+     * @return array
+     */
+    public function findRealtyTypes()
+    {
+        $response = $this->api->callRealtyTypes($this->params);
+
+        $return = $this->wrapper->transformRealtyTypes($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
      * sets a value for a key
      *
      * @param $key
