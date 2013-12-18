@@ -154,6 +154,67 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * retrieve a countrie list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callCountries(array $params = array())
+    {
+        return $this->call('objekt/laender', $params);
+    }
+
+    /**
+     * retrieve a federal states list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callFederalStates(array $params = array())
+    {
+        // TODO: Implement callFederalStates() method.
+    }
+
+    /**
+     * retrieve a zip code list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callZipCodes(array $params = array())
+    {
+        // TODO: Implement callZipCodes() method.
+    }
+
+    /**
+     * retrieve a region list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRegions(array $params = array())
+    {
+        // TODO: Implement callRegions() method.
+    }
+
+    /**
+     * retrieve a realty type list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyTypes(array $params = array())
+    {
+        // TODO: Implement callRealtyTypes() method.
+    }
+
+
+    /**
      * generates a url for an api request
      *
      * @param       $call

@@ -39,4 +39,28 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
+    public function callCountries(array $params = array())
+    {
+
+    }
+
+    public function callFederalStates(array $params = array())
+    {
+
+    }
+
+    public function callZipCodes(array $params = array())
+    {
+
+    }
+
+    public function callRegions(array $params = array())
+    {
+
+    }
+
+    public function callRealtyTypes(array $params = array())
+    {
+
+    }
 }

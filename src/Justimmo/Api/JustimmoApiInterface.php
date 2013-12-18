@@ -57,4 +57,48 @@ interface JustimmoApiInterface
      */
     public function callProjectDetail($pk);
 
+    /**
+     * retrieve a countrie list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callCountries(array $params = array());
+
+    /**
+     * retrieve a federal states list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callFederalStates(array $params = array());
+
+    /**
+     * retrieve a zip code list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callZipCodes(array $params = array());
+
+    /**
+     * retrieve a region list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRegions(array $params = array());
+
+    /**
+     * retrieve a realty type list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyTypes(array $params = array());
 }
