@@ -2,7 +2,9 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
-class BasicDataWrapper
+use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
+
+class BasicDataWrapper implements BasicDataWrapperInterface
 {
     public function transformCountries($data)
     {

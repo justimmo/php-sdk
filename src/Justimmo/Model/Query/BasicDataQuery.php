@@ -3,7 +3,7 @@ namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Model\Mapper\MapperInterface;
-use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
+use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
 
 /**
  * Class BasicDataQuery
@@ -36,10 +36,10 @@ class BasicDataQuery
 
     /**
      * @param JustimmoApiInterface                     $api
-     * @param \Justimmo\Model\Wrapper\V1\BasicDataWrapper $wrapper
+     * @param \Justimmo\Model\Wrapper\BasicDataWrapperInterface $wrapper
      * @param \Justimmo\Model\Mapper\MapperInterface MapperInterface
      */
-    public function __construct(JustimmoApiInterface $api, BasicDataWrapper $wrapper, MapperInterface $mapper)
+    public function __construct(JustimmoApiInterface $api, BasicDataWrapperInterface $wrapper, MapperInterface $mapper)
     {
         $this->api     = $api;
         $this->wrapper = $wrapper;
