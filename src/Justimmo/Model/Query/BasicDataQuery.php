@@ -136,6 +136,20 @@ class BasicDataQuery
     }
 
     /**
+     * @return array
+     */
+    public function findRegions()
+    {
+        $response = $this->api->callRegions($this->params);
+
+        $return = $this->wrapper->transformRegions($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
      * sets a value for a key
      *
      * @param $key

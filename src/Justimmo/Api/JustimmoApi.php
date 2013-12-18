@@ -198,7 +198,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callRegions(array $params = array())
     {
-        // TODO: Implement callRegions() method.
+        return $this->call('objekt/regionen', $params);
     }
 
     /**

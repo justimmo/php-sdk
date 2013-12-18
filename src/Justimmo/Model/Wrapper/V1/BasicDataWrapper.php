@@ -45,10 +45,22 @@ class BasicDataWrapper
             $return[(int) $postleitzahl->id] = array(
                 'countryId'      => (int) $postleitzahl->landid,
                 'regionId'       => (int) $postleitzahl->regionid,
-                'zipCode'        => (string) $postleitzahl->plz,
-                'place'          => (string) $postleitzahl->ort,
+                'zipCode'        => trim((string) $postleitzahl->plz),
+                'place'          => trim((string) $postleitzahl->ort),
                 'federalStateId' => (int) $postleitzahl->bundeslandid,
             );
+        }
+
+        return $return;
+    }
+
+    public function transformRegions($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $return = array();
+        foreach ($xml->region as $region) {
+            $return[(int) $region->id] = trim((string) $region->name);
         }
 
         return $return;

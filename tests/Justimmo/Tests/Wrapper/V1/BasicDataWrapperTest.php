@@ -48,4 +48,16 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals('5090', $list[537]['zipCode']);
         $this->assertEquals(130, $list[537]['federalStateId']);
     }
+
+    public function testRegions()
+    {
+        $list = $this->wrapper->transformRegions($this->getFixtures('v1/regions.xml'));
+
+        $this->assertEquals(23, count($list));
+        $this->assertEquals('17., Hernals', $list[34]);
+        $this->assertEquals('12., Meidling', $list[68]);
+        $this->assertEquals('2., Leopoldstadt', $list[58]);
+        $this->assertEquals('22., Donaustadt', $list[12]);
+
+    }
 }
