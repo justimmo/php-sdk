@@ -63,4 +63,11 @@ class JustimmoNullApi implements JustimmoApiInterface
     {
 
     }
+
+    public function callExpose($pk)
+    {
+
+    }
+
+
 }

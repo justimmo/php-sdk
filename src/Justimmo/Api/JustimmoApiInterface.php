@@ -101,4 +101,13 @@ interface JustimmoApiInterface
      * @return mixed
      */
     public function callRealtyTypes(array $params = array());
+
+    /**
+     * retrieves the expose for a realty
+     *
+     * @param        $pk
+     *
+     * @return mixed
+     */
+    public function callExpose($pk);
 }

@@ -213,6 +213,17 @@ class JustimmoApi implements JustimmoApiInterface
         return $this->call('objekt/objektarten', $params);
     }
 
+    /**
+     * retrieves the expose for a realty
+     *
+     * @param        $pk
+     *
+     * @return mixed
+     */
+    public function callExpose($pk)
+    {
+        return $this->call('objekt/expose', array('objekt_id' => $pk));
+    }
 
     /**
      * generates a url for an api request
@@ -245,7 +256,6 @@ class JustimmoApi implements JustimmoApiInterface
     public function call($call, array $params = array())
     {
         $url = $this->generateUrl($call, $params);
-
         $this->logger->debug('begin api call - ' . $url);
 
         $key = $this->cache->generateCacheKey($url);
