@@ -1,10 +1,6 @@
 <?php
 namespace Justimmo\Model\Query;
 
-use Justimmo\Api\JustimmoApiInterface;
-use Justimmo\Model\Mapper\MapperInterface;
-use Justimmo\Model\Wrapper\WrapperInterface;
-
 interface QueryInterface
 {
     public function find();

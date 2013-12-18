@@ -129,7 +129,6 @@ class JustimmoApi implements JustimmoApiInterface
         return $this->call('projekt/detail', array('id' => $pk));
     }
 
-
     /**
      * make a call to the team list with a set of given params
      *
@@ -173,7 +172,6 @@ class JustimmoApi implements JustimmoApiInterface
 
         return $url;
     }
-
 
     /**
      * @param makes a call to the justimmo api

@@ -52,6 +52,7 @@ class Attachment
         } elseif (in_array($extension, static::$videoExtensions)) {
             return 'video';
         }
+
         return 'document';
     }
 

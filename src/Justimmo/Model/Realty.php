@@ -987,7 +987,7 @@ class Realty
     }
 
     /**
-     * @param string       $key
+     * @param string          $key
      * @param AdditionalCosts $zusatzkosten
      *
      * @return $this

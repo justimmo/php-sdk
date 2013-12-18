@@ -298,8 +298,8 @@ class RealtyWrapper extends AbstractWrapper
     }
 
     /**
-     * @param \SimpleXMLElement      $xml
-     * @param null                   $type
+     * @param \SimpleXMLElement $xml
+     * @param null              $type
      *
      * @param \Justimmo\Model\Realty $objekt
      *

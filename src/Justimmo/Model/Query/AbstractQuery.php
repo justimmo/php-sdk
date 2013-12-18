@@ -66,7 +66,6 @@ abstract class AbstractQuery implements QueryInterface
         return $this;
     }
 
-
     /**
      * @param int $page
      * @param int $maxPerPage
@@ -228,6 +227,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
             $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
+
             return $this->filter($key, $params[0]);
         }
 

@@ -33,5 +33,4 @@ class ProjectMapper extends AbstractMapper
         return array();
     }
 
-
 }

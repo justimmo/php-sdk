@@ -246,5 +246,4 @@ class RealtyMapper extends AbstractMapper
         );
     }
 
-
 }

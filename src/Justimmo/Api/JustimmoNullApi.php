@@ -19,7 +19,6 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
-
     public function callEmployeeList(array $params = array())
     {
 
@@ -39,6 +38,5 @@ class JustimmoNullApi implements JustimmoApiInterface
     {
 
     }
-
 
 }

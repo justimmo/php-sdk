@@ -5,7 +5,6 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
-
 abstract class AbstractWrapper implements WrapperInterface
 {
     /**
@@ -76,6 +75,5 @@ abstract class AbstractWrapper implements WrapperInterface
 
         return array_key_exists('@attributes', $array) ? $array['@attributes'] : array();
     }
-
 
 }

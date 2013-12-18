@@ -54,9 +54,9 @@ abstract class AbstractMapper implements MapperInterface
     public function getProperty($apiPropertyName)
     {
         $values = $this->getValues($apiPropertyName);
+
         return array_key_exists('property', $values) ? $values['property'] : $apiPropertyName;
     }
-
 
     public function getFilterPropertyName($modelPropertyName)
     {

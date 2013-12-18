@@ -31,14 +31,13 @@ class AdditionalCosts
      * @param null $vat
      *
      */
-    function __construct($name, $gross = null, $net = null, $vat = null)
+    public function __construct($name, $gross = null, $net = null, $vat = null)
     {
         $this->gross = $gross;
         $this->name   = $name;
         $this->net    = $net;
         $this->vat    = $vat;
     }
-
 
     /**
      * @param float $brutto
@@ -119,6 +118,5 @@ class AdditionalCosts
     {
         return $this->vat;
     }
-
 
 }

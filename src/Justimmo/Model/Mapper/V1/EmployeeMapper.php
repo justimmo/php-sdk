@@ -53,5 +53,4 @@ class EmployeeMapper extends AbstractMapper
         return array();
     }
 
-
 }

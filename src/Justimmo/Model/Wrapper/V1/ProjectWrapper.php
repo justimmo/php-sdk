@@ -32,15 +32,13 @@ class ProjectWrapper extends AbstractWrapper
             $project->addAttachment(new Attachment((string) $xml->erstes_bild));
         }
 
-
         if (isset($xml->immobilien->immobilie)) {
             $wrapper = new RealtyWrapper(new RealtyMapper());
-            foreach($xml->immobilien->immobilie as $immobilie) {
+            foreach ($xml->immobilien->immobilie as $immobilie) {
                 $realty = $wrapper->transformSingle($immobilie->asXML());
                 $project->addRealty($realty);
             }
         }
-
 
         return $project;
     }
