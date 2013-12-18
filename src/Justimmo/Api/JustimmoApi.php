@@ -219,6 +219,10 @@ class JustimmoApi implements JustimmoApiInterface
             $this->throwError('Bad Username / Password ' . $request->getStatusCode(), '\Justimmo\Exception\AuthenticationException');
         }
 
+        if ($request->getStatusCode() == 404) {
+            $this->throwError('Api call not found: ' . $request->getStatusCode(), '\Justimmo\Exception\NotFoundException');
+        }
+
         if ($request->getStatusCode() != 200) {
             $this->throwError('The Api call returned status code ' . $request->getStatusCode(), '\Justimmo\Exception\StatusCodeException');
         }
