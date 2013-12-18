@@ -181,7 +181,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @return mixed
      */
-    protected function call($call, array $params = array())
+    public function call($call, array $params = array())
     {
         $url = $this->generateUrl($call, $params);
 
