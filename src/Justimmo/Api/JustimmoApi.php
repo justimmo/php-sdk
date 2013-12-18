@@ -64,18 +64,27 @@ class JustimmoApi implements JustimmoApiInterface
     protected $cache;
 
     /**
+     * culture for api calls to set if not explicetely set on call
      *
-     * @param $username
-     * @param $password
+     * @var string
+     */
+    protected $culture = 'de';
+
+    /**
+     *
+     * @param                 $username
+     * @param                 $password
      * @param LoggerInterface $logger
      * @param CacheInterface  $cache
      * @param string          $version
+     * @param string          $culture
      */
-    public function __construct($username, $password, LoggerInterface $logger, CacheInterface $cache, $version = 'v1')
+    public function __construct($username, $password, LoggerInterface $logger, CacheInterface $cache, $version = 'v1', $culture = 'de')
     {
         $this
             ->setLogger($logger)
             ->setCache($cache)
+            ->setCulture($culture)
             ->setUsername($username)
             ->setPassword($password)
             ->setVersion($version);
@@ -255,6 +264,10 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function call($call, array $params = array())
     {
+        if (!array_key_exists('culture', $params)) {
+            $params['culture'] = $this->culture;
+        }
+
         $url = $this->generateUrl($call, $params);
         $this->logger->debug('begin api call - ' . $url);
 
@@ -430,4 +443,26 @@ class JustimmoApi implements JustimmoApiInterface
 
         return $this;
     }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setCulture($value)
+    {
+        $this->culture = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCulture()
+    {
+        return $this->culture;
+    }
+
+
 }
