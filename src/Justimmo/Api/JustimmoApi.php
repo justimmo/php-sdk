@@ -186,7 +186,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callZipCodes(array $params = array())
     {
-        // TODO: Implement callZipCodes() method.
+        return $this->call('objekt/plzsUndOrte', $params);
     }
 
     /**

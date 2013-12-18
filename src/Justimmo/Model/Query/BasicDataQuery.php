@@ -83,6 +83,17 @@ class BasicDataQuery
     }
 
     /**
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function filterByFederalState($value)
+    {
+        return $this->set($this->mapper->getFilterPropertyName('federalState'), $value);
+    }
+
+    /**
      * @return array
      */
     public function findCountries()
@@ -104,6 +115,20 @@ class BasicDataQuery
         $response = $this->api->callFederalStates($this->params);
 
         $return = $this->wrapper->transformFederalStates($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
+     * @return array
+     */
+    public function findZipCodes()
+    {
+        $response = $this->api->callZipCodes($this->params);
+
+        $return = $this->wrapper->transformZipCodes($response);
 
         $this->clear();
 

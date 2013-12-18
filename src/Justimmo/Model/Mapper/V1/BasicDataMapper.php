@@ -14,7 +14,8 @@ class BasicDataMapper extends AbstractMapper
     {
         return array(
             'all'     => 'alle',
-            'country' => 'land'
+            'country' => 'land',
+            'federalState' => 'bundesland',
         );
     }
 

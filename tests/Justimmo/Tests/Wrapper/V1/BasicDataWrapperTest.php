@@ -36,4 +36,16 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals(17, $list[130]['countryId']);
         $this->assertEquals('05', $list[130]['fipsCode']);
     }
+
+    public function testZipCodes()
+    {
+        $list = $this->wrapper->transformZipCodes($this->getFixtures('v1/zip_codes.xml'));
+
+        $this->assertEquals(127, count($list));
+        $this->assertEquals('Lofer', $list[537]['place']);
+        $this->assertEquals(17, $list[537]['countryId']);
+        $this->assertEquals(115, $list[537]['regionId']);
+        $this->assertEquals('5090', $list[537]['zipCode']);
+        $this->assertEquals(130, $list[537]['federalStateId']);
+    }
 }
