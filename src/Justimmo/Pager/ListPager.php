@@ -2,6 +2,8 @@
 
 namespace Justimmo\Pager;
 
+use Justimmo\Exception\MethodNotFoundException;
+
 class ListPager extends \ArrayObject
 {
     /**
@@ -65,7 +67,7 @@ class ListPager extends \ArrayObject
     public function getLinks($nb_links = 5)
     {
         $links = array();
-        $tmp = $this->page - floor($nb_links / 2);
+        $tmp   = $this->page - floor($nb_links / 2);
         $check = $this->getLastPage() - $nb_links + 1;
         $limit = ($check > 0) ? $check : 1;
         $begin = ($tmp > 0) ? (($tmp > $limit) ? $limit : $tmp) : 1;
@@ -136,5 +138,30 @@ class ListPager extends \ArrayObject
         $this->page = $page;
 
         return $this;
+    }
+
+    /**
+     * converts the data into a key/value store array
+     *
+     * @param $keyGetter
+     * @param $valueGetter
+     *
+     * @return array
+     * @throws \Justimmo\Exception\MethodNotFoundException
+     */
+    public function toKeyValue($keyGetter, $valueGetter)
+    {
+        $return = array();
+        foreach ($this as $value) {
+            if (!method_exists($value, $keyGetter)) {
+                throw new MethodNotFoundException('Method ' . $valueGetter . ' not found on ' . get_class($value));
+            }
+            if (!method_exists($value, $valueGetter)) {
+                throw new MethodNotFoundException('Method ' . $valueGetter . ' not found on ' . get_class($value));
+            }
+            $return[$value->$keyGetter()] = $value->$valueGetter();
+        }
+
+        return $return;
     }
 }
