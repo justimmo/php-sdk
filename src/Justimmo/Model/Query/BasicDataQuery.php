@@ -2,6 +2,7 @@
 namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
+use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 
 /**
@@ -24,19 +25,25 @@ class BasicDataQuery
     protected $api;
 
     /**
-     * @var WrapperInterface
+     * @var BasicDataWrapper
      */
     protected $wrapper;
 
+    /**
+     * @var MapperInterface
+     */
+    protected $mapper;
 
     /**
      * @param JustimmoApiInterface                     $api
      * @param \Justimmo\Model\Wrapper\V1\BasicDataWrapper $wrapper
+     * @param \Justimmo\Model\Mapper\MapperInterface MapperInterface
      */
-    public function __construct(JustimmoApiInterface $api, BasicDataWrapper $wrapper)
+    public function __construct(JustimmoApiInterface $api, BasicDataWrapper $wrapper, MapperInterface $mapper)
     {
         $this->api     = $api;
         $this->wrapper = $wrapper;
+        $this->mapper = $mapper;
     }
 
     /**
@@ -61,7 +68,18 @@ class BasicDataQuery
      */
     public function all($value)
     {
-        return $this->set('alle', $value === true);
+        return $this->set($this->mapper->getFilterPropertyName('all'), $value === true);
+    }
+
+    /**
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function filterByCountry($value)
+    {
+        return $this->set($this->mapper->getFilterPropertyName('country'), $value);
     }
 
     /**
