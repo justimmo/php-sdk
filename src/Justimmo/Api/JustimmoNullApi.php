@@ -34,4 +34,11 @@ class JustimmoNullApi implements JustimmoApiInterface
     {
 
     }
+
+    public function callProjectDetail($pk)
+    {
+
+    }
+
+
 }

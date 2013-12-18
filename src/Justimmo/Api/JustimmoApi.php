@@ -117,6 +117,18 @@ class JustimmoApi implements JustimmoApiInterface
         return $this->call('team/detail', array('id' => $pk));
     }
 
+    /**
+     * calls the detail information of a single project
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callProjectDetail($pk)
+    {
+        return $this->call('projekt/detail', array('id' => $pk));
+    }
+
 
     /**
      * make a call to the team list with a set of given params

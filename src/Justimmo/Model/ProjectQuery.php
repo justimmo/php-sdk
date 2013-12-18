@@ -14,7 +14,7 @@ class ProjectQuery extends AbstractQuery
 
     public function getDetailCall()
     {
-
+        return 'callProjectDetail';
     }
 
 }

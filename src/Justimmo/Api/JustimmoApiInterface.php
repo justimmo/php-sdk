@@ -48,4 +48,13 @@ interface JustimmoApiInterface
      */
     public function callProjectList(array $params = array());
 
+    /**
+     * calls the detail information of a single project
+     *
+     * @param $pk
+     *
+     * @return mixed
+     */
+    public function callProjectDetail($pk);
+
 }
