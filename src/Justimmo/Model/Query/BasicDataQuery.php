@@ -43,7 +43,7 @@ class BasicDataQuery
     {
         $this->api     = $api;
         $this->wrapper = $wrapper;
-        $this->mapper = $mapper;
+        $this->mapper  = $mapper;
     }
 
     /**
@@ -90,6 +90,20 @@ class BasicDataQuery
         $response = $this->api->callCountries($this->params);
 
         $return = $this->wrapper->transformCountries($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
+     * @return array
+     */
+    public function findFederalStates()
+    {
+        $response = $this->api->callFederalStates($this->params);
+
+        $return = $this->wrapper->transformFederalStates($response);
 
         $this->clear();
 

@@ -19,4 +19,20 @@ class BasicDataWrapper
 
         return $return;
     }
+
+    public function transformFederalStates($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $return = array();
+        foreach ($xml->bundesland as $bundesland) {
+            $return[(int) $bundesland->id] = array(
+                'name' => (string) $bundesland->name,
+                'countryId' => (string) $bundesland->landid,
+                'fipsCode' => (string) $bundesland->fipscode,
+            );
+        }
+
+        return $return;
+    }
 }

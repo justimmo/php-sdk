@@ -174,7 +174,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callFederalStates(array $params = array())
     {
-        // TODO: Implement callFederalStates() method.
+        return $this->call('objekt/bundeslaender', $params);
     }
 
     /**

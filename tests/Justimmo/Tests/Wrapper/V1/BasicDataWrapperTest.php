@@ -26,4 +26,14 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals('DE', $list[59]['iso2']);
         $this->assertEquals('DEU', $list[59]['iso3']);
     }
+
+    public function testFederalStates()
+    {
+        $list = $this->wrapper->transformFederalStates($this->getFixtures('v1/federal_states.xml'));
+
+        $this->assertEquals(9, count($list));
+        $this->assertEquals('Salzburg', $list[130]['name']);
+        $this->assertEquals(17, $list[130]['countryId']);
+        $this->assertEquals('05', $list[130]['fipsCode']);
+    }
 }
