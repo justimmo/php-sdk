@@ -110,4 +110,13 @@ interface JustimmoApiInterface
      * @return mixed
      */
     public function callExpose($pk);
+
+    /**
+     * makes a request to the api to create a realty inquiry to the contact person of the realty
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function postRealtyInquiry(array $params = array());
 }

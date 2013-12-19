@@ -69,4 +69,8 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
+    public function postRealtyInquiry(array $params = array())
+    {
+
+    }
 }

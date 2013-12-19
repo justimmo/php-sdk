@@ -22,6 +22,8 @@ Documentation
 * [Query](doc/query.md)
 * [Caching](doc/caching.md)
 * [Logging](doc/logging.md)
+* [Expose](doc/expose.md)
+* [RealtyInquiry](doc/inquiry.md)
 
 Usage Example
 -------------

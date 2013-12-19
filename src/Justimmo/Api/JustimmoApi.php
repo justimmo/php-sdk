@@ -235,6 +235,18 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * makes a request to the api to create a realty inquiry to the contact person of the realty
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function postRealtyInquiry(array $params = array())
+    {
+        return $this->call('objekt/anfrage', $params);
+    }
+
+    /**
      * generates a url for an api request
      *
      * @param       $call
