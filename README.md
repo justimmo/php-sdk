@@ -18,6 +18,7 @@ composer.json
 
 Documentation
 -------------
+[Basics](doc/basics.md)
 [Caching](doc/caching.md)
 
 Usage Example
@@ -33,8 +34,9 @@ use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 
 $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
-$wrapper = new RealtyWrapper(new RealtyMapper());
-$query = new RealtyQuery($api, $wrapper);
+$mapper = new RealtyMapper();
+$wrapper = new RealtyWrapper($mapper);
+$query = new RealtyQuery($api, $wrapper, $mapper);
 $realties = $query->filterByPrice(array('min' => 500, 'max' => 1500))
     ->filterByZipCode(1020)
     ->orderBy('price', 'desc')
