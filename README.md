@@ -18,8 +18,9 @@ composer.json
 
 Documentation
 -------------
-[Basics](doc/basics.md)
-[Caching](doc/caching.md)
+* [Basics](doc/basics.md)
+* [Caching](doc/caching.md)
+* [Logging](doc/logging.md)
 
 Usage Example
 -------------

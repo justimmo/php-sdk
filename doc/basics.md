@@ -3,8 +3,8 @@ Basics
 
 Autoloading
 -----------
-The easiest way is to autoload the classes in you php application is using <a href="http://getcomposer.org/">Composer</a> to install the SDK.
-The SDK follows the <a href="http://www.php-fig.org/psr/psr-0/">PSR-0</a> standards for autoloading.
+The easiest way is to autoload the classes in you php application is using <a href="http://getcomposer.org/" target="_blank">Composer</a> to install the SDK.
+The SDK follows the <a href="http://www.php-fig.org/psr/psr-0/" target="_blank">PSR-0</a> standards for autoloading.
 
 The Api Class
 -------------
@@ -31,7 +31,7 @@ The SDK throws a variety of Exceptions you can catch and handle into appropiate 
 
 Abstraction
 -----------
-The concept of this SDK is to abstract the JUSTIMMO Api to a point that you just have to change the mapper and wrapper of a Query to use a different version of the Api. To achieve this the api uses Dependency Injection. If you don't want to build you dependencies by hand when using the api, you can use a <a href="http://symfony.com/doc/current/components/dependency_injection/introduction.html" target="_blank">DependencyInjection Container</a>.
+The concept of this SDK is to abstract the JUSTIMMO Api to a point that you just have to change the mapper and wrapper of a Query to use a different version of the Api. To achieve this the api uses Dependency Injection. If you don't want to build you dependencies by hand when using the api, you can use a <a href="http://symfony.com/doc/current/components/dependency_injection/introduction.html" target="_blank">Dependency Injection Container</a>.
 
 Queries
 -------
