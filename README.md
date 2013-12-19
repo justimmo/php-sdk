@@ -19,6 +19,7 @@ composer.json
 Documentation
 -------------
 * [Basics](doc/basics.md)
+* [Query](doc/query.md)
 * [Caching](doc/caching.md)
 * [Logging](doc/logging.md)
 

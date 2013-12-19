@@ -96,5 +96,6 @@ $pager->getMaxPerPage(); //how many entries are shown on a page
 $pager->getLastPage(); //the last page of the pager
 $pager->getNbResults(); //number of all found results not only the number contained on the current page
 $pager->getLinks(5);  //gets the numbers of the adjacent pages of the current page if available
+$pager->toKeyValue('getId', 'getTitle'); //returns a php array as key/value pair with the passed keyMethodGetter and valueMethodGetter
 
 ```

@@ -5,8 +5,8 @@ To speed up your application we strongly suggest you cache all api calls. The JU
 Memcache
 --------
 [PHP Memcache Documentation](http://www.php.net/manual/en/book.memcache.php)
-
-```php
+``` php
+<?php
 use Justimmo\Cache\MemcacheCache;
 use Psr\Log\NullLogger;
 use Justimmo\Api\JustimmoApi;

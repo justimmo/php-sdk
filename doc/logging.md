@@ -1,8 +1,8 @@
 Logging
 =======
 The SDK follows the <a href="http://www.php-fig.org/psr/psr-3/" target="_blank">PSR-3 Logger Interface</a>. A simple way to implement it, is to use <a href="https://github.com/Seldaek/monolog" target="_blank">Monolog</a>
-
-```php
+``` php
+<?php
 use Justimmo\Cache\NullCache;
 use Justimmo\Api\JustimmoApi;
 use Monolog\Logger;
