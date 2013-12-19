@@ -18,23 +18,23 @@ $realties = $query->filterByPrice(array('min' => 500, 'max' => 1500))
 ## Default Methods
 The query instance has an internal parameter array with key/value pairs which will be translated into a query string when sent to the api by a termination method. You can combine as many methods as you like before calling a termination method.
 
-### ->set($key, $value)
+#### ->set($key, $value)
 Adds a parameter to the query what will be translated into the url on the call
 ``` php
 
 //this would add &culture=en to the url of the call
 $query->set('culture', 'en');
 ```
-### ->setLimit(), ->setOffset()
+#### ->setLimit(), ->setOffset()
 Sets the limit and the offset for the next call. They work like they would do in SQL.
 
-### ->clear()
+#### ->clear()
 Clears the query instance to it's state right after __construct()
 
-### ->orderBy($column, $direction = 'asc')
+#### ->orderBy($column, $direction = 'asc')
 Adds the order in what the results should be returned on the next call
 
-### ->filter($key, $value)
+#### ->filter($key, $value)
 They can be used to search the Justimmo data for specific values.
 ``` php
 
@@ -47,19 +47,19 @@ $query->filterByPrice(array('min' => 500, 'max' => 1500));
 //filter by multiple values
 $query->filterByZipCode(array('1020', '1050'));
 ```
-### ->filterByXXX($value)
+#### ->filterByXXX($value)
 Shortcut for ->filter('XXX', $value);
 
-### ->find()
+#### ->find()
 find is a termination method which passes all previously set parameters on the query to the api and returns a by the wrappers transformed result. Find returns a ListPager instance and clears the current query instance.
 
-### ->findOnde()
+#### ->findOnde()
 findOne is a termination method which passes all previously set parameters on the query to the api and returns a by the wrappers transformed result. Find returns a model instance depending on what query it is.
 
-### ->findPk($pk)
+#### ->findPk($pk)
 findPk is a termination method which only passes the primary key of a object to the api and returns a model instance
 
-### ->paginate($page = 1, $maxPerPage = 10)
+#### ->paginate($page = 1, $maxPerPage = 10)
 find is a termination method which passes all previously set parameters on the query to the api and returns a by the wrappers transformed result. Find returns a ListPager instance and clears the current query instance. The ListPager instance only has the data of the page passed to pagina
 They can be used to search the Justimmo data for specific values.
 ``` php
@@ -95,25 +95,24 @@ use Justimmo\Model\Mapper\V1\BasicDataMapper();
 
 
 $query = new BasicDataQuery($api, new BasicDataWrapper(), new BasicDataMapper());
-$query
-    ->all(true)
+$query->all(true)
     ->filterByCountry('AT')
     ->findFederalStates();
 ```
 
-### ->set()
+#### ->set()
 See default methods
 
-### ->all(true|false)
+#### ->all(true|false)
 Defines if the next call should return all results or only results associated with currently active realties. Example: Without __->all(true)__ a findCountries() calls would only return contries in which the Justimmo Client associated with the used api account would have active realties.
 
-### ->filterByCountry($value)
+#### ->filterByCountry($value)
 Filters the results by country. Accepts the Justimmo PK of the country or a ISO2 country code.
 
-### ->filterByFederalState($value)
+#### ->filterByFederalState($value)
 Filters the results by federal state. Accepts the Justimmo PK of the federal state or the name of the federal state (currently german only).
 
-### findCountries()
+#### ->findCountries()
 Returns an array of countries
 ``` php
 
@@ -128,7 +127,7 @@ array(
 );
 ```
 
-### findFederalStates()
+#### ->findFederalStates()
 Returns an array of federal states
 ``` php
 
@@ -143,7 +142,7 @@ array(
 );
 ```
 
-### findZipCodes()
+#### ->findZipCodes()
 Returns an array of zip codes and their place name
 ``` php
 
@@ -160,7 +159,7 @@ array(
 );
 ```
 
-### findRegions()
+#### ->findRegions()
 Returns an array of regions
 ``` php
 
@@ -171,7 +170,7 @@ array(
 );
 ```
 
-### findRealtyTypes()
+#### ->findRealtyTypes()
 Returns an array of realty types
 ``` php
 
