@@ -11,7 +11,7 @@ composer.json
 ``` json
 {
     "require": {
-        "justimmo/php-sdk": "dev-master"
+        "justimmo/php-sdk": "1.0.*"
     }
 }
 ```
