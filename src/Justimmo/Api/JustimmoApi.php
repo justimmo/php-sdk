@@ -276,6 +276,8 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function call($call, array $params = array())
     {
+        $startTime = microtime(true);
+
         if (!array_key_exists('culture', $params)) {
             $params['culture'] = $this->culture;
         }
@@ -289,6 +291,13 @@ class JustimmoApi implements JustimmoApiInterface
         if ($content !== false) {
             $this->logger->debug('cache found');
             $this->logger->debug($content);
+
+            $this->logger->debug('call end', array(
+                'url'      => $url,
+                'cache'    => true,
+                'time'     => microtime(true) - $startTime,
+                'response' => $content,
+            ));
 
             return $content;
         }
@@ -322,6 +331,13 @@ class JustimmoApi implements JustimmoApiInterface
         }
 
         $this->cache->set($key, $response);
+
+        $this->logger->debug('call end', array(
+            'url'      => $url,
+            'cache'    => false,
+            'time'     => microtime(true) - $startTime,
+            'response' => $response,
+        ));
 
         return $response;
     }
