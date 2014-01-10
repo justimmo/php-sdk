@@ -107,10 +107,15 @@ class ListPager extends \ArrayObject
     /**
      * @param int $maxPerPage
      *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setMaxPerPage($maxPerPage)
     {
+        if ($maxPerPage <= 0) {
+            throw new \InvalidArgumentException('$maxPerPage cannot be zero or below');
+        }
+
         $this->maxPerPage = $maxPerPage;
 
         return $this;

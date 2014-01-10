@@ -110,7 +110,9 @@ class RealtyWrapper extends AbstractWrapper
                 $transformed->append($objekt);
             }
         }
-        $transformed->setMaxPerPage($transformed->count());
+        if ($transformed->count() > 0) {
+            $transformed->setMaxPerPage($transformed->count());
+        }
 
         return $transformed;
     }

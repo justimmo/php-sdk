@@ -75,7 +75,9 @@ class EmployeeWrapper extends AbstractWrapper
             }
         }
 
-        $transformed->setMaxPerPage($transformed->count());
+        if ($transformed->count() > 0) {
+            $transformed->setMaxPerPage($transformed->count());
+        }
         $transformed->setNbResults($transformed->count());
 
         return $transformed;

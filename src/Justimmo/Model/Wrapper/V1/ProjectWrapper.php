@@ -53,7 +53,9 @@ class ProjectWrapper extends AbstractWrapper
             $list->append($project);
         }
 
-        $list->setMaxPerPage($list->count());
+        if ($list->count() > 0) {
+            $list->setMaxPerPage($list->count());
+        }
         $list->setNbResults($list->count());
 
         return $list;
