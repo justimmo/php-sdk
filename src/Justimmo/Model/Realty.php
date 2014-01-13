@@ -1010,49 +1010,49 @@ class Realty
     /**
      * @return double|null
      */
-    public function getBetriebskostenBrutto()
+    public function getOperatingCostsGross()
     {
-        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getBrutto() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getGross() : null;
     }
 
     /**
      * @return double|null
      */
-    public function getBetriebskostenNetto()
+    public function getOperatingCostsNet()
     {
-        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getNetto() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getNet() : null;
     }
 
     /**
      * @return double|null
      */
-    public function getBetriebskostenUst()
+    public function getOperatingCostsVat()
     {
-        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getUst() : null;
+        return array_key_exists('betriebskosten', $this->additionalCosts) ? $this->additionalCosts['betriebskosten']->getVat() : null;
     }
 
     /**
      * @return double|null
      */
-    public function getHeizkostenBrutto()
+    public function getHeatingCostsGross()
     {
-        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getBrutto() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getGross() : null;
     }
 
     /**
      * @return double|null
      */
-    public function getHeizkostenNetto()
+    public function getHeatingCostsNet()
     {
-        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getNetto() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getNet() : null;
     }
 
     /**
      * @return double|null
      */
-    public function getHeizkostenUst()
+    public function getHeatingCostsVat()
     {
-        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getUst() : null;
+        return array_key_exists('heizkosten', $this->additionalCosts) ? $this->additionalCosts['heizkosten']->getVat() : null;
     }
 
     /**
