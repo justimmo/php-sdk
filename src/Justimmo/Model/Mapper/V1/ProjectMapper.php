@@ -25,6 +25,12 @@ class ProjectMapper extends AbstractMapper
             'dreizeiler'   => array(
                 'property' => 'teaser',
             ),
+            'strasse'   => array(
+                'property' => 'street',
+            ),
+            'hausnummer'   => array(
+                'property' => 'houseNumber',
+            ),
         );
     }
 

@@ -5,6 +5,7 @@ use Justimmo\Model\Attachment;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Project;
 use Justimmo\Pager\ListPager;
+use Justimmo\Model\Mapper\V1\EmployeeMapper;
 
 class ProjectWrapper extends AbstractWrapper
 {
@@ -15,6 +16,8 @@ class ProjectWrapper extends AbstractWrapper
         'dreizeiler',
         'plz',
         'ort',
+        'strasse',
+        'hausnummer',
     );
 
     public function transformSingle($data)
@@ -32,12 +35,34 @@ class ProjectWrapper extends AbstractWrapper
             $project->addAttachment(new Attachment((string) $xml->erstes_bild));
         }
 
+        if (isset($xml->bilder) && isset($xml->bilder->bild)) {
+            $this->mapAttachmentGroup($xml->bilder->bild, $project, 'picture');
+        }
+
+        if (isset($xml->dokumente) && isset($xml->dokumente->dokument)) {
+            $this->mapAttachmentGroup($xml->dokumente->dokument, $project, 'document');
+        }
+
+        if (isset($xml->videos) && isset($xml->videos->video)) {
+            $this->mapAttachmentGroup($xml->videos->video, $project, 'video');
+        }
+
+        if (isset($xml->bilder360) && isset($xml->bilder360->bild)) {
+            $this->mapAttachmentGroup($xml->bilder360->bild, $project, 'bilder360');
+        }
+
         if (isset($xml->immobilien->immobilie)) {
             $wrapper = new RealtyWrapper(new RealtyMapper());
             foreach ($xml->immobilien->immobilie as $immobilie) {
                 $realty = $wrapper->transformSingle($immobilie->asXML());
                 $project->addRealty($realty);
             }
+        }
+
+        if (isset($xml->kontaktperson)) {
+            $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
+            $contact = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $project->setContact($contact);
         }
 
         return $project;
@@ -59,6 +84,18 @@ class ProjectWrapper extends AbstractWrapper
         $list->setNbResults($list->count());
 
         return $list;
+    }
+
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Project $project, $type = null)
+    {
+        foreach ($xml as $anhang) {
+            $data = (array) $anhang;
+            if (array_key_exists('pfad', $data)) {
+                $attachment = new Attachment($data['pfad'], $type);
+                $attachment->setTitle($this->cast($anhang->titel));
+                $project->addAttachment($attachment);
+            }
+        }
     }
 
 }

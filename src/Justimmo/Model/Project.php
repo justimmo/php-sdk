@@ -35,6 +35,21 @@ class Project
     protected $place = null;
 
     /**
+     * @var string
+     */
+    protected $street = null;
+
+    /**
+     * @var string
+     */
+    protected $houseNumber = null;
+
+    /**
+     * @var Employee
+     */
+    protected $contact = null;
+
+    /**
      * @var array
      */
     protected $attachments = array();
@@ -234,5 +249,108 @@ class Project
     public function countRealties()
     {
         return count($this->realties);
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setHouseNumber($value)
+    {
+        $this->houseNumber = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getHouseNumber()
+    {
+        return $this->houseNumber;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setStreet($value)
+    {
+        $this->street = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param $type
+     *
+     * @return array
+     */
+    public function getAttachmentsByType($type)
+    {
+        $attachments = array();
+
+        /** @var \Justimmo\Model\Attachment $attachment */
+        foreach ($this->attachments as $attachment) {
+            if ($attachment->getType() == $type) {
+                $attachments[] =  $attachment;
+            }
+        }
+
+        return $attachments;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPictures()
+    {
+        return $this->getAttachmentsByType('picture');
+    }
+
+    /**
+     * @return array
+     */
+    public function getVideos()
+    {
+        return $this->getAttachmentsByType('video');
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocuments()
+    {
+        return $this->getAttachmentsByType('document');
+    }
+
+    /**
+     * @param \Justimmo\Model\Employee $value
+     *
+     * @return $this
+     */
+    public function setContact($value)
+    {
+        $this->contact = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return \Justimmo\Model\Employee
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }
