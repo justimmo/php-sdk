@@ -314,7 +314,7 @@ class RealtyWrapper extends AbstractWrapper
             $data = (array) $anhang->daten;
             if (array_key_exists('pfad', $data)) {
                 $attachment = new Attachment($data['pfad'], $type);
-                $attachment->setData($data);
+                $attachment->mergeData($data);
                 $attachment->setTitle($this->cast($anhang->anhangtitel));
                 $objekt->addAttachment($attachment);
             } elseif (isset($anhang->pfad)) {

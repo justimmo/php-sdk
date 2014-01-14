@@ -114,6 +114,13 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(1, count($objekt->getDocuments()));
         $this->assertEquals(0, count($objekt->getVideos()));
 
+        $pictures = $objekt->getPictures();
+        $picture = $pictures[0];
+        $this->assertEquals('http://files.justimmo.at/public/pic/big/AH6hJRzdDi.jpg', $picture->getUrl());
+        $this->assertEquals('http://files.justimmo.at/public/pic/small/AH6hJRzdDi.jpg', $picture->getUrl('small'));
+        $this->assertEquals('jpg', $picture->getExtension());
+        $this->assertEquals('picture', $picture->getType());
+
         $energiepass = $objekt->getEnergyPass();
 
         $this->assertInstanceOf('\Justimmo\Model\EnergyPass', $energiepass);

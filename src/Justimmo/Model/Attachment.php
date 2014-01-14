@@ -90,6 +90,18 @@ class Attachment
     }
 
     /**
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function mergeData(array $data)
+    {
+        $this->data += $data;
+
+        return $this;
+    }
+
+    /**
      * @param mixed $extension
      *
      * @return $this
