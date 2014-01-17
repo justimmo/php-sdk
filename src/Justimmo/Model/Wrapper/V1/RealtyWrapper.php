@@ -247,7 +247,7 @@ class RealtyWrapper extends AbstractWrapper
 
             $data = $this->attributesToArray($xml->zustand_angaben->erschliessung);
             if (array_key_exists('erschl_attr', $data)) {
-                $objekt->setInfrastructureProvision($data['zustand_art']);
+                $objekt->setInfrastructureProvision($data['erschl_attr']);
             }
 
             if (isset($xml->zustand_angaben->energiepass)) {
