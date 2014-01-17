@@ -144,6 +144,8 @@ class Realty
 
     protected $storeRoomCount = null;
 
+    protected $contractEstablishmentCosts = null;
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1721,5 +1723,25 @@ class Realty
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setContractEstablishmentCosts($value)
+    {
+        $this->contractEstablishmentCosts = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getContractEstablishmentCosts()
+    {
+        return $this->contractEstablishmentCosts;
     }
 }
