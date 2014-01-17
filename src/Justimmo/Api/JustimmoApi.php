@@ -283,15 +283,13 @@ class JustimmoApi implements JustimmoApiInterface
         }
 
         $url = $this->generateUrl($call, $params);
-        $this->logger->debug('begin api call - ' . $url);
+        $this->logger->debug('call start', array(
+            'url'      => $url,
+        ));
 
         $key = $this->cache->generateCacheKey($url);
-        $this->logger->debug('cache key is ' . $key);
         $content = $this->cache->get($key);
         if ($content !== false) {
-            $this->logger->debug('cache found');
-            $this->logger->debug($content);
-
             $this->logger->debug('call end', array(
                 'url'      => $url,
                 'cache'    => true,
@@ -302,9 +300,6 @@ class JustimmoApi implements JustimmoApiInterface
             return $content;
         }
 
-        $this->logger->debug('cache not found');
-
-        $this->logger->debug('call api: ' . $url);
         $request = new CurlRequest($url, array(
             CURLOPT_USERPWD        => $this->username . ':' . $this->password,
             CURLOPT_FOLLOWLOCATION => true,
@@ -312,7 +307,6 @@ class JustimmoApi implements JustimmoApiInterface
         ));
 
         $response = $request->get();
-        $this->logger->debug($response);
 
         if ($request->getError()) {
             $this->throwError('The Api call returned an error: "' . $request->getError() . '"');
