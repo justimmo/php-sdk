@@ -4,6 +4,7 @@
 * Rework api logs
 * Add contractEstablishmentsCosts
 * Fix ListPager division by zero
+* Fix associative key/value pairs in equipment
 
 ## 1.0.0
 * Initial release

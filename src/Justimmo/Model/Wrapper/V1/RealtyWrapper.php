@@ -279,10 +279,10 @@ class RealtyWrapper extends AbstractWrapper
                             if ($v == 1) {
                                 $value[] = $k;
                             } else {
-                                $value[$k][] = $v;
+                                $value[$k] = $v;
                             }
                         }
-                        $objekt->addEquipment($key, count($value) > 1 ? $value : $value[0]);
+                        $objekt->addEquipment($key, count($value) > 1 || (array_keys($value) !== range(0, count($value) - 1)) ? $value : $value[0]);
                     } else {
                         $objekt->addEquipment($key, (string) $element);
                     }
