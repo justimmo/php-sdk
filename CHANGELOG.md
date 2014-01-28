@@ -1,4 +1,4 @@
-## 1.0.1 (not yet released)
+## 1.0.1
 * Add Project details
 * Add missing internationalizations in Realty
 * Rework api logs
