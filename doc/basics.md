@@ -32,7 +32,7 @@ The SDK throws a variety of Exceptions you can catch and handle into appropiate 
 Abstraction
 -----------
 The concept of this SDK is to abstract the JUSTIMMO Api to a point that you just have to change the mapper and wrapper of a Query to use a different version of the Api. To achieve this the api uses Dependency Injection. If you don't want to build you dependencies by hand when using the api, you can use a <a href="http://symfony.com/doc/current/components/dependency_injection/introduction.html" target="_blank">Dependency Injection Container</a>.
-An example configuration for the Symfony 2 Dependency Injection Container can be found [here](doc/example.services.xml).
+An example configuration for the Symfony 2 Dependency Injection Container can be found [here](example.services.xml).
 
 Queries
 -------
