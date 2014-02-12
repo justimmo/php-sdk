@@ -80,6 +80,8 @@ class Realty
 
     protected $surety = null;
 
+    protected $compensation = null;
+
     protected $buildingSubsidies = null;
 
     protected $yield = null;
@@ -834,6 +836,26 @@ class Realty
     public function getSurety()
     {
         return $this->surety;
+    }
+
+    /**
+     * @param null $abstand
+     *
+     * @return $this
+     */
+    public function setCompensation($abstand)
+    {
+        $this->compensation = $abstand;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCompensation()
+    {
+        return $this->compensation;
     }
 
     /**

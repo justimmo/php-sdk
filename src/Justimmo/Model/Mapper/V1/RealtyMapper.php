@@ -140,6 +140,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'surety',
                 'type'     => 'double',
             ),
+            'abstand'                    => array(
+                'property' => 'compensation',
+                'type'     => 'double',
+            ),
             'anzahl_zimmer'              => array(
                 'property' => 'roomCount',
                 'type'     => 'int',
@@ -245,5 +249,4 @@ class RealtyMapper extends AbstractMapper
             'FederalStateId' => 'bundesland_id',
         );
     }
-
 }

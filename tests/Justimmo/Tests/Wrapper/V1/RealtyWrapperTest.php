@@ -90,6 +90,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getLandRegistration());
         $this->assertNull($objekt->getContactEstablishmentCosts());
         $this->assertNull($objekt->getSurety());
+        $this->assertNull($objekt->getCompensation());
 
         $this->assertEquals(2, count($objekt->getAdditionalCosts()));
         $i = 1;

@@ -64,6 +64,7 @@ class RealtyWrapper extends AbstractWrapper
         'grundbucheintragung',
         'vertragserrichtungsgebuehr',
         'kaution',
+        'abstand',
     );
 
     protected $flaechenMapping = array(
