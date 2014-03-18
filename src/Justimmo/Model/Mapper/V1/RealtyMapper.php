@@ -237,8 +237,8 @@ class RealtyMapper extends AbstractMapper
         return array(
             'Price'          => 'preis',
             'RealtyTypeId'   => 'objektart_id',
-            'RealtyCategory' => 'objektkategorie',
-            'Tag'            => 'objektkategorie',
+            'RealtyCategory' => 'tag_name',
+            'Tag'            => 'tag_name',
             'ZipCode'        => 'plz',
             'Rooms'          => 'zimmer',
             'PropertyNumber' => 'objektnummer',
