@@ -159,6 +159,19 @@ class Realty
     protected $contact = null;
 
     /**
+     * @var null|string
+     */
+    protected $freetext1 = null;
+    /**
+     * @var null|string
+     */
+    protected $freetext2 = null;
+    /**
+     * @var null|string
+     */
+    protected $freetext3 = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -1765,5 +1778,53 @@ class Realty
     public function getContractEstablishmentCosts()
     {
         return $this->contractEstablishmentCosts;
+    }
+
+    /**
+     * @param null|string $freetext1
+     */
+    public function setFreetext1($freetext1)
+    {
+        $this->freetext1 = $freetext1;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFreetext1()
+    {
+        return $this->freetext1;
+    }
+
+    /**
+     * @param null|string $freetext2
+     */
+    public function setFreetext2($freetext2)
+    {
+        $this->freetext2 = $freetext2;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFreetext2()
+    {
+        return $this->freetext2;
+    }
+
+    /**
+     * @param null|string $freetext3
+     */
+    public function setFreetext3($freetext3)
+    {
+        $this->freetext3 = $freetext3;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFreetext3()
+    {
+        return $this->freetext3;
     }
 }

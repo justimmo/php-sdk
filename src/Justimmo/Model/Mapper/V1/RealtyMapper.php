@@ -224,6 +224,15 @@ class RealtyMapper extends AbstractMapper
             'epass_fgeeklasse'           => array(
                 'property' => 'energyEfficiencyFactorClass',
             ),
+            'justimmo_freitext1'         => array(
+                'property' => 'freetext1',
+            ),
+            'justimmo_freitext2'         => array(
+                'property' => 'freetext2',
+            ),
+            'justimmo_freitext3'         => array(
+                'property' => 'freetext3',
+            ),
         );
     }
 
