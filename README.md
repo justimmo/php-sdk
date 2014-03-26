@@ -24,6 +24,7 @@ Documentation
 * [Logging](doc/logging.md)
 * [Expose](doc/expose.md)
 * [RealtyInquiry](doc/inquiry.md)
+* [Attachments](doc/attachment.md)
 
 Usage Example
 -------------
