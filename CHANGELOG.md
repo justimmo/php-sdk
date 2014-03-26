@@ -1,3 +1,11 @@
+## 1.0.3
+* add calculateUrl method for Attachments
+
+## 1.0.2
+* fix for filterByTag
+* fix for filterByRealtyCategory
+* add compensation realty property
+
 ## 1.0.1
 * Add Project details
 * Add missing internationalizations in Realty

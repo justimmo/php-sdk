@@ -39,6 +39,19 @@ class Attachment
     }
 
     /**
+     * gets a url to an attachment size, even if the api does not return that size.
+     * BEWARE: this method cannot ensure that the url is a valid ressource
+     *
+     * @param string $size
+     *
+     * @return string
+     */
+    public function calculateUrl($size = 'orig')
+    {
+        return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/".$size."/", $this->getUrl());
+    }
+
+    /**
      * determines the type by extension
      *
      * @param $extension
