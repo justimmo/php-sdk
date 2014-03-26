@@ -13,7 +13,7 @@ $attachment->calculateUrl('big');
 
 Available Picture Sizes
 -----------------------
-#### ohne Logo:
+#### unbranded
 <dl>
     <dt>small</dt>
     <dd>100x300</dd>
@@ -34,7 +34,7 @@ Available Picture Sizes
     <dd>950x713</dd>
 </dl>
 
-#### mit Logo:
+#### branded
 
 <dl>
     <dt>medium</dt>
