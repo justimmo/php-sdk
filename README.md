@@ -6,7 +6,12 @@ JUSTIMMO PHP-SDK
 Installation
 ------------
 
-composer.json
+Install composer if it is not available on your development environment:
+```
+$ curl -s https://getcomposer.org/installer | php
+```
+
+create a "composer.json" file:
 
 ``` json
 {
@@ -14,6 +19,21 @@ composer.json
         "justimmo/php-sdk": "1.0.*"
     }
 }
+```
+
+Run install, which will make composer setup initial environment and download requested packages:
+```
+$ ./composer.phar install
+
+# or if composer is installed global:
+
+$ composer install
+
+```
+
+Composer generates a vendor/autoload.php file. You can simply include this file:
+```
+require_once __DIR__.'/vendor/autoload.php';
 ```
 
 Documentation
