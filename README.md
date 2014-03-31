@@ -11,7 +11,7 @@ Install composer if it is not available on your development environment:
 $ curl -s https://getcomposer.org/installer | php
 ```
 create a "composer.json" file:
-``` json
+```
 {
     "require": {
         "justimmo/php-sdk": "1.0.*"
