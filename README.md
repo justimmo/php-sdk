@@ -10,9 +10,7 @@ Install composer if it is not available on your development environment:
 ```
 $ curl -s https://getcomposer.org/installer | php
 ```
-
 create a "composer.json" file:
-
 ``` json
 {
     "require": {
@@ -20,7 +18,6 @@ create a "composer.json" file:
     }
 }
 ```
-
 Run install, which will make composer setup initial environment and download requested packages:
 ```
 $ ./composer.phar install
@@ -30,7 +27,6 @@ $ ./composer.phar install
 $ composer install
 
 ```
-
 Composer generates a vendor/autoload.php file. You can simply include this file:
 ```
 require_once __DIR__.'/vendor/autoload.php';
