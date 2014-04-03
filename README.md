@@ -21,10 +21,6 @@ $ curl -s https://getcomposer.org/installer | php
 ```
 For more install options please refer to the <a href="https://getcomposer.org/download/" target="_blank">Composer Documentation</a>
 
-```
-$ composer require justimmo/php-sdk "1.0.*"
-```
-
 #### manually (not recommended, use composer if it's available)
  * Download the latest stable release of the php-sdk
  * Download https://github.com/php-fig/log
