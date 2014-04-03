@@ -1,35 +1,38 @@
 JUSTIMMO PHP-SDK
-=======
+================
 [![Build Status](https://api.travis-ci.org/justimmo/php-sdk.png)](https://travis-ci.org/justimmo/php-sdk)
 [![Latest Stable Version](https://poser.pugx.org/justimmo/php-sdk/version.png)](https://packagist.org/packages/justimmo/php-sdk)
 
 Installation
 ------------
+#### Composer (recommended)
 
-Install composer if it is not available on your development environment:
+```
+$ composer require justimmo/php-sdk "1.0.*"
+```
+Composer generates a vendor/autoload.php file. You can simply include this file
+```php  
+require_once __DIR__.'/vendor/autoload.php';
+```
+
+If composer is not available you can set it up
 ```
 $ curl -s https://getcomposer.org/installer | php
 ```
-create a "composer.json" file:
-```
-{
-    "require": {
-        "justimmo/php-sdk": "1.0.*"
-    }
-}
-```
-Run install, which will make composer setup initial environment and download requested packages:
-```
-$ ./composer.phar install
-
-# or if composer is installed global:
-
-$ composer install
+For more install options please refer to the <a href="https://getcomposer.org/download/" target="_blank">Composer Documentation</a>
 
 ```
-Composer generates a vendor/autoload.php file. You can simply include this file:
+$ composer require justimmo/php-sdk "1.0.*"
 ```
-require_once __DIR__.'/vendor/autoload.php';
+
+#### manually (not recommended, use composer if it's available)
+ * Download the latest stable release of the php-sdk
+ * Download https://github.com/php-fig/log
+ * Extract php-sdk to your project
+ * Extract log into the src folder of php-sdk
+
+```php
+require_once 'path_to_extraction/src/autoload.php';
 ```
 
 Documentation
