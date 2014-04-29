@@ -85,6 +85,14 @@ The RealtyQuery additionally supports following methods. Keep in mind that you c
 * filterByKeyword($value)
 * filterByFederalStateId($value)
 
+## ProjectQuery
+The ProjectQuery additionally supports following methods. Keep in mind that you can add not integrated default parameters by using __->set()__ and __->filter()__
+* filterByRealtyCategory($value)
+* filterByTag($value)
+* filterByKeyword($value)
+* filterByFederalStateId($value)
+* all(1|0)
+
 ## BasicDataQuery
 The BasicDataQuery differs from the other queries because its used to fetch Justimmo Basic Data like Countries, Federal States, ... It does not return abstracted objects but php arrays with the primary key as array key
 ``` php

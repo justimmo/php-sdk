@@ -36,7 +36,12 @@ class ProjectMapper extends AbstractMapper
 
     protected function getFilterMapping()
     {
-        return array();
+        return array(
+            'RealtyCategory' => 'tag_name',
+            'Tag'            => 'tag_name',
+            'Keyword'        => 'stichwort',
+            'FederalStateId' => 'bundesland_id',
+            'CountryIso2'    => 'land_iso2',
+        );
     }
-
 }
