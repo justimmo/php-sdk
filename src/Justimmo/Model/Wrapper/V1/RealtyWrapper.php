@@ -235,7 +235,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->bilder360) && isset($xml->bilder360->pfad)) {
             foreach ($xml->bilder360->pfad as $anhang) {
-                $attachment = new Attachment($this->cast($anhang), 'bilder360');
+                $attachment = new Attachment($this->cast($anhang), 'picture', 'bilder360');
                 $objekt->addAttachment($attachment);
             }
         }
@@ -325,13 +325,15 @@ class RealtyWrapper extends AbstractWrapper
     {
         foreach ($xml as $anhang) {
             $data = (array) $anhang->daten;
+            $attributes = $this->attributesToArray($anhang);
+            $group = array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null;
             if (array_key_exists('pfad', $data)) {
-                $attachment = new Attachment($data['pfad'], $type);
+                $attachment = new Attachment($data['pfad'], $type, $group);
                 $attachment->mergeData($data);
                 $attachment->setTitle($this->cast($anhang->anhangtitel));
                 $objekt->addAttachment($attachment);
             } elseif (isset($anhang->pfad)) {
-                $attachment = new Attachment($this->cast($anhang->pfad), $type);
+                $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
                 $attachment->setTitle($this->cast($anhang->titel));
                 $objekt->addAttachment($attachment);
             }

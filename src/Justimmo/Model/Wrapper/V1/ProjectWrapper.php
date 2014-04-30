@@ -48,7 +48,7 @@ class ProjectWrapper extends AbstractWrapper
         }
 
         if (isset($xml->bilder360) && isset($xml->bilder360->bild)) {
-            $this->mapAttachmentGroup($xml->bilder360->bild, $project, 'bilder360');
+            $this->mapAttachmentGroup($xml->bilder360->bild, $project, 'picture', 'bilder360');
         }
 
         if (isset($xml->immobilien->immobilie)) {
@@ -86,12 +86,12 @@ class ProjectWrapper extends AbstractWrapper
         return $list;
     }
 
-    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Project $project, $type = null)
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Project $project, $type = null, $group = null)
     {
         foreach ($xml as $anhang) {
             $data = (array) $anhang;
             if (array_key_exists('pfad', $data)) {
-                $attachment = new Attachment($data['pfad'], $type);
+                $attachment = new Attachment($data['pfad'], $type, $group);
                 $attachment->setTitle($this->cast($anhang->titel));
                 $project->addAttachment($attachment);
             }

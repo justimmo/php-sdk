@@ -72,10 +72,11 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals($entry->getId(), $realty->getProjectId());
         $this->assertEquals('verkauft', $realty->getStatus());
 
-        $this->assertEquals(16, count($entry->getPictures()));
+        $this->assertEquals(16, count($entry->getPictures(null)));
+        $this->assertEquals(18, count($entry->getPictures()));
         $this->assertEquals(2, count($entry->getDocuments()));
         $this->assertEquals(0, count($entry->getVideos()));
-        $this->assertEquals(2, count($entry->getAttachmentsByType('bilder360')));
+        $this->assertEquals(2, count($entry->getPictures('bilder360')));
 
         $document = $entry->getDocuments();
         $document = $document[0];

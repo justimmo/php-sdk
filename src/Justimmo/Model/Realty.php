@@ -1185,17 +1185,18 @@ class Realty
     }
 
     /**
-     * @param $type
+     * @param      $type
+     * @param null|string|boolean $group
      *
      * @return array
      */
-    public function getAttachmentsByType($type)
+    public function getAttachmentsByType($type, $group = false)
     {
         $attachments = array();
 
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
-            if ($attachment->getType() == $type) {
+            if ($attachment->getType() == $type && ($group === false || $group == $attachment->getGroup())) {
                 $attachments[] =  $attachment;
             }
         }
@@ -1204,27 +1205,33 @@ class Realty
     }
 
     /**
+     * @param null|string|boolean $group
+     *
      * @return array
      */
-    public function getPictures()
+    public function getPictures($group = false)
     {
-        return $this->getAttachmentsByType('picture');
+        return $this->getAttachmentsByType('picture', $group);
     }
 
     /**
+     * @param null|string|boolean $group
+     *
      * @return array
      */
-    public function getVideos()
+    public function getVideos($group = false)
     {
-        return $this->getAttachmentsByType('video');
+        return $this->getAttachmentsByType('video', $group);
     }
 
     /**
+     * @param null|string|boolean $group
+     *
      * @return array
      */
-    public function getDocuments()
+    public function getDocuments($group = false)
     {
-        return $this->getAttachmentsByType('document');
+        return $this->getAttachmentsByType('document', $group);
     }
 
     /**

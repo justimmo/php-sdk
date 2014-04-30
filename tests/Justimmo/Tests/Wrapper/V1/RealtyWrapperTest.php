@@ -112,6 +112,8 @@ class RealtyWrapperTest extends TestCase
         }
 
         $this->assertEquals(8, count($objekt->getPictures()));
+        $this->assertEquals(7, count($objekt->getPictures(null)));
+        $this->assertEquals(1, count($objekt->getPictures('TITELBILD')));
         $this->assertEquals(1, count($objekt->getDocuments()));
         $this->assertEquals(0, count($objekt->getVideos()));
 

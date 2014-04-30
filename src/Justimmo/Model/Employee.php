@@ -227,22 +227,53 @@ class Employee
     }
 
     /**
-     * @param $type
+     * @param      $type
+     * @param null|string|boolean $group
      *
      * @return array
      */
-    public function getAttachmentsByType($type)
+    public function getAttachmentsByType($type, $group = false)
     {
         $attachments = array();
 
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
-            if ($attachment->getType() == $type) {
+            if ($attachment->getType() == $type && ($group === false || $group == $attachment->getGroup())) {
                 $attachments[] =  $attachment;
             }
         }
 
         return $attachments;
+    }
+
+    /**
+     * @param null|string|boolean $group
+     *
+     * @return array
+     */
+    public function getPictures($group = false)
+    {
+        return $this->getAttachmentsByType('picture', $group);
+    }
+
+    /**
+     * @param null|string|boolean $group
+     *
+     * @return array
+     */
+    public function getVideos($group = false)
+    {
+        return $this->getAttachmentsByType('video', $group);
+    }
+
+    /**
+     * @param null|string|boolean $group
+     *
+     * @return array
+     */
+    public function getDocuments($group = false)
+    {
+        return $this->getAttachmentsByType('document', $group);
     }
 
     /**
@@ -255,14 +286,6 @@ class Employee
         $this->attachments[] = $attachment;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPictures()
-    {
-        return $this->getAttachmentsByType('picture');
     }
 
     /**

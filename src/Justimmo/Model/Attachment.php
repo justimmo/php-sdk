@@ -14,11 +14,13 @@ class Attachment
 
     protected $data = array();
 
+    protected $group = null;
+
     protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg');
 
     protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
 
-    public function __construct($path, $type = null)
+    public function __construct($path, $type = null, $group = null)
     {
         $this->extension = pathinfo($path, PATHINFO_EXTENSION);
         $this->data['orig'] = $path;
@@ -27,6 +29,7 @@ class Attachment
         if ($type === null) {
             $this->type = $this->determineTypeByExtension($this->extension);
         }
+        $this->group = $group;
     }
 
     public function getUrl($size = 'orig')
@@ -172,6 +175,26 @@ class Attachment
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param null|string $value
+     *
+     * @return $this
+     */
+    public function setGroup($value)
+    {
+        $this->group = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 
 }
