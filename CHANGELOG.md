@@ -1,3 +1,8 @@
+## 1.0.4
+* add support for attachment groups
+* add typehints for project query
+* add own autoloader file
+
 ## 1.0.3
 * add calculateUrl method for Attachments
 
