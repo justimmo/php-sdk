@@ -33,13 +33,7 @@ require_once 'path_to_extraction/src/autoload.php';
 
 Documentation
 -------------
-* [Basics](doc/basics.md)
-* [Query](doc/query.md)
-* [Caching](doc/caching.md)
-* [Logging](doc/logging.md)
-* [Expose](doc/expose.md)
-* [RealtyInquiry](doc/inquiry.md)
-* [Attachments](doc/attachment.md)
+<a href="http://justimmo.github.io/php-sdk/index.html" target="_blank">Read the full documentation</a>
 
 Usage Example
 -------------
