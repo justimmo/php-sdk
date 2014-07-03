@@ -31,8 +31,19 @@ class RealtyWrapper extends AbstractWrapper
         'gesamtmiete',
         'nutzflaeche',
         'grundflaeche',
+        'gesamtflaeche',
+        'wohnflaeche',
         'projekt_id',
         'status',
+        'anzahl_zimmer',
+        'wohnbaufoerderung',
+        'anzahl_loggias',
+        'loggias_flaeche',
+        'anzahl_balkons',
+        'balkons_flaeche',
+        'anzahl_terrassen',
+        'terrassen_flaeche',
+        'gartenflaeche',
     );
 
     protected $geoMapping = array(

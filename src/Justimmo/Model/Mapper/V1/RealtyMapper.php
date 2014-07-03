@@ -168,6 +168,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'balconyCount',
                 'type'     => 'int',
             ),
+            'anzahl_balkons'             => array(
+                'property' => 'balconyCount',
+                'type'     => 'int',
+            ),
             'anzahl_terrassen'           => array(
                 'property' => 'terraceCount',
                 'type'     => 'int',

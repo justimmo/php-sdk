@@ -1,3 +1,6 @@
+## 1.0.5
+* add new properties for realty list call
+
 ## 1.0.4
 * add support for attachment groups
 * add typehints for project query
