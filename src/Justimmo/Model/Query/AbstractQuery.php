@@ -80,6 +80,7 @@ abstract class AbstractQuery implements QueryInterface
 
         $pager = $this->find();
         $pager->setPage($page);
+        $pager->setMaxPerPage($maxPerPage);
 
         return $pager;
     }
