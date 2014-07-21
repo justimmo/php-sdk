@@ -13,6 +13,15 @@ interface JustimmoApiInterface
     public function callRealtyList(array $params = array());
 
     /**
+     * make a call to the realty ids with a set of given params
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyIds(array $params = array());
+
+    /**
      * calls the detail information of a single realty
      *
      * @param $pk

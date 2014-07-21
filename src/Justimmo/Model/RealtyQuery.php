@@ -43,4 +43,16 @@ class RealtyQuery extends AbstractQuery
     {
         return 'callRealtyDetail';
     }
+
+    /**
+     * get a array of realty ids
+     *
+     * @return array
+     */
+    public function findIds()
+    {
+        $response = $this->api->callRealtyIds($this->params);
+
+        return json_decode($response);
+    }
 }

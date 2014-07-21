@@ -2,14 +2,20 @@
 namespace Justimmo\Api;
 
 /**
- * Class JustimmoApi
- * class for justimmo api
+ * Class JustimmoNullApi
+ *
+ * dummy class to satisfy dependency injection on Unit Tests
  *
  * @package Justimmo\Api
  */
 class JustimmoNullApi implements JustimmoApiInterface
 {
     public function callRealtyList(array $params = array())
+    {
+
+    }
+
+    public function callRealtyIds(array $params = array())
     {
 
     }

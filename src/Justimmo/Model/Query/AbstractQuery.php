@@ -51,7 +51,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         $this->api     = $api;
         $this->wrapper = $wrapper;
-        $this->mapper = $mapper;
+        $this->mapper  = $mapper;
     }
 
     /**

@@ -103,6 +103,18 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * make a call to the realty ids with a set of given params
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyIds(array $params = array())
+    {
+        return $this->call('objekt/ids', $params);
+    }
+
+    /**
      * calls the detail information of a single realty
      *
      * @param $pk
