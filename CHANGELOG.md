@@ -1,3 +1,8 @@
+## 1.0.6
+* fix pager maxPerPage value when created from query
+* add support for api id call
+* add quickfilters for rent and buy
+
 ## 1.0.5
 * add new properties for realty list call
 
