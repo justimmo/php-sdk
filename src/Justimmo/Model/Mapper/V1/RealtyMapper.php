@@ -260,6 +260,8 @@ class RealtyMapper extends AbstractMapper
             'SurfaceArea'    => 'grundflaeche',
             'Keyword'        => 'stichwort',
             'FederalStateId' => 'bundesland_id',
+            'Rent'           => 'miete',
+            'Buy'            => 'kauf',
         );
     }
 }

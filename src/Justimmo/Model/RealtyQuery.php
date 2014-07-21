@@ -19,6 +19,8 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterBySurfaceArea($value)
  * @method RealtyQuery filterByKeyword($value)
  * @method RealtyQuery filterByFederalStateId($value)
+ * @method RealtyQuery filterByRent($value)
+ * @method RealtyQuery filterByBuy($value)
  */
 class RealtyQuery extends AbstractQuery
 {
