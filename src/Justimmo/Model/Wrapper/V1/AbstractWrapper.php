@@ -44,10 +44,6 @@ abstract class AbstractWrapper implements WrapperInterface
      */
     protected function cast(\SimpleXMLElement $xml, $type = 'string')
     {
-        if ($xml->count() == 0) {
-            return null;
-        }
-
         switch ($type) {
             case 'string':
                 return (string) $xml;

@@ -218,15 +218,19 @@ class RealtyMapper extends AbstractMapper
             ),
             'epass_hwbwert'              => array(
                 'property' => 'thermalHeatRequirementValue',
+                'type'     => 'double',
             ),
             'epass_hwbklasse'            => array(
                 'property' => 'thermalHeatRequirementClass',
+                'type'     => 'string',
             ),
             'epass_fgeewert'             => array(
                 'property' => 'energyEfficiencyFactorValue',
+                'type'     => 'double',
             ),
             'epass_fgeeklasse'           => array(
                 'property' => 'energyEfficiencyFactorClass',
+                'type'     => 'string',
             ),
             'justimmo_freitext1'         => array(
                 'property' => 'freetext1',

@@ -1,3 +1,6 @@
+## 1.0.7
+* fix engery energy efficency and themal requirement values
+
 ## 1.0.6
 * fix pager maxPerPage value when created from query
 * add support for api id call

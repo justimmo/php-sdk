@@ -130,6 +130,10 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('BEDARF', $energiepass->getEpart());
         $this->assertInstanceOf('\DateTime', $energiepass->getValidUntil());
         $this->assertEquals('2012-09-12', $energiepass->getValidUntil()->format('Y-m-d'));
+        $this->assertEquals('B', $energiepass->getEnergyEfficiencyFactorClass());
+        $this->assertEquals(0.96, $energiepass->getEnergyEfficiencyFactorValue());
+        $this->assertEquals('B', $energiepass->getThermalHeatRequirementClass());
+        $this->assertEquals(44, $energiepass->getThermalHeatRequirementValue());
 
         $this->assertEquals(array(
             'angeschl_gastronomie'     => 'HOTELRESTAURANT',
