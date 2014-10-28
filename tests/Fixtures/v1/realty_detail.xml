@@ -62,11 +62,11 @@
             <grundstuecksflaeche>15</grundstuecksflaeche>
         </flaechen>
         <ausstattung>
-            <angeschl_gastronomie HOTELRESTAURANT="1"/>
-            <ausricht_balkon_terrasse NORD="1"/>
-            <boden ESTRICH="1"/>
-            <brauereibindung>1</brauereibindung>
-            <sicherheitstechnik POLIZEIRUF="1"/>
+            <angeschl_gastronomie HOTELRESTAURANT="true"/>
+            <ausricht_balkon_terrasse NORD="true"/>
+            <boden ESTRICH="true"/>
+            <brauereibindung>true</brauereibindung>
+            <sicherheitstechnik POLIZEIRUF="true"/>
         </ausstattung>
         <zustand_angaben>
             <energiepass>

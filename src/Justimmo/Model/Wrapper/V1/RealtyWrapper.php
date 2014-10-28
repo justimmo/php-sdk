@@ -294,13 +294,13 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->ausstattung[0])) {
                 /** @var \SimpleXMLElement $element */
                 foreach ($xml->ausstattung[0] as $key => $element) {
-                    if ((int) $element === 1) {
+                    if ((string) $element === "true") {
                         $objekt->addEquipment($key, $key);
                     } elseif ($element->attributes()->count()) {
                         $attributes = $this->attributesToArray($element);
                         $value      = array();
                         foreach ($attributes as $k => $v) {
-                            if ($v == 1) {
+                            if ($v === "true") {
                                 $value[] = $k;
                             } else {
                                 $value[$k] = $v;
