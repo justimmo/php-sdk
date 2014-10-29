@@ -1,3 +1,6 @@
+## 1.0.8
+* fix boolean values in api xml 
+
 ## 1.0.7
 * fix engery energy efficency and themal requirement values
 
