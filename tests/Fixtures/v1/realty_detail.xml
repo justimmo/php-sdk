@@ -2,8 +2,8 @@
 <justimmo>
     <immobilie>
         <objektkategorie>
-            <nutzungsart WOHNEN="1" GEWERBE="1" ANLAGE="0"/>
-            <vermarktungsart KAUF="1" MIETE_PACHT="1"/>
+            <nutzungsart WOHNEN="true" GEWERBE="1" ANLAGE="false"/>
+            <vermarktungsart KAUF="true" MIETE_PACHT="0"/>
             <objektart>
                 <buero_praxen/>
                 <subobjektart></subobjektart>

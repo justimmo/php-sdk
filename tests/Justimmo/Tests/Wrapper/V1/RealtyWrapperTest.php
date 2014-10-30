@@ -56,13 +56,13 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('buero_praxen', $objekt->getRealtyType());
 
         $this->assertEquals(array(
-            'WOHNEN'  => 1,
-            'GEWERBE' => 1,
-            'ANLAGE'  => 0,
+            'WOHNEN'  => true,
+            'GEWERBE' => true,
+            'ANLAGE'  => false,
         ), $objekt->getOccupancy());
         $this->assertEquals(array(
-            'KAUF'        => 1,
-            'MIETE_PACHT' => 1,
+            'KAUF'        => true,
+            'MIETE_PACHT' => false,
         ), $objekt->getMarketingType());
         $this->assertNull($objekt->getStreet());
         $this->assertEmpty($objekt->getHallway());

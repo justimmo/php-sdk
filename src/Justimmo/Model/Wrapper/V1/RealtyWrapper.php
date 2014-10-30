@@ -171,10 +171,10 @@ class RealtyWrapper extends AbstractWrapper
                 $objekt->setRealtyType((string) $xml->objektkategorie->objektart->children()->getName());
             }
             if (isset($xml->objektkategorie->nutzungsart)) {
-                $objekt->setOccupancy($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()));
+                $objekt->setOccupancy(filter_var_array($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
             }
             if (isset($xml->objektkategorie->vermarktungsart)) {
-                $objekt->setMarketingType($this->attributesToArray($xml->objektkategorie->vermarktungsart->attributes()));
+                $objekt->setMarketingType(filter_var_array($this->attributesToArray($xml->objektkategorie->vermarktungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
             }
         }
 
