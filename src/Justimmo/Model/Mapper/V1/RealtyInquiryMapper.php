@@ -19,6 +19,10 @@ class RealtyInquiryMapper extends AbstractMapper
             'email'     => 'email',
             'phone'     => 'tel',
             'message'   => 'message',
+            'street'    => 'strasse',
+            'zipCode'   => 'plz',
+            'city'      => 'ort',
+            'country'   => 'land',
         );
     }
 

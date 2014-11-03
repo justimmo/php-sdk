@@ -29,6 +29,13 @@ class RealtyInquiryRequest implements RequestInterface
 
     protected $message = null;
 
+    protected $street = null;
+
+    protected $zipCode = null;
+
+    protected $city = null;
+
+    protected $country = null;
 
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
@@ -156,6 +163,87 @@ class RealtyInquiryRequest implements RequestInterface
         return $this->realtyId;
     }
 
+    /**
+     * @return null
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setZipCode($value)
+    {
+        $this->zipCode = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setStreet($value)
+    {
+        $this->street = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setCountry($value)
+    {
+        $this->country = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setCity($value)
+    {
+        $this->city = $value;
+
+        return $this;
+    }
+
+
     public function send()
     {
         $this->api->postRealtyInquiry(array(
@@ -165,6 +253,10 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('email')     => $this->getEmail(),
             $this->mapper->getFilterPropertyName('phone')     => $this->getPhone(),
             $this->mapper->getFilterPropertyName('message')   => $this->getMessage(),
+            $this->mapper->getFilterPropertyName('street')    => $this->getStreet(),
+            $this->mapper->getFilterPropertyName('zipCode')   => $this->getZipCode(),
+            $this->mapper->getFilterPropertyName('city')      => $this->getCity(),
+            $this->mapper->getFilterPropertyName('country')   => $this->getCountry(),
         ));
     }
 }
