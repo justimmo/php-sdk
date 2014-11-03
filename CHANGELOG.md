@@ -1,3 +1,7 @@
+## 1.0.9 
+* fix openbase_dir restriction warning
+* add address data to RealtyInquiry
+
 ## 1.0.8
 * fix boolean values in api xml 
 
