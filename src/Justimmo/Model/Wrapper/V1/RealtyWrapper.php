@@ -227,7 +227,13 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
                     $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
-                    $objekt->addAdditionalCosts($key, new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust));
+                    $costs = new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (double) $zusatzkosten->ust_berechneter_wert, (double) $zusatzkosten->ust_wert);
+
+                    if (isset($zusatzkosten->optional)) {
+                        $costs->setOptional(filter_var((string) $zusatzkosten->optional, FILTER_VALIDATE_BOOLEAN));
+                    }
+
+                    $objekt->addAdditionalCosts($key, $costs);
                 }
             }
         }

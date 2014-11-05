@@ -51,6 +51,7 @@
                     <brutto>750</brutto>
                     <ust>50</ust>
                     <ust_wert>250</ust_wert>
+                    <ust_berechneter_wert>250</ust_berechneter_wert>
                     <ust_typ>numeric</ust_typ>
                 </betriebskosten>
                 <heizkosten>
@@ -59,6 +60,7 @@
                     <brutto>138.6</brutto>
                     <ust>10</ust>
                     <ust_wert>10</ust_wert>
+                    <ust_berechneter_wert>12.6</ust_berechneter_wert>
                     <ust_typ>percent</ust_typ>
                 </heizkosten>
                 <zusatzkosten_6>
@@ -67,6 +69,7 @@
                     <brutto>150</brutto>
                     <ust>0</ust>
                     <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
                     <ust_typ>percent</ust_typ>
                     <optional>true</optional>
                     <gruppe>rent</gruppe>
@@ -77,6 +80,7 @@
                     <brutto>18</brutto>
                     <ust>20</ust>
                     <ust_wert>20</ust_wert>
+                    <ust_berechneter_wert>3</ust_berechneter_wert>
                     <ust_typ>percent</ust_typ>
                     <optional>false</optional>
                     <gruppe>other</gruppe>

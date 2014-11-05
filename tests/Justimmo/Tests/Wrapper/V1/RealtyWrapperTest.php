@@ -90,25 +90,49 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getSurety());
         $this->assertNull($objekt->getCompensation());
 
-        $this->assertEquals(4, count($objekt->getAdditionalCosts()));
-        $i = 1;
-        foreach ($objekt->getAdditionalCosts() as $key => $zusatzkosten) {
-            $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $zusatzkosten);
-            if ($i == 1) {
-                $this->assertEquals('betriebskosten', $key);
-                $this->assertEquals('Betriebskosten', $zusatzkosten->getName());
-                $this->assertEquals(500, $zusatzkosten->getNet());
-                $this->assertEquals(750, $zusatzkosten->getGross());
-                $this->assertEquals(50, $zusatzkosten->getVat());
-            } elseif ($i == 2) {
-                $this->assertEquals('heizkosten', $key);
-                $this->assertEquals('Heizkosten', $zusatzkosten->getName());
-                $this->assertEquals(126, $zusatzkosten->getNet());
-                $this->assertEquals(138.6, $zusatzkosten->getGross());
-                $this->assertEquals(10, $zusatzkosten->getVat());
-            }
-            $i++;
-        }
+        $costs = $objekt->getAdditionalCosts();
+        $this->assertEquals(4, count($costs));
+
+        $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $costs['betriebskosten']);
+        $this->assertEquals('Betriebskosten', $costs['betriebskosten']->getName());
+        $this->assertEquals(500, $costs['betriebskosten']->getNet());
+        $this->assertEquals(750, $costs['betriebskosten']->getGross());
+        $this->assertEquals(50, $costs['betriebskosten']->getVat());
+        $this->assertEquals('numeric', $costs['betriebskosten']->getVatType());
+        $this->assertEquals(250, $costs['betriebskosten']->getVatValue());
+        $this->assertEquals(250, $costs['betriebskosten']->getVatInput());
+        $this->assertFalse($costs['betriebskosten']->getOptional());
+
+        $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $costs['heizkosten']);
+        $this->assertEquals('Heizkosten', $costs['heizkosten']->getName());
+        $this->assertEquals(126, $costs['heizkosten']->getNet());
+        $this->assertEquals(138.6, $costs['heizkosten']->getGross());
+        $this->assertEquals(10, $costs['heizkosten']->getVat());
+        $this->assertEquals('percent', $costs['heizkosten']->getVatType());
+        $this->assertEquals(12.6, $costs['heizkosten']->getVatValue());
+        $this->assertEquals(10, $costs['heizkosten']->getVatInput());
+        $this->assertFalse($costs['heizkosten']->getOptional());
+
+        $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $costs['zusatzkosten_6']);
+        $this->assertEquals('Garage', $costs['zusatzkosten_6']->getName());
+        $this->assertEquals(150, $costs['zusatzkosten_6']->getNet());
+        $this->assertEquals(150, $costs['zusatzkosten_6']->getGross());
+        $this->assertEquals(0, $costs['zusatzkosten_6']->getVat());
+        $this->assertEquals('percent', $costs['zusatzkosten_6']->getVatType());
+        $this->assertEquals(0, $costs['zusatzkosten_6']->getVatValue());
+        $this->assertEquals(0, $costs['zusatzkosten_6']->getVatInput());
+        $this->assertTrue($costs['zusatzkosten_6']->getOptional());
+
+        $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $costs['zusatzkosten_8']);
+        $this->assertEquals('Liftkosten', $costs['zusatzkosten_8']->getName());
+        $this->assertEquals(15, $costs['zusatzkosten_8']->getNet());
+        $this->assertEquals(18, $costs['zusatzkosten_8']->getGross());
+        $this->assertEquals(20, $costs['zusatzkosten_8']->getVat());
+        $this->assertEquals('percent', $costs['zusatzkosten_8']->getVatType());
+        $this->assertEquals(3, $costs['zusatzkosten_8']->getVatValue());
+        $this->assertEquals(20, $costs['zusatzkosten_8']->getVatInput());
+        $this->assertFalse($costs['zusatzkosten_8']->getOptional());
+
 
         $this->assertEquals(11, count($objekt->getPictures()));
         $this->assertEquals(10, count($objekt->getPictures(null)));
