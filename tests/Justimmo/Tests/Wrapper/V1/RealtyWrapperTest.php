@@ -50,13 +50,13 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('DEMOOBJEKT! Elegantes Büro neben Bristol und Oper', $objekt->getTitle());
         $this->assertContains('ausgestattetes 1 bis 2 Personenbüro', $objekt->getDescription());
         $this->assertNull($objekt->getTier());
-        $this->assertNull($objekt->getDoorNumber());
-        $this->assertEquals(2460, $objekt->getZipCode());
+        $this->assertEquals(1, $objekt->getDoorNumber());
+        $this->assertEquals(1030, $objekt->getZipCode());
         $this->assertEquals('Wien', $objekt->getPlace());
         $this->assertEquals('buero_praxen', $objekt->getRealtyType());
 
         $this->assertEquals(array(
-            'WOHNEN'  => true,
+            'WOHNEN'  => false,
             'GEWERBE' => true,
             'ANLAGE'  => false,
         ), $objekt->getOccupancy());
@@ -64,63 +64,62 @@ class RealtyWrapperTest extends TestCase
             'KAUF'        => true,
             'MIETE_PACHT' => false,
         ), $objekt->getMarketingType());
-        $this->assertNull($objekt->getStreet());
+        $this->assertEquals('Stephansplatz', $objekt->getStreet());
         $this->assertEmpty($objekt->getHallway());
         $this->assertEmpty($objekt->getLandParcel());
         $this->assertEmpty($objekt->getDistrict());
         $this->assertEquals('AUT', $objekt->getCountry());
-        $this->assertEquals(48.0168636, $objekt->getLatitude());
-        $this->assertEquals(16.7801812, $objekt->getLongitude());
-        $this->assertEquals($objekt->getFloorArea(), 15);
-        $this->assertEquals($objekt->getSurfaceArea(), 15);
+        $this->assertEquals(48.2087105, $objekt->getLatitude());
+        $this->assertEquals(16.3726546, $objekt->getLongitude());
+        $this->assertEquals($objekt->getFloorArea(), 150);
+        $this->assertEquals($objekt->getSurfaceArea(), 150);
         $this->assertNull($objekt->getLivingArea());
         $this->assertNull($objekt->getTotalArea());
 
-        $this->assertNull($objekt->getPurchasePrice());
-        $this->assertEquals(60000, $objekt->getTotalRent());
-        $this->assertNull($objekt->getNetRent());
-        $this->assertEquals(50000, $objekt->getAdditionalCharges());
-        $this->assertEquals(10000, $objekt->getHeatingCosts());
+        $this->assertEquals(450000, $objekt->getPurchasePrice());
+        $this->assertEquals(500, $objekt->getAdditionalCharges());
+        $this->assertEquals(126, $objekt->getHeatingCosts());
         $this->assertNull($objekt->getBuildingSubsidies());
         $this->assertNull($objekt->getYield());
         $this->assertNull($objekt->getNetEarningMonthly());
         $this->assertNull($objekt->getNetEarningYearly());
         $this->assertNull($objekt->getTotalRentVat());
-        $this->assertNull($objekt->getTransferTax());
-        $this->assertNull($objekt->getLandRegistration());
+        $this->assertEquals(3.5, $objekt->getTransferTax());
+        $this->assertEquals(1.1, $objekt->getLandRegistration());
         $this->assertNull($objekt->getContactEstablishmentCosts());
         $this->assertNull($objekt->getSurety());
         $this->assertNull($objekt->getCompensation());
 
-        $this->assertEquals(2, count($objekt->getAdditionalCosts()));
+        $this->assertEquals(4, count($objekt->getAdditionalCosts()));
         $i = 1;
         foreach ($objekt->getAdditionalCosts() as $key => $zusatzkosten) {
             $this->assertInstanceOf('\Justimmo\Model\AdditionalCosts', $zusatzkosten);
             if ($i == 1) {
                 $this->assertEquals('betriebskosten', $key);
-                $this->assertEquals('betriebskosten', $zusatzkosten->getName());
-                $this->assertEquals(50000, $zusatzkosten->getNet());
-                $this->assertEquals(50000, $zusatzkosten->getGross());
-            } else {
+                $this->assertEquals('Betriebskosten', $zusatzkosten->getName());
+                $this->assertEquals(500, $zusatzkosten->getNet());
+                $this->assertEquals(750, $zusatzkosten->getGross());
+                $this->assertEquals(50, $zusatzkosten->getVat());
+            } elseif ($i == 2) {
                 $this->assertEquals('heizkosten', $key);
-                $this->assertEquals('heizkosten', $zusatzkosten->getName());
-                $this->assertEquals(10000, $zusatzkosten->getNet());
-                $this->assertEquals(10000, $zusatzkosten->getGross());
+                $this->assertEquals('Heizkosten', $zusatzkosten->getName());
+                $this->assertEquals(126, $zusatzkosten->getNet());
+                $this->assertEquals(138.6, $zusatzkosten->getGross());
+                $this->assertEquals(10, $zusatzkosten->getVat());
             }
-            $this->assertEquals(0, $zusatzkosten->getVat());
             $i++;
         }
 
-        $this->assertEquals(8, count($objekt->getPictures()));
-        $this->assertEquals(7, count($objekt->getPictures(null)));
+        $this->assertEquals(11, count($objekt->getPictures()));
+        $this->assertEquals(10, count($objekt->getPictures(null)));
         $this->assertEquals(1, count($objekt->getPictures('TITELBILD')));
-        $this->assertEquals(1, count($objekt->getDocuments()));
+        $this->assertEquals(0, count($objekt->getDocuments()));
         $this->assertEquals(0, count($objekt->getVideos()));
 
         $pictures = $objekt->getPictures();
         $picture = $pictures[0];
-        $this->assertEquals('http://files.justimmo.at/public/pic/big/AH6hJRzdDi.jpg', $picture->getUrl());
-        $this->assertEquals('http://files.justimmo.at/public/pic/small/AH6hJRzdDi.jpg', $picture->getUrl('small'));
+        $this->assertEquals('http://files.justimmo.at/public/pic/big/AHA0s6aAaT.jpg', $picture->getUrl());
+        $this->assertEquals('http://files.justimmo.at/public/pic/small/AHA0s6aAaT.jpg', $picture->getUrl('small'));
         $this->assertEquals('jpg', $picture->getExtension());
         $this->assertEquals('picture', $picture->getType());
 
@@ -136,11 +135,18 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(44, $energiepass->getThermalHeatRequirementValue());
 
         $this->assertEquals(array(
-            'angeschl_gastronomie'     => 'HOTELRESTAURANT',
             'ausricht_balkon_terrasse' => 'NORD',
-            'boden'                    => 'ESTRICH',
-            'brauereibindung'          => 'brauereibindung',
-            'sicherheitstechnik'       => 'POLIZEIRUF',
+            'bad'                      => array('FENSTER', 'WANNE', 'DUSCHE', 'BIDET', 'PISSOIR'),
+            'boden'                    => array('PARKETT', 'STEIN', 'TEPPICH', 'MARMOR'),
+            'fahrstuhl'                => 'PERSONEN',
+            'heizungsart'              => 'FUSSBODEN',
+            'sicherheitstechnik'       => array('ALARMANLAGE', 'POLIZEIRUF'),
+            'kabel_sat_tv'             => 'kabel_sat_tv',
+            'kamin'                    => 'kamin',
+            'kueche'                   => 'OFFEN',
+            'sauna'                    => 'sauna',
+            'stellplatzart'            => 'TIEFGARAGE',
+            'befeuerung'               => 'SOLAR',
         ), $objekt->getEquipment());
 
         $contact = $objekt->getContact();

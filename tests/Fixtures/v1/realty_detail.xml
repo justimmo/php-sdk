@@ -2,22 +2,23 @@
 <justimmo>
     <immobilie>
         <objektkategorie>
-            <nutzungsart WOHNEN="true" GEWERBE="1" ANLAGE="false"/>
-            <vermarktungsart KAUF="true" MIETE_PACHT="0"/>
+            <nutzungsart WOHNEN="0" GEWERBE="1" ANLAGE="0"/>
+            <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
             <objektart>
                 <buero_praxen/>
                 <subobjektart></subobjektart>
             </objektart>
         </objektkategorie>
         <geo>
-            <plz>2460</plz>
+            <plz>1030</plz>
             <ort>Wien</ort>
-            <geokoordinaten breitengrad="48.0168636" laengengrad="16.7801812"/>
+            <geokoordinaten breitengrad="48.2087105" laengengrad="16.3726546"/>
+            <strasse>Stephansplatz</strasse>
+            <hausnummer>1</hausnummer>
+            <wohnungsnr>1</wohnungsnr>
+            <tuernummer>1</tuernummer>
             <bundesland>Wien</bundesland>
             <land iso_land="AUT"/>
-            <flur></flur>
-            <flurstueck></flurstueck>
-            <gemarkung></gemarkung>
         </geo>
         <kontaktperson>
             <email_direkt>a.diem@bgcc.at</email_direkt>
@@ -35,57 +36,111 @@
                 <medium>http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png</medium>
                 <big>http://files.justimmo.at/public/pic/user_big/ABVB1fBrug.png</big>
             </bild>
-            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
         </kontaktperson>
         <preise>
-            <warmmiete>60000</warmmiete>
-            <nebenkosten>50000</nebenkosten>
-            <heizkosten>10000</heizkosten>
-            <zzg_mehrwertsteuer>1</zzg_mehrwertsteuer>
-            <aussen_courtage>3% des KP + 20% USt.</aussen_courtage>
+            <kaufpreis>450000</kaufpreis>
+            <nebenkosten>500</nebenkosten>
+            <heizkosten>126</heizkosten>
+            <kaufpreis_pro_qm>3000</kaufpreis_pro_qm>
+            <aussen_courtage>16.200,00 € inkl. 20% USt.</aussen_courtage>
             <waehrung iso_waehrung="EUR"/>
             <zusatzkosten>
                 <betriebskosten>
-                    <netto>50000</netto>
-                    <brutto>50000</brutto>
-                    <ust/>
+                    <name>Betriebskosten</name>
+                    <netto>500</netto>
+                    <brutto>750</brutto>
+                    <ust>50</ust>
+                    <ust_wert>250</ust_wert>
+                    <ust_typ>numeric</ust_typ>
                 </betriebskosten>
                 <heizkosten>
-                    <netto>10000</netto>
-                    <brutto>10000</brutto>
-                    <ust/>
+                    <name>Heizkosten</name>
+                    <netto>126</netto>
+                    <brutto>138.6</brutto>
+                    <ust>10</ust>
+                    <ust_wert>10</ust_wert>
+                    <ust_typ>percent</ust_typ>
                 </heizkosten>
+                <zusatzkosten_6>
+                    <name>Garage</name>
+                    <netto>150</netto>
+                    <brutto>150</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>true</optional>
+                    <gruppe>rent</gruppe>
+                </zusatzkosten_6>
+                <zusatzkosten_8>
+                    <name>Liftkosten</name>
+                    <netto>15</netto>
+                    <brutto>18</brutto>
+                    <ust>20</ust>
+                    <ust_wert>20</ust_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>other</gruppe>
+                </zusatzkosten_8>
             </zusatzkosten>
+            <grunderwerbssteuer>3.5</grunderwerbssteuer>
+            <grundbucheintragung>1.1</grundbucheintragung>
+            <user_defined_simplefield feldname="monatlichekostenbrutto">906.6</user_defined_simplefield>
+            <user_defined_anyfield>
+                <mwst_gesamt>265.6</mwst_gesamt>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <sonstige_kosten>15</sonstige_kosten>
+            </user_defined_anyfield>
         </preise>
         <flaechen>
-            <nutzflaeche>15</nutzflaeche>
-            <grundstuecksflaeche>15</grundstuecksflaeche>
+            <nutzflaeche>150</nutzflaeche>
+            <grundstuecksflaeche>150</grundstuecksflaeche>
         </flaechen>
         <ausstattung>
-            <angeschl_gastronomie HOTELRESTAURANT="true"/>
-            <ausricht_balkon_terrasse NORD="true"/>
-            <boden ESTRICH="true"/>
-            <brauereibindung>true</brauereibindung>
-            <sicherheitstechnik POLIZEIRUF="true"/>
+            <ausricht_balkon_terrasse NORD="1"/>
+            <bad FENSTER="1" WANNE="1" DUSCHE="1" BIDET="1" PISSOIR="1"/>
+            <befeuerung SOLAR="1"/>
+            <boden PARKETT="1" STEIN="1" TEPPICH="1" MARMOR="1"/>
+            <fahrstuhl PERSONEN="1"/>
+            <heizungsart FUSSBODEN="1"/>
+            <kabel_sat_tv>1</kabel_sat_tv>
+            <kamin>1</kamin>
+            <kueche OFFEN="1"/>
+            <sauna>1</sauna>
+            <sicherheitstechnik ALARMANLAGE="1" POLIZEIRUF="1"/>
+            <stellplatzart TIEFGARAGE="1"/>
         </ausstattung>
         <zustand_angaben>
             <energiepass>
                 <epart>BEDARF</epart>
                 <gueltig_bis>2012-09-12</gueltig_bis>
             </energiepass>
+            <hwbwert>44</hwbwert>
+            <hwbklasse>B</hwbklasse>
+            <fgeewert>0.96</fgeewert>
+            <fgeeklasse>B</fgeeklasse>
             <user_defined_simplefield feldname="epass_hwbwert">44</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_hwbklasse">B</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeewert">0.96</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
         </zustand_angaben>
-        <infrastruktur/>
         <freitexte>
             <objekttitel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</objekttitel>
-            <ausstatt_beschr>Estrich, Nordbalkon -terrasse, Angeschl. Hotelrestaurant, Brauereibindung, Polizeiruf</ausstatt_beschr>
+            <ausstatt_beschr>Parkett, Steinboden, Teppichboden, Marmor, Solarenergie, Fußbodenheizung, Kamin, Wohnküche
+                / offene Küche, Personenaufzug, Nordbalkon -terrasse, Bad mit Fenster, Badewanne, Dusche, Bidet,
+                Pissoir, Kabel/Satelliten-TV, Tiefgarage, Alarmanlage, Polizeiruf, Sauna
+            </ausstatt_beschr>
             <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-                &lt;p&gt;Elegantes, repräsentatives Büro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br /&gt;Komplett ausgestattetes 1 bis 2 Personenbüro mit Karlskirchenblick für Ihre Beratungen mit anspruchsvolle Kunden. &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten, Küche- und Caféraum-Benützung, Getränke für Besucher. &lt;br /&gt;Weiters zur Verfügung: Besprechung- und Konferenzräume, Sekretariatsservice Kopierer, Drucker, diverse
-                Bürogeräte!&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, ab 1 Monatsverträge oder langfristige Bindungen ebenfalls möglich!&lt;br /&gt;Ein ähnliches Büro können Sie auch am Parkring und in der Börse mieten, billigere Optionen zu 1280 ? monatlich im Twin Towers oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann ein Einzelbüro auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br
-                /&gt;&lt;/p&gt;</objektbeschreibung>
+                &lt;p&gt;Elegantes, repräsentatives Büro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br /&gt;Komplett
+                ausgestattetes 1 bis 2 Personenbüro mit Karlskirchenblick für Ihre Beratungen mit anspruchsvolle Kunden.
+                &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten,
+                Küche- und Caféraum-Benützung, Getränke für Besucher. &lt;br /&gt;Weiters zur Verfügung: Besprechung-
+                und Konferenzräume, Sekretariatsservice Kopierer, Drucker, diverse Bürogeräte!&lt;br /&gt;Der Mietpreis
+                ist auf der Basis eines Jahresvertrages kalkuliert, ab 1 Monatsverträge oder langfristige Bindungen
+                ebenfalls möglich!&lt;br /&gt;Ein ähnliches Büro können Sie auch am Parkring und in der Börse mieten,
+                billigere Optionen zu 1280 ? monatlich im Twin Towers oder Airport.&lt;br /&gt;Wenn freie Kapazität
+                vorhanden, kann ein Einzelbüro auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br
+                /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
             <objektbeschreibung_intern></objektbeschreibung_intern>
             <user_defined_anyfield>
                 <justimmo_freitext1>Freitext 1</justimmo_freitext1>
@@ -96,12 +151,12 @@
                 <anhangtitel/>
                 <format>.jpg</format>
                 <daten>
-                    <pfad>http://files.justimmo.at/public/pic/big/AH6hJRzdDi.jpg</pfad>
-                    <small>http://files.justimmo.at/public/pic/small/AH6hJRzdDi.jpg</small>
-                    <medium>http://files.justimmo.at/public/pic/medium/AH6hJRzdDi.jpg</medium>
-                    <big2>http://files.justimmo.at/public/pic/big2/AH6hJRzdDi.jpg</big2>
-                    <medium2>http://files.justimmo.at/public/pic/pdf/AH6hJRzdDi.jpg</medium2>
-                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AH6hJRzdDi.jpg</s220x155>
+                    <pfad>http://files.justimmo.at/public/pic/big/AHA0s6aAaT.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHA0s6aAaT.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHA0s6aAaT.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHA0s6aAaT.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHA0s6aAaT.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHA0s6aAaT.jpg</s220x155>
                 </daten>
             </anhang>
             <anhang location="REMOTE">
@@ -120,12 +175,24 @@
                 <anhangtitel/>
                 <format>.jpg</format>
                 <daten>
-                    <pfad>http://files.justimmo.at/public/pic/big/AHA0vHltyk.jpg</pfad>
-                    <small>http://files.justimmo.at/public/pic/small/AHA0vHltyk.jpg</small>
-                    <medium>http://files.justimmo.at/public/pic/medium/AHA0vHltyk.jpg</medium>
-                    <big2>http://files.justimmo.at/public/pic/big2/AHA0vHltyk.jpg</big2>
-                    <medium2>http://files.justimmo.at/public/pic/pdf/AHA0vHltyk.jpg</medium2>
-                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHA0vHltyk.jpg</s220x155>
+                    <pfad>http://files.justimmo.at/public/pic/big/AKTkdL-vUO.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKTkdL-vUO.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKTkdL-vUO.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKTkdL-vUO.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKTkdL-vUO.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKTkdL-vUO.jpg</s220x155>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel/>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/big/AH6hJRzdDi.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AH6hJRzdDi.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AH6hJRzdDi.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AH6hJRzdDi.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AH6hJRzdDi.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AH6hJRzdDi.jpg</s220x155>
                 </daten>
             </anhang>
             <anhang location="REMOTE">
@@ -144,12 +211,36 @@
                 <anhangtitel/>
                 <format>.jpg</format>
                 <daten>
-                    <pfad>http://files.justimmo.at/public/pic/big/AHA0s6aAaT.jpg</pfad>
-                    <small>http://files.justimmo.at/public/pic/small/AHA0s6aAaT.jpg</small>
-                    <medium>http://files.justimmo.at/public/pic/medium/AHA0s6aAaT.jpg</medium>
-                    <big2>http://files.justimmo.at/public/pic/big2/AHA0s6aAaT.jpg</big2>
-                    <medium2>http://files.justimmo.at/public/pic/pdf/AHA0s6aAaT.jpg</medium2>
-                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHA0s6aAaT.jpg</s220x155>
+                    <pfad>http://files.justimmo.at/public/pic/big/AKTkxv_wOI.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKTkxv_wOI.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKTkxv_wOI.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKTkxv_wOI.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKTkxv_wOI.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKTkxv_wOI.jpg</s220x155>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel/>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/big/AKTkVwkOAX.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKTkVwkOAX.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKTkVwkOAX.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKTkVwkOAX.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKTkVwkOAX.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKTkVwkOAX.jpg</s220x155>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel/>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/big/AHA0vHltyk.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHA0vHltyk.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHA0vHltyk.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHA0vHltyk.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHA0vHltyk.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHA0vHltyk.jpg</s220x155>
                 </daten>
             </anhang>
             <anhang location="REMOTE">
@@ -180,35 +271,30 @@
                 <anhangtitel/>
                 <format>.jpg</format>
                 <daten>
-                    <pfad>http://files.justimmo.at/public/pic/big/AH9q1Rn3D6.jpg</pfad>
-                    <small>http://files.justimmo.at/public/pic/small/AH9q1Rn3D6.jpg</small>
-                    <medium>http://files.justimmo.at/public/pic/medium/AH9q1Rn3D6.jpg</medium>
-                    <big2>http://files.justimmo.at/public/pic/big2/AH9q1Rn3D6.jpg</big2>
-                    <medium2>http://files.justimmo.at/public/pic/pdf/AH9q1Rn3D6.jpg</medium2>
-                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AH9q1Rn3D6.jpg</s220x155>
+                    <pfad>http://files.justimmo.at/public/pic/big/ANl3XFL2ar.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ANl3XFL2ar.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ANl3XFL2ar.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ANl3XFL2ar.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ANl3XFL2ar.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ANl3XFL2ar.jpg</s220x155>
                 </daten>
             </anhang>
         </anhaenge>
-        <dokumente>
-            <dokument>
-                <titel>OpenDocument Text (neu).odt</titel>
-                <pfad>http://files.justimmo.at/public/doc/AHUm6PQg_u.odt</pfad>
-                <format>odt</format>
-            </dokument>
-        </dokumente>
+        <dokumente/>
         <videos/>
         <bilder360/>
         <verwaltung_objekt>
             <objektadresse_freigeben>1</objektadresse_freigeben>
             <verfuegbar_ab></verfuegbar_ab>
-            <status>verkauft</status>
+            <status>aktiv</status>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>195439</objektnr_intern>
             <objektnr_extern>34</objektnr_extern>
             <aktion aktionart="NEW"/>
             <openimmo_obid>OBGC201309171129328278o9prei3s5</openimmo_obid>
-            <stand_vom>2013-11-21</stand_vom>
+            <stand_vom>2014-11-05</stand_vom>
             <projekt_id>51</projekt_id>
         </verwaltung_techn>
     </immobilie>
