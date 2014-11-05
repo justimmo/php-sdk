@@ -1,3 +1,8 @@
+## 1.0.10
+* add vatValue, vatInput, vatType and optional to AdditionalCosts
+* add commission to realty
+* add locality to realty
+
 ## 1.0.9 
 * fix openbase_dir restriction warning
 * add address data to RealtyInquiry
