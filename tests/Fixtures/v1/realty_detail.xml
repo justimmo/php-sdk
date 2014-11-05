@@ -18,6 +18,7 @@
             <wohnungsnr>1</wohnungsnr>
             <tuernummer>1</tuernummer>
             <bundesland>Wien</bundesland>
+            <regionaler_zusatz>Am Graben</regionaler_zusatz>
             <land iso_land="AUT"/>
         </geo>
         <kontaktperson>
@@ -130,6 +131,7 @@
         </zustand_angaben>
         <freitexte>
             <objekttitel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</objekttitel>
+            <lage>Im schönen Grünen</lage>
             <ausstatt_beschr>Parkett, Steinboden, Teppichboden, Marmor, Solarenergie, Fußbodenheizung, Kamin, Wohnküche
                 / offene Küche, Personenaufzug, Nordbalkon -terrasse, Bad mit Fenster, Badewanne, Dusche, Bidet,
                 Pissoir, Kabel/Satelliten-TV, Tiefgarage, Alarmanlage, Polizeiruf, Sauna

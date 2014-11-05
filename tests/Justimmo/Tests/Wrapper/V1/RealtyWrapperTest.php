@@ -65,6 +65,7 @@ class RealtyWrapperTest extends TestCase
             'MIETE_PACHT' => false,
         ), $objekt->getMarketingType());
         $this->assertEquals('Stephansplatz', $objekt->getStreet());
+        $this->assertEquals('Am Graben', $objekt->getRegionalAddition());
         $this->assertEmpty($objekt->getHallway());
         $this->assertEmpty($objekt->getLandParcel());
         $this->assertEmpty($objekt->getDistrict());
@@ -189,5 +190,6 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('Freitext 1', $objekt->getFreetext1());
         $this->assertNull($objekt->getFreetext2());
         $this->assertNull($objekt->getFreetext3());
+        $this->assertEquals('Im schönen Grünen', $objekt->getLocality());
     }
 }

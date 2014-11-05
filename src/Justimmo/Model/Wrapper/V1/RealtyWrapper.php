@@ -183,16 +183,19 @@ class RealtyWrapper extends AbstractWrapper
             $objekt->setTitle((string) $xml->freitexte->objekttitel);
             $objekt->setEquipmentDescription((string) $xml->freitexte->ausstatt_beschr);
             $objekt->setDescription((string) $xml->freitexte->objektbeschreibung);
+            if (isset($xml->freitexte->lage)) {
+                $objekt->setLocality((string) $xml->freitexte->lage);
+            }
 
             if (isset($xml->freitexte->user_defined_anyfield)) {
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext1)) {
-                    $objekt->setFreetext1($xml->freitexte->user_defined_anyfield->justimmo_freitext1);
+                    $objekt->setFreetext1((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext1);
                 }
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext2)) {
-                    $objekt->setFreetext2($xml->freitexte->user_defined_anyfield->justimmo_freitext2);
+                    $objekt->setFreetext2((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext2);
                 }
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext3)) {
-                    $objekt->setFreetext3($xml->freitexte->user_defined_anyfield->justimmo_freitext3);
+                    $objekt->setFreetext3((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext3);
                 }
             }
         }

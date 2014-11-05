@@ -150,6 +150,8 @@ class Realty
 
     protected $commission = null;
 
+    protected $locality = null;
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1853,6 +1855,26 @@ class Realty
     public function setCommission($value)
     {
         $this->commission = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setLocality($value)
+    {
+        $this->locality = $value;
 
         return $this;
     }
