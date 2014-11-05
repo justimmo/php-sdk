@@ -76,6 +76,7 @@ class RealtyWrapper extends AbstractWrapper
         'vertragserrichtungsgebuehr',
         'kaution',
         'abstand',
+        'aussen_courtage',
     );
 
     protected $flaechenMapping = array(

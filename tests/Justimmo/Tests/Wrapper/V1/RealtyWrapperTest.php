@@ -79,6 +79,8 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(450000, $objekt->getPurchasePrice());
         $this->assertEquals(500, $objekt->getAdditionalCharges());
         $this->assertEquals(126, $objekt->getHeatingCosts());
+        $this->assertEquals('EUR', $objekt->getCurrency());
+        $this->assertEquals('16.200,00 € inkl. 20% USt.', $objekt->getCommission());
         $this->assertNull($objekt->getBuildingSubsidies());
         $this->assertNull($objekt->getYield());
         $this->assertNull($objekt->getNetEarningMonthly());

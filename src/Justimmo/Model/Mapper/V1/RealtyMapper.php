@@ -241,6 +241,9 @@ class RealtyMapper extends AbstractMapper
             'justimmo_freitext3'         => array(
                 'property' => 'freetext3',
             ),
+            'aussen_courtage'         => array(
+                'property' => 'commission',
+            ),
         );
     }
 

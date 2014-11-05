@@ -148,6 +148,8 @@ class Realty
 
     protected $contractEstablishmentCosts = null;
 
+    protected $commission = null;
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1833,5 +1835,25 @@ class Realty
     public function getFreetext3()
     {
         return $this->freetext3;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCommission()
+    {
+        return $this->commission;
+    }
+
+    /**
+     * @param null $value
+     *
+     * @return $this
+     */
+    public function setCommission($value)
+    {
+        $this->commission = $value;
+
+        return $this;
     }
 }
