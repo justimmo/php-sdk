@@ -112,6 +112,15 @@ interface JustimmoApiInterface
     public function callRealtyTypes(array $params = array());
 
     /**
+     * retrieve a realtycategories list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyCategories(array $params = array());
+
+    /**
      * retrieves the expose for a realty
      *
      * @param   $pk

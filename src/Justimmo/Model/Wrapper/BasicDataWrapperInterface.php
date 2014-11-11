@@ -13,4 +13,6 @@ interface BasicDataWrapperInterface
     public function transformRegions($data);
 
     public function transformRealtyTypes($data);
+
+    public function transformRealtyCategories($data);
 }

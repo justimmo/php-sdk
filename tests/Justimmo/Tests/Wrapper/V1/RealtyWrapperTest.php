@@ -191,5 +191,11 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getFreetext2());
         $this->assertNull($objekt->getFreetext3());
         $this->assertEquals('Im schönen Grünen', $objekt->getLocality());
+
+        $this->assertEquals(2, count($objekt->getCategories()));
+        $this->assertEquals(array(
+            2057 => 'Referenzobjekte',
+            3449 => 'Topobjekte',
+        ), $objekt->getCategories());
     }
 }

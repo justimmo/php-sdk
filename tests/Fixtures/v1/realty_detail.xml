@@ -294,6 +294,10 @@
             <verfuegbar_ab></verfuegbar_ab>
             <status>aktiv</status>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="2057">Referenzobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="3449">Topobjekte</justimmo_kategorie>
+            </user_defined_anyfield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>195439</objektnr_intern>

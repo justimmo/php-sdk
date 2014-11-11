@@ -235,6 +235,18 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * retrieve a realty type list
+     *
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function callRealtyCategories(array $params = array())
+    {
+        return $this->call('objekt/kategorien', $params);
+    }
+
+    /**
      * retrieves the expose for a realty
      *
      * @param   $pk

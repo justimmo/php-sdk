@@ -70,6 +70,11 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
+    public function callRealtyCategories(array $params = array())
+    {
+
+    }
+
     public function callExpose($pk)
     {
 

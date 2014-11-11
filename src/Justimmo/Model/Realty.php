@@ -152,6 +152,8 @@ class Realty
 
     protected $locality = null;
 
+    protected $categories = array();
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1875,6 +1877,39 @@ class Realty
     public function setLocality($value)
     {
         $this->locality = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setCategories($value)
+    {
+        $this->categories = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     *
+     * @return $this
+     */
+    public function addCategory($id, $name)
+    {
+        $this->categories[$id] = $name;
 
         return $this;
     }

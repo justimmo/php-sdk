@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <objektkategorie>
+        <id>3469</id>
+        <name>Kat 1</name>
+        <sortablerank>2</sortablerank>
+    </objektkategorie>
+    <objektkategorie>
+        <id>3582</id>
+        <name>Kat 2</name>
+        <sortablerank>0</sortablerank>
+    </objektkategorie>
+    <objektkategorie>
+        <id>3140</id>
+        <name>Luxusobjekte</name>
+        <sortablerank>1</sortablerank>
+    </objektkategorie>
+    <objektkategorie>
+        <id>2057</id>
+        <name>Referenzobjekte</name>
+        <sortablerank>3</sortablerank>
+    </objektkategorie>
+</justimmo>

@@ -162,6 +162,17 @@ class BasicDataQuery
         return $return;
     }
 
+    public function findRealtyCategories()
+    {
+        $response = $this->api->callRealtyCategories($this->params);
+
+        $return = $this->wrapper->transformRealtyCategories($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
     /**
      * sets a value for a key
      *

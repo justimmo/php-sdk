@@ -83,4 +83,19 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
         return $return;
     }
+
+    public function transformRealtyCategories($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $return = array();
+        foreach ($xml->objektkategorie as $objektkategorie) {
+            $return[(int) $objektkategorie->id] = array(
+                'name'         => (string) $objektkategorie->name,
+                'sortableRank' => (int) $objektkategorie->sortablerank,
+            );
+        }
+
+        return $return;
+    }
 }
