@@ -1,3 +1,6 @@
+## 1.0.11
+* add support for realty categories
+
 ## 1.0.10
 * add vatValue, vatInput, vatType and optional to AdditionalCosts
 * add commission to realty
