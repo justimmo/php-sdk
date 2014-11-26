@@ -14,6 +14,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByZipCode($value)
  * @method RealtyQuery filterByRooms($value)
  * @method RealtyQuery filterByPropertyNumber($value)
+ * @method RealtyQuery filterByArea($value)
  * @method RealtyQuery filterByLivingArea($value)
  * @method RealtyQuery filterByFloorArea($value)
  * @method RealtyQuery filterBySurfaceArea($value)
