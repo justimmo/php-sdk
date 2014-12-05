@@ -291,7 +291,7 @@
         <bilder360/>
         <verwaltung_objekt>
             <objektadresse_freigeben>1</objektadresse_freigeben>
-            <verfuegbar_ab></verfuegbar_ab>
+            <verfuegbar_ab>November 2015</verfuegbar_ab>
             <status>aktiv</status>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
             <user_defined_anyfield>

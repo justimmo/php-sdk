@@ -197,5 +197,7 @@ class RealtyWrapperTest extends TestCase
             2057 => 'Referenzobjekte',
             3449 => 'Topobjekte',
         ), $objekt->getCategories());
+
+        $this->assertEquals('November 2015', $objekt->getAvailableFrom());
     }
 }

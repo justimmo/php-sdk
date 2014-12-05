@@ -165,6 +165,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->verwaltung_objekt)) {
             $objekt->setStatus($this->cast($xml->verwaltung_objekt->status));
+            $objekt->setAvailableFrom($this->cast($xml->verwaltung_objekt->verfuegbar_ab));
 
             if (isset($xml->verwaltung_objekt->user_defined_anyfield) && isset($xml->verwaltung_objekt->user_defined_anyfield->justimmo_kategorie)) {
                 foreach ($xml->verwaltung_objekt->user_defined_anyfield->justimmo_kategorie as $category) {

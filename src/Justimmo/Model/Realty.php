@@ -154,6 +154,8 @@ class Realty
 
     protected $categories = array();
 
+    protected $availableFrom = null;
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1910,6 +1912,26 @@ class Realty
     public function addCategory($id, $name)
     {
         $this->categories[$id] = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvailableFrom()
+    {
+        return $this->availableFrom;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setAvailableFrom($value)
+    {
+        $this->availableFrom = $value;
 
         return $this;
     }
