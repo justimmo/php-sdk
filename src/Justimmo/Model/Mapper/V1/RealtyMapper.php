@@ -247,6 +247,9 @@ class RealtyMapper extends AbstractMapper
             'aussen_courtage'         => array(
                 'property' => 'commission',
             ),
+            'status_id'         => array(
+                'type' => 'int',
+            ),
         );
     }
 

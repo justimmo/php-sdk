@@ -293,7 +293,9 @@
             <objektadresse_freigeben>1</objektadresse_freigeben>
             <verfuegbar_ab>November 2015</verfuegbar_ab>
             <status>aktiv</status>
+            <status_id>5</status_id>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
             <user_defined_anyfield>
                 <justimmo_kategorie id="2057">Referenzobjekte</justimmo_kategorie>
                 <justimmo_kategorie id="3449">Topobjekte</justimmo_kategorie>

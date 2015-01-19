@@ -40,6 +40,8 @@ class Realty
 
     protected $status = null;
 
+    protected $statusId = null;
+
     protected $occupancy = null;
 
     protected $marketingType = null;
@@ -1932,6 +1934,26 @@ class Realty
     public function setAvailableFrom($value)
     {
         $this->availableFrom = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getStatusId()
+    {
+        return $this->statusId;
+    }
+
+    /**
+     * @param null $statusId
+     *
+     * @return $this
+     */
+    public function setStatusId($statusId)
+    {
+        $this->statusId = $statusId;
 
         return $this;
     }

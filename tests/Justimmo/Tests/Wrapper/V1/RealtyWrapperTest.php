@@ -2,6 +2,7 @@
 namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\Realty;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
 
@@ -32,8 +33,16 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(3, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
-        foreach ($list as $entry) {
+        /** @var Realty $entry */
+        foreach ($list as $i => $entry) {
             $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+            if ($i == 1) {
+                $this->assertEquals('aktiv', $entry->getStatus());
+                $this->assertEquals(5, $entry->getStatusId());
+            } else {
+                $this->assertEquals('vermittelt', $entry->getStatus());
+                $this->assertEquals(8, $entry->getStatusId());
+            }
         }
     }
 
@@ -199,5 +208,8 @@ class RealtyWrapperTest extends TestCase
         ), $objekt->getCategories());
 
         $this->assertEquals('November 2015', $objekt->getAvailableFrom());
+
+        $this->assertEquals('aktiv', $objekt->getStatus());
+        $this->assertEquals(5, $objekt->getStatusId());
     }
 }

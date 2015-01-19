@@ -35,6 +35,7 @@ class RealtyWrapper extends AbstractWrapper
         'wohnflaeche',
         'projekt_id',
         'status',
+        'status_id',
         'anzahl_zimmer',
         'wohnbaufoerderung',
         'anzahl_loggias',
@@ -165,6 +166,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->verwaltung_objekt)) {
             $objekt->setStatus($this->cast($xml->verwaltung_objekt->status));
+            $objekt->setStatusId($this->cast($xml->verwaltung_objekt->status_id));
             $objekt->setAvailableFrom($this->cast($xml->verwaltung_objekt->verfuegbar_ab));
 
             if (isset($xml->verwaltung_objekt->user_defined_anyfield) && isset($xml->verwaltung_objekt->user_defined_anyfield->justimmo_kategorie)) {
