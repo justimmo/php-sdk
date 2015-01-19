@@ -71,6 +71,16 @@ class JustimmoApi implements JustimmoApiInterface
     protected $culture = 'de';
 
     /**
+     * options for php curl request
+     *
+     * @var array
+     */
+    protected $curlOptions = array(
+        CURLOPT_CONNECTTIMEOUT_MS  => 2500,
+        CURLOPT_RETURNTRANSFER     => true,
+    );
+
+    /**
      *
      * @param                 $username
      * @param                 $password
@@ -328,7 +338,7 @@ class JustimmoApi implements JustimmoApiInterface
         $request = new CurlRequest($url, array(
             CURLOPT_USERPWD        => $this->username . ':' . $this->password,
             CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
-        ));
+        ) + $this->curlOptions);
 
         if (filter_var(ini_get('open_basedir'), FILTER_VALIDATE_BOOLEAN) === false && filter_var(ini_get('safe_mode'), FILTER_VALIDATE_BOOLEAN) === false) {
             $request->setOption(CURLOPT_FOLLOWLOCATION, true);
@@ -514,4 +524,30 @@ class JustimmoApi implements JustimmoApiInterface
         return $this->culture;
     }
 
+    /**
+     * @param array $curlOptions
+     *
+     * @return $this
+     */
+    public function setCurlOptions($curlOptions)
+    {
+        $this->curlOptions = $curlOptions;
+
+        return $this;
+    }
+
+    /**
+     * sets a specific option for curl requests
+     *
+     * @param $key
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setCurlOption($key, $value)
+    {
+        $this->curlOptions[$key] = $value;
+
+        return $this;
+    }
 }
