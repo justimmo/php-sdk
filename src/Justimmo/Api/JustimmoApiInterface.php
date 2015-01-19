@@ -124,10 +124,11 @@ interface JustimmoApiInterface
      * retrieves the expose for a realty
      *
      * @param   $pk
+     * @param   $type
      *
      * @return mixed
      */
-    public function callExpose($pk);
+    public function callExpose($pk, $type = 'Default');
 
     /**
      * makes a request to the api to create a realty inquiry to the contact person of the realty

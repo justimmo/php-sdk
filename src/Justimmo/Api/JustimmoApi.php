@@ -250,12 +250,13 @@ class JustimmoApi implements JustimmoApiInterface
      * retrieves the expose for a realty
      *
      * @param   $pk
+     * @param   $type
      *
      * @return mixed
      */
-    public function callExpose($pk)
+    public function callExpose($pk, $type = 'Default')
     {
-        return $this->call('objekt/expose', array('objekt_id' => $pk));
+        return $this->call('objekt/expose', array('objekt_id' => $pk, 'expose' => $type));
     }
 
     /**

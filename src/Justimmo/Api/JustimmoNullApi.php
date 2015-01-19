@@ -75,7 +75,7 @@ class JustimmoNullApi implements JustimmoApiInterface
 
     }
 
-    public function callExpose($pk)
+    public function callExpose($pk, $type = 'Default')
     {
 
     }
