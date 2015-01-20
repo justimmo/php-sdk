@@ -1,3 +1,8 @@
+## 1.0.13
+* add support for realty status id
+* update callExpose to support different expose types
+* add possibility to configure curl requests made by the sdk
+
 ## 1.0.12
 * add filterByArea
 * add availableFrom
