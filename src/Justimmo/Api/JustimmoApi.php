@@ -26,7 +26,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @var string
      */
-    protected $baseUrl = 'http://api.justimmo.at/rest';
+    protected $baseUrl = 'https://api.justimmo.at/rest';
 
     /**
      * version of api to be called
