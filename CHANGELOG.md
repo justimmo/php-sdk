@@ -1,3 +1,12 @@
+## 1.0.14
+* https is now the default protocol
+* support for half-rooms
+* support for rent duration
+* support for buildable area
+* additional information about realty types
+* support for sub realty types and filter
+* support for style of building and filter
+
 ## 1.0.13
 * add support for realty status id
 * update callExpose to support different expose types
