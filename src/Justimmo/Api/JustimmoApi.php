@@ -76,8 +76,9 @@ class JustimmoApi implements JustimmoApiInterface
      * @var array
      */
     protected $curlOptions = array(
-        CURLOPT_CONNECTTIMEOUT_MS  => 2500,
-        CURLOPT_RETURNTRANSFER     => true,
+        CURLOPT_CONNECTTIMEOUT_MS => 2500,
+        CURLOPT_RETURNTRANSFER    => true,
+        CURLOPT_SSL_VERIFYPEER    => false,
     );
 
     /**

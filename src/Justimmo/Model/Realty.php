@@ -46,7 +46,35 @@ class Realty
 
     protected $marketingType = null;
 
+    /**
+     * @var null|string
+     */
     protected $realtyType = null;
+
+    /**
+     * @var null|int
+     */
+    protected $realtyTypeId = null;
+
+    /**
+     * @var null|string
+     */
+    protected $realtyTypeName = null;
+
+    /**
+     * @var null|string
+     */
+    protected $subRealtyType = null;
+
+    /**
+     * @var null|int
+     */
+    protected $subRealtyTypeId = null;
+
+    /**
+     * @var null|string
+     */
+    protected $subRealtyTypeName = null;
 
     protected $equipmentDescription = null;
 
@@ -223,11 +251,121 @@ class Realty
     }
 
     /**
-     * @return null
+     * returns the openimmo conform realty type
+     *
+     * @return null|string
      */
     public function getRealtyType()
     {
         return $this->realtyType;
+    }
+
+    /**
+     * returns the justimmo id of the realty type
+     *
+     * @return int|null
+     */
+    public function getRealtyTypeId()
+    {
+        return $this->realtyTypeId;
+    }
+
+    /**
+     * @param int|null $realtyTypeId
+     *
+     * @return $this
+     */
+    public function setRealtyTypeId($realtyTypeId)
+    {
+        $this->realtyTypeId = $realtyTypeId;
+
+        return $this;
+    }
+
+    /**
+     * returns the justimmo name of the realty type
+     *
+     * @return null|string
+     */
+    public function getRealtyTypeName()
+    {
+        return $this->realtyTypeName;
+    }
+
+    /**
+     * @param null|string $realtyTypeName
+     *
+     * @return $this
+     */
+    public function setRealtyTypeName($realtyTypeName)
+    {
+        $this->realtyTypeName = $realtyTypeName;
+
+        return $this;
+    }
+
+    /**
+     * returns the openimmo conform sub realty type
+     *
+     * @return null|string
+     */
+    public function getSubRealtyType()
+    {
+        return $this->subRealtyType;
+    }
+
+    /**
+     * @param null|string $subRealtyType
+     *
+     * @return $this
+     */
+    public function setSubRealtyType($subRealtyType)
+    {
+        $this->subRealtyType = $subRealtyType;
+
+        return $this;
+    }
+
+    /**
+     * returns the justimmo id of the sub realty type
+     *
+     * @return int|null
+     */
+    public function getSubRealtyTypeId()
+    {
+        return $this->subRealtyTypeId;
+    }
+
+    /**
+     * @param int|null $subRealtyTypeId
+     *
+     * @return $this
+     */
+    public function setSubRealtyTypeId($subRealtyTypeId)
+    {
+        $this->subRealtyTypeId = $subRealtyTypeId;
+        return $this;
+    }
+
+    /**
+     * * returns the justimmo name of the sub realty type
+     *
+     * @return string|null
+     */
+    public function getSubRealtyTypeName()
+    {
+        return $this->subRealtyTypeName;
+    }
+
+    /**
+     * @param string|null $subRealtyTypeName
+     *
+     * @return $this
+     */
+    public function setSubRealtyTypeName($subRealtyTypeName)
+    {
+        $this->subRealtyTypeName = $subRealtyTypeName;
+        return $this;
     }
 
     /**

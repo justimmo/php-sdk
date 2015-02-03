@@ -5,9 +5,13 @@
             <nutzungsart WOHNEN="0" GEWERBE="1" ANLAGE="0"/>
             <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
             <objektart>
-                <buero_praxen/>
-                <subobjektart></subobjektart>
+                <buero_praxen buero_typ="PRAXIS"/>
+                <subobjektart>PRAXIS</subobjektart>
             </objektart>
+            <user_defined_simplefield feldname="objektart_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Büro / Praxis</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">28</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">Praxis</user_defined_simplefield>
         </objektkategorie>
         <geo>
             <plz>1030</plz>

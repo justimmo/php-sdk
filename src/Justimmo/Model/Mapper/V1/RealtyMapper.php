@@ -254,6 +254,22 @@ class RealtyMapper extends AbstractMapper
             'status_id'         => array(
                 'type' => 'int',
             ),
+            'objektart_id'     => array(
+                'property' => 'realtyTypeId',
+                'type'     => 'int',
+            ),
+            'objektart_name'     => array(
+                'property' => 'realtyTypeName',
+                'type'     => 'string',
+            ),
+            'sub_objektart_id'     => array(
+                'property' => 'subRealtyTypeId',
+                'type'     => 'int',
+            ),
+            'sub_objektart_name'   => array(
+                'property' => 'subRealtyTypeName',
+                'type'     => 'string',
+            ),
         );
     }
 
@@ -265,21 +281,22 @@ class RealtyMapper extends AbstractMapper
     protected function getFilterMapping()
     {
         return array(
-            'Price'          => 'preis',
-            'RealtyTypeId'   => 'objektart_id',
-            'RealtyCategory' => 'tag_name',
-            'Tag'            => 'tag_name',
-            'ZipCode'        => 'plz',
-            'Rooms'          => 'zimmer',
-            'PropertyNumber' => 'objektnummer',
-            'Area'           => 'flaeche',
-            'LivingArea'     => 'wohnflaeche',
-            'FloorArea'      => 'nutzflaeche',
-            'SurfaceArea'    => 'grundflaeche',
-            'Keyword'        => 'stichwort',
-            'FederalStateId' => 'bundesland_id',
-            'Rent'           => 'miete',
-            'Buy'            => 'kauf',
+            'Price'           => 'preis',
+            'RealtyTypeId'    => 'objektart_id',
+            'SubRealtyTypeId' => 'subobjektart_id',
+            'RealtyCategory'  => 'tag_name',
+            'Tag'             => 'tag_name',
+            'ZipCode'         => 'plz',
+            'Rooms'           => 'zimmer',
+            'PropertyNumber'  => 'objektnummer',
+            'Area'            => 'flaeche',
+            'LivingArea'      => 'wohnflaeche',
+            'FloorArea'       => 'nutzflaeche',
+            'SurfaceArea'     => 'grundflaeche',
+            'Keyword'         => 'stichwort',
+            'FederalStateId'  => 'bundesland_id',
+            'Rent'            => 'miete',
+            'Buy'             => 'kauf',
         );
     }
 }

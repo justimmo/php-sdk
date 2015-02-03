@@ -188,12 +188,17 @@ class RealtyWrapper extends AbstractWrapper
         if (isset($xml->objektkategorie)) {
             if (isset($xml->objektkategorie->objektart)) {
                 $objekt->setRealtyType((string) $xml->objektkategorie->objektart->children()->getName());
+                $objekt->setSubRealtyType((string) $xml->objektkategorie->objektart->children()->attributes());
             }
             if (isset($xml->objektkategorie->nutzungsart)) {
                 $objekt->setOccupancy(filter_var_array($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
             }
             if (isset($xml->objektkategorie->vermarktungsart)) {
                 $objekt->setMarketingType(filter_var_array($this->attributesToArray($xml->objektkategorie->vermarktungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
+            }
+
+            foreach ($xml->objektkategorie->user_defined_simplefield as $simpleField) {
+                $this->mapSimpleField($simpleField, $objekt);
             }
         }
 
@@ -309,11 +314,7 @@ class RealtyWrapper extends AbstractWrapper
                     ->setValidUntil($this->cast($xml->zustand_angaben->energiepass->gueltig_bis, 'datetime'));
 
                 foreach ($xml->zustand_angaben->user_defined_simplefield as $simpleField) {
-                    $attributes = $this->attributesToArray($simpleField);
-                    if (array_key_exists('feldname', $attributes)) {
-                        $setter = $this->mapper->getSetter($attributes['feldname']);
-                        $energiepass->$setter($this->cast($simpleField, $this->mapper->getType($attributes['feldname'])));
-                    }
+                    $this->mapSimpleField($simpleField, $energiepass);
                 }
 
                 $objekt->setEnergyPass($energiepass);
@@ -376,6 +377,14 @@ class RealtyWrapper extends AbstractWrapper
                 $attachment->setTitle($this->cast($anhang->titel));
                 $objekt->addAttachment($attachment);
             }
+        }
+    }
+
+    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model) {
+        $attributes = $this->attributesToArray($simpleField);
+        if (array_key_exists('feldname', $attributes)) {
+            $setter = $this->mapper->getSetter($attributes['feldname']);
+            $model->$setter($this->cast($simpleField, $this->mapper->getType($attributes['feldname'])));
         }
     }
 }

@@ -63,6 +63,11 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(1030, $objekt->getZipCode());
         $this->assertEquals('Wien', $objekt->getPlace());
         $this->assertEquals('buero_praxen', $objekt->getRealtyType());
+        $this->assertEquals(5, $objekt->getRealtyTypeId());
+        $this->assertEquals('Büro / Praxis', $objekt->getRealtyTypeName());
+        $this->assertEquals('PRAXIS', $objekt->getSubRealtyType());
+        $this->assertEquals(28, $objekt->getSubRealtyTypeId());
+        $this->assertEquals('Praxis', $objekt->getSubRealtyTypeName());
 
         $this->assertEquals(array(
             'WOHNEN'  => false,
