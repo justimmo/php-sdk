@@ -52,6 +52,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'surfaceArea',
                 'type'     => 'double',
             ),
+            'verbaubare_flaeche'         => array(
+                'property' => 'buildableArea',
+                'type'     => 'double',
+            ),
             'wohnflaeche'                => array(
                 'property' => 'livingArea',
                 'type'     => 'double',

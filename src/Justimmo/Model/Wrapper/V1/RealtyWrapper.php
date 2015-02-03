@@ -102,6 +102,7 @@ class RealtyWrapper extends AbstractWrapper
         'terrassen_flaeche',
         'anzahl_garagen',
         'anzahl_abstellraum',
+        'verbaubare_flaeche',
     );
 
     protected $energyMapping = array(

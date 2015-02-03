@@ -100,6 +100,7 @@
         <flaechen>
             <nutzflaeche>150</nutzflaeche>
             <grundstuecksflaeche>150</grundstuecksflaeche>
+            <verbaubare_flaeche>355</verbaubare_flaeche>
         </flaechen>
         <ausstattung>
             <ausricht_balkon_terrasse NORD="1"/>

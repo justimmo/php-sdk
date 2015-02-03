@@ -214,5 +214,7 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(5, $objekt->getRentDuration());
         $this->assertEquals('month', $objekt->getRentDurationType());
+
+        $this->assertEquals(355, $objekt->getBuildableArea());
     }
 }

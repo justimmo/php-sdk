@@ -163,6 +163,11 @@ class Realty
     protected $rentDurationType = null;
 
     /**
+     * @var null|float
+     */
+    protected $buildableArea = null;
+
+    /**
      * @var \Justimmo\Model\EnergyPass
      */
     protected $energyPass = null;
@@ -2001,4 +2006,25 @@ class Realty
 
         return $this;
     }
+
+    /**
+     * @return float|null
+     */
+    public function getBuildableArea()
+    {
+        return $this->buildableArea;
+    }
+
+    /**
+     * @param float|null $buildableArea
+     *
+     * @return $this
+     */
+    public function setBuildableArea($buildableArea)
+    {
+        $this->buildableArea = $buildableArea;
+
+        return $this;
+    }
+
 }
