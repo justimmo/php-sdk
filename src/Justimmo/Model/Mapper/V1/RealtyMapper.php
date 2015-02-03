@@ -146,7 +146,7 @@ class RealtyMapper extends AbstractMapper
             ),
             'anzahl_zimmer'              => array(
                 'property' => 'roomCount',
-                'type'     => 'int',
+                'type'     => 'double',
             ),
             'anzahl_badezimmer'          => array(
                 'property' => 'bathroomCount',
