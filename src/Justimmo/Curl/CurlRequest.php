@@ -35,6 +35,7 @@ class CurlRequest
     protected $options = array(
         CURLOPT_TIMEOUT_MS     => 10000,
         CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_SSL_VERIFYPEER => false,
     );
 
     /**
