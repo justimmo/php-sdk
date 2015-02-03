@@ -270,6 +270,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'subRealtyTypeName',
                 'type'     => 'string',
             ),
+            'bauart_id'     => array(
+                'property' => 'styleOfBuildingId',
+                'type'     => 'int',
+            ),
         );
     }
 
@@ -281,22 +285,23 @@ class RealtyMapper extends AbstractMapper
     protected function getFilterMapping()
     {
         return array(
-            'Price'           => 'preis',
-            'RealtyTypeId'    => 'objektart_id',
-            'SubRealtyTypeId' => 'subobjektart_id',
-            'RealtyCategory'  => 'tag_name',
-            'Tag'             => 'tag_name',
-            'ZipCode'         => 'plz',
-            'Rooms'           => 'zimmer',
-            'PropertyNumber'  => 'objektnummer',
-            'Area'            => 'flaeche',
-            'LivingArea'      => 'wohnflaeche',
-            'FloorArea'       => 'nutzflaeche',
-            'SurfaceArea'     => 'grundflaeche',
-            'Keyword'         => 'stichwort',
-            'FederalStateId'  => 'bundesland_id',
-            'Rent'            => 'miete',
-            'Buy'             => 'kauf',
+            'Price'             => 'preis',
+            'RealtyTypeId'      => 'objektart_id',
+            'SubRealtyTypeId'   => 'subobjektart_id',
+            'StyleOfBuildingId' => 'bauart_id',
+            'RealtyCategory'    => 'tag_name',
+            'Tag'               => 'tag_name',
+            'ZipCode'           => 'plz',
+            'Rooms'             => 'zimmer',
+            'PropertyNumber'    => 'objektnummer',
+            'Area'              => 'flaeche',
+            'LivingArea'        => 'wohnflaeche',
+            'FloorArea'         => 'nutzflaeche',
+            'SurfaceArea'       => 'grundflaeche',
+            'Keyword'           => 'stichwort',
+            'FederalStateId'    => 'bundesland_id',
+            'Rent'              => 'miete',
+            'Buy'               => 'kauf',
         );
     }
 }

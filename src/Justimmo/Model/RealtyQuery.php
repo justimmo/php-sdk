@@ -10,6 +10,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByPrice($value)
  * @method RealtyQuery filterByRealtyTypeId($value)
  * @method RealtyQuery filterBySubRealtyTypeId($value)
+ * @method RealtyQuery filterByStyleOfBuildingId($value)
  * @method RealtyQuery filterByRealtyCategory($value)
  * @method RealtyQuery filterByTag($value)
  * @method RealtyQuery filterByZipCode($value)

@@ -133,6 +133,7 @@
             <user_defined_simplefield feldname="epass_hwbklasse">B</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeewert">0.96</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
+            <alter alter_attr="Neubau" />
         </zustand_angaben>
         <freitexte>
             <objekttitel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</objekttitel>
@@ -302,6 +303,7 @@
             <max_mietdauer max_dauer="MONAT">5</max_mietdauer>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
             <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="bauart_id">1</user_defined_simplefield>
             <user_defined_anyfield>
                 <justimmo_kategorie id="2057">Referenzobjekte</justimmo_kategorie>
                 <justimmo_kategorie id="3449">Topobjekte</justimmo_kategorie>

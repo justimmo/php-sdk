@@ -219,6 +219,11 @@ class Realty
     protected $freetext3 = null;
 
     /**
+     * @var null|int
+     */
+    protected $styleOfBuildingId = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2165,4 +2170,33 @@ class Realty
         return $this;
     }
 
+    /**
+     * style of building and age are the same
+     *
+     * @return null|string
+     */
+    public function getStyleOfBuilding()
+    {
+        return $this->getAge();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getStyleOfBuildingId()
+    {
+        return $this->styleOfBuildingId;
+    }
+
+    /**
+     * @param int|null $styleOfBuildingId
+     *
+     * @return $this
+     */
+    public function setStyleOfBuildingId($styleOfBuildingId)
+    {
+        $this->styleOfBuildingId = $styleOfBuildingId;
+
+        return $this;
+    }
 }
