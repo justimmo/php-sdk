@@ -158,6 +158,10 @@ class Realty
 
     protected $availableFrom = null;
 
+    protected $rentDuration = null;
+
+    protected $rentDurationType = null;
+
     /**
      * @var \Justimmo\Model\EnergyPass
      */
@@ -1954,6 +1958,46 @@ class Realty
     public function setStatusId($statusId)
     {
         $this->statusId = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRentDurationType()
+    {
+        return $this->rentDurationType;
+    }
+
+    /**
+     * @param null|string $rentDurationType
+     *
+     * @return $this
+     */
+    public function setRentDurationType($rentDurationType)
+    {
+        $this->rentDurationType = $rentDurationType;
+
+        return $this;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getRentDuration()
+    {
+        return $this->rentDuration;
+    }
+
+    /**
+     * @param null|int $rentDuration
+     *
+     * @return $this
+     */
+    public function setRentDuration($rentDuration)
+    {
+        $this->rentDuration = $rentDuration;
 
         return $this;
     }

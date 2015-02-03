@@ -211,5 +211,8 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals('aktiv', $objekt->getStatus());
         $this->assertEquals(5, $objekt->getStatusId());
+
+        $this->assertEquals(5, $objekt->getRentDuration());
+        $this->assertEquals('month', $objekt->getRentDurationType());
     }
 }

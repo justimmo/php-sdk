@@ -294,6 +294,7 @@
             <verfuegbar_ab>November 2015</verfuegbar_ab>
             <status>aktiv</status>
             <status_id>5</status_id>
+            <max_mietdauer max_dauer="MONAT">5</max_mietdauer>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
             <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
             <user_defined_anyfield>
