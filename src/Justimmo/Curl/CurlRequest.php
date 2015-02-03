@@ -51,7 +51,7 @@ class CurlRequest
     protected $content = null;
 
     /**
-     * @var array
+     * @var mixed
      */
     protected $infos = array();
 

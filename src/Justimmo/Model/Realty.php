@@ -36,6 +36,9 @@ class Realty
 
     protected $totalArea = null;
 
+    /**
+     * @var null|int
+     */
     protected $projectId = null;
 
     protected $status = null;
@@ -634,7 +637,7 @@ class Realty
     }
 
     /**
-     * @param null $projectId
+     * @param null|int $projectId
      *
      * @return $this
      */

@@ -159,7 +159,7 @@ class ListPager extends \ArrayObject
         $return = array();
         foreach ($this as $value) {
             if (!method_exists($value, $keyGetter)) {
-                throw new MethodNotFoundException('Method ' . $valueGetter . ' not found on ' . get_class($value));
+                throw new MethodNotFoundException('Method ' . $keyGetter . ' not found on ' . get_class($value));
             }
             if (!method_exists($value, $valueGetter)) {
                 throw new MethodNotFoundException('Method ' . $valueGetter . ' not found on ' . get_class($value));
