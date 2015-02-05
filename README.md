@@ -1,5 +1,7 @@
 JUSTIMMO PHP-SDK
 ================
+
+[![Join the chat at https://gitter.im/justimmo/php-sdk](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/justimmo/php-sdk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://api.travis-ci.org/justimmo/php-sdk.png)](https://travis-ci.org/justimmo/php-sdk)
 [![Latest Stable Version](https://poser.pugx.org/justimmo/php-sdk/version.png)](https://packagist.org/packages/justimmo/php-sdk)
 [![License](https://poser.pugx.org/justimmo/php-sdk/license.svg)](https://packagist.org/packages/justimmo/php-sdk)
