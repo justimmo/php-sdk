@@ -1,3 +1,6 @@
+## 1.0.15
+* fix default curl options overriding custom options
+
 ## 1.0.14
 * https is now the default protocol
 * support for half-rooms
