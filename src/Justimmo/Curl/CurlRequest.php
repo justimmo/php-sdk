@@ -71,7 +71,7 @@ class CurlRequest
     public function __construct($url = null, $options = array())
     {
         $this->url     = $url;
-        $this->options = $this->options + $options;
+        $this->options = $options + $this->options;
     }
 
     /**
