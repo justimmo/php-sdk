@@ -1,3 +1,7 @@
+## 1.0.16
+* remote unused property contactEstablishmentCosts
+* fix properties contractEstablishmentCosts, landRegistration, transferTax
+
 ## 1.0.15
 * fix default curl options overriding custom options
 

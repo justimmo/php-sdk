@@ -101,9 +101,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getNetEarningMonthly());
         $this->assertNull($objekt->getNetEarningYearly());
         $this->assertNull($objekt->getTotalRentVat());
-        $this->assertEquals(3.5, $objekt->getTransferTax());
-        $this->assertEquals(1.1, $objekt->getLandRegistration());
-        $this->assertNull($objekt->getContactEstablishmentCosts());
+        $this->assertEquals(3.4, $objekt->getTransferTax());
+        $this->assertEquals(1.4, $objekt->getLandRegistration());
+        $this->assertEquals("2,16%", $objekt->getContractEstablishmentCosts());
         $this->assertNull($objekt->getSurety());
         $this->assertNull($objekt->getCompensation());
 
@@ -226,5 +226,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('Neubau', $objekt->getStyleOfBuilding());
 
         $this->assertEquals(1, $objekt->getStyleOfBuildingId());
+
+
     }
 }

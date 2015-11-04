@@ -91,8 +91,6 @@
                     <gruppe>other</gruppe>
                 </zusatzkosten_8>
             </zusatzkosten>
-            <grunderwerbssteuer>3.5</grunderwerbssteuer>
-            <grundbucheintragung>1.1</grundbucheintragung>
             <user_defined_simplefield feldname="monatlichekostenbrutto">906.6</user_defined_simplefield>
             <user_defined_anyfield>
                 <mwst_gesamt>265.6</mwst_gesamt>
@@ -100,6 +98,9 @@
             <user_defined_anyfield>
                 <sonstige_kosten>15</sonstige_kosten>
             </user_defined_anyfield>
+            <user_defined_simplefield feldname="grunderwerbssteuer">3.4</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1.4</user_defined_simplefield>
+            <user_defined_simplefield feldname="vertragserrichtungsgebuehr">2,16%</user_defined_simplefield>
         </preise>
         <flaechen>
             <nutzflaeche>150</nutzflaeche>

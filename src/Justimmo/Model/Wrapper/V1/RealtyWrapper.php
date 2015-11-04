@@ -72,9 +72,6 @@ class RealtyWrapper extends AbstractWrapper
         'nettoertrag_jaehrlich',
         'nettoertrag_monatlich',
         'gesamtmiete_ust',
-        'grunderwerbssteuer',
-        'grundbucheintragung',
-        'vertragserrichtungsgebuehr',
         'kaution',
         'abstand',
         'aussen_courtage',
@@ -253,6 +250,10 @@ class RealtyWrapper extends AbstractWrapper
                 if (array_key_exists('iso_waehrung', $iso)) {
                     $objekt->setCurrency((string) $iso['iso_waehrung']);
                 }
+            }
+
+            foreach ($xml->preise->user_defined_simplefield as $simpleField) {
+                $this->mapSimpleField($simpleField, $objekt);
             }
 
             if (isset($xml->preise->zusatzkosten)) {

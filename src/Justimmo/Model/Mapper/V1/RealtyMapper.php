@@ -138,7 +138,7 @@ class RealtyMapper extends AbstractMapper
             ),
             'vertragserrichtungsgebuehr' => array(
                 'property' => 'contractEstablishmentCosts',
-                'type'     => 'double',
+                'type'     => 'string',
             ),
             'kaution'                    => array(
                 'property' => 'surety',
