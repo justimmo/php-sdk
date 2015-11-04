@@ -131,8 +131,6 @@ class Realty
 
     protected $landRegistration = null;
 
-    protected $contactEstablishmentCosts = null;
-
     protected $attachments = array();
 
     protected $yearBuilt = null;
@@ -1295,26 +1293,6 @@ class Realty
     public function getTransferTax()
     {
         return $this->transferTax;
-    }
-
-    /**
-     * @param null $vertragserrichtungsgebuehr
-     *
-     * @return $this
-     */
-    public function setContactEstablishmentCosts($vertragserrichtungsgebuehr)
-    {
-        $this->contactEstablishmentCosts = $vertragserrichtungsgebuehr;
-
-        return $this;
-    }
-
-    /**
-     * @return null
-     */
-    public function getContactEstablishmentCosts()
-    {
-        return $this->contactEstablishmentCosts;
     }
 
     /**
