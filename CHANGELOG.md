@@ -1,3 +1,7 @@
+## 1.0.17
+* added officeArea in list mapping
+* added storageArea in list mapping
+
 ## 1.0.16
 * remote unused property contactEstablishmentCosts
 * fix properties contractEstablishmentCosts, landRegistration, transferTax
