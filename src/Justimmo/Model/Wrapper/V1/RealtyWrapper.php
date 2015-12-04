@@ -33,6 +33,7 @@ class RealtyWrapper extends AbstractWrapper
         'grundflaeche',
         'gesamtflaeche',
         'wohnflaeche',
+        'bueroflaeche',
         'projekt_id',
         'status',
         'status_id',
