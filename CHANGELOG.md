@@ -1,5 +1,6 @@
 ## 1.0.18
 * add suffix for employees
+* add procuredAt for realties
 
 ## 1.0.17
 * added officeArea in list mapping

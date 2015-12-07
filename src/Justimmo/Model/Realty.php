@@ -225,6 +225,11 @@ class Realty
     protected $styleOfBuildingId = null;
 
     /**
+     * @var null|\DateTime
+     */
+    protected $procuredAt = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2177,6 +2182,30 @@ class Realty
     public function setStyleOfBuildingId($styleOfBuildingId)
     {
         $this->styleOfBuildingId = $styleOfBuildingId;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getProcuredAt($format = 'Y-m-d')
+    {
+        if ($this->procuredAt instanceof \DateTime && $format !== null) {
+            return $this->procuredAt->format($format);
+        }
+
+        return $this->procuredAt;
+    }
+
+    /**
+     * @param \DateTime|null $procuredAt
+     *
+     * @return $this
+     */
+    public function setProcuredAt(\DateTime $procuredAt = null)
+    {
+        $this->procuredAt = $procuredAt;
 
         return $this;
     }

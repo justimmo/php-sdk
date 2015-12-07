@@ -39,9 +39,13 @@ class RealtyWrapperTest extends TestCase
             if ($i == 1) {
                 $this->assertEquals('aktiv', $entry->getStatus());
                 $this->assertEquals(5, $entry->getStatusId());
-            } else {
+                $this->assertEmpty($entry->getProcuredAt());
+            } elseif ($i == 2) {
                 $this->assertEquals('vermittelt', $entry->getStatus());
                 $this->assertEquals(8, $entry->getStatusId());
+                $this->assertInstanceOf('\DateTime', $entry->getProcuredAt(null));
+                $this->assertEquals('2015-11-11', $entry->getProcuredAt());
+                $this->assertEquals('11.11.2015', $entry->getProcuredAt('d.m.Y'));
             }
         }
     }
@@ -217,6 +221,9 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals('aktiv', $objekt->getStatus());
         $this->assertEquals(5, $objekt->getStatusId());
+        $this->assertInstanceOf('\DateTime', $objekt->getProcuredAt(null));
+        $this->assertEquals('2015-11-11', $objekt->getProcuredAt());
+        $this->assertEquals('11.11.2015', $objekt->getProcuredAt('d.m.Y'));
 
         $this->assertEquals(5, $objekt->getRentDuration());
         $this->assertEquals('month', $objekt->getRentDurationType());

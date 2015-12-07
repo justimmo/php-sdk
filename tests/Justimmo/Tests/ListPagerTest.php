@@ -37,7 +37,7 @@ class ListPagerTest extends TestCase
     {
         $this->assertEquals(array(
             195439 => 'DEMOOBJEKT! Elegantes Büro neben Bristol und Oper',
-            195434 => 'DEMOOBJEKT! Luxus Wienblick-Dachgeschosswohnung mit Wintergarten,  offenen Kamin, Sauna und Weinkeller',
+            195434 => 'DEMOOBJEKT! Luxus Wienblick-Dachgeschosswohnung mit Wintergarten, offenen Kamin, Sauna und Weinkeller',
             66076 => 'DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens',
         ), $this->pager->toKeyValue('getId', 'getTitle'));
     }

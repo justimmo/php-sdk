@@ -305,6 +305,7 @@
             <max_mietdauer max_dauer="MONAT">5</max_mietdauer>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
             <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="vermittelt_am">2015-11-11</user_defined_simplefield>
             <user_defined_simplefield feldname="bauart_id">1</user_defined_simplefield>
             <user_defined_anyfield>
                 <justimmo_kategorie id="2057">Referenzobjekte</justimmo_kategorie>

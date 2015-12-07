@@ -274,6 +274,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'styleOfBuildingId',
                 'type'     => 'int',
             ),
+            'vermittelt_am'     => array(
+                'property' => 'procuredAt',
+                'type'     => 'datetime',
+            ),
         );
     }
 
