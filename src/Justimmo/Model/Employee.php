@@ -4,27 +4,65 @@ namespace Justimmo\Model;
 
 class Employee
 {
+    /**
+     * @var int
+     */
     protected $id;
 
+    /**
+     * @var null|string
+     */
     protected $category = null;
 
+    /**
+     * @var array
+     */
     protected $attachments = array();
 
+    /**
+     * @var null|string
+     */
     protected $firstName = null;
 
+    /**
+     * @var null|string
+     */
     protected $lastName = null;
 
+    /**
+     * @var null|string
+     */
     protected $phone = null;
 
+    /**
+     * @var null|string
+     */
     protected $email = null;
 
+    /**
+     * @var null|string
+     */
     protected $position = null;
 
+    /**
+     * @var null|string
+     */
     protected $mobile = null;
 
+    /**
+     * @var null|string
+     */
     protected $fax = null;
 
+    /**
+     * @var null|string
+     */
     protected $title = null;
+
+    /**
+     * @var null|string
+     */
+    protected $suffix = null;
 
     /**
      * @param array $attachments
@@ -308,4 +346,23 @@ class Employee
         return $this->title;
     }
 
+    /**
+     * @return null
+     */
+    public function getSuffix()
+    {
+        return $this->suffix;
+    }
+
+    /**
+     * @param null $suffix
+     *
+     * @return $this
+     */
+    public function setSuffix($suffix)
+    {
+        $this->suffix = $suffix;
+
+        return $this;
+    }
 }

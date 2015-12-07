@@ -24,6 +24,7 @@ class EmployeeWrapper extends AbstractWrapper
         'tel_handy',
         'name',
         'personennummer',
+        'suffix',
     );
 
     public function transformSingle($data)

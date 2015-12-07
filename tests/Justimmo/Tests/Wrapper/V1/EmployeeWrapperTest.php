@@ -35,6 +35,10 @@ class EmployeeWrapperTest extends TestCase
         $this->assertEquals('+43 767 765 43 21', $entry->getFax());
         $this->assertEquals('a.diem@bgcc.at', $entry->getEmail());
         $this->assertEquals(1, count($entry->getAttachments()));
+        $this->assertEquals('von der Stange', $entry->getSuffix());
 
+        /** @var \Justimmo\Model\Employee $entry */
+        $entry = $list[2];
+        $this->assertEmpty($entry->getSuffix());
     }
 }

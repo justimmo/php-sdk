@@ -45,6 +45,9 @@ class EmployeeMapper extends AbstractMapper
             'personennummer' => array(
                 'property' => 'id',
             ),
+            'suffix'   => array(
+                'property' => 'suffix',
+            ),
         );
     }
 

@@ -1,3 +1,6 @@
+## 1.0.18
+* add suffix for employees
+
 ## 1.0.17
 * added officeArea in list mapping
 * added storageArea in list mapping

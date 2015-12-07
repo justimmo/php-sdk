@@ -200,6 +200,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('+43 767 765 43 21', $contact->getFax());
         $this->assertEquals('a.diem@bgcc.at', $contact->getEmail());
         $this->assertEquals(1, count($contact->getAttachments()));
+        $this->assertEquals('von der Stange', $contact->getSuffix());
 
         $this->assertEquals('Freitext 1', $objekt->getFreetext1());
         $this->assertNull($objekt->getFreetext2());
