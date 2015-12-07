@@ -1,5 +1,5 @@
 ## 1.0.18
-* add suffix for employees
+* add suffix and biography for employees
 * add procuredAt for realties
 
 ## 1.0.17

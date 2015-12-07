@@ -48,6 +48,9 @@ class EmployeeMapper extends AbstractMapper
             'suffix'   => array(
                 'property' => 'suffix',
             ),
+            'bio'   => array(
+                'property' => 'biography',
+            ),
         );
     }
 

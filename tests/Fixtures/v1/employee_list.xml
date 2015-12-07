@@ -11,6 +11,7 @@
             <nachname>Stehmann</nachname>
             <tel>01/798 62 05</tel>
             <email>a.stehmann@bgcc.at</email>
+            <bio>Biografie von Aurel Stehmann</bio>
             <suffix>von der Heide</suffix>
         </mitarbeiter>
     </kategorie>
@@ -28,6 +29,7 @@
             <tel>+43 676 123 45 67</tel>
             <fax>+43 767 765 43 21</fax>
             <email>a.diem@bgcc.at</email>
+            <bio>Biografie von Alexander Diem</bio>
             <suffix>von der Stange</suffix>
         </mitarbeiter>
     </kategorie>

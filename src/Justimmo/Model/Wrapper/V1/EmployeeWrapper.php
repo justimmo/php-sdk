@@ -25,6 +25,7 @@ class EmployeeWrapper extends AbstractWrapper
         'name',
         'personennummer',
         'suffix',
+        'bio',
     );
 
     public function transformSingle($data)

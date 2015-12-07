@@ -65,6 +65,11 @@ class Employee
     protected $suffix = null;
 
     /**
+     * @var null|string
+     */
+    protected $biography = null;
+
+    /**
      * @param array $attachments
      *
      * @return $this
@@ -362,6 +367,26 @@ class Employee
     public function setSuffix($suffix)
     {
         $this->suffix = $suffix;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
+    /**
+     * @param null|string $biography
+     *
+     * @return $this
+     */
+    public function setBiography($biography)
+    {
+        $this->biography = $biography;
 
         return $this;
     }
