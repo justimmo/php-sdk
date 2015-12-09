@@ -24,6 +24,14 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByFederalStateId($value)
  * @method RealtyQuery filterByRent($value)
  * @method RealtyQuery filterByBuy($value)
+ * @method RealtyQuery orderByPrice($direction = 'asc')
+ * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
+ * @method RealtyQuery orderByArea($direction = 'asc')
+ * @method RealtyQuery orderByLivingArea($direction = 'asc')
+ * @method RealtyQuery orderByFloorArea($direction = 'asc')
+ * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
+ * @method RealtyQuery orderByCreatedAt($direction = 'asc')
+ * @method RealtyQuery orderByUpdatedAt($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
 {

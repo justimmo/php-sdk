@@ -314,6 +314,8 @@ class RealtyMapper extends AbstractMapper
             'FederalStateId'    => 'bundesland_id',
             'Rent'              => 'miete',
             'Buy'               => 'kauf',
+            'CreatedAt'         => 'created_at',
+            'UpdatedAt'         => 'updated_at',
         );
     }
 }

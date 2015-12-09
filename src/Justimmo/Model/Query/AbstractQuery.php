@@ -153,16 +153,29 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * sets the order of a call
+     * translates and sets the order of a call
      *
-     * @param $column
+     * @param string $column
      * @param string $direction
      *
      * @return $this
      */
     public function orderBy($column, $direction = 'asc')
     {
-        $this->set('orderby', $this->mapper->getFilterPropertyName($column));
+        return $this->order($this->mapper->getFilterPropertyName($column), $direction);
+    }
+
+    /**
+     * sets order for a call
+     *
+     * @param string $column
+     * @param string $direction
+     *
+     * @return $this
+     */
+    public function order($column, $direction = 'asc')
+    {
+        $this->set('orderby', $column);
         $this->set('ordertype', $direction);
 
         return $this;
@@ -230,6 +243,16 @@ abstract class AbstractQuery implements QueryInterface
             $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
 
             return $this->filter($key, $params[0]);
+        }
+
+        if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
+            $key = $this->mapper->getFilterPropertyName(mb_substr($method, 7));
+
+            if (empty($params[0]) || !in_array($params[0], array('asc', 'desc'))) {
+                $params[0] = 'asc';
+            }
+
+            return $this->order($key, $params[0]);
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));

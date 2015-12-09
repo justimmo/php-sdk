@@ -9,7 +9,7 @@ use Justimmo\Model\Wrapper\NullWrapper;
 class QueryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Justimmo\Model\Query\QueryInterface
+     * @var \Justimmo\Model\RealtyQuery
      */
     protected $query;
 
@@ -69,6 +69,29 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->query->orderBy('Price', 'desc');
         $this->assertEquals(array(
             'orderby'   => 'preis',
+            'ordertype' => 'desc'
+        ), $this->query->getParams());
+    }
+
+    public function testOrderByCall()
+    {
+        $this->query->clear();
+
+        $this->query->orderByPrice();
+        $this->assertEquals(array(
+            'orderby'   => 'preis',
+            'ordertype' => 'asc'
+        ), $this->query->getParams());
+
+        $this->query->orderByPrice('desc');
+        $this->assertEquals(array(
+            'orderby'   => 'preis',
+            'ordertype' => 'desc'
+        ), $this->query->getParams());
+
+        $this->query->orderByCreatedAt('desc');
+        $this->assertEquals(array(
+            'orderby'   => 'created_at',
             'ordertype' => 'desc'
         ), $this->query->getParams());
     }

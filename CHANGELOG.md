@@ -1,5 +1,6 @@
 ## 1.0.19
  * add created_at and updated_at information for realties
+ * add shortcut methods for sorting on queries
 
 ## 1.0.18
 * add suffix and biography for employees
