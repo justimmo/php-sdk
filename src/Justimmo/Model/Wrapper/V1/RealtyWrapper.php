@@ -48,6 +48,8 @@ class RealtyWrapper extends AbstractWrapper
         'terrassen_flaeche',
         'gartenflaeche',
         'vermittelt_am',
+        'erstellt_am',
+        'aktualisiert_am',
     );
 
     protected $geoMapping = array(

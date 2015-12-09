@@ -230,6 +230,16 @@ class Realty
     protected $procuredAt = null;
 
     /**
+     * @var null|\DateTime
+     */
+    protected $createdAt = null;
+
+    /**
+     * @var null|\DateTime
+     */
+    protected $updatedAt = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2187,6 +2197,8 @@ class Realty
     }
 
     /**
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
      * @return \DateTime
      */
     public function getProcuredAt($format = 'Y-m-d')
@@ -2209,4 +2221,58 @@ class Realty
 
         return $this;
     }
+
+    /**
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt($format = 'Y-m-d H:i:s')
+    {
+        if ($this->createdAt instanceof \DateTime && $format !== null) {
+            return $this->createdAt->format($format);
+        }
+
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime|null $createdAt
+     *
+     * @return $this
+     */
+    public function setCreatedAt(\DateTime $createdAt = null)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt($format = 'Y-m-d H:i:s')
+    {
+        if ($this->updatedAt instanceof \DateTime && $format !== null) {
+            return $this->updatedAt->format($format);
+        }
+
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime|null $updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt(\DateTime $updatedAt = null)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+
 }

@@ -1,3 +1,6 @@
+## 1.0.19
+ * add created_at and updated_at information for realties
+
 ## 1.0.18
 * add suffix and biography for employees
 * add procuredAt for realties

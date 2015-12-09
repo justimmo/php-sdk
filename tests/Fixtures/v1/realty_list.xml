@@ -33,6 +33,8 @@
         <projekt_id>51</projekt_id>
         <status>vermittelt</status>
         <status_id>8</status_id>
+        <erstellt_am>2014-12-10 15:10:23</erstellt_am>
+        <aktualisiert_am>2015-09-10 16:10:23</aktualisiert_am>
     </immobilie>
     <immobilie>
         <id>195434</id>
@@ -58,6 +60,8 @@
         <zweites_bild>http://files.justimmo.at/public/pic/small/AHA0M0C52b.jpg</zweites_bild>
         <status>aktiv</status>
         <status_id>5</status_id>
+        <erstellt_am>2014-12-10 10:10:23</erstellt_am>
+        <aktualisiert_am>2015-09-10 17:10:23</aktualisiert_am>
     </immobilie>
     <immobilie>
         <id>66076</id>
@@ -85,5 +89,7 @@
         <status>vermittelt</status>
         <status_id>8</status_id>
         <vermittelt_am>2015-11-11</vermittelt_am>
+        <erstellt_am>2014-12-10 09:10:23</erstellt_am>
+        <aktualisiert_am>2015-10-12 09:05:23</aktualisiert_am>
     </immobilie>
 </justimmo>

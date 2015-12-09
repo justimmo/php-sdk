@@ -34,20 +34,31 @@ class RealtyWrapperTest extends TestCase
         $this->assertFalse($list->haveToPaginate());
 
         /** @var Realty $entry */
-        foreach ($list as $i => $entry) {
-            $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
-            if ($i == 1) {
-                $this->assertEquals('aktiv', $entry->getStatus());
-                $this->assertEquals(5, $entry->getStatusId());
-                $this->assertEmpty($entry->getProcuredAt());
-            } elseif ($i == 2) {
-                $this->assertEquals('vermittelt', $entry->getStatus());
-                $this->assertEquals(8, $entry->getStatusId());
-                $this->assertInstanceOf('\DateTime', $entry->getProcuredAt(null));
-                $this->assertEquals('2015-11-11', $entry->getProcuredAt());
-                $this->assertEquals('11.11.2015', $entry->getProcuredAt('d.m.Y'));
-            }
-        }
+        $entry = $list[0];
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+        $this->assertEquals('vermittelt', $entry->getStatus());
+        $this->assertEquals(8, $entry->getStatusId());
+        $this->assertEmpty($entry->getProcuredAt());
+        $this->assertInstanceOf('\DateTime', $entry->getCreatedAt(null));
+        $this->assertEquals('2014-12-10 15:10:23', $entry->getCreatedAt());
+        $this->assertEquals('10.12.2014', $entry->getCreatedAt('d.m.Y'));
+        $this->assertInstanceOf('\DateTime', $entry->getUpdatedAt(null));
+        $this->assertEquals('2015-09-10 16:10:23', $entry->getUpdatedAt());
+        $this->assertEquals('10.09.2015', $entry->getUpdatedAt('d.m.Y'));
+
+        $entry = $list[1];
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+        $this->assertEquals('aktiv', $entry->getStatus());
+        $this->assertEquals(5, $entry->getStatusId());
+        $this->assertEmpty($entry->getProcuredAt());
+
+        $entry = $list[2];
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+        $this->assertEquals('vermittelt', $entry->getStatus());
+        $this->assertEquals(8, $entry->getStatusId());
+        $this->assertInstanceOf('\DateTime', $entry->getProcuredAt(null));
+        $this->assertEquals('2015-11-11', $entry->getProcuredAt());
+        $this->assertEquals('11.11.2015', $entry->getProcuredAt('d.m.Y'));
     }
 
     public function testTransformSingle()
@@ -224,6 +235,13 @@ class RealtyWrapperTest extends TestCase
         $this->assertInstanceOf('\DateTime', $objekt->getProcuredAt(null));
         $this->assertEquals('2015-11-11', $objekt->getProcuredAt());
         $this->assertEquals('11.11.2015', $objekt->getProcuredAt('d.m.Y'));
+
+        $this->assertInstanceOf('\DateTime', $objekt->getCreatedAt(null));
+        $this->assertEquals('2014-12-10 15:10:23', $objekt->getCreatedAt());
+        $this->assertEquals('10.12.2014', $objekt->getCreatedAt('d.m.Y'));
+        $this->assertInstanceOf('\DateTime', $objekt->getUpdatedAt(null));
+        $this->assertEquals('2015-09-10 16:10:23', $objekt->getUpdatedAt());
+        $this->assertEquals('10.09.2015', $objekt->getUpdatedAt('d.m.Y'));
 
         $this->assertEquals(5, $objekt->getRentDuration());
         $this->assertEquals('month', $objekt->getRentDurationType());

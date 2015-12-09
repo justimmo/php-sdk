@@ -278,6 +278,14 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'procuredAt',
                 'type'     => 'datetime',
             ),
+            'erstellt_am'     => array(
+                'property' => 'createdAt',
+                'type'     => 'datetime',
+            ),
+            'aktualisiert_am'     => array(
+                'property' => 'updatedAt',
+                'type'     => 'datetime',
+            ),
         );
     }
 
