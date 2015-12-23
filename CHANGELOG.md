@@ -1,3 +1,6 @@
+## 1.0.20
+ * fix datetime fields using current date if an element is empty
+
 ## 1.0.19
  * add created_at and updated_at information for realties
  * add shortcut methods for sorting on queries

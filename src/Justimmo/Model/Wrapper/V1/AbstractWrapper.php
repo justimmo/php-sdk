@@ -52,7 +52,11 @@ abstract class AbstractWrapper implements WrapperInterface
             case 'double':
                 return (double) $xml;
             case 'datetime':
-                return new \DateTime((string) $xml);
+                $date = (string) $xml;
+                if (empty($date)) {
+                    return null;
+                }
+                return new \DateTime($date);
             default:
                 return $xml;
         }
