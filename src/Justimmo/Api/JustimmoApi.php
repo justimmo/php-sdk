@@ -110,6 +110,8 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callRealtyList(array $params = array())
     {
+        $params['showDetails'] = 1;
+
         return $this->call('objekt/list', $params);
     }
 

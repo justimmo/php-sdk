@@ -29,22 +29,23 @@ class RealtyWrapperTest extends TestCase
         $list = $this->wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
-        $this->assertEquals(3, $list->count());
-        $this->assertEquals(3, $list->getNbResults());
+        $this->assertEquals(6, $list->count());
+        $this->assertEquals(6, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
         /** @var Realty $entry */
         $entry = $list[0];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
-        $this->assertEquals('vermittelt', $entry->getStatus());
-        $this->assertEquals(8, $entry->getStatusId());
+        $this->assertEquals(436942, $entry->getId());
+        $this->assertEquals('aktiv', $entry->getStatus());
+        $this->assertEquals(5, $entry->getStatusId());
         $this->assertEmpty($entry->getProcuredAt());
         $this->assertInstanceOf('\DateTime', $entry->getCreatedAt(null));
-        $this->assertEquals('2014-12-10 15:10:23', $entry->getCreatedAt());
-        $this->assertEquals('10.12.2014', $entry->getCreatedAt('d.m.Y'));
+        $this->assertEquals('2015-06-30 11:46:27', $entry->getCreatedAt());
+        $this->assertEquals('30.06.2015', $entry->getCreatedAt('d.m.Y'));
         $this->assertInstanceOf('\DateTime', $entry->getUpdatedAt(null));
-        $this->assertEquals('2015-09-10 16:10:23', $entry->getUpdatedAt());
-        $this->assertEquals('10.09.2015', $entry->getUpdatedAt('d.m.Y'));
+        $this->assertEquals('2015-12-17 11:08:39', $entry->getUpdatedAt());
+        $this->assertEquals('17.12.2015', $entry->getUpdatedAt('d.m.Y'));
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -54,11 +55,15 @@ class RealtyWrapperTest extends TestCase
 
         $entry = $list[2];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
+        $this->assertEquals(195425, $entry->getId());
         $this->assertEquals('vermittelt', $entry->getStatus());
         $this->assertEquals(8, $entry->getStatusId());
         $this->assertInstanceOf('\DateTime', $entry->getProcuredAt(null));
-        $this->assertEquals('2015-11-11', $entry->getProcuredAt());
-        $this->assertEquals('11.11.2015', $entry->getProcuredAt('d.m.Y'));
+        $this->assertEquals('2014-10-09', $entry->getProcuredAt());
+        $this->assertEquals('09.10.2014', $entry->getProcuredAt('d.m.Y'));
+
+        $entry = $list[5];
+        $this->assertEmpty($entry->getProcuredAt());
     }
 
     public function testTransformSingle()

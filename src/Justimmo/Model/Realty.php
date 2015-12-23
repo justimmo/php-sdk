@@ -936,6 +936,11 @@ class Realty
      */
     public function setRegionalAddition($regionalerZusatz)
     {
+        //bc compat to old list format
+        if ($this->proximity === null) {
+            $this->proximity = $regionalerZusatz;
+        }
+
         $this->regionalAddition = $regionalerZusatz;
 
         return $this;

@@ -1,95 +1,3101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <justimmo>
     <query-result>
-        <count>3</count>
+        <count>6</count>
     </query-result>
     <immobilie>
-        <id>195439</id>
-        <objektnummer>34</objektnummer>
-        <titel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</titel>
-        <dreizeiler></dreizeiler>
-        <naehe></naehe>
-        <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-            &lt;p&gt;Elegantes, repräsentatives Büro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br /&gt;Komplett
-            ausgestattetes 1 bis 2 Personenbüro mit Karlskirchenblick für Ihre Beratungen mit anspruchsvolle Kunden.
-            &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten,
-            Küche- und Caféraum-Benützung, Getränke für Besucher. &lt;br /&gt;Weiters zur Verfügung: Besprechung- und
-            Konferenzräume, Sekretariatsservice Kopierer, Drucker, diverse Bürogeräte!&lt;br /&gt;Der Mietpreis ist auf
-            der Basis eines Jahresvertrages kalkuliert, ab 1 Monatsverträge oder langfristige Bindungen ebenfalls
-            möglich!&lt;br /&gt;Ein ähnliches Büro können Sie auch am Parkring und in der Börse mieten, billigere
-            Optionen zu 1280 ? monatlich im Twin Towers oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann
-            ein Einzelbüro auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br
-            /&gt;&lt;/p&gt;</objektbeschreibung>
-        <etage></etage>
-        <tuernummer></tuernummer>
-        <plz>2460</plz>
-        <ort>Wien</ort>
-        <kaufpreis />
-        <gesamtmiete>60000</gesamtmiete>
-        <nutzflaeche>15</nutzflaeche>
-        <grundflaeche>15</grundflaeche>
-        <erstes_bild>http://files.justimmo.at/public/pic/small/AH6hJRzdDi.jpg</erstes_bild>
-        <zweites_bild>http://files.justimmo.at/public/pic/small/AH9qz2UD9N.jpg</zweites_bild>
-        <projekt_id>51</projekt_id>
-        <status>vermittelt</status>
-        <status_id>8</status_id>
-        <erstellt_am>2014-12-10 15:10:23</erstellt_am>
-        <aktualisiert_am>2015-09-10 16:10:23</aktualisiert_am>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0" />f
+            <vermarktungsart KAUF="1" MIETE_PACHT="0" />
+            <objektart>
+                <haus haustyp="REIHENHAUS" />
+                <subobjektart>Reihenhaus</subobjektart>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">3</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Haus</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">10</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">Reihenhaus</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1030</plz>
+            <ort>Wien</ort>
+            <bundesland>Salzburg</bundesland>
+            <land iso_land="AUT" />
+            <etage>EG</etage>
+            <anzahl_etagen>69</anzahl_etagen>
+            <regionaler_zusatz>Flughafen Salzburg</regionaler_zusatz>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 676 123 45 67</tel_zentrale>
+            <tel_fax>+43 767 765 43 21</tel_fax>
+            <tel_handy>+43 1 888 74 72</tel_handy>
+            <name>Diem</name>
+            <vorname>Alexander</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.alexdiem.at</url>
+            <personennummer>100123</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42UH2x-0.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42UH2x-0.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <suffix>MBA</suffix>
+        </kontaktperson>
+        <preise>
+            <kaufpreis>2200000</kaufpreis>
+            <nebenkosten>400</nebenkosten>
+            <kaufpreis_pro_qm>550</kaufpreis_pro_qm>
+            <aussen_courtage>Provisionsfrei</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <freitext_preis>optional 16.000 € für Tiefgaragenplatz</freitext_preis>
+            <user_defined_simplefield feldname="monatlichekostenbrutto">440</user_defined_simplefield>
+            <user_defined_simplefield feldname="grunderwerbssteuer">3.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1.1</user_defined_simplefield>
+            <user_defined_anyfield>
+                <mwst_gesamt>40</mwst_gesamt>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="2058">Topobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="3140">Luxusobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="4743">Wienerwald</justimmo_kategorie>
+            </user_defined_anyfield>
+            <zusatzkosten>
+                <betriebskosten>
+                    <name>Betriebskosten</name>
+                    <netto>400</netto>
+                    <brutto>440</brutto>
+                    <ust>10</ust>
+                    <ust_wert>10</ust_wert>
+                    <ust_berechneter_wert>40</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </betriebskosten>
+                <zusatzkosten_5>
+                    <name>Parkplatz</name>
+                    <netto>20100</netto>
+                    <brutto>24120</brutto>
+                    <ust>20</ust>
+                    <ust_wert>20</ust_wert>
+                    <ust_berechneter_wert>4020</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>true</optional>
+                    <gruppe>rent</gruppe>
+                </zusatzkosten_5>
+            </zusatzkosten>
+        </preise>
+        <flaechen>
+            <nutzflaeche>4000</nutzflaeche>
+            <lagerflaeche>3600</lagerflaeche>
+            <grundstuecksflaeche>10000</grundstuecksflaeche>
+        </flaechen>
+        <ausstattung>
+            <heizungsart ZENTRAL="1" />
+            <befeuerung SOLAR="1" />
+            <stellplatzart PARKHAUS="1" />
+            <kabel_sat_tv>1</kabel_sat_tv>
+            <dv_verkabelung>1</dv_verkabelung>
+            <rampe>1</rampe>
+            <hebebuehne>1</hebebuehne>
+            <kran>1</kran>
+            <gastterrasse>1</gastterrasse>
+            <kantine_cafeteria>1</kantine_cafeteria>
+            <angeschl_gastronomie BAR="1" />
+            <sicherheitstechnik ALARMANLAGE="1" KAMERA="1" />
+        </ausstattung>
+        <zustand_angaben>
+            <alter alter_attr="NEUBAU" />
+            <user_defined_simplefield feldname="epass_hwbklasse">A</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>Geräumige Präsentationsfläche für Grossobjekte test</objekttitel>
+            <objektbeschreibung>&lt;p&gt;Has ei summo delenit. Agam scaevola vix ei, duo vero consul ei, mea ne duis
+                exerci concludaturque? Dicam latine eos te, dicam deseruisse mea ad, cu sit congue meliore voluptatibus.
+                At duo debitis assueverit, tale vivendo repudiare per id? Natum elaboraret et has, cum atomorum
+                interpretaris an.&lt;/p&gt;&#13;
+                &lt;p&gt;Cu dicta eruditi pro, ut ius detracto honestatis, no usu libris graeci cotidieque. Solet
+                consetetur nec cu. In sint altera referrentur nec, tamquam prompta pro et. Choro affert discere vim eu,
+                dicat assum partiendo cu vix!&lt;/p&gt;&#13;
+                &lt;p&gt;An mel nemore percipitur! Alterum hendrerit tincidunt vel ut, at vim brute denique scribentur,
+                principes maiestatis ad vim. Vix te novum tacimates, ludus nominavi ex mei. No sumo invidunt sea, quis
+                scripserit nam ex. Nam et exerci nostrum voluptatum, mel errem lucilius no, ea per possim labitur.&lt;/p&gt;&#13;
+                &lt;p&gt;Quod molestie omittantur eam an. At agam nulla facilis sea, dicit tantas usu ut. In omnis
+                prodesset nam, in vel eirmod mandamus, ei offendit accommodare mei. Te qui justo iisque, nam falli
+                tibique et?&lt;/p&gt;&#13;
+                &lt;p&gt;Dolorem noluisse invidunt mea ea, purto aperiri eu cum. Enim graece dolores id mei. Sit cu
+                pericula cotidieque! Id adhuc semper per, eos an stet choro quando, quo et mandamus posidonium.&lt;/p&gt;&#13;
+                &lt;p&gt;Munere graecis fabellas at mei, eam et vero nonumes reprehendunt. Eu mei invidunt mediocrem,
+                vim ei veri prodesset, vero facilis posidonium te vim! Id duo tantas democritum, no eos alii liber
+                admodum. Duo clita feugait mnesarchum an, quo id alterum percipit signiferumque, no dico definiebas qui?
+                Id eirmod aliquam pri, consul signiferumque ea has.&lt;/p&gt;&#13;
+                &lt;p&gt;Habeo definitiones eu nam, quis delectus vix te? Soleat detraxit praesent ut sea, cu pri dictas
+                perpetua! Ne nec quas dissentiet, ad pri deserunt definiebas, est te laoreet incorrupte? An nam wisi
+                apeirian, cu mea nominavi assentior vituperata, per te nullam efficiendi!&lt;/p&gt;&#13;
+                &lt;p&gt;Te vis elit facer voluptaria! Essent invenire has ut, recteque prodesset vim ex. Magna civibus
+                ei vis, per sale meliore oporteat ea, id eius persius habemus nec. Accumsan consequat pri et, at eum
+                dicit populo, et cum elitr option! Ne sumo sonet eos, pro simul delenit et, mel elit inimicus te.&lt;/p&gt;&#13;
+                &lt;p&gt;Veri instructior pri id, mel debet saepe an, vel id voluptaria quaerendum! His no falli errem!
+                Vocibus delectus ad pri! Et cum modus aliquam dissentiet, duo cu omnis autem similique! Ea lorem
+                contentiones ius!&lt;/p&gt;&#13;
+                &lt;p&gt;Tollit platonem usu no, no solet gubergren theophrastus eos? Pro decore officiis signiferumque
+                ne, has accumsan consetetur ut! Eam consulatu accommodare et, civibus suscipit mea ex. His ei salutatus
+                argumentum?&lt;/p&gt;
+                &lt;p&gt;Hinweis gemäß Energieausweisvorlagegesetz: Ein Energieausweis wurde vom Eigentümer bzw.
+                Verkäufer, nach Aufklärung über die ab 1.12.2012 geltende generelle Vorlagepflicht, noch nicht
+                vorgelegt. Daher gilt zumindest eine dem Alter und der Art des Gebäudes entsprechende
+                Gesamtenergieeffizienz als vereinbart. Wir übernehmen keinerlei Gewähr oder Haftung für die tatsächliche
+                Energieeffizienz der angebotenen Immobilie.&lt;/p&gt;
+                &lt;p&gt;Wir weisen darauf hin, dass zwischen dem Vermittler und dem Auftraggeber ein wirtschaftliches
+                Naheverhältnis besteht.&lt;/p&gt;</objektbeschreibung>
+            <ausstatt_beschr>Solarenergie, Zentralheizung, Angeschl. Bar, Gastterrasse, DV-Verkabelung,
+                Kabel/Satelliten-TV, Parkhaus, Alarmanlage, Hebebühne, Kantine/Cafeteria, Kran, Rampe, Sicherheitskamera
+            </ausstatt_beschr>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyvT79JZ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyvT79JZ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyvT79JZ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyvT79JZ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyvT79JZ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyvT79JZ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyvT79JZ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATm4E-4LJL.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATm4E-4LJL.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATm4E-4LJL.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATm4E-4LJL.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATm4E-4LJL.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATm4E-4LJL.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATm4E-4LJL.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AT0HbRb8m4.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AT0HbRb8m4.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AT0HbRb8m4.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AT0HbRb8m4.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AT0HbRb8m4.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AT0HbRb8m4.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AT0HbRb8m4.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyl2ak8p.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyl2ak8p.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyl2ak8p.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyl2ak8p.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyl2ak8p.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyl2ak8p.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyl2ak8p.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThymHKx_Q.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThymHKx_Q.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThymHKx_Q.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThymHKx_Q.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThymHKx_Q.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThymHKx_Q.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThymHKx_Q.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyj1EOo5.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyj1EOo5.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyj1EOo5.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyj1EOo5.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyj1EOo5.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyj1EOo5.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyj1EOo5.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThykUVSnZ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThykUVSnZ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThykUVSnZ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThykUVSnZ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThykUVSnZ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThykUVSnZ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThykUVSnZ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThynQoTUz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThynQoTUz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThynQoTUz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThynQoTUz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThynQoTUz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThynQoTUz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThynQoTUz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyohomv9.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyohomv9.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyohomv9.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyohomv9.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyohomv9.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyohomv9.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyohomv9.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyp21ByF.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyp21ByF.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyp21ByF.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyp21ByF.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyp21ByF.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyp21ByF.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyp21ByF.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyqyPJlA.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyqyPJlA.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyqyPJlA.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyqyPJlA.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyqyPJlA.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyqyPJlA.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyqyPJlA.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyrgN6Q8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyrgN6Q8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyrgN6Q8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyrgN6Q8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyrgN6Q8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyrgN6Q8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyrgN6Q8.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThysenCQJ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThysenCQJ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThysenCQJ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThysenCQJ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThysenCQJ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThysenCQJ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThysenCQJ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThytkUWua.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThytkUWua.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThytkUWua.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThytkUWua.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThytkUWua.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThytkUWua.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThytkUWua.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyuU8W0V.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyuU8W0V.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyuU8W0V.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyuU8W0V.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyuU8W0V.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyuU8W0V.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyuU8W0V.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATm4BLbfMO.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATm4BLbfMO.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATm4BLbfMO.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATm4BLbfMO.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATm4BLbfMO.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATm4BLbfMO.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATm4BLbfMO.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AT0HYE1Iur.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AT0HYE1Iur.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AT0HYE1Iur.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AT0HYE1Iur.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AT0HYE1Iur.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AT0HYE1Iur.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AT0HYE1Iur.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AT0HZZvh8M.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AT0HZZvh8M.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AT0HZZvh8M.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AT0HZZvh8M.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AT0HZZvh8M.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AT0HZZvh8M.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AT0HZZvh8M.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>11251234673_0ff2dd4280_h.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AThyw9N-AS.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AThyw9N-AS.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AThyw9N-AS.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AThyw9N-AS.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AThyw9N-AS.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AThyw9N-AS.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AThyw9N-AS.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>Chrysanthemum - Kopie - Kopie.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATwLzbZyUp.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATwLzbZyUp.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATwLzbZyUp.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATwLzbZyUp.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATwLzbZyUp.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATwLzbZyUp.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATwLzbZyUp.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <max_mietdauer>unbefristet</max_mietdauer>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="bauart_id">2</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/436942
+            </user_defined_simplefield>
+            <status>aktiv</status>
+            <status_id>5</status_id>
+            <user_defined_simplefield feldname="vermittelt_am" />
+            <user_defined_simplefield feldname="erstellt_am">2015-06-30 11:46:27</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 11:08:39</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>436942</objektnr_intern>
+            <objektnr_extern>O-7/154</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC2015063011462764948h6rlswr7</openimmo_obid>
+            <stand_vom>2015-12-17</stand_vom>
+            <sprache>de-DE</sprache>
+        </verwaltung_techn>
+        <dokumente />
+        <videos />
+        <bilder360 />
     </immobilie>
     <immobilie>
-        <id>195434</id>
-        <objektnummer>30</objektnummer>
-        <titel>DEMOOBJEKT! Luxus Wienblick-Dachgeschosswohnung mit Wintergarten, offenen Kamin, Sauna und Weinkeller</titel>
-        <dreizeiler></dreizeiler>
-        <naehe></naehe>
-        <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-            &lt;p&gt;Luxus-Dachgeschoßwohnung mit Wien und Grünblick, offenen Kamin, Sauna, Wintergarten und Weinkeller&lt;br
-            /&gt;&lt;br /&gt;Die letzen Stock eines Alt-Wienerhauses kürzlich ausgebaute Dachgeschoßwohnung kann auch
-            als Büro-Wohnung verwendet werden.&lt;br /&gt;Luxusausstattung: &lt;/p&gt;&#13;
-            &lt;p&gt;Eichenparkett, Gasetage, Marmorfliessen und Böden, Komplettküche, Wintergarten, Sauna, kleine
-            Terrasse, 2 Bäder, 2 WCs, Wintergarten und 20 m2 Weinkeller!&lt;/p&gt;</objektbeschreibung>
-        <anzahl_zimmer>5</anzahl_zimmer>
-        <etage></etage>
-        <tuernummer></tuernummer>
-        <plz>1120</plz>
-        <ort>Wien</ort>
-        <kaufpreis />
-        <wohnflaeche>269</wohnflaeche>
-        <nutzflaeche>269</nutzflaeche>
-        <erstes_bild>http://files.justimmo.at/public/pic/small/AIAdnvhnI1.jpg</erstes_bild>
-        <zweites_bild>http://files.justimmo.at/public/pic/small/AHA0M0C52b.jpg</zweites_bild>
-        <status>aktiv</status>
-        <status_id>5</status_id>
-        <erstellt_am>2014-12-10 10:10:23</erstellt_am>
-        <aktualisiert_am>2015-09-10 17:10:23</aktualisiert_am>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0" />
+            <vermarktungsart KAUF="1" MIETE_PACHT="0" />
+            <objektart>
+                <land_und_forstwirtschaft />
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">9</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Land und Forstwirtschaft</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1030</plz>
+            <ort>Wien</ort>
+            <bundesland>Wien</bundesland>
+            <land iso_land="AUT" />
+            <anzahl_etagen>69</anzahl_etagen>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 676 123 45 67</tel_zentrale>
+            <tel_fax>+43 767 765 43 21</tel_fax>
+            <tel_handy>+43 1 888 74 72</tel_handy>
+            <name>Diem</name>
+            <vorname>Alexander</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.alexdiem.at</url>
+            <personennummer>100123</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42UH2x-0.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42UH2x-0.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <suffix>MBA</suffix>
+        </kontaktperson>
+        <preise>
+            <kaufpreis>275000</kaufpreis>
+            <aussen_courtage>Provisionsfrei für den Käufer, es sei denn...</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <user_defined_simplefield feldname="grunderwerbssteuer">3.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1.1</user_defined_simplefield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="3140">Luxusobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="4743">Wienerwald</justimmo_kategorie>
+            </user_defined_anyfield>
+            <zusatzkosten />
+        </preise>
+        <flaechen>
+            <wohnflaeche>77</wohnflaeche>
+            <anzahl_zimmer>4</anzahl_zimmer>
+        </flaechen>
+        <ausstattung />
+        <zustand_angaben>
+            <energiepass>
+                <epart>BEDARF</epart>
+                <gueltig_bis>2012-09-12</gueltig_bis>
+                <hwbwert>23</hwbwert>
+                <hwbklasse>A</hwbklasse>
+                <fgeewert>1.01</fgeewert>
+                <fgeeklasse>C</fgeeklasse>
+            </energiepass>
+            <user_defined_simplefield feldname="epass_hwbwert">23</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_hwbklasse">A</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeewert">1.01</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">C</user_defined_simplefield>
+            <hwbwert>23</hwbwert>
+            <fgeewert>1.01</fgeewert>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>DEMOOBJEKT!-Seeblick und Golfplatz im Themalkurort Evian am Genfersee</objekttitel>
+            <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                &lt;p&gt;&lt;br /&gt; 4 -Zimmerwohnung in Gr&amp;uuml;nruhelage mit Seeblick im weltber&amp;uuml;hmten
+                Thermalort Evian les Bains am Genfersee &lt;br /&gt;&lt;br /&gt;Die h&amp;uuml;bsche Kleinwohnung, 55
+                m2+22m2 mit Terrasse, Balkon und grossem Gemeinschaftsgarten, der in Felder und Parkanlagen m&amp;uuml;ndet,
+                liegt in der Golfplatz-Zone in den H&amp;ouml;hen von Evian in einem gekoppeltem H&amp;auml;uschen. Sie
+                bietet eine grossartige Lebensqualit&amp;auml;t mit ihrem Seeblick, Ruhelage, umgeben von Feldern und
+                Parkanlagen. Wohnraum mit offenem Kamin, Essplatz und amerikanische K&amp;uuml;che, Vorraum, WC im
+                Erdgeschosse, 2 Schlafzimmer Bad mit Wanne und Bidet, WC, Balkon im 1. Stock, 22 m2 Raum unter dem Dach,
+                der als 3. Schlaf-oder Raum f&amp;uuml;r Sonstiges Verwendung finden kann. Dazu geh&amp;ouml;ren 2
+                Parkpl&amp;auml;tze, 1 Garage, 2 trockene Keller. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                &lt;p&gt;Wir weisen darauf hin, dass zwischen dem Vermittler und dem Auftraggeber ein wirtschaftliches
+                Naheverhältnis besteht.&lt;/p&gt;</objektbeschreibung>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzzWd7re.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzzWd7re.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzzWd7re.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzzWd7re.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzzWd7re.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzzWd7re.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzzWd7re.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAz0J6S_3.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAz0J6S_3.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAz0J6S_3.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAz0J6S_3.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAz0J6S_3.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAz0J6S_3.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAz0J6S_3.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AO_jKc0PK_.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AO_jKc0PK_.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AO_jKc0PK_.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AO_jKc0PK_.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AO_jKc0PK_.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AO_jKc0PK_.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AO_jKc0PK_.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAz1tgiwz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAz1tgiwz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAz1tgiwz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAz1tgiwz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAz1tgiwz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAz1tgiwz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAz1tgiwz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAz2-7pQz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAz2-7pQz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAz2-7pQz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAz2-7pQz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAz2-7pQz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAz2-7pQz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAz2-7pQz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAz3Kc9Cc.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAz3Kc9Cc.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAz3Kc9Cc.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAz3Kc9Cc.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAz3Kc9Cc.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAz3Kc9Cc.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAz3Kc9Cc.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AO_jJaixNW.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AO_jJaixNW.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AO_jJaixNW.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AO_jJaixNW.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AO_jJaixNW.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AO_jJaixNW.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AO_jJaixNW.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AO_jL-Ra3G.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AO_jL-Ra3G.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AO_jL-Ra3G.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AO_jL-Ra3G.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AO_jL-Ra3G.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AO_jL-Ra3G.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AO_jL-Ra3G.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AO_juNZrZ8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AO_juNZrZ8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AO_juNZrZ8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AO_juNZrZ8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AO_juNZrZ8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AO_juNZrZ8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AO_juNZrZ8.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <max_mietdauer>unbefristet</max_mietdauer>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/195429
+            </user_defined_simplefield>
+            <status>aktiv</status>
+            <status_id>5</status_id>
+            <user_defined_simplefield feldname="vermittelt_am"></user_defined_simplefield>
+            <user_defined_simplefield feldname="erstellt_am">2013-09-17 11:29:03</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 09:42:45</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>195429</objektnr_intern>
+            <objektnr_extern>O-7/899</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC20130917112903382axhkiby66z</openimmo_obid>
+            <stand_vom>2015-12-17</stand_vom>
+            <sprache>de-DE</sprache>
+        </verwaltung_techn>
+        <dokumente />
+        <videos />
+        <bilder360 />
     </immobilie>
     <immobilie>
-        <id>66076</id>
-        <objektnummer>15</objektnummer>
-        <titel>DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens</titel>
-        <dreizeiler></dreizeiler>
-        <naehe></naehe>
-        <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-            &lt;p&gt;Breitenlee: Sonnige 3 Zimmer-Wohnung inmitten der Kornkammern Wiens&lt;br /&gt;&lt;br /&gt;Die
-            helle freundliche 3 Zimmer-Wohnung mit Bad (Wanne), eigenem WC, Schrankraum, Wohnküche mit Speiss,
-            französichen Fenstern in allen Räumen ist süd-westl. ausgerichtet. Im Mietpreis sind die Kosten für 1
-            Garagenplatz enthalten.&lt;br /&gt;5 Minuten mit dem Auto nach Breitenlee, 10 Min. zum großen Donaustädter
-            Einkaufspark und in 100 Metern mitten in den Feldern! Die Haltestelle des städt. Autobuses ist vor der Türe!&lt;br
-            /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
-        <anzahl_zimmer>3</anzahl_zimmer>
-        <etage>EG</etage>
-        <tuernummer></tuernummer>
-        <plz>1220</plz>
-        <ort>Wien</ort>
-        <gesamtmiete>1100</gesamtmiete>
-        <wohnflaeche>82</wohnflaeche>
-        <erstes_bild>http://files.justimmo.at/public/pic/small/AB3vVCV5q7.jpg</erstes_bild>
-        <zweites_bild>http://files.justimmo.at/public/pic/small/AB3vWkwRx7.jpg</zweites_bild>
-        <projekt_id>51</projekt_id>
-        <status>vermittelt</status>
-        <status_id>8</status_id>
-        <vermittelt_am>2015-11-11</vermittelt_am>
-        <erstellt_am>2014-12-10 09:10:23</erstellt_am>
-        <aktualisiert_am>2015-10-12 09:05:23</aktualisiert_am>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0" />
+            <vermarktungsart KAUF="0" MIETE_PACHT="1" />
+            <objektart>
+                <wohnung wohnungtyp="ETAGE" />
+                <subobjektart>Etagenwohnung</subobjektart>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">2</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Wohnung</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">102</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">Etagenwohnung</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1030</plz>
+            <ort>Wien</ort>
+            <geokoordinaten breitengrad="48.2087578" laengengrad="16.3911503" />
+            <strasse>Seidlgasse</strasse>
+            <hausnummer>2</hausnummer>
+            <wohnungsnr>10</wohnungsnr>
+            <bundesland>Wien</bundesland>
+            <land iso_land="AUT" />
+            <tuernummer>10</tuernummer>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 676 123 45 67</tel_zentrale>
+            <tel_fax>+43 767 765 43 21</tel_fax>
+            <tel_handy>+43 1 888 74 72</tel_handy>
+            <name>Diem</name>
+            <vorname>Alexander</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.alexdiem.at</url>
+            <personennummer>100123</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42UH2x-0.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42UH2x-0.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <suffix>MBA</suffix>
+        </kontaktperson>
+        <preise>
+            <nettokaltmiete>1200</nettokaltmiete>
+            <kaltmiete>1280</kaltmiete>
+            <warmmiete>1280</warmmiete>
+            <zzg_mehrwertsteuer>1</zzg_mehrwertsteuer>
+            <aussen_courtage>Provision bezahlt der Abgeber, es sei denn er ist blank</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <kaution>2</kaution>
+            <kaution_text>2,00 €</kaution_text>
+            <user_defined_simplefield feldname="finanzierungsbeitrag">60</user_defined_simplefield>
+            <user_defined_anyfield>
+                <sonstige_kosten>80</sonstige_kosten>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="2058">Topobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="3221">Slideshow</justimmo_kategorie>
+            </user_defined_anyfield>
+            <miete>
+                <netto>1200</netto>
+                <brutto>1200</brutto>
+                <ust>0</ust>
+                <ust_wert>0</ust_wert>
+                <ust_typ>percent</ust_typ>
+            </miete>
+            <zusatzkosten>
+                <zusatzkosten_7>
+                    <name>Sonstiges</name>
+                    <netto>80</netto>
+                    <brutto>80</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>other</gruppe>
+                </zusatzkosten_7>
+            </zusatzkosten>
+        </preise>
+        <flaechen>
+            <wohnflaeche>82</wohnflaeche>
+            <anzahl_zimmer>3</anzahl_zimmer>
+        </flaechen>
+        <ausstattung />
+        <zustand_angaben>
+            <zustand zustand_art="ERSTBEZUG" />
+            <energiepass>
+                <epart>BEDARF</epart>
+                <gueltig_bis>2012-12-09</gueltig_bis>
+                <hwbwert>20</hwbwert>
+                <hwbklasse>A</hwbklasse>
+                <fgeewert>0.99</fgeewert>
+                <fgeeklasse>B</fgeeklasse>
+            </energiepass>
+            <user_defined_simplefield feldname="epass_hwbwert">20</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_hwbklasse">A</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeewert">0.99</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
+            <hwbwert>20</hwbwert>
+            <fgeewert>0.99</fgeewert>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens</objekttitel>
+            <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                &lt;p&gt;Breitenlee: Sonnige 3 Zimmer-Wohnung inmitten der Kornkammern Wiens&lt;br /&gt;&lt;br /&gt;Die
+                helle freundliche 3 Zimmer-Wohnung mit Bad (Wanne), eigenem WC, Schrankraum, Wohnk&amp;uuml;che mit
+                Speiss, franz&amp;ouml;sichen Fenstern in allen R&amp;auml;umen ist s&amp;uuml;d-westl. ausgerichtet. Im
+                Mietpreis sind die Kosten f&amp;uuml;r 1 Garagenplatz enthalten.&lt;br /&gt;5 Minuten mit dem Auto nach
+                Breitenlee, 10 Min. zum gro&amp;szlig;en Donaust&amp;auml;dter Einkaufspark und in 100 Metern mitten in
+                den Feldern! Die Haltestelle des st&amp;auml;dt. Autobuses ist vor der T&amp;uuml;re!&lt;br /&gt;&lt;br
+                /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APrzj7S1Dx.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APrzj7S1Dx.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APrzj7S1Dx.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APrzj7S1Dx.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APrzj7S1Dx.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APrzj7S1Dx.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APrzj7S1Dx.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzgJFX5G.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzgJFX5G.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzgJFX5G.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzgJFX5G.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzgJFX5G.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzgJFX5G.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzgJFX5G.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzfeocz0.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzfeocz0.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzfeocz0.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzfeocz0.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzfeocz0.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzfeocz0.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzfeocz0.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzdk3L-F.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzdk3L-F.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzdk3L-F.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzdk3L-F.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzdk3L-F.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzdk3L-F.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzdk3L-F.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APhQaoLBAs.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APhQaoLBAs.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APhQaoLBAs.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APhQaoLBAs.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APhQaoLBAs.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APhQaoLBAs.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APhQaoLBAs.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APhQbmcx-n.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APhQbmcx-n.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APhQbmcx-n.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APhQbmcx-n.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APhQbmcx-n.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APhQbmcx-n.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APhQbmcx-n.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzhadq0j.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzhadq0j.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzhadq0j.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzhadq0j.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzhadq0j.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzhadq0j.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzhadq0j.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAze0g1dZ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAze0g1dZ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAze0g1dZ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAze0g1dZ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAze0g1dZ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAze0g1dZ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAze0g1dZ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APhQcGowUE.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APhQcGowUE.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APhQcGowUE.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APhQcGowUE.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APhQcGowUE.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APhQcGowUE.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APhQcGowUE.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APrzelylB8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APrzelylB8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APrzelylB8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APrzelylB8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APrzelylB8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APrzelylB8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APrzelylB8.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel></anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APrzfvRdtp.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APrzfvRdtp.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APrzfvRdtp.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APrzfvRdtp.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APrzfvRdtp.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APrzfvRdtp.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APrzfvRdtp.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APrzgWRkG8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APrzgWRkG8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APrzgWRkG8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APrzgWRkG8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APrzgWRkG8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APrzgWRkG8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APrzgWRkG8.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>Demobild7.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/APrznER3Vi.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/APrznER3Vi.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/APrznER3Vi.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/APrznER3Vi.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/APrznER3Vi.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/APrznER3Vi.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/APrznER3Vi.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <max_mietdauer max_dauer="JAHR">5</max_mietdauer>
+            <user_defined_simplefield feldname="ji_objektstatus">vermittelt</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">7</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/195425
+            </user_defined_simplefield>
+            <status>vermittelt</status>
+            <status_id>8</status_id>
+            <user_defined_simplefield feldname="vermittelt_am">2014-10-09</user_defined_simplefield>
+            <user_defined_simplefield feldname="erstellt_am">2013-09-17 11:28:49</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-12-20 22:05:39</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>195425</objektnr_intern>
+            <objektnr_extern>O-7/33439</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC20130917112849662guweq1poii</openimmo_obid>
+            <stand_vom>2015-12-20</stand_vom>
+            <sprache>de-DE</sprache>
+            <projekt_id>46</projekt_id>
+        </verwaltung_techn>
+        <dokumente />
+        <videos />
+        <bilder360 />
+    </immobilie>
+    <immobilie>
+        <objektkategorie>
+            <nutzungsart WOHNEN="0" GEWERBE="1" ANLAGE="0" />
+            <vermarktungsart KAUF="0" MIETE_PACHT="1" />
+            <objektart>
+                <buero_praxen />
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Büro / Praxis</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1020</plz>
+            <ort>Wien</ort>
+            <bundesland>Wien</bundesland>
+            <land iso_land="AUT" />
+            <etage>16</etage>
+            <anzahl_etagen>69</anzahl_etagen>
+            <regionaler_zusatz>Schwedenplatz</regionaler_zusatz>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 676 123 45 67</tel_zentrale>
+            <tel_fax>+43 767 765 43 21</tel_fax>
+            <tel_handy>+43 1 888 74 72</tel_handy>
+            <name>Diem</name>
+            <vorname>Alexander</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.alexdiem.at</url>
+            <personennummer>100123</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42UH2x-0.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42UH2x-0.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <suffix>MBA</suffix>
+        </kontaktperson>
+        <preise>
+            <nettokaltmiete>8120</nettokaltmiete>
+            <kaltmiete>8870</kaltmiete>
+            <warmmiete>10460</warmmiete>
+            <nebenkosten>750</nebenkosten>
+            <heizkosten>650</heizkosten>
+            <zzg_mehrwertsteuer>1</zzg_mehrwertsteuer>
+            <mietpreis_pro_qm>18.04</mietpreis_pro_qm>
+            <aussen_courtage>2 Bruttomonatsmieten zzgl. 20% USt.</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <kaution_text>3 Bruttomonatsmieten</kaution_text>
+            <user_defined_anyfield>
+                <mwst_gesamt>940</mwst_gesamt>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="2058">Topobjekte</justimmo_kategorie>
+            </user_defined_anyfield>
+            <gesamtmiete_ust>875</gesamtmiete_ust>
+            <miete>
+                <netto>8000</netto>
+                <brutto>8800</brutto>
+                <ust>10</ust>
+                <ust_wert>10</ust_wert>
+                <ust_typ>percent</ust_typ>
+            </miete>
+            <zusatzkosten>
+                <betriebskosten>
+                    <name>Betriebskosten</name>
+                    <netto>750</netto>
+                    <brutto>825</brutto>
+                    <ust>10</ust>
+                    <ust_wert>10</ust_wert>
+                    <ust_berechneter_wert>75</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </betriebskosten>
+                <heizkosten>
+                    <name>Heizkosten</name>
+                    <netto>650</netto>
+                    <brutto>715</brutto>
+                    <ust>10</ust>
+                    <ust_wert>10</ust_wert>
+                    <ust_berechneter_wert>65</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </heizkosten>
+                <zusatzkosten_6>
+                    <name>Garage</name>
+                    <netto>120</netto>
+                    <brutto>120</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>rent</gruppe>
+                </zusatzkosten_6>
+            </zusatzkosten>
+            <user_defined_simplefield feldname="miete_ust">875</user_defined_simplefield>
+        </preise>
+        <flaechen>
+            <bueroflaeche>450</bueroflaeche>
+            <anzahl_zimmer>8</anzahl_zimmer>
+        </flaechen>
+        <ausstattung>
+            <kueche EBK="1" />
+            <boden LAMINAT="1" STEIN="1" />
+            <heizungsart FERN="1" FUSSBODEN="1" />
+            <befeuerung ERDWAERME="1" />
+            <klimatisiert>1</klimatisiert>
+            <stellplatzart TIEFGARAGE="1" />
+            <moebliert moeb="TEIL" />
+            <gastterrasse>1</gastterrasse>
+            <kantine_cafeteria>1</kantine_cafeteria>
+            <teekueche>1</teekueche>
+            <angeschl_gastronomie BAR="1" HOTELRESTAURANT="1" />
+            <serviceleistungen CATERING="1" />
+            <sicherheitstechnik KAMERA="1" />
+        </ausstattung>
+        <zustand_angaben>
+            <baujahr>2008</baujahr>
+            <zustand zustand_art="NEUWERTIG" />
+            <alter alter_attr="NEUBAU" />
+            <energiepass>
+                <epart>BEDARF</epart>
+                <gueltig_bis>2012-09-12</gueltig_bis>
+                <hwbwert>10</hwbwert>
+                <hwbklasse>A++</hwbklasse>
+                <fgeewert>0.69</fgeewert>
+                <fgeeklasse>A+</fgeeklasse>
+            </energiepass>
+            <user_defined_simplefield feldname="epass_hwbwert">10</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_hwbklasse">A++</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeewert">0.69</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">A+</user_defined_simplefield>
+            <hwbwert>10</hwbwert>
+            <fgeewert>0.69</fgeewert>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>DEMOOBJEKT! Modernes Büro in Zentrumsnähe</objekttitel>
+            <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                testen. Manchmal S&amp;auml;tze, die alle Buchstaben des Alphabets enthalten - man nennt diese S&amp;auml;tze
+                &amp;raquo;Pangrams&amp;laquo;.&lt;/p&gt;&#13;
+                &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL&amp;reg; and Wefox&amp;trade; are testing
+                aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast
+                jede Schrift gut aus.&lt;/p&gt;&#13;
+                &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach
+                TypoGb. 204 &amp;sect; ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                mit bis zu 245 &amp;euro; oder 368 $ bestraft.&lt;/p&gt;&#13;
+                &lt;p&gt;Genauso wichtig in sind mittlerweile auch &amp;Acirc;&amp;ccedil;c&amp;egrave;&amp;ntilde;t&amp;euml;,
+                die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes
+                Feld sind OpenType-Funktionalit&amp;auml;ten. Je nach Software und Voreinstellungen k&amp;ouml;nnen
+                eingebaute Kapit&amp;auml;lchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden.
+                Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.
+                Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks&amp;nbsp;&lt;/p&gt;&#13;
+                &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                testen. Manchmal S&amp;auml;tze, die alle Buchstaben des Alphabets enthalten - man nennt diese S&amp;auml;tze
+                &amp;raquo;Pangrams&amp;laquo;.&lt;/p&gt;&#13;
+                &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL&amp;reg; and Wefox&amp;trade; are testing
+                aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast
+                jede Schrift gut aus.&lt;/p&gt;&#13;
+                &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach
+                TypoGb. 204 &amp;sect; ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                mit bis zu 245 &amp;euro; oder 368 $ bestraft.&lt;/p&gt;&#13;
+                &lt;p&gt;Genauso wichtig in sind mittlerweile auch &amp;Acirc;&amp;ccedil;c&amp;egrave;&amp;ntilde;t&amp;euml;,
+                die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes
+                Feld sind OpenType-Funktionalit&amp;auml;ten. Je nach Software und Voreinstellungen k&amp;ouml;nnen
+                eingebaute Kapit&amp;auml;lchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden.
+                Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.
+                Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks&lt;/p&gt;</objektbeschreibung>
+            <ausstatt_beschr>Laminat, Steinboden, Erdwärme, Fernwärme, Fußbodenheizung, Catering, Einbauküche, Teeküche,
+                Angeschl. Bar, Angeschl. Hotelrestaurant, Gastterrasse, Tiefgarage, Kantine/Cafeteria,
+                Sicherheitskamera, Klimaanlage
+            </ausstatt_beschr>
+            <user_defined_anyfield>
+                <justimmo_moeblierung>teilmöbliert (modern)</justimmo_moeblierung>
+            </user_defined_anyfield>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzJluzbN.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzJluzbN.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzJluzbN.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzJluzbN.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzJluzbN.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzJluzbN.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzJluzbN.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzKZQJGI.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzKZQJGI.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzKZQJGI.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzKZQJGI.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzKZQJGI.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzKZQJGI.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzKZQJGI.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzLbnxxK.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzLbnxxK.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzLbnxxK.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzLbnxxK.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzLbnxxK.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzLbnxxK.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzLbnxxK.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzMMLNG_.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzMMLNG_.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzMMLNG_.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzMMLNG_.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzMMLNG_.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzMMLNG_.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzMMLNG_.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHAzNON_xJ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHAzNON_xJ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHAzNON_xJ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHAzNON_xJ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHAzNON_xJ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHAzNON_xJ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHAzNON_xJ.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <verfuegbar_ab>sofort</verfuegbar_ab>
+            <max_mietdauer max_dauer="JAHR">5</max_mietdauer>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="bauart_id">2</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/195422
+            </user_defined_simplefield>
+            <status>aktiv</status>
+            <status_id>5</status_id>
+            <user_defined_simplefield feldname="vermittelt_am">2015-11-09</user_defined_simplefield>
+            <user_defined_simplefield feldname="erstellt_am">2013-09-17 11:28:33</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-11-16 17:18:21</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>195422</objektnr_intern>
+            <objektnr_extern>O-7/19</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC20130917112833547bph98wojpb</openimmo_obid>
+            <stand_vom>2015-11-16</stand_vom>
+            <sprache>de-DE</sprache>
+        </verwaltung_techn>
+        <dokumente />
+        <videos />
+        <bilder360 />
+    </immobilie>
+    <immobilie>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0" />
+            <vermarktungsart KAUF="1" MIETE_PACHT="0" />
+            <objektart>
+                <wohnung />
+                <subobjektart>Wohnung</subobjektart>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">2</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Wohnung</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">45</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">Wohnung</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1030</plz>
+            <ort>Wien</ort>
+            <geokoordinaten breitengrad="48.2087578" laengengrad="16.3911503" />
+            <strasse>Seidlgasse</strasse>
+            <hausnummer>2</hausnummer>
+            <bundesland>Wien</bundesland>
+            <land iso_land="AUT" />
+            <etage>2. KG</etage>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 676 123 45 67</tel_zentrale>
+            <tel_fax>+43 767 765 43 21</tel_fax>
+            <tel_handy>+43 1 888 74 72</tel_handy>
+            <name>Diem</name>
+            <vorname>Alexander</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.alexdiem.at</url>
+            <personennummer>100123</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42UH2x-0.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42UH2x-0.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">AT01003516</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42UH2x-0.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <suffix>MBA</suffix>
+        </kontaktperson>
+        <preise>
+            <kaufpreis>200000</kaufpreis>
+            <nebenkosten>200</nebenkosten>
+            <heizkosten>10000</heizkosten>
+            <kaufpreis_pro_qm>13333.33</kaufpreis_pro_qm>
+            <aussen_courtage>2.000% des Kaufpreises zzgl. 20% USt.</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <user_defined_simplefield feldname="monatlichekostenbrutto">10200</user_defined_simplefield>
+            <user_defined_simplefield feldname="grunderwerbssteuer">3.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1.1</user_defined_simplefield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="4743">Wienerwald</justimmo_kategorie>
+            </user_defined_anyfield>
+            <zusatzkosten>
+                <betriebskosten>
+                    <name>Betriebskosten</name>
+                    <netto>200</netto>
+                    <brutto>200</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </betriebskosten>
+                <heizkosten>
+                    <name>Heizkosten</name>
+                    <netto>10000</netto>
+                    <brutto>10000</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </heizkosten>
+                <zusatzkosten_6>
+                    <name>Garage</name>
+                    <netto>20000</netto>
+                    <brutto>20000</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>true</optional>
+                    <gruppe>rent</gruppe>
+                </zusatzkosten_6>
+            </zusatzkosten>
+        </preise>
+        <flaechen>
+            <nutzflaeche>15</nutzflaeche>
+            <grundstuecksflaeche>15</grundstuecksflaeche>
+            <anzahl_balkone>2</anzahl_balkone>
+            <balkon_terrasse_flaeche>12</balkon_terrasse_flaeche>
+            <anzahl_balkon_terrassen>2</anzahl_balkon_terrassen>
+            <anzahl_garten>1</anzahl_garten>
+            <anzahl_balkons>2</anzahl_balkons>
+            <balkons_flaeche>12</balkons_flaeche>
+        </flaechen>
+        <ausstattung>
+            <wg_geeignet>1</wg_geeignet>
+            <boden DIELEN="1" DOPPELBODEN="1" ESTRICH="1" />
+        </ausstattung>
+        <zustand_angaben>
+            <letztemodernisierung>2015</letztemodernisierung>
+            <zustand zustand_art="ERSTBEZUG" />
+            <user_defined_simplefield feldname="epass_hwbklasse">B</user_defined_simplefield>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</objekttitel>
+            <objektbeschreibung>&lt;h1&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/h1&gt;&#13;
+                &lt;p&gt;Elegantes, repr&amp;auml;sentatives B&amp;uuml;ro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br
+                /&gt;Komplett ausgestattetes 1 bis 2 Personenb&amp;uuml;ro mit Karlskirchenblick f&amp;uuml;r Ihre
+                Beratungen mit anspruchsvolle Kunden. &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten,
+                Heizung, Strom und Reinigungskosten, K&amp;uuml;che- und Caf&amp;eacute;raum-Ben&amp;uuml;tzung, Getr&amp;auml;nke
+                f&amp;uuml;r Besucher. &lt;br /&gt;Weiters zur Verf&amp;uuml;gung: Besprechung- und Konferenzr&amp;auml;ume,
+                Sekretariatsservice Kopierer, Drucker, diverse B&amp;uuml;roger&amp;auml;te!&lt;br /&gt;Der Mietpreis
+                ist auf der Basis eines Jahresvertrages kalkuliert, ab 1 Monatsvertr&amp;auml;ge oder langfristige
+                Bindungen ebenfalls m&amp;ouml;glich!&lt;br /&gt;Ein &amp;auml;hnliches B&amp;uuml;ro k&amp;ouml;nnen
+                Sie auch am Parkring und in der B&amp;ouml;rse mieten, billigere Optionen zu 1280 ? monatlich im Twin
+                Towers oder Airport.&lt;br /&gt;Wenn freie Kapazit&amp;auml;t vorhanden, kann ein Einzelb&amp;uuml;ro
+                auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                &lt;p&gt;Hinweis gemäß Energieausweisvorlagegesetz: Ein Energieausweis wurde vom Eigentümer bzw.
+                Verkäufer, nach Aufklärung über die ab 1.12.2012 geltende generelle Vorlagepflicht, noch nicht
+                vorgelegt. Daher gilt zumindest eine dem Alter und der Art des Gebäudes entsprechende
+                Gesamtenergieeffizienz als vereinbart. Wir übernehmen keinerlei Gewähr oder Haftung für die tatsächliche
+                Energieeffizienz der angebotenen Immobilie.&lt;/p&gt;</objektbeschreibung>
+            <sonstige_angaben>&lt;p&gt;likjhdaskhdkahdhASD&lt;/p&gt;</sonstige_angaben>
+            <ausstatt_beschr>Dielen, Doppelboden, Estrich, U-Bahn-Nähe, WG geeignet</ausstatt_beschr>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALtgDVALmf.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALtgDVALmf.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALtgDVALmf.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALtgDVALmf.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALtgDVALmf.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALtgDVALmf.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALtgDVALmf.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7kqwbuQV.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7kqwbuQV.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7kqwbuQV.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7kqwbuQV.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7kqwbuQV.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7kqwbuQV.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7kqwbuQV.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AG5b9xIpiH.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AG5b9xIpiH.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AG5b9xIpiH.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AG5b9xIpiH.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AG5b9xIpiH.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AG5b9xIpiH.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AG5b9xIpiH.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AB3vpapZbf.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AB3vpapZbf.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AB3vpapZbf.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AB3vpapZbf.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AB3vpapZbf.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AB3vpapZbf.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AB3vpapZbf.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL5b4M1aIJ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL5b4M1aIJ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL5b4M1aIJ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL5b4M1aIJ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL5b4M1aIJ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL5b4M1aIJ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL5b4M1aIJ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7kp78KeU.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7kp78KeU.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7kp78KeU.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7kp78KeU.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7kp78KeU.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7kp78KeU.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7kp78KeU.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AFp_OBXSuu.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AFp_OBXSuu.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AFp_OBXSuu.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AFp_OBXSuu.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AFp_OBXSuu.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AFp_OBXSuu.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AFp_OBXSuu.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AGJGIi1875.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AGJGIi1875.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AGJGIi1875.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AGJGIi1875.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AGJGIi1875.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AGJGIi1875.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AGJGIi1875.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AFp_Nf4GBV.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AFp_Nf4GBV.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AFp_Nf4GBV.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AFp_Nf4GBV.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AFp_Nf4GBV.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AFp_Nf4GBV.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AFp_Nf4GBV.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AFp_RJbd8B.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AFp_RJbd8B.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AFp_RJbd8B.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AFp_RJbd8B.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AFp_RJbd8B.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AFp_RJbd8B.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AFp_RJbd8B.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AG5cB-LQNF.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AG5cB-LQNF.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AG5cB-LQNF.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AG5cB-LQNF.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AG5cB-LQNF.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AG5cB-LQNF.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AG5cB-LQNF.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AGJF7rwxbB.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AGJF7rwxbB.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AGJF7rwxbB.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AGJF7rwxbB.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AGJF7rwxbB.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AGJF7rwxbB.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AGJF7rwxbB.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AGJGME-ZEK.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AGJGME-ZEK.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AGJGME-ZEK.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AGJGME-ZEK.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AGJGME-ZEK.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AGJGME-ZEK.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AGJGME-ZEK.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL5b1wfJbG.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL5b1wfJbG.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL5b1wfJbG.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL5b1wfJbG.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL5b1wfJbG.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL5b1wfJbG.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL5b1wfJbG.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL5b3Awjxz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL5b3Awjxz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL5b3Awjxz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL5b3Awjxz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL5b3Awjxz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL5b3Awjxz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL5b3Awjxz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALtgCI4TBU.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALtgCI4TBU.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALtgCI4TBU.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALtgCI4TBU.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALtgCI4TBU.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALtgCI4TBU.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALtgCI4TBU.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7koch7_b.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7koch7_b.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7koch7_b.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7koch7_b.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7koch7_b.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7koch7_b.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7koch7_b.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7kscmfn1.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7kscmfn1.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7kscmfn1.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7kscmfn1.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7kscmfn1.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7kscmfn1.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7kscmfn1.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7kt-dCXS.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7kt-dCXS.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7kt-dCXS.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7kt-dCXS.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7kt-dCXS.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7kt-dCXS.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7kt-dCXS.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AL7kuNLuGu.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AL7kuNLuGu.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AL7kuNLuGu.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AL7kuNLuGu.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AL7kuNLuGu.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AL7kuNLuGu.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AL7kuNLuGu.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel></anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AGJGD-zKFH.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AGJGD-zKFH.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AGJGD-zKFH.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AGJGD-zKFH.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AGJGD-zKFH.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AGJGD-zKFH.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AGJGD-zKFH.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmC2cX-W6.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmC2cX-W6.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmC2cX-W6.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmC2cX-W6.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmC2cX-W6.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmC2cX-W6.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmC2cX-W6.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmC4IQSuG.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmC4IQSuG.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmC4IQSuG.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmC4IQSuG.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmC4IQSuG.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmC4IQSuG.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmC4IQSuG.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmEn-kgrY.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmEn-kgrY.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmEn-kgrY.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmEn-kgrY.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmEn-kgrY.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmEn-kgrY.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmEn-kgrY.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.1.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDPiZleo.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDPiZleo.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDPiZleo.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDPiZleo.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDPiZleo.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDPiZleo.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDPiZleo.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.2.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDQRFSny.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDQRFSny.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDQRFSny.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDQRFSny.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDQRFSny.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDQRFSny.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDQRFSny.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.3.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDRf3ouv.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDRf3ouv.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDRf3ouv.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDRf3ouv.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDRf3ouv.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDRf3ouv.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDRf3ouv.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.4.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDSAZ8PI.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDSAZ8PI.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDSAZ8PI.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDSAZ8PI.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDSAZ8PI.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDSAZ8PI.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDSAZ8PI.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.7.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDV5OJna.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDV5OJna.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDV5OJna.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDV5OJna.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDV5OJna.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDV5OJna.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDV5OJna.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.8.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDWmPFIC.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDWmPFIC.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDWmPFIC.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDWmPFIC.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDWmPFIC.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDWmPFIC.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDWmPFIC.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.9.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDXj7ZoH.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDXj7ZoH.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDXj7ZoH.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDXj7ZoH.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDXj7ZoH.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDXj7ZoH.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDXj7ZoH.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.10.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDY1ZGzj.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDY1ZGzj.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDY1ZGzj.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDY1ZGzj.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDY1ZGzj.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDY1ZGzj.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDY1ZGzj.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.13.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDbWm0jL.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDbWm0jL.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDbWm0jL.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDbWm0jL.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDbWm0jL.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDbWm0jL.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDbWm0jL.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.14.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDcFM_jS.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDcFM_jS.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDcFM_jS.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDcFM_jS.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDcFM_jS.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDcFM_jS.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDcFM_jS.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.15.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDdbGUWe.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDdbGUWe.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDdbGUWe.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDdbGUWe.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDdbGUWe.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDdbGUWe.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDdbGUWe.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.16.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDejgexo.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDejgexo.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDejgexo.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDejgexo.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDejgexo.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDejgexo.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDejgexo.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.17.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDf5rZoz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDf5rZoz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDf5rZoz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDf5rZoz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDf5rZoz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDf5rZoz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDf5rZoz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.18.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDgEcpD_.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDgEcpD_.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDgEcpD_.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDgEcpD_.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDgEcpD_.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDgEcpD_.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDgEcpD_.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.19.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDhXJECX.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDhXJECX.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDhXJECX.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDhXJECX.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDhXJECX.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDhXJECX.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDhXJECX.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.20.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDjvGFAg.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDjvGFAg.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDjvGFAg.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDjvGFAg.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDjvGFAg.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDjvGFAg.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDjvGFAg.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.21.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDk6Aq_R.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDk6Aq_R.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDk6Aq_R.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDk6Aq_R.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDk6Aq_R.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDk6Aq_R.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDk6Aq_R.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.22.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDlaSuyh.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDlaSuyh.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDlaSuyh.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDlaSuyh.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDlaSuyh.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDlaSuyh.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDlaSuyh.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.23.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDmx2_0Z.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDmx2_0Z.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDmx2_0Z.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDmx2_0Z.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDmx2_0Z.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDmx2_0Z.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDmx2_0Z.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>5_-_Wohnung_-_Wien_-_Expose.pdf.25.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ATmDod1JSU.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ATmDod1JSU.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ATmDod1JSU.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ATmDod1JSU.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ATmDod1JSU.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ATmDod1JSU.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ATmDod1JSU.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <max_mietdauer>unbefristet</max_mietdauer>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/66079
+            </user_defined_simplefield>
+            <status>aktiv</status>
+            <status_id>5</status_id>
+            <user_defined_simplefield feldname="vermittelt_am">2014-03-02</user_defined_simplefield>
+            <user_defined_simplefield feldname="erstellt_am">2012-04-01 18:30:34</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 14:10:50</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>66079</objektnr_intern>
+            <objektnr_extern>O-7/18</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC20120401183034000f6886837b6</openimmo_obid>
+            <stand_vom>2015-12-17</stand_vom>
+            <sprache>de-DE</sprache>
+            <projekt_id>46</projekt_id>
+        </verwaltung_techn>
+        <dokumente>
+            <dokument>
+                <titel>Wandaufbau.pdf</titel>
+                <pfad>http://files.justimmo.at/public/doc/AEVaLEzN3m.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+            <dokument>
+                <titel>rechnung_6653.pdf</titel>
+                <pfad>http://files.justimmo.at/public/doc/AL5czPytNe.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+            <dokument>
+                <titel>rechnung_6653.pdf</titel>
+                <pfad>http://files.justimmo.at/public/doc/AL7lKMV8Ai.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+        </dokumente>
+        <videos />
+        <bilder360 />
+    </immobilie>
+    <immobilie>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0" />
+            <vermarktungsart KAUF="1" MIETE_PACHT="0" />
+            <objektart>
+                <wohnung wohnungtyp="DACHGESCHOSS" />
+                <subobjektart>Dachgeschoß</subobjektart>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">2</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">Wohnung</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">53</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">Dachgeschoß</user_defined_simplefield>
+        </objektkategorie>
+        <geo>
+            <plz>1030</plz>
+            <ort>Wien</ort>
+            <bundesland>Wien</bundesland>
+            <land iso_land="AUT" />
+            <etage>1. DG</etage>
+            <anzahl_etagen>69</anzahl_etagen>
+            <regionaler_zusatz>gleich ums eck von schönbrunn</regionaler_zusatz>
+        </geo>
+        <kontaktperson>
+            <email_direkt>support@justimmo.at</email_direkt>
+            <tel_zentrale>+43 1 798 62 05</tel_zentrale>
+            <tel_fax>+43 1 798 62 05 18</tel_fax>
+            <tel_handy>+43 676 676 67 67</tel_handy>
+            <name>Stehmann</name>
+            <vorname>Aurel</vorname>
+            <anrede>Herr</anrede>
+            <firma>Kanzlei Mustermann GmbH</firma>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <land iso_land="AUT" />
+            <email_feedback>1599-201512-abc103aa@oi-feedback.justimmo.at</email_feedback>
+            <url>http://www.justimmo.at/</url>
+            <personennummer>241349</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/user_small/AN42TUqO-n.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/user_medium/AN42TUqO-n.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/user_big/AN42TUqO-n.jpg</big>
+            </bild>
+            <user_defined_anyfield>
+                <anhang gruppe="BILD" location="EXTERN">
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>http://files.justimmo.at/public/pic/user_big/AN42TUqO-n.jpg</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+        </kontaktperson>
+        <preise>
+            <kaufpreis>120000</kaufpreis>
+            <kaufpreisnetto kaufpreisust="10909.09">109090.91</kaufpreisnetto>
+            <nebenkosten>120</nebenkosten>
+            <kaufpreis_pro_qm>7272.73</kaufpreis_pro_qm>
+            <aussen_courtage>Provision bezahlt der Abgeber.</aussen_courtage>
+            <waehrung iso_waehrung="EUR" />
+            <user_defined_simplefield feldname="monatlichekostenbrutto">145362</user_defined_simplefield>
+            <user_defined_simplefield feldname="grunderwerbssteuer">3.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1.1</user_defined_simplefield>
+            <user_defined_anyfield>
+                <mwst_gesamt>12</mwst_gesamt>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <sonstige_kosten>145230</sonstige_kosten>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <justimmo_kategorie id="2058">Topobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="3140">Luxusobjekte</justimmo_kategorie>
+                <justimmo_kategorie id="4743">Wienerwald</justimmo_kategorie>
+            </user_defined_anyfield>
+            <wohnbaufoerderung>145000</wohnbaufoerderung>
+            <zusatzkosten>
+                <betriebskosten>
+                    <name>Betriebskosten</name>
+                    <netto>120</netto>
+                    <brutto>132</brutto>
+                    <ust>10</ust>
+                    <ust_wert>10</ust_wert>
+                    <ust_berechneter_wert>12</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                </betriebskosten>
+                <zusatzkosten_1>
+                    <name>Reparaturrücklage</name>
+                    <netto>230</netto>
+                    <brutto>230</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>other</gruppe>
+                </zusatzkosten_1>
+                <zusatzkosten_7>
+                    <name>Sonstiges</name>
+                    <netto>145000</netto>
+                    <brutto>145000</brutto>
+                    <ust>0</ust>
+                    <ust_wert>0</ust_wert>
+                    <ust_berechneter_wert>0</ust_berechneter_wert>
+                    <ust_typ>percent</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>other</gruppe>
+                </zusatzkosten_7>
+            </zusatzkosten>
+        </preise>
+        <flaechen>
+            <nutzflaeche>15</nutzflaeche>
+            <grundstuecksflaeche>15</grundstuecksflaeche>
+            <anzahl_terrassen>1</anzahl_terrassen>
+            <balkon_terrasse_flaeche>20</balkon_terrasse_flaeche>
+            <anzahl_balkon_terrassen>1</anzahl_balkon_terrassen>
+            <terrassen_flaeche>20</terrassen_flaeche>
+        </flaechen>
+        <ausstattung>
+            <bad DUSCHE="1" WANNE="1" />
+            <boden DIELEN="1" ESTRICH="1" KUNSTSTOFF="1" />
+            <heizungsart FUSSBODEN="1" />
+            <befeuerung ELEKTRO="1" />
+            <ausricht_balkon_terrasse WEST="1" />
+        </ausstattung>
+        <zustand_angaben>
+            <energiepass>
+                <epart>BEDARF</epart>
+                <hwbwert>12</hwbwert>
+                <hwbklasse>A+</hwbklasse>
+                <fgeewert>12</fgeewert>
+                <fgeeklasse>B</fgeeklasse>
+            </energiepass>
+            <user_defined_simplefield feldname="epass_hwbwert">12</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_hwbklasse">A+</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeewert">12</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
+            <hwbwert>12</hwbwert>
+            <fgeewert>12</fgeewert>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>DEMOOBJEKT! Preisgünstiges attraktives Büro mit Wien-Panoramablick</objekttitel>
+            <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                &lt;p&gt;Attraktives, preisg&amp;uuml;nstiges Komplettb&amp;uuml;ro mit Panorama-Wienblick oder
+                City-Lage&lt;br /&gt;&lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom
+                und Reinigungskosten, K&amp;uuml;che und Caf&amp;eacute;raum &lt;br /&gt;Weiters zur Verf&amp;uuml;gung:
+                Besprechung- und Konferenzr&amp;auml;ume, Sekretariatsservice, Kopierer, Drucker, diverse B&amp;uuml;roger&amp;auml;te!&lt;br
+                /&gt;T&amp;auml;glich von 8 h bis 17 h an Werktagen ge&amp;ouml;ffnet.&lt;br /&gt;B&amp;uuml;ro im Twin
+                Towers Wienerbergstrasse, auf Wunsch auch Opernn&amp;auml;he, Parkring oder B&amp;ouml;rse.&lt;br /&gt;Der
+                Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1 Monatsvertr&amp;auml;ge oder
+                langfristige Bindungen ebenfalls m&amp;ouml;glich! Keine Provisionszahlung!&lt;br /&gt;&lt;br /&gt;&lt;br
+                /&gt;&lt;br /&gt;&lt;/p&gt;
+                &lt;p&gt;Wir weisen darauf hin, dass zwischen dem Vermittler und dem Auftraggeber ein wirtschaftliches
+                Naheverhältnis besteht.&lt;/p&gt;</objektbeschreibung>
+            <sonstige_angaben>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                &lt;p&gt;Attraktives, preisg&amp;uuml;nstiges Komplettb&amp;uuml;ro mit Panorama-Wienblick oder
+                City-Lage&lt;br /&gt;&lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom
+                und Reinigungskosten, K&amp;uuml;che und Caf&amp;eacute;raum&amp;nbsp;&lt;br /&gt;Weiters zur Verf&amp;uuml;gung:
+                Besprechung- und Konferenzr&amp;auml;ume, Sekretariatsservice, Kopierer, Drucker, diverse B&amp;uuml;roger&amp;auml;te!&lt;br
+                /&gt;T&amp;auml;glich von 8 h bis 17 h an Werktagen ge&amp;ouml;ffnet.&lt;br /&gt;B&amp;uuml;ro im Twin
+                Towers Wienerbergstrasse, auf Wunsch auch Opernn&amp;auml;he, Parkring oder B&amp;ouml;rse.&lt;br /&gt;Der
+                Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1 Monatsvertr&amp;auml;ge oder
+                langfristige Bindungen ebenfalls m&amp;ouml;glich! Keine Provisionszahlung!&lt;/p&gt;</sonstige_angaben>
+            <ausstatt_beschr>Dielen, Estrich, Kunststoffboden, Elektro, Fußbodenheizung, Westbalkon -terrasse,
+                Badewanne, Dusche
+            </ausstatt_beschr>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHWBs8q4oG.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHWBs8q4oG.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHWBs8q4oG.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHWBs8q4oG.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHWBs8q4oG.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHWBs8q4oG.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHWBs8q4oG.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AB3vlSHsLY.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AB3vlSHsLY.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AB3vlSHsLY.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AB3vlSHsLY.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AB3vlSHsLY.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AB3vlSHsLY.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AB3vlSHsLY.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHWBtYbUK6.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHWBtYbUK6.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHWBtYbUK6.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHWBtYbUK6.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHWBtYbUK6.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHWBtYbUK6.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHWBtYbUK6.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHWB5x32r1.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHWB5x32r1.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHWB5x32r1.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHWB5x32r1.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHWB5x32r1.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHWB5x32r1.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHWB5x32r1.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AB3vj-T0qJ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AB3vj-T0qJ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AB3vj-T0qJ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AB3vj-T0qJ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AB3vj-T0qJ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AB3vj-T0qJ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AB3vj-T0qJ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU21rS76m.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU21rS76m.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU21rS76m.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU21rS76m.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU21rS76m.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU21rS76m.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU21rS76m.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AB3viMMwXL.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AB3viMMwXL.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AB3viMMwXL.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AB3viMMwXL.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AB3viMMwXL.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AB3viMMwXL.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AB3viMMwXL.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AHWBrv7z-p.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AHWBrv7z-p.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AHWBrv7z-p.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AHWBrv7z-p.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AHWBrv7z-p.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AHWBrv7z-p.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AHWBrv7z-p.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ1SBQBowY.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ1SBQBowY.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ1SBQBowY.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ1SBQBowY.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ1SBQBowY.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ1SBQBowY.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ1SBQBowY.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ1SDM-Sws.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ1SDM-Sws.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ1SDM-Sws.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ1SDM-Sws.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ1SDM-Sws.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ1SDM-Sws.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ1SDM-Sws.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ1SCuqLEF.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ1SCuqLEF.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ1SCuqLEF.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ1SCuqLEF.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ1SCuqLEF.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ1SCuqLEF.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ1SCuqLEF.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ2byeX7if.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ2byeX7if.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ2byeX7if.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ2byeX7if.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ2byeX7if.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ2byeX7if.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ2byeX7if.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ2b1XYxfr.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ2b1XYxfr.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ2b1XYxfr.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ2b1XYxfr.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ2b1XYxfr.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ2b1XYxfr.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ2b1XYxfr.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ2bzJ5zpx.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ2bzJ5zpx.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ2bzJ5zpx.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ2bzJ5zpx.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ2bzJ5zpx.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ2bzJ5zpx.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ2bzJ5zpx.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ2b0YSoyU.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ2b0YSoyU.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ2b0YSoyU.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ2b0YSoyU.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ2b0YSoyU.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ2b0YSoyU.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ2b0YSoyU.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU22WeInL.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU22WeInL.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU22WeInL.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU22WeInL.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU22WeInL.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU22WeInL.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU22WeInL.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU23Q6reC.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU23Q6reC.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU23Q6reC.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU23Q6reC.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU23Q6reC.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU23Q6reC.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU23Q6reC.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU25imxWo.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU25imxWo.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU25imxWo.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU25imxWo.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU25imxWo.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU25imxWo.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU25imxWo.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU26XLkqr.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU26XLkqr.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU26XLkqr.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU26XLkqr.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU26XLkqr.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU26XLkqr.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU26XLkqr.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU27y7uvC.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU27y7uvC.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU27y7uvC.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU27y7uvC.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU27y7uvC.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU27y7uvC.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU27y7uvC.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU28_43Hq.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU28_43Hq.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU28_43Hq.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU28_43Hq.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU28_43Hq.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU28_43Hq.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU28_43Hq.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKjE5nO7nK.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKjE5nO7nK.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKjE5nO7nK.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKjE5nO7nK.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKjE5nO7nK.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKjE5nO7nK.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKjE5nO7nK.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AKU24Lry7c.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AKU24Lry7c.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AKU24Lry7c.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AKU24Lry7c.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AKU24Lry7c.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AKU24Lry7c.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AKU24Lry7c.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVaaZ-Y2.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVaaZ-Y2.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVaaZ-Y2.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVaaZ-Y2.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVaaZ-Y2.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVaaZ-Y2.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVaaZ-Y2.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVb5e1eA.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVb5e1eA.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVb5e1eA.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVb5e1eA.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVb5e1eA.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVb5e1eA.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVb5e1eA.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVcaPUBm.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVcaPUBm.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVcaPUBm.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVcaPUBm.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVcaPUBm.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVcaPUBm.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVcaPUBm.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVdM8eg_.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVdM8eg_.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVdM8eg_.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVdM8eg_.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVdM8eg_.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVdM8eg_.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVdM8eg_.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVgxIeVh.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVgxIeVh.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVgxIeVh.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVgxIeVh.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVgxIeVh.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVgxIeVh.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVgxIeVh.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVnwbxu8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVnwbxu8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVnwbxu8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVnwbxu8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVnwbxu8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVnwbxu8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVnwbxu8.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVqv52sP.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVqv52sP.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVqv52sP.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVqv52sP.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVqv52sP.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVqv52sP.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVqv52sP.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALDVr5CDCb.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALDVr5CDCb.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALDVr5CDCb.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALDVr5CDCb.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALDVr5CDCb.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALDVr5CDCb.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALDVr5CDCb.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALK-aheUz3.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALK-aheUz3.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALK-aheUz3.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALK-aheUz3.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALK-aheUz3.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALK-aheUz3.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALK-aheUz3.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALK-b6vmQU.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALK-b6vmQU.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALK-b6vmQU.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALK-b6vmQU.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALK-b6vmQU.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALK-b6vmQU.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALK-b6vmQU.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQqgvIlA.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQqgvIlA.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQqgvIlA.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQqgvIlA.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQqgvIlA.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQqgvIlA.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQqgvIlA.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQrRAjW3.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQrRAjW3.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQrRAjW3.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQrRAjW3.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQrRAjW3.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQrRAjW3.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQrRAjW3.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQtUPGYJ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQtUPGYJ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQtUPGYJ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQtUPGYJ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQtUPGYJ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQtUPGYJ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQtUPGYJ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQuvDc-0.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQuvDc-0.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQuvDc-0.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQuvDc-0.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQuvDc-0.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQuvDc-0.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQuvDc-0.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQvcfsfe.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQvcfsfe.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQvcfsfe.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQvcfsfe.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQvcfsfe.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQvcfsfe.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQvcfsfe.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALUQwUeigs.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALUQwUeigs.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALUQwUeigs.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALUQwUeigs.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALUQwUeigs.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALUQwUeigs.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALUQwUeigs.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyHPdvMk.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyHPdvMk.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyHPdvMk.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyHPdvMk.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyHPdvMk.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyHPdvMk.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyHPdvMk.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyJb_w_-.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyJb_w_-.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyJb_w_-.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyJb_w_-.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyJb_w_-.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyJb_w_-.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyJb_w_-.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyKnnPN_.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyKnnPN_.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyKnnPN_.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyKnnPN_.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyKnnPN_.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyKnnPN_.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyKnnPN_.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyN3aTEx.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyN3aTEx.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyN3aTEx.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyN3aTEx.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyN3aTEx.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyN3aTEx.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyN3aTEx.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyOb-JGZ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyOb-JGZ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyOb-JGZ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyOb-JGZ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyOb-JGZ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyOb-JGZ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyOb-JGZ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyPspIKC.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyPspIKC.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyPspIKC.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyPspIKC.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyPspIKC.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyPspIKC.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyPspIKC.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/ALhyQ8N-qb.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/ALhyQ8N-qb.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/ALhyQ8N-qb.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/ALhyQ8N-qb.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/ALhyQ8N-qb.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/ALhyQ8N-qb.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/ALhyQ8N-qb.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AM4oyj17Vo.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AM4oyj17Vo.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AM4oyj17Vo.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AM4oyj17Vo.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AM4oyj17Vo.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AM4oyj17Vo.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AM4oyj17Vo.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AM4ozHW4xT.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AM4ozHW4xT.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AM4ozHW4xT.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AM4ozHW4xT.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AM4ozHW4xT.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AM4ozHW4xT.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AM4ozHW4xT.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AM4o0Z02yG.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AM4o0Z02yG.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AM4o0Z02yG.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AM4o0Z02yG.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AM4o0Z02yG.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AM4o0Z02yG.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AM4o0Z02yG.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMORHGGvC.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMORHGGvC.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMORHGGvC.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMORHGGvC.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMORHGGvC.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMORHGGvC.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMORHGGvC.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOSTbtT-.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOSTbtT-.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOSTbtT-.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOSTbtT-.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOSTbtT-.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOSTbtT-.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOSTbtT-.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOTOi-bw.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOTOi-bw.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOTOi-bw.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOTOi-bw.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOTOi-bw.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOTOi-bw.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOTOi-bw.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOUyzyl8.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOUyzyl8.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOUyzyl8.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOUyzyl8.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOUyzyl8.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOUyzyl8.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOUyzyl8.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOWg1mDG.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOWg1mDG.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOWg1mDG.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOWg1mDG.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOWg1mDG.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOWg1mDG.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOWg1mDG.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOXFKhwy.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOXFKhwy.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOXFKhwy.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOXFKhwy.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOXFKhwy.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOXFKhwy.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOXFKhwy.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOYaWMOa.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOYaWMOa.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOYaWMOa.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOYaWMOa.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOYaWMOa.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOYaWMOa.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOYaWMOa.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOZypqiZ.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOZypqiZ.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOZypqiZ.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOZypqiZ.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOZypqiZ.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOZypqiZ.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOZypqiZ.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMOaAIHMX.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMOaAIHMX.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMOaAIHMX.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMOaAIHMX.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMOaAIHMX.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMOaAIHMX.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMOaAIHMX.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AOMPaZ9SeP.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AOMPaZ9SeP.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AOMPaZ9SeP.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AOMPaZ9SeP.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AOMPaZ9SeP.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AOMPaZ9SeP.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AOMPaZ9SeP.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/API9ivDDZS.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/API9ivDDZS.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/API9ivDDZS.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/API9ivDDZS.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/API9ivDDZS.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/API9ivDDZS.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/API9ivDDZS.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/API9k7pjbz.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/API9k7pjbz.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/API9k7pjbz.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/API9k7pjbz.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/API9k7pjbz.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/API9k7pjbz.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/API9k7pjbz.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/API9mI8Zgl.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/API9mI8Zgl.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/API9mI8Zgl.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/API9mI8Zgl.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/API9mI8Zgl.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/API9mI8Zgl.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/API9mI8Zgl.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AT6-JmGrtr.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AT6-JmGrtr.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AT6-JmGrtr.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AT6-JmGrtr.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AT6-JmGrtr.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AT6-JmGrtr.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AT6-JmGrtr.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel />
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AT6-KGcXul.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AT6-KGcXul.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AT6-KGcXul.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AT6-KGcXul.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AT6-KGcXul.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AT6-KGcXul.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AT6-KGcXul.jpg</fullhd>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>Demobild5.jpg</anhangtitel>
+                <format>.jpg</format>
+                <daten>
+                    <pfad>http://files.justimmo.at/public/pic/small/AJ1TEGE21k.jpg</pfad>
+                    <small>http://files.justimmo.at/public/pic/small/AJ1TEGE21k.jpg</small>
+                    <medium>http://files.justimmo.at/public/pic/medium/AJ1TEGE21k.jpg</medium>
+                    <big2>http://files.justimmo.at/public/pic/big2/AJ1TEGE21k.jpg</big2>
+                    <medium2>http://files.justimmo.at/public/pic/pdf/AJ1TEGE21k.jpg</medium2>
+                    <s220x155>http://files.justimmo.at/public/pic/s220x155/AJ1TEGE21k.jpg</s220x155>
+                    <fullhd>http://files.justimmo.at/public/pic/fullhd/AJ1TEGE21k.jpg</fullhd>
+                </daten>
+            </anhang>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">http://demo.justimmo.at/objekt/detail/objektid/66078
+            </user_defined_simplefield>
+            <status>aktiv</status>
+            <status_id>5</status_id>
+            <user_defined_simplefield feldname="erstellt_am">2012-04-01 18:30:13</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 14:24:13</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>66078</objektnr_intern>
+            <objektnr_extern>O-7/80</objektnr_extern>
+            <aktion aktionart="CHANGE" />
+            <openimmo_obid>OBGC2012040118301300004ff6f0720</openimmo_obid>
+            <stand_vom>2015-12-17</stand_vom>
+            <sprache>de-DE</sprache>
+            <projekt_id>51</projekt_id>
+        </verwaltung_techn>
+        <dokumente />
+        <videos />
+        <bilder360 />
     </immobilie>
 </justimmo>
