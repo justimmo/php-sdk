@@ -343,7 +343,7 @@ class JustimmoApi implements JustimmoApiInterface
             CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
         ) + $this->curlOptions);
 
-        if (filter_var(ini_get('open_basedir'), FILTER_VALIDATE_BOOLEAN) === false && filter_var(ini_get('safe_mode'), FILTER_VALIDATE_BOOLEAN) === false) {
+        if (!ini_get('open_basedir') && filter_var(ini_get('safe_mode'), FILTER_VALIDATE_BOOLEAN) === false) {
             $request->setOption(CURLOPT_FOLLOWLOCATION, true);
         }
 
