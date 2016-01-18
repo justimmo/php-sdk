@@ -1,3 +1,6 @@
+## 1.0.21
+ * bugfix for checking whether or not open_basedir is set ( thx @sb-relaxt-at )
+
 ## 1.0.20
  * fix datetime fields using current date if an element is empty
  * add new detail param as default for list call
