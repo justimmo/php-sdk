@@ -229,8 +229,8 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(2, count($objekt->getCategories()));
         $this->assertEquals(array(
-            2057 => 'Referenzobjekte',
-            3449 => 'Topobjekte',
+            19 => 'Demokategorie 1',
+            85 => 'Demokategorie 2',
         ), $objekt->getCategories());
 
         $this->assertEquals('November 2015', $objekt->getAvailableFrom());
