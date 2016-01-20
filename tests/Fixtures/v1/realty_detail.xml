@@ -12,6 +12,10 @@
             <user_defined_simplefield feldname="objektart_name">Büro / Praxis</user_defined_simplefield>
             <user_defined_simplefield feldname="sub_objektart_id">28</user_defined_simplefield>
             <user_defined_simplefield feldname="sub_objektart_name">Praxis</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_kategorie id="19">Demokategorie 1</ji_kategorie>
+                <ji_kategorie id="85">Demokategorie 2</ji_kategorie>
+            </user_defined_anyfield>
         </objektkategorie>
         <geo>
             <plz>1030</plz>
@@ -309,10 +313,6 @@
             <user_defined_simplefield feldname="erstellt_am">2014-12-10 15:10:23</user_defined_simplefield>
             <user_defined_simplefield feldname="aktualisiert_am">2015-09-10 16:10:23</user_defined_simplefield>
             <user_defined_simplefield feldname="bauart_id">1</user_defined_simplefield>
-            <user_defined_anyfield>
-                <justimmo_kategorie id="2057">Referenzobjekte</justimmo_kategorie>
-                <justimmo_kategorie id="3449">Topobjekte</justimmo_kategorie>
-            </user_defined_anyfield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>195439</objektnr_intern>

@@ -206,6 +206,16 @@ class RealtyWrapper extends AbstractWrapper
             foreach ($xml->objektkategorie->user_defined_simplefield as $simpleField) {
                 $this->mapSimpleField($simpleField, $objekt);
             }
+            
+            foreach ($xml->objektkategorie->user_defined_anyfield as $anyField) {
+                foreach ($anyField->ji_kategorie as $kategorie) {
+                    $attributes = $this->attributesToArray($kategorie);
+
+                    if (array_key_exists('id', $attributes)) {
+                        $objekt->addCategory($attributes['id'], (string)$kategorie);
+                    }
+                }
+            }
         }
 
         if (isset($xml->freitexte)) {
