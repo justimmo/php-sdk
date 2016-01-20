@@ -1,3 +1,6 @@
+## 1.0.22
+ * fix realty categories position
+
 ## 1.0.21
  * bugfix for checking whether or not open_basedir is set ( thx @sb-relaxt-at )
 
