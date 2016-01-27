@@ -107,10 +107,16 @@ class EnergyPass
     }
 
     /**
-     * @return null
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
+     * @return \DateTime|null
      */
-    public function getValidUntil()
+    public function getValidUntil($format = 'Y-m-d')
     {
+        if ($this->validUntil instanceof \DateTime && $format !== null) {
+            return $this->validUntil->format($format);
+        }
+
         return $this->validUntil;
     }
 
