@@ -1,3 +1,6 @@
+## 1.0.23
+ * fix energy pass valid until
+
 ## 1.0.22
  * fix realty categories position
 
