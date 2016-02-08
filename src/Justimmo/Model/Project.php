@@ -60,6 +60,26 @@ class Project
     protected $realties = array();
 
     /**
+     * @var string
+     */
+    protected $freetext1 = null;
+
+    /**
+     * @var string
+     */
+    protected $locality = null;
+
+    /**
+     * @var bool
+     */
+    protected $underConstruction = null;
+
+    /**
+     * @var string
+     */
+    protected $miscellaneous = null;
+
+    /**
      * @param mixed $value
      *
      * @return $this
@@ -359,5 +379,69 @@ class Project
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMiscellaneous()
+    {
+        return $this->miscellaneous;
+    }
+
+    /**
+     * @param string $miscellaneous
+     */
+    public function setMiscellaneous($miscellaneous)
+    {
+        $this->miscellaneous = $miscellaneous;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getUnderConstruction()
+    {
+        return $this->underConstruction;
+    }
+
+    /**
+     * @param boolean $underConstruction
+     */
+    public function setUnderConstruction($underConstruction)
+    {
+        $this->underConstruction = $underConstruction;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param string $locality
+     */
+    public function setLocality($locality)
+    {
+        $this->locality = $locality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFreetext1()
+    {
+        return $this->freetext1;
+    }
+
+    /**
+     * @param string $freetext1
+     */
+    public function setFreetext1($freetext1)
+    {
+        $this->freetext1 = $freetext1;
     }
 }

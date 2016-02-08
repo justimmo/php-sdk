@@ -1,3 +1,7 @@
+## 1.0.24
+ * add title to project attachments
+ * add freetext1, miscellaneous, under construction and locality to project
+
 ## 1.0.23
  * fix energy pass valid until
 

@@ -31,6 +31,19 @@ class ProjectMapper extends AbstractMapper
             'hausnummer'   => array(
                 'property' => 'houseNumber',
             ),
+            'in_bau'   => array(
+                'property' => 'underConstruction',
+                'type'     => 'boolean',
+            ),
+            'sonstige_angaben' => array(
+                'property' => 'miscellaneous',
+            ),
+            'lage'   => array(
+                'property' => 'locality',
+            ),
+            'freitext_1'   => array(
+                'property' => 'freetext1',
+            ),
         );
     }
 
