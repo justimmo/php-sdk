@@ -1,3 +1,6 @@
+## 1.0.25
+ * add stair to realty
+
 ## 1.0.24
  * add title to project attachments
  * add freetext1, miscellaneous, under construction and locality to project

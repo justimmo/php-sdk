@@ -240,6 +240,11 @@ class Realty
     protected $updatedAt = null;
 
     /**
+     * @var string
+     */
+    protected $stair = null;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2279,5 +2284,23 @@ class Realty
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getStair()
+    {
+        return $this->stair;
+    }
 
+    /**
+     * @param string $stair
+     *
+     * @return $this
+     */
+    public function setStair($stair)
+    {
+        $this->stair = $stair;
+
+        return $this;
+    }
 }

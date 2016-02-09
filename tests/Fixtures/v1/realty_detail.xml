@@ -25,6 +25,7 @@
             <hausnummer>1</hausnummer>
             <wohnungsnr>1</wohnungsnr>
             <tuernummer>1</tuernummer>
+            <stiege>5</stiege>
             <bundesland>Wien</bundesland>
             <regionaler_zusatz>Am Graben</regionaler_zusatz>
             <land iso_land="AUT"/>

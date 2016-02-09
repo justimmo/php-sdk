@@ -27,6 +27,9 @@ class RealtyMapper extends AbstractMapper
             'etage'                      => array(
                 'property' => 'tier',
             ),
+            'stiege'                 => array(
+                'property' => 'stair',
+            ),
             'tuernummer'                 => array(
                 'property' => 'doorNumber',
             ),
