@@ -1,3 +1,19 @@
+## 1.0.26
+ * added garage_area (getGarageArea), parking_count (getParkingCount) and parking_area (getParkingArea) to realty
+
+## 1.0.25
+ * add stair to realty
+
+## 1.0.24
+ * add title to project attachments
+ * add freetext1, miscellaneous, under construction and locality to project
+
+## 1.0.23
+ * fix energy pass valid until
+
+## 1.0.22
+ * fix realty categories position
+
 ## 1.0.21
  * bugfix for checking whether or not open_basedir is set ( thx @sb-relaxt-at )
 
@@ -50,12 +66,12 @@
 * add commission to realty
 * add locality to realty
 
-## 1.0.9 
+## 1.0.9
 * fix openbase_dir restriction warning
 * add address data to RealtyInquiry
 
 ## 1.0.8
-* fix boolean values in api xml 
+* fix boolean values in api xml
 
 ## 1.0.7
 * fix engery energy efficency and themal requirement values

@@ -216,6 +216,18 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'garageCount',
                 'type'     => 'int',
             ),
+            'garagen_flaeche'             => array(
+                'property' => 'garageArea',
+                'type'     => 'double',
+            ),
+            'anzahl_stellplaetze'             => array(
+                'property' => 'parkingCount',
+                'type'     => 'int',
+            ),
+            'stellplatz_flaeche'             => array(
+                'property' => 'parkingArea',
+                'type'     => 'double',
+            ),
             'anzahl_abstellraum'         => array(
                 'property' => 'storeRoomCount',
                 'type'     => 'int',

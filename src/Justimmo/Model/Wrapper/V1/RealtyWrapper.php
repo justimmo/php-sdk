@@ -103,6 +103,9 @@ class RealtyWrapper extends AbstractWrapper
         'balkons_flaeche',
         'terrassen_flaeche',
         'anzahl_garagen',
+        'garagen_flaeche',
+        'anzahl_stellplaetze',
+        'stellplatz_flaeche',
         'anzahl_abstellraum',
         'verbaubare_flaeche',
     );
