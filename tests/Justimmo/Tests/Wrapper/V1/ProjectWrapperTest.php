@@ -27,11 +27,15 @@ class ProjectWrapperTest extends TestCase
 
         $this->assertEquals(51, $entry->getId());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
-        $this->assertContains('Duis ultrices consequat odio quis dapibus', $entry->getDescription());
+        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals(1, count($entry->getAttachments()));
         $this->assertEquals(4, $entry->countRealties());
+        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
+        $this->assertEquals('Sonnig am Berg', $entry->getLocality());
+        $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
 
         $realties = $entry->getRealties();
         /** @var \Justimmo\Model\Realty $realty */
@@ -53,11 +57,16 @@ class ProjectWrapperTest extends TestCase
 
         $this->assertEquals(51, $entry->getId());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
-        $this->assertContains('Duis ultrices consequat odio quis dapibus', $entry->getDescription());
+        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals('Kegelgasse', $entry->getStreet());
         $this->assertEquals(16, $entry->getHouseNumber());
+
+        $this->assertFalse($entry->getUnderConstruction());
+        $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
+        $this->assertEquals('Sonnig am Berg', $entry->getLocality());
+        $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
 
         $this->assertEquals(20, count($entry->getAttachments()));
         $this->assertEquals(10, $entry->countRealties());
@@ -84,6 +93,12 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('document', $document->getType());
         $this->assertEquals('pdf', $document->getExtension());
         $this->assertEquals('Wandaufbau.pdf', $document->getTitle());
+
+        /** @var \Justimmo\Model\Attachment $pictures */
+        $pictures = $entry->getPictures(null);
+        $this->assertEquals('Bild 1', $pictures[0]->getTitle());
+        $this->assertEquals('Bild 2', $pictures[1]->getTitle());
+        $this->assertEquals('Bild 3', $pictures[2]->getTitle());
 
         $contact = $entry->getContact();
         $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);

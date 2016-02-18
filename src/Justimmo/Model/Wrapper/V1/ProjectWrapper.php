@@ -18,6 +18,10 @@ class ProjectWrapper extends AbstractWrapper
         'ort',
         'strasse',
         'hausnummer',
+        'in_bau',
+        'sonstige_angaben',
+        'freitext_1',
+        'lage',
     );
 
     public function transformSingle($data)

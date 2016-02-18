@@ -1,23 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<justimmo><query-result><count>2</count></query-result><projekt><id>51</id><titel>Neubau mitten im dritten</titel><beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id, tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed mattis at, eleifend a velit.&lt;/p&gt;&#13;
-    &lt;p&gt;Donec sed elit leo. Pellentesque ac quam orci. Donec diam elit, porttitor malesuada congue mollis, aliquet consectetur magna. Ut elementum tortor non lectus tristique at auctor purus egestas. Cras ut nibh viverra augue auctor feugiat vitae non dui. Vivamus non ipsum in libero adipiscing rhoncus. Nulla lacinia, mi eu feugiat commodo, arcu magna sagittis felis, sed facilisis orci turpis vel lacus. Donec non purus turpis, a mollis nibh. Aenean non bibendum ligula. Nulla sed sagittis tortor. Aliquam dignissim erat sit amet arcu mollis a tristique orci pharetra. Donec a auctor mi. Fusce id metus id magna fermentum aliquet.&lt;/p&gt;&#13;
-    &lt;p&gt;Mauris fringilla orci a magna interdum scelerisque auctor est egestas. Duis sit amet sapien non enim facilisis dignissim. Praesent blandit hendrerit molestie. Morbi volutpat arcu in eros dignissim ut consequat justo laoreet. Fusce sit amet nisi sed nisi cursus sodales non sed odio. Proin lorem est, accumsan vel rhoncus sed, accumsan et lectus. Pellentesque pellentesque, dui sit amet venenatis vestibulum, libero mi dapibus nulla, vel dignissim eros magna nec ante.&lt;/p&gt;&#13;
-    &lt;p&gt;Aliquam fringilla, turpis at sodales pretium, mauris tellus sodales diam, id sagittis metus ipsum at metus. Nam non pulvinar nunc. Quisque tristique hendrerit augue vestibulum porta. Cras malesuada nunc in tortor molestie nec varius nisl laoreet. Donec convallis tristique est ut commodo. Cras felis massa, lobortis vel rutrum vitae, sodales quis risus. Quisque quis eros pellentesque turpis sollicitudin consequat. Etiam pharetra nulla a lorem aliquam in consequat odio molestie. In sit amet mi libero. Suspendisse massa felis, congue nec rutrum ut, porttitor sed leo. Nulla facilisi. In a magna tortor, ut blandit nisi. Ut ac orci ut diam adipiscing pellentesque.&lt;/p&gt;&#13;
-    &lt;p&gt;Mauris sodales blandit ligula non aliquam. Mauris vel justo mi, tristique ultrices urna. Praesent ac hendrerit dolor. In tempor eros sit amet neque iaculis convallis. Vivamus scelerisque sollicitudin nunc, at blandit est tempor vestibulum. Pellentesque rutrum feugiat lorem, ut ultrices eros gravida eget. Donec laoreet tempor tincidunt.&lt;/p&gt;</beschreibung><dreizeiler></dreizeiler><plz>1030</plz><ort>Wien</ort><immobilien><immobilie><id>195439</id><objektnummer>34</objektnummer><titel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</titel><dreizeiler></dreizeiler><naehe></naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Elegantes, repräsentatives Büro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br /&gt;Komplett ausgestattetes 1 bis 2 Personenbüro mit Karlskirchenblick für Ihre Beratungen mit anspruchsvolle Kunden. &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten, Küche- und Caféraum-Benützung, Getränke für Besucher. &lt;br /&gt;Weiters zur Verfügung: Besprechung- und Konferenzräume, Sekretariatsservice Kopierer, Drucker, diverse Bürogeräte!&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, ab 1 Monatsverträge oder langfristige Bindungen ebenfalls möglich!&lt;br /&gt;Ein ähnliches Büro können Sie auch am Parkring und in der Börse mieten, billigere Optionen zu 1280 ? monatlich im Twin Towers oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann ein Einzelbüro auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung><etage></etage><tuernummer></tuernummer><plz>2460</plz><ort>Wien</ort><kaufpreis/><gesamtmiete>60000</gesamtmiete><nutzflaeche>15</nutzflaeche><grundflaeche>15</grundflaeche><erstes_bild>http://files.justimmo.at/public/pic/medium/AH6hJRzdDi.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AH9qz2UD9N.jpg</zweites_bild><projekt_id>51</projekt_id><status>verkauft</status></immobilie><immobilie><id>195427</id><objektnummer>24</objektnummer><titel>DEMOOBJEKT! Preisgünstiges attraktives Büro mit Wien-Panoramablick</titel><dreizeiler></dreizeiler><naehe></naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Attraktives, preisgünstiges Komplettbüro mit Panorama-Wienblick oder City-Lage&lt;br /&gt;&lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten, Küche und Caféraum &lt;br /&gt;Weiters zur Verfügung: Besprechung- und Konferenzräume, Sekretariatsservice, Kopierer, Drucker, diverse Bürogeräte!&lt;br /&gt;Täglich von 8 h bis 17 h an Werktagen geöffnet.&lt;br /&gt;Büro im Twin Towers Wienerbergstrasse, auf Wunsch auch Opernnähe, Parkring oder Börse.&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1 Monatsverträge oder langfristige Bindungen ebenfalls möglich! Keine Provisionszahlung!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung><etage></etage><tuernummer></tuernummer><plz>1100</plz><ort>Wien,Favoriten</ort><gesamtmiete>458</gesamtmiete><nutzflaeche>15</nutzflaeche><grundflaeche>15</grundflaeche><erstes_bild>http://files.justimmo.at/public/pic/medium/AHAznQiRc0.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AHAzoWQ3y4.jpg</zweites_bild><projekt_id>51</projekt_id></immobilie><immobilie><id>195424</id><objektnummer>21</objektnummer><titel>DEMOOBJEKT! Luxus Wienblick-Dachgeschosswohnung mit Wintergarten,  offenen Kamin, Sauna und Weinkeller</titel><dreizeiler></dreizeiler><naehe></naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Luxus-Dachgeschoßwohnung mit Wien und Grünblick, offenen Kamin, Sauna, Wintergarten und Weinkeller&lt;br /&gt;&lt;br /&gt;Die letzen Stock eines Alt-Wienerhauses kürzlich ausgebaute Dachgeschoßwohnung kann auch als Büro-Wohnung verwendet werden.&lt;br /&gt;Luxusausstattung: &lt;/p&gt;&#13;
-    &lt;p&gt;Eichenparkett, Gasetage, Marmorfliessen und Böden, Komplettküche, Wintergarten, Sauna, kleine Terrasse, 2 Bäder, 2 WCs, Wintergarten und 20 m2 Weinkeller!&lt;/p&gt;</objektbeschreibung><anzahl_zimmer>5</anzahl_zimmer><etage></etage><tuernummer></tuernummer><plz>1120</plz><ort>Wien</ort><gesamtmiete>2699</gesamtmiete><wohnflaeche>269</wohnflaeche><nutzflaeche>269</nutzflaeche><erstes_bild>http://files.justimmo.at/public/pic/medium/AHAzXpdtlV.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AHAzYAiqDl.jpg</zweites_bild><projekt_id>51</projekt_id></immobilie><immobilie><id>66076</id><objektnummer>15</objektnummer><titel>DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens</titel><dreizeiler></dreizeiler><naehe></naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Breitenlee: Sonnige 3 Zimmer-Wohnung inmitten der Kornkammern Wiens&lt;br /&gt;&lt;br /&gt;Die helle freundliche 3 Zimmer-Wohnung mit Bad (Wanne), eigenem WC, Schrankraum, Wohnküche mit Speiss, französichen Fenstern in allen Räumen ist süd-westl. ausgerichtet. Im Mietpreis sind die Kosten für 1 Garagenplatz enthalten.&lt;br /&gt;5 Minuten mit dem Auto nach Breitenlee, 10 Min. zum großen Donaustädter Einkaufspark und in 100 Metern mitten in den Feldern! Die Haltestelle des städt. Autobuses ist vor der Türe!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung><anzahl_zimmer>3</anzahl_zimmer><etage>EG</etage><tuernummer></tuernummer><plz>1220</plz><ort>Wien</ort><gesamtmiete>1100</gesamtmiete><wohnflaeche>82</wohnflaeche><erstes_bild>http://files.justimmo.at/public/pic/medium/AB3vVCV5q7.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AB3vWkwRx7.jpg</zweites_bild><projekt_id>51</projekt_id><status>vermietet</status></immobilie></immobilien><erstes_bild>http://files.justimmo.at/public/pic/medium/ACXPV7aH3A.jpg</erstes_bild></projekt><projekt><id>46</id><titel>Demoprojekt in Zentrumsnähe</titel><beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id, tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed mattis at, eleifend a velit.&lt;/p&gt;</beschreibung><dreizeiler></dreizeiler><plz>1030</plz><ort>Wien</ort><immobilien><immobilie><id>66034</id><objektnummer>3</objektnummer><titel>DEMOOBJEKT! Traumhafter Ferienbungalow in Ko Lanta, Thailand</titel><dreizeiler></dreizeiler><naehe></naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«.&lt;/p&gt;&#13;
-    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast jede Schrift gut aus.&lt;/p&gt;&#13;
-    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
-    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten. Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks&lt;/p&gt;</objektbeschreibung><anzahl_zimmer>3</anzahl_zimmer><etage>DG</etage><tuernummer></tuernummer><plz>81150</plz><ort>Ko Lanta</ort><kaufpreis>250000</kaufpreis><wohnflaeche>90</wohnflaeche><grundflaeche>100</grundflaeche><balkons_flaeche>10</balkons_flaeche><gartenflaeche>100</gartenflaeche><erstes_bild>http://files.justimmo.at/public/pic/medium/AB3oGI5ref.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AB3oHsLgfs.jpg</zweites_bild><projekt_id>46</projekt_id></immobilie><immobilie><id>66030</id><objektnummer>1</objektnummer><titel>DEMOOBJEKT! Modernes Büro in Zentrumsnähe</titel><dreizeiler></dreizeiler><naehe>Schwedenplatz</naehe><objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
-    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«.&lt;/p&gt;&#13;
-    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast jede Schrift gut aus.&lt;/p&gt;&#13;
-    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
-    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten. Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks &lt;/p&gt;&#13;
-    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«.&lt;/p&gt;&#13;
-    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast jede Schrift gut aus.&lt;/p&gt;&#13;
-    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
-    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten. Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks&lt;/p&gt;</objektbeschreibung><anzahl_zimmer>8</anzahl_zimmer><etage>DG</etage><tuernummer></tuernummer><plz>1020</plz><ort>Wien</ort><gesamtmiete>10460</gesamtmiete><erstes_bild>http://files.justimmo.at/public/pic/medium/AB3n14n3eL.jpg</erstes_bild><zweites_bild>http://files.justimmo.at/public/pic/medium/AB3n2EYNGV.jpg</zweites_bild><projekt_id>46</projekt_id></immobilie></immobilien><erstes_bild>http://files.justimmo.at/public/pic/medium/ACXayjSPLp.jpg</erstes_bild></projekt></justimmo>
+<justimmo>
+    <query-result>
+        <count>2</count>
+    </query-result>
+    <projekt>
+        <id>51</id>
+        <titel>Neubau mitten im dritten</titel>
+        <beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio
+            quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id,
+            tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed
+            mattis at, eleifend a velit.&lt;/p&gt;&#13;
+            &lt;p&gt;Donec sed elit leo. Pellentesque ac quam orci. Donec diam elit, porttitor malesuada congue mollis,
+            aliquet consectetur magna. Ut elementum tortor non lectus tristique at auctor purus egestas. Cras ut nibh
+            viverra augue auctor feugiat vitae non dui. Vivamus non ipsum in libero adipiscing rhoncus. Nulla lacinia,
+            mi eu feugiat commodo, arcu magna sagittis felis, sed facilisis orci turpis vel lacus. Donec non purus
+            turpis, a mollis nibh. Aenean non bibendum ligula. Nulla sed sagittis tortor. Aliquam dignissim erat sit
+            amet arcu mollis a tristique orci pharetra. Donec a auctor mi. Fusce id metus id magna fermentum aliquet.&lt;/p&gt;&#13;
+            &lt;p&gt;Mauris fringilla orci a magna interdum scelerisque auctor est egestas. Duis sit amet sapien non
+            enim facilisis dignissim. Praesent blandit hendrerit molestie. Morbi volutpat arcu in eros dignissim ut
+            consequat justo laoreet. Fusce sit amet nisi sed nisi cursus sodales non sed odio. Proin lorem est, accumsan
+            vel rhoncus sed, accumsan et lectus. Pellentesque pellentesque, dui sit amet venenatis vestibulum, libero mi
+            dapibus nulla, vel dignissim eros magna nec ante.&lt;/p&gt;&#13;
+            &lt;p&gt;Aliquam fringilla, turpis at sodales pretium, mauris tellus sodales diam, id sagittis metus ipsum
+            at metus. Nam non pulvinar nunc. Quisque tristique hendrerit augue vestibulum porta. Cras malesuada nunc in
+            tortor molestie nec varius nisl laoreet. Donec convallis tristique est ut commodo. Cras felis massa,
+            lobortis vel rutrum vitae, sodales quis risus. Quisque quis eros pellentesque turpis sollicitudin consequat.
+            Etiam pharetra nulla a lorem aliquam in consequat odio molestie. In sit amet mi libero. Suspendisse massa
+            felis, congue nec rutrum ut, porttitor sed leo. Nulla facilisi. In a magna tortor, ut blandit nisi. Ut ac
+            orci ut diam adipiscing pellentesque.&lt;/p&gt;&#13;
+            &lt;p&gt;Mauris sodales blandit ligula non aliquam. Mauris vel justo mi, tristique ultrices urna. Praesent
+            ac hendrerit dolor. In tempor eros sit amet neque iaculis convallis. Vivamus scelerisque sollicitudin nunc,
+            at blandit est tempor vestibulum. Pellentesque rutrum feugiat lorem, ut ultrices eros gravida eget. Donec
+            laoreet tempor tincidunt.&lt;/p&gt;</beschreibung>
+        <dreizeiler></dreizeiler>
+        <plz>1030</plz>
+        <ort>Wien</ort>
+        <in_bau>1</in_bau>
+        <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
+        <lage>Sonnig am Berg</lage>
+        <freitext_1>Freitext 1 Test</freitext_1>
+        <immobilien>
+            <immobilie>
+                <id>195439</id>
+                <objektnummer>34</objektnummer>
+                <titel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Elegantes, repräsentatives Büro neben Hotel Bristol und Oper &lt;br /&gt;&lt;br /&gt;Komplett
+                    ausgestattetes 1 bis 2 Personenbüro mit Karlskirchenblick für Ihre Beratungen mit anspruchsvolle
+                    Kunden. &lt;br /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und
+                    Reinigungskosten, Küche- und Caféraum-Benützung, Getränke für Besucher. &lt;br /&gt;Weiters zur
+                    Verfügung: Besprechung- und Konferenzräume, Sekretariatsservice Kopierer, Drucker, diverse
+                    Bürogeräte!&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, ab 1
+                    Monatsverträge oder langfristige Bindungen ebenfalls möglich!&lt;br /&gt;Ein ähnliches Büro können
+                    Sie auch am Parkring und in der Börse mieten, billigere Optionen zu 1280 ? monatlich im Twin Towers
+                    oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann ein Einzelbüro auch zu ? 299.-
+                    monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br
+                    /&gt;&lt;/p&gt;</objektbeschreibung>
+                <etage></etage>
+                <tuernummer></tuernummer>
+                <plz>2460</plz>
+                <ort>Wien</ort>
+                <kaufpreis/>
+                <gesamtmiete>60000</gesamtmiete>
+                <nutzflaeche>15</nutzflaeche>
+                <grundflaeche>15</grundflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AH6hJRzdDi.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AH9qz2UD9N.jpg</zweites_bild>
+                <projekt_id>51</projekt_id>
+                <status>verkauft</status>
+            </immobilie>
+            <immobilie>
+                <id>195427</id>
+                <objektnummer>24</objektnummer>
+                <titel>DEMOOBJEKT! Preisgünstiges attraktives Büro mit Wien-Panoramablick</titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Attraktives, preisgünstiges Komplettbüro mit Panorama-Wienblick oder City-Lage&lt;br /&gt;&lt;br
+                    /&gt;In der Miete inbegriffen sind Empfang, Betriebskosten, Heizung, Strom und Reinigungskosten,
+                    Küche und Caféraum &lt;br /&gt;Weiters zur Verfügung: Besprechung- und Konferenzräume,
+                    Sekretariatsservice, Kopierer, Drucker, diverse Bürogeräte!&lt;br /&gt;Täglich von 8 h bis 17 h an
+                    Werktagen geöffnet.&lt;br /&gt;Büro im Twin Towers Wienerbergstrasse, auf Wunsch auch Opernnähe,
+                    Parkring oder Börse.&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1
+                    Monatsverträge oder langfristige Bindungen ebenfalls möglich! Keine Provisionszahlung!&lt;br /&gt;&lt;br
+                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                <etage></etage>
+                <tuernummer></tuernummer>
+                <plz>1100</plz>
+                <ort>Wien,Favoriten</ort>
+                <gesamtmiete>458</gesamtmiete>
+                <nutzflaeche>15</nutzflaeche>
+                <grundflaeche>15</grundflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AHAznQiRc0.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AHAzoWQ3y4.jpg</zweites_bild>
+                <projekt_id>51</projekt_id>
+            </immobilie>
+            <immobilie>
+                <id>195424</id>
+                <objektnummer>21</objektnummer>
+                <titel>DEMOOBJEKT! Luxus Wienblick-Dachgeschosswohnung mit Wintergarten, offenen Kamin, Sauna und
+                    Weinkeller
+                </titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Luxus-Dachgeschoßwohnung mit Wien und Grünblick, offenen Kamin, Sauna, Wintergarten und
+                    Weinkeller&lt;br /&gt;&lt;br /&gt;Die letzen Stock eines Alt-Wienerhauses kürzlich ausgebaute
+                    Dachgeschoßwohnung kann auch als Büro-Wohnung verwendet werden.&lt;br /&gt;Luxusausstattung: &lt;/p&gt;&#13;
+                    &lt;p&gt;Eichenparkett, Gasetage, Marmorfliessen und Böden, Komplettküche, Wintergarten, Sauna,
+                    kleine Terrasse, 2 Bäder, 2 WCs, Wintergarten und 20 m2 Weinkeller!&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>5</anzahl_zimmer>
+                <etage></etage>
+                <tuernummer></tuernummer>
+                <plz>1120</plz>
+                <ort>Wien</ort>
+                <gesamtmiete>2699</gesamtmiete>
+                <wohnflaeche>269</wohnflaeche>
+                <nutzflaeche>269</nutzflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AHAzXpdtlV.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AHAzYAiqDl.jpg</zweites_bild>
+                <projekt_id>51</projekt_id>
+            </immobilie>
+            <immobilie>
+                <id>66076</id>
+                <objektnummer>15</objektnummer>
+                <titel>DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens</titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Breitenlee: Sonnige 3 Zimmer-Wohnung inmitten der Kornkammern Wiens&lt;br /&gt;&lt;br /&gt;Die
+                    helle freundliche 3 Zimmer-Wohnung mit Bad (Wanne), eigenem WC, Schrankraum, Wohnküche mit Speiss,
+                    französichen Fenstern in allen Räumen ist süd-westl. ausgerichtet. Im Mietpreis sind die Kosten für
+                    1 Garagenplatz enthalten.&lt;br /&gt;5 Minuten mit dem Auto nach Breitenlee, 10 Min. zum großen
+                    Donaustädter Einkaufspark und in 100 Metern mitten in den Feldern! Die Haltestelle des städt.
+                    Autobuses ist vor der Türe!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br
+                    /&gt;&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>3</anzahl_zimmer>
+                <etage>EG</etage>
+                <tuernummer></tuernummer>
+                <plz>1220</plz>
+                <ort>Wien</ort>
+                <gesamtmiete>1100</gesamtmiete>
+                <wohnflaeche>82</wohnflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AB3vVCV5q7.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AB3vWkwRx7.jpg</zweites_bild>
+                <projekt_id>51</projekt_id>
+                <status>vermietet</status>
+            </immobilie>
+        </immobilien>
+        <erstes_bild>http://files.justimmo.at/public/pic/medium/ACXPV7aH3A.jpg</erstes_bild>
+    </projekt>
+    <projekt>
+        <id>46</id>
+        <titel>Demoprojekt in Zentrumsnähe</titel>
+        <beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio
+            quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id,
+            tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed
+            mattis at, eleifend a velit.&lt;/p&gt;</beschreibung>
+        <dreizeiler></dreizeiler>
+        <plz>1030</plz>
+        <ort>Wien</ort>
+        <immobilien>
+            <immobilie>
+                <id>66034</id>
+                <objektnummer>3</objektnummer>
+                <titel>DEMOOBJEKT! Traumhafter Ferienbungalow in Ko Lanta, Thailand</titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>3</anzahl_zimmer>
+                <etage>DG</etage>
+                <tuernummer></tuernummer>
+                <plz>81150</plz>
+                <ort>Ko Lanta</ort>
+                <kaufpreis>250000</kaufpreis>
+                <wohnflaeche>90</wohnflaeche>
+                <grundflaeche>100</grundflaeche>
+                <balkons_flaeche>10</balkons_flaeche>
+                <gartenflaeche>100</gartenflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AB3oGI5ref.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AB3oHsLgfs.jpg</zweites_bild>
+                <projekt_id>46</projekt_id>
+            </immobilie>
+            <immobilie>
+                <id>66030</id>
+                <objektnummer>1</objektnummer>
+                <titel>DEMOOBJEKT! Modernes Büro in Zentrumsnähe</titel>
+                <dreizeiler></dreizeiler>
+                <naehe>Schwedenplatz</naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks &lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>8</anzahl_zimmer>
+                <etage>DG</etage>
+                <tuernummer></tuernummer>
+                <plz>1020</plz>
+                <ort>Wien</ort>
+                <gesamtmiete>10460</gesamtmiete>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AB3n14n3eL.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AB3n2EYNGV.jpg</zweites_bild>
+                <projekt_id>46</projekt_id>
+            </immobilie>
+        </immobilien>
+        <erstes_bild>http://files.justimmo.at/public/pic/medium/ACXayjSPLp.jpg</erstes_bild>
+    </projekt>
+</justimmo>

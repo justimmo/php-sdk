@@ -80,6 +80,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertContains('ausgestattetes 1 bis 2 Personenbüro', $objekt->getDescription());
         $this->assertNull($objekt->getTier());
         $this->assertEquals(1, $objekt->getDoorNumber());
+        $this->assertEquals(5, $objekt->getStair());
         $this->assertEquals(1030, $objekt->getZipCode());
         $this->assertEquals('Wien', $objekt->getPlace());
         $this->assertEquals('buero_praxen', $objekt->getRealtyType());
@@ -192,8 +193,8 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertInstanceOf('\Justimmo\Model\EnergyPass', $energiepass);
         $this->assertEquals('BEDARF', $energiepass->getEpart());
-        $this->assertInstanceOf('\DateTime', $energiepass->getValidUntil());
-        $this->assertEquals('2012-09-12', $energiepass->getValidUntil()->format('Y-m-d'));
+        $this->assertInstanceOf('\DateTime', $energiepass->getValidUntil(null));
+        $this->assertEquals('2012-09-12', $energiepass->getValidUntil('Y-m-d'));
         $this->assertEquals('B', $energiepass->getEnergyEfficiencyFactorClass());
         $this->assertEquals(0.96, $energiepass->getEnergyEfficiencyFactorValue());
         $this->assertEquals('B', $energiepass->getThermalHeatRequirementClass());

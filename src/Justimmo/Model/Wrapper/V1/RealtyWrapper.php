@@ -65,6 +65,7 @@ class RealtyWrapper extends AbstractWrapper
         'strasse',
         'tuernummer',
         'hausnummer',
+        'stiege',
     );
 
     protected $preisMapping = array(
