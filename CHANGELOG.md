@@ -1,3 +1,6 @@
+## 1.0.26
+ * added garage_area (getGarageArea), parking_count (getParkingCount) and parking_area (getParkingArea) to realty
+
 ## 1.0.25
  * add stair to realty
 
@@ -63,12 +66,12 @@
 * add commission to realty
 * add locality to realty
 
-## 1.0.9 
+## 1.0.9
 * fix openbase_dir restriction warning
 * add address data to RealtyInquiry
 
 ## 1.0.8
-* fix boolean values in api xml 
+* fix boolean values in api xml
 
 ## 1.0.7
 * fix engery energy efficency and themal requirement values

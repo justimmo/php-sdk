@@ -175,6 +175,12 @@ class Realty
 
     protected $garageCount = null;
 
+    protected $garageArea = null;
+
+    protected $parkingCount = null;
+
+    protected $parkingArea = null;
+
     protected $storeRoomCount = null;
 
     protected $contractEstablishmentCosts = null;
@@ -1673,6 +1679,66 @@ class Realty
     public function getGarageCount()
     {
         return $this->garageCount;
+    }
+
+    /**
+     * @param null $garagenFlaeche
+     *
+     * @return $this
+     */
+    public function setGarageArea($garagenFlaeche)
+    {
+        $this->garageArea = $garagenFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGarageArea()
+    {
+        return $this->garageArea;
+    }
+
+    /**
+     * @param null $anzahlStellplaetze
+     *
+     * @return $this
+     */
+    public function setParkingCount($anzahlStellplaetze)
+    {
+        $this->parkingCount = $anzahlStellplaetze;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getParkingCount()
+    {
+        return $this->parkingCount;
+    }
+
+    /**
+     * @param null $stellplatzFlaeche
+     *
+     * @return $this
+     */
+    public function setParkingArea($stellplatzFlaeche)
+    {
+        $this->parkingArea = $stellplatzFlaeche;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getParkingArea()
+    {
+        return $this->parkingArea;
     }
 
     /**
