@@ -55,6 +55,7 @@
             <kaufpreis_pro_qm>3000</kaufpreis_pro_qm>
             <aussen_courtage>16.200,00 € inkl. 20% USt.</aussen_courtage>
             <waehrung iso_waehrung="EUR"/>
+            <kaution_text>3 Bruttomonatsmieten</kaution_text>
             <zusatzkosten>
                 <betriebskosten>
                     <name>Betriebskosten</name>
