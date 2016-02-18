@@ -1,3 +1,6 @@
+## 1.0.27
+ * added surety_text (getSuretyText)
+
 ## 1.0.26
  * added garage_area (getGarageArea), parking_count (getParkingCount) and parking_area (getParkingArea) to realty
 
