@@ -79,6 +79,7 @@ class RealtyWrapper extends AbstractWrapper
         'nettoertrag_monatlich',
         'gesamtmiete_ust',
         'kaution',
+        'kaution_text',
         'abstand',
         'aussen_courtage',
     );

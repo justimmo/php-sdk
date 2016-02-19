@@ -27,7 +27,7 @@ class RealtyMapper extends AbstractMapper
             'etage'                      => array(
                 'property' => 'tier',
             ),
-            'stiege'                 => array(
+            'stiege'                     => array(
                 'property' => 'stair',
             ),
             'tuernummer'                 => array(
@@ -147,6 +147,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'surety',
                 'type'     => 'double',
             ),
+            'kaution_text'               => array(
+                'property' => 'surety_text',
+                'type'     => 'string',
+            ),
             'abstand'                    => array(
                 'property' => 'compensation',
                 'type'     => 'double',
@@ -219,15 +223,15 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'garageCount',
                 'type'     => 'int',
             ),
-            'garagen_flaeche'             => array(
+            'garagen_flaeche'            => array(
                 'property' => 'garageArea',
                 'type'     => 'double',
             ),
-            'anzahl_stellplaetze'             => array(
+            'anzahl_stellplaetze'        => array(
                 'property' => 'parkingCount',
                 'type'     => 'int',
             ),
-            'stellplatz_flaeche'             => array(
+            'stellplatz_flaeche'         => array(
                 'property' => 'parkingArea',
                 'type'     => 'double',
             ),
@@ -260,44 +264,44 @@ class RealtyMapper extends AbstractMapper
             'justimmo_freitext3'         => array(
                 'property' => 'freetext3',
             ),
-            'lage'         => array(
+            'lage'                       => array(
                 'property' => 'locality',
             ),
-            'aussen_courtage'         => array(
+            'aussen_courtage'            => array(
                 'property' => 'commission',
             ),
-            'status_id'         => array(
+            'status_id'                  => array(
                 'type' => 'int',
             ),
-            'objektart_id'     => array(
+            'objektart_id'               => array(
                 'property' => 'realtyTypeId',
                 'type'     => 'int',
             ),
-            'objektart_name'     => array(
+            'objektart_name'             => array(
                 'property' => 'realtyTypeName',
                 'type'     => 'string',
             ),
-            'sub_objektart_id'     => array(
+            'sub_objektart_id'           => array(
                 'property' => 'subRealtyTypeId',
                 'type'     => 'int',
             ),
-            'sub_objektart_name'   => array(
+            'sub_objektart_name'         => array(
                 'property' => 'subRealtyTypeName',
                 'type'     => 'string',
             ),
-            'bauart_id'     => array(
+            'bauart_id'                  => array(
                 'property' => 'styleOfBuildingId',
                 'type'     => 'int',
             ),
-            'vermittelt_am'     => array(
+            'vermittelt_am'              => array(
                 'property' => 'procuredAt',
                 'type'     => 'datetime',
             ),
-            'erstellt_am'     => array(
+            'erstellt_am'                => array(
                 'property' => 'createdAt',
                 'type'     => 'datetime',
             ),
-            'aktualisiert_am'     => array(
+            'aktualisiert_am'            => array(
                 'property' => 'updatedAt',
                 'type'     => 'datetime',
             ),

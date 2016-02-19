@@ -113,6 +113,8 @@ class Realty
 
     protected $surety = null;
 
+    protected $surety_text = null;
+
     protected $compensation = null;
 
     protected $buildingSubsidies = null;
@@ -1043,6 +1045,26 @@ class Realty
     public function getSurety()
     {
         return $this->surety;
+    }
+
+    /**
+     * @param null $kautionText
+     *
+     * @return $this
+     */
+    public function setSuretyText($kautionText)
+    {
+        $this->surety_text = $kautionText;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getSuretyText()
+    {
+        return $this->surety_text;
     }
 
     /**
