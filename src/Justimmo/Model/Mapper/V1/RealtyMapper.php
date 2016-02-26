@@ -47,6 +47,14 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'totalRent',
                 'type'     => 'double',
             ),
+            'kaufpreis_pro_qm'          => array(
+                'property' => 'purchasePricePerSqm',
+                'type'     => 'double',
+            ),
+            'mietpreis_pro_qm'          => array(
+                'property' => 'rentPerSqm',
+                'type'     => 'double',
+            ),
             'nutzflaeche'                => array(
                 'property' => 'floorArea',
                 'type'     => 'double',

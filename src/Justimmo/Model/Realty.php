@@ -28,6 +28,10 @@ class Realty
 
     protected $totalRent = null;
 
+    protected $purchasePricePerSqm = null;
+
+    protected $rentPerSqm = null;
+
     protected $floorArea = null;
 
     protected $surfaceArea = null;
@@ -2388,6 +2392,46 @@ class Realty
     public function setStair($stair)
     {
         $this->stair = $stair;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPurchasePricePerSqm()
+    {
+        return $this->purchasePricePerSqm;
+    }
+
+    /**
+     * @param null $purchasePricePerSqm
+     *
+     * @return $this
+     */
+    public function setPurchasePricePerSqm($purchasePricePerSqm)
+    {
+        $this->purchasePricePerSqm = $purchasePricePerSqm;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRentPerSqm()
+    {
+        return $this->rentPerSqm;
+    }
+
+    /**
+     * @param null $rentPerSqm
+     *
+     * @return $this
+     */
+    public function setRentPerSqm($rentPerSqm)
+    {
+        $this->rentPerSqm = $rentPerSqm;
 
         return $this;
     }

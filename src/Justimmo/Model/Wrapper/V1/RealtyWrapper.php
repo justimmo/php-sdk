@@ -82,6 +82,8 @@ class RealtyWrapper extends AbstractWrapper
         'kaution_text',
         'abstand',
         'aussen_courtage',
+        'kaufpreis_pro_qm',
+        'mietpreis_pro_qm'
     );
 
     protected $flaechenMapping = array(

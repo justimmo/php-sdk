@@ -117,6 +117,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals($objekt->getParkingArea(), 36.85);
 
         $this->assertEquals(450000, $objekt->getPurchasePrice());
+        $this->assertEquals(3000, $objekt->getPurchasePricePerSqm());
         $this->assertEquals(500, $objekt->getAdditionalCharges());
         $this->assertEquals(126, $objekt->getHeatingCosts());
         $this->assertEquals('EUR', $objekt->getCurrency());
