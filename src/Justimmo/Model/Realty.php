@@ -32,6 +32,8 @@ class Realty
 
     protected $rentPerSqm = null;
 
+    protected $operatingCostsPerSqm = null;
+
     protected $floorArea = null;
 
     protected $surfaceArea = null;
@@ -2432,6 +2434,26 @@ class Realty
     public function setRentPerSqm($rentPerSqm)
     {
         $this->rentPerSqm = $rentPerSqm;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getOperatingCostsPerSqm()
+    {
+        return $this->operatingCostsPerSqm;
+    }
+
+    /**
+     * @param null $operatingCostsPerSqm
+     *
+     * @return $this
+     */
+    public function setOperatingCostsPerSqm($operatingCostsPerSqm)
+    {
+        $this->operatingCostsPerSqm = $operatingCostsPerSqm;
 
         return $this;
     }
