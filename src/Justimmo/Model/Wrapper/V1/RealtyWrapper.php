@@ -262,6 +262,10 @@ class RealtyWrapper extends AbstractWrapper
                     $objekt->setCountry((string) $iso['iso_land']);
                 }
             }
+
+            foreach ($xml->geo->user_defined_simplefield as $simpleField) {
+                $this->mapSimpleField($simpleField, $objekt);
+            }
         }
 
         if (isset($xml->preise)) {

@@ -1,3 +1,6 @@
+## 1.0.29
+ * add properties for precise coordinats (getLatitudePrecise, getLongitudePrecise)
+ 
 ## 1.0.28
  * added purchase_price_per_sqm (getPurchasePricePerSqm), rent_per_sqm (getRentPerSqm) and operating_costs_per_sqm (getOperatingCostsPerSqm) 
 

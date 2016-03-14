@@ -29,6 +29,8 @@
             <bundesland>Wien</bundesland>
             <regionaler_zusatz>Am Graben</regionaler_zusatz>
             <land iso_land="AUT"/>
+            <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.4100297</user_defined_simplefield>
+            <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2545373</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <email_direkt>a.diem@bgcc.at</email_direkt>

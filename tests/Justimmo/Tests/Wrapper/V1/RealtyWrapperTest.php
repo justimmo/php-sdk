@@ -46,6 +46,8 @@ class RealtyWrapperTest extends TestCase
         $this->assertInstanceOf('\DateTime', $entry->getUpdatedAt(null));
         $this->assertEquals('2015-12-17 11:08:39', $entry->getUpdatedAt());
         $this->assertEquals('17.12.2015', $entry->getUpdatedAt('d.m.Y'));
+        $this->assertEquals(16.4100297, $entry->getLongitudePrecise());
+        $this->assertEquals(48.2545373, $entry->getLatitudePrecise());
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -265,6 +267,7 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(1, $objekt->getStyleOfBuildingId());
 
-
+        $this->assertEquals(16.4100297, $objekt->getLongitudePrecise());
+        $this->assertEquals(48.2545373, $objekt->getLatitudePrecise());
     }
 }

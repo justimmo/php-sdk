@@ -317,6 +317,14 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'updatedAt',
                 'type'     => 'datetime',
             ),
+            'geokoordinaten_laengengrad_exakt' => array(
+                'property' => 'longitudePrecise',
+                'type'     => 'double',
+            ),
+            'geokoordinaten_breitengrad_exakt' => array(
+                'property' => 'latitudePrecise',
+                'type'     => 'double',
+            ),
         );
     }
 

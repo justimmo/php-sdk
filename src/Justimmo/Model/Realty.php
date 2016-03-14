@@ -91,6 +91,16 @@ class Realty
 
     protected $longitude = null;
 
+    /**
+     * @var double
+     */
+    protected $latitudePrecise = null;
+
+    /**
+     * @var double
+     */
+    protected $longitudePrecise = null;
+
     protected $street = null;
 
     protected $houseNumber = null;
@@ -2456,5 +2466,41 @@ class Realty
         $this->operatingCostsPerSqm = $operatingCostsPerSqm;
 
         return $this;
+    }
+
+    /**
+     * returns the precise longitude of the realty regardless of the  visibility settings of addresses in justimmo
+     *
+     * @return double
+     */
+    public function getLongitudePrecise()
+    {
+        return $this->longitudePrecise;
+    }
+
+    /**
+     * @param double $longitudePrecise
+     */
+    public function setLongitudePrecise($longitudePrecise)
+    {
+        $this->longitudePrecise = $longitudePrecise;
+    }
+
+    /**
+     * returns the precise latitude of the realty regardless of the  visibility settings of addresses in justimmo
+     *
+     * @return double
+     */
+    public function getLatitudePrecise()
+    {
+        return $this->latitudePrecise;
+    }
+
+    /**
+     * @param double $latitudePrecise
+     */
+    public function setLatitudePrecise($latitudePrecise)
+    {
+        $this->latitudePrecise = $latitudePrecise;
     }
 }
