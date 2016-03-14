@@ -1,3 +1,6 @@
+## 1.0.30
+ * filterByStatusId
+
 ## 1.0.29
  * add properties for precise coordinats (getLatitudePrecise, getLongitudePrecise)
  
