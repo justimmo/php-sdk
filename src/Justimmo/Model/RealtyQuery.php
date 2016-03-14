@@ -22,6 +22,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterBySurfaceArea($value)
  * @method RealtyQuery filterByKeyword($value)
  * @method RealtyQuery filterByFederalStateId($value)
+ * @method RealtyQuery filterByStatusId($value)
  * @method RealtyQuery filterByRent($value)
  * @method RealtyQuery filterByBuy($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')

@@ -351,6 +351,7 @@ class RealtyMapper extends AbstractMapper
             'SurfaceArea'       => 'grundflaeche',
             'Keyword'           => 'stichwort',
             'FederalStateId'    => 'bundesland_id',
+            'StatusId'          => 'objekt_status_id',
             'Rent'              => 'miete',
             'Buy'               => 'kauf',
             'CreatedAt'         => 'created_at',
