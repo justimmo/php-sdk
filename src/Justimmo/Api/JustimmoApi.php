@@ -339,10 +339,7 @@ class JustimmoApi implements JustimmoApiInterface
             return $content;
         }
 
-        $request = new CurlRequest($url, array(
-            CURLOPT_USERPWD        => $this->username . ':' . $this->password,
-            CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
-        ) + $this->curlOptions);
+        $request = $this->createRequest($url);
 
         if (!ini_get('open_basedir') && filter_var(ini_get('safe_mode'), FILTER_VALIDATE_BOOLEAN) === false) {
             $request->setOption(CURLOPT_FOLLOWLOCATION, true);
@@ -561,5 +558,13 @@ class JustimmoApi implements JustimmoApiInterface
         $this->curlOptions[$key] = $value;
 
         return $this;
+    }
+
+    protected function createRequest($url)
+    {
+        return new CurlRequest($url, array(
+                CURLOPT_USERPWD        => $this->username . ':' . $this->password,
+                CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
+            ) + $this->curlOptions);
     }
 }
