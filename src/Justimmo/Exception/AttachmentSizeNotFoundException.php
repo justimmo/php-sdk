@@ -1,7 +1,7 @@
 <?php
 namespace Justimmo\Exception;
 
-class AttachmentSizeNotFoundException extends \Exception
+class AttachmentSizeNotFoundException extends \Exception implements JustimmoException
 {
 
 }

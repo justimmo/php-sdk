@@ -1,3 +1,7 @@
+## not yet released
+ * add JustimmoException interface to catch all sdk related exceptions
+ * add InvalidRequestException for response error code 400 to 499 with error message parsing from API
+
 ## 1.0.30
  * filterByStatusId
 

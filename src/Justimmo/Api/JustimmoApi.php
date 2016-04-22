@@ -4,6 +4,7 @@ namespace Justimmo\Api;
 
 use Justimmo\Cache\CacheInterface;
 use Justimmo\Curl\CurlRequest;
+use Justimmo\Exception\InvalidRequestException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -359,6 +360,14 @@ class JustimmoApi implements JustimmoApiInterface
 
         if ($request->getStatusCode() == 404) {
             $this->throwError('Api call not found: ' . $request->getStatusCode(), '\Justimmo\Exception\NotFoundException');
+        }
+
+        if ($request->getStatusCode() >= 400 && $request->getStatusCode() < 500) {
+            $exception = new InvalidRequestException('The Api call returned status code ' . $request->getStatusCode());
+            $exception->setResponse($request->getContent());
+            $this->logger->error($exception->getMessage());
+
+            throw $exception;
         }
 
         if ($request->getStatusCode() != 200) {
