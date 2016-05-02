@@ -13,16 +13,18 @@ class RealtyInquiryMapper extends AbstractMapper
     protected function getFilterMapping()
     {
         return array(
-            'firstName' => 'vorname',
-            'realtyId'  => 'objekt_id',
-            'lastName'  => 'nachname',
-            'email'     => 'email',
-            'phone'     => 'tel',
-            'message'   => 'message',
-            'street'    => 'strasse',
-            'zipCode'   => 'plz',
-            'city'      => 'ort',
-            'country'   => 'land',
+            'firstName'    => 'vorname',
+            'realtyId'     => 'objekt_id',
+            'lastName'     => 'nachname',
+            'email'        => 'email',
+            'phone'        => 'tel',
+            'message'      => 'message',
+            'street'       => 'strasse',
+            'zipCode'      => 'plz',
+            'city'         => 'ort',
+            'country'      => 'land',
+            'title'        => 'titel',
+            'salutationId' => 'anrede_id',
         );
     }
 

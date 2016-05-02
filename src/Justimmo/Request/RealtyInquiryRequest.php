@@ -37,6 +37,16 @@ class RealtyInquiryRequest implements RequestInterface
 
     protected $country = null;
 
+    /**
+     * @var string
+     */
+    protected $title = null;
+
+    /**
+     * @var int
+     */
+    protected $salutationId = null;
+
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
         $this->api    = $api;
@@ -243,20 +253,54 @@ class RealtyInquiryRequest implements RequestInterface
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSalutationId()
+    {
+        return $this->salutationId;
+    }
+
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @param int $salutationId
+     */
+    public function setSalutationId($salutationId)
+    {
+        $this->salutationId = $salutationId;
+    }
 
     public function send()
     {
         $this->api->postRealtyInquiry(array(
-            $this->mapper->getFilterPropertyName('realtyId')  => $this->getRealtyId(),
-            $this->mapper->getFilterPropertyName('firstName') => $this->getFirstName(),
-            $this->mapper->getFilterPropertyName('lastName')  => $this->getLastName(),
-            $this->mapper->getFilterPropertyName('email')     => $this->getEmail(),
-            $this->mapper->getFilterPropertyName('phone')     => $this->getPhone(),
-            $this->mapper->getFilterPropertyName('message')   => $this->getMessage(),
-            $this->mapper->getFilterPropertyName('street')    => $this->getStreet(),
-            $this->mapper->getFilterPropertyName('zipCode')   => $this->getZipCode(),
-            $this->mapper->getFilterPropertyName('city')      => $this->getCity(),
-            $this->mapper->getFilterPropertyName('country')   => $this->getCountry(),
+            $this->mapper->getFilterPropertyName('realtyId')     => $this->getRealtyId(),
+            $this->mapper->getFilterPropertyName('firstName')    => $this->getFirstName(),
+            $this->mapper->getFilterPropertyName('lastName')     => $this->getLastName(),
+            $this->mapper->getFilterPropertyName('email')        => $this->getEmail(),
+            $this->mapper->getFilterPropertyName('phone')        => $this->getPhone(),
+            $this->mapper->getFilterPropertyName('message')      => $this->getMessage(),
+            $this->mapper->getFilterPropertyName('street')       => $this->getStreet(),
+            $this->mapper->getFilterPropertyName('zipCode')      => $this->getZipCode(),
+            $this->mapper->getFilterPropertyName('city')         => $this->getCity(),
+            $this->mapper->getFilterPropertyName('country')      => $this->getCountry(),
+            $this->mapper->getFilterPropertyName('title')        => $this->getTitle(),
+            $this->mapper->getFilterPropertyName('salutationId') => $this->getSalutationId(),
         ));
     }
 }

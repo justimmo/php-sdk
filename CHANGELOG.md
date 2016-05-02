@@ -1,4 +1,5 @@
-## not yet released
+## 1.0.31
+ * support for salutation and title in realtie inquiries
  * add JustimmoException interface to catch all sdk related exceptions
  * add InvalidRequestException for response error code 400 to 499 with error message parsing from API
 
