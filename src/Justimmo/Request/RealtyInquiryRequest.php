@@ -276,6 +276,8 @@ class RealtyInquiryRequest implements RequestInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
@@ -284,6 +286,8 @@ class RealtyInquiryRequest implements RequestInterface
     public function setSalutationId($salutationId)
     {
         $this->salutationId = $salutationId;
+
+        return $this;
     }
 
     public function send()
