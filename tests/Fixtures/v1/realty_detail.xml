@@ -309,6 +309,12 @@
         <dokumente/>
         <videos/>
         <bilder360/>
+        <links>
+            <link>
+                <titel>JUSTIMMO</titel>
+                <pfad>http://www.justimmo.at</pfad>
+            </link>
+        </links>
         <verwaltung_objekt>
             <objektadresse_freigeben>1</objektadresse_freigeben>
             <verfuegbar_ab>November 2015</verfuegbar_ab>
