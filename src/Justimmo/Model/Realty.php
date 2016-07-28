@@ -269,6 +269,16 @@ class Realty
     protected $stair = null;
 
     /**
+     * @var string
+     */
+    protected $realtySystemType;
+
+    /**
+     * @var int
+     */
+    protected $parentId;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2512,5 +2522,45 @@ class Realty
     public function setLatitudePrecise($latitudePrecise)
     {
         $this->latitudePrecise = $latitudePrecise;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRealtySystemType()
+    {
+        return $this->realtySystemType;
+    }
+
+    /**
+     * @param string $realtySystemType
+     *
+     * @return $this
+     */
+    public function setRealtySystemType($realtySystemType)
+    {
+        $this->realtySystemType = $realtySystemType;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
+
+    /**
+     * @param int $parentId
+     *
+     * @return $this
+     */
+    public function setParentId($parentId)
+    {
+        $this->parentId = $parentId;
+
+        return $this;
     }
 }

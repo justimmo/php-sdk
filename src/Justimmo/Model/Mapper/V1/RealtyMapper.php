@@ -325,6 +325,14 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'latitudePrecise',
                 'type'     => 'double',
             ),
+            'parent_id'                  => array(
+                'property' => 'parentId',
+                'type'     => 'int',
+            ),
+            'realty_system_type'         => array(
+                'property' => 'realtySystemType',
+                'type'     => 'string',
+            ),
         );
     }
 
@@ -354,6 +362,8 @@ class RealtyMapper extends AbstractMapper
             'StatusId'          => 'objekt_status_id',
             'Rent'              => 'miete',
             'Buy'               => 'kauf',
+            'RealtySystemType'  => 'realty_type',
+            'ParentId'          => 'parent_id',
             'CreatedAt'         => 'created_at',
             'UpdatedAt'         => 'updated_at',
         );

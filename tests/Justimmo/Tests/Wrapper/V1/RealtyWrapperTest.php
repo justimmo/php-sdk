@@ -48,12 +48,16 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('17.12.2015', $entry->getUpdatedAt('d.m.Y'));
         $this->assertEquals(16.4100297, $entry->getLongitudePrecise());
         $this->assertEquals(48.2545373, $entry->getLatitudePrecise());
+        $this->assertEquals('simple', $entry->getRealtySystemType());
+        $this->assertEmpty($entry->getParentId());
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
         $this->assertEquals('aktiv', $entry->getStatus());
         $this->assertEquals(5, $entry->getStatusId());
         $this->assertEmpty($entry->getProcuredAt());
+        $this->assertEquals('commercial', $entry->getRealtySystemType());
+        $this->assertEmpty($entry->getParentId());
 
         $entry = $list[2];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -63,6 +67,8 @@ class RealtyWrapperTest extends TestCase
         $this->assertInstanceOf('\DateTime', $entry->getProcuredAt(null));
         $this->assertEquals('2014-10-09', $entry->getProcuredAt());
         $this->assertEquals('09.10.2014', $entry->getProcuredAt('d.m.Y'));
+        $this->assertEquals('area', $entry->getRealtySystemType());
+        $this->assertEquals(195429, $entry->getParentId());
 
         $entry = $list[5];
         $this->assertEmpty($entry->getProcuredAt());
@@ -91,6 +97,8 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('PRAXIS', $objekt->getSubRealtyType());
         $this->assertEquals(28, $objekt->getSubRealtyTypeId());
         $this->assertEquals('Praxis', $objekt->getSubRealtyTypeName());
+        $this->assertEquals('simple', $objekt->getRealtySystemType());
+        $this->assertEmpty($objekt->getParentId());
 
         $this->assertEquals(array(
             'WOHNEN'  => false,

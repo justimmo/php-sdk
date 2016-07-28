@@ -335,6 +335,8 @@
             <openimmo_obid>OBGC201309171129328278o9prei3s5</openimmo_obid>
             <stand_vom>2014-11-05</stand_vom>
             <projekt_id>51</projekt_id>
+            <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
     </immobilie>
 </justimmo>

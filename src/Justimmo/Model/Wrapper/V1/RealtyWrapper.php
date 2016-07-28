@@ -145,7 +145,7 @@ class RealtyWrapper extends AbstractWrapper
     /**
      * @param $data
      *
-     * @return Objekt
+     * @return Realty
      */
     public function transformSingle($data)
     {
@@ -173,6 +173,10 @@ class RealtyWrapper extends AbstractWrapper
             $objekt->setId((int) $xml->verwaltung_techn->objektnr_intern);
             $objekt->setPropertyNumber((string) $xml->verwaltung_techn->objektnr_extern);
             $objekt->setProjectId((int) $xml->verwaltung_techn->projekt_id);
+
+            foreach ($xml->verwaltung_techn->user_defined_simplefield as $simpleField) {
+                $this->mapSimpleField($simpleField, $objekt);
+            }
         }
 
         if (isset($xml->verwaltung_objekt)) {

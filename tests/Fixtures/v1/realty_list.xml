@@ -451,6 +451,8 @@
             <openimmo_obid>OBGC2015063011462764948h6rlswr7</openimmo_obid>
             <stand_vom>2015-12-17</stand_vom>
             <sprache>de-DE</sprache>
+            <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -692,6 +694,8 @@
             <openimmo_obid>OBGC20130917112903382axhkiby66z</openimmo_obid>
             <stand_vom>2015-12-17</stand_vom>
             <sprache>de-DE</sprache>
+            <user_defined_simplefield feldname="realty_system_type">commercial</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -1016,6 +1020,8 @@
             <stand_vom>2015-12-20</stand_vom>
             <sprache>de-DE</sprache>
             <projekt_id>46</projekt_id>
+            <user_defined_simplefield feldname="realty_system_type">area</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id">195429</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -1302,6 +1308,8 @@
             <openimmo_obid>OBGC20130917112833547bph98wojpb</openimmo_obid>
             <stand_vom>2015-11-16</stand_vom>
             <sprache>de-DE</sprache>
+            <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -2043,6 +2051,8 @@
             <stand_vom>2015-12-17</stand_vom>
             <sprache>de-DE</sprache>
             <projekt_id>46</projekt_id>
+            <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
         <dokumente>
             <dokument>
@@ -3095,6 +3105,8 @@
             <stand_vom>2015-12-17</stand_vom>
             <sprache>de-DE</sprache>
             <projekt_id>51</projekt_id>
+            <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id" />
         </verwaltung_techn>
         <dokumente />
         <videos />

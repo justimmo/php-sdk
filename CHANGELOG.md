@@ -1,3 +1,7 @@
+## 1.1.0
+ * changed versioning to semver
+ * added support for commercial realties (realty_system_type, parent_id)
+
 ## 1.0.31
  * support for salutation and title in realtie inquiries
  * add JustimmoException interface to catch all sdk related exceptions

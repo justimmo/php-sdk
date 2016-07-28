@@ -122,4 +122,19 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         ), $this->query->getParams());
 
     }
+
+    public function testMagicMethodMapping()
+    {
+        $this->query->clear();
+        $this->query
+            ->filterByParentId(12345)
+            ->filterByRealtySystemType('area');
+
+        $this->assertEquals(array(
+            'filter' => array(
+                'parent_id'   => 12345,
+                'realty_type' => 'area',
+            ),
+        ), $this->query->getParams());
+    }
 }
