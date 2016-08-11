@@ -118,6 +118,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(48.2087105, $objekt->getLatitude());
         $this->assertEquals(16.3726546, $objekt->getLongitude());
         $this->assertEquals($objekt->getFloorArea(), 150);
+        $this->assertEquals($objekt->getFloorAreaFrom(), 20);
         $this->assertEquals($objekt->getSurfaceArea(), 150);
         $this->assertNull($objekt->getLivingArea());
         $this->assertNull($objekt->getTotalArea());
@@ -143,6 +144,10 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getSurety());
         $this->assertEquals($objekt->getSuretyText(), '3 Bruttomonatsmieten');
         $this->assertNull($objekt->getCompensation());
+        $this->assertEquals(10, $objekt->getRentPerSqmFrom());
+        $this->assertEquals(13, $objekt->getRentPerSqm());
+        $this->assertEquals(2, $objekt->getOperatingCostsPerSqmFrom());
+        $this->assertEquals(3, $objekt->getOperatingCostsPerSqm());
 
         $costs = $objekt->getAdditionalCosts();
         $this->assertEquals(4, count($costs));

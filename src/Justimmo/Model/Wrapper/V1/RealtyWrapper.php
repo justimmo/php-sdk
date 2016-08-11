@@ -89,6 +89,7 @@ class RealtyWrapper extends AbstractWrapper
 
     protected $flaechenMapping = array(
         'nutzflaeche',
+        'teilbar_ab',
         'grundflaeche',
         'wohnflaeche',
         'gesamtflaeche',
@@ -298,6 +299,15 @@ class RealtyWrapper extends AbstractWrapper
 
                     $objekt->addAdditionalCosts($key, $costs);
                 }
+            }
+
+            if (isset($xml->preise->nettomieteprom2von)) {
+                $objekt->setRentPerSqmFrom((float) $xml->preise->nettomieteprom2von);
+                $objekt->setRentPerSqm((float) $xml->preise->nettomieteprom2von->attributes()->nettomieteprom2bis);
+            }
+            if (isset($xml->preise->nebenkostenprom2von)) {
+                $objekt->setOperatingCostsPerSqmFrom((float) $xml->preise->nebenkostenprom2von);
+                $objekt->setOperatingCostsPerSqm((float) $xml->preise->nebenkostenprom2von->attributes()->nebenkostenprom2bis);
             }
         }
 

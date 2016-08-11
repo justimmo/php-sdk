@@ -27,6 +27,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByBuy($value)
  * @method RealtyQuery filterByRealtySystemType($value)
  * @method RealtyQuery filterByParentId($value)
+ * @method RealtyQuery filteryByRentPerSqm($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')

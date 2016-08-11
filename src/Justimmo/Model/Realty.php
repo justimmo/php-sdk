@@ -30,10 +30,34 @@ class Realty
 
     protected $purchasePricePerSqm = null;
 
+    /**
+     * @var float
+     */
+    protected $rentPerSqmFrom = null;
+
+    /**
+     * @var float
+     */
     protected $rentPerSqm = null;
 
+    /**
+     * @var float
+     */
+    protected $operatingCostsPerSqmFrom = null;
+
+    /**
+     * @var float
+     */
     protected $operatingCostsPerSqm = null;
 
+    /**
+     * @var float
+     */
+    protected $floorAreaFrom = null;
+
+    /**
+     * @var float
+     */
     protected $floorArea = null;
 
     protected $surfaceArea = null;
@@ -589,6 +613,26 @@ class Realty
     }
 
     /**
+     * @return null
+     */
+    public function getFloorAreaFrom()
+    {
+        return $this->floorAreaFrom;
+    }
+
+    /**
+     * @param null $floorAreaFrom
+     *
+     * @return $this
+     */
+    public function setFloorAreaFrom($floorAreaFrom)
+    {
+        $this->floorAreaFrom = $floorAreaFrom;
+
+        return $this;
+    }
+
+     /**
      * @param null $nutzflaeche
      *
      * @return $this
@@ -2449,6 +2493,26 @@ class Realty
     }
 
     /**
+     * @return float
+     */
+    public function getRentPerSqmFrom()
+    {
+        return $this->rentPerSqmFrom;
+    }
+
+    /**
+     * @param float $rentPerSqmFrom
+     *
+     * @return $this
+     */
+    public function setRentPerSqmFrom($rentPerSqmFrom)
+    {
+        $this->rentPerSqmFrom = $rentPerSqmFrom;
+
+        return $this;
+    }
+
+    /**
      * @return null
      */
     public function getRentPerSqm()
@@ -2464,6 +2528,26 @@ class Realty
     public function setRentPerSqm($rentPerSqm)
     {
         $this->rentPerSqm = $rentPerSqm;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperatingCostsPerSqmFrom()
+    {
+        return $this->operatingCostsPerSqmFrom;
+    }
+
+    /**
+     * @param float $operatingCostsPerSqmFrom
+     *
+     * @return $this
+     */
+    public function setOperatingCostsPerSqmFrom($operatingCostsPerSqmFrom)
+    {
+        $this->operatingCostsPerSqmFrom = $operatingCostsPerSqmFrom;
 
         return $this;
     }

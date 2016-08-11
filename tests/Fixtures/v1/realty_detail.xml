@@ -110,9 +110,13 @@
             <user_defined_simplefield feldname="grunderwerbssteuer">3.4</user_defined_simplefield>
             <user_defined_simplefield feldname="grundbucheintragung">1.4</user_defined_simplefield>
             <user_defined_simplefield feldname="vertragserrichtungsgebuehr">2,16%</user_defined_simplefield>
+            <nettomieteprom2von nettomieteprom2bis="13">10</nettomieteprom2von>
+            <mietpreis_pro_qm>13</mietpreis_pro_qm>
+            <nebenkostenprom2von nebenkostenprom2bis="3">2</nebenkostenprom2von>
         </preise>
         <flaechen>
             <nutzflaeche>150</nutzflaeche>
+            <teilbar_ab>20</teilbar_ab>
             <grundstuecksflaeche>150</grundstuecksflaeche>
             <verbaubare_flaeche>355</verbaubare_flaeche>
             <anzahl_garagen>1</anzahl_garagen>

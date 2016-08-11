@@ -63,6 +63,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'floorArea',
                 'type'     => 'double',
             ),
+            'teilbar_ab'                => array(
+                'property' => 'floorAreaFrom',
+                'type'     => 'double',
+            ),
             'grundflaeche'               => array(
                 'property' => 'surfaceArea',
                 'type'     => 'double',
@@ -364,6 +368,7 @@ class RealtyMapper extends AbstractMapper
             'Buy'               => 'kauf',
             'RealtySystemType'  => 'realty_type',
             'ParentId'          => 'parent_id',
+            'RentPerSqm'        => 'price_net_per_m2',
             'CreatedAt'         => 'created_at',
             'UpdatedAt'         => 'updated_at',
         );
