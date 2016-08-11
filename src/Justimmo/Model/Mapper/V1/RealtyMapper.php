@@ -368,7 +368,7 @@ class RealtyMapper extends AbstractMapper
             'Buy'               => 'kauf',
             'RealtySystemType'  => 'realty_type',
             'ParentId'          => 'parent_id',
-            'RentPerSqm'        => 'price_net_per_m2',
+            'RentPerSqm'        => 'price_per_m2',
             'CreatedAt'         => 'created_at',
             'UpdatedAt'         => 'updated_at',
         );
