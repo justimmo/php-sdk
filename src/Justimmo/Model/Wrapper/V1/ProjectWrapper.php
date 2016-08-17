@@ -43,6 +43,10 @@ class ProjectWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->bilder->bild, $project, 'picture');
         }
 
+        if (isset($xml->plaene) && isset($xml->plaene->bild)) {
+            $this->mapAttachmentGroup($xml->plaene->bild, $project, 'picture', 'GRUNDRISS');
+        }
+
         if (isset($xml->dokumente) && isset($xml->dokumente->dokument)) {
             $this->mapAttachmentGroup($xml->dokumente->dokument, $project, 'document');
         }
