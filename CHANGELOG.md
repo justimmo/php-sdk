@@ -1,6 +1,7 @@
 ## 1.1.0
  * changed versioning to semver
  * added support for commercial realties (realty_system_type, parent_id, rent_per_sqm_from, floor_area_from, operating_costs_per_sqm_from)
+ * add grundriss support to projects (thx @sb-relaxt-at)
 
 ## 1.0.31
  * support for salutation and title in realtie inquiries
