@@ -315,21 +315,6 @@ class RealtyWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->anhaenge->anhang, $objekt);
         }
 
-        if (isset($xml->dokumente) && isset($xml->dokumente->dokument)) {
-            $this->mapAttachmentGroup($xml->dokumente->dokument, $objekt, 'document');
-        }
-
-        if (isset($xml->videos) && isset($xml->videos->video)) {
-            $this->mapAttachmentGroup($xml->videos->video, $objekt, 'video');
-        }
-
-        if (isset($xml->bilder360) && isset($xml->bilder360->pfad)) {
-            foreach ($xml->bilder360->pfad as $anhang) {
-                $attachment = new Attachment($this->cast($anhang), 'picture', 'bilder360');
-                $objekt->addAttachment($attachment);
-            }
-        }
-
         if (isset($xml->links) && isset($xml->links->link)) {
             $this->mapAttachmentGroup($xml->links->link, $objekt, 'link');
         }
