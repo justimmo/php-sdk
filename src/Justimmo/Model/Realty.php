@@ -675,7 +675,7 @@ class Realty
     }
 
     /**
-     * @param null $sonstige_angaben
+     * @param string $sonstige_angaben
      *
      * @return $this
      */
