@@ -23,6 +23,7 @@ class RealtyWrapper extends AbstractWrapper
         'dreizeiler',
         'naehe',
         'objektbeschreibung',
+        'sonstige_angaben',
         'etage',
         'tuernummer',
         'plz',
@@ -235,6 +236,7 @@ class RealtyWrapper extends AbstractWrapper
             $objekt->setTitle((string) $xml->freitexte->objekttitel);
             $objekt->setEquipmentDescription((string) $xml->freitexte->ausstatt_beschr);
             $objekt->setDescription((string) $xml->freitexte->objektbeschreibung);
+            $objekt->setOtherInformation((string) $xml->freitexte->sonstige_angaben);
             if (isset($xml->freitexte->lage)) {
                 $objekt->setLocality((string) $xml->freitexte->lage);
             }
