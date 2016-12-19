@@ -16,6 +16,8 @@ class Realty
 
     protected $description = null;
 
+    protected $otherInformation = null;
+
     protected $tier = null;
 
     protected $doorNumber = null;
@@ -670,6 +672,26 @@ class Realty
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @param string $sonstige_angaben
+     *
+     * @return $this
+     */
+    public function setOtherInformation($sonstige_angaben)
+    {
+        $this->otherInformation = $sonstige_angaben;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOtherInformation()
+    {
+        return $this->otherInformation;
     }
 
     /**

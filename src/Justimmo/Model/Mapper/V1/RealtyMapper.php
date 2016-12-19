@@ -12,6 +12,9 @@ class RealtyMapper extends AbstractMapper
             'objektnummer'               => array(
                 'property' => 'propertyNumber',
             ),
+            'sonstige_angaben'         => array(
+                'property' => 'otherInformation',
+            ),
             'titel'                      => array(
                 'property' => 'title',
             ),
