@@ -297,7 +297,7 @@ class JustimmoApi implements JustimmoApiInterface
     {
         $url = $this->baseUrl . '/' . $this->version . '/' . $call;
         if (count($params) > 0) {
-            $queryString = http_build_query($params);
+            $queryString = http_build_query($params, null, '&');
             $queryString = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $queryString);
             $url .= '?' . $queryString;
         }
