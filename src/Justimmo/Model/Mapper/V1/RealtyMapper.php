@@ -340,6 +340,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'realtySystemType',
                 'type'     => 'string',
             ),
+            'ji_anzeige_in_suchergebnis' => array(
+                'property' => 'showInSearch',
+                'type'     => 'boolean',
+            ),
         );
     }
 

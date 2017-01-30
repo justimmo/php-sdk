@@ -28,8 +28,27 @@ class ProjectQuery extends AbstractQuery
         return 'callProjectDetail';
     }
 
-    public function all($all = 1)
+    /**
+     * Return all projects, regardless of realties in projects
+     *
+     * @param bool $all
+     *
+     * @return $this
+     */
+    public function all($all = true)
     {
-        return $this->set('alle', $all);
+        return $this->set('alle', (int) $all);
+    }
+
+    /**
+     * Return all project realties regardless of realty state (active, inactive, draft,...)
+     *
+     * @param bool $all
+     *
+     * @return $this
+     */
+    public function allProjectRealties($all = true)
+    {
+        return $this->set('alleProjektObjekte', (int) $all);
     }
 }

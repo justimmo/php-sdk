@@ -453,6 +453,7 @@
             <sprache>de-DE</sprache>
             <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">1</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -696,6 +697,7 @@
             <sprache>de-DE</sprache>
             <user_defined_simplefield feldname="realty_system_type">commercial</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">0</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -1022,6 +1024,7 @@
             <projekt_id>46</projekt_id>
             <user_defined_simplefield feldname="realty_system_type">area</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id">195429</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">1</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -1310,6 +1313,7 @@
             <sprache>de-DE</sprache>
             <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">1</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />
@@ -2053,6 +2057,7 @@
             <projekt_id>46</projekt_id>
             <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">1</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente>
             <dokument>
@@ -3107,6 +3112,7 @@
             <projekt_id>51</projekt_id>
             <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
             <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">0</user_defined_simplefield>
         </verwaltung_techn>
         <dokumente />
         <videos />

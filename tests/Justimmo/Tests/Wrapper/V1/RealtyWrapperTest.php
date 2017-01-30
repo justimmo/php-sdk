@@ -50,6 +50,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(48.2545373, $entry->getLatitudePrecise());
         $this->assertEquals('simple', $entry->getRealtySystemType());
         $this->assertEmpty($entry->getParentId());
+        $this->assertTrue($entry->getShowInSearch());
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -58,6 +59,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEmpty($entry->getProcuredAt());
         $this->assertEquals('commercial', $entry->getRealtySystemType());
         $this->assertEmpty($entry->getParentId());
+        $this->assertFalse($entry->getShowInSearch());
 
         $entry = $list[2];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);

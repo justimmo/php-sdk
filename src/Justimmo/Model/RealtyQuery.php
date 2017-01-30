@@ -60,6 +60,18 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
+     * Return all project realties regardless of realty state (active, inactive, draft,...)
+     *
+     * @param bool $all
+     *
+     * @return $this
+     */
+    public function allProjectRealties($all = true)
+    {
+        return $this->set('alleProjektObjekte', (int) $all);
+    }
+
+    /**
      * get a array of realty ids
      *
      * @return array

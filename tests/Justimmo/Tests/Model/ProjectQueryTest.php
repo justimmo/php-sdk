@@ -34,4 +34,15 @@ class ProjectQueryTest extends \PHPUnit_Framework_TestCase
             )
         ), $query->getParams());
     }
+
+    public function testAllProjectRealties()
+    {
+        $query = $this->getQuery();
+        $query->allProjectRealties(true);
+        $this->assertEquals(array('alleProjektObjekte' => 1), $query->getParams());
+
+        $query = $this->getQuery();
+        $query->allProjectRealties(false);
+        $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
+    }
 }
