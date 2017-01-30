@@ -3,9 +3,11 @@
 namespace Justimmo\Api;
 
 use Justimmo\Cache\CacheInterface;
+use Justimmo\Cache\NullCache;
 use Justimmo\Curl\CurlRequest;
 use Justimmo\Exception\InvalidRequestException;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Class JustimmoApi
@@ -91,11 +93,11 @@ class JustimmoApi implements JustimmoApiInterface
      * @param string          $version
      * @param string          $culture
      */
-    public function __construct($username, $password, LoggerInterface $logger, CacheInterface $cache, $version = 'v1', $culture = 'de')
+    public function __construct($username, $password, LoggerInterface $logger = null, CacheInterface $cache = null, $version = 'v1', $culture = 'de')
     {
         $this
-            ->setLogger($logger)
-            ->setCache($cache)
+            ->setLogger(($logger ?: new NullLogger()))
+            ->setCache(($cache ?: new NullCache()))
             ->setCulture($culture)
             ->setUsername($username)
             ->setPassword($password)
