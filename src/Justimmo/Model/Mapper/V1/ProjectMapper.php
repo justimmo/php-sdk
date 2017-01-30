@@ -31,9 +31,8 @@ class ProjectMapper extends AbstractMapper
             'hausnummer'   => array(
                 'property' => 'houseNumber',
             ),
-            'in_bau'   => array(
-                'property' => 'underConstruction',
-                'type'     => 'boolean',
+            'status'   => array(
+                'property' => 'projectState',
             ),
             'sonstige_angaben' => array(
                 'property' => 'miscellaneous',
@@ -55,6 +54,7 @@ class ProjectMapper extends AbstractMapper
             'Keyword'        => 'stichwort',
             'FederalStateId' => 'bundesland_id',
             'CountryIso2'    => 'land_iso2',
+            'ProjectState'   => 'projekt_status',
         );
     }
 }

@@ -13,6 +13,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByKeyword($value)
  * @method ProjectQuery filterByFederalStateId($value)
  * @method ProjectQuery filterByCountryIso2($value)
+ * @method ProjectQuery filterByProjectState($value)
  */
 class ProjectQuery extends AbstractQuery
 {

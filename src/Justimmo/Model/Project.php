@@ -4,6 +4,10 @@ namespace Justimmo\Model;
 
 class Project
 {
+    const PROJECT_STATE_PLANNING = 'planning';
+    const PROJECT_STATE_BUILDING = 'building';
+    const PROJECT_STATE_FINISHED = 'finished';
+
     /**
      * @var int
      */
@@ -12,42 +16,47 @@ class Project
     /**
      * @var string
      */
-    protected $title = null;
+    protected $title;
 
     /**
      * @var string
      */
-    protected $teaser = null;
+    protected $teaser;
 
     /**
      * @var string
      */
-    protected $description = null;
+    protected $description;
 
     /**
      * @var string
      */
-    protected $zipCode = null;
+    protected $projectState;
 
     /**
      * @var string
      */
-    protected $place = null;
+    protected $zipCode ;
 
     /**
      * @var string
      */
-    protected $street = null;
+    protected $place;
 
     /**
      * @var string
      */
-    protected $houseNumber = null;
+    protected $street;
+
+    /**
+     * @var string
+     */
+    protected $houseNumber;
 
     /**
      * @var Employee
      */
-    protected $contact = null;
+    protected $contact;
 
     /**
      * @var array
@@ -55,29 +64,31 @@ class Project
     protected $attachments = array();
 
     /**
-     * @var array
+     * @var Realty[]
      */
     protected $realties = array();
 
     /**
      * @var string
      */
-    protected $freetext1 = null;
+    protected $freetext1;
 
     /**
      * @var string
      */
-    protected $locality = null;
+    protected $locality;
 
     /**
+     * @deprecated please use $projectState
+     *
      * @var bool
      */
-    protected $underConstruction = null;
+    protected $underConstruction = false;
 
     /**
      * @var string
      */
-    protected $miscellaneous = null;
+    protected $miscellaneous;
 
     /**
      * @param mixed $value
@@ -244,7 +255,7 @@ class Project
     }
 
     /**
-     * @return array
+     * @return Realty[]
      */
     public function getRealties()
     {
@@ -391,26 +402,24 @@ class Project
 
     /**
      * @param string $miscellaneous
+     *
+     * @return $this
      */
     public function setMiscellaneous($miscellaneous)
     {
         $this->miscellaneous = $miscellaneous;
+
+        return $this;
     }
 
     /**
+     * @deprecated use getProjectState or isStateBuilding
+     *
      * @return boolean
      */
     public function getUnderConstruction()
     {
         return $this->underConstruction;
-    }
-
-    /**
-     * @param boolean $underConstruction
-     */
-    public function setUnderConstruction($underConstruction)
-    {
-        $this->underConstruction = $underConstruction;
     }
 
     /**
@@ -423,10 +432,14 @@ class Project
 
     /**
      * @param string $locality
+     *
+     * @return $this
      */
     public function setLocality($locality)
     {
         $this->locality = $locality;
+
+        return $this;
     }
 
     /**
@@ -439,9 +452,70 @@ class Project
 
     /**
      * @param string $freetext1
+     *
+     * @return $this
      */
     public function setFreetext1($freetext1)
     {
         $this->freetext1 = $freetext1;
+
+        return $this;
+    }
+
+    /**
+     * Retuns the current project state.
+     *
+     * @return string
+     */
+    public function getProjectState()
+    {
+        return $this->projectState;
+    }
+
+    /**
+     * @param string $projectState
+     *
+     * @return Project
+     */
+    public function setProjectState($projectState)
+    {
+        $this->projectState = $projectState;
+
+        //BC
+        if ($projectState === self::PROJECT_STATE_BUILDING) {
+            $this->underConstruction = true;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Returns if the project is finished.
+     *
+     * @return bool
+     */
+    public function isStateFinished()
+    {
+        return $this->getProjectState() === self::PROJECT_STATE_FINISHED;
+    }
+
+    /**
+     * Retuns if the project is still in planning phase.
+     *
+     * @return bool
+     */
+    public function isStatePlanning()
+    {
+        return $this->getProjectState() === self::PROJECT_STATE_PLANNING;
+    }
+
+    /**
+     * Returns if the project is currently under construction.
+     *
+     * @return bool
+     */
+    public function isStateBuilding()
+    {
+        return $this->getProjectState() === self::PROJECT_STATE_BUILDING;
     }
 }

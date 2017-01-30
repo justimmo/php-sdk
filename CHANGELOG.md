@@ -1,3 +1,6 @@
+## 1.1.3
+ * Add support for project state
+
 ## 1.1.2
  * Fixed a bug on servers with a different arg_separator.output setting
  * Added support for other information field to realties

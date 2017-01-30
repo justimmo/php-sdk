@@ -18,7 +18,7 @@ class ProjectWrapper extends AbstractWrapper
         'ort',
         'strasse',
         'hausnummer',
-        'in_bau',
+        'status',
         'sonstige_angaben',
         'freitext_1',
         'lage',
