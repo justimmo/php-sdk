@@ -1,5 +1,5 @@
 ## 1.1.3
- * Add support for project state
+ * Add support for project state and is reference
  * Add support for allProjectRealties setting
  * Add support for employee ids and project ids call
 

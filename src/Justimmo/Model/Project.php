@@ -91,6 +91,11 @@ class Project
     protected $miscellaneous;
 
     /**
+     * @var bool
+     */
+    protected $isReference;
+
+    /**
      * @param mixed $value
      *
      * @return $this
@@ -517,5 +522,25 @@ class Project
     public function isStateBuilding()
     {
         return $this->getProjectState() === self::PROJECT_STATE_BUILDING;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsReference()
+    {
+        return $this->isReference;
+    }
+
+    /**
+     * @param bool $isReference
+     *
+     * @return Project
+     */
+    public function setIsReference($isReference)
+    {
+        $this->isReference = $isReference;
+
+        return $this;
     }
 }

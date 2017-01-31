@@ -48,6 +48,17 @@ class ProjectQueryTest extends TestCase
         $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
     }
 
+    public function testIsReference()
+    {
+        $query = $this->getQuery();
+        $query->filterByIsReference(true);
+        $this->assertEquals(array(
+            'filter' => array(
+                'referenz' => 1,
+            )
+        ), $query->getParams());
+    }
+
     public function testFindIds()
     {
         $api = new MockJustimmoApi(array('projectIds' => $this->getFixtures('v1/project_ids.json')));

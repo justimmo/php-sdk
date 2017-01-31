@@ -22,6 +22,7 @@ class ProjectWrapper extends AbstractWrapper
         'sonstige_angaben',
         'freitext_1',
         'lage',
+        'referenz',
     );
 
     public function transformSingle($data)

@@ -41,6 +41,7 @@
         <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
         <lage>Sonnig am Berg</lage>
         <freitext_1>Freitext 1 Test</freitext_1>
+        <referenz>1</referenz>
         <immobilien>
             <immobilie>
                 <id>195439</id>
@@ -166,6 +167,7 @@
         <plz>1030</plz>
         <ort>Wien</ort>
         <status>building</status>
+        <referenz>0</referenz>
         <immobilien>
             <immobilie>
                 <id>66034</id>
@@ -271,6 +273,7 @@
         <plz>1030</plz>
         <ort>Wien</ort>
         <status>finished</status>
+        <referenz>1</referenz>
         <immobilien>
             <immobilie>
                 <id>66034</id>

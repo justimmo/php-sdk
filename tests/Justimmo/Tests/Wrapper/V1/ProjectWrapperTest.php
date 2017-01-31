@@ -41,6 +41,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
         $this->assertEquals('Sonnig am Berg', $entry->getLocality());
         $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
+        $this->assertTrue($entry->getIsReference());
 
         $realties = $entry->getRealties();
         $realty = $realties[0];
@@ -57,6 +58,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertFalse($entry->isStatePlanning());
         $this->assertTrue($entry->isStateBuilding());
         $this->assertFalse($entry->isStateFinished());
+        $this->assertFalse($entry->getIsReference());
 
         $entry = $list[2];
         $this->assertFalse($entry->getUnderConstruction());

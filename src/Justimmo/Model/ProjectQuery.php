@@ -14,6 +14,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByFederalStateId($value)
  * @method ProjectQuery filterByCountryIso2($value)
  * @method ProjectQuery filterByProjectState($value)
+ * @method ProjectQuery filterByIsReference($value)
  */
 class ProjectQuery extends AbstractQuery
 {

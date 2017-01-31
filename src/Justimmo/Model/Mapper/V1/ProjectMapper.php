@@ -43,6 +43,10 @@ class ProjectMapper extends AbstractMapper
             'freitext_1'   => array(
                 'property' => 'freetext1',
             ),
+            'referenz'   => array(
+                'property' => 'isReference',
+                'type'     => 'boolean',
+            ),
         );
     }
 
@@ -55,6 +59,7 @@ class ProjectMapper extends AbstractMapper
             'FederalStateId' => 'bundesland_id',
             'CountryIso2'    => 'land_iso2',
             'ProjectState'   => 'projekt_status',
+            'IsReference'    => 'referenz',
         );
     }
 }
