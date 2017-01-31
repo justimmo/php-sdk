@@ -34,9 +34,37 @@ class EmployeeWrapperTest extends TestCase
         $this->assertEquals('+43 676 123 45 67', $entry->getPhone());
         $this->assertEquals('+43 767 765 43 21', $entry->getFax());
         $this->assertEquals('a.diem@bgcc.at', $entry->getEmail());
-        $this->assertEquals(1, count($entry->getAttachments()));
+        $this->assertEquals(4, count($entry->getAttachments()));
         $this->assertEquals('von der Stange', $entry->getSuffix());
         $this->assertEquals('Biografie von Alexander Diem', $entry->getBiography());
+
+        $this->assertInstanceOf('\Justimmo\Model\Attachment', $entry->getProfilePicture());
+        $this->assertEquals('http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png', $entry->getProfilePicture()->getUrl('medium'));
+
+        $attachments = $entry->getAttachments();
+        foreach ($attachments as $attachment) {
+            $this->assertInstanceOf('\Justimmo\Model\Attachment', $attachment);
+        }
+
+        $attachment = $attachments[0];
+        $this->assertEquals('http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png', $attachment->getUrl('medium'));
+        $this->assertEquals('PROFILBILD', $attachment->getGroup());
+        $this->assertEquals('picture', $attachment->getType());
+
+        $attachment = $attachments[1];
+        $this->assertEquals('https://files.justimmo.at/public/pic/big/Awf77iCGNE.jpg', $attachment->getUrl());
+        $this->assertEmpty($attachment->getGroup());
+        $this->assertEquals('picture', $attachment->getType());
+
+        $attachment = $attachments[2];
+        $this->assertEquals('https://www.justimmo.at', $attachment->getUrl());
+        $this->assertEquals('LINKS', $attachment->getGroup());
+        $this->assertEquals('link', $attachment->getType());
+
+        $attachment = $attachments[3];
+        $this->assertEquals('http://www.youtube.com', $attachment->getUrl());
+        $this->assertEquals('FILMLINK', $attachment->getGroup());
+        $this->assertEquals('link', $attachment->getType());
 
         /** @var \Justimmo\Model\Employee $entry */
         $entry = $list[2];

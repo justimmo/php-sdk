@@ -82,7 +82,7 @@ class Employee
     }
 
     /**
-     * @return array
+     * @return Attachment[]
      */
     public function getAttachments()
     {
@@ -292,7 +292,7 @@ class Employee
     /**
      * @param null|string|boolean $group
      *
-     * @return array
+     * @return Attachment[]
      */
     public function getPictures($group = false)
     {
@@ -302,7 +302,7 @@ class Employee
     /**
      * @param null|string|boolean $group
      *
-     * @return array
+     * @return Attachment[]
      */
     public function getVideos($group = false)
     {
@@ -312,11 +312,33 @@ class Employee
     /**
      * @param null|string|boolean $group
      *
-     * @return array
+     * @return Attachment[]
      */
     public function getDocuments($group = false)
     {
         return $this->getAttachmentsByType('document', $group);
+    }
+
+    /**
+     * @param null|string|boolean $group
+     *
+     * @return Attachment[]
+     */
+    public function getLinks($group = false)
+    {
+        return $this->getAttachmentsByType('link', $group);
+    }
+
+    /**
+     * Returns the profile picture of the user
+     *
+     * @return Attachment
+     */
+    public function getProfilePicture()
+    {
+        $profilePictures = $this->getAttachmentsByType('picture', 'PROFILBILD');
+
+        return !empty($profilePictures) ? $profilePictures[0] : null;
     }
 
     /**

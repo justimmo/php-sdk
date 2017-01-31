@@ -103,17 +103,4 @@ class ProjectWrapper extends AbstractWrapper
 
         return $list;
     }
-
-    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Project $project, $type = null, $group = null)
-    {
-        foreach ($xml as $anhang) {
-            $data = (array) $anhang;
-            if (array_key_exists('pfad', $data)) {
-                $attachment = new Attachment($data['pfad'], $type, $group);
-                $attachment->setTitle($this->cast($anhang->titel));
-                $project->addAttachment($attachment);
-            }
-        }
-    }
-
 }

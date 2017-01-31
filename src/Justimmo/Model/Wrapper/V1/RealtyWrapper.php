@@ -398,34 +398,6 @@ class RealtyWrapper extends AbstractWrapper
         return $objekt;
     }
 
-    /**
-     * @param \SimpleXMLElement $xml
-     * @param null              $type
-     *
-     * @param \Justimmo\Model\Realty $objekt
-     *
-     * @internal param array $data
-     * @return \Justimmo\Model\Attachment|null
-     */
-    protected function mapAttachmentGroup(\SimpleXMLElement $xml, Realty $objekt, $type = null)
-    {
-        foreach ($xml as $anhang) {
-            $data = (array) $anhang->daten;
-            $attributes = $this->attributesToArray($anhang);
-            $group = array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null;
-            if (array_key_exists('pfad', $data)) {
-                $attachment = new Attachment($data['pfad'], $type, $group);
-                $attachment->mergeData($data);
-                $attachment->setTitle($this->cast($anhang->anhangtitel));
-                $objekt->addAttachment($attachment);
-            } elseif (isset($anhang->pfad)) {
-                $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
-                $attachment->setTitle($this->cast($anhang->titel));
-                $objekt->addAttachment($attachment);
-            }
-        }
-    }
-
     protected function mapSimpleField(\SimpleXMLElement $simpleField, $model) {
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {

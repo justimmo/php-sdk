@@ -2,6 +2,7 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
+use Justimmo\Model\Attachment;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
@@ -76,6 +77,33 @@ abstract class AbstractWrapper implements WrapperInterface
         $array = (array) $xml;
 
         return array_key_exists('@attributes', $array) ? $array['@attributes'] : array();
+    }
+
+    /**
+     * @param \SimpleXMLElement      $xml
+     * @param null                   $type
+     *
+     * @param \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project $attachmentAware
+     *
+     * @internal param array $data
+     */
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+    {
+        foreach ($xml as $anhang) {
+            $data = (array) $anhang->daten;
+            $attributes = $this->attributesToArray($anhang);
+            $group = $forceGroup ?: (array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null);
+            if (array_key_exists('pfad', $data)) {
+                $attachment = new Attachment($data['pfad'], $type, $group);
+                $attachment->mergeData($data);
+                $attachment->setTitle($this->cast($anhang->anhangtitel));
+                $attachmentAware->addAttachment($attachment);
+            } elseif (isset($anhang->pfad)) {
+                $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
+                $attachment->setTitle($this->cast($anhang->titel));
+                $attachmentAware->addAttachment($attachment);
+            }
+        }
     }
 
 }

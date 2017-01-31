@@ -98,6 +98,12 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('2017-01-15', $entry->getCompletionDate());
         $this->assertEquals('2017-02-01', $entry->getSaleStart());
 
+        $this->assertEquals(16, count($entry->getPictures(null)));
+        $this->assertEquals(18, count($entry->getPictures()));
+        $this->assertEquals(2, count($entry->getDocuments()));
+        $this->assertEquals(0, count($entry->getVideos()));
+        $this->assertEquals(2, count($entry->getPictures('bilder360')));
+
         $realties = $entry->getRealties();
 
         /** @var \Justimmo\Model\Realty $realty */
@@ -108,12 +114,6 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(2460, $realty->getZipCode());
         $this->assertEquals($entry->getId(), $realty->getProjectId());
         $this->assertEquals('verkauft', $realty->getStatus());
-
-        $this->assertEquals(16, count($entry->getPictures(null)));
-        $this->assertEquals(18, count($entry->getPictures()));
-        $this->assertEquals(2, count($entry->getDocuments()));
-        $this->assertEquals(0, count($entry->getVideos()));
-        $this->assertEquals(2, count($entry->getPictures('bilder360')));
 
         $document = $entry->getDocuments();
         $document = $document[0];
@@ -136,6 +136,8 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('cbusoi@bgcc.at', $contact->getEmail());
         $this->assertEquals('+431798620518', $contact->getFax());
         $this->assertEquals(1, count($contact->getAttachments()));
+        $this->assertInstanceOf('\Justimmo\Model\Attachment', $contact->getProfilePicture());
+        $this->assertEquals('http://files.justimmo.at/public/pic/medium/ABJIukIH3R.jpg', $contact->getProfilePicture()->getUrl('medium'));
     }
 
     public function testTransformWithRealtyIds()
