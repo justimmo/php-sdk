@@ -2,6 +2,7 @@
 namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
+use Justimmo\Tests\Model\ProjectQueryTest;
 
 /**
  * Class RealtyQuery
@@ -28,6 +29,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByRealtySystemType($value)
  * @method RealtyQuery filterByParentId($value)
  * @method RealtyQuery filteryByRentPerSqm($value)
+ * @method RealtyQuery filterByUpdatedAt($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')
@@ -35,7 +37,6 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery orderByFloorArea($direction = 'asc')
  * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
  * @method RealtyQuery orderByCreatedAt($direction = 'asc')
- * @method RealtyQuery orderByUpdatedAt($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
 {
@@ -61,6 +62,18 @@ class RealtyQuery extends AbstractQuery
     public function getIdsCall()
     {
         return 'callRealtyIds';
+    }
+
+    /**
+     * Api only accepts english updated_at fieldname for ordering
+     *
+     * @param string $direction
+     *
+     * @return RealtyQuery
+     */
+    public function orderByUpdatedAt($direction = 'asc')
+    {
+        return $this->order('updated_at', $direction);
     }
 
     /**

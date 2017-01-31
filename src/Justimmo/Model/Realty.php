@@ -2504,7 +2504,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime|null
+     * @return \DateTime|string
      */
     public function getUpdatedAt($format = 'Y-m-d H:i:s')
     {

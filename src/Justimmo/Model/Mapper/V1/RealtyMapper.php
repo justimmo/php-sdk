@@ -377,7 +377,7 @@ class RealtyMapper extends AbstractMapper
             'ParentId'          => 'parent_id',
             'RentPerSqm'        => 'price_per_m2',
             'CreatedAt'         => 'created_at',
-            'UpdatedAt'         => 'updated_at',
+            'UpdatedAt'         => 'aktualisiert_am',
         );
     }
 }
