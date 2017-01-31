@@ -310,6 +310,48 @@ class Realty
     protected $showInSearch;
 
     /**
+     * The rent net value
+     *
+     * @var float
+     */
+    protected $rentNet;
+
+    /**
+     * The rent vat in percent
+     *
+     * @var float
+     */
+    protected $rentVat;
+
+    /**
+     * The rent vat type [numeric | percent]
+     *
+     * @var string
+     */
+    protected $rentVatType;
+
+    /**
+     * The rent gross value
+     *
+     * @var float
+     */
+    protected $rentGross;
+
+    /**
+     * The calculated vat value in currency
+     *
+     * @var double
+     */
+    protected $rentVatValue;
+
+    /**
+     * The rent vat value as inputed by user
+     *
+     * @var double
+     */
+    protected $rentVatInput;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -1217,6 +1259,12 @@ class Realty
     }
 
     /**
+     * This represents the net sum of all fields in the rent group: <nettokaltmiete>482.95</nettokaltmiete>
+     *
+     * @see http://api-docs.justimmo.at/preise/index.html
+     *
+     * If you want to value of the rent field only please us getRentNet()
+     *
      * @return null
      */
     public function getNetRent()
@@ -2691,6 +2739,126 @@ class Realty
     public function setShowInSearch($showInSearch)
     {
         $this->showInSearch = $showInSearch;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentNet()
+    {
+        return $this->rentNet;
+    }
+
+    /**
+     * @param float $rentNet
+     *
+     * @return Realty
+     */
+    public function setRentNet($rentNet)
+    {
+        $this->rentNet = $rentNet;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVat()
+    {
+        return $this->rentVat;
+    }
+
+    /**
+     * @param float $rentVat
+     *
+     * @return Realty
+     */
+    public function setRentVat($rentVat)
+    {
+        $this->rentVat = $rentVat;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRentVatType()
+    {
+        return $this->rentVatType;
+    }
+
+    /**
+     * @param string $rentVatType
+     *
+     * @return Realty
+     */
+    public function setRentVatType($rentVatType)
+    {
+        $this->rentVatType = $rentVatType;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentGross()
+    {
+        return $this->rentGross;
+    }
+
+    /**
+     * @param float $rentGross
+     *
+     * @return Realty
+     */
+    public function setRentGross($rentGross)
+    {
+        $this->rentGross = $rentGross;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVatValue()
+    {
+        return $this->rentVatValue;
+    }
+
+    /**
+     * @param float $rentVatValue
+     *
+     * @return Realty
+     */
+    public function setRentVatValue($rentVatValue)
+    {
+        $this->rentVatValue = $rentVatValue;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVatInput()
+    {
+        return $this->rentVatInput;
+    }
+
+    /**
+     * @param float $rentVatInput
+     *
+     * @return Realty
+     */
+    public function setRentVatInput($rentVatInput)
+    {
+        $this->rentVatInput = $rentVatInput;
 
         return $this;
     }

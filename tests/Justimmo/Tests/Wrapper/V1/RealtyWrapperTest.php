@@ -29,8 +29,8 @@ class RealtyWrapperTest extends TestCase
         $list = $this->wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
-        $this->assertEquals(6, $list->count());
-        $this->assertEquals(6, $list->getNbResults());
+        $this->assertEquals(7, $list->count());
+        $this->assertEquals(7, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
         /** @var Realty $entry */
@@ -74,6 +74,15 @@ class RealtyWrapperTest extends TestCase
 
         $entry = $list[5];
         $this->assertEmpty($entry->getProcuredAt());
+
+        $entry = $list[6];
+        $this->assertEquals(1400, $entry->getNetRent());
+        $this->assertEquals(1200, $entry->getRentNet());
+        $this->assertEquals(1440, $entry->getRentGross());
+        $this->assertEquals('percent', $entry->getRentVatType());
+        $this->assertEquals(20, $entry->getRentVatInput());
+        $this->assertEquals(20, $entry->getRentVat());
+        $this->assertEquals(240, $entry->getRentVatValue());
     }
 
     public function testTransformSingle()

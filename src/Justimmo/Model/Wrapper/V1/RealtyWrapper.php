@@ -311,6 +311,15 @@ class RealtyWrapper extends AbstractWrapper
                 $objekt->setOperatingCostsPerSqmFrom((float) $xml->preise->nebenkostenprom2von);
                 $objekt->setOperatingCostsPerSqm((float) $xml->preise->nebenkostenprom2von->attributes()->nebenkostenprom2bis);
             }
+
+            if (isset($xml->preise->miete)) {
+                $objekt->setRentNet((float) $xml->preise->miete->netto);
+                $objekt->setRentGross((float) $xml->preise->miete->brutto);
+                $objekt->setRentVatType((string) $xml->preise->miete->ust_typ);
+                $objekt->setRentVatInput((float) $xml->preise->miete->ust_wert);
+                $objekt->setRentVat((float) $xml->preise->miete->ust);
+                $objekt->setRentVatValue((float) $xml->preise->miete->ust_berechneter_wert);
+            }
         }
 
         if (isset($xml->anhaenge) && isset($xml->anhaenge->anhang)) {

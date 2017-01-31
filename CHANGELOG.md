@@ -1,5 +1,6 @@
 ## 1.1.3
- * Add support for project state and is reference
+ * Add support for project state and is reference in project calls
+ * Add support for plain rent fields without additional costs (rent net, rent gross, rent vat type, rent vat value, rent vat input and rent vat) in realty calls
  * Add support for allProjectRealties setting
  * Add support for employee ids and project ids call
 

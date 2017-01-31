@@ -48,8 +48,8 @@ class ListPagerTest extends TestCase
     public function testPagerOnePage()
     {
         $this->assertFalse($this->pager->haveToPaginate());
-        $this->assertEquals(6, $this->pager->count());
-        $this->assertEquals(6, $this->pager->getNbResults());
+        $this->assertEquals(7, $this->pager->count());
+        $this->assertEquals(7, $this->pager->getNbResults());
         $this->assertEquals(1, $this->pager->getFirstPage());
         $this->assertEquals(1, $this->pager->getLastPage());
         $this->assertEquals(array(1), $this->pager->getLinks(5));
