@@ -63,6 +63,12 @@ class ProjectWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->bilder360->bild, $project, 'picture', 'bilder360');
         }
 
+        if (isset($xml->immobilien_ids->id)) {
+            foreach ($xml->immobilien_ids->id as $id) {
+                $project->addRealtyId((int) $id);
+            }
+        }
+
         if (isset($xml->immobilien->immobilie)) {
             $wrapper = new RealtyWrapper(new RealtyMapper());
             foreach ($xml->immobilien->immobilie as $immobilie) {

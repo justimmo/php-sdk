@@ -68,4 +68,16 @@ class ProjectQuery extends AbstractQuery
     {
         return $this->set('alleProjektObjekte', (int) $all);
     }
+
+    /**
+     * Return only realty ids instead of realty data in project tags
+     *
+     * @param bool $value
+     *
+     * @return ProjectQuery
+     */
+    public function onlyRealtyIds($value = true)
+    {
+        return $this->set('objektIds', (int) $value);
+    }
 }

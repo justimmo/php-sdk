@@ -88,6 +88,17 @@ class ProjectQueryTest extends TestCase
         $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
     }
 
+    public function testOnlyRealtyIds()
+    {
+        $query = $this->getQuery();
+        $query->onlyRealtyIds(true);
+        $this->assertEquals(array('objektIds' => 1), $query->getParams());
+
+        $query = $this->getQuery();
+        $query->onlyRealtyIds(false);
+        $this->assertEquals(array('objektIds' => 0), $query->getParams());
+    }
+
     public function testIsReference()
     {
         $query = $this->getQuery();

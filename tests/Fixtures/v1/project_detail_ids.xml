@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <projekt>
+        <id>51</id>
+        <titel>Neubau mitten im dritten</titel>
+        <beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio
+            quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id,
+            tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed
+            mattis at, eleifend a velit.&lt;/p&gt;&#13;
+            &lt;p&gt;Donec sed elit leo. Pellentesque ac quam orci. Donec diam elit, porttitor malesuada congue mollis,
+            aliquet consectetur magna. Ut elementum tortor non lectus tristique at auctor purus egestas. Cras ut nibh
+            viverra augue auctor feugiat vitae non dui. Vivamus non ipsum in libero adipiscing rhoncus. Nulla lacinia,
+            mi eu feugiat commodo, arcu magna sagittis felis, sed facilisis orci turpis vel lacus. Donec non purus
+            turpis, a mollis nibh. Aenean non bibendum ligula. Nulla sed sagittis tortor. Aliquam dignissim erat sit
+            amet arcu mollis a tristique orci pharetra. Donec a auctor mi. Fusce id metus id magna fermentum aliquet.&lt;/p&gt;&#13;
+            &lt;p&gt;Mauris fringilla orci a magna interdum scelerisque auctor est egestas. Duis sit amet sapien non
+            enim facilisis dignissim. Praesent blandit hendrerit molestie. Morbi volutpat arcu in eros dignissim ut
+            consequat justo laoreet. Fusce sit amet nisi sed nisi cursus sodales non sed odio. Proin lorem est, accumsan
+            vel rhoncus sed, accumsan et lectus. Pellentesque pellentesque, dui sit amet venenatis vestibulum, libero mi
+            dapibus nulla, vel dignissim eros magna nec ante.&lt;/p&gt;&#13;
+            &lt;p&gt;Aliquam fringilla, turpis at sodales pretium, mauris tellus sodales diam, id sagittis metus ipsum
+            at metus. Nam non pulvinar nunc. Quisque tristique hendrerit augue vestibulum porta. Cras malesuada nunc in
+            tortor molestie nec varius nisl laoreet. Donec convallis tristique est ut commodo. Cras felis massa,
+            lobortis vel rutrum vitae, sodales quis risus. Quisque quis eros pellentesque turpis sollicitudin consequat.
+            Etiam pharetra nulla a lorem aliquam in consequat odio molestie. In sit amet mi libero. Suspendisse massa
+            felis, congue nec rutrum ut, porttitor sed leo. Nulla facilisi. In a magna tortor, ut blandit nisi. Ut ac
+            orci ut diam adipiscing pellentesque.&lt;/p&gt;&#13;
+            &lt;p&gt;Mauris sodales blandit ligula non aliquam. Mauris vel justo mi, tristique ultrices urna. Praesent
+            ac hendrerit dolor. In tempor eros sit amet neque iaculis convallis. Vivamus scelerisque sollicitudin nunc,
+            at blandit est tempor vestibulum. Pellentesque rutrum feugiat lorem, ut ultrices eros gravida eget. Donec
+            laoreet tempor tincidunt.&lt;/p&gt;</beschreibung>
+        <dreizeiler></dreizeiler>
+        <plz>1030</plz>
+        <ort>Wien</ort>
+        <strasse>Kegelgasse</strasse>
+        <hausnummer>16</hausnummer>
+        <in_bau>0</in_bau>
+        <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
+        <lage>Sonnig am Berg</lage>
+        <freitext_1>Freitext 1 Test</freitext_1>
+        <status>building</status>
+        <referenz>0</referenz>
+        <url>http://www.justimmo.at</url>
+        <fertigstellung>2017-01-15</fertigstellung>
+        <verkaufsstart>2017-02-01</verkaufsstart>
+        <immobilien_ids>
+            <id>195439</id>
+            <id>195438</id>
+            <id>195437</id>
+            <id>195430</id>
+            <id>195427</id>
+            <id>195424</id>
+            <id>66077</id>
+            <id>66076</id>
+            <id>66046</id>
+            <id>66040</id>
+        </immobilien_ids>
+        <dokumente>
+            <dokument>
+                <titel>Wandaufbau.pdf</titel>
+                <pfad>http://files.justimmo.at/public/doc/AEVaO8q9ve.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+            <dokument>
+                <titel>Wandaufbau.pdf</titel>
+                <pfad>http://files.justimmo.at/public/doc/AEVaPS-gqY.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+        </dokumente>
+        <bilder>
+            <bild>
+                <titel>Bild 1</titel>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPV7aH3A.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>Bild 2</titel>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPH_l9we.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>Bild 3</titel>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPIrwKep.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPKSuEvx.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPRaloe4.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPUi0vsF.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPWolNPb.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPXajJev.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPYm53uU.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/ACXPZkQ4hy.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AHUlcJfgZI.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AHUldPA4U3.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AHUleFh1e3.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AHUlfsTSwE.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AJNg1maKf_.jpg</pfad>
+            </bild>
+            <bild>
+                <pfad>http://files.justimmo.at/public/pic/medium/AJNg3ZLA5l.jpg</pfad>
+            </bild>
+        </bilder>
+        <bilder360>
+            <bild>
+                <titel>Bild 360 1</titel>
+                <pfad>http://files.justimmo.at/public/pic/landscape/AJNg1maKf_.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>Bild 360 2</titel>
+                <pfad>http://files.justimmo.at/public/pic/landscape/AJNg3ZLA5l.jpg</pfad>
+            </bild>
+        </bilder360>
+        <videos/>
+        <kontaktperson>
+            <email_direkt>cbusoi@bgcc.at</email_direkt>
+            <tel_zentrale>+431798620513</tel_zentrale>
+            <tel_fax>+431798620518</tel_fax>
+            <tel_handy></tel_handy>
+            <name>Busoi</name>
+            <vorname>Cristian</vorname>
+            <firma>B&amp;G Consulting &amp; Commerce GmbH - 7</firma>
+            <url>testversion.justimmo.at</url>
+            <personennummer>50</personennummer>
+            <bild>
+                <small>http://files.justimmo.at/public/pic/small/ABJIukIH3R.jpg</small>
+                <medium>http://files.justimmo.at/public/pic/medium/ABJIukIH3R.jpg</medium>
+                <big>http://files.justimmo.at/public/pic/big/ABJIukIH3R.jpg</big>
+            </bild>
+        </kontaktperson>
+    </projekt>
+</justimmo>

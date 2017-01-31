@@ -99,6 +99,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('2017-02-01', $entry->getSaleStart());
 
         $realties = $entry->getRealties();
+
         /** @var \Justimmo\Model\Realty $realty */
         $realty = $realties[0];
 
@@ -135,6 +136,51 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('cbusoi@bgcc.at', $contact->getEmail());
         $this->assertEquals('+431798620518', $contact->getFax());
         $this->assertEquals(1, count($contact->getAttachments()));
+    }
+
+    public function testTransformWithRealtyIds()
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+
+        /** @var \Justimmo\Model\Project $entry */
+        $entry = $wrapper->transformSingle($this->getFixtures('v1/project_detail_ids.xml'));
+
+        $this->assertEquals(51, $entry->getId());
+        $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
+        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertEquals('1030', $entry->getZipCode());
+        $this->assertEquals('Wien', $entry->getPlace());
+        $this->assertEquals('Kegelgasse', $entry->getStreet());
+        $this->assertEquals(16, $entry->getHouseNumber());
+
+        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
+        $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
+        $this->assertEquals('Sonnig am Berg', $entry->getLocality());
+        $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
+
+        $this->assertEquals(20, count($entry->getAttachments()));
+        $this->assertEquals(10, $entry->countRealties());
+
+        $this->assertEquals('http://www.justimmo.at', $entry->getUrl());
+        $this->assertInstanceOf('\Datetime', $entry->getCompletionDate(null));
+        $this->assertInstanceOf('\Datetime', $entry->getSaleStart(null));
+        $this->assertEquals('2017-01-15', $entry->getCompletionDate());
+        $this->assertEquals('2017-02-01', $entry->getSaleStart());
+
+        $this->assertEmpty($entry->getRealties());
+        $this->assertEquals(array(
+            195439,
+            195438,
+            195437,
+            195430,
+            195427,
+            195424,
+            66077,
+            66076,
+            66046,
+            66040,
+        ), $entry->getRealtyIds());
     }
 
 }

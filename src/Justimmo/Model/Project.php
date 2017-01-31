@@ -69,6 +69,11 @@ class Project
     protected $realties = array();
 
     /**
+     * @var int[]
+     */
+    protected $realtyIds = array();
+
+    /**
      * @var string
      */
     protected $freetext1;
@@ -295,11 +300,43 @@ class Project
     }
 
     /**
+     * @return \int[]
+     */
+    public function getRealtyIds()
+    {
+        return $this->realtyIds;
+    }
+
+    /**
+     * @param \int[] $realtyIds
+     *
+     * @return Project
+     */
+    public function setRealtyIds($realtyIds)
+    {
+        $this->realtyIds = $realtyIds;
+
+        return $this;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return $this
+     */
+    public function addRealtyId($id)
+    {
+        $this->realtyIds[] = $id;
+
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function countRealties()
     {
-        return count($this->realties);
+        return count((!empty($this->realties) ? $this->realties : $this->realtyIds));
     }
 
     /**
