@@ -96,6 +96,21 @@ class Project
     protected $isReference;
 
     /**
+     * @var string
+     */
+    protected $url;
+
+    /**
+     * @var \DateTime
+     */
+    protected $completionDate;
+
+    /**
+     * @var \DateTime
+     */
+    protected $saleStart;
+
+    /**
      * @param mixed $value
      *
      * @return $this
@@ -542,5 +557,65 @@ class Project
         $this->isReference = $isReference;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
+     * @return \DateTime|string
+     */
+    public function getCompletionDate($format = 'Y-m-d')
+    {
+        if ($this->completionDate instanceof \DateTime && $format !== null) {
+            return $this->completionDate->format($format);
+        }
+
+        return $this->completionDate;
+    }
+
+    /**
+     * @param \DateTime $completionDate
+     */
+    public function setCompletionDate($completionDate)
+    {
+        $this->completionDate = $completionDate;
+    }
+
+    /**
+     * @param string $format formats the date to the specific format, null returns DateTime
+     *
+     * @return \DateTime|string
+     */
+    public function getSaleStart($format = 'Y-m-d')
+    {
+        if ($this->saleStart instanceof \DateTime && $format !== null) {
+            return $this->saleStart->format($format);
+        }
+
+        return $this->saleStart;
+    }
+
+    /**
+     * @param \DateTime $saleStart
+     */
+    public function setSaleStart($saleStart)
+    {
+        $this->saleStart = $saleStart;
     }
 }

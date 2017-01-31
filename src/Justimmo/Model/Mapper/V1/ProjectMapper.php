@@ -47,6 +47,14 @@ class ProjectMapper extends AbstractMapper
                 'property' => 'isReference',
                 'type'     => 'boolean',
             ),
+            'verkaufsstart'   => array(
+                'property' => 'saleStart',
+                'type'     => 'datetime',
+            ),
+            'fertigstellung'   => array(
+                'property' => 'completionDate',
+                'type'     => 'datetime',
+            ),
         );
     }
 
@@ -60,6 +68,8 @@ class ProjectMapper extends AbstractMapper
             'CountryIso2'    => 'land_iso2',
             'ProjectState'   => 'projekt_status',
             'IsReference'    => 'referenz',
+            'CompletionDate' => 'fertigstellung',
+            'SaleStart'      => 'verkaufsstart',
         );
     }
 }

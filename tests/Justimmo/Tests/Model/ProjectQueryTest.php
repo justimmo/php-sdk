@@ -37,6 +37,46 @@ class ProjectQueryTest extends TestCase
         ), $query->getParams());
     }
 
+    public function testFilterByCompletionDate()
+    {
+        $query = $this->getQuery();
+        $query->filterByCompletionDate('2017-01-12');
+        $this->assertEquals(array(
+            'filter' => array(
+                'fertigstellung' => '2017-01-12'
+            )
+        ), $query->getParams());
+
+        $query = $this->getQuery();
+        $query->filterByCompletionDate(array('min' => '2017-01-12', 'max' => '2017-01-15'));
+        $this->assertEquals(array(
+            'filter' => array(
+                'fertigstellung_von' => '2017-01-12',
+                'fertigstellung_bis' => '2017-01-15',
+            )
+        ), $query->getParams());
+    }
+
+    public function testFilterBySaleStart()
+    {
+        $query = $this->getQuery();
+        $query->filterBySaleStart('2017-01-12');
+        $this->assertEquals(array(
+            'filter' => array(
+                'verkaufsstart' => '2017-01-12'
+            )
+        ), $query->getParams());
+
+        $query = $this->getQuery();
+        $query->filterBySaleStart(array('min' => '2017-01-12', 'max' => '2017-01-15'));
+        $this->assertEquals(array(
+            'filter' => array(
+                'verkaufsstart_von' => '2017-01-12',
+                'verkaufsstart_bis' => '2017-01-15',
+            )
+        ), $query->getParams());
+    }
+
     public function testAllProjectRealties()
     {
         $query = $this->getQuery();

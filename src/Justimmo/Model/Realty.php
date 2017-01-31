@@ -2452,7 +2452,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime
+     * @return \DateTime|string
      */
     public function getProcuredAt($format = 'Y-m-d')
     {
@@ -2478,7 +2478,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime|null
+     * @return \DateTime|string
      */
     public function getCreatedAt($format = 'Y-m-d H:i:s')
     {

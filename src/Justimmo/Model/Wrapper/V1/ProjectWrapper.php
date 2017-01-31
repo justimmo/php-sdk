@@ -23,6 +23,9 @@ class ProjectWrapper extends AbstractWrapper
         'freitext_1',
         'lage',
         'referenz',
+        'url',
+        'fertigstellung',
+        'verkaufsstart',
     );
 
     public function transformSingle($data)
