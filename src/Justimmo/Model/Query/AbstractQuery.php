@@ -43,6 +43,13 @@ abstract class AbstractQuery implements QueryInterface
     abstract public function getDetailCall();
 
     /**
+     * Returns the method name what should be called on the api class for a ids call
+     *
+     * @return string
+     */
+    abstract public function getIdsCall();
+
+    /**
      * @param JustimmoApiInterface                     $api
      * @param \Justimmo\Model\Wrapper\WrapperInterface $wrapper
      * @param \Justimmo\Model\Mapper\MapperInterface   $mapper
@@ -126,6 +133,19 @@ abstract class AbstractQuery implements QueryInterface
         $this->clear();
 
         return $return;
+    }
+
+    /**
+     * Get a array of realty, employee or project ids
+     *
+     * @return array
+     */
+    public function findIds()
+    {
+        $method   = $this->getIdsCall();
+        $response = $this->api->$method($this->params);
+
+        return json_decode($response);
     }
 
     /**

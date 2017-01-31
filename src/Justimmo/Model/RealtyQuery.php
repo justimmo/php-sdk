@@ -40,9 +40,7 @@ use Justimmo\Model\Query\AbstractQuery;
 class RealtyQuery extends AbstractQuery
 {
     /**
-     * returns the method name what should be called on the api class for a list call
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getListCall()
     {
@@ -50,13 +48,19 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * returns the method name what should be called on the api class for a detail call
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getDetailCall()
     {
         return 'callRealtyDetail';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getIdsCall()
+    {
+        return 'callRealtyIds';
     }
 
     /**
@@ -69,17 +73,5 @@ class RealtyQuery extends AbstractQuery
     public function allProjectRealties($all = true)
     {
         return $this->set('alleProjektObjekte', (int) $all);
-    }
-
-    /**
-     * get a array of realty ids
-     *
-     * @return array
-     */
-    public function findIds()
-    {
-        $response = $this->api->callRealtyIds($this->params);
-
-        return json_decode($response);
     }
 }

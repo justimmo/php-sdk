@@ -7,13 +7,15 @@ use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Project;
 use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\Wrapper\V1\ProjectWrapper;
+use Justimmo\Tests\MockJustimmoApi;
+use Justimmo\Tests\TestCase;
 
-class ProjectQueryTest extends \PHPUnit_Framework_TestCase
+class ProjectQueryTest extends TestCase
 {
-    private function getQuery()
+    private function getQuery($api = null)
     {
         $mapper = new ProjectMapper();
-        return new ProjectQuery(new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper);
+        return new ProjectQuery($api ?: new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper);
     }
 
     public function testProjectState()
@@ -44,5 +46,18 @@ class ProjectQueryTest extends \PHPUnit_Framework_TestCase
         $query = $this->getQuery();
         $query->allProjectRealties(false);
         $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
+    }
+
+    public function testFindIds()
+    {
+        $api = new MockJustimmoApi(array('projectIds' => $this->getFixtures('v1/project_ids.json')));
+        $query = $this->getQuery($api);
+
+        $this->assertEquals(array(
+            1,
+            2,
+            4,
+            5,
+        ), $query->findIds());
     }
 }

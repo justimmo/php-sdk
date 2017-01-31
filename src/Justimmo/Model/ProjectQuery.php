@@ -18,14 +18,28 @@ use Justimmo\Model\Query\AbstractQuery;
 class ProjectQuery extends AbstractQuery
 {
 
+    /**
+     * @inheritdoc
+     */
     public function getListCall()
     {
         return 'callProjectList';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getDetailCall()
     {
         return 'callProjectDetail';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getIdsCall()
+    {
+        return 'callProjectIds';
     }
 
     /**

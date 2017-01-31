@@ -9,14 +9,14 @@ class MockJustimmoApi implements JustimmoApiInterface
     /**
      * @var string[]
      */
-    private $returnValues = [];
+    private $returnValues = array();
 
     /**
      * MockJustimmoApi constructor.
      *
      * @param array $returnValues
      */
-    public function __construct($returnValues = [])
+    public function __construct($returnValues = array())
     {
         $this->returnValues = $returnValues;
     }
@@ -119,5 +119,15 @@ class MockJustimmoApi implements JustimmoApiInterface
     public function postRealtyInquiry(array $params = array())
     {
         return $this->getReturnValue('realtyInquiry');
+    }
+
+    public function callEmployeeIds(array $params = array())
+    {
+        return $this->getReturnValue('employeeIds');
+    }
+
+    public function callProjectIds(array $params = array())
+    {
+        return $this->getReturnValue('projectIds');
     }
 }

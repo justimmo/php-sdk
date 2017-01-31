@@ -34,11 +34,11 @@ class RealtyQueryTest extends TestCase
         $query = $this->getQuery($api);
 
         $this->assertEquals(array(
-            "920153",
-            "728584",
-            "635873",
-            "587626",
-            "587622"
+            920153,
+            728584,
+            635873,
+            587626,
+            587622
         ), $query->findIds());
     }
 }

@@ -1,5 +1,7 @@
 ## 1.1.3
  * Add support for project state
+ * Add support for allProjectRealties setting
+ * Add support for employee ids and project ids call
 
 ## 1.1.2
  * Fixed a bug on servers with a different arg_separator.output setting

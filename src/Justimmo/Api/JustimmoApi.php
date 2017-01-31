@@ -105,11 +105,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * makes a call to Realty list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRealtyList(array $params = array())
     {
@@ -119,11 +115,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * make a call to the realty ids with a set of given params
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRealtyIds(array $params = array())
     {
@@ -131,11 +123,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * calls the detail information of a single realty
-     *
-     * @param $pk
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRealtyDetail($pk)
     {
@@ -143,11 +131,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * calls the detail information of a single employee
-     *
-     * @param $pk
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callEmployeeDetail($pk)
     {
@@ -155,11 +139,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * calls the detail information of a single project
-     *
-     * @param $pk
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callProjectDetail($pk)
     {
@@ -167,11 +147,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * make a call to the team list with a set of given params
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callEmployeeList(array $params = array())
     {
@@ -179,11 +155,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * make a call to the project list with a set of given params
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callProjectList(array $params = array())
     {
@@ -191,11 +163,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a countrie list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callCountries(array $params = array())
     {
@@ -203,11 +171,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a federal states list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callFederalStates(array $params = array())
     {
@@ -215,11 +179,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a zip code list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callZipCodes(array $params = array())
     {
@@ -227,11 +187,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a region list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRegions(array $params = array())
     {
@@ -239,11 +195,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a realty type list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRealtyTypes(array $params = array())
     {
@@ -251,11 +203,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieve a realty type list
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callRealtyCategories(array $params = array())
     {
@@ -263,12 +211,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * retrieves the expose for a realty
-     *
-     * @param   $pk
-     * @param   $type
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function callExpose($pk, $type = 'Default')
     {
@@ -276,15 +219,27 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * makes a request to the api to create a realty inquiry to the contact person of the realty
-     *
-     * @param array $params
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function postRealtyInquiry(array $params = array())
     {
         return $this->call('objekt/anfrage', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function callEmployeeIds(array $params = array())
+    {
+        return $this->call('projekt/ids', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function callProjectIds(array $params = array())
+    {
+        return $this->call('team/ids', $params);
     }
 
     /**
@@ -308,7 +263,7 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
-     * @param makes a call to the justimmo api
+     * Makes a call to the justimmo api
      *
      * @param $call
      * @param array $params
