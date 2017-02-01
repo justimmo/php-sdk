@@ -20,16 +20,18 @@ class Attachment
 
     protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
 
+    protected static $linkGroups = array('LINKS', 'FILMLINK');
+
     public function __construct($path, $type = null, $group = null)
     {
         $this->extension = pathinfo($path, PATHINFO_EXTENSION);
         $this->data['orig'] = $path;
+        $this->group = $group;
         $this->type = $type;
 
         if ($type === null) {
-            $this->type = $this->determineTypeByExtension($this->extension);
+            $this->type = $this->determineType();
         }
-        $this->group = $group;
     }
 
     public function getUrl($size = 'orig')
@@ -55,17 +57,21 @@ class Attachment
     }
 
     /**
-     * determines the type by extension
-     *
-     * @param $extension
+     * Tries to determine type by extention or group
      *
      * @return string
      */
-    protected function determineTypeByExtension($extension)
+    protected function determineType()
     {
-        if (in_array($extension, static::$pictureExtensions)) {
+        if (in_array($this->group, static::$linkGroups)) {
+            return 'link';
+        }
+
+        if (in_array($this->extension, static::$pictureExtensions)) {
             return 'picture';
-        } elseif (in_array($extension, static::$videoExtensions)) {
+        }
+
+        if (in_array($this->extension, static::$videoExtensions)) {
             return 'video';
         }
 

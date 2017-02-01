@@ -37,9 +37,11 @@
         <plz>1030</plz>
         <ort>Wien</ort>
         <in_bau>1</in_bau>
+        <status>planning</status>
         <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
         <lage>Sonnig am Berg</lage>
         <freitext_1>Freitext 1 Test</freitext_1>
+        <referenz>1</referenz>
         <immobilien>
             <immobilie>
                 <id>195439</id>
@@ -164,6 +166,114 @@
         <dreizeiler></dreizeiler>
         <plz>1030</plz>
         <ort>Wien</ort>
+        <status>building</status>
+        <referenz>0</referenz>
+        <immobilien>
+            <immobilie>
+                <id>66034</id>
+                <objektnummer>3</objektnummer>
+                <titel>DEMOOBJEKT! Traumhafter Ferienbungalow in Ko Lanta, Thailand</titel>
+                <dreizeiler></dreizeiler>
+                <naehe></naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>3</anzahl_zimmer>
+                <etage>DG</etage>
+                <tuernummer></tuernummer>
+                <plz>81150</plz>
+                <ort>Ko Lanta</ort>
+                <kaufpreis>250000</kaufpreis>
+                <wohnflaeche>90</wohnflaeche>
+                <grundflaeche>100</grundflaeche>
+                <balkons_flaeche>10</balkons_flaeche>
+                <gartenflaeche>100</gartenflaeche>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AB3oGI5ref.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AB3oHsLgfs.jpg</zweites_bild>
+                <projekt_id>46</projekt_id>
+            </immobilie>
+            <immobilie>
+                <id>66030</id>
+                <objektnummer>1</objektnummer>
+                <titel>DEMOOBJEKT! Modernes Büro in Zentrumsnähe</titel>
+                <dreizeiler></dreizeiler>
+                <naehe>Schwedenplatz</naehe>
+                <objektbeschreibung>&lt;p&gt;DEMOOBJEKT! Bitte nicht anfragen!&lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks &lt;/p&gt;&#13;
+                    &lt;p&gt;Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie
+                    aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu
+                    testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze
+                    »Pangrams«.&lt;/p&gt;&#13;
+                    &lt;p&gt;Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in
+                    Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox&amp;trade; are testing
+                    aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel
+                    fast jede Schrift gut aus.&lt;/p&gt;&#13;
+                    &lt;p&gt;Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen
+                    nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird
+                    mit bis zu 245 € oder 368 $ bestraft.&lt;/p&gt;&#13;
+                    &lt;p&gt;Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer
+                    enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
+                    Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
+                    pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
+                    alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
+                    Rafgenduks&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>8</anzahl_zimmer>
+                <etage>DG</etage>
+                <tuernummer></tuernummer>
+                <plz>1020</plz>
+                <ort>Wien</ort>
+                <gesamtmiete>10460</gesamtmiete>
+                <erstes_bild>http://files.justimmo.at/public/pic/medium/AB3n14n3eL.jpg</erstes_bild>
+                <zweites_bild>http://files.justimmo.at/public/pic/medium/AB3n2EYNGV.jpg</zweites_bild>
+                <projekt_id>46</projekt_id>
+            </immobilie>
+        </immobilien>
+        <erstes_bild>http://files.justimmo.at/public/pic/medium/ACXayjSPLp.jpg</erstes_bild>
+    </projekt>
+    <projekt>
+        <id>50</id>
+        <titel>Demoprojekt in Zentrumsnähe</titel>
+        <beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio
+            quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id,
+            tempus ac risus. Fusce ultricies arcu vitae lorem semper elementum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Nam euismod sollicitudin purus nec mattis. In ut urna mi. Vestibulum ipsum ante, varius sed
+            mattis at, eleifend a velit.&lt;/p&gt;</beschreibung>
+        <dreizeiler></dreizeiler>
+        <plz>1030</plz>
+        <ort>Wien</ort>
+        <status>finished</status>
+        <referenz>1</referenz>
         <immobilien>
             <immobilie>
                 <id>66034</id>

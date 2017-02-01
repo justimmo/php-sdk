@@ -39,6 +39,11 @@
         <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
         <lage>Sonnig am Berg</lage>
         <freitext_1>Freitext 1 Test</freitext_1>
+        <status>building</status>
+        <referenz>0</referenz>
+        <url>http://www.justimmo.at</url>
+        <fertigstellung>2017-01-15</fertigstellung>
+        <verkaufsstart>2017-02-01</verkaufsstart>
         <immobilien>
             <immobilie>
                 <id>195439</id>

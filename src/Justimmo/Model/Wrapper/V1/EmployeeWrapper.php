@@ -39,15 +39,21 @@ class EmployeeWrapper extends AbstractWrapper
         $mitarbeiter = new Employee();
         $this->map($this->simpleMapping, $xml, $mitarbeiter);
 
+        //format used in team calls
         if (isset($xml->bild) && isset($xml->bild->pfad) && (((string) $xml->bild->pfad) != '')) {
             $attachment = new Attachment((string) $xml->bild->pfad);
+            $attachment->setGroup('PROFILBILD');
             if (isset($xml->bild->pfad_medium)) {
                 $attachment->addData('medium', (string) $xml->bild->pfad_medium);
             }
             $mitarbeiter->addAttachment($attachment);
         }
+
+        //format used in project and realty calls
         if (isset($xml->bild) && isset($xml->bild->medium) && (((string) $xml->bild->medium) != '')) {
             $attachment = new Attachment((string) $xml->bild->medium);
+            $attachment->addData('medium', (string) $xml->bild->medium);
+            $attachment->setGroup('PROFILBILD');
             if (isset($xml->bild->small)) {
                 $attachment->addData('small', (string) $xml->bild->small);
             }
@@ -55,6 +61,10 @@ class EmployeeWrapper extends AbstractWrapper
                 $attachment->addData('big', (string) $xml->bild->big);
             }
             $mitarbeiter->addAttachment($attachment);
+        }
+
+        if (isset($xml->anhaenge) && isset($xml->anhaenge->anhang)) {
+            $this->mapAttachmentGroup($xml->anhaenge->anhang, $mitarbeiter);
         }
 
         return $mitarbeiter;

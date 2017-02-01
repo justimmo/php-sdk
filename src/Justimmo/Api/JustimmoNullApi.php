@@ -85,6 +85,16 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
+    public function callEmployeeIds(array $params = array())
+    {
+        return $this->emptyXML();
+    }
+
+    public function callProjectIds(array $params = array())
+    {
+        return $this->emptyXML();
+    }
+
     protected function emptyXML()
     {
         return '<?xml version="1.0" encoding="UTF-8"?>';

@@ -31,6 +31,29 @@
             <email>a.diem@bgcc.at</email>
             <bio>Biografie von Alexander Diem</bio>
             <suffix>von der Stange</suffix>
+            <anhaenge>
+                <anhang location="REMOTE">
+                    <anhangtitel>81.jpeg</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.justimmo.at/public/pic/big/Awf77iCGNE.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="LINKS">
+                    <anhangtitel>Testlink</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.justimmo.at</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="FILMLINK">
+                    <anhangtitel>Testvideo</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>http://www.youtube.com</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
         </mitarbeiter>
     </kategorie>
     <kategorie name="Sales">
@@ -44,7 +67,7 @@
             <nachname>Stehmann</nachname>
             <tel>01/798 62 05</tel>
             <email>a.stehmann@bgcc.at</email>
-            <suffix />
+            <suffix/>
         </mitarbeiter>
         <mitarbeiter>
             <id>100123</id>
@@ -59,7 +82,7 @@
             <tel>+43 676 123 45 67</tel>
             <fax>+43 767 765 43 21</fax>
             <email>a.diem@bgcc.at</email>
-            <suffix />
+            <suffix/>
         </mitarbeiter>
     </kategorie>
     <kategorie name="Technischer Support">
@@ -73,7 +96,7 @@
             <nachname>Support Hotline</nachname>
             <tel>01/798 62 05 27</tel>
             <email>support@justimmo.at</email>
-            <suffix />
+            <suffix/>
         </mitarbeiter>
     </kategorie>
 </justimmo>

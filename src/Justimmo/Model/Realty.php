@@ -8,291 +8,291 @@ class Realty
 
     protected $propertyNumber;
 
-    protected $title = null;
+    protected $title;
 
-    protected $teaser = null;
+    protected $teaser;
 
-    protected $proximity = null;
+    protected $proximity;
 
-    protected $description = null;
+    protected $description ;
 
-    protected $otherInformation = null;
+    protected $otherInformation;
 
-    protected $tier = null;
+    protected $tier;
 
-    protected $doorNumber = null;
+    protected $doorNumber;
 
-    protected $zipCode = null;
+    protected $zipCode;
 
-    protected $place = null;
+    protected $place;
 
-    protected $purchasePrice = null;
+    protected $purchasePrice;
 
-    protected $totalRent = null;
+    protected $totalRent;
 
-    protected $purchasePricePerSqm = null;
-
-    /**
-     * @var float
-     */
-    protected $rentPerSqmFrom = null;
+    protected $purchasePricePerSqm;
 
     /**
      * @var float
      */
-    protected $rentPerSqm = null;
+    protected $rentPerSqmFrom;
 
     /**
      * @var float
      */
-    protected $operatingCostsPerSqmFrom = null;
+    protected $rentPerSqm;
 
     /**
      * @var float
      */
-    protected $operatingCostsPerSqm = null;
+    protected $operatingCostsPerSqmFrom;
 
     /**
      * @var float
      */
-    protected $floorAreaFrom = null;
+    protected $operatingCostsPerSqm;
 
     /**
      * @var float
      */
-    protected $floorArea = null;
-
-    protected $surfaceArea = null;
-
-    protected $livingArea = null;
-
-    protected $totalArea = null;
+    protected $floorAreaFrom;
 
     /**
-     * @var null|int
+     * @var float
      */
-    protected $projectId = null;
+    protected $floorArea;
 
-    protected $status = null;
+    protected $surfaceArea;
 
-    protected $statusId = null;
+    protected $livingArea;
 
-    protected $occupancy = null;
-
-    protected $marketingType = null;
+    protected $totalArea;
 
     /**
-     * @var null|string
+     * @var int
      */
-    protected $realtyType = null;
+    protected $projectId;
 
-    /**
-     * @var null|int
-     */
-    protected $realtyTypeId = null;
+    protected $status;
 
-    /**
-     * @var null|string
-     */
-    protected $realtyTypeName = null;
+    protected $statusId;
 
-    /**
-     * @var null|string
-     */
-    protected $subRealtyType = null;
+    protected $occupancy;
 
-    /**
-     * @var null|int
-     */
-    protected $subRealtyTypeId = null;
-
-    /**
-     * @var null|string
-     */
-    protected $subRealtyTypeName = null;
-
-    protected $equipmentDescription = null;
-
-    protected $latitude = null;
-
-    protected $longitude = null;
-
-    /**
-     * @var double
-     */
-    protected $latitudePrecise = null;
-
-    /**
-     * @var double
-     */
-    protected $longitudePrecise = null;
-
-    protected $street = null;
-
-    protected $houseNumber = null;
-
-    protected $federalState = null;
-
-    protected $country = null;
-
-    protected $hallway = null;
-
-    protected $landParcel = null;
-
-    protected $district = null;
-
-    protected $tierCount = null;
-
-    protected $regionalAddition = null;
-
-    protected $netRent = null;
-
-    protected $additionalCharges = null;
-
-    protected $heatingCosts = null;
-
-    protected $currency = null;
-
-    protected $surety = null;
-
-    protected $surety_text = null;
-
-    protected $compensation = null;
-
-    protected $buildingSubsidies = null;
-
-    protected $yield = null;
-
-    protected $netEarningMonthly = null;
-
-    protected $netEarningYearly = null;
-
-    protected $totalRentVat = null;
-
-    protected $additionalCosts = array();
-
-    protected $transferTax = null;
-
-    protected $landRegistration = null;
-
-    protected $attachments = array();
-
-    protected $yearBuilt = null;
-
-    protected $age = null;
-
-    protected $infrastructureProvision = null;
-
-    protected $condition = null;
-
-    protected $equipment = array();
-
-    protected $roomCount = null;
-
-    protected $bathroomCount = null;
-
-    protected $toiletRoomCount = null;
-
-    protected $balconyTerraceCount = null;
-
-    protected $balconyTerraceArea = null;
-
-    protected $balconyCount = null;
-
-    protected $terraceCount = null;
-
-    protected $gardenArea = null;
-
-    protected $cellarArea = null;
-
-    protected $officeArea = null;
-
-    protected $storageArea = null;
-
-    protected $loggiaCount = null;
-
-    protected $loggiaArea = null;
-
-    protected $balconyArea = null;
-
-    protected $terraceArea = null;
-
-    protected $garageCount = null;
-
-    protected $garageArea = null;
-
-    protected $parkingCount = null;
-
-    protected $parkingArea = null;
-
-    protected $storeRoomCount = null;
-
-    protected $contractEstablishmentCosts = null;
-
-    protected $commission = null;
-
-    protected $locality = null;
-
-    protected $categories = array();
-
-    protected $availableFrom = null;
-
-    protected $rentDuration = null;
-
-    protected $rentDurationType = null;
-
-    /**
-     * @var null|float
-     */
-    protected $buildableArea = null;
-
-    /**
-     * @var \Justimmo\Model\EnergyPass
-     */
-    protected $energyPass = null;
-
-    /**
-     * @var \Justimmo\Model\Employee
-     */
-    protected $contact = null;
-
-    /**
-     * @var null|string
-     */
-    protected $freetext1 = null;
-    /**
-     * @var null|string
-     */
-    protected $freetext2 = null;
-    /**
-     * @var null|string
-     */
-    protected $freetext3 = null;
-
-    /**
-     * @var null|int
-     */
-    protected $styleOfBuildingId = null;
-
-    /**
-     * @var null|\DateTime
-     */
-    protected $procuredAt = null;
-
-    /**
-     * @var null|\DateTime
-     */
-    protected $createdAt = null;
-
-    /**
-     * @var null|\DateTime
-     */
-    protected $updatedAt = null;
+    protected $marketingType;
 
     /**
      * @var string
      */
-    protected $stair = null;
+    protected $realtyType;
+
+    /**
+     * @var int
+     */
+    protected $realtyTypeId;
+
+    /**
+     * @var string
+     */
+    protected $realtyTypeName;
+
+    /**
+     * @var string
+     */
+    protected $subRealtyType;
+
+    /**
+     * @var int
+     */
+    protected $subRealtyTypeId;
+
+    /**
+     * @var string
+     */
+    protected $subRealtyTypeName;
+
+    protected $equipmentDescription;
+
+    protected $latitude;
+
+    protected $longitude;
+
+    /**
+     * @var double
+     */
+    protected $latitudePrecise;
+
+    /**
+     * @var double
+     */
+    protected $longitudePrecise;
+
+    protected $street;
+
+    protected $houseNumber;
+
+    protected $federalState;
+
+    protected $country;
+
+    protected $hallway;
+
+    protected $landParcel;
+
+    protected $district;
+
+    protected $tierCount;
+
+    protected $regionalAddition;
+
+    protected $netRent;
+
+    protected $additionalCharges;
+
+    protected $heatingCosts;
+
+    protected $currency;
+
+    protected $surety;
+
+    protected $surety_text;
+
+    protected $compensation;
+
+    protected $buildingSubsidies;
+
+    protected $yield;
+
+    protected $netEarningMonthly;
+
+    protected $netEarningYearly;
+
+    protected $totalRentVat;
+
+    protected $additionalCosts = array();
+
+    protected $transferTax;
+
+    protected $landRegistration;
+
+    protected $attachments = array();
+
+    protected $yearBuilt;
+
+    protected $age;
+
+    protected $infrastructureProvision;
+
+    protected $condition;
+
+    protected $equipment = array();
+
+    protected $roomCount;
+
+    protected $bathroomCount;
+
+    protected $toiletRoomCount;
+
+    protected $balconyTerraceCount;
+
+    protected $balconyTerraceArea;
+
+    protected $balconyCount;
+
+    protected $terraceCount;
+
+    protected $gardenArea;
+
+    protected $cellarArea;
+
+    protected $officeArea;
+
+    protected $storageArea;
+
+    protected $loggiaCount;
+
+    protected $loggiaArea;
+
+    protected $balconyArea;
+
+    protected $terraceArea;
+
+    protected $garageCount;
+
+    protected $garageArea;
+
+    protected $parkingCount;
+
+    protected $parkingArea;
+
+    protected $storeRoomCount;
+
+    protected $contractEstablishmentCosts;
+
+    protected $commission;
+
+    protected $locality;
+
+    protected $categories = array();
+
+    protected $availableFrom;
+
+    protected $rentDuration;
+
+    protected $rentDurationType;
+
+    /**
+     * @var float
+     */
+    protected $buildableArea;
+
+    /**
+     * @var EnergyPass
+     */
+    protected $energyPass;
+
+    /**
+     * @var Employee
+     */
+    protected $contact;
+
+    /**
+     * @var string
+     */
+    protected $freetext1 = null;
+    /**
+     * @var string
+     */
+    protected $freetext2 = null;
+    /**
+     * @var string
+     */
+    protected $freetext3 = null;
+
+    /**
+     * @var int
+     */
+    protected $styleOfBuildingId;
+
+    /**
+     * @var \DateTime
+     */
+    protected $procuredAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updatedAt;
+
+    /**
+     * @var string
+     */
+    protected $stair;
 
     /**
      * @var string
@@ -303,6 +303,53 @@ class Realty
      * @var int
      */
     protected $parentId;
+
+    /**
+     * @var bool
+     */
+    protected $showInSearch;
+
+    /**
+     * The rent net value
+     *
+     * @var float
+     */
+    protected $rentNet;
+
+    /**
+     * The rent vat in percent
+     *
+     * @var float
+     */
+    protected $rentVat;
+
+    /**
+     * The rent vat type [numeric | percent]
+     *
+     * @var string
+     */
+    protected $rentVatType;
+
+    /**
+     * The rent gross value
+     *
+     * @var float
+     */
+    protected $rentGross;
+
+    /**
+     * The calculated vat value in currency
+     *
+     * @var double
+     */
+    protected $rentVatValue;
+
+    /**
+     * The rent vat value as inputed by user
+     *
+     * @var double
+     */
+    protected $rentVatInput;
 
     /**
      * @param null $nutzungsart
@@ -1212,6 +1259,12 @@ class Realty
     }
 
     /**
+     * This represents the net sum of all fields in the rent group: <nettokaltmiete>482.95</nettokaltmiete>
+     *
+     * @see http://api-docs.justimmo.at/preise/index.html
+     *
+     * If you want to value of the rent field only please us getRentNet()
+     *
      * @return null
      */
     public function getNetRent()
@@ -2399,7 +2452,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime
+     * @return \DateTime|string
      */
     public function getProcuredAt($format = 'Y-m-d')
     {
@@ -2425,7 +2478,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime|null
+     * @return \DateTime|string
      */
     public function getCreatedAt($format = 'Y-m-d H:i:s')
     {
@@ -2451,7 +2504,7 @@ class Realty
     /**
      * @param string $format formats the date to the specific format, null returns DateTime
      *
-     * @return \DateTime|null
+     * @return \DateTime|string
      */
     public function getUpdatedAt($format = 'Y-m-d H:i:s')
     {
@@ -2666,6 +2719,146 @@ class Realty
     public function setParentId($parentId)
     {
         $this->parentId = $parentId;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getShowInSearch()
+    {
+        return $this->showInSearch;
+    }
+
+    /**
+     * @param bool $showInSearch
+     *
+     * @return Realty
+     */
+    public function setShowInSearch($showInSearch)
+    {
+        $this->showInSearch = $showInSearch;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentNet()
+    {
+        return $this->rentNet;
+    }
+
+    /**
+     * @param float $rentNet
+     *
+     * @return Realty
+     */
+    public function setRentNet($rentNet)
+    {
+        $this->rentNet = $rentNet;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVat()
+    {
+        return $this->rentVat;
+    }
+
+    /**
+     * @param float $rentVat
+     *
+     * @return Realty
+     */
+    public function setRentVat($rentVat)
+    {
+        $this->rentVat = $rentVat;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRentVatType()
+    {
+        return $this->rentVatType;
+    }
+
+    /**
+     * @param string $rentVatType
+     *
+     * @return Realty
+     */
+    public function setRentVatType($rentVatType)
+    {
+        $this->rentVatType = $rentVatType;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentGross()
+    {
+        return $this->rentGross;
+    }
+
+    /**
+     * @param float $rentGross
+     *
+     * @return Realty
+     */
+    public function setRentGross($rentGross)
+    {
+        $this->rentGross = $rentGross;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVatValue()
+    {
+        return $this->rentVatValue;
+    }
+
+    /**
+     * @param float $rentVatValue
+     *
+     * @return Realty
+     */
+    public function setRentVatValue($rentVatValue)
+    {
+        $this->rentVatValue = $rentVatValue;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRentVatInput()
+    {
+        return $this->rentVatInput;
+    }
+
+    /**
+     * @param float $rentVatInput
+     *
+     * @return Realty
+     */
+    public function setRentVatInput($rentVatInput)
+    {
+        $this->rentVatInput = $rentVatInput;
 
         return $this;
     }

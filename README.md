@@ -49,7 +49,7 @@ use Justimmo\Cache\NullCache;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 
-$api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+$api = new JustimmoApi('username', 'password');
 $mapper = new RealtyMapper();
 $wrapper = new RealtyWrapper($mapper);
 $query = new RealtyQuery($api, $wrapper, $mapper);

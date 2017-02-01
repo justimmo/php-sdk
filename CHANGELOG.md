@@ -1,3 +1,12 @@
+## 1.1.3
+ * Add support for onlyRealtyIds in project calls
+ * Add support for project state, url, sale start, completion date and is reference in project calls
+ * Add support for plain rent fields without additional costs (rent net, rent gross, rent vat type, rent vat value, rent vat input and rent vat) in realty calls
+ * Add support for allProjectRealties setting
+ * Add support for filterByUpdatedAt in realty calls
+ * Add support for employee ids and project ids call
+ * Add multi attachment and link support for employees
+
 ## 1.1.2
  * Fixed a bug on servers with a different arg_separator.output setting
  * Added support for other information field to realties

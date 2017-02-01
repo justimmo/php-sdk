@@ -2,6 +2,7 @@
 namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
+use Justimmo\Tests\Model\ProjectQueryTest;
 
 /**
  * Class RealtyQuery
@@ -28,6 +29,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByRealtySystemType($value)
  * @method RealtyQuery filterByParentId($value)
  * @method RealtyQuery filteryByRentPerSqm($value)
+ * @method RealtyQuery filterByUpdatedAt($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')
@@ -35,14 +37,11 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery orderByFloorArea($direction = 'asc')
  * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
  * @method RealtyQuery orderByCreatedAt($direction = 'asc')
- * @method RealtyQuery orderByUpdatedAt($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
 {
     /**
-     * returns the method name what should be called on the api class for a list call
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getListCall()
     {
@@ -50,9 +49,7 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * returns the method name what should be called on the api class for a detail call
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getDetailCall()
     {
@@ -60,14 +57,34 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * get a array of realty ids
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function findIds()
+    public function getIdsCall()
     {
-        $response = $this->api->callRealtyIds($this->params);
+        return 'callRealtyIds';
+    }
 
-        return json_decode($response);
+    /**
+     * Api only accepts english updated_at fieldname for ordering
+     *
+     * @param string $direction
+     *
+     * @return RealtyQuery
+     */
+    public function orderByUpdatedAt($direction = 'asc')
+    {
+        return $this->order('updated_at', $direction);
+    }
+
+    /**
+     * Return all project realties regardless of realty state (active, inactive, draft,...)
+     *
+     * @param bool $all
+     *
+     * @return $this
+     */
+    public function allProjectRealties($all = true)
+    {
+        return $this->set('alleProjektObjekte', (int) $all);
     }
 }

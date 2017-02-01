@@ -2,6 +2,7 @@
 namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Mapper\V1\ProjectMapper;
+use Justimmo\Model\Project;
 use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Tests\TestCase;
 
@@ -11,18 +12,18 @@ class ProjectWrapperTest extends TestCase
     public function testTransformList()
     {
         $wrapper = new ProjectWrapper(new ProjectMapper());
+        /** @var Project[] $list */
         $list = $wrapper->transformList($this->getFixtures('v1/project_list.xml'));
 
         $this->assertInstanceOf('\Justimmo\Pager\ListPager', $list);
-        $this->assertEquals(2, $list->count());
-        $this->assertEquals(2, $list->getNbResults());
+        $this->assertEquals(3, $list->count());
+        $this->assertEquals(3, $list->getNbResults());
         $this->assertFalse($list->haveToPaginate());
 
         foreach ($list as $entry) {
             $this->assertInstanceOf('\Justimmo\Model\Project', $entry);
         }
 
-        /** @var \Justimmo\Model\Project $entry */
         $entry = $list[0];
 
         $this->assertEquals(51, $entry->getId());
@@ -32,13 +33,17 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals(1, count($entry->getAttachments()));
         $this->assertEquals(4, $entry->countRealties());
-        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertFalse($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_PLANNING, $entry->getProjectState());
+        $this->assertTrue($entry->isStatePlanning());
+        $this->assertFalse($entry->isStateBuilding());
+        $this->assertFalse($entry->isStateFinished());
         $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
         $this->assertEquals('Sonnig am Berg', $entry->getLocality());
         $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
+        $this->assertTrue($entry->getIsReference());
 
         $realties = $entry->getRealties();
-        /** @var \Justimmo\Model\Realty $realty */
         $realty = $realties[0];
 
         $this->assertInstanceOf('\Justimmo\Model\Realty', $realty);
@@ -46,6 +51,21 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(2460, $realty->getZipCode());
         $this->assertEquals($entry->getId(), $realty->getProjectId());
         $this->assertEquals('verkauft', $realty->getStatus());
+
+        $entry = $list[1];
+        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
+        $this->assertFalse($entry->isStatePlanning());
+        $this->assertTrue($entry->isStateBuilding());
+        $this->assertFalse($entry->isStateFinished());
+        $this->assertFalse($entry->getIsReference());
+
+        $entry = $list[2];
+        $this->assertFalse($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_FINISHED, $entry->getProjectState());
+        $this->assertFalse($entry->isStatePlanning());
+        $this->assertFalse($entry->isStateBuilding());
+        $this->assertTrue($entry->isStateFinished());
     }
 
     public function testTransformSingle()
@@ -63,7 +83,8 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Kegelgasse', $entry->getStreet());
         $this->assertEquals(16, $entry->getHouseNumber());
 
-        $this->assertFalse($entry->getUnderConstruction());
+        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
         $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
         $this->assertEquals('Sonnig am Berg', $entry->getLocality());
         $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
@@ -71,7 +92,20 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(20, count($entry->getAttachments()));
         $this->assertEquals(10, $entry->countRealties());
 
+        $this->assertEquals('http://www.justimmo.at', $entry->getUrl());
+        $this->assertInstanceOf('\Datetime', $entry->getCompletionDate(null));
+        $this->assertInstanceOf('\Datetime', $entry->getSaleStart(null));
+        $this->assertEquals('2017-01-15', $entry->getCompletionDate());
+        $this->assertEquals('2017-02-01', $entry->getSaleStart());
+
+        $this->assertEquals(16, count($entry->getPictures(null)));
+        $this->assertEquals(18, count($entry->getPictures()));
+        $this->assertEquals(2, count($entry->getDocuments()));
+        $this->assertEquals(0, count($entry->getVideos()));
+        $this->assertEquals(2, count($entry->getPictures('bilder360')));
+
         $realties = $entry->getRealties();
+
         /** @var \Justimmo\Model\Realty $realty */
         $realty = $realties[0];
 
@@ -80,12 +114,6 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(2460, $realty->getZipCode());
         $this->assertEquals($entry->getId(), $realty->getProjectId());
         $this->assertEquals('verkauft', $realty->getStatus());
-
-        $this->assertEquals(16, count($entry->getPictures(null)));
-        $this->assertEquals(18, count($entry->getPictures()));
-        $this->assertEquals(2, count($entry->getDocuments()));
-        $this->assertEquals(0, count($entry->getVideos()));
-        $this->assertEquals(2, count($entry->getPictures('bilder360')));
 
         $document = $entry->getDocuments();
         $document = $document[0];
@@ -108,6 +136,53 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('cbusoi@bgcc.at', $contact->getEmail());
         $this->assertEquals('+431798620518', $contact->getFax());
         $this->assertEquals(1, count($contact->getAttachments()));
+        $this->assertInstanceOf('\Justimmo\Model\Attachment', $contact->getProfilePicture());
+        $this->assertEquals('http://files.justimmo.at/public/pic/medium/ABJIukIH3R.jpg', $contact->getProfilePicture()->getUrl('medium'));
+    }
+
+    public function testTransformWithRealtyIds()
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+
+        /** @var \Justimmo\Model\Project $entry */
+        $entry = $wrapper->transformSingle($this->getFixtures('v1/project_detail_ids.xml'));
+
+        $this->assertEquals(51, $entry->getId());
+        $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
+        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertEquals('1030', $entry->getZipCode());
+        $this->assertEquals('Wien', $entry->getPlace());
+        $this->assertEquals('Kegelgasse', $entry->getStreet());
+        $this->assertEquals(16, $entry->getHouseNumber());
+
+        $this->assertTrue($entry->getUnderConstruction());
+        $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
+        $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
+        $this->assertEquals('Sonnig am Berg', $entry->getLocality());
+        $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
+
+        $this->assertEquals(20, count($entry->getAttachments()));
+        $this->assertEquals(10, $entry->countRealties());
+
+        $this->assertEquals('http://www.justimmo.at', $entry->getUrl());
+        $this->assertInstanceOf('\Datetime', $entry->getCompletionDate(null));
+        $this->assertInstanceOf('\Datetime', $entry->getSaleStart(null));
+        $this->assertEquals('2017-01-15', $entry->getCompletionDate());
+        $this->assertEquals('2017-02-01', $entry->getSaleStart());
+
+        $this->assertEmpty($entry->getRealties());
+        $this->assertEquals(array(
+            195439,
+            195438,
+            195437,
+            195430,
+            195427,
+            195424,
+            66077,
+            66076,
+            66046,
+            66040,
+        ), $entry->getRealtyIds());
     }
 
 }

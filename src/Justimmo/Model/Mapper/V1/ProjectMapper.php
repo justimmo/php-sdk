@@ -31,9 +31,8 @@ class ProjectMapper extends AbstractMapper
             'hausnummer'   => array(
                 'property' => 'houseNumber',
             ),
-            'in_bau'   => array(
-                'property' => 'underConstruction',
-                'type'     => 'boolean',
+            'status'   => array(
+                'property' => 'projectState',
             ),
             'sonstige_angaben' => array(
                 'property' => 'miscellaneous',
@@ -43,6 +42,18 @@ class ProjectMapper extends AbstractMapper
             ),
             'freitext_1'   => array(
                 'property' => 'freetext1',
+            ),
+            'referenz'   => array(
+                'property' => 'isReference',
+                'type'     => 'boolean',
+            ),
+            'verkaufsstart'   => array(
+                'property' => 'saleStart',
+                'type'     => 'datetime',
+            ),
+            'fertigstellung'   => array(
+                'property' => 'completionDate',
+                'type'     => 'datetime',
             ),
         );
     }
@@ -55,6 +66,10 @@ class ProjectMapper extends AbstractMapper
             'Keyword'        => 'stichwort',
             'FederalStateId' => 'bundesland_id',
             'CountryIso2'    => 'land_iso2',
+            'ProjectState'   => 'projekt_status',
+            'IsReference'    => 'referenz',
+            'CompletionDate' => 'fertigstellung',
+            'SaleStart'      => 'verkaufsstart',
         );
     }
 }
