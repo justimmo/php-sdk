@@ -344,6 +344,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'showInSearch',
                 'type'     => 'boolean',
             ),
+            'ji_is_reference' => array(
+                'property' => 'isReference',
+                'type'     => 'boolean',
+            ),
         );
     }
 

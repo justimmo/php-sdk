@@ -352,6 +352,11 @@ class Realty
     protected $rentVatInput;
 
     /**
+     * @var bool
+     */
+    protected $isReference;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -2859,6 +2864,26 @@ class Realty
     public function setRentVatInput($rentVatInput)
     {
         $this->rentVatInput = $rentVatInput;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsReference()
+    {
+        return $this->isReference;
+    }
+
+    /**
+     * @param bool $isReference
+     *
+     * @return Project
+     */
+    public function setIsReference($isReference)
+    {
+        $this->isReference = $isReference;
 
         return $this;
     }
