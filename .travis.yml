@@ -1,5 +1,14 @@
 language: php
 
+sudo: false
+
+git:
+  depth: 1
+
+branches:
+  only: 
+    - master
+
 php:
   - 5.3
   - 5.4
