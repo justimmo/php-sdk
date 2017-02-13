@@ -46,6 +46,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'purchasePrice',
                 'type'     => 'double',
             ),
+            'kaufpreisnetto'             => array(
+                'property' => 'purchasePriceNet',
+                'type'     => 'double',
+            ),
             'gesamtmiete'                => array(
                 'property' => 'totalRent',
                 'type'     => 'double',
@@ -61,6 +65,9 @@ class RealtyMapper extends AbstractMapper
             'betriebskosten_pro_qm'      => array(
                 'property' => 'operatingCostsPerSqm',
                 'type'     => 'double',
+            ),
+            'freitext_preis'      => array(
+                'property' => 'costsExplanation',
             ),
             'nutzflaeche'                => array(
                 'property' => 'floorArea',

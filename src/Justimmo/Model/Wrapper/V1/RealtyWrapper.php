@@ -71,6 +71,7 @@ class RealtyWrapper extends AbstractWrapper
 
     protected $preisMapping = array(
         'kaufpreis',
+        'kaufpreisnetto',
         'nettokaltmiete',
         'nebenkosten',
         'heizkosten',
@@ -86,6 +87,8 @@ class RealtyWrapper extends AbstractWrapper
         'kaufpreis_pro_qm',
         'mietpreis_pro_qm',
         'betriebskosten_pro_qm',
+        'betriebskosten_pro_qm',
+        'freitext_preis',
     );
 
     protected $flaechenMapping = array(
@@ -278,6 +281,10 @@ class RealtyWrapper extends AbstractWrapper
         if (isset($xml->preise)) {
             $this->map($this->preisMapping, $xml->preise, $objekt);
             $objekt->setTotalRent($this->cast($xml->preise->warmmiete, 'double'));
+
+            if (isset($xml->preise->kaufpreisnetto) && isset($xml->preise->kaufpreisnetto['kaufpreisust'])) {
+                $objekt->setPurchasePriceVat($this->cast($xml->preise->kaufpreisnetto['kaufpreisust'], 'double'));
+            }
 
             if (isset($xml->preise->waehrung)) {
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());

@@ -28,6 +28,10 @@ class Realty
 
     protected $purchasePrice;
 
+    protected $purchasePriceNet;
+
+    protected $purchasePriceVat;
+
     protected $totalRent;
 
     protected $purchasePricePerSqm;
@@ -268,6 +272,11 @@ class Realty
      * @var string
      */
     protected $freetext3 = null;
+
+    /**
+     * @var string
+     */
+    protected $costsExplanation;
 
     /**
      * @var int
@@ -639,6 +648,46 @@ class Realty
     public function getPurchasePrice()
     {
         return $this->purchasePrice;
+    }
+
+    /**
+     * @param null $kaufpreisnetto
+     *
+     * @return $this
+     */
+    public function setPurchasePriceNet($kaufpreisnetto)
+    {
+        $this->purchasePriceNet = $kaufpreisnetto;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPurchasePriceNet()
+    {
+        return $this->purchasePriceNet;
+    }
+
+    /**
+     * @param null $kaufpreisust
+     *
+     * @return $this
+     */
+    public function setPurchasePriceVat($kaufpreisust)
+    {
+        $this->purchasePriceVat = $kaufpreisust;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPurchasePriceVat()
+    {
+        return $this->purchasePriceVat;
     }
 
     /**
@@ -2244,6 +2293,22 @@ class Realty
     public function getFreetext3()
     {
         return $this->freetext3;
+    }
+
+    /**
+     * @param null|string $freetext3
+     */
+    public function setCostsExplanation($costsExplanation)
+    {
+        $this->costsExplanation = $costsExplanation;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCostsExplanation()
+    {
+        return $this->costsExplanation;
     }
 
     /**
