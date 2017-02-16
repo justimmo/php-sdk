@@ -43,7 +43,7 @@ class EmployeeMapper extends AbstractMapper
                 'property' => 'email',
             ),
             'personennummer' => array(
-                'property' => 'id',
+                'property' => 'number',
             ),
             'suffix'   => array(
                 'property' => 'suffix',
