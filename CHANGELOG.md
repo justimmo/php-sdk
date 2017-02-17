@@ -1,3 +1,6 @@
+## 1.1.6 (not yet released)
+ * Add support for isReference in realty calls (thx @sb-relaxt-at)
+
 ## 1.1.3
  * Add support for onlyRealtyIds in project calls
  * Add support for project state, url, sale start, completion date and is reference in project calls

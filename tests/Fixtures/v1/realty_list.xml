@@ -443,6 +443,7 @@
             <user_defined_simplefield feldname="vermittelt_am"/>
             <user_defined_simplefield feldname="erstellt_am">2015-06-30 11:46:27</user_defined_simplefield>
             <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 11:08:39</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_is_reference">1</user_defined_simplefield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>436942</objektnr_intern>
@@ -687,6 +688,7 @@
             <user_defined_simplefield feldname="vermittelt_am"></user_defined_simplefield>
             <user_defined_simplefield feldname="erstellt_am">2013-09-17 11:29:03</user_defined_simplefield>
             <user_defined_simplefield feldname="aktualisiert_am">2015-12-17 09:42:45</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_is_reference">0</user_defined_simplefield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>195429</objektnr_intern>

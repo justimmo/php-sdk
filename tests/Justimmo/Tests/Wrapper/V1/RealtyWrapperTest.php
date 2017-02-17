@@ -51,6 +51,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('simple', $entry->getRealtySystemType());
         $this->assertEmpty($entry->getParentId());
         $this->assertTrue($entry->getShowInSearch());
+        $this->assertTrue($entry->getIsReference());
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -60,6 +61,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('commercial', $entry->getRealtySystemType());
         $this->assertEmpty($entry->getParentId());
         $this->assertFalse($entry->getShowInSearch());
+        $this->assertFalse($entry->getIsReference());
 
         $entry = $list[2];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -71,6 +73,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('09.10.2014', $entry->getProcuredAt('d.m.Y'));
         $this->assertEquals('area', $entry->getRealtySystemType());
         $this->assertEquals(195429, $entry->getParentId());
+        $this->assertFalse($entry->getIsReference());
 
         $entry = $list[5];
         $this->assertEmpty($entry->getProcuredAt());
@@ -111,6 +114,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('Praxis', $objekt->getSubRealtyTypeName());
         $this->assertEquals('simple', $objekt->getRealtySystemType());
         $this->assertEmpty($objekt->getParentId());
+        $this->assertTrue($objekt->getIsReference());
 
         $this->assertEquals(array(
             'WOHNEN'  => false,

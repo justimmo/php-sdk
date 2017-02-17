@@ -363,7 +363,7 @@ class Realty
     /**
      * @var bool
      */
-    protected $isReference;
+    protected $isReference = false;
 
     /**
      * @param null $nutzungsart
@@ -2944,7 +2944,7 @@ class Realty
     /**
      * @param bool $isReference
      *
-     * @return Project
+     * @return Realty
      */
     public function setIsReference($isReference)
     {

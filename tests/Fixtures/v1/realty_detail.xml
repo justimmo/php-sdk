@@ -333,6 +333,7 @@
             <user_defined_simplefield feldname="erstellt_am">2014-12-10 15:10:23</user_defined_simplefield>
             <user_defined_simplefield feldname="aktualisiert_am">2015-09-10 16:10:23</user_defined_simplefield>
             <user_defined_simplefield feldname="bauart_id">1</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_is_reference">1</user_defined_simplefield>
         </verwaltung_objekt>
         <verwaltung_techn>
             <objektnr_intern>195439</objektnr_intern>
