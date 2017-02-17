@@ -13,6 +13,7 @@
             <email>a.stehmann@bgcc.at</email>
             <bio>Biografie von Aurel Stehmann</bio>
             <suffix>von der Heide</suffix>
+            <nummer>1</nummer>
         </mitarbeiter>
     </kategorie>
     <kategorie name="Marketing">
@@ -31,6 +32,7 @@
             <email>a.diem@bgcc.at</email>
             <bio>Biografie von Alexander Diem</bio>
             <suffix>von der Stange</suffix>
+            <nummer>2</nummer>
             <anhaenge>
                 <anhang location="REMOTE">
                     <anhangtitel>81.jpeg</anhangtitel>
@@ -68,6 +70,7 @@
             <tel>01/798 62 05</tel>
             <email>a.stehmann@bgcc.at</email>
             <suffix/>
+            <nummer>3</nummer>
         </mitarbeiter>
         <mitarbeiter>
             <id>100123</id>
@@ -83,6 +86,7 @@
             <fax>+43 767 765 43 21</fax>
             <email>a.diem@bgcc.at</email>
             <suffix/>
+            <nummer/>
         </mitarbeiter>
     </kategorie>
     <kategorie name="Technischer Support">
@@ -97,6 +101,7 @@
             <tel>01/798 62 05 27</tel>
             <email>support@justimmo.at</email>
             <suffix/>
+            <nummer/>
         </mitarbeiter>
     </kategorie>
 </justimmo>

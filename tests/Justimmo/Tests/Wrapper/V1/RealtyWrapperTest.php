@@ -253,7 +253,8 @@ class RealtyWrapperTest extends TestCase
 
         $contact = $objekt->getContact();
         $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);
-        $this->assertEquals(100123, $contact->getId());
+        $this->assertEquals(50, $contact->getId());
+        $this->assertEquals(123, $contact->getNumber());
         $this->assertEquals('Alexander', $contact->getFirstName());
         $this->assertEquals('Diem', $contact->getLastName());
         $this->assertEquals('+43 1 888 74 72', $contact->getMobile());

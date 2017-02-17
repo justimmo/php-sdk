@@ -131,6 +131,7 @@ class ProjectWrapperTest extends TestCase
         $contact = $entry->getContact();
         $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);
         $this->assertEquals(50, $contact->getId());
+        $this->assertEquals(123, $contact->getNumber());
         $this->assertEquals('Cristian', $contact->getFirstName());
         $this->assertEquals('Busoi', $contact->getLastName());
         $this->assertEquals('cbusoi@bgcc.at', $contact->getEmail());

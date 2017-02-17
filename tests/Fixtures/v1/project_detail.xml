@@ -414,6 +414,7 @@
         </bilder360>
         <videos/>
         <kontaktperson>
+            <id>50</id>
             <email_direkt>cbusoi@bgcc.at</email_direkt>
             <tel_zentrale>+431798620513</tel_zentrale>
             <tel_fax>+431798620518</tel_fax>
@@ -422,7 +423,7 @@
             <vorname>Cristian</vorname>
             <firma>B&amp;G Consulting &amp; Commerce GmbH - 7</firma>
             <url>testversion.justimmo.at</url>
-            <personennummer>50</personennummer>
+            <personennummer>123</personennummer>
             <bild>
                 <small>http://files.justimmo.at/public/pic/small/ABJIukIH3R.jpg</small>
                 <medium>http://files.justimmo.at/public/pic/medium/ABJIukIH3R.jpg</medium>

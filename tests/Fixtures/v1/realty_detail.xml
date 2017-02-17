@@ -33,6 +33,7 @@
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2545373</user_defined_simplefield>
         </geo>
         <kontaktperson>
+            <id>50</id>
             <email_direkt>a.diem@bgcc.at</email_direkt>
             <tel_zentrale>+43 676 123 45 67</tel_zentrale>
             <tel_fax>+43 767 765 43 21</tel_fax>
@@ -42,7 +43,7 @@
             <firma>B&amp;G Consulting &amp; Commerce GmbH - 7</firma>
             <email_feedback>1599-201312-9d80416d@oi-feedback.justimmo.at</email_feedback>
             <url>testversion.justimmo.at</url>
-            <personennummer>100123</personennummer>
+            <personennummer>123</personennummer>
             <bild>
                 <small>http://files.justimmo.at/public/pic/user_small/ABVB1fBrug.png</small>
                 <medium>http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png</medium>

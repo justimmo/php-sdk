@@ -36,6 +36,7 @@ class EmployeeWrapperTest extends TestCase
         $this->assertEquals('a.diem@bgcc.at', $entry->getEmail());
         $this->assertEquals(4, count($entry->getAttachments()));
         $this->assertEquals('von der Stange', $entry->getSuffix());
+        $this->assertEquals(2, $entry->getNumber());
         $this->assertEquals('Biografie von Alexander Diem', $entry->getBiography());
 
         $this->assertInstanceOf('\Justimmo\Model\Attachment', $entry->getProfilePicture());
