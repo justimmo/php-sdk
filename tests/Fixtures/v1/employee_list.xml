@@ -85,8 +85,7 @@
             <tel>+43 676 123 45 67</tel>
             <fax>+43 767 765 43 21</fax>
             <email>a.diem@bgcc.at</email>
-            <suffix/>
-            <nummer/>
+            <nummer>2</nummer>
         </mitarbeiter>
     </kategorie>
     <kategorie name="Technischer Support">
