@@ -333,6 +333,10 @@ class RealtyWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->anhaenge->anhang, $objekt);
         }
 
+        if (isset($xml->videos) && isset($xml->videos->video)) {
+            $this->mapAttachmentGroup($xml->videos->video, $objekt);
+        }
+
         if (isset($xml->links) && isset($xml->links->link)) {
             $this->mapAttachmentGroup($xml->links->link, $objekt, 'link');
         }
