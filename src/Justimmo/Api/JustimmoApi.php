@@ -231,7 +231,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callEmployeeIds(array $params = array())
     {
-        return $this->call('projekt/ids', $params);
+        return $this->call('team/ids', $params);
     }
 
     /**
@@ -239,7 +239,7 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callProjectIds(array $params = array())
     {
-        return $this->call('team/ids', $params);
+        return $this->call('projekt/ids', $params);
     }
 
     /**
