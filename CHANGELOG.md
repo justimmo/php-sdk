@@ -1,4 +1,9 @@
-## 1.1.6 (not yet released)
+## 1.1.8 
+ * Fix orderByArea passing wrong area parameter to api
+ * Use connection timeout instead of timeout in curl requests to allow long data transfers
+ * Fix team / project ids call swap (thx @sb-relaxt-at)
+
+## 1.1.6
  * Add support for isReference in realty calls (thx @sb-relaxt-at)
 
 ## 1.1.3
