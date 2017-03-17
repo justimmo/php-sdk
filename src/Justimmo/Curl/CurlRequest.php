@@ -27,16 +27,11 @@ namespace Justimmo\Curl;
 class CurlRequest
 {
     /**
-     * options for curl request
-     * default: 2 second timeout, return transfer
+     * Options for curl request
      *
      * @var array
      */
-    protected $options = array(
-        CURLOPT_TIMEOUT_MS     => 10000,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => false,
-    );
+    protected $options = array();
 
     /**
      * the url
@@ -71,7 +66,7 @@ class CurlRequest
     public function __construct($url = null, $options = array())
     {
         $this->url     = $url;
-        $this->options = $options + $this->options;
+        $this->options = $options;
     }
 
     /**
