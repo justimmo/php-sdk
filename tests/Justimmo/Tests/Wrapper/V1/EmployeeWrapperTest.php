@@ -39,6 +39,11 @@ class EmployeeWrapperTest extends TestCase
         $this->assertEquals(2, $entry->getNumber());
         $this->assertEquals('Biografie von Alexander Diem', $entry->getBiography());
 
+        $this->assertEquals('Mariahilfer Straße 8/11', $entry->getStreet());
+        $this->assertEquals('1070', $entry->getPostal());
+        $this->assertEquals('Wien', $entry->getCity());
+        $this->assertEquals('https://www.justimmo.at', $entry->getUrl());
+
         $this->assertInstanceOf('\Justimmo\Model\Attachment', $entry->getProfilePicture());
         $this->assertEquals('http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png', $entry->getProfilePicture()->getUrl('medium'));
 
