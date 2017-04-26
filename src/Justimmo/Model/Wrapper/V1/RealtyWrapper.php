@@ -223,7 +223,7 @@ class RealtyWrapper extends AbstractWrapper
             foreach ($xml->objektkategorie->user_defined_simplefield as $simpleField) {
                 $this->mapSimpleField($simpleField, $objekt);
             }
-            
+
             foreach ($xml->objektkategorie->user_defined_anyfield as $anyField) {
                 foreach ($anyField->ji_kategorie as $kategorie) {
                     $attributes = $this->attributesToArray($kategorie);
@@ -409,11 +409,19 @@ class RealtyWrapper extends AbstractWrapper
         return $objekt;
     }
 
+    /**
+     * @param \SimpleXMLElement $simpleField
+     * @param $model
+     */
     protected function mapSimpleField(\SimpleXMLElement $simpleField, $model) {
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {
             $setter = $this->mapper->getSetter($attributes['feldname']);
-            if (method_exists($model, $setter)) {
+
+            if (method_exists($this->mapper, $setter)) {
+                $this->mapper->$setter($simpleField, $model);
+
+            } elseif (method_exists($model, $setter)) {
                 $model->$setter($this->cast($simpleField, $this->mapper->getType($attributes['feldname'])));
             }
         }

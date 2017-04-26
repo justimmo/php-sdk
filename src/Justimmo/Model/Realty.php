@@ -4,6 +4,25 @@ namespace Justimmo\Model;
 
 class Realty
 {
+    /**
+     * Orientation constants and their english identifiers.
+     * Beware: These are not primarily cardinal directions but orientation of windowed facades (e.g. east-west, north-east-south).
+     */
+    const ORIENTATION_NORTH            = 1;
+    const ORIENTATION_NORTH_EAST       = 2;
+    const ORIENTATION_EAST             = 3;
+    const ORIENTATION_SOUTH_EAST       = 4;
+    const ORIENTATION_SOUTH            = 5;
+    const ORIENTATION_SOUTH_WEST       = 6;
+    const ORIENTATION_WEST             = 7;
+    const ORIENTATION_NORTH_WEST       = 8;
+    const ORIENTATION_NORTH_SOUTH      = 9;
+    const ORIENTATION_EAST_WEST        = 10;
+    const ORIENTATION_NORTH_EAST_WEST  = 11;
+    const ORIENTATION_NORTH_EAST_SOUTH = 12;
+    const ORIENTATION_SOUTH_EAST_WEST  = 13;
+    const ORIENTATION_SOUTH_WEST_NORTH = 14;
+
     protected $id;
 
     protected $propertyNumber;
@@ -130,6 +149,11 @@ class Realty
      * @var double
      */
     protected $longitudePrecise;
+
+    /**
+     * @var int
+     */
+    protected $orientation;
 
     protected $street;
 
@@ -2729,14 +2753,18 @@ class Realty
 
     /**
      * @param double $longitudePrecise
+     *
+     * @return $this
      */
     public function setLongitudePrecise($longitudePrecise)
     {
         $this->longitudePrecise = $longitudePrecise;
+
+        return $this;
     }
 
     /**
-     * returns the precise latitude of the realty regardless of the  visibility settings of addresses in justimmo
+     * returns the precise latitude of the realty regardless of the visibility settings of addresses in justimmo
      *
      * @return double
      */
@@ -2747,10 +2775,33 @@ class Realty
 
     /**
      * @param double $latitudePrecise
+     *
+     * @return $this
      */
     public function setLatitudePrecise($latitudePrecise)
     {
         $this->latitudePrecise = $latitudePrecise;
+
+        return $this;
+    }
+
+
+    /**
+     * Returns the orientation of the realty.
+     *
+     * @return int
+     */
+    public function getOrientation()
+    {
+        return $this->orientation;
+    }
+
+    /**
+     * @param int $orientation
+     */
+    public function setOrientation($orientation)
+    {
+        $this->orientation = $orientation;
     }
 
     /**
