@@ -1,3 +1,7 @@
+## 1.1.9 
+ * Add street, zip, city and url to Employee model
+ * Add orientation to Realty model
+
 ## 1.1.8 
  * Fix orderByArea passing wrong area parameter to api
  * Use connection timeout instead of timeout in curl requests to allow long data transfers
