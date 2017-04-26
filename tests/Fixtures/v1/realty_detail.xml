@@ -31,6 +31,7 @@
             <land iso_land="AUT"/>
             <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.4100297</user_defined_simplefield>
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2545373</user_defined_simplefield>
+            <user_defined_simplefield feldname="ausrichtung">SOW</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <id>50</id>

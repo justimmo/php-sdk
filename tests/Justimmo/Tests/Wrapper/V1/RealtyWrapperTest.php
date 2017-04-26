@@ -48,6 +48,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('17.12.2015', $entry->getUpdatedAt('d.m.Y'));
         $this->assertEquals(16.4100297, $entry->getLongitudePrecise());
         $this->assertEquals(48.2545373, $entry->getLatitudePrecise());
+        $this->assertEquals(Realty::ORIENTATION_NORTH_EAST_SOUTH, $entry->getOrientation());
         $this->assertEquals('simple', $entry->getRealtySystemType());
         $this->assertEmpty($entry->getParentId());
         $this->assertTrue($entry->getShowInSearch());
@@ -306,5 +307,6 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(16.4100297, $objekt->getLongitudePrecise());
         $this->assertEquals(48.2545373, $objekt->getLatitudePrecise());
+        $this->assertEquals(Realty::ORIENTATION_SOUTH_EAST_WEST, $objekt->getOrientation());
     }
 }

@@ -26,6 +26,7 @@
             <regionaler_zusatz>Flughafen Salzburg</regionaler_zusatz>
             <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.4100297</user_defined_simplefield>
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2545373</user_defined_simplefield>
+            <user_defined_simplefield feldname="ausrichtung">NOS</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <email_direkt>support@justimmo.at</email_direkt>
@@ -1050,6 +1051,7 @@
             <etage>16</etage>
             <anzahl_etagen>69</anzahl_etagen>
             <regionaler_zusatz>Schwedenplatz</regionaler_zusatz>
+            <user_defined_simplefield feldname="ausrichtung">SW</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <email_direkt>support@justimmo.at</email_direkt>
@@ -3152,6 +3154,7 @@
             <tuernummer>10</tuernummer>
             <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.3911503</user_defined_simplefield>
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2087578</user_defined_simplefield>
+            <user_defined_simplefield feldname="ausrichtung">S</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <email_direkt>a.diem@justimmo.at</email_direkt>
