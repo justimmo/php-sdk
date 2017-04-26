@@ -33,6 +33,10 @@
             <bio>Biografie von Alexander Diem</bio>
             <suffix>von der Stange</suffix>
             <personennummer>2</personennummer>
+            <strasse>Mariahilfer Straße 8/11</strasse>
+            <plz>1070</plz>
+            <ort>Wien</ort>
+            <url>https://www.justimmo.at</url>
             <anhaenge>
                 <anhang location="REMOTE">
                     <anhangtitel>81.jpeg</anhangtitel>

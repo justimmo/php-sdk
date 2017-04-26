@@ -45,11 +45,23 @@ class EmployeeMapper extends AbstractMapper
             'personennummer' => array(
                 'property' => 'number',
             ),
-            'suffix'   => array(
+            'suffix'         => array(
                 'property' => 'suffix',
             ),
-            'bio'   => array(
+            'bio'            => array(
                 'property' => 'biography',
+            ),
+            'strasse'        => array(
+                'property' => 'street',
+            ),
+            'plz'            => array(
+                'property' => 'postal',
+            ),
+            'ort'            => array(
+                'property' => 'city',
+            ),
+            'url'            => array(
+                'property' => 'url',
             ),
         );
     }

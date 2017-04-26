@@ -75,6 +75,26 @@ class Employee
     protected $number = null;
 
     /**
+     * @var null|string
+     */
+    protected $street = null;
+
+    /**
+     * @var null|string
+     */
+    protected $postal = null;
+
+    /**
+     * @var null|string
+     */
+    protected $city = null;
+
+    /**
+     * @var null|string
+     */
+    protected $url = null;
+
+    /**
      * @param array $attachments
      *
      * @return $this
@@ -432,5 +452,69 @@ class Employee
     public function setNumber($number)
     {
         $this->number = $number;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param null|string $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * @param null|string $postal
+     */
+    public function setPostal($postal)
+    {
+        $this->postal = $postal;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param null|string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param null|string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 }
