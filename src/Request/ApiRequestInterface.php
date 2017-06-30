@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-interface RequestInterface
+interface ApiRequestInterface
 {
     /**
      * Returns the path to be called

@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use Justimmo\Api\Authorization\AccessTokenProviderInterface;
 use Justimmo\Api\Exception\AuthorizationException;
 use Justimmo\Api\Hydration\EntityHydrator;
-use Justimmo\Api\Request\RequestInterface;
+use Justimmo\Api\Request\ApiRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 
@@ -43,7 +43,7 @@ class Client
         $this->hydrator            = $hydrator;
     }
 
-    public function request(RequestInterface $request)
+    public function request(ApiRequestInterface $request)
     {
         $defaultQuery = $this->guzzle->getConfig('query') ?: [];
 

@@ -4,30 +4,16 @@ namespace Justimmo\Api\Request;
 
 use Justimmo\Api\Entity\RealtyType;
 
-class RealtyTypeRequest implements RequestInterface
+class RealtyTypeRequest extends ApiRequest
 {
+    const FIELD_SUB_REALTY_TYPES = 'subRealtyTypes';
+
     /**
      * @inheritDoc
      */
     public function getPath()
     {
         return '/realty-types';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getQuery()
-    {
-        return [];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMethod()
-    {
-        return 'GET';
     }
 
     /**
