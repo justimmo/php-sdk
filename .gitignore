@@ -1,0 +1,4 @@
+vendor
+composer.lock
+index.php
+.idea/
