@@ -8,6 +8,7 @@ git:
 branches:
   only: 
     - 1.x
+    - 2.x
 
 php:
   - 5.3
