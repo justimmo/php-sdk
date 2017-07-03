@@ -4,7 +4,25 @@ namespace Justimmo\Api\Request;
 
 abstract class ApiRequest implements ApiRequestInterface
 {
+    /**
+     * @const string[] Available filters for current api request class
+     */
     const FILTERS = [];
+
+    /**
+     * @const string[] Available sort for current api request class
+     */
+    const SORTS = [];
+
+    /**
+     * @const string
+     */
+    const ASC = 'asc';
+
+    /**
+     * @const string
+     */
+    const DESC = 'desc';
 
     /**
      * @var array
@@ -15,6 +33,11 @@ abstract class ApiRequest implements ApiRequestInterface
      * @var string
      */
     protected $path;
+
+    /**
+     * @var array
+     */
+    protected $sorts = [];
 
     /**
      * Return the path prefix
@@ -36,6 +59,10 @@ abstract class ApiRequest implements ApiRequestInterface
      */
     public function getQuery()
     {
+        if (!empty($this->sorts)) {
+            $this->query['sort'] = implode(',', $this->sorts);
+        }
+
         return $this->query;
     }
 
@@ -77,6 +104,21 @@ abstract class ApiRequest implements ApiRequestInterface
     }
 
     /**
+     * Adds parameter for sorting the results
+     *
+     * @param string $field
+     * @param string $direction
+     *
+     * @return $this
+     */
+    public function sortBy($field, $direction = self::ASC)
+    {
+        $this->sorts[] = $direction == self::ASC ? $field : '-' . $field;
+
+        return $this;
+    }
+
+    /**
      * Clears request from all query parameters
      *
      * @return $this
@@ -84,6 +126,7 @@ abstract class ApiRequest implements ApiRequestInterface
     public function clear()
     {
         $this->query = [];
+        $this->sorts = [];
 
         return $this;
     }
@@ -191,10 +234,20 @@ abstract class ApiRequest implements ApiRequestInterface
     public function __call($method, $arguments = [])
     {
         if (strpos($method, 'filterBy') === 0) {
-            $filter = lcfirst(substr($method, 8));
+            $field = lcfirst(substr($method, 8));
 
-            if (in_array($filter, static::FILTERS) && count($arguments) === 1) {
-                return $this->filterBy($filter, $arguments[0]);
+            if (in_array($field, static::FILTERS) && count($arguments) === 1) {
+                return $this->filterBy($field, $arguments[0]);
+            }
+        }
+
+        if (strpos($method, 'sortBy') === 0) {
+            $field = lcfirst(substr($method, 6));
+
+            if (in_array($field, static::SORTS)) {
+                $direction = !empty($arguments[0]) ? $arguments[0] : self::ASC;
+
+                return $this->sortBy($field, $direction);
             }
         }
 

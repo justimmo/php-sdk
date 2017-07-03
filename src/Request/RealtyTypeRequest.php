@@ -6,6 +6,7 @@ use Justimmo\Api\Entity\RealtyType;
 
 /**
  * @method $this filterByWithRealties($value)
+ * @method $this sortByName($direction = ApiRequest::ASC)
  */
 class RealtyTypeRequest extends ApiRequest
 {
@@ -13,6 +14,10 @@ class RealtyTypeRequest extends ApiRequest
 
     const FILTERS = [
         'withRealties',
+    ];
+
+    const SORTS = [
+        'name',
     ];
 
     /**
