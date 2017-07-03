@@ -18,7 +18,7 @@ class RealtyTypeRequest extends ApiRequest
     /**
      * @inheritDoc
      */
-    public function getPath()
+    public function getPathPrefix()
     {
         return '/realty-types';
     }

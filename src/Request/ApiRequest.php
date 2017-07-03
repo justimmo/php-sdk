@@ -12,6 +12,18 @@ abstract class ApiRequest implements ApiRequestInterface
     protected $query = [];
 
     /**
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * Return the path prefix
+     *
+     * @return string
+     */
+    abstract protected function getPathPrefix();
+
+    /**
      * @inheritDoc
      */
     public function getMethod()
@@ -25,6 +37,28 @@ abstract class ApiRequest implements ApiRequestInterface
     public function getQuery()
     {
         return $this->query;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPath()
+    {
+        return $this->getPathPrefix() . $this->path;
+    }
+
+    /**
+     * Returns a single result by id
+     *
+     * @param $id
+     *
+     * @return $this
+     */
+    public function filterById($id)
+    {
+        $this->path = '/' . $id;
+
+        return $this;
     }
 
     /**
@@ -76,6 +110,21 @@ abstract class ApiRequest implements ApiRequestInterface
     public function offset($offset = null)
     {
         return $this->setIntegerQueryParameter('offset', $offset);
+    }
+
+    /**
+     * Sets limit and offset for the query in page notation
+     *
+     * @param int $page
+     * @param int $maxPerPage
+     *
+     * @return $this
+     */
+    public function paginate($page, $maxPerPage = 10)
+    {
+        return $this
+            ->limit($maxPerPage)
+            ->offset(($page - 1) * $maxPerPage);
     }
 
     /**

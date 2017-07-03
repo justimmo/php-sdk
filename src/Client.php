@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use Justimmo\Api\Authorization\AccessTokenProviderInterface;
 use Justimmo\Api\Exception\AuthorizationException;
 use Justimmo\Api\Hydration\EntityHydrator;
+use Justimmo\Api\Pager\ListPager;
 use Justimmo\Api\Request\ApiRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -43,28 +44,43 @@ class Client
         $this->hydrator            = $hydrator;
     }
 
+    /**
+     * Exectues an api request and returns a formatted response
+     *
+     * @param ApiRequestInterface $request
+     *
+     * @return mixed
+     */
     public function request(ApiRequestInterface $request)
     {
-        $defaultQuery = $this->guzzle->getConfig('query') ?: [];
+        $query = array_merge(($this->guzzle->getConfig('query') ?: []), $request->getQuery());
 
         try {
-            $response = $this->executeRequest($request->getMethod(), $this->buildUrl($request->getPath()), array_merge($defaultQuery, $request->getQuery()));
+            $response = $this->executeRequest($request->getMethod(), $this->buildUrl($request->getPath()), $query);
         } catch (RequestException $e) {
             throw AuthorizationException::accessDenied($e);
         }
 
         $return = $this->decodeResponse($response);
+        if (count($return) === 0) {
+            return [];
+        }
+
         if (count($return) === 2 && array_key_exists('count', $return) && array_key_exists('results', $return)) {
             $entities = [];
             foreach ($return['results'] as $result) {
                 $entities[] = $this->hydrator->hydrate($result, $request->getEntityClass());
             }
 
-            return $entities;
+            return ListPager::create(
+                $entities,
+                $return['count'],
+                !empty($query['limit']) ? $query['limit'] : null,
+                !empty($query['offset']) ? $query['offset'] : null
+            );
         }
 
-
-        return;
+        return $this->hydrator->hydrate($return, $request->getEntityClass());
     }
 
     protected function decodeResponse(ResponseInterface $response)

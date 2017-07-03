@@ -18,7 +18,7 @@ class SubRealtyTypeRequest extends ApiRequest
     /**
      * @inheritDoc
      */
-    public function getPath()
+    public function getPathPrefix()
     {
         return '/sub-realty-types';
     }
