@@ -11,9 +11,6 @@
         "guzzlehttp/guzzle": "^6.0",
         "kevinrob/guzzle-cache-middleware": "^2.0"
     },
-    "require-dev": {
-        "symfony/debug": "^3.3"
-    },
     "suggest": {
         "monolog/monolog": "~1.7"
     },

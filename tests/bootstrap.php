@@ -1,4 +1,8 @@
 <?php
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
+
 $loader = require_once __DIR__ . '/../vendor/autoload.php';
-$loader->add('Justimmo\Tests', __DIR__);
+$loader->addPsr4('Justimmo\\Api\\Tests\\', __DIR__);
+
+AnnotationRegistry::registerLoader('class_exists');
