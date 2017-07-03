@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Exception;
 
-class AuthorizationException extends \Exception implements JustimmoApiException
+class AuthorizationException extends RequestException
 {
     /**
      * Thrown when token could not be fetched from auth server

@@ -2,9 +2,10 @@
 
 namespace Justimmo\Api;
 
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
+use Justimmo\Api\Exception\ClientException;
+use Justimmo\Api\Exception\RequestException as ApiRequestException;
 use Justimmo\Api\Authorization\AccessTokenProviderInterface;
-use Justimmo\Api\Exception\AuthorizationException;
 use Justimmo\Api\Hydration\EntityHydrator;
 use Justimmo\Api\Pager\ListPager;
 use Justimmo\Api\Request\ApiRequestInterface;
@@ -57,8 +58,8 @@ class Client
 
         try {
             $response = $this->executeRequest($request->getMethod(), $this->buildUrl($request->getPath()), $query);
-        } catch (RequestException $e) {
-            throw AuthorizationException::accessDenied($e);
+        } catch (\Exception $e) {
+            throw ApiRequestException::createFromException($e);
         }
 
         $return = $this->decodeResponse($response);
@@ -83,17 +84,23 @@ class Client
         return $this->hydrator->hydrate($return, $request->getEntityClass());
     }
 
+    /**
+     * Decodes response body into an array
+     *
+     * @param ResponseInterface $response
+     *
+     * @return array
+     * @throws ClientException
+     */
     protected function decodeResponse(ResponseInterface $response)
     {
         if ($response->getHeaderLine('Content-type') != 'application/json') {
-            //@todo implement exception
-            throw new \Exception('Invalid content type');
+            throw ClientException::invalidFormat('Response content type is not "application/json".');
         }
 
         $json = json_decode((string) $response->getBody(), true);
         if ($json === null) {
-            //@todo implement exception
-            throw new \Exception('Format Error');
+            throw ClientException::invalidFormat();
         }
 
         return $json;
@@ -122,7 +129,7 @@ class Client
                     ],
                     'query'   => $query,
                 ]);
-            } catch (RequestException $e) {
+            } catch (GuzzleRequestException $e) {
                 if ($triesLeft <= 0 || $e->getCode() != 401) {
                     throw $e;
                 }
