@@ -39,7 +39,7 @@ class ListPager extends \ArrayObject
     public static function create(array $data = [], $nbResults, $limit = null, $offset = null)
     {
         if ($limit === null) {
-            $limit = count($data);
+            $limit = count($data) ?: 10;
         }
         if ($offset === null) {
             $offset = 0;
