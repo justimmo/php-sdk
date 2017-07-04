@@ -42,7 +42,7 @@ class ListPager extends \ArrayObject
             $limit = count($data);
         }
         if ($offset === null) {
-            $offset = count($data);
+            $offset = 0;
         }
 
         return (new static($data))
