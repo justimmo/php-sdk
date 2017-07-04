@@ -6,9 +6,9 @@ use Justimmo\Api\Entity\SubRealtyType;
 
 /**
  * @method $this filterByWithRealties($value)
- * @method $this sortByName($direction = ApiRequest::ASC)
+ * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
-class SubRealtyTypeRequest extends ApiRequest
+class SubRealtyTypeRequest extends BaseApiRequest
 {
     const FIELD_REALTY_TYPE = 'realtyType';
 

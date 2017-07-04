@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Authorization;
 
-class StaticAccessTokenProvider implements AccessTokenProviderInterface
+class StaticAccessTokenProvider implements AccessTokenProvider
 {
     /**
      * @var string

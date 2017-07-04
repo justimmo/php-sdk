@@ -3,6 +3,7 @@
 namespace Justimmo\Api;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\Cache;
@@ -15,6 +16,8 @@ use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 
 class ClientFactory
 {
+    protected static $annotationsLoaded = false;
+
     /**
      * Helper function to easyly create a client
      *
@@ -26,6 +29,11 @@ class ClientFactory
      */
     public static function create($accessToken, $locale = 'de', Cache $cache = null)
     {
+        if (!static::$annotationsLoaded) {
+            static::$annotationsLoaded = true;
+            AnnotationRegistry::registerLoader('class_exists');
+        }
+
         if ($cache === null) {
             $cache = new ArrayCache();
             $cache->setNamespace('justimmo:php-sdk:api:');

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Authorization;
 
-interface AccessTokenProviderInterface
+interface AccessTokenProvider
 {
     /**
      * Returns current access token

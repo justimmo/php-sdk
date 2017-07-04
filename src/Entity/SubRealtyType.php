@@ -13,19 +13,19 @@ class SubRealtyType
 {
     /**
      * @var int
-     * @JUSTIMMO\Column(key="id", type="integer")
+     * @JUSTIMMO\Column(path="id", type="integer")
      */
     private $id;
 
     /**
      * @var string
-     * @JUSTIMMO\Column(key="name")
+     * @JUSTIMMO\Column(path="name")
      */
     private $name;
 
     /**
      * @var RealtyType
-     * @JUSTIMMO\Relation(key="realtyType", targetEntity="Justimmo\Api\Entity\RealtyType")
+     * @JUSTIMMO\Relation(path="realtyType", targetEntity="Justimmo\Api\Entity\RealtyType")
      */
     private $realtyType;
 

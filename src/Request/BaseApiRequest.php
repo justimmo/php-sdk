@@ -1,0 +1,256 @@
+<?php
+
+namespace Justimmo\Api\Request;
+
+abstract class BaseApiRequest implements ApiRequest
+{
+    /**
+     * @const string[] Available filters for current api request class
+     */
+    const FILTERS = [];
+
+    /**
+     * @const string[] Available sort for current api request class
+     */
+    const SORTS = [];
+
+    /**
+     * @const string
+     */
+    const ASC = 'asc';
+
+    /**
+     * @const string
+     */
+    const DESC = 'desc';
+
+    /**
+     * @var array
+     */
+    protected $query = [];
+
+    /**
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * @var array
+     */
+    protected $sorts = [];
+
+    /**
+     * Return the path prefix
+     *
+     * @return string
+     */
+    abstract protected function getPathPrefix();
+
+    /**
+     * @inheritDoc
+     */
+    public function getMethod()
+    {
+        return 'GET';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getQuery()
+    {
+        if (!empty($this->sorts)) {
+            $this->query['sort'] = implode(',', $this->sorts);
+        }
+
+        return $this->query;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPath()
+    {
+        return $this->getPathPrefix() . $this->path;
+    }
+
+    /**
+     * Returns a single result by id
+     *
+     * @param $id
+     *
+     * @return $this
+     */
+    public function filterById($id)
+    {
+        $this->path = '/' . $id;
+
+        return $this;
+    }
+
+    /**
+     * Adds a filter query parameter
+     *
+     * @param string $field
+     * @param mixed  $value
+     *
+     * @return $this
+     */
+    public function filterBy($field, $value)
+    {
+        $this->query['f'][$field] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Adds parameter for sorting the results
+     *
+     * @param string $field
+     * @param string $direction
+     *
+     * @return $this
+     */
+    public function sortBy($field, $direction = self::ASC)
+    {
+        $this->sorts[] = $direction == self::ASC ? $field : '-' . $field;
+
+        return $this;
+    }
+
+    /**
+     * Clears request from all query parameters
+     *
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->query = [];
+        $this->sorts = [];
+
+        return $this;
+    }
+
+    /**
+     * Limit for resultset
+     *
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function limit($limit = null)
+    {
+        return $this->setIntegerQueryParameter('limit', $limit);
+    }
+
+    /**
+     * Offset for resultset
+     *
+     * @param int $offset
+     *
+     * @return $this
+     */
+    public function offset($offset = null)
+    {
+        return $this->setIntegerQueryParameter('offset', $offset);
+    }
+
+    /**
+     * Sets limit and offset for the query in page notation
+     *
+     * @param int $page
+     * @param int $maxPerPage
+     *
+     * @return $this
+     */
+    public function paginate($page, $maxPerPage = 10)
+    {
+        return $this
+            ->limit($maxPerPage)
+            ->offset(($page - 1) * $maxPerPage);
+    }
+
+    /**
+     * Adds fields parameter to the request
+     * This parameter tells the api to return additional fields in the response
+     *
+     * @param string|array $fields
+     *
+     * @return $this
+     */
+    public function fields($fields)
+    {
+        if (is_array($fields)) {
+            $fields = implode(',', $fields);
+        }
+
+        $this->query['fields'] = $fields;
+
+        return $this;
+    }
+
+    /**
+     * Sets a query parameter for the api request. The parameter will be passed as query string
+     *
+     * @param string $parameter
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setQueryParameter($parameter, $value)
+    {
+        $this->query[$parameter] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Sets a integer query parameter. If null or negative it will be removed
+     *
+     * @param string $key
+     * @param int    $value
+     *
+     * @return $this
+     */
+    protected function setIntegerQueryParameter($key, $value)
+    {
+        if ($value === null || $value < 0) {
+            unset ($this->query[$key]);
+        } else {
+            $this->query[$key] = (int) $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Intercept magic filter Methods
+     *
+     * @param string $method
+     * @param array  $arguments
+     *
+     * @return $this
+     */
+    public function __call($method, $arguments = [])
+    {
+        if (strpos($method, 'filterBy') === 0) {
+            $field = lcfirst(substr($method, 8));
+
+            if (in_array($field, static::FILTERS) && count($arguments) === 1) {
+                return $this->filterBy($field, $arguments[0]);
+            }
+        }
+
+        if (strpos($method, 'sortBy') === 0) {
+            $field = lcfirst(substr($method, 6));
+
+            if (in_array($field, static::SORTS)) {
+                $direction = !empty($arguments[0]) ? $arguments[0] : self::ASC;
+
+                return $this->sortBy($field, $direction);
+            }
+        }
+
+        throw new \BadMethodCallException("Method \"$method\" is not defined on \"" . get_class($this) . "\".");
+    }
+}

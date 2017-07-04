@@ -5,10 +5,10 @@ namespace Justimmo\Api;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Justimmo\Api\Exception\ClientException;
 use Justimmo\Api\Exception\RequestException as ApiRequestException;
-use Justimmo\Api\Authorization\AccessTokenProviderInterface;
+use Justimmo\Api\Authorization\AccessTokenProvider;
 use Justimmo\Api\Hydration\EntityHydrator;
 use Justimmo\Api\Pager\ListPager;
-use Justimmo\Api\Request\ApiRequestInterface;
+use Justimmo\Api\Request\ApiRequest;
 use Psr\Http\Message\ResponseInterface;
 
 
@@ -22,7 +22,7 @@ class Client
     protected $guzzle;
 
     /**
-     * @var AccessTokenProviderInterface
+     * @var AccessTokenProvider
      */
     protected $accessTokenProvider;
 
@@ -34,11 +34,11 @@ class Client
     /**
      * Client constructor.
      *
-     * @param \GuzzleHttp\Client           $guzzle
-     * @param AccessTokenProviderInterface $accessTokenProvider
-     * @param EntityHydrator               $hydrator
+     * @param \GuzzleHttp\Client  $guzzle
+     * @param AccessTokenProvider $accessTokenProvider
+     * @param EntityHydrator      $hydrator
      */
-    public function __construct(\GuzzleHttp\Client $guzzle, AccessTokenProviderInterface $accessTokenProvider, EntityHydrator $hydrator)
+    public function __construct(\GuzzleHttp\Client $guzzle, AccessTokenProvider $accessTokenProvider, EntityHydrator $hydrator)
     {
         $this->guzzle              = $guzzle;
         $this->accessTokenProvider = $accessTokenProvider;
@@ -48,11 +48,11 @@ class Client
     /**
      * Exectues an api request and returns a formatted response
      *
-     * @param ApiRequestInterface $request
+     * @param ApiRequest $request
      *
      * @return mixed
      */
-    public function request(ApiRequestInterface $request)
+    public function request(ApiRequest $request)
     {
         $query = array_merge(($this->guzzle->getConfig('query') ?: []), $request->getQuery());
 

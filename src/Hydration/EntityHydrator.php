@@ -72,62 +72,72 @@ class EntityHydrator
      */
     protected function getValue(array $values, \ReflectionProperty $reflProperty)
     {
-        $annotations = $this->reader->getPropertyAnnotations($reflProperty);
-        if (empty($annotations)) {
+        /** @var Column|Relation $annotation */
+        $annotation = $this->reader->getPropertyAnnotation($reflProperty, 'Justimmo\Api\Annotation\Column');
+        if ($annotation === null) {
+            $annotation = $this->reader->getPropertyAnnotation($reflProperty, 'Justimmo\Api\Annotation\Relation');
+        }
+        if ($annotation === null) {
             return null;
         }
 
-        foreach ($annotations as $annotation) {
-            if ($annotation instanceof Column) {
-                return $this->getValueFromColumnAnnotation($values, $annotation);
-            }
-            if ($annotation instanceof Relation) {
-                return $this->getValueFromRelationAnnotation($values, $annotation);
-            }
+        $value = $this->extractValueFromPath($values, $annotation->path);
+        if ($value === null) {
+            return null;
         }
 
-        return null;
+        return $annotation instanceof Column
+            ? $this->castValue($value, $annotation->type)
+            : $this->getValueFromRelationAnnotation($value, $annotation);
     }
 
     /**
-     * @param array    $values
-     * @param Relation $relation
+     * Recursively fetch a value from a multidimensional array depending on a given path
      *
-     * @return mixed|null
+     * @param array $values
+     * @param array $path
+     *
+     * @return mixed
      */
-    protected function getValueFromRelationAnnotation(array $values, Relation $relation)
+    protected function extractValueFromPath(array $values, array $path)
     {
-        $key = $relation->key;
+        if (empty($path)) {
+            return null;
+        }
+
+        $key = array_shift($path);
         if (!array_key_exists($key, $values)) {
             return null;
         }
 
-        if ($relation->multiple === false) {
-            return $this->hydrate($values[$key], $relation->targetEntity);
+        return (empty($path))
+            ? $values[$key]
+            : $this->extractValueFromPath($values[$key], $path);
+    }
+
+    /**
+     * Resolve a Relation annotation by by recursively calling the hydrate action
+     *
+     * @param array    $values
+     * @param Relation $annotation
+     *
+     * @return mixed|null
+     */
+    protected function getValueFromRelationAnnotation(array $values, Relation $annotation)
+    {
+        if ($annotation->multiple === false) {
+            return $this->hydrate($values, $annotation->targetEntity);
         }
 
         $entities = [];
-        foreach ($values[$key] as $entityRelationValues) {
-            $entities[] = $this->hydrate($entityRelationValues, $relation->targetEntity);
+        foreach ($values as $entityRelationValues) {
+            if (!is_array($entityRelationValues)) {
+                throw new \InvalidArgumentException("Argument 1 passed to " . __CLASS__ . "::hydrate must be of the type array.");
+            }
+            $entities[] = $this->hydrate($entityRelationValues, $annotation->targetEntity);
         }
 
         return $entities;
-    }
-
-    /**
-     * @param array  $values
-     * @param Column $column
-     *
-     * @return mixed|null
-     */
-    protected function getValueFromColumnAnnotation(array $values, Column $column)
-    {
-        $key = $column->key;
-        if (!array_key_exists($key, $values)) {
-            return null;
-        }
-
-        return $this->castValue($values[$key], $column->type);
     }
 
     /**
@@ -140,6 +150,10 @@ class EntityHydrator
      */
     protected function castValue($value, $type)
     {
+        if (is_array($value)) {
+            return null;
+        }
+
         switch ($type) {
             case 'string':
                 return (string) $value;

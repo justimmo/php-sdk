@@ -9,11 +9,11 @@ namespace Justimmo\Api\Annotation;
 class Relation
 {
     /**
-     * @var string
+     * @var array<string>
      *
      * @Required
      */
-    public $key;
+    public $path;
 
     /**
      * @var string
