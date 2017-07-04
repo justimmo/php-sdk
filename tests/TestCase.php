@@ -23,7 +23,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
         return file_get_contents(self::FIXTURES_PATH . DIRECTORY_SEPARATOR . $file);
     }
 
-
     /**
      * Returns an entity hydrator
      *
