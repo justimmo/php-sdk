@@ -50,7 +50,7 @@ class Client
      *
      * @param ApiRequest $request
      *
-     * @return mixed
+     * @return ListPager|\Justimmo\Api\Entity\Entity|\Justimmo\Api\Entity\Entity[]
      */
     public function request(ApiRequest $request)
     {

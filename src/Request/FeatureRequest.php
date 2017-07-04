@@ -2,20 +2,18 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\SubRealtyType;
+use Justimmo\Api\Entity\Feature;
 
 /**
- * @method $this filterByWithRealties($value)
- * @method $this filterByRealtyType($value)
+ * @method $this filterByFeatureGroup($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
-class SubRealtyTypeRequest extends BaseApiRequest
+class FeatureRequest extends BaseApiRequest
 {
-    const FIELD_REALTY_TYPE = 'realtyType';
+    const FIELD_FEATURE_GROUP = 'featureGroup';
 
     const FILTERS = [
-        'withRealties',
-        'realtyType',
+        'featureGroup',
     ];
 
     const SORTS = [
@@ -27,7 +25,7 @@ class SubRealtyTypeRequest extends BaseApiRequest
      */
     public function getPathPrefix()
     {
-        return '/sub-realty-types';
+        return '/features';
     }
 
     /**
@@ -35,6 +33,6 @@ class SubRealtyTypeRequest extends BaseApiRequest
      */
     public function getEntityClass()
     {
-        return SubRealtyType::class;
+        return Feature::class;
     }
 }

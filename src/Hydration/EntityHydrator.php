@@ -38,7 +38,7 @@ class EntityHydrator
      * @param array  $values
      * @param string $class
      *
-     * @return object
+     * @return \Justimmo\Api\Entity\Entity
      */
     public function hydrate(array $values, $class)
     {
@@ -51,6 +51,7 @@ class EntityHydrator
         }
 
         $reflClass = $this->getReflectionClass($class);
+        /** @var \Justimmo\Api\Entity\Entity $instance */
         $instance  = $reflClass->newInstance();
 
         foreach ($reflClass->getProperties() as $reflProperty) {
