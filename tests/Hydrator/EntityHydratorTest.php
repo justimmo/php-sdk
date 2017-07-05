@@ -16,15 +16,6 @@ class EntityHydratorTest extends TestCase
         return $this->getHydrator()->hydrate($data, MockedEntity::class);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Values must have an id key.
-     */
-    public function testInvalidData()
-    {
-        $this->hydrate(['name' => 'Test']);
-    }
-
     public function testScalarFields()
     {
         $entity = $this->hydrate([

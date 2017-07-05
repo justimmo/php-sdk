@@ -21,4 +21,9 @@ class Column
      * @Enum({"string", "integer", "float", "boolean"})
      */
     public $type = 'string';
+
+    /**
+     * @var bool
+     */
+    public $multiple = false;
 }

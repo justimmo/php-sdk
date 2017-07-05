@@ -42,11 +42,9 @@ class EntityHydrator
      */
     public function hydrate(array $values, $class)
     {
-        if (empty($values['id'])) {
-            throw new \InvalidArgumentException("Values must have an id key.");
-        }
+        $useInstancePool = !empty($values['id']);
 
-        if (!empty($this->instancePool[$class][$values['id']])) {
+        if ($useInstancePool && !empty($this->instancePool[$class][$values['id']])) {
             return $this->instancePool[$class][$values['id']];
         }
 
@@ -60,6 +58,10 @@ class EntityHydrator
                 $reflProperty->setAccessible(true);
                 $reflProperty->setValue($instance, $value);
             }
+        }
+
+        if (!$useInstancePool) {
+            return $instance;
         }
 
         return $this->instancePool[$class][$values['id']] = $instance;
@@ -88,7 +90,7 @@ class EntityHydrator
         }
 
         return $annotation instanceof Column
-            ? $this->castValue($value, $annotation->type)
+            ? $this->getValueFromColumnAnnotation($value, $annotation)
             : $this->getValueFromRelationAnnotation($value, $annotation);
     }
 
@@ -114,6 +116,32 @@ class EntityHydrator
         return (empty($path))
             ? $values[$key]
             : $this->extractValueFromPath($values[$key], $path);
+    }
+
+    /**
+     * Resolve a Column annotation by by recursively calling the cast value
+     *
+     * @param array    $values
+     * @param Column $annotation
+     *
+     * @return mixed|null
+     */
+    protected function getValueFromColumnAnnotation($values, Column $annotation)
+    {
+        if ($annotation->multiple === false) {
+            return $this->castValue($values, $annotation->type);
+        }
+
+        if (!is_array($values)) {
+            return [ $this->castValue($values, $annotation->type) ];
+        }
+
+        $entities = [];
+        foreach ($values as $value) {
+            $entities[] = $this->castValue($value, $annotation->type);
+        }
+
+        return $entities;
     }
 
     /**
@@ -151,10 +179,6 @@ class EntityHydrator
      */
     protected function castValue($value, $type)
     {
-        if (is_array($value)) {
-            return null;
-        }
-
         switch ($type) {
             case 'string':
                 return (string) $value;
