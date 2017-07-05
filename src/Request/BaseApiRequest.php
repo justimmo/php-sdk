@@ -15,6 +15,11 @@ abstract class BaseApiRequest implements ApiRequest
     const SORTS = [];
 
     /**
+     * const string[] Available fields for current api request
+     */
+    const FIELDS = [];
+
+    /**
      * @const string
      */
     const ASC = 'asc';
@@ -40,6 +45,11 @@ abstract class BaseApiRequest implements ApiRequest
     protected $sorts = [];
 
     /**
+     * @var array
+     */
+    protected $fields = [];
+
+    /**
      * Return the path prefix
      *
      * @return string
@@ -61,6 +71,9 @@ abstract class BaseApiRequest implements ApiRequest
     {
         if (!empty($this->sorts)) {
             $this->query['sort'] = implode(',', $this->sorts);
+        }
+        if (!empty($this->fields)) {
+            $this->query['fields'] = implode(',', $this->fields);
         }
 
         return $this->query;
@@ -171,7 +184,7 @@ abstract class BaseApiRequest implements ApiRequest
     }
 
     /**
-     * Adds fields parameter to the request
+     * Sets fields parameter, overwrites current fields variable
      * This parameter tells the api to return additional fields in the response
      *
      * @param string|array $fields
@@ -180,11 +193,25 @@ abstract class BaseApiRequest implements ApiRequest
      */
     public function fields($fields)
     {
-        if (is_array($fields)) {
-            $fields = implode(',', $fields);
+        if (!is_array($fields)) {
+            $fields = explode(',', $fields);
         }
 
-        $this->query['fields'] = $fields;
+        $this->fields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * Add a single field to the response
+     *
+     * @param string $field
+     *
+     * @return $this
+     */
+    public function with($field)
+    {
+        $this->fields[] = $field;
 
         return $this;
     }
@@ -236,7 +263,11 @@ abstract class BaseApiRequest implements ApiRequest
         if (strpos($method, 'filterBy') === 0) {
             $field = lcfirst(substr($method, 8));
 
-            if (in_array($field, static::FILTERS) && count($arguments) === 1) {
+            if (in_array($field, static::FILTERS)) {
+                if (!isset($arguments[0])) {
+                    throw new \InvalidArgumentException(__METHOD__ . ' is missing parameter 1.');
+                }
+
                 return $this->filterBy($field, $arguments[0]);
             }
         }
@@ -248,6 +279,14 @@ abstract class BaseApiRequest implements ApiRequest
                 $direction = !empty($arguments[0]) ? $arguments[0] : self::ASC;
 
                 return $this->sortBy($field, $direction);
+            }
+        }
+
+        if (strpos($method, 'with') === 0) {
+            $field = lcfirst(substr($method, 4));
+
+            if (in_array($field, static::FIELDS)) {
+                return $this->with($field);
             }
         }
 

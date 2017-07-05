@@ -11,6 +11,8 @@ abstract class RequestTestCase extends TestCase
 
     const FILTERS = [];
 
+    const FIELDS = [];
+
     const ENTITY_CLASS = null;
 
     const METHOD = 'GET';
@@ -89,11 +91,6 @@ abstract class RequestTestCase extends TestCase
         $request->fields(['field1', 'field2']);
         $this->assertEquals([
             'fields' => 'field1,field2',
-        ], $request->getQuery());
-
-        $request->fields([]);
-        $this->assertEquals([
-            'fields' => '',
         ], $request->getQuery());
     }
 
@@ -195,6 +192,27 @@ abstract class RequestTestCase extends TestCase
                 ],
             ], $request->getQuery());
         }
+    }
+
+    public function testWith()
+    {
+        if (empty(static::FIELDS)) {
+            return;
+        }
+
+        $request   = $this->getRequest();
+        $setFields = [];
+
+        foreach (static::FIELDS as $i => $field) {
+            $method = 'with' . ucfirst($field);
+
+            $request->$method();
+            $setFields[] = $field;
+        }
+
+        $this->assertEquals([
+            'fields' => implode(',', $setFields),
+        ], $request->getQuery());
     }
 }
 

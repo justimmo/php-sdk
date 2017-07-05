@@ -11,12 +11,17 @@ class SubRealtyTypeRequestTest extends RequestTestCase
 
     const PATH_PREFIX = '/sub-realty-types';
 
+    const FIELDS = [
+        'realtyType'
+    ];
+
     const SORTS = [
         'name',
     ];
 
     const FILTERS = [
         'withRealties',
+        'realtyType',
     ];
 
     /**

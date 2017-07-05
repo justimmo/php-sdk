@@ -5,12 +5,15 @@ namespace Justimmo\Api\Request;
 use Justimmo\Api\Entity\Feature;
 
 /**
+ * @method $this withFeatureGroup()
  * @method $this filterByFeatureGroup($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
 class FeatureRequest extends BaseApiRequest
 {
-    const FIELD_FEATURE_GROUP = 'featureGroup';
+    const FIELDS = [
+        'featureGroup'
+    ];
 
     const FILTERS = [
         'featureGroup',

@@ -5,6 +5,9 @@ namespace Justimmo\Api\Request;
 use Justimmo\Api\Entity\Region;
 
 /**
+ * @method $this withCountries()
+ * @method $this withFederalStates()
+ * @method $this withZipCodes()
  * @method $this filterByWithRealties($value)
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
@@ -12,9 +15,11 @@ use Justimmo\Api\Entity\Region;
  */
 class RegionRequest extends BaseApiRequest
 {
-    const FIELD_COUNTRIES      = 'countries';
-    const FIELD_FEDERAL_STATES = 'federalStates';
-    const FIELD_ZIP_CODES      = 'zipCodes';
+    const FIELDS = [
+        'countries',
+        'federalStates',
+        'zipCodes',
+    ];
 
     const FILTERS = [
         'withRealties',
