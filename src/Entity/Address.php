@@ -7,7 +7,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 /**
  * @JUSTIMMO\Entity()
  */
-class Address
+class Address implements Entity
 {
     /**
      * @var string

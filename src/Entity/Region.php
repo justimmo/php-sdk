@@ -3,12 +3,16 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
+use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity()
  */
-class Region extends BaseEntity
+class Region implements Entity
 {
+    use Identifiable, Nameable;
+
     /**
      * @var Country[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="countries", targetEntity="Justimmo\Api\Entity\Country", multiple=true)

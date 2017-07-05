@@ -3,17 +3,14 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
  * @JUSTIMMO\Entity()
  */
 class ZipCode implements Entity
 {
-    /**
-     * @var string
-     * @JUSTIMMO\Column(path="id", type="string")
-     */
-    private $id;
+    use Identifiable;
 
     /**
      * @var string
@@ -44,14 +41,6 @@ class ZipCode implements Entity
      * @JUSTIMMO\Relation(path="region", targetEntity="Justimmo\Api\Entity\Region")
      */
     private $region;
-
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @return Country

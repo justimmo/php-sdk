@@ -3,20 +3,17 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
  * @JUSTIMMO\Entity()
  */
 class Link implements Entity
 {
+    use Identifiable;
+
     const TYPE_LINK       = 'links';
     const TYPE_MOVIE_LINK = 'filmlink';
-
-    /**
-     * @var string
-     * @JUSTIMMO\Column(path="id", type="string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -35,14 +32,6 @@ class Link implements Entity
      * @JUSTIMMO\Column(path="description", type="string")
      */
     private $description;
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @return string

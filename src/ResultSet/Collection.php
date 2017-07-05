@@ -5,12 +5,7 @@ namespace Justimmo\Api\ResultSet;
 class Collection extends \ArrayObject implements ResultSet
 {
     /**
-     * Converts the data into a key/value store array
-     *
-     * @param $keyGetter
-     * @param $valueGetter
-     *
-     * @return array
+     * @inheritdoc
      */
     public function toKeyValue($keyGetter, $valueGetter)
     {

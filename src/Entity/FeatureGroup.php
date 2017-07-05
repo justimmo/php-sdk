@@ -3,12 +3,16 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
+use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity()
  */
-class FeatureGroup extends BaseEntity
+class FeatureGroup implements Entity
 {
+    use Identifiable, Nameable;
+
     /**
      * @var Feature[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="features", targetEntity="Justimmo\Api\Entity\Feature", multiple=true)

@@ -3,12 +3,16 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
+use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity()
  */
-class Employee extends BaseEntity
+class Employee implements Entity
 {
+    use Identifiable, Nameable;
+
     /**
      * @var int
      * @JUSTIMMO\Column(path="number", type="integer")

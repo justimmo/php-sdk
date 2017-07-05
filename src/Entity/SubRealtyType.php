@@ -3,12 +3,16 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
+use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity()
  */
-class SubRealtyType extends BaseEntity
+class SubRealtyType implements Entity
 {
+    use Identifiable, Nameable;
+
     /**
      * @var RealtyType
      * @JUSTIMMO\Relation(path="realtyType", targetEntity="Justimmo\Api\Entity\RealtyType")

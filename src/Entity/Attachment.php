@@ -3,12 +3,15 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
  * @JUSTIMMO\Entity()
  */
 class Attachment implements Entity
 {
+    use Identifiable;
+
     const TYPE_PICTURE  = 'pic';
     const TYPE_VIDEO    = 'video';
     const TYPE_DOCUMENT = 'doc';
@@ -18,12 +21,6 @@ class Attachment implements Entity
     const GROUP_VIDEOS           = 3;
     const GROUP_DOCUMENTS        = 4;
     const GROUP_THREE60_PICTURES = 7;
-
-    /**
-     * @var string
-     * @JUSTIMMO\Column(path="id", type="string")
-     */
-    private $id;
 
     /**
      * @var string
@@ -60,14 +57,6 @@ class Attachment implements Entity
      * @JUSTIMMO\Column(path="group", type="integer")
      */
     private $group;
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @return string
