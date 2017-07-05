@@ -7,10 +7,9 @@ use Justimmo\Api\Exception\ClientException;
 use Justimmo\Api\Exception\RequestException as ApiRequestException;
 use Justimmo\Api\Authorization\AccessTokenProvider;
 use Justimmo\Api\Hydration\EntityHydrator;
-use Justimmo\Api\Pager\ListPager;
+use Justimmo\Api\ResultSet\Pager;
 use Justimmo\Api\Request\ApiRequest;
 use Psr\Http\Message\ResponseInterface;
-
 
 class Client
 {
@@ -50,7 +49,7 @@ class Client
      *
      * @param ApiRequest $request
      *
-     * @return ListPager|\Justimmo\Api\Entity\Entity|\Justimmo\Api\Entity\Entity[]
+     * @return Pager|\Justimmo\Api\Entity\Entity|\Justimmo\Api\Entity\Entity[]
      */
     public function request(ApiRequest $request)
     {
@@ -73,7 +72,7 @@ class Client
                 $entities[] = $this->hydrator->hydrate($result, $request->getEntityClass());
             }
 
-            return ListPager::create(
+            return Pager::create(
                 $entities,
                 $return['count'],
                 !empty($query['limit']) ? $query['limit'] : null,

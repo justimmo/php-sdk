@@ -10,7 +10,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 class FeatureGroup extends BaseEntity
 {
     /**
-     * @var Feature[]
+     * @var Feature[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="features", targetEntity="Justimmo\Api\Entity\Feature", multiple=true)
      */
     private $features;

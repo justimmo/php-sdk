@@ -10,7 +10,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 class RealtyType extends BaseEntity
 {
     /**
-     * @var SubRealtyType[]
+     * @var SubRealtyType[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="subRealtyTypes", targetEntity="Justimmo\Api\Entity\SubRealtyType", multiple=true)
      */
     private $subRealtyTypes;

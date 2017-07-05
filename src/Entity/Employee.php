@@ -88,19 +88,19 @@ class Employee extends BaseEntity
     private $profilePicture;
 
     /**
-     * @var Attachment
+     * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="pictures", targetEntity="Justimmo\Api\Entity\Attachment", multiple=true)
      */
     private $pictures;
 
     /**
-     * @var EmployeeCategory[]
+     * @var EmployeeCategory[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="employeeCategories", targetEntity="Justimmo\Api\Entity\EmployeeCategory", multiple=true)
      */
     private $employeeCategories;
 
     /**
-     * @var Link[]
+     * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="links", targetEntity="Justimmo\Api\Entity\Link", multiple=true)
      */
     private $links;

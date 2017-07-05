@@ -10,19 +10,19 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 class Region extends BaseEntity
 {
     /**
-     * @var Country[]
+     * @var Country[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="countries", targetEntity="Justimmo\Api\Entity\Country", multiple=true)
      */
     private $countries;
 
     /**
-     * @var FederalState[]
+     * @var FederalState[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="federalStates", targetEntity="Justimmo\Api\Entity\FederalState", multiple=true)
      */
     private $federalStates;
 
     /**
-     * @var ZipCode[]
+     * @var ZipCode[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="zipCodes", targetEntity="Justimmo\Api\Entity\ZipCode", multiple=true)
      */
     private $zipCodes;

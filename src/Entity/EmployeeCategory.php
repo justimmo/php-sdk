@@ -10,7 +10,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 class EmployeeCategory extends BaseEntity
 {
     /**
-     * @var Employee[]
+     * @var Employee[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path=employees, targetEntity="Justimmo\Api\Entity\Employee", multiple=true)
      */
     private $employees;

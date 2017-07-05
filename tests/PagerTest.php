@@ -2,16 +2,16 @@
 
 namespace Justimmo\Api\Tests;
 
-use Justimmo\Api\Pager\ListPager;
+use Justimmo\Api\ResultSet\Pager;
 
-class ListPagerTest extends TestCase
+class PagerTest extends TestCase
 {
 
     protected function getPager()
     {
         $data = include self::FIXTURES_PATH . DIRECTORY_SEPARATOR . 'pager.php';
 
-        return ListPager::create($data, 121, 15, 45);
+        return Pager::create($data, 121, 15, 45);
     }
 
     /**
@@ -48,7 +48,7 @@ class ListPagerTest extends TestCase
 
     public function testPagerOnePage()
     {
-        $pager = ListPager::create([1, 2, 3, 4, 5, 6, 7], 7, 10, 0);
+        $pager = Pager::create([1, 2, 3, 4, 5, 6, 7], 7, 10, 0);
 
         $this->assertFalse($pager->haveToPaginate());
         $this->assertEquals(7, $pager->count());

@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\Reader;
 use Justimmo\Api\Annotation\Column;
 use Justimmo\Api\Annotation\Entity;
 use Justimmo\Api\Annotation\Relation;
+use Justimmo\Api\ResultSet\Collection;
 
 class EntityHydrator
 {
@@ -150,7 +151,7 @@ class EntityHydrator
      * @param array    $values
      * @param Relation $annotation
      *
-     * @return mixed|null
+     * @return mixed|\Justimmo\Api\ResultSet\ResultSet
      */
     protected function getValueFromRelationAnnotation(array $values, Relation $annotation)
     {
@@ -166,7 +167,7 @@ class EntityHydrator
             $entities[] = $this->hydrate($entityRelationValues, $annotation->targetEntity);
         }
 
-        return $entities;
+        return !empty($entities) ? new Collection($entities) : [];
     }
 
     /**
