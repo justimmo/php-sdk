@@ -38,6 +38,12 @@ class MockedEntity
     private $price;
 
     /**
+     * @var float[]
+     * @JUSTIMMO\Column(type="float", path="multiFloat", multiple=true)
+     */
+    private $multiFloat;
+
+    /**
      * @var array
      * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Tests\Hydrator\MockedEntity", path="subEntities", multiple=true)
      */
@@ -109,5 +115,13 @@ class MockedEntity
     public function getComplexPath()
     {
         return $this->complexPath;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMultiFloat()
+    {
+        return $this->multiFloat;
     }
 }

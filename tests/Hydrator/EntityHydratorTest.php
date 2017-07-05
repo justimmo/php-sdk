@@ -28,6 +28,7 @@ class EntityHydratorTest extends TestCase
         $this->assertSame('Test', $entity->getName());
         $this->assertTrue($entity->isActive());
         $this->assertSame(17.0, $entity->getPrice());
+        $this->assertNull($entity->getMultiFloat());
 
         $entity = $this->hydrate([
             'id'     => '15',
@@ -46,11 +47,37 @@ class EntityHydratorTest extends TestCase
         $this->assertSame(17.5, $entity->getPrice());
 
         $entity = $this->hydrate([
-            'id'     => '15',
-            'name'  => ['test', 'test2'],
+            'id'         => 10,
+            'active'     => true,
+            'multiFloat' => 10.3,
+        ]);
+        $this->assertSame([10.3], $entity->getMultiFloat());
+
+        $entity = $this->hydrate([
+            'id'         => 10,
+            'active'     => true,
+            'multiFloat' => [
+                10.3,
+                true,
+                '17.5'
+            ]
+        ]);
+        $this->assertSame([10.3, 1.0, 17.5], $entity->getMultiFloat());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Argument 1 passed to Justimmo\Api\Hydration\EntityHydrator::castValue must be a scalar type.
+     */
+    public function testScalarInvalid()
+    {
+        $entity = $this->hydrate([
+            'id'   => '15',
+            'name' => ['test', 'test2'],
         ]);
         $this->assertNull($entity->getName());
     }
+
 
     public function testRelation()
     {

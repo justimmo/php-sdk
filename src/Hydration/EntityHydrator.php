@@ -161,7 +161,7 @@ class EntityHydrator
         $entities = [];
         foreach ($values as $entityRelationValues) {
             if (!is_array($entityRelationValues)) {
-                throw new \InvalidArgumentException("Argument 1 passed to " . __CLASS__ . "::hydrate must be of the type array.");
+                throw new \InvalidArgumentException("Argument 1 passed to " . __METHOD__ . " must be of the type array.");
             }
             $entities[] = $this->hydrate($entityRelationValues, $annotation->targetEntity);
         }
@@ -179,6 +179,10 @@ class EntityHydrator
      */
     protected function castValue($value, $type)
     {
+        if (is_array($value)) {
+            throw new \InvalidArgumentException('Argument 1 passed to ' . __METHOD__ . ' must be a scalar type.');
+        }
+
         switch ($type) {
             case 'string':
                 return (string) $value;
