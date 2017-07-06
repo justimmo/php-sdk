@@ -205,8 +205,3 @@ class Employee implements Entity
 
 
 }
-/*
-$test = [
-    'links'              => 'getUserLinks',
-    'realties'           => 'getRealties',
-];

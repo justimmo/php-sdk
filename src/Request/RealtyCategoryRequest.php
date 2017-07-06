@@ -2,25 +2,25 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\EmployeeCategory;
+use Justimmo\Api\Entity\RealtyCategory;
 
 /**
- * @method $this filterByWithEmployees($value)
+ * @method $this filterByWithRealties($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
- * @method $this withEmployees()
+ * @method $this withRealties()
  */
-class EmployeeCategoryRequest extends BaseApiRequest
+class RealtyCategoryRequest extends BaseApiRequest
 {
     const SORTS = [
         'name',
     ];
 
     const FILTERS = [
-        'withEmployees'
+        'withRealties'
     ];
 
     const FIELDS = [
-        'employees'
+        'realties'
     ];
 
     /**
@@ -28,7 +28,7 @@ class EmployeeCategoryRequest extends BaseApiRequest
      */
     public function getPathPrefix()
     {
-        return '/employee-categories';
+        return '/realty-categories';
     }
 
     /**
@@ -36,6 +36,6 @@ class EmployeeCategoryRequest extends BaseApiRequest
      */
     public function getEntityClass()
     {
-        return EmployeeCategory::class;
+        return RealtyCategory::class;
     }
 }

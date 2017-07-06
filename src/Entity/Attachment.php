@@ -103,6 +103,14 @@ class Attachment implements Entity
     }
 
     /**
+     * @return int
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
      * @return bool
      */
     public function isTypePicture()

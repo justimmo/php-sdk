@@ -19,6 +19,10 @@ class EmployeeCategoryRequestTest extends RequestTestCase
         'withEmployees'
     ];
 
+    const FIELDS = [
+        'employees'
+    ];
+
     /**
      * @inheritdoc
      */
