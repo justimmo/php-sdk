@@ -5,7 +5,54 @@ namespace Justimmo\Api\Request;
 use Justimmo\Api\Entity\Realty;
 
 /**
+ * @method $this withNumber()
+ * @method $this withType()
+ * @method $this withMarketingType()
+ * @method $this withOccypancy()
+ * @method $this withRealtyType()
+ * @method $this withSubRealtyType()
+ * @method $this withRealtyState()
+ * @method $this withAddress()
+ * @method $this withCoordinates()
+ * @method $this withCoordinatesPrecise()
+ * @method $this withTitle()
+ * @method $this withCoverPicture()
+ * @method $this withLivingArea()
+ * @method $this withFloorArea()
+ * @method $this withFloorAreaFrom()
+ * @method $this withSurfaceArea()
+ * @method $this withRooms()
+ * @method $this withTexts()
+ * @method $this withFeatures()
+ * @method $this withEmployee()
+ * @method $this withRealtyCategories()
+ * @method $this withPrice()
+ * @method $this withPriceFrom()
+ * @method $this withPricePerM2()
+ * @method $this withPricePerM2From()
+ * @method $this withEnergyCertificate()
+ * @method $this withInfrastructureProvision()
+ * @method $this withYearOfConstruction()
+ * @method $this withLastRefurbishment()
+ * @method $this withBuildingStyle()
+ * @method $this withCondition()
+ * @method $this withHouseCondition()
+ * @method $this withProcuredAt()
+ * @method $this withCreatedAt()
+ * @method $this withUpdatedAt()
+ * @method $this withPublishedAt()
+ * @method $this withAvailalbeFrom()
+ * @method $this withMaxRentDuration()
+ * @method $this withIsReference()
+ * @method $this withParent()
+ * @method $this withShowInSearch()
+ * @method $this withAttachments()
+ * @method $this withLinks()
+ *
+ * @method $this sortByNumber($direction = BaseApiRequest::ASC)
  * @method $this sortByPublishedAt($direction = BaseApiRequest::ASC)
+ * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
+ * @method $this sortByUpdatedAt($direction = BaseApiRequest::ASC)
  */
 class RealtyRequest extends BaseApiRequest
 {
@@ -62,7 +109,10 @@ class RealtyRequest extends BaseApiRequest
     ];
 
     const SORTS = [
+        'number',
         'publishedAt',
+        'createdAt',
+        'updatedAt',
     ];
 
     const FILTERS = [
@@ -92,7 +142,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function usePlainTextFormat()
     {
-        return $this->setQueryParameter('textFormat', 'plain');
+        return $this->setQueryParameter('textFormat', self::TEXT_FORMAT_PLAIN);
     }
 
     /**
@@ -102,6 +152,42 @@ class RealtyRequest extends BaseApiRequest
      */
     public function useHtmlTextFormat()
     {
-        return $this->setQueryParameter('textFormat', 'plain');
+        return $this->setQueryParameter('textFormat', self::TEXT_FORMAT_HTML);
+    }
+
+    /**
+     * @return $this
+     */
+    public function withDetailedAreas()
+    {
+        return $this
+            ->withLivingArea()
+            ->withFloorArea()
+            ->withFloorAreaFrom()
+            ->withSurfaceArea()
+            ->with('detailedAreas');
+    }
+
+    /**
+     * @return $this
+     */
+    public function withDetailedRooms()
+    {
+        return $this
+            ->withRooms()
+            ->with('detailedRooms');
+    }
+
+    /**
+     * @return $this
+     */
+    public function withDetailedPrices()
+    {
+        return $this
+            ->withPrice()
+            ->withPriceFrom()
+            ->withPricePerM2()
+            ->withPricePerM2From()
+            ->with('detailedPrices');
     }
 }

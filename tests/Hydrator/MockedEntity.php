@@ -10,6 +10,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
  * Helper entity to evaluate all possible annotation configurations
  *
  * @JUSTIMMO\Entity
+ * @JUSTIMMO\PreHydrate(moveTo={"moveTest"="original"})
  */
 class MockedEntity
 {
@@ -60,6 +61,12 @@ class MockedEntity
      * @JUSTIMMO\Column(type="string", path={"prefix1", "prefix2", "prefix3"})
      */
     private $complexPath;
+
+    /**
+     * @var mixed
+     * @JUSTIMMO\Column(type="original")
+     */
+    private $original;
 
     /**
      * @return int
@@ -118,10 +125,18 @@ class MockedEntity
     }
 
     /**
-     * @return float
+     * @return float[]
      */
     public function getMultiFloat()
     {
         return $this->multiFloat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginal()
+    {
+        return $this->original;
     }
 }

@@ -70,10 +70,10 @@ abstract class BaseApiRequest implements ApiRequest
     public function getQuery()
     {
         if (!empty($this->sorts)) {
-            $this->query['sort'] = implode(',', $this->sorts);
+            $this->query['sort'] = implode(',', array_unique($this->sorts));
         }
         if (!empty($this->fields)) {
-            $this->query['fields'] = implode(',', $this->fields);
+            $this->query['fields'] = implode(',', array_unique($this->fields));
         }
 
         return $this->query;

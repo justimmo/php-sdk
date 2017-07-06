@@ -59,10 +59,21 @@ class EntityHydratorTest extends TestCase
             'multiFloat' => [
                 10.3,
                 true,
-                '17.5'
-            ]
+                '17.5',
+            ],
         ]);
         $this->assertSame([10.3, 1.0, 17.5], $entity->getMultiFloat());
+
+        $entity = $this->hydrate(['original' => 10]);
+        $this->assertSame(10, $entity->getOriginal());
+        $entity = $this->hydrate(['original' => 10.6]);
+        $this->assertSame(10.6, $entity->getOriginal());
+        $entity = $this->hydrate(['original' => 'test']);
+        $this->assertSame('test', $entity->getOriginal());
+        $entity = $this->hydrate(['original' => ['min' => 5, 'max' => 10]]);
+        $this->assertSame(['min' => 5, 'max' => 10], $entity->getOriginal());
+        $entity = $this->hydrate(['original' => [5, 410]]);
+        $this->assertSame([5, 410], $entity->getOriginal());
     }
 
     /**
@@ -184,5 +195,20 @@ class EntityHydratorTest extends TestCase
                 'name' => 'Child 1',
             ],
         ]);
+    }
+
+    public function testPreHydrate()
+    {
+        $entity = $this->hydrate([
+            'id'       => 1,
+            'name'     => 'Test',
+            'moveTest' => 'moved',
+        ]);
+
+        $this->assertEquals(1, $entity->getId());
+        $this->assertEquals('Test', $entity->getName());
+        $this->assertEquals([
+            'moveTest' => 'moved',
+        ], $entity->getOriginal());
     }
 }
