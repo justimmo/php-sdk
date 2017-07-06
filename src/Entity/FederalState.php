@@ -13,6 +13,11 @@ class FederalState implements Entity
 {
     use Identifiable, Nameable;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @var Country
      * @JUSTIMMO\Relation(path="country", targetEntity="Justimmo\Api\Entity\Country")

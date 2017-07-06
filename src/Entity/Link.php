@@ -64,4 +64,9 @@ class Link implements Entity
     {
         return $this->type === self::TYPE_LINK;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getDescription();
+    }
 }

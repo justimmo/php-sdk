@@ -19,6 +19,11 @@ class SubRealtyType implements Entity
      */
     private $realtyType;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @return RealtyType
      */

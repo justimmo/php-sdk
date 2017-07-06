@@ -42,6 +42,11 @@ class ZipCode implements Entity
      */
     private $region;
 
+    public function __toString()
+    {
+        return (string) $this->getZip();
+    }
+
     /**
      * @return Country
      */

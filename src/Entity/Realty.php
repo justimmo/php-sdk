@@ -239,6 +239,11 @@ class Realty implements Entity
      */
     private $parent;
 
+    public function __toString()
+    {
+        return (string) $this->getNumber();
+    }
+
     /**
      * Returns true if the realty is a normal standalone realty
      *

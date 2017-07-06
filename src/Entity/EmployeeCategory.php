@@ -13,6 +13,11 @@ class EmployeeCategory implements Entity
 {
     use Identifiable, Nameable;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @var Employee[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="employees", targetEntity="Justimmo\Api\Entity\Employee", multiple=true)

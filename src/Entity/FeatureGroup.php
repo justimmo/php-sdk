@@ -13,6 +13,11 @@ class FeatureGroup implements Entity
 {
     use Identifiable, Nameable;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @var Feature[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="features", targetEntity="Justimmo\Api\Entity\Feature", multiple=true)

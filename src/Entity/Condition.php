@@ -12,4 +12,9 @@ use Justimmo\Api\Entity\Traits\Nameable;
 class Condition implements Entity
 {
     use Identifiable, Nameable;
+
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

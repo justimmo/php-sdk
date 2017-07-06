@@ -115,6 +115,11 @@ class Employee implements Entity
      */
     private $realtyIds;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @return int
      */
@@ -203,5 +208,52 @@ class Employee implements Entity
         return $this->website;
     }
 
+    /**
+     * @return Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @return Attachment
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @return Attachment[]|\Justimmo\Api\ResultSet\ResultSet
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @return EmployeeCategory[]|\Justimmo\Api\ResultSet\ResultSet
+     */
+    public function getEmployeeCategories()
+    {
+        return $this->employeeCategories;
+    }
+
+    /**
+     * @return Link[]|\Justimmo\Api\ResultSet\ResultSet
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * @return \int[]
+     */
+    public function getRealtyIds()
+    {
+        return $this->realtyIds;
+    }
 
 }

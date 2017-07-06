@@ -31,6 +31,11 @@ class Region implements Entity
      */
     private $zipCodes;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @return Country[]
      */

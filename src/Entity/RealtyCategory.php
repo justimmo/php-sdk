@@ -19,6 +19,11 @@ class RealtyCategory implements Entity
      */
     private $realties;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @return Realty[]
      */

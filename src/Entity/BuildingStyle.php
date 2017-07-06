@@ -12,4 +12,9 @@ use Justimmo\Api\Entity\Traits\Nameable;
 class BuildingStyle implements Entity
 {
     use Identifiable, Nameable;
+
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }
