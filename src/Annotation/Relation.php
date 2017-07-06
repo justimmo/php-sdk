@@ -9,9 +9,9 @@ namespace Justimmo\Api\Annotation;
 class Relation
 {
     /**
-     * @var array<string>
+     * Defaults to property name if not set
      *
-     * @Required
+     * @var array<string>
      */
     public $path;
 

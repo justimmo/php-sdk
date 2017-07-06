@@ -5,6 +5,7 @@ namespace Justimmo\Api\Hydration;
 use Doctrine\Common\Annotations\Reader;
 use Justimmo\Api\Annotation\Column;
 use Justimmo\Api\Annotation\Entity;
+use Justimmo\Api\Annotation\PreHydrate;
 use Justimmo\Api\Annotation\Relation;
 use Justimmo\Api\ResultSet\Collection;
 
@@ -19,11 +20,6 @@ class EntityHydrator
      * @var \ReflectionClass[]
      */
     protected $reflectionClasses = [];
-
-    /**
-     * @var array
-     */
-    protected $instancePool = [];
 
     /**
      * @param Reader $reader
@@ -43,13 +39,11 @@ class EntityHydrator
      */
     public function hydrate(array $values, $class)
     {
-        $useInstancePool = !empty($values['id']);
-
-        if ($useInstancePool && !empty($this->instancePool[$class][$values['id']])) {
-            return $this->instancePool[$class][$values['id']];
+        $reflClass = $this->getReflectionClass($class);
+        if ($preHydrate = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\PreHydrate')) {
+            $values = $this->preHydrate($values, $preHydrate);
         }
 
-        $reflClass = $this->getReflectionClass($class);
         /** @var \Justimmo\Api\Entity\Entity $instance */
         $instance  = $reflClass->newInstance();
 
@@ -61,11 +55,33 @@ class EntityHydrator
             }
         }
 
-        if (!$useInstancePool) {
-            return $instance;
+        return $instance;
+    }
+
+    /**
+     * Iterates over values and possibly changes them depending on annotations
+     *
+     * @param array      $values
+     * @param PreHydrate $annotation
+     *
+     * @return array
+     */
+    protected function preHydrate(array $values, PreHydrate $annotation)
+    {
+        if (empty($annotation->moveTo)) {
+            return $values;
         }
 
-        return $this->instancePool[$class][$values['id']] = $instance;
+        foreach ($annotation->moveTo as $moveable => $moveTo) {
+            if (!array_key_exists($moveable,  $values)) {
+                continue;
+            }
+
+            $values[$moveTo][$moveable] = $values[$moveable];
+            unset($values[$moveable]);
+        }
+
+        return $values;
     }
 
     /**
@@ -85,7 +101,8 @@ class EntityHydrator
             return null;
         }
 
-        $value = $this->extractValueFromPath($values, $annotation->path);
+        $path = !empty($annotation->path) ? $annotation->path : [ $reflProperty->getName() ];
+        $value = $this->extractValueFromPath($values, $path);
         if ($value === null) {
             return null;
         }
@@ -180,11 +197,17 @@ class EntityHydrator
      */
     protected function castValue($value, $type)
     {
+        if ($type == 'original') {
+            return $value;
+        }
+
         if (is_array($value)) {
             throw new \InvalidArgumentException('Argument 1 passed to ' . __METHOD__ . ' must be a scalar type.');
         }
 
         switch ($type) {
+            case 'date':
+                return new \DateTime($value);
             case 'string':
                 return (string) $value;
             case 'boolean':
@@ -212,14 +235,11 @@ class EntityHydrator
         }
 
         $reflClass   = new \ReflectionClass($class);
-        $annotations = $this->reader->getClassAnnotations($reflClass);
-
-        foreach ($annotations as $annotation) {
-            if ($annotation instanceof Entity) {
-                return $this->reflectionClasses[$class] = $reflClass;
-            }
+        $annotation = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\Entity');
+        if (empty($annotation)) {
+            throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity.');
         }
 
-        throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity.');
+        return $this->reflectionClasses[$class] = $reflClass;
     }
 }

@@ -9,16 +9,16 @@ namespace Justimmo\Api\Annotation;
 class Column
 {
     /**
-     * @var array<string>
+     * Defaults to property name if not set
      *
-     * @Required
+     * @var array<string>
      */
     public $path;
 
     /**
      * @var string
      *
-     * @Enum({"string", "integer", "float", "boolean"})
+     * @Enum({"string", "integer", "float", "boolean", "date", "original"})
      */
     public $type = 'string';
 
