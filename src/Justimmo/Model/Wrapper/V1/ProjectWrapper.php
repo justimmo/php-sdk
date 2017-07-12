@@ -11,21 +11,43 @@ class ProjectWrapper extends AbstractWrapper
 {
     protected $simpleMapping = array(
         'id',
+        'nummer',
         'titel',
         'beschreibung',
         'dreizeiler',
+        'land',
+        'bundesland',
         'plz',
         'ort',
         'strasse',
         'hausnummer',
+        'naehe',
+        'anzahl_etagen',
+        'anzahl_dachgeschosse',
+        'bauart_id',
+        'baujahr',
+        'laermpegel',
+        'beziehbar',
+        'ea_gueltig_bis',
+        'ea_hwb',
+        'ea_hwb_klasse',
+        'ea_fgee',
+        'ea_fgee_klasse',
+        'zustand',
+        'haus_zustand',
+        'lagebewertung',
+        'zustandsbewertung',
+        'nutzungsart',
         'status',
         'sonstige_angaben',
         'freitext_1',
+        'freitext_2',
         'lage',
         'referenz',
         'url',
         'fertigstellung',
         'verkaufsstart',
+        'erstellt_am',
     );
 
     public function transformSingle($data)
@@ -38,6 +60,16 @@ class ProjectWrapper extends AbstractWrapper
 
         $project = new Project();
         $this->map($this->simpleMapping, $xml, $project);
+
+        if (isset($xml->nutzungsart)) {
+            $project->setOccupancy(filter_var_array($this->attributesToArray($xml->nutzungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
+        }
+
+        if (isset($xml->status) && $xml->status->attributes()->semantic) {
+            $string = (string)$xml->status->attributes()->semantic;
+
+            $project->setProjectStateSemantic($string);
+        }
 
         if (isset($xml->erstes_bild) && (((string) $xml->erstes_bild) != '')) {
             $project->addAttachment(new Attachment((string) $xml->erstes_bild));

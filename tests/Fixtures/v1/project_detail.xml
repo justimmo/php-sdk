@@ -2,6 +2,7 @@
 <justimmo>
     <projekt>
         <id>51</id>
+        <nummer>3</nummer>
         <titel>Neubau mitten im dritten</titel>
         <beschreibung>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices consequat odio
             quis dapibus. Sed viverra diam lobortis erat congue auctor. Integer lectus urna, pharetra a aliquam id,
@@ -31,19 +32,40 @@
             at blandit est tempor vestibulum. Pellentesque rutrum feugiat lorem, ut ultrices eros gravida eget. Donec
             laoreet tempor tincidunt.&lt;/p&gt;</beschreibung>
         <dreizeiler></dreizeiler>
+        <land>AUT</land>
+        <bundesland>Wien</bundesland>
         <plz>1030</plz>
         <ort>Wien</ort>
         <strasse>Kegelgasse</strasse>
         <hausnummer>16</hausnummer>
+        <naehe>Nähe Test</naehe>
         <in_bau>0</in_bau>
+        <anzahl_etagen>5</anzahl_etagen>
+        <anzahl_dachgeschosse>1</anzahl_dachgeschosse>
+        <bauart_id>2</bauart_id>
+        <baujahr>2017</baujahr>
+        <laermpegel>absolute Ruhelage</laermpegel>
+        <beziehbar>Anfang 2018</beziehbar>
         <sonstige_angaben>Sonstige Angaben Test</sonstige_angaben>
         <lage>Sonnig am Berg</lage>
         <freitext_1>Freitext 1 Test</freitext_1>
-        <status>building</status>
+        <freitext_2>Freitext 2 Test</freitext_2>
+        <status semantic="Im Bau">building</status>
+        <ea_gueltig_bis>2027-06-01</ea_gueltig_bis>
+        <ea_hwb>123</ea_hwb>
+        <ea_hwb_klasse>A++</ea_hwb_klasse>
+        <ea_fgee>4.56</ea_fgee>
+        <ea_fgee_klasse>A+</ea_fgee_klasse>
+        <zustand>Erstbezug</zustand>
+        <haus_zustand>Erstbezug</haus_zustand>
+        <lagebewertung>sehr gut</lagebewertung>
+        <zustandsbewertung>gut</zustandsbewertung>
+        <nutzungsart wohnen="1" gewerbe="1" anlage="0" />
         <referenz>0</referenz>
         <url>http://www.justimmo.at</url>
         <fertigstellung>2017-01-15</fertigstellung>
         <verkaufsstart>2017-02-01</verkaufsstart>
+        <erstellt_am>2017-06-01 08:00:00</erstellt_am>
         <immobilien>
             <immobilie>
                 <id>195439</id>
