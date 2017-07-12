@@ -76,27 +76,58 @@ class ProjectWrapperTest extends TestCase
         $entry = $wrapper->transformSingle($this->getFixtures('v1/project_detail.xml'));
 
         $this->assertEquals(51, $entry->getId());
+        $this->assertEquals(3, $entry->getProjectNumber());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
         $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertEquals('AUT', $entry->getCountry());
+        $this->assertEquals('Wien', $entry->getFederalState());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals('Kegelgasse', $entry->getStreet());
         $this->assertEquals(16, $entry->getHouseNumber());
 
+        $this->assertEquals(5, $entry->getTierCount());
+        $this->assertEquals(1, $entry->getAtticCount());
+        $this->assertEquals(2, $entry->getStyleOfBuildingId());
+        $this->assertEquals(2017, $entry->getYearOfConstruction());
+        $this->assertEquals('absolute Ruhelage', $entry->getNoiseLevel());
+        $this->assertEquals('Anfang 2018', $entry->getAvailability());
+        $this->assertEquals('Erstbezug', $entry->getCondition());
+        $this->assertEquals('Erstbezug', $entry->getHouseCondition());
+        $this->assertEquals('sehr gut', $entry->getAreaAssessment());
+        $this->assertEquals('gut', $entry->getPropertyAssessment());
+        $this->assertEquals(array(
+            'wohnen'  => true,
+            'gewerbe' => true,
+            'anlage'  => false,
+        ), $entry->getOccupancy());
+
         $this->assertTrue($entry->getUnderConstruction());
         $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
+        $this->assertEquals('Im Bau', $entry->getProjectStateSemantic());
         $this->assertEquals('Sonstige Angaben Test', $entry->getMiscellaneous());
         $this->assertEquals('Sonnig am Berg', $entry->getLocality());
         $this->assertEquals('Freitext 1 Test', $entry->getFreetext1());
+        $this->assertEquals('Freitext 2 Test', $entry->getFreetext2());
+        $this->assertEquals('Nähe Test', $entry->getProximity());
 
         $this->assertEquals(20, count($entry->getAttachments()));
         $this->assertEquals(10, $entry->countRealties());
 
+        $this->assertInstanceOf('\Datetime', $entry->getEpcValidUntil(null));
+        $this->assertEquals('2027-06-01', $entry->getEpcValidUntil());
+        $this->assertEquals('123', $entry->getEpcHeatingDemand());
+        $this->assertEquals('A++', $entry->getEpcHeatingDemandClass());
+        $this->assertEquals('4.56', $entry->getEpcEnergyEfficiencyFactor());
+        $this->assertEquals('A+', $entry->getEpcEnergyEfficiencyFactorClass());
+
         $this->assertEquals('http://www.justimmo.at', $entry->getUrl());
         $this->assertInstanceOf('\Datetime', $entry->getCompletionDate(null));
         $this->assertInstanceOf('\Datetime', $entry->getSaleStart(null));
+        $this->assertInstanceOf('\Datetime', $entry->getCreatedAt(null));
         $this->assertEquals('2017-01-15', $entry->getCompletionDate());
         $this->assertEquals('2017-02-01', $entry->getSaleStart());
+        $this->assertEquals('2017-06-01 08:00:00', $entry->getCreatedAt());
 
         $this->assertEquals(16, count($entry->getPictures(null)));
         $this->assertEquals(18, count($entry->getPictures()));
