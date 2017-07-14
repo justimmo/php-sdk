@@ -80,10 +80,10 @@ abstract class AbstractWrapper implements WrapperInterface
     }
 
     /**
-     * @param \SimpleXMLElement      $xml
-     * @param null                   $type
-     *
+     * @param \SimpleXMLElement                                                       $xml
      * @param \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project $attachmentAware
+     * @param null                                                                    $type
+     * @param null                                                                    $forceGroup
      *
      * @internal param array $data
      */

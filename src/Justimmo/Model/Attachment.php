@@ -20,7 +20,7 @@ class Attachment
 
     protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
 
-    protected static $linkGroups = array('LINKS', 'FILMLINK');
+    protected static $linkGroups = array('LINKS', 'FILMLINK', 'RUNDGANG');
 
     public function __construct($path, $type = null, $group = null)
     {
