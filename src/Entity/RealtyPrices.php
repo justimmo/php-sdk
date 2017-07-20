@@ -112,6 +112,18 @@ class RealtyPrices implements Entity
     private $financialContribution;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $feeChargingText;
+
+    /**
+     * @var Price
+     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Price")
+     */
+    private $feeChargingValue;
+
+    /**
      * @var float
      * @JUSTIMMO\Column(type="float")
      */
@@ -365,6 +377,22 @@ class RealtyPrices implements Entity
     public function getFinancialContribution()
     {
         return $this->financialContribution;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFeeChargingText()
+    {
+        return $this->feeChargingText;
+    }
+
+    /**
+     * @return Price
+     */
+    public function getFeeChargingValue()
+    {
+        return $this->feeChargingValue;
     }
 
     /**
