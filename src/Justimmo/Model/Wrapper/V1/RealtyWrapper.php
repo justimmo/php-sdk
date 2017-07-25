@@ -337,10 +337,6 @@ class RealtyWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->videos->video, $objekt);
         }
 
-        if (isset($xml->links) && isset($xml->links->link)) {
-            $this->mapAttachmentGroup($xml->links->link, $objekt, 'link');
-        }
-
         if (isset($xml->flaechen)) {
             $this->map($this->flaechenMapping, $xml->flaechen, $objekt);
             $objekt->setSurfaceArea($this->cast($xml->flaechen->grundstuecksflaeche));
