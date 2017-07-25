@@ -312,6 +312,13 @@
                     <s220x155>http://files.justimmo.at/public/pic/s220x155/ANl3XFL2ar.jpg</s220x155>
                 </daten>
             </anhang>
+            <anhang location="REMOTE" gruppe="LINKS">
+                <anhangtitel>JUSTIMMO</anhangtitel>
+                <format/>
+                <daten>
+                    <pfad>http://www.justimmo.at</pfad>
+                </daten>
+            </anhang>
         </anhaenge>
         <dokumente/>
         <videos/>
