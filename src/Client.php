@@ -7,6 +7,7 @@ use Justimmo\Api\Exception\ClientException;
 use Justimmo\Api\Exception\RequestException as ApiRequestException;
 use Justimmo\Api\Authorization\AccessTokenProvider;
 use Justimmo\Api\Hydration\EntityHydrator;
+use Justimmo\Api\Request\EntityRequest;
 use Justimmo\Api\ResultSet\Pager;
 use Justimmo\Api\Request\ApiRequest;
 use Psr\Http\Message\ResponseInterface;
@@ -49,18 +50,30 @@ class Client
      *
      * @param ApiRequest $request
      *
-     * @return Pager|\Justimmo\Api\Entity\Entity|\Justimmo\Api\Entity\Entity[]
+     * @return Pager|\Justimmo\Api\Entity\Entity|\Justimmo\Api\Entity\Entity[]|ResponseInterface
      */
     public function request(ApiRequest $request)
     {
-        $query = array_merge(($this->guzzle->getConfig('query') ?: []), $request->getQuery());
-
-        try {
-            $response = $this->executeRequest($request->getMethod(), $this->buildUrl($request->getPath()), $query);
-        } catch (\Exception $e) {
-            throw ApiRequestException::createFromException($e);
+        if ($request instanceof EntityRequest) {
+            return $this->buildEntities(
+                $this->getResponse($request),
+                $request->getEntityClass()
+            );
         }
 
+        return $this->getResponse($request);
+    }
+
+    /**
+     * Builds entities from a response
+     *
+     * @param ResponseInterface $response
+     * @param string            $entityClass
+     *
+     * @return array|Entity\Entity|static
+     */
+    protected function buildEntities(ResponseInterface $response, $entityClass)
+    {
         $return = $this->decodeResponse($response);
         if (count($return) === 0) {
             return [];
@@ -69,7 +82,7 @@ class Client
         if (count($return) === 2 && array_key_exists('count', $return) && array_key_exists('results', $return)) {
             $entities = [];
             foreach ($return['results'] as $result) {
-                $entities[] = $this->hydrator->hydrate($result, $request->getEntityClass());
+                $entities[] = $this->hydrator->hydrate($result, $entityClass);
             }
 
             return Pager::create(
@@ -80,7 +93,7 @@ class Client
             );
         }
 
-        return $this->hydrator->hydrate($return, $request->getEntityClass());
+        return $this->hydrator->hydrate($return, $entityClass);
     }
 
     /**
@@ -111,29 +124,51 @@ class Client
      * @param string $method
      * @param string $url
      * @param array  $query
+     * @param array  $options
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function executeRequest($method, $url, $query)
+    protected function executeRequest($method, $url, $query, array $options = [])
     {
         $triesLeft = 2;
         $token     = $this->accessTokenProvider->getAccessToken();
 
+        $options = array_merge($options, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+            ],
+            'query'   => $query,
+        ]);
+
         while ($triesLeft > 0) {
             $triesLeft--;
             try {
-                return $this->guzzle->request($method, $url, [
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $token,
-                    ],
-                    'query'   => $query,
-                ]);
+                return $this->guzzle->request($method, $url, $options);
             } catch (GuzzleRequestException $e) {
                 if ($triesLeft <= 0 || $e->getCode() != 401) {
                     throw $e;
                 }
                 $token = $this->accessTokenProvider->refreshAccessToken();
             }
+        }
+    }
+
+    /**
+     * Returns a response for a request or throws an exception
+     *
+     * @param ApiRequest $request
+     *
+     * @return ResponseInterface
+     * @throws ApiRequestException
+     */
+    protected function getResponse(ApiRequest $request)
+    {
+        $query = array_merge(($this->guzzle->getConfig('query') ?: []), $request->getQuery());
+
+        try {
+            return $this->executeRequest($request->getMethod(), $this->buildUrl($request->getPath()), $query, $request->getGuzzleOptions());
+        } catch (\Exception $e) {
+            throw ApiRequestException::createFromException($e);
         }
     }
 

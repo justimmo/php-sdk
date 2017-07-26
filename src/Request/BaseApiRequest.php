@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-abstract class BaseApiRequest implements ApiRequest
+abstract class BaseApiRequest implements EntityRequest
 {
     /**
      * @const string[] Available filters for current api request class
@@ -85,6 +85,14 @@ abstract class BaseApiRequest implements ApiRequest
     public function getPath()
     {
         return $this->getPathPrefix() . $this->path;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getGuzzleOptions()
+    {
+        return [];
     }
 
     /**
