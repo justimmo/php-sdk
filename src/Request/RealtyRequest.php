@@ -41,7 +41,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withCreatedAt()
  * @method $this withUpdatedAt()
  * @method $this withPublishedAt()
- * @method $this withAvailalbeFrom()
+ * @method $this withAvailableFrom()
  * @method $this withMaxRentDuration()
  * @method $this withIsReference()
  * @method $this withParent()
@@ -49,7 +49,34 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withAttachments()
  * @method $this withLinks()
  *
+ * @method $this filterByType($value)
+ * @method $this filterByMarketingType($value)
+ * @method $this filterByRealtyType($value)
+ * @method $this filterBySubRealtyType($value)
+ * @method $this filterByBuildingStyle($value)
+ * @method $this filterByRealtyCategory($value)
+ * @method $this filterByZipCode($value)
+ * @method $this filterByRooms($value)
+ * @method $this filterByNumber($value)
+ * @method $this filterByLivingArea($value)
+ * @method $this filterBySurfaceArea($value)
+ * @method $this filterByFloorArea($value)
+ * @method $this filterByOverallArea($value)
+ * @method $this filterByCountry($value)
+ * @method $this filterByFederalState($value)
+ * @method $this filterByRealtyState($value)
+ * @method $this filterByParent($value)
+ * @method $this filterByPrice($value)
+ * @method $this filterByPriceNet($value)
+ * @method $this filterByPublishedAt($value)
+ * @method $this filterByCreatedAt($value)
+ * @method $this filterByUpdatedAt($value)
+ *
+ * @method $this sortByTitle($direction = BaseApiRequest::ASC)
  * @method $this sortByNumber($direction = BaseApiRequest::ASC)
+ * @method $this sortByPrice($direction = BaseApiRequest::ASC)
+ * @method $this sortByArea($direction = BaseApiRequest::ASC)
+ * @method $this sortByZipCode($direction = BaseApiRequest::ASC)
  * @method $this sortByPublishedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByUpdatedAt($direction = BaseApiRequest::ASC)
@@ -109,14 +136,39 @@ class RealtyRequest extends BaseApiRequest
     ];
 
     const SORTS = [
+        'title',
         'number',
+        'price',
+        'area',
+        'zipCode',
         'publishedAt',
         'createdAt',
         'updatedAt',
     ];
 
     const FILTERS = [
-
+        'marketingType',
+        'type',
+        'realtyType',
+        'subRealtyType',
+        'buildingStyle',
+        'realtyCategory',
+        'zipCode',
+        'rooms',
+        'number',
+        'livingArea',
+        'floorArea',
+        'surfaceArea',
+        'overallArea',
+        'country',
+        'federalState',
+        'realtyState',
+        'parent',
+        'price',
+        'priceNet',
+        'publishedAt',
+        'createdAt',
+        'updatedAt',
     ];
 
     /**
@@ -134,6 +186,70 @@ class RealtyRequest extends BaseApiRequest
     {
         return Realty::class;
     }
+
+    /**
+     * Filters buyable realties
+     * Shortcut for $this->filterByMarketingType(Realty::MARKETING_TYPE_BUY)
+     *
+     * @return $this
+     */
+    public function buyable()
+    {
+        return $this->filterByMarketingType(Realty::MARKETING_TYPE_BUY);
+    }
+
+    /**
+     * Filters rentable realties
+     * Shortcut for $this->filterByMarketingType(Realty::MARKETING_TYPE_RENT)
+     *
+     * @return $this
+     */
+    public function rentable()
+    {
+        return $this->filterByMarketingType(Realty::MARKETING_TYPE_RENT);
+    }
+
+    /**
+     * Filters leasable realties
+     * Shortcut for $this->filterByMarketingType(Realty::MARKETING_TYPE_LEASE)
+     *
+     * @return $this
+     */
+    public function leasable()
+    {
+        return $this->filterByMarketingType(Realty::MARKETING_TYPE_LEASE);
+    }
+
+    /**
+     * Shortcut for $this->filterByType(Realty::TYPE_SIMPLE);
+     *
+     * @return $this
+     */
+    public function simpleTypes()
+    {
+        return $this->filterByType(Realty::TYPE_SIMPLE);
+    }
+
+    /**
+     * Shortcut for $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+     *
+     * @return $this
+     */
+    public function commercialProjects()
+    {
+        return $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+    }
+
+    /**
+     * Shortcut for $this->filterByType(Realty::TYPE_AREA);
+     *
+     * @return $this
+     */
+    public function areas()
+    {
+        return $this->filterByType(Realty::TYPE_AREA);
+    }
+
 
     /**
      * Return plain texts for wysiwyg fields

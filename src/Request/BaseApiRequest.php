@@ -102,7 +102,8 @@ abstract class BaseApiRequest implements ApiRequest
     }
 
     /**
-     * Adds a filter query parameter
+     * Sets a filter query parameter
+     * Overrides the existing parameter if already exists
      *
      * @param string $field
      * @param mixed  $value
@@ -114,6 +115,34 @@ abstract class BaseApiRequest implements ApiRequest
         $this->query['f'][$field] = $value;
 
         return $this;
+    }
+
+    /**
+     * Adds a filter query parameter
+     * Merges the existing parameter if already exists
+     *
+     * @param string $field
+     * @param mixed  $value
+     *
+     * @return $this
+     */
+    protected function addFilterParameter($field, $value)
+    {
+        if (empty($this->query['f']) || !array_key_exists($field, $this->query['f'])) {
+            return $this->filterBy($field, $value);
+        }
+
+        $originalValue = is_array($this->query['f'][$field])
+            ? $this->query['f'][$field]
+            : [$this->query['f'][$field]];
+
+        if (!is_array($value)) {
+            $value = [ $value ];
+        }
+
+        $values = array_unique(array_merge($originalValue, $value));
+
+        return $this->filterBy($field, $values);
     }
 
     /**

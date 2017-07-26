@@ -31,9 +31,20 @@ class Realty implements Entity
     const MARKETING_TYPE_BUY   = 'buy';
     const MARKETING_TYPE_LEASE = 'lease';
 
-    const TYPE_SIMPLE             = 'simple';
+    /**
+     * Describes standalone realties without affiliation to any project
+     */
+    const TYPE_SIMPLE = 'simple';
+
+    /**
+     * Describes a commercial project with multiple sub areas
+     */
     const TYPE_COMMERCIAL_PROJECT = 'commercial';
-    const TYPE_AREA               = 'area';
+
+    /**
+     * Describes an area (possibly splittable) belonging to a commercial project
+     */
+    const TYPE_AREA = 'area';
 
     /**
      * @var string
