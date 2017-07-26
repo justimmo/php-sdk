@@ -14,6 +14,7 @@ class Link implements Entity
 
     const TYPE_LINK       = 'links';
     const TYPE_MOVIE_LINK = 'filmlink';
+    const TYPE_TOUR_LINK  = 'rundgang';
 
     /**
      * @var string
@@ -47,6 +48,14 @@ class Link implements Entity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTourLink()
+    {
+        return $this->type === self::TYPE_TOUR_LINK;
     }
 
     /**
