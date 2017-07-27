@@ -10,6 +10,7 @@ use Justimmo\Api\Hydration\EntityHydrator;
 use Justimmo\Api\Request\EntityRequest;
 use Justimmo\Api\ResultSet\Pager;
 use Justimmo\Api\Request\ApiRequest;
+use Justimmo\Api\ResultSet\ResultSet;
 use Psr\Http\Message\ResponseInterface;
 
 class Client
@@ -55,9 +56,12 @@ class Client
     public function request(ApiRequest $request)
     {
         if ($request instanceof EntityRequest) {
+            $query = $request->getQuery();
             return $this->buildEntities(
                 $this->getResponse($request),
-                $request->getEntityClass()
+                $request->getEntityClass(),
+                !empty($query['limit']) ? $query['limit'] : null,
+                !empty($query['offset']) ? $query['offset'] : null
             );
         }
 
@@ -69,10 +73,12 @@ class Client
      *
      * @param ResponseInterface $response
      * @param string            $entityClass
+     * @param int               $limit
+     * @param int               $offset
      *
-     * @return array|Entity\Entity|static
+     * @return array|Entity\Entity|ResultSet
      */
-    protected function buildEntities(ResponseInterface $response, $entityClass)
+    protected function buildEntities(ResponseInterface $response, $entityClass, $limit = null, $offset = null)
     {
         $return = $this->decodeResponse($response);
         if (count($return) === 0) {
@@ -88,8 +94,8 @@ class Client
             return Pager::create(
                 $entities,
                 $return['count'],
-                !empty($query['limit']) ? $query['limit'] : null,
-                !empty($query['offset']) ? $query['offset'] : null
+                $limit,
+                $offset
             );
         }
 
