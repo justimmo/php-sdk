@@ -9,6 +9,10 @@ use Justimmo\Api\Annotation\PreHydrate;
 use Justimmo\Api\Annotation\Relation;
 use Justimmo\Api\ResultSet\Collection;
 
+/**
+ * Class EntityHydrator
+ * @todo - rework internal caching
+ */
 class EntityHydrator
 {
     /**
@@ -29,7 +33,7 @@ class EntityHydrator
     /**
      * @var array
      */
-    protected $propertyAnnotations = [];
+    protected $reflectionProperties = [];
 
     /**
      * @var array
@@ -37,11 +41,11 @@ class EntityHydrator
     protected $classAnnotations = [];
 
     /**
-     * @param Reader     $reader
+     * @param Reader $reader
      */
     public function __construct(Reader $reader)
     {
-        $this->reader       = $reader;
+        $this->reader = $reader;
     }
 
     /**
@@ -82,12 +86,23 @@ class EntityHydrator
         /** @var \Justimmo\Api\Entity\Entity $instance */
         $instance = $reflClass->newInstance();
 
-        foreach ($reflClass->getProperties() as $reflProperty) {
-            $value = $this->getValue($values, $class, $reflProperty->getName());
-            if ($value !== null) {
-                $reflProperty->setAccessible(true);
-                $reflProperty->setValue($instance, $value);
+        foreach ($values as $path => $value) {
+            if (empty($this->reflectionProperties[$class][$path])) {
+                continue;
             }
+
+            /** @var Column|Relation $annotation */
+            $annotation = $this->reflectionProperties[$class][$path]['annotation'];
+            /** @var \ReflectionProperty $reflProperty */
+            $reflProperty = $this->reflectionProperties[$class][$path]['property'];
+
+            $castedValue = $annotation instanceof Column
+                ? $this->getValueFromColumnAnnotation($value, $annotation)
+                : $this->getValueFromRelationAnnotation($value, $annotation);
+
+            $reflProperty->setAccessible(true);
+            $reflProperty->setValue($instance, $castedValue);
+
         }
 
         if ($cacheable) {
@@ -118,60 +133,6 @@ class EntityHydrator
 
             $values[$moveTo][$moveable] = $values[$moveable];
             unset($values[$moveable]);
-        }
-
-        return $values;
-    }
-
-    /**
-     * @param array  $values
-     * @param string $property
-     * @param string $class
-     *
-     * @return mixed|null
-     */
-    protected function getValue(array $values, $class, $property)
-    {
-        /** @var Column|Relation $annotation */
-        if (!empty($this->propertyAnnotations[$class][$property][Column::class])) {
-            $annotation = $this->propertyAnnotations[$class][$property][Column::class];
-        } elseif (!empty($this->propertyAnnotations[$class][$property][Relation::class])) {
-            $annotation = $this->propertyAnnotations[$class][$property][Relation::class];
-        } else {
-            return null;
-        }
-
-        $path  = !empty($annotation->path) ? $annotation->path : $property;
-        if (!array_key_exists($path, $values)) {
-            return null;
-        }
-
-
-        return $annotation instanceof Column
-            ? $this->getValueFromColumnAnnotation($values[$path], $annotation)
-            : $this->getValueFromRelationAnnotation($values[$path], $annotation);
-    }
-
-    /**
-     * Recursively fetch a value from a multidimensional array depending on a given path
-     *
-     * @param array $values
-     * @param array $path
-     *
-     * @return mixed
-     */
-    protected function extractValueFromPath(array $values, array $path)
-    {
-        if (empty($path)) {
-            return null;
-        }
-
-        while ($key = array_shift($path)) {
-            if (!array_key_exists($key, $values)) {
-                return null;
-            }
-
-            $values = $values[$key];
         }
 
         return $values;
@@ -289,9 +250,19 @@ class EntityHydrator
             $this->classAnnotations[$reflClass->getName()][get_class($annotation)] = $annotation;
         }
 
+        $class = $reflClass->getName();
         foreach ($reflClass->getProperties() as $reflProperty) {
+            $property = $reflProperty->getName();
+
             foreach ($this->reader->getPropertyAnnotations($reflProperty) as $annotation) {
-                $this->propertyAnnotations[$reflClass->getName()][$reflProperty->getName()][get_class($annotation)] = $annotation;
+                if ($annotation instanceof Column || $annotation instanceof Relation) {
+                    $path = $annotation->path ?: $property;
+
+                    $this->reflectionProperties[$class][$path] = [
+                        'property'   => $reflProperty,
+                        'annotation' => $annotation,
+                    ];
+                }
             }
         }
 
