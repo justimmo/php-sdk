@@ -57,12 +57,6 @@ class MockedEntity
     private $parentEntity;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column(type="string", path={"prefix1", "prefix2", "prefix3"})
-     */
-    private $complexPath;
-
-    /**
      * @var mixed
      * @JUSTIMMO\Column(type="original")
      */
@@ -114,14 +108,6 @@ class MockedEntity
     public function getParentEntity()
     {
         return $this->parentEntity;
-    }
-
-    /**
-     * @return string
-     */
-    public function getComplexPath()
-    {
-        return $this->complexPath;
     }
 
     /**

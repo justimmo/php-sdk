@@ -11,7 +11,7 @@ class Relation
     /**
      * Defaults to property name if not set
      *
-     * @var array<string>
+     * @var string
      */
     public $path;
 

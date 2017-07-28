@@ -6,7 +6,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
- * @JUSTIMMO\Entity()
+ * @JUSTIMMO\Entity(cacheKey="id")
  */
 class Link implements Entity
 {

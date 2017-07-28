@@ -7,7 +7,7 @@ use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
- * @JUSTIMMO\Entity()
+ * @JUSTIMMO\Entity(cacheKey="id")
  */
 class RealtyState implements Entity
 {

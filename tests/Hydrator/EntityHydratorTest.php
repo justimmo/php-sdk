@@ -145,43 +145,6 @@ class EntityHydratorTest extends TestCase
         $this->assertNull($entity->getParentEntity()->getParentEntity()->getParentEntity());
     }
 
-    public function testComplexPath()
-    {
-        $entity = $this->hydrate([
-            'id'      => 1,
-            'name'    => 'Test',
-            'prefix1' => [
-                'prefix11' => 'Hurra',
-                'prefix2'  => [
-                    'prefix3' => 'ComplexTestValue',
-                ],
-            ],
-        ]);
-        $this->assertSame('Test', $entity->getName());
-        $this->assertSame('ComplexTestValue', $entity->getComplexPath());
-
-        $entity = $this->hydrate([
-            'id'      => 1,
-            'name'    => 'Test',
-            'prefix1' => [
-                'prefix11' => 'Hurra',
-                'prefix2'  => [
-                    'prefix5' => 'ComplexTestValue',
-                ],
-            ],
-        ]);
-        $this->assertNull($entity->getComplexPath());
-
-        $entity = $this->hydrate([
-            'id'      => 1,
-            'name'    => 'Test',
-            'prefix1' => [
-                'prefix3' => 'Hurra',
-            ],
-        ]);
-        $this->assertNull($entity->getComplexPath());
-    }
-
     /**
      * @expectedException \InvalidArgumentException
      */

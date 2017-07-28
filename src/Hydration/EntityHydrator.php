@@ -12,6 +12,11 @@ use Justimmo\Api\ResultSet\Collection;
 class EntityHydrator
 {
     /**
+     * @var array
+     */
+    protected $instancePool = [];
+
+    /**
      * @var Reader
      */
     protected $reader;
@@ -22,11 +27,21 @@ class EntityHydrator
     protected $reflectionClasses = [];
 
     /**
-     * @param Reader $reader
+     * @var array
+     */
+    protected $propertyAnnotations = [];
+
+    /**
+     * @var array
+     */
+    protected $classAnnotations = [];
+
+    /**
+     * @param Reader     $reader
      */
     public function __construct(Reader $reader)
     {
-        $this->reader = $reader;
+        $this->reader       = $reader;
     }
 
     /**
@@ -40,19 +55,43 @@ class EntityHydrator
     public function hydrate(array $values, $class)
     {
         $reflClass = $this->getReflectionClass($class);
-        if ($preHydrate = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\PreHydrate')) {
-            $values = $this->preHydrate($values, $preHydrate);
+        $class     = $reflClass->getName();
+        $cacheable = false;
+        $cacheKey  = null;
+
+        if (!empty($this->classAnnotations[$class][Entity::class])) {
+            /** @var Entity $annotation */
+            $annotation = $this->classAnnotations[$class][Entity::class];
+
+            if (!empty($annotation->cacheKey)
+                && !empty($values[$annotation->cacheKey])
+            ) {
+                $cacheable = true;
+                $cacheKey  = $class . ':' . $values[$annotation->cacheKey];
+            }
+        }
+
+        if ($cacheable && array_key_exists($cacheKey, $this->instancePool)) {
+            return $this->instancePool[$cacheKey];
+        }
+
+        if (!empty($this->classAnnotations[$class][PreHydrate::class])) {
+            $values = $this->preHydrate($values, $this->classAnnotations[$class][PreHydrate::class]);
         }
 
         /** @var \Justimmo\Api\Entity\Entity $instance */
-        $instance  = $reflClass->newInstance();
+        $instance = $reflClass->newInstance();
 
         foreach ($reflClass->getProperties() as $reflProperty) {
-            $value = $this->getValue($values, $reflProperty);
+            $value = $this->getValue($values, $class, $reflProperty->getName());
             if ($value !== null) {
                 $reflProperty->setAccessible(true);
                 $reflProperty->setValue($instance, $value);
             }
+        }
+
+        if ($cacheable) {
+            $this->instancePool[$cacheKey] = $instance;
         }
 
         return $instance;
@@ -73,7 +112,7 @@ class EntityHydrator
         }
 
         foreach ($annotation->moveTo as $moveable => $moveTo) {
-            if (!array_key_exists($moveable,  $values)) {
+            if (!array_key_exists($moveable, $values)) {
                 continue;
             }
 
@@ -85,31 +124,32 @@ class EntityHydrator
     }
 
     /**
-     * @param array               $values
-     * @param \ReflectionProperty $reflProperty
+     * @param array  $values
+     * @param string $property
+     * @param string $class
      *
      * @return mixed|null
      */
-    protected function getValue(array $values, \ReflectionProperty $reflProperty)
+    protected function getValue(array $values, $class, $property)
     {
         /** @var Column|Relation $annotation */
-        $annotation = $this->reader->getPropertyAnnotation($reflProperty, 'Justimmo\Api\Annotation\Column');
-        if ($annotation === null) {
-            $annotation = $this->reader->getPropertyAnnotation($reflProperty, 'Justimmo\Api\Annotation\Relation');
-        }
-        if ($annotation === null) {
+        if (!empty($this->propertyAnnotations[$class][$property][Column::class])) {
+            $annotation = $this->propertyAnnotations[$class][$property][Column::class];
+        } elseif (!empty($this->propertyAnnotations[$class][$property][Relation::class])) {
+            $annotation = $this->propertyAnnotations[$class][$property][Relation::class];
+        } else {
             return null;
         }
 
-        $path = !empty($annotation->path) ? $annotation->path : [ $reflProperty->getName() ];
-        $value = $this->extractValueFromPath($values, $path);
-        if ($value === null) {
+        $path  = !empty($annotation->path) ? $annotation->path : $property;
+        if (!array_key_exists($path, $values)) {
             return null;
         }
+
 
         return $annotation instanceof Column
-            ? $this->getValueFromColumnAnnotation($value, $annotation)
-            : $this->getValueFromRelationAnnotation($value, $annotation);
+            ? $this->getValueFromColumnAnnotation($values[$path], $annotation)
+            : $this->getValueFromRelationAnnotation($values[$path], $annotation);
     }
 
     /**
@@ -126,20 +166,21 @@ class EntityHydrator
             return null;
         }
 
-        $key = array_shift($path);
-        if (!array_key_exists($key, $values)) {
-            return null;
+        while ($key = array_shift($path)) {
+            if (!array_key_exists($key, $values)) {
+                return null;
+            }
+
+            $values = $values[$key];
         }
 
-        return (empty($path))
-            ? $values[$key]
-            : $this->extractValueFromPath($values[$key], $path);
+        return $values;
     }
 
     /**
      * Resolve a Column annotation by by recursively calling the cast value
      *
-     * @param array    $values
+     * @param array  $values
      * @param Column $annotation
      *
      * @return mixed|null
@@ -151,7 +192,7 @@ class EntityHydrator
         }
 
         if (!is_array($values)) {
-            return [ $this->castValue($values, $annotation->type) ];
+            return [$this->castValue($values, $annotation->type)];
         }
 
         $entities = [];
@@ -230,14 +271,28 @@ class EntityHydrator
      */
     protected function getReflectionClass($class)
     {
+        if (strpos($class, '\\') === 0) {
+            $class = substr($class, 1);
+        }
+
         if (array_key_exists($class, $this->reflectionClasses)) {
             return $this->reflectionClasses[$class];
         }
 
-        $reflClass   = new \ReflectionClass($class);
+        $reflClass  = new \ReflectionClass($class);
         $annotation = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\Entity');
         if (empty($annotation)) {
             throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity.');
+        }
+
+        foreach ($this->reader->getClassAnnotations($reflClass) as $annotation) {
+            $this->classAnnotations[$reflClass->getName()][get_class($annotation)] = $annotation;
+        }
+
+        foreach ($reflClass->getProperties() as $reflProperty) {
+            foreach ($this->reader->getPropertyAnnotations($reflProperty) as $annotation) {
+                $this->propertyAnnotations[$reflClass->getName()][$reflProperty->getName()][get_class($annotation)] = $annotation;
+            }
         }
 
         return $this->reflectionClasses[$class] = $reflClass;

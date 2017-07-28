@@ -8,5 +8,8 @@ namespace Justimmo\Api\Annotation;
  */
 class Entity
 {
-
+    /**
+     * @var string
+     */
+    public $cacheKey;
 }

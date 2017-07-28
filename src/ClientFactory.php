@@ -60,8 +60,7 @@ class ClientFactory
         return new Client(
             $guzzle,
             new StaticAccessTokenProvider($accessToken),
-            $hydrator,
-            $cache
+            $hydrator
         );
     }
 }
