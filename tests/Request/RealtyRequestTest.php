@@ -61,7 +61,37 @@ class RealtyRequestTest extends RequestTestCase
     ];
 
     const SORTS = [
+        'title',
         'number',
+        'price',
+        'area',
+        'zipCode',
+        'publishedAt',
+        'createdAt',
+        'updatedAt',
+    ];
+
+    const FILTERS = [
+        'marketingType',
+        'type',
+        'realtyType',
+        'subRealtyType',
+        'buildingStyle',
+        'realtyCategory',
+        'zipCode',
+        'rooms',
+        'number',
+        'livingArea',
+        'floorArea',
+        'surfaceArea',
+        'overallArea',
+        'country',
+        'federalState',
+        'realtyState',
+        'city',
+        'parent',
+        'price',
+        'priceNet',
         'publishedAt',
         'createdAt',
         'updatedAt',
