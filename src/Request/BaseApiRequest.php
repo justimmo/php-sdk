@@ -96,14 +96,18 @@ abstract class BaseApiRequest implements EntityRequest
     }
 
     /**
-     * Returns a single result by id
+     * Returns a single result by id or multiple results filtered by id
      *
-     * @param $id
+     * @param mixed $id
      *
      * @return $this
      */
     public function filterById($id)
     {
+        if (is_array($id)) {
+            return $this->filterBy('id', $id);
+        }
+
         $this->path = '/' . $id;
 
         return $this;
