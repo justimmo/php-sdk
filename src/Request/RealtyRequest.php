@@ -65,6 +65,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this filterByRealtyState($value)
+ * @method $this filterByCity($value)
  * @method $this filterByParent($value)
  * @method $this filterByPrice($value)
  * @method $this filterByPriceNet($value)
@@ -163,6 +164,7 @@ class RealtyRequest extends BaseApiRequest
         'country',
         'federalState',
         'realtyState',
+        'city',
         'parent',
         'price',
         'priceNet',
