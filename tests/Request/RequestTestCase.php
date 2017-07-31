@@ -41,6 +41,9 @@ abstract class RequestTestCase extends TestCase
         $request = $this->getRequest();
         $this->assertEquals(static::PATH_PREFIX, $request->getPath());
 
+        $request->filterById([15, 25]);
+        $this->assertEquals(static::PATH_PREFIX, $request->getPath());
+
         $request->filterById(15);
         $this->assertEquals(static::PATH_PREFIX . '/15', $request->getPath());
     }
@@ -192,6 +195,19 @@ abstract class RequestTestCase extends TestCase
                 ],
             ], $request->getQuery());
         }
+    }
+
+    public function testFilterById()
+    {
+        $request = $this->getRequest();
+
+        $request->filterById(15);
+        $this->assertEmpty($request->getQuery());
+
+        $request->filterById([15, 20]);
+        $this->assertEquals(['f' => [
+            'id' => [15, 20]
+        ]],$request->getQuery());
     }
 
     public function testWith()
