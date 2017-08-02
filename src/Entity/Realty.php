@@ -125,7 +125,7 @@ class Realty implements Entity
     private $coverPicture;
 
     /**
-     * @var Feature[]
+     * @var Feature[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Feature", multiple=true)
      */
     private $features;
@@ -137,7 +137,7 @@ class Realty implements Entity
     private $employee;
 
     /**
-     * @var RealtyCategory[]
+     * @var RealtyCategory[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\RealtyCategory", multiple=true)
      */
     private $realtyCategories;
@@ -233,13 +233,13 @@ class Realty implements Entity
     private $showInSearch;
 
     /**
-     * @var Attachment[]
+     * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment", multiple=true)
      */
     private $attachments;
 
     /**
-     * @var Link[]
+     * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Link", multiple=true)
      */
     private $links;
@@ -249,6 +249,12 @@ class Realty implements Entity
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty")
      */
     private $parent;
+
+    /**
+     * @var Realty[]||\Justimmo\Api\ResultSet\ResultSet
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty", multiple=true)
+     */
+    private $children;
 
     public function __toString()
     {
@@ -414,7 +420,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return Feature[]
+     * @return Feature[]|\Justimmo\Api\ResultSet\ResultSet
      */
     public function getFeatures()
     {
@@ -430,7 +436,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyCategory[]
+     * @return RealtyCategory[]|\Justimmo\Api\ResultSet\ResultSet
      */
     public function getRealtyCategories()
     {
@@ -566,7 +572,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return Link[]
+     * @return Link[]|\Justimmo\Api\ResultSet\ResultSet
      */
     public function getLinks()
     {
@@ -579,6 +585,14 @@ class Realty implements Entity
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * @return Realty[]|\Justimmo\Api\ResultSet\ResultSet
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 
     /**

@@ -45,6 +45,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withMaxRentDuration()
  * @method $this withIsReference()
  * @method $this withParent()
+ * @method $this withChildren()
  * @method $this withShowInSearch()
  * @method $this withAttachments()
  * @method $this withLinks()
@@ -66,6 +67,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByFederalState($value)
  * @method $this filterByRealtyState($value)
  * @method $this filterByCity($value)
+ * @method $this filterByRegion($value)
  * @method $this filterByParent($value)
  * @method $this filterByPrice($value)
  * @method $this filterByPriceNet($value)
@@ -131,6 +133,7 @@ class RealtyRequest extends BaseApiRequest
         'maxRentDuration',
         'isReference',
         'parent',
+        'children',
         'showInSearch',
         'attachments',
         'links',
@@ -165,6 +168,7 @@ class RealtyRequest extends BaseApiRequest
         'federalState',
         'realtyState',
         'city',
+        'region',
         'parent',
         'price',
         'priceNet',
@@ -271,6 +275,18 @@ class RealtyRequest extends BaseApiRequest
     public function useHtmlTextFormat()
     {
         return $this->setQueryParameter('textFormat', self::TEXT_FORMAT_HTML);
+    }
+
+    /**
+     * Returns all realties regardless of their activity and feed settings.
+     * Only works for children of commercial and residential projects.
+     * filterByParent() must have been called
+     *
+     * @return $this
+     */
+    public function includeAll()
+    {
+        return $this->setQueryParameter('includeAll', 1);
     }
 
     /**
