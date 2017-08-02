@@ -93,6 +93,21 @@ class InquiryRequest implements EntityRequest
     }
 
     /**
+     * Sets a parameter to be pushed as url encoded post body to the api
+     *
+     * @param string $key
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setFormParam($key, $value)
+    {
+        $this->formParams[$key] = $value;
+
+        return $this;
+    }
+
+    /**
      * Fills in form params if field is available
      *
      * @param string $method
@@ -107,9 +122,7 @@ class InquiryRequest implements EntityRequest
             && in_array($field, self::AVAILABLE_FIELDS)
             && count($arguments) === 1
         ) {
-            $this->formParams[$field] = $arguments[0];
-
-            return $this;
+            return $this->setFormParam($field, $arguments[0]);
         }
 
         throw new \BadMethodCallException('Method ' . $method . ' does not exist.');
