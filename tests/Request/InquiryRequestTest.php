@@ -2,15 +2,11 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-
 use Justimmo\Api\Entity\Inquiry;
 use Justimmo\Api\Request\InquiryRequest;
 
 class InquiryRequestTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @inheritdoc
-     */
     protected function getRequest($email = null)
     {
         return new InquiryRequest($email);
