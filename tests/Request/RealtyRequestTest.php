@@ -77,6 +77,7 @@ class RealtyRequestTest extends RequestTestCase
         'type',
         'realtyType',
         'subRealtyType',
+        'occupancy',
         'buildingStyle',
         'realtyCategory',
         'zipCode',

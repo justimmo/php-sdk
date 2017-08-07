@@ -31,6 +31,10 @@ class Realty implements Entity
     const MARKETING_TYPE_BUY   = 'buy';
     const MARKETING_TYPE_LEASE = 'lease';
 
+    const OCCUPANCY_LIVING     = 'living';
+    const OCCUPANCY_COMMERCIAL = 'commercial';
+    const OCCUPANCY_INVESTMENT = 'investment';
+
     /**
      * Describes standalone realties without affiliation to any project
      */
@@ -352,7 +356,7 @@ class Realty implements Entity
      */
     public function isOccupancyLiving()
     {
-        return !empty($this->occupancies['living']);
+        return !empty($this->occupancies[self::OCCUPANCY_LIVING]);
     }
 
     /**
@@ -360,7 +364,7 @@ class Realty implements Entity
      */
     public function isOccupancyCommercial()
     {
-        return !empty($this->occupancies['commercial']);
+        return !empty($this->occupancies[self::OCCUPANCY_COMMERCIAL]);
     }
 
     /**
@@ -368,7 +372,7 @@ class Realty implements Entity
      */
     public function isOccupancyInvestment()
     {
-        return !empty($this->occupancies['investment']);
+        return !empty($this->occupancies[self::OCCUPANCY_INVESTMENT]);
     }
 
     /**
