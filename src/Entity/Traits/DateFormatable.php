@@ -10,9 +10,9 @@ trait DateFormatable
      *
      * @return \DateTime|string
      */
-    protected function formatDate(\DateTime $dateTime, $format = null)
+    protected function formatDate(\DateTime $dateTime = null, $format = null)
     {
-        if ($dateTime === null) {
+        if (empty($dateTime)) {
             return null;
         }
 

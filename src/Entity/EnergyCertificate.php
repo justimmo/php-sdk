@@ -53,10 +53,6 @@ class EnergyCertificate implements Entity
      */
     public function getValidUntil($format = null)
     {
-        if (!empty($this->validUntil)) {
-            return $this->formatDate($this->validUntil, $format);
-        }
-
-        return null;
+        return $this->formatDate($this->validUntil, $format);
     }
 }
