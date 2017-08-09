@@ -11,12 +11,20 @@
         "guzzlehttp/guzzle": "^6.0",
         "kevinrob/guzzle-cache-middleware": "^2.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
     "suggest": {
         "monolog/monolog": "~1.7"
     },
     "autoload": {
         "psr-4": {
             "Justimmo\\Api\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Justimmo\\Api\\Tests\\": "tests/"
         }
     }
 }

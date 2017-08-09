@@ -1,0 +1,45 @@
+{
+    "count": 13,
+    "results": [
+        {
+            "id": 5,
+            "name": "B\u00fcro \/ Praxis"
+        },
+        {
+            "id": 6,
+            "name": "Einzelhandel"
+        },
+        {
+            "id": 11,
+            "name": "Freizeitimmobilie gewerblich"
+        },
+        {
+            "id": 7,
+            "name": "Gastgewerbe"
+        },
+        {
+            "id": 4,
+            "name": "Grundst\u00fcck"
+        },
+        {
+            "id": 3,
+            "name": "Haus"
+        },
+        {
+            "id": 8,
+            "name": "Industrie \/ Gewerbe"
+        },
+        {
+            "id": 9,
+            "name": "Land und Forstwirtschaft"
+        },
+        {
+            "id": 13,
+            "name": "Parken"
+        },
+        {
+            "id": 10,
+            "name": "Sonstige \/ Sonderobjekte"
+        }
+    ]
+}

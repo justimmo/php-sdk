@@ -5,6 +5,11 @@ namespace Justimmo\Api\Tests;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\ArrayCache;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use Justimmo\Api\Authorization\StaticAccessTokenProvider;
+use Justimmo\Api\Client;
 use Justimmo\Api\Hydration\EntityHydrator;
 
 class TestCase extends \PHPUnit_Framework_TestCase
@@ -35,6 +40,42 @@ class TestCase extends \PHPUnit_Framework_TestCase
                 new AnnotationReader(),
                 new ArrayCache()
             )
+        );
+    }
+
+    /**
+     * @param string $content
+     * @param int    $statusCode
+     * @param array  $headers
+     *
+     * @return Response
+     */
+    protected function createResponse($content, $statusCode = 200, $headers = ['Content-type' => 'application/json'])
+    {
+        if (file_exists(self::FIXTURES_PATH . DIRECTORY_SEPARATOR . $content)) {
+            $content = $this->getFixtures($content);
+        }
+
+        return new Response($statusCode, $headers, $content);
+    }
+
+    /**
+     * Create a mocked api client
+     *
+     * @param array $responses
+     *
+     * @return Client
+     */
+    protected function createClient(array $responses = [])
+    {
+        return new Client(
+            new \GuzzleHttp\Client([
+                'handler' => HandlerStack::create(
+                    new MockHandler($responses)
+                ),
+            ]),
+            new StaticAccessTokenProvider('Test Token'),
+            $this->getHydrator()
         );
     }
 }
