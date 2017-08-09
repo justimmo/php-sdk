@@ -99,16 +99,21 @@ abstract class BaseApiRequest implements EntityRequest
      * Returns a single result by id or multiple results filtered by id
      *
      * @param mixed $id
+     * @param bool  $showSiblingIds
      *
      * @return $this
      */
-    public function filterById($id)
+    public function filterById($id, $showSiblingIds = false)
     {
         if (is_array($id)) {
             return $this->filterBy('id', $id);
         }
 
         $this->path = '/' . $id;
+
+        if ($showSiblingIds) {
+            $this->setQueryParameter('showSiblingIds', true);
+        }
 
         return $this;
     }
