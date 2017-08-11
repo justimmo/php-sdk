@@ -1,0 +1,18 @@
+{
+    "id": 11,
+    "name": "Freizeitimmobilie gewerblich",
+    "subRealtyTypes": [
+        {
+            "id": 66,
+            "name": "Sportanlagen"
+        },
+        {
+            "id": 67,
+            "name": "Vergn\u00fcgungsparks \/ -center"
+        },
+        {
+            "id": 150,
+            "name": "Freizeitanlage"
+        }
+    ]
+}
