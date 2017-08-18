@@ -89,6 +89,7 @@ class RealtyWrapper extends AbstractWrapper
         'betriebskosten_pro_qm',
         'betriebskosten_pro_qm',
         'freitext_preis',
+        'erschliessungskosten',
     );
 
     protected $flaechenMapping = array(

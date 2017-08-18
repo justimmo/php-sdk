@@ -390,6 +390,16 @@ class Realty
     protected $isReference = false;
 
     /**
+     * @var double
+     */
+    protected $monthlyCosts;
+
+    /**
+     * @var double
+     */
+    protected $financialContribution;
+
+    /**
      * @param null $nutzungsart
      *
      * @return $this
@@ -3000,6 +3010,46 @@ class Realty
     public function setIsReference($isReference)
     {
         $this->isReference = $isReference;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMonthlyCosts()
+    {
+        return $this->monthlyCosts;
+    }
+
+    /**
+     * @param float $monthlyCosts
+     *
+     * @return $this
+     */
+    public function setMonthlyCosts($monthlyCosts)
+    {
+        $this->monthlyCosts = $monthlyCosts;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFinancialContribution()
+    {
+        return $this->financialContribution;
+    }
+
+    /**
+     * @param float $financialContribution
+     *
+     * @return Realty
+     */
+    public function setFinancialContribution($financialContribution)
+    {
+        $this->financialContribution = $financialContribution;
 
         return $this;
     }
