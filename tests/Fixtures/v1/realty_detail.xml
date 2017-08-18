@@ -113,8 +113,10 @@
             <user_defined_simplefield feldname="grundbucheintragung">1.4</user_defined_simplefield>
             <user_defined_simplefield feldname="vertragserrichtungsgebuehr">2,16%</user_defined_simplefield>
             <nettomieteprom2von nettomieteprom2bis="13">10</nettomieteprom2von>
+            <user_defined_simplefield feldname="finanzierungsbeitrag">40000</user_defined_simplefield>
             <mietpreis_pro_qm>13</mietpreis_pro_qm>
             <nebenkostenprom2von nebenkostenprom2bis="3">2</nebenkostenprom2von>
+            <erschliessungskosten>12000</erschliessungskosten>
         </preise>
         <flaechen>
             <nutzflaeche>150</nutzflaeche>

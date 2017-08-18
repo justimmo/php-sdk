@@ -381,6 +381,18 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'isReference',
                 'type'     => 'boolean',
             ),
+            'monatlichekostenbrutto'           => array(
+                'property' => 'monthlyCosts',
+                'type'     => 'double',
+            ),
+            'finanzierungsbeitrag'             => array(
+                'property' => 'financialContribution',
+                'type'     => 'double',
+            ),
+            'erschliessungskosten'             => array(
+                'property' => 'infrastructureProvision',
+                'type'     => 'double',
+            ),
         );
     }
 

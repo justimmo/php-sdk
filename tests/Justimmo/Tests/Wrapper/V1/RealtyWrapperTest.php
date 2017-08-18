@@ -165,6 +165,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(13, $objekt->getRentPerSqm());
         $this->assertEquals(2, $objekt->getOperatingCostsPerSqmFrom());
         $this->assertEquals(3, $objekt->getOperatingCostsPerSqm());
+        $this->assertEquals(40000, $objekt->getFinancialContribution());
+        $this->assertEquals(12000, $objekt->getInfrastructureProvision());
+        $this->assertEquals(906.6, $objekt->getMonthlyCosts());
 
         $costs = $objekt->getAdditionalCosts();
         $this->assertEquals(4, count($costs));
