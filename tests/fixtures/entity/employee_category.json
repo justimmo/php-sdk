@@ -1,0 +1,16 @@
+{
+    "id": 5,
+    "name": "Aussendienst",
+    "employees": [
+        {
+            "id": 2,
+            "name": "John Doe",
+            "email": "john.doe@justimmo.at"
+        },
+        {
+            "id": 3,
+            "name": "Jane Doe",
+            "email": "jane.doe@justimmo.at"
+        }
+    ]
+}

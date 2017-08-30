@@ -1,0 +1,14 @@
+{
+    "id": 5,
+    "name": "Fahrstuhl",
+    "features": [
+        {
+            "id": 24,
+            "name": "Lastenaufzug"
+        },
+        {
+            "id": 25,
+            "name": "Personenaufzug"
+        }
+    ]
+}
