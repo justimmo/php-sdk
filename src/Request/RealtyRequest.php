@@ -7,6 +7,7 @@ use Justimmo\Api\Entity\Realty;
 /**
  * @method $this withNumber()
  * @method $this withType()
+ * @method $this withBuildingProgress()
  * @method $this withMarketingType()
  * @method $this withOccypancy()
  * @method $this withRealtyType()
@@ -41,6 +42,8 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withCreatedAt()
  * @method $this withUpdatedAt()
  * @method $this withPublishedAt()
+ * @method $this withCompletionDate()
+ * @method $this withSaleStart()
  * @method $this withAvailableFrom()
  * @method $this withMaxRentDuration()
  * @method $this withIsReference()
@@ -51,6 +54,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withLinks()
  *
  * @method $this filterByType($value)
+ * @method $this filterByBuildingProgress($value)
  * @method $this filterByMarketingType($value)
  * @method $this filterByRealtyType($value)
  * @method $this filterBySubRealtyType($value)
@@ -72,6 +76,8 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByParent($value)
  * @method $this filterByPrice($value)
  * @method $this filterByPriceNet($value)
+ * @method $this filterByCompletionDate($value)
+ * @method $this filterBySaleStart($value)
  * @method $this filterByPublishedAt($value)
  * @method $this filterByCreatedAt($value)
  * @method $this filterByUpdatedAt($value)
@@ -81,6 +87,8 @@ use Justimmo\Api\Entity\Realty;
  * @method $this sortByPrice($direction = BaseApiRequest::ASC)
  * @method $this sortByArea($direction = BaseApiRequest::ASC)
  * @method $this sortByRooms($direction = BaseApiRequest::ASC)
+ * @method $this sortByCompletionDate($direction = BaseApiRequest::ASC)
+ * @method $this sortBySaleStart($direction = BaseApiRequest::ASC)
  * @method $this sortByZipCode($direction = BaseApiRequest::ASC)
  * @method $this sortByPublishedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
@@ -94,6 +102,7 @@ class RealtyRequest extends BaseApiRequest
     const FIELDS = [
         'number',
         'type',
+        'buildingProgress',
         'marketingType',
         'occupancy',
         'realtyType',
@@ -131,6 +140,8 @@ class RealtyRequest extends BaseApiRequest
         'createdAt',
         'updatedAt',
         'publishedAt',
+        'completionDate',
+        'saleStart',
         'availableFrom',
         'maxRentDuration',
         'isReference',
@@ -149,6 +160,8 @@ class RealtyRequest extends BaseApiRequest
         'rooms',
         'zipCode',
         'publishedAt',
+        'completionDate',
+        'saleStart',
         'createdAt',
         'updatedAt',
     ];
@@ -156,6 +169,7 @@ class RealtyRequest extends BaseApiRequest
     const FILTERS = [
         'marketingType',
         'type',
+        'buildingProgress',
         'realtyType',
         'subRealtyType',
         'occupancy',
@@ -176,6 +190,8 @@ class RealtyRequest extends BaseApiRequest
         'parent',
         'price',
         'priceNet',
+        'completionDate',
+        'saleStart',
         'publishedAt',
         'createdAt',
         'updatedAt',
@@ -248,6 +264,16 @@ class RealtyRequest extends BaseApiRequest
     public function commercialProjects()
     {
         return $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+    }
+
+    /**
+     * Shortcut for $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+     *
+     * @return $this
+     */
+    public function residentialProjects()
+    {
+        return $this->filterByType(Realty::TYPE_RESIDENTIAL_PROJECT);
     }
 
     /**

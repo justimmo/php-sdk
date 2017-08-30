@@ -51,6 +51,15 @@ class Realty implements Entity
     const TYPE_AREA = 'area';
 
     /**
+     * Describes a residential project containing multiple simple realties
+     */
+    const TYPE_RESIDENTIAL_PROJECT = 'residential';
+
+    const BUILDING_PROGRESS_BUILDING = 'building';
+    const BUILDING_PROGRESS_PLANNING = 'planning';
+    const BUILDING_PROGRESS_FINISHED = 'finished';
+
+    /**
      * @var string
      * @JUSTIMMO\Column
      */
@@ -61,6 +70,12 @@ class Realty implements Entity
      * @JUSTIMMO\Column
      */
     private $type;
+
+    /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $buildingProgress;
 
     /**
      * @var string
@@ -213,6 +228,18 @@ class Realty implements Entity
     private $updatedAt;
 
     /**
+     * @var \DateTime
+     * @JUSTIMMO\Column(type="date")
+     */
+    private $completionDate;
+
+    /**
+     * @var \DateTime
+     * @JUSTIMMO\Column(type="date")
+     */
+    private $saleStart;
+
+    /**
      * @var string
      * @JUSTIMMO\Column
      */
@@ -293,6 +320,46 @@ class Realty implements Entity
     public function isTypeArea()
     {
         return $this->type === self::TYPE_AREA;
+    }
+
+    /**
+     * Returns true if the realty is a residential project with subrealties
+     *
+     * @return bool
+     */
+    public function isTypeResidentialProject()
+    {
+        return $this->type === self::TYPE_RESIDENTIAL_PROJECT;
+    }
+
+    /**
+     * Returns true if the realty is still in planning (Only residential projects)
+     *
+     * @return bool
+     */
+    public function isBuildingProgressPlanning()
+    {
+        return $this->buildingProgress === self::BUILDING_PROGRESS_PLANNING;
+    }
+
+    /**
+     * Returns true if the realty is still in building (Only residential projects)
+     *
+     * @return bool
+     */
+    public function isBuildingProgressBuilding()
+    {
+        return $this->buildingProgress === self::BUILDING_PROGRESS_BUILDING;
+    }
+
+    /**
+     * Returns true if the realty state is finished (Only residential projects)
+     *
+     * @return bool
+     */
+    public function isBuildingProgressFinished()
+    {
+        return $this->buildingProgress === self::BUILDING_PROGRESS_FINISHED;
     }
 
     /**
@@ -541,6 +608,26 @@ class Realty implements Entity
     public function getUpdatedAt($format = null)
     {
         return $this->formatDate($this->updatedAt, $format);
+    }
+
+    /**
+     * @param string $format Date format to be returned. If left empty the \DateTime class is returned.
+     *
+     * @return \DateTime|string
+     */
+    public function getCompletionDate($format = null)
+    {
+        return $this->formatDate($this->completionDate, $format);
+    }
+
+    /**
+     * @param string $format Date format to be returned. If left empty the \DateTime class is returned.
+     *
+     * @return \DateTime|string
+     */
+    public function getSaleStart($format = null)
+    {
+        return $this->formatDate($this->saleStart, $format);
     }
 
     /**
