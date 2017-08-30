@@ -80,6 +80,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this sortByNumber($direction = BaseApiRequest::ASC)
  * @method $this sortByPrice($direction = BaseApiRequest::ASC)
  * @method $this sortByArea($direction = BaseApiRequest::ASC)
+ * @method $this sortByRooms($direction = BaseApiRequest::ASC)
  * @method $this sortByZipCode($direction = BaseApiRequest::ASC)
  * @method $this sortByPublishedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
@@ -145,6 +146,7 @@ class RealtyRequest extends BaseApiRequest
         'number',
         'price',
         'area',
+        'rooms',
         'zipCode',
         'publishedAt',
         'createdAt',
