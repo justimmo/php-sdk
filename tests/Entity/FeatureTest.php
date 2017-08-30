@@ -27,7 +27,6 @@ class FeatureTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(Feature::class, $entity);
-
         $this->assertEquals(25, $entity->getId());
         $this->assertEquals('Personenaufzug', $entity->getName());
 

@@ -1,0 +1,26 @@
+{
+    "id": 7,
+    "name": "20., Brigittenau",
+    "countries": [
+        {
+            "id": "AT",
+            "name": "\u00d6sterreich"
+        }
+    ],
+    "federalStates": [
+        {
+            "id": 134,
+            "name": "Wien"
+        }
+    ],
+    "zipCodes": [
+        {
+            "id": 1075,
+            "zip": "6494"
+        },
+        {
+            "id": 1915,
+            "zip": "1200"
+        }
+    ]
+}

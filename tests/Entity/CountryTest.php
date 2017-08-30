@@ -26,7 +26,6 @@ class CountryTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(Country::class, $entity);
-
         $this->assertEquals('AT', $entity->getId());
         $this->assertEquals('Österreich', $entity->getName());
     }

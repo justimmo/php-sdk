@@ -27,7 +27,6 @@ class FeatureGroupTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(FeatureGroup::class, $entity);
-
         $this->assertEquals(5, $entity->getId());
         $this->assertEquals('Fahrstuhl', $entity->getName());
 

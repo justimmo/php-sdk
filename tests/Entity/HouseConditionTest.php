@@ -26,7 +26,6 @@ class HouseConditionTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(HouseCondition::class, $entity);
-
         $this->assertEquals(2, $entity->getId());
         $this->assertEquals('renovierungsbedürftig', $entity->getName());
     }

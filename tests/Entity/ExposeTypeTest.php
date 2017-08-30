@@ -26,7 +26,6 @@ class ExposeTypeTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(ExposeType::class, $entity);
-
         $this->assertEquals(570, $entity->getId());
         $this->assertEquals('Angebot (NEU)', $entity->getName());
     }

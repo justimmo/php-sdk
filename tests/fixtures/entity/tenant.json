@@ -1,0 +1,21 @@
+{
+    "id": 7,
+    "agency": "JUSTIMMO",
+    "email": "office@justimmo.at",
+    "phone": "+43 1 798 62 05",
+    "uid": "ATU11111111",
+    "registerNumber": "2222",
+    "address": {
+        "street": "Mariahilfer Straße 8/11",
+        "zipCode": "1070",
+        "city": "Wien",
+        "country": {
+            "id": "AT",
+            "name": "\u00d6sterreich"
+        }
+    },
+    "coordinates": {
+        "lat": "48.208",
+        "lng": "16.366"
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "id": 264110,
+    "name": "John Doe",
+    "firstName": "John",
+    "lastName": "Doe",
+    "position": "Gesch\u00e4ftsf\u00fchrung",
+    "phone": "12345678",
+    "email": "john.doe@justimmo.at",
+    "address": {
+        "street": "Mah\u00fc",
+        "zipCode": "1070",
+        "city": "Wien",
+        "country": {
+            "id": "AT",
+            "name": "\u00d6sterreich"
+        }
+    },
+    "profilePicture": {
+        "id": "4004005",
+        "url": "https:\/\/files.justimmo.at\/public\/pic\/orig\/APRil3QC47.jpg",
+        "type": "pic",
+        "filename": "AN46eqAeNU.jpg",
+        "group": 22
+    },
+    "pictures": [
+        {
+            "id": "20864645",
+            "url": "https:\/\/files.justimmo.at\/public\/pic\/orig\/BPl6F4-4pB.jpg",
+            "type": "pic",
+            "filename": "pictures-1.jpeg",
+            "title": "Wolf",
+            "description": "weiss",
+            "group": 22
+        }
+    ],
+    "links": [
+        {
+            "id": 23,
+            "url": "http:\/\/www.google.at",
+            "description": "Suchmaschiene",
+            "type": "links"
+        },
+        {
+            "id": 24,
+            "url": "http:\/\/www.youtube.com",
+            "description": "Videos",
+            "type": "filmlink"
+        }
+    ],
+    "realtyIds": [
+        "361675",
+        "361674",
+        "361672",
+        "361671",
+        "361670"
+    ],
+    "employeeCategories": [
+        {
+            "id": 5254,
+            "name": "Gesch\u00e4ftsf\u00fchrung"
+        }
+    ]
+}

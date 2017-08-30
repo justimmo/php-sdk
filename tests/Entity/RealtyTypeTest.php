@@ -26,7 +26,6 @@ class RealtyTypeTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(RealtyType::class, $entity);
-
         $this->assertEquals(11, $entity->getId());
         $this->assertEquals('Freizeitimmobilie gewerblich', $entity->getName());
 

@@ -27,7 +27,6 @@ class EmployeeCategoryTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(EmployeeCategory::class, $entity);
-
         $this->assertEquals(5, $entity->getId());
         $this->assertEquals('Aussendienst', $entity->getName());
 

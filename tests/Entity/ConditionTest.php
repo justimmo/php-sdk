@@ -26,7 +26,6 @@ class ConditionTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(Condition::class, $entity);
-
         $this->assertEquals(3, $entity->getId());
         $this->assertEquals('neuwertig', $entity->getName());
     }

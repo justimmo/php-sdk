@@ -26,7 +26,6 @@ class BuildingStyleTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(BuildingStyle::class, $entity);
-
         $this->assertEquals(2, $entity->getId());
         $this->assertEquals('Neubau', $entity->getName());
     }

@@ -26,7 +26,6 @@ class SubRealtyTypeTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(SubRealtyType::class, $entity);
-
         $this->assertEquals(66, $entity->getId());
         $this->assertEquals('Sportanlagen', $entity->getName());
 
