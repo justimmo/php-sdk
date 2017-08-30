@@ -16,11 +16,36 @@ class Attachment implements Entity
     const TYPE_VIDEO    = 'video';
     const TYPE_DOCUMENT = 'doc';
 
-    const GROUP_PICTURES         = 1;
-    const GROUP_PLANS            = 2;
-    const GROUP_VIDEOS           = 3;
-    const GROUP_DOCUMENTS        = 4;
-    const GROUP_THREE60_PICTURES = 7;
+    const GROUP_PICTURES = [
+        1,
+        10,
+        12,
+        22,
+        23,
+    ];
+
+    const GROUP_PLANS = [
+        2,
+        13,
+        24,
+    ];
+
+    const GROUP_VIDEOS = [
+        3,
+        14,
+    ];
+
+    const GROUP_DOCUMENTS = [
+        4,
+        11,
+        15,
+        25,
+    ];
+
+    const GROUP_THREE60_PICTURES = [
+        7,
+        18,
+    ];
 
     /**
      * @var string
@@ -137,9 +162,33 @@ class Attachment implements Entity
     /**
      * @return bool
      */
-    public function isGroupPlan()
+    public function isGroupPictures()
     {
-        return $this->group = self::GROUP_PLANS;
+        return in_array($this->group, self::GROUP_PICTURES);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGroupPlans()
+    {
+        return in_array($this->group, self::GROUP_PLANS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGroupVideos()
+    {
+        return in_array($this->group, self::GROUP_VIDEOS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGroupDocuments()
+    {
+        return in_array($this->group, self::GROUP_DOCUMENTS);
     }
 
     /**
@@ -147,6 +196,6 @@ class Attachment implements Entity
      */
     public function isGroupThreeSixty()
     {
-        return $this->group = self::GROUP_THREE60_PICTURES;
+        return in_array($this->group, self::GROUP_THREE60_PICTURES);
     }
 }
