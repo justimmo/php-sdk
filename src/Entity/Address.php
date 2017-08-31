@@ -35,6 +35,12 @@ class Address implements Entity
 
     /**
      * @var string
+     * @JUSTIMMO\Column(path="floorDescription", type="string")
+     */
+    private $floorDescription;
+
+    /**
+     * @var string
      * @JUSTIMMO\Column(path="stair", type="string")
      */
     private $stair;
@@ -135,6 +141,14 @@ class Address implements Entity
     public function getFloor()
     {
         return $this->floor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFloorDescription()
+    {
+        return $this->floorDescription;
     }
 
     /**
