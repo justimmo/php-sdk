@@ -739,15 +739,19 @@ class Realty implements Entity
     /**
      * Filters attachments by a specific group
      *
-     * @param integer $group
+     * @param array|int $groups
      *
      * @return Attachment[]
      */
-    private function filterAttachmentsByGroup($group)
+    private function filterAttachmentsByGroup($groups)
     {
+        if (!is_array($groups)) {
+            $groups = [ $groups ];
+        }
+
         $groupedAttachments = [];
         foreach ($this->attachments as $attachment) {
-            if ($attachment->getGroup() === $group) {
+            if (in_array($attachment->getGroup(), $groups)) {
                 $groupedAttachments[] = $attachment;
             }
         }
