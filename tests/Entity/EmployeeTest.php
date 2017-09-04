@@ -109,6 +109,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertFalse($link->isSocialNetwork());
 
         $link = $links[1];
         $this->assertEquals(24, $link->getId());
@@ -123,6 +124,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertFalse($link->isSocialNetwork());
 
         $link = $links[2];
         $this->assertEquals(25, $link->getId());
@@ -137,6 +139,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertTrue($link->isSocialNetwork());
 
         $link = $links[3];
         $this->assertEquals(26, $link->getId());
@@ -151,6 +154,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertTrue($link->isSocialNetwork());
 
         $link = $links[4];
         $this->assertEquals(27, $link->getId());
@@ -165,6 +169,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertTrue($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertTrue($link->isSocialNetwork());
 
         $link = $links[5];
         $this->assertEquals(28, $link->getId());
@@ -179,6 +184,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertTrue($link->isLinkedIn());
         $this->assertFalse($link->isInstagram());
+        $this->assertTrue($link->isSocialNetwork());
 
         $link = $links[6];
         $this->assertEquals(29, $link->getId());
@@ -193,6 +199,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($link->isXing());
         $this->assertFalse($link->isLinkedIn());
         $this->assertTrue($link->isInstagram());
+        $this->assertTrue($link->isSocialNetwork());
 
 
         $categories = $entity->getEmployeeCategories();
