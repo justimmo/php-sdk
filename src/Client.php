@@ -154,7 +154,7 @@ class Client
                 if ($triesLeft <= 0 || $e->getCode() != 401) {
                     throw $e;
                 }
-                $token = $this->accessTokenProvider->refreshAccessToken();
+                $options['headers']['Authorization'] = 'Bearer ' . $this->accessTokenProvider->refreshAccessToken();
             }
         }
     }
