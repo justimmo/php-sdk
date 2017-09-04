@@ -59,7 +59,7 @@ class EntityHydrator
     public function hydrate(array $values, $class)
     {
         $reflClass = $this->getReflectionClass($class);
-        $class     = $reflClass->getName();
+        $class     = $reflClass->name;
         $cacheable = false;
         $cacheKey  = null;
 
@@ -247,10 +247,10 @@ class EntityHydrator
         }
 
         foreach ($this->reader->getClassAnnotations($reflClass) as $annotation) {
-            $this->classAnnotations[$reflClass->getName()][get_class($annotation)] = $annotation;
+            $this->classAnnotations[$reflClass->name][get_class($annotation)] = $annotation;
         }
 
-        $class = $reflClass->getName();
+        $class = $reflClass->name;
         foreach ($reflClass->getProperties() as $reflProperty) {
             $property = $reflProperty->getName();
 
