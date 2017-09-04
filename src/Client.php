@@ -3,6 +3,7 @@
 namespace Justimmo\Api;
 
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
+use Justimmo\Api\Exception\AuthorizationException;
 use Justimmo\Api\Exception\ClientException;
 use Justimmo\Api\Exception\RequestException as ApiRequestException;
 use Justimmo\Api\Authorization\AccessTokenProvider;
@@ -157,6 +158,8 @@ class Client
                 $options['headers']['Authorization'] = 'Bearer ' . $this->accessTokenProvider->refreshAccessToken();
             }
         }
+
+        throw AuthorizationException::accessDenied();
     }
 
     /**
