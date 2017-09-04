@@ -12,9 +12,14 @@ class Link implements Entity
 {
     use Identifiable;
 
-    const TYPE_LINK       = 'links';
-    const TYPE_MOVIE_LINK = 'filmlink';
-    const TYPE_TOUR_LINK  = 'rundgang';
+    const TYPE_LINK      = 'links';
+    const TYPE_MOVIE     = 'filmlink';
+    const TYPE_TOUR      = 'rundgang';
+    const TYPE_FACEBOOK  = 'facebook';
+    const TYPE_TWITTER   = 'twitter';
+    const TYPE_XING      = 'xing';
+    const TYPE_LINKEDIN  = 'linkedin';
+    const TYPE_INSTAGRAM = 'instagram';
 
     /**
      * @var string
@@ -33,6 +38,11 @@ class Link implements Entity
      * @JUSTIMMO\Column(path="description", type="string")
      */
     private $description;
+
+    public function __toString()
+    {
+        return (string) $this->getDescription();
+    }
 
     /**
      * @return string
@@ -53,17 +63,17 @@ class Link implements Entity
     /**
      * @return bool
      */
-    public function isTourLink()
+    public function isTour()
     {
-        return $this->type === self::TYPE_TOUR_LINK;
+        return $this->type === self::TYPE_TOUR;
     }
 
     /**
      * @return bool
      */
-    public function isMovieLink()
+    public function isMovie()
     {
-        return $this->type === self::TYPE_MOVIE_LINK;
+        return $this->type === self::TYPE_MOVIE;
     }
 
     /**
@@ -74,8 +84,51 @@ class Link implements Entity
         return $this->type === self::TYPE_LINK;
     }
 
-    public function __toString()
+    /**
+     * @return bool
+     */
+    public function isFacebook()
     {
-        return (string) $this->getDescription();
+        return $this->type === self::TYPE_FACEBOOK;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTwitter()
+    {
+        return $this->type === self::TYPE_TWITTER;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isXing()
+    {
+        return $this->type === self::TYPE_XING;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLinkedIn()
+    {
+        return $this->type === self::TYPE_LINKEDIN;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInstagram()
+    {
+        return $this->type === self::TYPE_INSTAGRAM;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

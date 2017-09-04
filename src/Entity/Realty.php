@@ -333,6 +333,14 @@ class Realty implements Entity
     }
 
     /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Returns true if the realty is still in planning (Only residential projects)
      *
      * @return bool

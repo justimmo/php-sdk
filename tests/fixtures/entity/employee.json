@@ -45,6 +45,36 @@
             "url": "http:\/\/www.youtube.com",
             "description": "Videos",
             "type": "filmlink"
+        },
+        {
+            "id": 25,
+            "url": "http:\/\/www.facebook.com",
+            "description": "FB",
+            "type": "facebook"
+        },
+        {
+            "id": 26,
+            "url": "http:\/\/www.twitter.com",
+            "description": "TW",
+            "type": "twitter"
+        },
+        {
+            "id": 27,
+            "url": "http:\/\/www.xing.com",
+            "description": "Xing",
+            "type": "xing"
+        },
+        {
+            "id": 28,
+            "url": "http:\/\/www.linkedin.com",
+            "description": "LinkedIn",
+            "type": "linkedin"
+        },
+        {
+            "id": 29,
+            "url": "http:\/\/www.instagram.com",
+            "description": "Instagram",
+            "type": "instagram"
         }
     ],
     "realtyIds": [

@@ -6,6 +6,7 @@ use Justimmo\Api\Entity\Address;
 use Justimmo\Api\Entity\Attachment;
 use Justimmo\Api\Entity\Country;
 use Justimmo\Api\Entity\Employee;
+use Justimmo\Api\Entity\Link;
 use Justimmo\Api\Request\EmployeeRequest;
 
 class EmployeeTest extends EntityTestCase
@@ -93,21 +94,106 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($picture->isGroupDocuments());
 
         $links = $entity->getLinks();
-        $this->assertEquals(2, count($links));
+        $this->assertEquals(7, count($links));
 
-        $this->assertEquals(23, $links[0]->getId());
-        $this->assertEquals('http://www.google.at', $links[0]->getUrl());
-        $this->assertEquals('Suchmaschiene', $links[0]->getDescription());
-        $this->assertTrue($links[0]->isLink());
-        $this->assertFalse($links[0]->isMovieLink());
-        $this->assertFalse($links[0]->isTourLink());
+        $link = $links[0];
+        $this->assertEquals(23, $link->getId());
+        $this->assertEquals('http://www.google.at', $link->getUrl());
+        $this->assertEquals('Suchmaschiene', $link->getDescription());
+        $this->assertEquals(Link::TYPE_LINK, $link->getType());
+        $this->assertTrue($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
 
-        $this->assertEquals(24, $links[1]->getId());
-        $this->assertEquals('http://www.youtube.com', $links[1]->getUrl());
-        $this->assertEquals('Videos', $links[1]->getDescription());
-        $this->assertFalse($links[1]->isLink());
-        $this->assertTrue($links[1]->isMovieLink());
-        $this->assertFalse($links[1]->isTourLink());
+        $link = $links[1];
+        $this->assertEquals(24, $link->getId());
+        $this->assertEquals('http://www.youtube.com', $link->getUrl());
+        $this->assertEquals('Videos', $link->getDescription());
+        $this->assertEquals(Link::TYPE_MOVIE, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertTrue($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
+
+        $link = $links[2];
+        $this->assertEquals(25, $link->getId());
+        $this->assertEquals('http://www.facebook.com', $link->getUrl());
+        $this->assertEquals('FB', $link->getDescription());
+        $this->assertEquals(Link::TYPE_FACEBOOK, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertTrue($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
+
+        $link = $links[3];
+        $this->assertEquals(26, $link->getId());
+        $this->assertEquals('http://www.twitter.com', $link->getUrl());
+        $this->assertEquals('TW', $link->getDescription());
+        $this->assertEquals(Link::TYPE_TWITTER, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertTrue($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
+
+        $link = $links[4];
+        $this->assertEquals(27, $link->getId());
+        $this->assertEquals('http://www.xing.com', $link->getUrl());
+        $this->assertEquals('Xing', $link->getDescription());
+        $this->assertEquals(Link::TYPE_XING, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertTrue($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
+
+        $link = $links[5];
+        $this->assertEquals(28, $link->getId());
+        $this->assertEquals('http://www.linkedin.com', $link->getUrl());
+        $this->assertEquals('LinkedIn', $link->getDescription());
+        $this->assertEquals(Link::TYPE_LINKEDIN, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertTrue($link->isLinkedIn());
+        $this->assertFalse($link->isInstagram());
+
+        $link = $links[6];
+        $this->assertEquals(29, $link->getId());
+        $this->assertEquals('http://www.instagram.com', $link->getUrl());
+        $this->assertEquals('Instagram', $link->getDescription());
+        $this->assertEquals(Link::TYPE_INSTAGRAM, $link->getType());
+        $this->assertFalse($link->isLink());
+        $this->assertFalse($link->isMovie());
+        $this->assertFalse($link->isTour());
+        $this->assertFalse($link->isFacebook());
+        $this->assertFalse($link->isTwitter());
+        $this->assertFalse($link->isXing());
+        $this->assertFalse($link->isLinkedIn());
+        $this->assertTrue($link->isInstagram());
+
 
         $categories = $entity->getEmployeeCategories();
         $this->assertEquals(1, count($categories));
