@@ -276,6 +276,18 @@ class Realty implements Entity
     private $links;
 
     /**
+     * @var boolean
+     * @JUSTIMMO\Column(type="boolean")
+     */
+    private $isReadyForOccupancy;
+
+    /**
+     * @var boolean
+     * @JUSTIMMO\Column(type="boolean")
+     */
+    private $isReadyForFinishing;
+
+    /**
      * @var Realty
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty")
      */
@@ -676,6 +688,22 @@ class Realty implements Entity
     public function getLinks()
     {
         return $this->links;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReadyForOccupancy()
+    {
+        return $this->isReadyForOccupancy;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReadyForFinishing()
+    {
+        return $this->isReadyForFinishing;
     }
 
     /**

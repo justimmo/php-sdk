@@ -52,6 +52,8 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withShowInSearch()
  * @method $this withAttachments()
  * @method $this withLinks()
+ * @method $this withIsReadyForOccupancy()
+ * @method $this withIsReadyForFinishing()
  *
  * @method $this filterByType($value)
  * @method $this filterByBuildingProgress($value)
@@ -150,6 +152,8 @@ class RealtyRequest extends BaseApiRequest
         'showInSearch',
         'attachments',
         'links',
+        'isReadyForOccupancy',
+        'isReadyForFinishing',
     ];
 
     const SORTS = [
