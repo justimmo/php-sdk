@@ -61,6 +61,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByRealtyType($value)
  * @method $this filterBySubRealtyType($value)
  * @method $this filterByOccupancy($value)
+ * @method $this filterByReference($value)
  * @method $this filterByBuildingStyle($value)
  * @method $this filterByRealtyCategory($value)
  * @method $this filterByZipCode($value)
@@ -177,6 +178,7 @@ class RealtyRequest extends BaseApiRequest
         'realtyType',
         'subRealtyType',
         'occupancy',
+        'reference',
         'buildingStyle',
         'realtyCategory',
         'zipCode',
