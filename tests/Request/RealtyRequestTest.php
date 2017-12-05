@@ -36,6 +36,7 @@ class RealtyRequestTest extends RequestTestCase
         'features',
         'employee',
         'realtyCategories',
+        'showPrices',
         'price',
         'priceFrom',
         'pricePerM2From',

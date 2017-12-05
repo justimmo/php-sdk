@@ -126,6 +126,12 @@ class Realty implements Entity
     private $rooms;
 
     /**
+     * @var boolean
+     * @JUSTIMMO\Column(type="boolean")
+     */
+    private $showPrices;
+
+    /**
      * @var RealtyPrices
      * @JUSTIMMO\Relation(path="detailedPrices", targetEntity="\Justimmo\Api\Entity\RealtyPrices")
      */
@@ -484,6 +490,14 @@ class Realty implements Entity
     public function getRooms()
     {
         return $this->rooms;
+    }
+
+    /**
+     * @return bool
+     */
+    public function showPrices()
+    {
+        return $this->showPrices;
     }
 
     /**

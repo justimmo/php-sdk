@@ -127,6 +127,7 @@ class RealtyRequest extends BaseApiRequest
         'features',
         'employee',
         'realtyCategories',
+        'showPrices',
         'price',
         'priceFrom',
         'pricePerM2From',
