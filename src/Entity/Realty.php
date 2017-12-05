@@ -495,7 +495,7 @@ class Realty implements Entity
     /**
      * @return bool
      */
-    public function showPrices()
+    public function getShowPrices()
     {
         return $this->showPrices;
     }
