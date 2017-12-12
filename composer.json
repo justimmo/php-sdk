@@ -9,7 +9,7 @@
     },
     "require-dev": {
         "symfony/debug": "~2.4",
-        "phpunit/phpunit": "^4.0|^5.0|^6.0"
+        "phpunit/phpunit": "^4.0|^5.0"
     },
     "suggest": {
         "monolog/monolog": "~1.7"
