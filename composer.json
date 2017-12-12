@@ -8,12 +8,18 @@
         "psr/log": "~1.0"
     },
     "require-dev": {
-        "symfony/debug": "~2.4"
+        "symfony/debug": "~2.4",
+        "phpunit/phpunit": "^5.0"
     },
     "suggest": {
         "monolog/monolog": "~1.7"
     },
     "autoload": {
         "psr-0": { "Justimmo": "src/" }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Justimmo": "tests/"
+        }
     }
 }
