@@ -2,6 +2,11 @@ language: php
 
 sudo: false
 
+matrix:
+  include:
+    - php: 5.3
+      dist: precise
+
 git:
   depth: 1
 
