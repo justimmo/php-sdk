@@ -50,6 +50,12 @@ class RealtyTexts implements Entity
      * @JUSTIMMO\Column(path="freetext3")
      */
     private $free3;
+    
+    /**
+     * @var string
+     * @JUSTIMMO\Column(path="freetext4")
+     */
+    private $free4;
 
     /**
      * @return string
@@ -105,5 +111,13 @@ class RealtyTexts implements Entity
     public function getFree3()
     {
         return $this->free3;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFree4()
+    {
+        return $this->free4;
     }
 }
