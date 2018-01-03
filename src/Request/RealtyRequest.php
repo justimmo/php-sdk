@@ -284,6 +284,16 @@ class RealtyRequest extends BaseApiRequest
     }
 
     /**
+     * Shortcut for $this->filterByType(Realty::TYPE_RESIDENTIAL_SUBUNIT);
+     *
+     * @return $this
+     */
+    public function residentialSubunits()
+    {
+        return $this->filterByType(Realty::TYPE_RESIDENTIAL_SUBUNIT);
+    }
+
+    /**
      * Shortcut for $this->filterByType(Realty::TYPE_AREA);
      *
      * @return $this
