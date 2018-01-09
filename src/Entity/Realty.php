@@ -51,9 +51,14 @@ class Realty implements Entity
     const TYPE_AREA = 'area';
 
     /**
-     * Describes a residential project containing multiple simple realties
+     * Describes a residential project containing multiple subunits
      */
     const TYPE_RESIDENTIAL_PROJECT = 'residential';
+
+    /**
+     * Describes a subunit of a residential project
+     */
+    const TYPE_RESIDENTIAL_SUBUNIT = 'residential_subunit';
 
     const BUILDING_PROGRESS_BUILDING = 'building';
     const BUILDING_PROGRESS_PLANNING = 'planning';
@@ -348,6 +353,16 @@ class Realty implements Entity
     public function isTypeResidentialProject()
     {
         return $this->type === self::TYPE_RESIDENTIAL_PROJECT;
+    }
+
+    /**
+     * Returns true if the realty is a subunit of a residential project
+     *
+     * @return bool
+     */
+    public function isTypeResidentialSubunit()
+    {
+        return $this->type === self::TYPE_RESIDENTIAL_SUBUNIT;
     }
 
     /**
