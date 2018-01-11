@@ -15,6 +15,7 @@ class Link implements Entity
     const TYPE_LINK      = 'links';
     const TYPE_MOVIE     = 'filmlink';
     const TYPE_TOUR      = 'rundgang';
+    const TYPE_PROJECT   = 'projekturl';
     const TYPE_FACEBOOK  = 'facebook';
     const TYPE_TWITTER   = 'twitter';
     const TYPE_XING      = 'xing';
@@ -140,6 +141,14 @@ class Link implements Entity
     public function isSocialNetwork()
     {
         return in_array($this->type, self::SOCIAL_NETWORKS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isProject()
+    {
+        return $this->type === self::TYPE_PROJECT;
     }
 
     /**
