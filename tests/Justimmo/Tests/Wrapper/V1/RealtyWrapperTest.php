@@ -1,4 +1,5 @@
 <?php
+
 namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Mapper\V1\RealtyMapper;
@@ -71,7 +72,7 @@ class RealtyWrapperTest extends TestCase
     public function testTransformSingle()
     {
         /** @var \Justimmo\Model\Realty $objekt */
-        $objekt  = $this->wrapper->transformSingle($this->getFixtures('v1/realty_detail.xml'));
+        $objekt = $this->wrapper->transformSingle($this->getFixtures('v1/realty_detail.xml'));
 
         $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
 
@@ -117,6 +118,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals($objekt->getGarageArea(), 20.57);
         $this->assertEquals($objekt->getParkingCount(), 2);
         $this->assertEquals($objekt->getParkingArea(), 36.85);
+        $this->assertEquals($objekt->getCeilingHeight(), 3.5);
 
         $this->assertEquals(450000, $objekt->getPurchasePrice());
         $this->assertEquals(3000, $objekt->getPurchasePricePerSqm());
@@ -187,14 +189,14 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(0, count($objekt->getVideos()));
 
         $pictures = $objekt->getPictures();
-        $picture = $pictures[0];
+        $picture  = $pictures[0];
         $this->assertEquals('http://files.justimmo.at/public/pic/big/AHA0s6aAaT.jpg', $picture->getUrl());
         $this->assertEquals('http://files.justimmo.at/public/pic/small/AHA0s6aAaT.jpg', $picture->getUrl('small'));
         $this->assertEquals('jpg', $picture->getExtension());
         $this->assertEquals('picture', $picture->getType());
 
         $links = $objekt->getLinks();
-        $link = $links[0];
+        $link  = $links[0];
         $this->assertEquals(1, count($links));
         $this->assertEquals('JUSTIMMO', $link->getTitle());
         $this->assertEquals('http://www.justimmo.at', $link->getUrl());

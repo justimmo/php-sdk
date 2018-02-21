@@ -1,4 +1,5 @@
 <?php
+
 namespace Justimmo\Model\Mapper\V1;
 
 class RealtyMapper extends AbstractMapper
@@ -6,314 +7,318 @@ class RealtyMapper extends AbstractMapper
     protected function getMapping()
     {
         return array(
-            'id'                         => array(
+            'id'                               => array(
                 'type' => 'int',
             ),
-            'objektnummer'               => array(
+            'objektnummer'                     => array(
                 'property' => 'propertyNumber',
             ),
-            'titel'                      => array(
+            'titel'                            => array(
                 'property' => 'title',
             ),
-            'dreizeiler'                 => array(
+            'dreizeiler'                       => array(
                 'property' => 'teaser',
             ),
-            'naehe'                      => array(
+            'naehe'                            => array(
                 'property' => 'proximity',
             ),
-            'objektbeschreibung'         => array(
+            'objektbeschreibung'               => array(
                 'property' => 'description',
             ),
-            'etage'                      => array(
+            'etage'                            => array(
                 'property' => 'tier',
             ),
-            'stiege'                     => array(
+            'stiege'                           => array(
                 'property' => 'stair',
             ),
-            'tuernummer'                 => array(
+            'tuernummer'                       => array(
                 'property' => 'doorNumber',
             ),
-            'plz'                        => array(
+            'plz'                              => array(
                 'property' => 'zipCode',
             ),
-            'ort'                        => array(
+            'ort'                              => array(
                 'property' => 'place',
             ),
-            'kaufpreis'                  => array(
+            'kaufpreis'                        => array(
                 'property' => 'purchasePrice',
                 'type'     => 'double',
             ),
-            'gesamtmiete'                => array(
+            'gesamtmiete'                      => array(
                 'property' => 'totalRent',
                 'type'     => 'double',
             ),
-            'kaufpreis_pro_qm'           => array(
+            'kaufpreis_pro_qm'                 => array(
                 'property' => 'purchasePricePerSqm',
                 'type'     => 'double',
             ),
-            'mietpreis_pro_qm'           => array(
+            'mietpreis_pro_qm'                 => array(
                 'property' => 'rentPerSqm',
                 'type'     => 'double',
             ),
-            'betriebskosten_pro_qm'      => array(
+            'betriebskosten_pro_qm'            => array(
                 'property' => 'operatingCostsPerSqm',
                 'type'     => 'double',
             ),
-            'nutzflaeche'                => array(
+            'nutzflaeche'                      => array(
                 'property' => 'floorArea',
                 'type'     => 'double',
             ),
-            'grundflaeche'               => array(
+            'grundflaeche'                     => array(
                 'property' => 'surfaceArea',
                 'type'     => 'double',
             ),
-            'verbaubare_flaeche'         => array(
+            'verbaubare_flaeche'               => array(
                 'property' => 'buildableArea',
                 'type'     => 'double',
             ),
-            'wohnflaeche'                => array(
+            'wohnflaeche'                      => array(
                 'property' => 'livingArea',
                 'type'     => 'double',
             ),
-            'gesamtflaeche'              => array(
+            'gesamtflaeche'                    => array(
                 'property' => 'totalArea',
                 'type'     => 'double',
             ),
-            'projekt_id'                 => array(
+            'projekt_id'                       => array(
                 'property' => 'projectId',
                 'type'     => 'int',
             ),
-            'regionaler_zusatz'          => array(
+            'regionaler_zusatz'                => array(
                 'property' => 'regionalAddition',
             ),
-            'gemarkung'                  => array(
+            'gemarkung'                        => array(
                 'property' => 'district',
             ),
-            'flur'                       => array(
+            'flur'                             => array(
                 'property' => 'hallway',
             ),
-            'flurstueck'                 => array(
+            'flurstueck'                       => array(
                 'property' => 'landParcel',
             ),
-            'bundesland'                 => array(
+            'bundesland'                       => array(
                 'property' => 'federalState',
             ),
-            'land'                       => array(
+            'land'                             => array(
                 'property' => 'country',
             ),
-            'strasse'                    => array(
+            'strasse'                          => array(
                 'property' => 'street',
             ),
-            'hausnummer'                 => array(
+            'hausnummer'                       => array(
                 'property' => 'houseNumber',
             ),
-            'anzahl_etagen'              => array(
+            'anzahl_etagen'                    => array(
                 'property' => 'tierCount',
                 'type'     => 'int',
             ),
-            'nettokaltmiete'             => array(
+            'nettokaltmiete'                   => array(
                 'property' => 'netRent',
                 'type'     => 'double',
             ),
-            'nebenkosten'                => array(
+            'nebenkosten'                      => array(
                 'property' => 'additionalCharges',
                 'type'     => 'double',
             ),
-            'heizkosten'                 => array(
+            'heizkosten'                       => array(
                 'property' => 'heatingCosts',
                 'type'     => 'double',
             ),
-            'wohnbaufoerderung'          => array(
+            'wohnbaufoerderung'                => array(
                 'property' => 'buildingSubsidies',
                 'type'     => 'double',
             ),
-            'rendite'                    => array(
+            'rendite'                          => array(
                 'property' => 'yield',
                 'type'     => 'double',
             ),
-            'nettoertrag_jaehrlich'      => array(
+            'nettoertrag_jaehrlich'            => array(
                 'property' => 'netEarningYearly',
                 'type'     => 'double',
             ),
-            'nettoertrag_monatlich'      => array(
+            'nettoertrag_monatlich'            => array(
                 'property' => 'netEarningMonthly',
                 'type'     => 'double',
             ),
-            'gesamtmiete_ust'            => array(
+            'gesamtmiete_ust'                  => array(
                 'property' => 'totalRentVat',
                 'type'     => 'double',
             ),
-            'grunderwerbssteuer'         => array(
+            'grunderwerbssteuer'               => array(
                 'property' => 'transferTax',
                 'type'     => 'double',
             ),
-            'grundbucheintragung'        => array(
+            'grundbucheintragung'              => array(
                 'property' => 'landRegistration',
                 'type'     => 'double',
             ),
-            'vertragserrichtungsgebuehr' => array(
+            'vertragserrichtungsgebuehr'       => array(
                 'property' => 'contractEstablishmentCosts',
                 'type'     => 'string',
             ),
-            'kaution'                    => array(
+            'kaution'                          => array(
                 'property' => 'surety',
                 'type'     => 'double',
             ),
-            'kaution_text'               => array(
+            'kaution_text'                     => array(
                 'property' => 'surety_text',
                 'type'     => 'string',
             ),
-            'abstand'                    => array(
+            'abstand'                          => array(
                 'property' => 'compensation',
                 'type'     => 'double',
             ),
-            'anzahl_zimmer'              => array(
+            'anzahl_zimmer'                    => array(
                 'property' => 'roomCount',
                 'type'     => 'double',
             ),
-            'anzahl_badezimmer'          => array(
+            'anzahl_badezimmer'                => array(
                 'property' => 'bathroomCount',
                 'type'     => 'int',
             ),
-            'anzahl_sep_wc'              => array(
+            'anzahl_sep_wc'                    => array(
                 'property' => 'toiletRoomCount',
                 'type'     => 'int',
             ),
-            'anzahl_balkon_terrassen'    => array(
+            'anzahl_balkon_terrassen'          => array(
                 'property' => 'balconyTerraceCount',
                 'type'     => 'iny',
             ),
-            'balkon_terrasse_flaeche'    => array(
+            'balkon_terrasse_flaeche'          => array(
                 'property' => 'balconyTerraceArea',
                 'type'     => 'double',
             ),
-            'anzahl_balkone'             => array(
+            'anzahl_balkone'                   => array(
                 'property' => 'balconyCount',
                 'type'     => 'int',
             ),
-            'anzahl_balkons'             => array(
+            'anzahl_balkons'                   => array(
                 'property' => 'balconyCount',
                 'type'     => 'int',
             ),
-            'anzahl_terrassen'           => array(
+            'anzahl_terrassen'                 => array(
                 'property' => 'terraceCount',
                 'type'     => 'int',
             ),
-            'gartenflaeche'              => array(
+            'gartenflaeche'                    => array(
                 'property' => 'gardenArea',
                 'type'     => 'double',
             ),
-            'kellerflaeche'              => array(
+            'kellerflaeche'                    => array(
                 'property' => 'cellarArea',
                 'type'     => 'double',
             ),
-            'bueroflaeche'               => array(
+            'bueroflaeche'                     => array(
                 'property' => 'officeArea',
                 'type'     => 'double',
             ),
-            'lagerflaeche'               => array(
+            'lagerflaeche'                     => array(
                 'property' => 'storageArea',
                 'type'     => 'double',
             ),
-            'anzahl_loggias'             => array(
+            'anzahl_loggias'                   => array(
                 'property' => 'loggiaCount',
                 'type'     => 'int',
             ),
-            'loggias_flaeche'            => array(
+            'loggias_flaeche'                  => array(
                 'property' => 'loggiaArea',
                 'type'     => 'double',
             ),
-            'balkons_flaeche'            => array(
+            'balkons_flaeche'                  => array(
                 'property' => 'balconyArea',
                 'type'     => 'double',
             ),
-            'terrassen_flaeche'          => array(
+            'terrassen_flaeche'                => array(
                 'property' => 'terraceArea',
                 'type'     => 'double',
             ),
-            'anzahl_garagen'             => array(
+            'anzahl_garagen'                   => array(
                 'property' => 'garageCount',
                 'type'     => 'int',
             ),
-            'garagen_flaeche'            => array(
+            'garagen_flaeche'                  => array(
                 'property' => 'garageArea',
                 'type'     => 'double',
             ),
-            'anzahl_stellplaetze'        => array(
+            'anzahl_stellplaetze'              => array(
                 'property' => 'parkingCount',
                 'type'     => 'int',
             ),
-            'stellplatz_flaeche'         => array(
+            'stellplatz_flaeche'               => array(
                 'property' => 'parkingArea',
                 'type'     => 'double',
             ),
-            'anzahl_abstellraum'         => array(
+            'anzahl_abstellraum'               => array(
                 'property' => 'storeRoomCount',
                 'type'     => 'int',
             ),
-            'epass_hwbwert'              => array(
+            'raumhoehe'                        => array(
+                'property' => 'ceilingHeight',
+                'type'     => 'double',
+            ),
+            'epass_hwbwert'                    => array(
                 'property' => 'thermalHeatRequirementValue',
                 'type'     => 'double',
             ),
-            'epass_hwbklasse'            => array(
+            'epass_hwbklasse'                  => array(
                 'property' => 'thermalHeatRequirementClass',
                 'type'     => 'string',
             ),
-            'epass_fgeewert'             => array(
+            'epass_fgeewert'                   => array(
                 'property' => 'energyEfficiencyFactorValue',
                 'type'     => 'double',
             ),
-            'epass_fgeeklasse'           => array(
+            'epass_fgeeklasse'                 => array(
                 'property' => 'energyEfficiencyFactorClass',
                 'type'     => 'string',
             ),
-            'justimmo_freitext1'         => array(
+            'justimmo_freitext1'               => array(
                 'property' => 'freetext1',
             ),
-            'justimmo_freitext2'         => array(
+            'justimmo_freitext2'               => array(
                 'property' => 'freetext2',
             ),
-            'justimmo_freitext3'         => array(
+            'justimmo_freitext3'               => array(
                 'property' => 'freetext3',
             ),
-            'lage'                       => array(
+            'lage'                             => array(
                 'property' => 'locality',
             ),
-            'aussen_courtage'            => array(
+            'aussen_courtage'                  => array(
                 'property' => 'commission',
             ),
-            'status_id'                  => array(
+            'status_id'                        => array(
                 'type' => 'int',
             ),
-            'objektart_id'               => array(
+            'objektart_id'                     => array(
                 'property' => 'realtyTypeId',
                 'type'     => 'int',
             ),
-            'objektart_name'             => array(
+            'objektart_name'                   => array(
                 'property' => 'realtyTypeName',
                 'type'     => 'string',
             ),
-            'sub_objektart_id'           => array(
+            'sub_objektart_id'                 => array(
                 'property' => 'subRealtyTypeId',
                 'type'     => 'int',
             ),
-            'sub_objektart_name'         => array(
+            'sub_objektart_name'               => array(
                 'property' => 'subRealtyTypeName',
                 'type'     => 'string',
             ),
-            'bauart_id'                  => array(
+            'bauart_id'                        => array(
                 'property' => 'styleOfBuildingId',
                 'type'     => 'int',
             ),
-            'vermittelt_am'              => array(
+            'vermittelt_am'                    => array(
                 'property' => 'procuredAt',
                 'type'     => 'datetime',
             ),
-            'erstellt_am'                => array(
+            'erstellt_am'                      => array(
                 'property' => 'createdAt',
                 'type'     => 'datetime',
             ),
-            'aktualisiert_am'            => array(
+            'aktualisiert_am'                  => array(
                 'property' => 'updatedAt',
                 'type'     => 'datetime',
             ),

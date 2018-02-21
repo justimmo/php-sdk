@@ -113,6 +113,7 @@ class RealtyWrapper extends AbstractWrapper
         'stellplatz_flaeche',
         'anzahl_abstellraum',
         'verbaubare_flaeche',
+        'raumhoehe',
     );
 
     protected $energyMapping = array(
@@ -127,7 +128,7 @@ class RealtyWrapper extends AbstractWrapper
         $xml = new \SimpleXMLElement($data);
 
         $transformed = new ListPager();
-        $transformed->setNbResults((int) $xml->{'query-result'}->count);
+        $transformed->setNbResults((int)$xml->{'query-result'}->count);
 
         if (isset($xml->immobilie)) {
             foreach ($xml->immobilie as $immobilie) {
@@ -162,17 +163,17 @@ class RealtyWrapper extends AbstractWrapper
 
         //list object attachment mapping
         if (isset($xml->erstes_bild)) {
-            $objekt->addAttachment(new Attachment((string) $xml->erstes_bild));
+            $objekt->addAttachment(new Attachment((string)$xml->erstes_bild));
         }
         if (isset($xml->zweites_bild)) {
-            $objekt->addAttachment(new Attachment((string) $xml->zweites_bild));
+            $objekt->addAttachment(new Attachment((string)$xml->zweites_bild));
         }
 
         //detailed attributes from detail view, OpenImmo
         if (isset($xml->verwaltung_techn)) {
-            $objekt->setId((int) $xml->verwaltung_techn->objektnr_intern);
-            $objekt->setPropertyNumber((string) $xml->verwaltung_techn->objektnr_extern);
-            $objekt->setProjectId((int) $xml->verwaltung_techn->projekt_id);
+            $objekt->setId((int)$xml->verwaltung_techn->objektnr_intern);
+            $objekt->setPropertyNumber((string)$xml->verwaltung_techn->objektnr_extern);
+            $objekt->setProjectId((int)$xml->verwaltung_techn->projekt_id);
         }
 
         if (isset($xml->verwaltung_objekt)) {
@@ -190,7 +191,7 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->verwaltung_objekt->user_defined_anyfield) && isset($xml->verwaltung_objekt->user_defined_anyfield->justimmo_kategorie)) {
                 foreach ($xml->verwaltung_objekt->user_defined_anyfield->justimmo_kategorie as $category) {
-                    $objekt->addCategory((int) $category['id'], (string) $category);
+                    $objekt->addCategory((int)$category['id'], (string)$category);
                 }
             }
 
@@ -201,8 +202,8 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->objektkategorie)) {
             if (isset($xml->objektkategorie->objektart)) {
-                $objekt->setRealtyType((string) $xml->objektkategorie->objektart->children()->getName());
-                $objekt->setSubRealtyType((string) $xml->objektkategorie->objektart->children()->attributes());
+                $objekt->setRealtyType((string)$xml->objektkategorie->objektart->children()->getName());
+                $objekt->setSubRealtyType((string)$xml->objektkategorie->objektart->children()->attributes());
             }
             if (isset($xml->objektkategorie->nutzungsart)) {
                 $objekt->setOccupancy(filter_var_array($this->attributesToArray($xml->objektkategorie->nutzungsart->attributes()), FILTER_VALIDATE_BOOLEAN));
@@ -214,7 +215,7 @@ class RealtyWrapper extends AbstractWrapper
             foreach ($xml->objektkategorie->user_defined_simplefield as $simpleField) {
                 $this->mapSimpleField($simpleField, $objekt);
             }
-            
+
             foreach ($xml->objektkategorie->user_defined_anyfield as $anyField) {
                 foreach ($anyField->ji_kategorie as $kategorie) {
                     $attributes = $this->attributesToArray($kategorie);
@@ -227,22 +228,22 @@ class RealtyWrapper extends AbstractWrapper
         }
 
         if (isset($xml->freitexte)) {
-            $objekt->setTitle((string) $xml->freitexte->objekttitel);
-            $objekt->setEquipmentDescription((string) $xml->freitexte->ausstatt_beschr);
-            $objekt->setDescription((string) $xml->freitexte->objektbeschreibung);
+            $objekt->setTitle((string)$xml->freitexte->objekttitel);
+            $objekt->setEquipmentDescription((string)$xml->freitexte->ausstatt_beschr);
+            $objekt->setDescription((string)$xml->freitexte->objektbeschreibung);
             if (isset($xml->freitexte->lage)) {
-                $objekt->setLocality((string) $xml->freitexte->lage);
+                $objekt->setLocality((string)$xml->freitexte->lage);
             }
 
             if (isset($xml->freitexte->user_defined_anyfield)) {
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext1)) {
-                    $objekt->setFreetext1((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext1);
+                    $objekt->setFreetext1((string)$xml->freitexte->user_defined_anyfield->justimmo_freitext1);
                 }
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext2)) {
-                    $objekt->setFreetext2((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext2);
+                    $objekt->setFreetext2((string)$xml->freitexte->user_defined_anyfield->justimmo_freitext2);
                 }
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext3)) {
-                    $objekt->setFreetext3((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext3);
+                    $objekt->setFreetext3((string)$xml->freitexte->user_defined_anyfield->justimmo_freitext3);
                 }
             }
         }
@@ -252,14 +253,14 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->geo->geokoordinaten)) {
                 $coord = $this->attributesToArray($xml->geo->geokoordinaten->attributes());
-                $objekt->setLatitude((double) $coord['breitengrad']);
-                $objekt->setLongitude((double) $coord['laengengrad']);
+                $objekt->setLatitude((double)$coord['breitengrad']);
+                $objekt->setLongitude((double)$coord['laengengrad']);
             }
 
             if (isset($xml->geo->land)) {
                 $iso = $this->attributesToArray($xml->geo->land->attributes());
                 if (array_key_exists('iso_land', $iso)) {
-                    $objekt->setCountry((string) $iso['iso_land']);
+                    $objekt->setCountry((string)$iso['iso_land']);
                 }
             }
 
@@ -275,7 +276,7 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->preise->waehrung)) {
                 $iso = $this->attributesToArray($xml->preise->waehrung->attributes());
                 if (array_key_exists('iso_waehrung', $iso)) {
-                    $objekt->setCurrency((string) $iso['iso_waehrung']);
+                    $objekt->setCurrency((string)$iso['iso_waehrung']);
                 }
             }
 
@@ -285,11 +286,11 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
-                    $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
-                    $costs = new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (double) $zusatzkosten->ust_berechneter_wert, (double) $zusatzkosten->ust_wert);
+                    $name  = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
+                    $costs = new AdditionalCosts((string)$name, (double)$zusatzkosten->brutto, (double)$zusatzkosten->netto, (double)$zusatzkosten->ust, (string)$zusatzkosten->ust_typ, (double)$zusatzkosten->ust_berechneter_wert, (double)$zusatzkosten->ust_wert);
 
                     if (isset($zusatzkosten->optional)) {
-                        $costs->setOptional(filter_var((string) $zusatzkosten->optional, FILTER_VALIDATE_BOOLEAN));
+                        $costs->setOptional(filter_var((string)$zusatzkosten->optional, FILTER_VALIDATE_BOOLEAN));
                     }
 
                     $objekt->addAdditionalCosts($key, $costs);
@@ -359,7 +360,7 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->ausstattung[0])) {
                 /** @var \SimpleXMLElement $element */
                 foreach ($xml->ausstattung[0] as $key => $element) {
-                    if ((string) $element === "true" || (int) $element === 1) {
+                    if ((string)$element === "true" || (int)$element === 1) {
                         $objekt->addEquipment($key, $key);
                     } elseif ($element->attributes()->count()) {
                         $attributes = $this->attributesToArray($element);
@@ -373,7 +374,7 @@ class RealtyWrapper extends AbstractWrapper
                         }
                         $objekt->addEquipment($key, count($value) > 1 || (array_keys($value) !== range(0, count($value) - 1)) ? $value : $value[0]);
                     } else {
-                        $objekt->addEquipment($key, (string) $element);
+                        $objekt->addEquipment($key, (string)$element);
                     }
                 }
             }
@@ -381,7 +382,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->kontaktperson)) {
             $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
-            $contact = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $contact         = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
             $objekt->setContact($contact);
         }
 
@@ -389,8 +390,8 @@ class RealtyWrapper extends AbstractWrapper
     }
 
     /**
-     * @param \SimpleXMLElement $xml
-     * @param null              $type
+     * @param \SimpleXMLElement      $xml
+     * @param null                   $type
      *
      * @param \Justimmo\Model\Realty $objekt
      *
@@ -400,9 +401,9 @@ class RealtyWrapper extends AbstractWrapper
     protected function mapAttachmentGroup(\SimpleXMLElement $xml, Realty $objekt, $type = null)
     {
         foreach ($xml as $anhang) {
-            $data = (array) $anhang->daten;
+            $data       = (array)$anhang->daten;
             $attributes = $this->attributesToArray($anhang);
-            $group = array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null;
+            $group      = array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null;
             if (array_key_exists('pfad', $data)) {
                 $attachment = new Attachment($data['pfad'], $type, $group);
                 $attachment->mergeData($data);
@@ -416,7 +417,8 @@ class RealtyWrapper extends AbstractWrapper
         }
     }
 
-    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model) {
+    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model)
+    {
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {
             $setter = $this->mapper->getSetter($attributes['feldname']);

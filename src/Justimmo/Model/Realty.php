@@ -201,6 +201,8 @@ class Realty
 
     protected $storeRoomCount = null;
 
+    protected $ceilingHeight = null;
+
     protected $contractEstablishmentCosts = null;
 
     protected $commission = null;
@@ -1397,7 +1399,7 @@ class Realty
     }
 
     /**
-     * @param      $type
+     * @param                     $type
      * @param null|string|boolean $group
      *
      * @return array
@@ -1409,7 +1411,7 @@ class Realty
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
             if ($attachment->getType() == $type && ($group === false || $group == $attachment->getGroup())) {
-                $attachments[] =  $attachment;
+                $attachments[] = $attachment;
             }
         }
 
@@ -1647,6 +1649,26 @@ class Realty
     public function getStoreRoomCount()
     {
         return $this->storeRoomCount;
+    }
+
+    /**
+     * @param null $ceilingHeight
+     *
+     * @return $this
+     */
+    public function setCeilingHeight($ceilingHeight)
+    {
+        $this->ceilingHeight = $ceilingHeight;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCeilingHeight()
+    {
+        return $this->ceilingHeight;
     }
 
     /**
