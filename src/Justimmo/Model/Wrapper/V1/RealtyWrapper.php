@@ -119,6 +119,7 @@ class RealtyWrapper extends AbstractWrapper
         'stellplatz_flaeche',
         'anzahl_abstellraum',
         'verbaubare_flaeche',
+        'raumhoehe',
     );
 
     protected $energyMapping = array(

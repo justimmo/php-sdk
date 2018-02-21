@@ -255,6 +255,8 @@ class Realty
 
     protected $storeRoomCount;
 
+    protected $ceilingHeight;
+
     protected $contractEstablishmentCosts;
 
     protected $commission;
@@ -1864,6 +1866,26 @@ class Realty
     public function getStoreRoomCount()
     {
         return $this->storeRoomCount;
+    }
+
+    /**
+     * @param null $ceilingHeight
+     *
+     * @return $this
+     */
+    public function setCeilingHeight($ceilingHeight)
+    {
+        $this->ceilingHeight = $ceilingHeight;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCeilingHeight()
+    {
+        return $this->ceilingHeight;
     }
 
     /**

@@ -127,6 +127,7 @@
             <garagen_flaeche>20.57</garagen_flaeche>
             <anzahl_stellplaetze>2</anzahl_stellplaetze>
             <stellplatz_flaeche>36.85</stellplatz_flaeche>
+            <raumhoehe>3.5</raumhoehe>
         </flaechen>
         <ausstattung>
             <ausricht_balkon_terrasse NORD="1"/>
