@@ -1,4 +1,5 @@
 <?php
+
 namespace Justimmo\Model\Mapper\V1;
 
 use Justimmo\Model\Realty;
@@ -287,6 +288,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'storeRoomCount',
                 'type'     => 'int',
             ),
+            'raumhoehe'                        => array(
+                'property' => 'ceilingHeight',
+                'type'     => 'double',
+            ),
             'epass_hwbwert'                    => array(
                 'property' => 'thermalHeatRequirementValue',
                 'type'     => 'double',
@@ -432,11 +437,11 @@ class RealtyMapper extends AbstractMapper
 
     /**
      * @param \SimpleXMLElement $xml
-     * @param Realty $realty
+     * @param Realty            $realty
      */
     public function setOrientation(\SimpleXMLElement $xml, Realty $realty)
     {
-        $value = (string) $xml;
+        $value = (string)$xml;
 
         if (array_key_exists($value, self::$ORIENTATION_MAPPING)) {
             $orientation = self::$ORIENTATION_MAPPING[$value];
