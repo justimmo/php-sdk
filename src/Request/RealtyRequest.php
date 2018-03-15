@@ -307,6 +307,25 @@ class RealtyRequest extends BaseApiRequest
         return $this->filterByType(Realty::TYPE_AREA);
     }
 
+    /**
+     * Shortcut for $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+     *
+     * @return $this
+     */
+    public function teasered()
+    {
+        return $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+    }
+
+    /**
+     * Shortcut for $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+     *
+     * @return $this
+     */
+    public function marketed()
+    {
+        return $this->filterByMarketingState(Realty::MARKETING_STATE_ACTIVE);
+    }
 
     /**
      * Return plain texts for wysiwyg fields

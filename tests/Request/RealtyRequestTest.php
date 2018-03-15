@@ -179,5 +179,16 @@ class RealtyRequestTest extends RequestTestCase
         $request->withDetailedRooms();
         $this->assertEquals(['fields' => 'rooms,detailedRooms'], $request->getQuery());
     }
+
+    public function testShortcutMarketingStates()
+    {
+        $request = $this->getRequest();
+
+        $request->teasered();
+        $this->assertEquals(['f' => ['marketingState' => Realty::MARKETING_STATE_TEASER]], $request->getQuery());
+
+        $request->marketed();
+        $this->assertEquals(['f' => ['marketingState' => Realty::MARKETING_STATE_ACTIVE]], $request->getQuery());
+    }
 }
 
