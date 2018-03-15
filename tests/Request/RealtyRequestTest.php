@@ -131,5 +131,53 @@ class RealtyRequestTest extends RequestTestCase
         $this->assertEquals(['textFormat' => $request::TEXT_FORMAT_HTML], $request->getQuery());
     }
 
+    public function testShortcutMarketingTypes()
+    {
+        $request = $this->getRequest();
+
+        $request->rentable();
+        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_RENT]], $request->getQuery());
+
+        $request->buyable();
+        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_BUY]], $request->getQuery());
+
+        $request->leasable();
+        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_LEASE]], $request->getQuery());
+    }
+
+    public function testShortcutTypes()
+    {
+        $request = $this->getRequest();
+
+        $request->simpleTypes();
+        $this->assertEquals(['f' => ['type' => Realty::TYPE_SIMPLE]], $request->getQuery());
+
+        $request->areas();
+        $this->assertEquals(['f' => ['type' => Realty::TYPE_AREA]], $request->getQuery());
+
+        $request->residentialProjects();
+        $this->assertEquals(['f' => ['type' => Realty::TYPE_RESIDENTIAL_PROJECT]], $request->getQuery());
+
+        $request->commercialProjects();
+        $this->assertEquals(['f' => ['type' => Realty::TYPE_COMMERCIAL_PROJECT]], $request->getQuery());
+
+        $request->residentialSubunits();
+        $this->assertEquals(['f' => ['type' => Realty::TYPE_RESIDENTIAL_SUBUNIT]], $request->getQuery());
+    }
+
+    public function testShortcutWiths()
+    {
+        $request = $this->getRequest();
+        $request->withDetailedAreas();
+        $this->assertEquals(['fields' => 'livingArea,floorArea,floorAreaFrom,surfaceArea,detailedAreas'], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withDetailedPrices();
+        $this->assertEquals(['fields' => 'price,priceFrom,pricePerM2,pricePerM2From,detailedPrices'], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withDetailedRooms();
+        $this->assertEquals(['fields' => 'rooms,detailedRooms'], $request->getQuery());
+    }
 }
 
