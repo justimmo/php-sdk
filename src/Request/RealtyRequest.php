@@ -13,6 +13,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withRealtyType()
  * @method $this withSubRealtyType()
  * @method $this withRealtyState()
+ * @method $this withMarketingState()
  * @method $this withAddress()
  * @method $this withCoordinates()
  * @method $this withCoordinatesPrecise()
@@ -74,6 +75,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this filterByRealtyState($value)
+ * @method $this filterByMarketingState($value)
  * @method $this filterByCity($value)
  * @method $this filterByRegion($value)
  * @method $this filterByParent($value)
@@ -111,6 +113,7 @@ class RealtyRequest extends BaseApiRequest
         'realtyType',
         'subRealtyType',
         'realtyState',
+        'marketingState',
         'address',
         'coordinates',
         'coordinatesPrecise',
@@ -178,6 +181,8 @@ class RealtyRequest extends BaseApiRequest
         'buildingProgress',
         'realtyType',
         'subRealtyType',
+        'realtyState',
+        'marketingState',
         'occupancy',
         'reference',
         'buildingStyle',
@@ -191,7 +196,6 @@ class RealtyRequest extends BaseApiRequest
         'overallArea',
         'country',
         'federalState',
-        'realtyState',
         'city',
         'region',
         'parent',

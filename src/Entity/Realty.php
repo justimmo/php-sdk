@@ -35,6 +35,9 @@ class Realty implements Entity
     const OCCUPANCY_COMMERCIAL = 'commercial';
     const OCCUPANCY_INVESTMENT = 'investment';
 
+    const MARKETING_STATE_ACTIVE = 'active';
+    const MARKETING_STATE_TEASER = 'teaser';
+
     /**
      * Describes standalone realties without affiliation to any project
      */
@@ -111,6 +114,12 @@ class Realty implements Entity
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\RealtyState")
      */
     private $realtyState;
+
+    /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $marketingState;
 
     /**
      * @var Address
@@ -457,6 +466,22 @@ class Realty implements Entity
     public function getRealtyState()
     {
         return $this->realtyState;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMarketingStateActive()
+    {
+        return $this->marketingState === self::MARKETING_STATE_ACTIVE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMarketingStateTeaser()
+    {
+        return $this->marketingState === self::MARKETING_STATE_TEASER;
     }
 
     /**

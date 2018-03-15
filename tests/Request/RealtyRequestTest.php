@@ -20,6 +20,7 @@ class RealtyRequestTest extends RequestTestCase
         'realtyType',
         'subRealtyType',
         'realtyState',
+        'marketingState',
         'address',
         'coordinates',
         'coordinatesPrecise',
@@ -98,6 +99,7 @@ class RealtyRequestTest extends RequestTestCase
         'country',
         'federalState',
         'realtyState',
+        'marketingState',
         'city',
         'region',
         'parent',
@@ -128,5 +130,6 @@ class RealtyRequestTest extends RequestTestCase
         $request->useHtmlTextFormat();
         $this->assertEquals(['textFormat' => $request::TEXT_FORMAT_HTML], $request->getQuery());
     }
+
 }
 
