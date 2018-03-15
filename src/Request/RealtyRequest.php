@@ -325,18 +325,6 @@ class RealtyRequest extends BaseApiRequest
     }
 
     /**
-     * Returns all realties regardless of their activity and feed settings.
-     * Only works for children of commercial and residential projects.
-     * filterByParent() must have been called
-     *
-     * @return $this
-     */
-    public function includeAll()
-    {
-        return $this->setQueryParameter('includeAll', 1);
-    }
-
-    /**
      * @return $this
      */
     public function withDetailedAreas()

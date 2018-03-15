@@ -128,13 +128,5 @@ class RealtyRequestTest extends RequestTestCase
         $request->useHtmlTextFormat();
         $this->assertEquals(['textFormat' => $request::TEXT_FORMAT_HTML], $request->getQuery());
     }
-
-    public function testIncludeAll()
-    {
-        $request = $this->getRequest();
-
-        $request->includeAll();
-        $this->assertEquals(['includeAll' => 1], $request->getQuery());
-    }
 }
 
