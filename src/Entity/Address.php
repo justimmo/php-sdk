@@ -9,6 +9,11 @@ use Justimmo\Api\Annotation as JUSTIMMO;
  */
 class Address implements Entity
 {
+    const DISPLAY_RULE_NOTHING = 'nothing';
+    const DISPLAY_RULE_CITY    = 'city';
+    const DISPLAY_RULE_STREET  = 'street';
+    const DISPLAY_RULE_FULL    = 'full';
+
     /**
      * @var string
      * @JUSTIMMO\Column(path="street", type="string")
@@ -76,6 +81,12 @@ class Address implements Entity
     private $near;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column(path="addressDisplayRule", type="string")
+     */
+    private $addressDisplayRule;
+
+    /**
      * @var GeoCoordinates
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\GeoCoordinates")
      */
@@ -83,7 +94,7 @@ class Address implements Entity
 
     /**
      * @var GeoCoordinates
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\GeoCoordinates")
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\GeoCoordinatesPrecise")
      */
     private $coordinatesPrecise;
 
@@ -173,6 +184,54 @@ class Address implements Entity
     public function getNear()
     {
         return $this->near;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddressDisplayRule()
+    {
+        return $this->addressDisplayRule;
+    }
+
+    /**
+     * Returns true if the address should be displayed with all its details
+     *
+     * @return bool
+     */
+    public function isDisplayFull()
+    {
+        return $this->addressDisplayRule === self::DISPLAY_RULE_FULL;
+    }
+
+    /**
+     * Returns true if the address should be completely hidden
+     *
+     * @return bool
+     */
+    public function isDisplayNothing()
+    {
+        return $this->addressDisplayRule === self::DISPLAY_RULE_NOTHING;
+    }
+
+    /**
+     * Returns true if only city, zip-code and street (without number) should be displayed
+     *
+     * @return bool
+     */
+    public function isDisplayStreet()
+    {
+        return $this->addressDisplayRule === self::DISPLAY_RULE_STREET;
+    }
+
+    /**
+     * Returns true if only city and zip-code should be displayed
+     *
+     * @return bool
+     */
+    public function isDisplayCity()
+    {
+        return $this->addressDisplayRule === self::DISPLAY_RULE_CITY;
     }
 
     /**

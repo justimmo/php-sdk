@@ -7,33 +7,33 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 /**
  * @JUSTIMMO\Entity()
  */
-class GeoCoordinates implements Entity
+class GeoCoordinatesPrecise implements Entity
 {
     /**
      * @var float
      * @JUSTIMMO\Column(path="lat", type="float")
      */
-    private $latitude;
+    private $latitudePrecise;
 
     /**
      * @var float
      * @JUSTIMMO\Column(path="lng", type="float")
      */
-    private $longitude;
+    private $longitudePrecise;
 
     /**
      * @return float
      */
-    public function getLatitude()
+    public function getLatitudePrecise()
     {
-        return $this->latitude;
+        return $this->latitudePrecise;
     }
 
     /**
      * @return float
      */
-    public function getLongitude()
+    public function getLongitudePrecise()
     {
-        return $this->longitude;
+        return $this->longitudePrecise;
     }
 }
