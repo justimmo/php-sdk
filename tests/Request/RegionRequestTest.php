@@ -18,9 +18,12 @@ class RegionRequestTest extends RequestTestCase
     ];
 
     const FILTERS = [
-        'withRealties',
         'country',
         'federalState',
+    ];
+
+    const SUB_REQUESTS = [
+        'realties',
     ];
 
     const SORTS = [

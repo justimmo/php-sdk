@@ -18,8 +18,11 @@ class ZipCodeRequestTest extends RequestTestCase
         'region',
     ];
 
+    const SUB_REQUESTS = [
+        'realties',
+    ];
+
     const FILTERS = [
-        'withRealties',
         'country',
         'federalState',
     ];

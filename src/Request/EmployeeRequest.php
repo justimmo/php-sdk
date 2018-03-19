@@ -5,7 +5,6 @@ namespace Justimmo\Api\Request;
 use Justimmo\Api\Entity\Employee\Employee;
 
 /**
- * @method $this filterByWithRealties($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  * @method $this sortByNumber($direction = BaseApiRequest::ASC)
  * @method $this sortByFirstName($direction = BaseApiRequest::ASC)
@@ -31,6 +30,8 @@ use Justimmo\Api\Entity\Employee\Employee;
  */
 class EmployeeRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const FIELDS = [
         'name',
         'number',
@@ -57,10 +58,6 @@ class EmployeeRequest extends BaseApiRequest
         'number',
         'firstName',
         'lastName',
-    ];
-
-    const FILTERS = [
-        'withRealties',
     ];
 
     /**

@@ -39,8 +39,8 @@ class EmployeeRequestTest extends RequestTestCase
         'lastName',
     ];
 
-    const FILTERS = [
-        'withRealties',
+    const SUB_REQUESTS = [
+        'realties',
     ];
 
     /**

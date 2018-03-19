@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Request\BaseApiRequest;
+use Justimmo\Api\Request\RealtyRequest;
 use Justimmo\Api\Tests\TestCase;
 
 abstract class RequestTestCase extends TestCase
@@ -12,6 +13,8 @@ abstract class RequestTestCase extends TestCase
     const FILTERS = [];
 
     const FIELDS = [];
+
+    const SUB_REQUESTS = [];
 
     const ENTITY_CLASS = null;
 
@@ -205,9 +208,11 @@ abstract class RequestTestCase extends TestCase
         $this->assertEmpty($request->getQuery());
 
         $request->filterById([15, 20]);
-        $this->assertEquals(['f' => [
-            'id' => [15, 20]
-        ]],$request->getQuery());
+        $this->assertEquals([
+            'f' => [
+                'id' => [15, 20],
+            ],
+        ], $request->getQuery());
     }
 
     public function testWith()
@@ -228,6 +233,45 @@ abstract class RequestTestCase extends TestCase
 
         $this->assertEquals([
             'fields' => implode(',', $setFields),
+        ], $request->getQuery());
+    }
+
+    public function testSubRequests()
+    {
+        if (empty(static::SUB_REQUESTS)) {
+            return;
+        }
+
+        foreach (static::SUB_REQUESTS as $subRequest) {
+            $method = 'doTestSubRequest' . ucfirst($subRequest);
+            $this->$method();
+        }
+    }
+
+    protected function doTestSubRequestRealties()
+    {
+        $request = $this->getRequest();
+
+        $realtyRequest = (new RealtyRequest())
+            ->filterByCountry('AT')
+            ->filterByFederalState([1, 2])
+            ->filterByRealtyType(['not' => 3])
+            ->filterByPrice(['min' => 10, 'max' => 20]);
+
+        $request->filterByRealties($realtyRequest);
+
+        $this->assertEquals([
+            'f' => [
+                'realties' => [
+                    'country'      => 'AT',
+                    'federalState' => [1, 2],
+                    'realtyType'   => ['not' => 3],
+                    'price' => [
+                        'min' => 10,
+                        'max' => 20,
+                    ]
+                ],
+            ],
         ], $request->getQuery());
     }
 }

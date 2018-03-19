@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
+use Justimmo\Api\Request\RealtyRequest;
 use Justimmo\Api\Request\ZipCodeRequest;
 
 class ComplexRequestTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +13,11 @@ class ComplexRequestTest extends \PHPUnit_Framework_TestCase
         $request
             ->filterByCountry(['AT', 'DE'])
             ->filterByFederalState(['min' => 10, 'max' => 25])
-            ->filterByWithRealties(true)
+            ->filterByRealties(
+                (new RealtyRequest())
+                ->filterByPrice(['max' => 2000])
+                ->rentable()
+            )
             ->withCity()
             ->withCountry()
             ->withFederalState()
@@ -26,7 +31,10 @@ class ComplexRequestTest extends \PHPUnit_Framework_TestCase
                     'min' => 10,
                     'max' => 25,
                 ],
-                'withRealties' => true,
+                'realties' => [
+                    'price' => ['max' => 2000],
+                    'marketingType' => 'rent'
+                ],
             ],
             'fields' => 'city,country,federalState',
             'sort' => '-city,zip',

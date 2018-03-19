@@ -8,13 +8,14 @@ use Justimmo\Api\Entity\Geo\Region;
  * @method $this withCountries()
  * @method $this withFederalStates()
  * @method $this withZipCodes()
- * @method $this filterByWithRealties($value)
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
 class RegionRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const FIELDS = [
         'countries',
         'federalStates',
@@ -22,7 +23,6 @@ class RegionRequest extends BaseApiRequest
     ];
 
     const FILTERS = [
-        'withRealties',
         'country',
         'federalState',
     ];

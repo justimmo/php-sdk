@@ -102,7 +102,7 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByUpdatedAt($direction = BaseApiRequest::ASC)
  */
-class RealtyRequest extends BaseApiRequest
+class RealtyRequest extends BaseApiRequest implements SubRequest
 {
     const TEXT_FORMAT_PLAIN = 'plain';
     const TEXT_FORMAT_HTML  = 'html';
@@ -225,6 +225,14 @@ class RealtyRequest extends BaseApiRequest
     public function getEntityClass()
     {
         return Realty::class;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSubFilters()
+    {
+        return array_key_exists('f', $this->query) ? $this->query['f'] : [];
     }
 
     /**

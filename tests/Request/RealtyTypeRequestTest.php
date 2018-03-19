@@ -20,8 +20,8 @@ class RealtyTypeRequestTest extends RequestTestCase
         'name',
     ];
 
-    const FILTERS = [
-        'withRealties',
+    const SUB_REQUESTS = [
+        'realties',
     ];
 
     /**

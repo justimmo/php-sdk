@@ -154,7 +154,7 @@ abstract class BaseApiRequest implements EntityRequest
             : [$this->query['f'][$field]];
 
         if (!is_array($value)) {
-            $value = [ $value ];
+            $value = [$value];
         }
 
         $values = array_unique(array_merge($originalValue, $value));
@@ -294,6 +294,19 @@ abstract class BaseApiRequest implements EntityRequest
         }
 
         return $this;
+    }
+
+    /**
+     * Adds a subrequest
+     *
+     * @param string     $name
+     * @param SubRequest $request
+     *
+     * @return $this
+     */
+    protected function addSubRequest($name, SubRequest $request)
+    {
+        return $this->filterBy($name, $request->getSubFilters());
     }
 
     /**

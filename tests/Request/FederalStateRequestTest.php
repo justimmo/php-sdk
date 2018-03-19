@@ -16,8 +16,11 @@ class FederalStateRequestTest extends RequestTestCase
     ];
 
     const FILTERS = [
-        'withRealties',
         'country',
+    ];
+
+    const SUB_REQUESTS = [
+        'realties',
     ];
 
     const SORTS = [

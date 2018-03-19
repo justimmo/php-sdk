@@ -5,18 +5,15 @@ namespace Justimmo\Api\Request;
 use Justimmo\Api\Entity\Realty\Category;
 
 /**
- * @method $this filterByWithRealties($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  * @method $this withRealties()
  */
 class RealtyCategoryRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const SORTS = [
         'name',
-    ];
-
-    const FILTERS = [
-        'withRealties'
     ];
 
     const FIELDS = [
