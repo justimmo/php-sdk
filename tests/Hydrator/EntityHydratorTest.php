@@ -145,6 +145,18 @@ class EntityHydratorTest extends TestCase
         $this->assertNull($entity->getParentEntity()->getParentEntity()->getParentEntity());
     }
 
+    public function testDelegate()
+    {
+        $entity = $this->hydrate([
+            'id'           => 1,
+            'name'         => 'Grandchild',
+            'delegated' => 'Delegation Test',
+        ]);
+
+        $this->assertInstanceOf(MockedEntity::class, $entity->getDelegated());
+        $this->assertSame('Delegation Test', $entity->getDelegated()->getName());
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      */
