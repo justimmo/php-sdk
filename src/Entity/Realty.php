@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Traits\DateFormatable;
 use Justimmo\Api\Entity\Traits\Identifiable;
@@ -172,7 +173,7 @@ class Realty implements Entity
 
     /**
      * @var Employee
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Employee")
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Employee\Employee")
      */
     private $employee;
 

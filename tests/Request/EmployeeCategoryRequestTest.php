@@ -2,12 +2,12 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\EmployeeCategory;
+use Justimmo\Api\Entity\Employee\Category;
 use Justimmo\Api\Request\EmployeeCategoryRequest;
 
 class EmployeeCategoryRequestTest extends RequestTestCase
 {
-    const ENTITY_CLASS = EmployeeCategory::class;
+    const ENTITY_CLASS = Category::class;
 
     const PATH_PREFIX = '/employee-categories';
 

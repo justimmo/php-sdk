@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Employee;
+use Justimmo\Api\Entity\Employee\Employee;
 
 /**
  * @method $this filterByWithRealties($value)

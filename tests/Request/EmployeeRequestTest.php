@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\Employee;
+use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Request\EmployeeRequest;
 
 class EmployeeRequestTest extends RequestTestCase

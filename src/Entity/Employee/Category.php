@@ -1,15 +1,17 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Employee;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Employee\Employee;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity(cacheKey="id")
  */
-class EmployeeCategory implements Entity
+class Category implements Entity
 {
     use Identifiable, Nameable;
 
@@ -20,7 +22,7 @@ class EmployeeCategory implements Entity
 
     /**
      * @var Employee[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="employees", targetEntity="Justimmo\Api\Entity\Employee", multiple=true)
+     * @JUSTIMMO\Relation(path="employees", targetEntity="Justimmo\Api\Entity\Employee\Employee", multiple=true)
      */
     private $employees;
 

@@ -1,9 +1,12 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Employee;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Attachment;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
+use Justimmo\Api\Entity\Link;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -99,10 +102,10 @@ class Employee implements Entity
     private $pictures;
 
     /**
-     * @var EmployeeCategory[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="employeeCategories", targetEntity="Justimmo\Api\Entity\EmployeeCategory", multiple=true)
+     * @var Category[]|\Justimmo\Api\ResultSet\ResultSet
+     * @JUSTIMMO\Relation(path="employeeCategories", targetEntity="Justimmo\Api\Entity\Employee\Category", multiple=true)
      */
-    private $employeeCategories;
+    private $categories;
 
     /**
      * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
@@ -234,11 +237,11 @@ class Employee implements Entity
     }
 
     /**
-     * @return EmployeeCategory[]|\Justimmo\Api\ResultSet\ResultSet
+     * @return Category[]|\Justimmo\Api\ResultSet\ResultSet
      */
-    public function getEmployeeCategories()
+    public function getCategories()
     {
-        return $this->employeeCategories;
+        return $this->categories;
     }
 
     /**

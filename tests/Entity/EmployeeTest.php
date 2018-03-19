@@ -5,7 +5,7 @@ namespace Justimmo\Api\Tests\Entity;
 use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment;
 use Justimmo\Api\Entity\Geo\Country;
-use Justimmo\Api\Entity\Employee;
+use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Entity\Link;
 use Justimmo\Api\Request\EmployeeRequest;
 
@@ -202,7 +202,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertTrue($link->isSocialNetwork());
 
 
-        $categories = $entity->getEmployeeCategories();
+        $categories = $entity->getCategories();
         $this->assertEquals(1, count($categories));
         $this->assertEquals(5254, $categories[0]->getId());
         $this->assertEquals("Geschäftsführung", $categories[0]->getName());
