@@ -251,15 +251,12 @@ abstract class RequestTestCase extends TestCase
     protected function doTestSubRequestRealties()
     {
         $request = $this->getRequest();
-
         $realtyRequest = (new RealtyRequest())
             ->filterByCountry('AT')
             ->filterByFederalState([1, 2])
             ->filterByRealtyType(['not' => 3])
             ->filterByPrice(['min' => 10, 'max' => 20]);
-
         $request->filterByRealties($realtyRequest);
-
         $this->assertEquals([
             'f' => [
                 'realties' => [
@@ -273,6 +270,13 @@ abstract class RequestTestCase extends TestCase
                 ],
             ],
         ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->filterByRealties(new RealtyRequest());
+        $this->assertEquals([
+            'f' => [
+                'realties' => 1
+            ],
+        ], $request->getQuery());
     }
 }
-

@@ -306,7 +306,9 @@ abstract class BaseApiRequest implements EntityRequest
      */
     protected function addSubRequest($name, SubRequest $request)
     {
-        return $this->filterBy($name, $request->getSubFilters());
+        $filters = $request->getSubFilters();
+
+        return $this->filterBy($name, empty($filters) ? 1 : $filters);
     }
 
     /**
