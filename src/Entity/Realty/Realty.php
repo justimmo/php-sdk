@@ -249,8 +249,8 @@ class Realty implements Entity
     private $showInSearch;
 
     /**
-     * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment\Attachment", multiple=true)
+     * @var Attachment[]|\Justimmo\Api\Entity\Attachment\AttachmentCollection
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Attachment\AttachmentCollection", targetPath="attachments")
      */
     private $attachments;
 
@@ -630,76 +630,11 @@ class Realty implements Entity
     }
 
     /**
-     * Returns attachments of group pictures
-     *
-     * @return Attachment[]
+     * @return Attachment[]|\Justimmo\Api\Entity\Attachment\AttachmentCollection
      */
-    public function getPictures()
+    public function getAttachments()
     {
-        return $this->filterAttachmentsByGroup(Attachment::GROUP_PICTURES);
-    }
-
-    /**
-     * Returns attachments of group plans
-     *
-     * @return Attachment[]
-     */
-    public function getPlans()
-    {
-        return $this->filterAttachmentsByGroup(Attachment::GROUP_PLANS);
-    }
-
-    /**
-     * Returns attachments of group videos
-     *
-     * @return Attachment[]
-     */
-    public function getVideos()
-    {
-        return $this->filterAttachmentsByGroup(Attachment::GROUP_VIDEOS);
-    }
-
-    /**
-     * Returns attachments of group documents
-     *
-     * @return Attachment[]
-     */
-    public function getDocuments()
-    {
-        return $this->filterAttachmentsByGroup(Attachment::GROUP_DOCUMENTS);
-    }
-
-    /**
-     * Returns attachments of group three60 pictures
-     *
-     * @return Attachment[]
-     */
-    public function getThree60Pictures()
-    {
-        return $this->filterAttachmentsByGroup(Attachment::GROUP_THREE60_PICTURES);
-    }
-
-    /**
-     * Filters attachments by a specific group
-     *
-     * @param array|int $groups
-     *
-     * @return Attachment[]
-     */
-    private function filterAttachmentsByGroup($groups)
-    {
-        if (!is_array($groups)) {
-            $groups = [ $groups ];
-        }
-
-        $groupedAttachments = [];
-        foreach ($this->attachments as $attachment) {
-            if (in_array($attachment->getGroup(), $groups)) {
-                $groupedAttachments[] = $attachment;
-            }
-        }
-
-        return $groupedAttachments;
+        return $this->attachments;
     }
 }
 

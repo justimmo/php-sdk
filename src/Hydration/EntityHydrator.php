@@ -9,6 +9,7 @@ use Justimmo\Api\Annotation\Entity;
 use Justimmo\Api\Annotation\PreHydrate;
 use Justimmo\Api\Annotation\Relation;
 use Justimmo\Api\ResultSet\Collection;
+use Justimmo\Api\Annotation\Collection as CollectionAnnotation;
 
 /**
  * Class EntityHydrator
@@ -279,14 +280,18 @@ class EntityHydrator
             return $this->reflectionClasses[$class];
         }
 
-        $reflClass  = new \ReflectionClass($class);
-        $annotation = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\Entity');
-        if (empty($annotation)) {
-            throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity.');
-        }
+        $reflClass = new \ReflectionClass($class);
+        $isValid   = false;
 
         foreach ($this->reader->getClassAnnotations($reflClass) as $annotation) {
+            if (in_array(get_class($annotation), [Entity::class, CollectionAnnotation::class])) {
+                $isValid = true;
+            }
             $this->classAnnotations[$reflClass->name][get_class($annotation)] = $annotation;
+        }
+
+        if (!$isValid) {
+            throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity or Justimmo\Api\Annotation\Entity\Collection.');
         }
 
         $class = $reflClass->name;
