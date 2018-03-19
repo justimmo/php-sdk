@@ -253,7 +253,7 @@ class Employee implements Entity
     }
 
     /**
-     * @return \int[]
+     * @return int[]
      */
     public function getRealtyIds()
     {

@@ -166,7 +166,7 @@ class EntityHydrator
     /**
      * Resolve a Column annotation by recursively calling the cast value
      *
-     * @param array  $values
+     * @param mixed  $values
      * @param Column $annotation
      *
      * @return mixed|null
