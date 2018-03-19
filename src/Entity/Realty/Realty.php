@@ -32,10 +32,6 @@ class Realty implements Entity
 {
     use Identifiable, DateFormatable;
 
-    const BUILDING_PROGRESS_BUILDING = 'building';
-    const BUILDING_PROGRESS_PLANNING = 'planning';
-    const BUILDING_PROGRESS_FINISHED = 'finished';
-
     /**
      * @var string
      * @JUSTIMMO\Column
@@ -49,8 +45,8 @@ class Realty implements Entity
     private $type;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var BuildingProgress
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\BuildingProgess", targetPath="state")
      */
     private $buildingProgress;
 
@@ -302,33 +298,11 @@ class Realty implements Entity
     }
 
     /**
-     * Returns true if the realty is still in planning (Only residential projects)
-     *
-     * @return bool
+     * @return BuildingProgress
      */
-    public function isBuildingProgressPlanning()
+    public function getBuildingProgress()
     {
-        return $this->buildingProgress === self::BUILDING_PROGRESS_PLANNING;
-    }
-
-    /**
-     * Returns true if the realty is still in building (Only residential projects)
-     *
-     * @return bool
-     */
-    public function isBuildingProgressBuilding()
-    {
-        return $this->buildingProgress === self::BUILDING_PROGRESS_BUILDING;
-    }
-
-    /**
-     * Returns true if the realty state is finished (Only residential projects)
-     *
-     * @return bool
-     */
-    public function isBuildingProgressFinished()
-    {
-        return $this->buildingProgress === self::BUILDING_PROGRESS_FINISHED;
+        return $this->buildingProgress;
     }
 
     /**
