@@ -43,31 +43,6 @@ class Realty implements Entity
     const MARKETING_STATE_ACTIVE = 'active';
     const MARKETING_STATE_TEASER = 'teaser';
 
-    /**
-     * Describes standalone realties without affiliation to any project
-     */
-    const TYPE_SIMPLE = 'simple';
-
-    /**
-     * Describes a commercial project with multiple sub areas
-     */
-    const TYPE_COMMERCIAL_PROJECT = 'commercial';
-
-    /**
-     * Describes an area (possibly splittable) belonging to a commercial project
-     */
-    const TYPE_AREA = 'area';
-
-    /**
-     * Describes a residential project containing multiple subunits
-     */
-    const TYPE_RESIDENTIAL_PROJECT = 'residential';
-
-    /**
-     * Describes a subunit of a residential project
-     */
-    const TYPE_RESIDENTIAL_SUBUNIT = 'residential_subunit';
-
     const BUILDING_PROGRESS_BUILDING = 'building';
     const BUILDING_PROGRESS_PLANNING = 'planning';
     const BUILDING_PROGRESS_FINISHED = 'finished';
@@ -79,8 +54,8 @@ class Realty implements Entity
     private $number;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var Type
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\Type", targetPath="type")
      */
     private $type;
 
@@ -330,57 +305,7 @@ class Realty implements Entity
     }
 
     /**
-     * Returns true if the realty is a normal standalone realty
-     *
-     * @return bool
-     */
-    public function isTypeSimple()
-    {
-        return $this->type === self::TYPE_SIMPLE;
-    }
-
-    /**
-     * Returns true if the realty is a big commercial project with subrealties
-     *
-     * @return bool
-     */
-    public function isTypeCommercialProject()
-    {
-        return $this->type === self::TYPE_COMMERCIAL_PROJECT;
-    }
-
-    /**
-     * Returns true if the realty a partial area belonging to a commercial project
-     *
-     * @return bool
-     */
-    public function isTypeArea()
-    {
-        return $this->type === self::TYPE_AREA;
-    }
-
-    /**
-     * Returns true if the realty is a residential project with subrealties
-     *
-     * @return bool
-     */
-    public function isTypeResidentialProject()
-    {
-        return $this->type === self::TYPE_RESIDENTIAL_PROJECT;
-    }
-
-    /**
-     * Returns true if the realty is a subunit of a residential project
-     *
-     * @return bool
-     */
-    public function isTypeResidentialSubunit()
-    {
-        return $this->type === self::TYPE_RESIDENTIAL_SUBUNIT;
-    }
-
-    /**
-     * @return string
+     * @return Type
      */
     public function getType()
     {

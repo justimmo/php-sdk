@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Request;
 
 use Justimmo\Api\Entity\Realty\Realty;
+use Justimmo\Api\Entity\Realty\Type;
 
 /**
  * @method $this withNumber()
@@ -264,7 +265,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function simpleTypes()
     {
-        return $this->filterByType(Realty::TYPE_SIMPLE);
+        return $this->filterByType(Type::SIMPLE);
     }
 
     /**
@@ -274,7 +275,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function commercialProjects()
     {
-        return $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+        return $this->filterByType(Type::COMMERCIAL_PROJECT);
     }
 
     /**
@@ -284,7 +285,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function residentialProjects()
     {
-        return $this->filterByType(Realty::TYPE_RESIDENTIAL_PROJECT);
+        return $this->filterByType(Type::RESIDENTIAL_PROJECT);
     }
 
     /**
@@ -294,7 +295,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function residentialSubunits()
     {
-        return $this->filterByType(Realty::TYPE_RESIDENTIAL_SUBUNIT);
+        return $this->filterByType(Type::RESIDENTIAL_SUBUNIT);
     }
 
     /**
@@ -304,7 +305,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function areas()
     {
-        return $this->filterByType(Realty::TYPE_AREA);
+        return $this->filterByType(Type::AREA);
     }
 
     /**

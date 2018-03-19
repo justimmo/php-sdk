@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Entity\Realty\Realty;
+use Justimmo\Api\Entity\Realty\Type;
 use Justimmo\Api\Request\RealtyRequest;
 
 class RealtyRequestTest extends RequestTestCase
@@ -150,19 +151,19 @@ class RealtyRequestTest extends RequestTestCase
         $request = $this->getRequest();
 
         $request->simpleTypes();
-        $this->assertEquals(['f' => ['type' => Realty::TYPE_SIMPLE]], $request->getQuery());
+        $this->assertEquals(['f' => ['type' => Type::SIMPLE]], $request->getQuery());
 
         $request->areas();
-        $this->assertEquals(['f' => ['type' => Realty::TYPE_AREA]], $request->getQuery());
+        $this->assertEquals(['f' => ['type' => Type::AREA]], $request->getQuery());
 
         $request->residentialProjects();
-        $this->assertEquals(['f' => ['type' => Realty::TYPE_RESIDENTIAL_PROJECT]], $request->getQuery());
+        $this->assertEquals(['f' => ['type' => Type::RESIDENTIAL_PROJECT]], $request->getQuery());
 
         $request->commercialProjects();
-        $this->assertEquals(['f' => ['type' => Realty::TYPE_COMMERCIAL_PROJECT]], $request->getQuery());
+        $this->assertEquals(['f' => ['type' => Type::COMMERCIAL_PROJECT]], $request->getQuery());
 
         $request->residentialSubunits();
-        $this->assertEquals(['f' => ['type' => Realty::TYPE_RESIDENTIAL_SUBUNIT]], $request->getQuery());
+        $this->assertEquals(['f' => ['type' => Type::RESIDENTIAL_SUBUNIT]], $request->getQuery());
     }
 
     public function testShortcutWiths()
