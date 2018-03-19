@@ -3,10 +3,10 @@
 namespace Justimmo\Api\Entity\Employee;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
-use Justimmo\Api\Entity\Attachment;
+use Justimmo\Api\Entity\Attachment\Attachment;
 use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
-use Justimmo\Api\Entity\Link;
+use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -91,13 +91,13 @@ class Employee implements Entity
 
     /**
      * @var Attachment
-     * @JUSTIMMO\Relation(path="profilePicture", targetEntity="Justimmo\Api\Entity\Attachment")
+     * @JUSTIMMO\Relation(path="profilePicture", targetEntity="Justimmo\Api\Entity\Attachment\Attachment")
      */
     private $profilePicture;
 
     /**
      * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="pictures", targetEntity="Justimmo\Api\Entity\Attachment", multiple=true)
+     * @JUSTIMMO\Relation(path="pictures", targetEntity="Justimmo\Api\Entity\Attachment\Attachment", multiple=true)
      */
     private $pictures;
 
@@ -109,7 +109,7 @@ class Employee implements Entity
 
     /**
      * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="links", targetEntity="Justimmo\Api\Entity\Link", multiple=true)
+     * @JUSTIMMO\Relation(path="links", targetEntity="Justimmo\Api\Entity\Attachment\Link", multiple=true)
      */
     private $links;
 

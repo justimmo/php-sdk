@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Attachment;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**

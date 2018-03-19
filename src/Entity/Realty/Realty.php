@@ -3,11 +3,11 @@
 namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
-use Justimmo\Api\Entity\Attachment;
+use Justimmo\Api\Entity\Attachment\Attachment;
 use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
-use Justimmo\Api\Entity\Link;
+use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Entity\Traits\DateFormatable;
 use Justimmo\Api\Entity\Traits\Identifiable;
 
@@ -124,7 +124,7 @@ class Realty implements Entity
 
     /**
      * @var Attachment
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment")
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment\Attachment")
      */
     private $coverPicture;
 
@@ -250,13 +250,13 @@ class Realty implements Entity
 
     /**
      * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment", multiple=true)
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment\Attachment", multiple=true)
      */
     private $attachments;
 
     /**
      * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Link", multiple=true)
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment\Link", multiple=true)
      */
     private $links;
 
