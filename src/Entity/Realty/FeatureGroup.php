@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -20,7 +21,7 @@ class FeatureGroup implements Entity
 
     /**
      * @var Feature[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="features", targetEntity="Justimmo\Api\Entity\Feature", multiple=true)
+     * @JUSTIMMO\Relation(path="features", targetEntity="Justimmo\Api\Entity\Realty\Feature", multiple=true)
      */
     private $features;
 

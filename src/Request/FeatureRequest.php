@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Feature;
+use Justimmo\Api\Entity\Realty\Feature;
 
 /**
  * @method $this withFeatureGroup()

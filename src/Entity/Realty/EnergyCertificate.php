@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\DateFormatable;
 
 /**
@@ -14,13 +15,13 @@ class EnergyCertificate implements Entity
 
     /**
      * @var EnergyCertificateValue
-     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\EnergyCertificateValue")
+     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Realty\EnergyCertificateValue")
      */
     private $thermalHeatRequirement;
 
     /**
      * @var EnergyCertificateValue
-     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\EnergyCertificateValue")
+     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Realty\EnergyCertificateValue")
      */
     private $energyEfficiencyFactor;
 

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\HouseCondition;
+use Justimmo\Api\Entity\Realty\HouseCondition;
 
 /**
  * @method $this sortByName($direction = BaseApiRequest::ASC)

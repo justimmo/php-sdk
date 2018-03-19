@@ -1,6 +1,6 @@
 <?php
 
-$reflClass = new ReflectionClass('Justimmo\Api\Entity\SubRealtyType');
+$reflClass = new ReflectionClass('Justimmo\Api\Entity\Realty\SubRealtyType');
 $reflId    = $reflClass->getProperty('id');
 $reflName  = $reflClass->getProperty('name');
 

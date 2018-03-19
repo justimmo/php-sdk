@@ -1,21 +1,22 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
 /**
  * @JUSTIMMO\Entity(cacheKey="id")
  */
-class RealtyCategory implements Entity
+class Category implements Entity
 {
     use Identifiable, Nameable;
 
     /**
      * @var Realty[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Realty", multiple=true)
+     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Realty\Realty", multiple=true)
      */
     private $realties;
 

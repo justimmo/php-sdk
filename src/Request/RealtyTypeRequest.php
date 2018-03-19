@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\RealtyType;
+use Justimmo\Api\Entity\Realty\RealtyType;
 
 /**
  * @method $this withSubRealtyTypes()

@@ -1,10 +1,27 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Attachment;
 use Justimmo\Api\Entity\Employee\Employee;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
+use Justimmo\Api\Entity\Link;
+use Justimmo\Api\Entity\Realty\BuildingStyle;
+use Justimmo\Api\Entity\Realty\Condition;
+use Justimmo\Api\Entity\Realty\EnergyCertificate;
+use Justimmo\Api\Entity\Realty\Feature;
+use Justimmo\Api\Entity\Realty\HouseCondition;
+use Justimmo\Api\Entity\Realty\InfrastructureProvision;
+use Justimmo\Api\Entity\Realty\Areas;
+use Justimmo\Api\Entity\Realty\Category;
+use Justimmo\Api\Entity\Realty\Prices;
+use Justimmo\Api\Entity\Realty\Rooms;
+use Justimmo\Api\Entity\Realty\RealtyState;
+use Justimmo\Api\Entity\Realty\Texts;
+use Justimmo\Api\Entity\Realty\RealtyType;
+use Justimmo\Api\Entity\Realty\SubRealtyType;
 use Justimmo\Api\Entity\Traits\DateFormatable;
 use Justimmo\Api\Entity\Traits\Identifiable;
 
@@ -130,13 +147,13 @@ class Realty implements Entity
     private $address;
 
     /**
-     * @var RealtyAreas
+     * @var Areas
      * @JUSTIMMO\Relation(path="detailedAreas", targetEntity="\Justimmo\Api\Entity\RealtyAreas")
      */
     private $areas;
 
     /**
-     * @var RealtyRooms
+     * @var Rooms
      * @JUSTIMMO\Relation(path="detailedRooms", targetEntity="\Justimmo\Api\Entity\RealtyRooms")
      */
     private $rooms;
@@ -148,13 +165,13 @@ class Realty implements Entity
     private $showPrices;
 
     /**
-     * @var RealtyPrices
+     * @var Prices
      * @JUSTIMMO\Relation(path="detailedPrices", targetEntity="\Justimmo\Api\Entity\RealtyPrices")
      */
     private $prices;
 
     /**
-     * @var RealtyTexts
+     * @var Texts
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\RealtyTexts")
      */
     private $texts;
@@ -178,7 +195,7 @@ class Realty implements Entity
     private $employee;
 
     /**
-     * @var RealtyCategory[]|\Justimmo\Api\ResultSet\ResultSet
+     * @var Category[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\RealtyCategory", multiple=true)
      */
     private $realtyCategories;
@@ -519,7 +536,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyAreas
+     * @return Areas
      */
     public function getAreas()
     {
@@ -527,7 +544,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyRooms
+     * @return Rooms
      */
     public function getRooms()
     {
@@ -543,7 +560,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyPrices
+     * @return Prices
      */
     public function getPrices()
     {
@@ -551,7 +568,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyTexts
+     * @return Texts
      */
     public function getTexts()
     {
@@ -583,7 +600,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return RealtyCategory[]|\Justimmo\Api\ResultSet\ResultSet
+     * @return Category[]|\Justimmo\Api\ResultSet\ResultSet
      */
     public function getRealtyCategories()
     {

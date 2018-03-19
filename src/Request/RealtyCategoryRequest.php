@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\RealtyCategory;
+use Justimmo\Api\Entity\Realty\Category;
 
 /**
  * @method $this filterByWithRealties($value)
@@ -36,6 +36,6 @@ class RealtyCategoryRequest extends BaseApiRequest
      */
     public function getEntityClass()
     {
-        return RealtyCategory::class;
+        return Category::class;
     }
 }

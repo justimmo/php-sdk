@@ -2,12 +2,12 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\RealtyCategory;
+use Justimmo\Api\Entity\Realty\Category;
 use Justimmo\Api\Request\RealtyCategoryRequest;
 
 class RealtyCategoryRequestTest extends RequestTestCase
 {
-    const ENTITY_CLASS = RealtyCategory::class;
+    const ENTITY_CLASS = Category::class;
 
     const PATH_PREFIX = '/realty-categories';
 

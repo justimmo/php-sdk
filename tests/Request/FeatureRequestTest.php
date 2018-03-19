@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\Feature;
+use Justimmo\Api\Entity\Realty\Feature;
 use Justimmo\Api\Request\FeatureRequest;
 
 class FeatureRequestTest extends RequestTestCase

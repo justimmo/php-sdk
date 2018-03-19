@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Realty;
+use Justimmo\Api\Entity\Realty\Realty;
 
 /**
  * @method $this withNumber()

@@ -5,7 +5,7 @@ namespace Justimmo\Api\Tests;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Justimmo\Api\Entity\RealtyType;
+use Justimmo\Api\Entity\Realty\RealtyType;
 use Justimmo\Api\Exception\ClientException;
 use Justimmo\Api\Request\ExposeRequest;
 use Justimmo\Api\Request\RealtyTypeRequest;

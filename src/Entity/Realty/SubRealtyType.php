@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -15,7 +16,7 @@ class SubRealtyType implements Entity
 
     /**
      * @var RealtyType
-     * @JUSTIMMO\Relation(path="realtyType", targetEntity="Justimmo\Api\Entity\RealtyType")
+     * @JUSTIMMO\Relation(path="realtyType", targetEntity="Justimmo\Api\Entity\Realty\RealtyType")
      */
     private $realtyType;
 

@@ -1,13 +1,14 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 
 /**
  * @JUSTIMMO\Entity()
  */
-class RealtyAreas implements Entity
+class Areas implements Entity
 {
     /**
      * @var float

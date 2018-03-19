@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\Condition;
+use Justimmo\Api\Entity\Realty\Condition;
 use Justimmo\Api\Request\ConditionRequest;
 
 class ConditionRequestTest extends RequestTestCase

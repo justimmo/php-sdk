@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\BuildingStyle;
+use Justimmo\Api\Entity\Realty\BuildingStyle;
 use Justimmo\Api\Request\BuildingStyleRequest;
 
 class BuildingStyleTest extends EntityTestCase
