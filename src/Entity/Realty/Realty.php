@@ -32,9 +32,6 @@ class Realty implements Entity
 {
     use Identifiable, DateFormatable;
 
-    const MARKETING_STATE_ACTIVE = 'active';
-    const MARKETING_STATE_TEASER = 'teaser';
-
     const BUILDING_PROGRESS_BUILDING = 'building';
     const BUILDING_PROGRESS_PLANNING = 'planning';
     const BUILDING_PROGRESS_FINISHED = 'finished';
@@ -88,8 +85,8 @@ class Realty implements Entity
     private $realtyState;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var MarketingState
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\MarketingState", targetPath="state")
      */
     private $marketingState;
 
@@ -375,19 +372,11 @@ class Realty implements Entity
     }
 
     /**
-     * @return bool
+     * @return MarketingState
      */
-    public function isMarketingStateActive()
+    public function getMarketingState()
     {
-        return $this->marketingState === self::MARKETING_STATE_ACTIVE;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isMarketingStateTeaser()
-    {
-        return $this->marketingState === self::MARKETING_STATE_TEASER;
+        return $this->marketingState;
     }
 
     /**

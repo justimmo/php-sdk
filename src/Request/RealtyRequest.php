@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
+use Justimmo\Api\Entity\Realty\MarketingState;
 use Justimmo\Api\Entity\Realty\MarketingType;
 use Justimmo\Api\Entity\Realty\Realty;
 use Justimmo\Api\Entity\Realty\Type;
@@ -316,7 +317,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function teasered()
     {
-        return $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+        return $this->filterByMarketingState(MarketingState::TEASER);
     }
 
     /**
@@ -326,7 +327,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function marketed()
     {
-        return $this->filterByMarketingState(Realty::MARKETING_STATE_ACTIVE);
+        return $this->filterByMarketingState(MarketingState::ACTIVE);
     }
 
     /**

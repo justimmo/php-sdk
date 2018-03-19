@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
+use Justimmo\Api\Entity\Realty\MarketingState;
 use Justimmo\Api\Entity\Realty\MarketingType;
 use Justimmo\Api\Entity\Realty\Realty;
 use Justimmo\Api\Entity\Realty\Type;
@@ -187,10 +188,10 @@ class RealtyRequestTest extends RequestTestCase
         $request = $this->getRequest();
 
         $request->teasered();
-        $this->assertEquals(['f' => ['marketingState' => Realty::MARKETING_STATE_TEASER]], $request->getQuery());
+        $this->assertEquals(['f' => ['marketingState' => MarketingState::TEASER]], $request->getQuery());
 
         $request->marketed();
-        $this->assertEquals(['f' => ['marketingState' => Realty::MARKETING_STATE_ACTIVE]], $request->getQuery());
+        $this->assertEquals(['f' => ['marketingState' => MarketingState::ACTIVE]], $request->getQuery());
     }
 }
 
