@@ -1,6 +1,6 @@
 <?php
 
-namespace Justimmo\Api\Entity\Traits;
+namespace Justimmo\Api\Entity;
 
 trait DateFormatable
 {

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests;
 
-use Justimmo\Api\Entity\Traits\DateFormatable;
+use Justimmo\Api\Entity\DateFormatable;
 
 class DateFormattableMock
 {

@@ -3,7 +3,6 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
-use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
  * @JUSTIMMO\Entity

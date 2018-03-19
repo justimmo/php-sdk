@@ -8,8 +8,8 @@ use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment\Link;
-use Justimmo\Api\Entity\Traits\DateFormatable;
-use Justimmo\Api\Entity\Traits\Identifiable;
+use Justimmo\Api\Entity\DateFormatable;
+use Justimmo\Api\Entity\Identifiable;
 
 /**
  * @JUSTIMMO\Entity()

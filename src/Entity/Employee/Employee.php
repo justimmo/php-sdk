@@ -7,8 +7,8 @@ use Justimmo\Api\Entity\Attachment\Attachment;
 use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment\Link;
-use Justimmo\Api\Entity\Traits\Identifiable;
-use Justimmo\Api\Entity\Traits\Nameable;
+use Justimmo\Api\Entity\Identifiable;
+use Justimmo\Api\Entity\Nameable;
 
 /**
  * @JUSTIMMO\Entity()

@@ -5,8 +5,8 @@ namespace Justimmo\Api\Entity\Employee;
 use Justimmo\Api\Annotation as JUSTIMMO;
 use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Entity\Entity;
-use Justimmo\Api\Entity\Traits\Identifiable;
-use Justimmo\Api\Entity\Traits\Nameable;
+use Justimmo\Api\Entity\Identifiable;
+use Justimmo\Api\Entity\Nameable;
 
 /**
  * @JUSTIMMO\Entity(cacheKey="id")

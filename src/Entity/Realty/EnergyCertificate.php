@@ -4,7 +4,7 @@ namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
 use Justimmo\Api\Entity\Entity;
-use Justimmo\Api\Entity\Traits\DateFormatable;
+use Justimmo\Api\Entity\DateFormatable;
 
 /**
  * @JUSTIMMO\Entity()
