@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
+use Justimmo\Api\Entity\Realty\MarketingType;
 use Justimmo\Api\Entity\Realty\Realty;
 use Justimmo\Api\Entity\Realty\Type;
 use Justimmo\Api\Request\RealtyRequest;
@@ -137,13 +138,13 @@ class RealtyRequestTest extends RequestTestCase
         $request = $this->getRequest();
 
         $request->rentable();
-        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_RENT]], $request->getQuery());
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::RENT]], $request->getQuery());
 
         $request->buyable();
-        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_BUY]], $request->getQuery());
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::BUY]], $request->getQuery());
 
         $request->leasable();
-        $this->assertEquals(['f' => ['marketingType' => Realty::MARKETING_TYPE_LEASE]], $request->getQuery());
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::LEASE]], $request->getQuery());
     }
 
     public function testShortcutTypes()

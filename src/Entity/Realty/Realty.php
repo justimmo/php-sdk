@@ -32,10 +32,6 @@ class Realty implements Entity
 {
     use Identifiable, DateFormatable;
 
-    const MARKETING_TYPE_RENT  = 'rent';
-    const MARKETING_TYPE_BUY   = 'buy';
-    const MARKETING_TYPE_LEASE = 'lease';
-
     const OCCUPANCY_LIVING     = 'living';
     const OCCUPANCY_COMMERCIAL = 'commercial';
     const OCCUPANCY_INVESTMENT = 'investment';
@@ -66,8 +62,8 @@ class Realty implements Entity
     private $buildingProgress;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var MarketingType
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\MarketingType", targetPath="type")
      */
     private $marketingType;
 
@@ -343,27 +339,11 @@ class Realty implements Entity
     }
 
     /**
-     * @return bool
+     * @return MarketingType
      */
-    public function canBeLeased()
+    public function getMarketingType()
     {
-        return $this->marketingType === self::MARKETING_TYPE_LEASE;
-    }
-
-    /**
-     * @return bool
-     */
-    public function canBeRented()
-    {
-        return $this->marketingType === self::MARKETING_TYPE_RENT;
-    }
-
-    /**
-     * @return bool
-     */
-    public function canBeBought()
-    {
-        return $this->marketingType === self::MARKETING_TYPE_BUY;
+        return $this->marketingType;
     }
 
     /**

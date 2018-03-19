@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
+use Justimmo\Api\Entity\Realty\MarketingType;
 use Justimmo\Api\Entity\Realty\Realty;
 use Justimmo\Api\Entity\Realty\Type;
 
@@ -233,7 +234,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function buyable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_BUY);
+        return $this->filterByMarketingType(MarketingType::BUY);
     }
 
     /**
@@ -244,7 +245,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function rentable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_RENT);
+        return $this->filterByMarketingType(MarketingType::RENT);
     }
 
     /**
@@ -255,7 +256,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function leasable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_LEASE);
+        return $this->filterByMarketingType(MarketingType::LEASE);
     }
 
     /**
