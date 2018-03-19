@@ -32,10 +32,6 @@ class Realty implements Entity
 {
     use Identifiable, DateFormatable;
 
-    const OCCUPANCY_LIVING     = 'living';
-    const OCCUPANCY_COMMERCIAL = 'commercial';
-    const OCCUPANCY_INVESTMENT = 'investment';
-
     const MARKETING_STATE_ACTIVE = 'active';
     const MARKETING_STATE_TEASER = 'teaser';
 
@@ -68,10 +64,10 @@ class Realty implements Entity
     private $marketingType;
 
     /**
-     * @var array
-     * @JUSTIMMO\Column(path="occupancy", type="original")
+     * @var Occupancy
+     * @JUSTIMMO\Delegated(path="occupancy", targetEntity="\Justimmo\Api\Entity\Realty\Occupancy", targetPath="occupancies")
      */
-    private $occupancies;
+    private $occupancy;
 
     /**
      * @var RealtyType
@@ -395,27 +391,11 @@ class Realty implements Entity
     }
 
     /**
-     * @return bool
+     * @return Occupancy
      */
-    public function isOccupancyLiving()
+    public function getOccupancy()
     {
-        return !empty($this->occupancies[self::OCCUPANCY_LIVING]);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isOccupancyCommercial()
-    {
-        return !empty($this->occupancies[self::OCCUPANCY_COMMERCIAL]);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isOccupancyInvestment()
-    {
-        return !empty($this->occupancies[self::OCCUPANCY_INVESTMENT]);
+        return $this->occupancy;
     }
 
     /**

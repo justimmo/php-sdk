@@ -11,7 +11,7 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this withType()
  * @method $this withBuildingProgress()
  * @method $this withMarketingType()
- * @method $this withOccypancy()
+ * @method $this withOccupancy()
  * @method $this withRealtyType()
  * @method $this withSubRealtyType()
  * @method $this withRealtyState()
