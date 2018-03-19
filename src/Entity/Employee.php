@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -81,7 +82,7 @@ class Employee implements Entity
 
     /**
      * @var Address
-     * @JUSTIMMO\Relation(path="address", targetEntity="Justimmo\Api\Entity\Address")
+     * @JUSTIMMO\Relation(path="address", targetEntity="Justimmo\Api\Entity\Geo\Address")
      */
     private $address;
 

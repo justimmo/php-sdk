@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Geo;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -15,19 +16,19 @@ class Region implements Entity
 
     /**
      * @var Country[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="countries", targetEntity="Justimmo\Api\Entity\Country", multiple=true)
+     * @JUSTIMMO\Relation(path="countries", targetEntity="Justimmo\Api\Entity\Geo\Country", multiple=true)
      */
     private $countries;
 
     /**
      * @var FederalState[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="federalStates", targetEntity="Justimmo\Api\Entity\FederalState", multiple=true)
+     * @JUSTIMMO\Relation(path="federalStates", targetEntity="Justimmo\Api\Entity\Geo\FederalState", multiple=true)
      */
     private $federalStates;
 
     /**
      * @var ZipCode[]|\Justimmo\Api\ResultSet\ResultSet
-     * @JUSTIMMO\Relation(path="zipCodes", targetEntity="Justimmo\Api\Entity\ZipCode", multiple=true)
+     * @JUSTIMMO\Relation(path="zipCodes", targetEntity="Justimmo\Api\Entity\Geo\ZipCode", multiple=true)
      */
     private $zipCodes;
 

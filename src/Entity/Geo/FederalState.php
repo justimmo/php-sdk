@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Geo;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 use Justimmo\Api\Entity\Traits\Nameable;
 
@@ -20,7 +21,8 @@ class FederalState implements Entity
 
     /**
      * @var Country
-     * @JUSTIMMO\Relation(path="country", targetEntity="Justimmo\Api\Entity\Country")
+     *
+     * @JUSTIMMO\Relation(path="country", targetEntity="Justimmo\Api\Entity\Geo\Country")
      */
     private $country;
 

@@ -1,19 +1,15 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Geo;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 
 /**
  * @JUSTIMMO\Entity()
  */
 class Address implements Entity
 {
-    const DISPLAY_RULE_NOTHING = 'nothing';
-    const DISPLAY_RULE_CITY    = 'city';
-    const DISPLAY_RULE_STREET  = 'street';
-    const DISPLAY_RULE_FULL    = 'full';
-
     /**
      * @var string
      * @JUSTIMMO\Column(path="street", type="string")
@@ -64,13 +60,13 @@ class Address implements Entity
 
     /**
      * @var FederalState
-     * @JUSTIMMO\Relation(path="federalState", targetEntity="\Justimmo\Api\Entity\FederalState")
+     * @JUSTIMMO\Relation(path="federalState", targetEntity="\Justimmo\Api\Entity\Geo\FederalState")
      */
     private $federalState;
 
     /**
      * @var Country
-     * @JUSTIMMO\Relation(path="country", targetEntity="\Justimmo\Api\Entity\Country")
+     * @JUSTIMMO\Relation(path="country", targetEntity="\Justimmo\Api\Entity\Geo\Country")
      */
     private $country;
 
@@ -81,20 +77,21 @@ class Address implements Entity
     private $near;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column(path="addressDisplayRule", type="string")
+     * @var AddressDisplayRule
+     * @JUSTIMMO\Delegated(path="addressDisplayRule", targetEntity="\Justimmo\Api\Entity\Geo\AddressDisplayRule", targetPath="rule")
      */
-    private $addressDisplayRule;
+    private $displayRule;
 
     /**
      * @var GeoCoordinates
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\GeoCoordinates")
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\GeoCoordinates")
      */
     private $coordinates;
 
     /**
      * @var GeoCoordinates
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\GeoCoordinatesPrecise")
+     *
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\GeoCoordinates")
      */
     private $coordinatesPrecise;
 
@@ -187,51 +184,11 @@ class Address implements Entity
     }
 
     /**
-     * @return string
+     * @return AddressDisplayRule
      */
-    public function getAddressDisplayRule()
+    public function getDisplayRule()
     {
-        return $this->addressDisplayRule;
-    }
-
-    /**
-     * Returns true if the address should be displayed with all its details
-     *
-     * @return bool
-     */
-    public function isDisplayFull()
-    {
-        return $this->addressDisplayRule === self::DISPLAY_RULE_FULL;
-    }
-
-    /**
-     * Returns true if the address should be completely hidden
-     *
-     * @return bool
-     */
-    public function isDisplayNothing()
-    {
-        return $this->addressDisplayRule === self::DISPLAY_RULE_NOTHING;
-    }
-
-    /**
-     * Returns true if only city, zip-code and street (without number) should be displayed
-     *
-     * @return bool
-     */
-    public function isDisplayStreet()
-    {
-        return $this->addressDisplayRule === self::DISPLAY_RULE_STREET;
-    }
-
-    /**
-     * Returns true if only city and zip-code should be displayed
-     *
-     * @return bool
-     */
-    public function isDisplayCity()
-    {
-        return $this->addressDisplayRule === self::DISPLAY_RULE_CITY;
+        return $this->displayRule;
     }
 
     /**

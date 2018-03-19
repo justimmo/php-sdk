@@ -2,10 +2,10 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Country;
-use Justimmo\Api\Entity\FederalState;
-use Justimmo\Api\Entity\Region;
-use Justimmo\Api\Entity\ZipCode;
+use Justimmo\Api\Entity\Geo\Country;
+use Justimmo\Api\Entity\Geo\FederalState;
+use Justimmo\Api\Entity\Geo\Region;
+use Justimmo\Api\Entity\Geo\ZipCode;
 use Justimmo\Api\Request\ZipCodeRequest;
 
 class ZipCodeTest extends EntityTestCase

@@ -2,9 +2,9 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Address;
+use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment;
-use Justimmo\Api\Entity\Country;
+use Justimmo\Api\Entity\Geo\Country;
 use Justimmo\Api\Entity\Employee;
 use Justimmo\Api\Entity\Link;
 use Justimmo\Api\Request\EmployeeRequest;

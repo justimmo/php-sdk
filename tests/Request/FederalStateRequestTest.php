@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\FederalState;
+use Justimmo\Api\Entity\Geo\FederalState;
 use Justimmo\Api\Request\FederalStateRequest;
 
 class FederalStateRequestTest extends RequestTestCase

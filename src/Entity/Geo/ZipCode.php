@@ -1,8 +1,9 @@
 <?php
 
-namespace Justimmo\Api\Entity;
+namespace Justimmo\Api\Entity\Geo;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Entity;
 use Justimmo\Api\Entity\Traits\Identifiable;
 
 /**
@@ -26,19 +27,19 @@ class ZipCode implements Entity
 
     /**
      * @var FederalState
-     * @JUSTIMMO\Relation(path="federalState", targetEntity="Justimmo\Api\Entity\FederalState")
+     * @JUSTIMMO\Relation(path="federalState", targetEntity="Justimmo\Api\Entity\Geo\FederalState")
      */
     private $federalState;
 
     /**
      * @var Country
-     * @JUSTIMMO\Relation(path="country", targetEntity="Justimmo\Api\Entity\Country")
+     * @JUSTIMMO\Relation(path="country", targetEntity="Justimmo\Api\Entity\Geo\Country")
      */
     private $country;
 
     /**
      * @var Region
-     * @JUSTIMMO\Relation(path="region", targetEntity="Justimmo\Api\Entity\Region")
+     * @JUSTIMMO\Relation(path="region", targetEntity="Justimmo\Api\Entity\Geo\Region")
      */
     private $region;
 

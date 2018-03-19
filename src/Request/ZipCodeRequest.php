@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\ZipCode;
+use Justimmo\Api\Entity\Geo\ZipCode;
 
 /**
  * @method $this withCountry()

@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Region;
+use Justimmo\Api\Entity\Geo\Region;
 
 /**
  * @method $this withCountries()

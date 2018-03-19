@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Country;
+use Justimmo\Api\Entity\Geo\Country;
 use Justimmo\Api\Request\CountryRequest;
 
 class CountryTest extends EntityTestCase

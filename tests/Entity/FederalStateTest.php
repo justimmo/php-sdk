@@ -2,8 +2,8 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Country;
-use Justimmo\Api\Entity\FederalState;
+use Justimmo\Api\Entity\Geo\Country;
+use Justimmo\Api\Entity\Geo\FederalState;
 use Justimmo\Api\Request\FederalStateRequest;
 
 class FederalStateTest extends EntityTestCase

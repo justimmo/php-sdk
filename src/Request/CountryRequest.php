@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Country;
+use Justimmo\Api\Entity\Geo\Country;
 
 /**
  * @method $this filterByWithRealties($value)
