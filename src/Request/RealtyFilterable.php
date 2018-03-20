@@ -2,6 +2,9 @@
 
 namespace Justimmo\Api\Request;
 
+/**
+ * @method $this joinRequest($name, JoinableRequest $request)
+ */
 trait RealtyFilterable
 {
     /**
