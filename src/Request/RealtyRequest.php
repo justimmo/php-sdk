@@ -52,7 +52,6 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this withMaxRentDuration()
  * @method $this withIsReference()
  * @method $this withParent()
- * @method $this withChildren()
  * @method $this withShowInSearch()
  * @method $this withAttachments()
  * @method $this withLinks()
@@ -104,6 +103,8 @@ use Justimmo\Api\Entity\Realty\Type;
  */
 class RealtyRequest extends BaseApiRequest implements SubRequest
 {
+    use DefaultSubRequest;
+
     const TEXT_FORMAT_PLAIN = 'plain';
     const TEXT_FORMAT_HTML  = 'html';
 
@@ -225,14 +226,6 @@ class RealtyRequest extends BaseApiRequest implements SubRequest
     public function getEntityClass()
     {
         return Realty::class;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getSubFilters()
-    {
-        return array_key_exists('f', $this->query) ? $this->query['f'] : [];
     }
 
     /**
@@ -392,5 +385,21 @@ class RealtyRequest extends BaseApiRequest implements SubRequest
             ->withPricePerM2()
             ->withPricePerM2From()
             ->with('detailedPrices');
+    }
+
+    /**
+     * Adds the children field
+     *
+     * @param RealtyRequest $request Optional filter to be executed on the children field
+     *
+     * @return $this
+     */
+    public function withChildren(RealtyRequest $request = null)
+    {
+        if ($request !== null) {
+            $this->addSubFilter('children', $request);
+        }
+
+        return $this->with('children');
     }
 }

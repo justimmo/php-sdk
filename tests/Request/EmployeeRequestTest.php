@@ -4,6 +4,7 @@ namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Entity\Employee\Employee;
 use Justimmo\Api\Request\EmployeeRequest;
+use Justimmo\Api\Request\RealtyRequest;
 
 class EmployeeRequestTest extends RequestTestCase
 {
@@ -28,7 +29,6 @@ class EmployeeRequestTest extends RequestTestCase
         'profilePicture',
         'pictures',
         'links',
-        'realtyIds',
         'employeeCategories',
     ];
 
@@ -49,5 +49,59 @@ class EmployeeRequestTest extends RequestTestCase
     protected function getRequest()
     {
         return new EmployeeRequest();
+    }
+
+    public function testWithRealtyIds()
+    {
+        $request = $this->getRequest();
+        $request->withRealtyIds();
+        $this->assertEquals([
+            'fields' => 'realtyIds',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withRealtyIds(new RealtyRequest());
+        $this->assertEquals([
+            'fields' => 'realtyIds',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withRealtyIds(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+        );
+        $this->assertEquals([
+            'fields'     => 'realtyIds',
+            'subFilters' => [
+                'realtyIds' => [
+                    'f' => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                ],
+            ],
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withRealtyIds(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+                ->withNumber()
+                ->withTitle()
+        );
+        $this->assertEquals([
+            'fields'     => 'realtyIds',
+            'subFilters' => [
+                'realtyIds' => [
+                    'f'      => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                    'fields' => 'number,title',
+                ],
+            ],
+        ], $request->getQuery());
     }
 }

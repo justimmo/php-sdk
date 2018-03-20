@@ -193,5 +193,59 @@ class RealtyRequestTest extends RequestTestCase
         $request->marketed();
         $this->assertEquals(['f' => ['marketingState' => MarketingState::ACTIVE]], $request->getQuery());
     }
+
+    public function testWithRealties()
+    {
+        $request = $this->getRequest();
+        $request->withChildren();
+        $this->assertEquals([
+            'fields' => 'children',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(new RealtyRequest());
+        $this->assertEquals([
+            'fields' => 'children',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+        );
+        $this->assertEquals([
+            'fields'     => 'children',
+            'subFilters' => [
+                'children' => [
+                    'f' => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                ],
+            ],
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+                ->withNumber()
+                ->withTitle()
+        );
+        $this->assertEquals([
+            'fields'     => 'children',
+            'subFilters' => [
+                'children' => [
+                    'f'      => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                    'fields' => 'number,title',
+                ],
+            ],
+        ], $request->getQuery());
+    }
 }
 

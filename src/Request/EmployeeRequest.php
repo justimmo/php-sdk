@@ -25,7 +25,6 @@ use Justimmo\Api\Entity\Employee\Employee;
  * @method $this withProfilePicture()
  * @method $this withPictures()
  * @method $this withLinks()
- * @method $this withRealtyIds()
  * @method $this withEmployeeCategories()
  */
 class EmployeeRequest extends BaseApiRequest
@@ -49,7 +48,6 @@ class EmployeeRequest extends BaseApiRequest
         'profilePicture',
         'pictures',
         'links',
-        'realtyIds',
         'employeeCategories',
     ];
 
@@ -74,5 +72,21 @@ class EmployeeRequest extends BaseApiRequest
     public function getEntityClass()
     {
         return Employee::class;
+    }
+
+    /**
+     * Adds the realtyIds field
+     *
+     * @param RealtyRequest $request Optional filter to be executed on the realtyIds field
+     *
+     * @return $this
+     */
+    public function withRealtyIds(RealtyRequest $request = null)
+    {
+        if ($request !== null) {
+            $this->addSubFilter('realtyIds', $request);
+        }
+
+        return $this->with('realtyIds');
     }
 }
