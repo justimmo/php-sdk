@@ -18,7 +18,7 @@ class ZipCodeRequestTest extends RequestTestCase
         'region',
     ];
 
-    const SUB_REQUESTS = [
+    const JOINABLE = [
         'realties',
     ];
 

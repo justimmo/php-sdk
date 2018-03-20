@@ -39,7 +39,7 @@ class EmployeeRequestTest extends RequestTestCase
         'lastName',
     ];
 
-    const SUB_REQUESTS = [
+    const JOINABLE = [
         'realties',
     ];
 

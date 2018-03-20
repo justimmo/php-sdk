@@ -19,7 +19,7 @@ class FederalStateRequestTest extends RequestTestCase
         'country',
     ];
 
-    const SUB_REQUESTS = [
+    const JOINABLE = [
         'realties',
     ];
 

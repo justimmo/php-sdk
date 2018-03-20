@@ -22,7 +22,7 @@ class RegionRequestTest extends RequestTestCase
         'federalState',
     ];
 
-    const SUB_REQUESTS = [
+    const JOINABLE = [
         'realties',
     ];
 

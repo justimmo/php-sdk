@@ -309,18 +309,19 @@ abstract class BaseApiRequest implements EntityRequest
     }
 
     /**
-     * Adds a subrequest
-     * SubRequests are used to join data to another request (eg All Federal States with active Realties)
+     * Joins a request
+     *
+     * Request joins are used to join data to another request (eg All Federal States with active Realties)
      * Only one request gets executed
      *
      * @param string     $name
-     * @param SubRequest $request
+     * @param JoinableRequest $request
      *
      * @return $this
      */
-    protected function addSubRequest($name, SubRequest $request)
+    protected function joinRequest($name, JoinableRequest $request)
     {
-        $filters = $request->getSubFilters();
+        $filters = $request->getJoinableFilters();
 
         return $this->filterBy($name, empty($filters) ? 1 : $filters);
     }

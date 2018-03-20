@@ -13,6 +13,6 @@ trait RealtyFilterable
      */
     public function filterByRealties(RealtyRequest $request)
     {
-        return $this->addSubRequest('realties', $request);
+        return $this->joinRequest('realties', $request);
     }
 }

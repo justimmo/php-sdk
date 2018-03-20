@@ -14,7 +14,7 @@ abstract class RequestTestCase extends TestCase
 
     const FIELDS = [];
 
-    const SUB_REQUESTS = [];
+    const JOINABLE = [];
 
     const ENTITY_CLASS = null;
 
@@ -236,13 +236,13 @@ abstract class RequestTestCase extends TestCase
         ], $request->getQuery());
     }
 
-    public function testSubRequests()
+    public function testJoinable()
     {
-        if (empty(static::SUB_REQUESTS)) {
+        if (empty(static::JOINABLE)) {
             return;
         }
 
-        foreach (static::SUB_REQUESTS as $subRequest) {
+        foreach (static::JOINABLE as $subRequest) {
             $method = 'doTestSubRequest' . ucfirst($subRequest);
             $this->$method();
         }

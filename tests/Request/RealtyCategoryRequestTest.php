@@ -16,7 +16,7 @@ class RealtyCategoryRequestTest extends RequestTestCase
         'name',
     ];
 
-    const SUB_REQUESTS = [
+    const JOINABLE = [
         'realties',
     ];
 
