@@ -26,6 +26,7 @@ use Justimmo\Api\Entity\Employee\Employee;
  * @method $this withPictures()
  * @method $this withLinks()
  * @method $this withEmployeeCategories()
+ * @method $this withImmobilienCard()
  */
 class EmployeeRequest extends BaseApiRequest
 {
@@ -49,6 +50,7 @@ class EmployeeRequest extends BaseApiRequest
         'pictures',
         'links',
         'employeeCategories',
+        'immobilienCard',
     ];
 
     const SORTS = [

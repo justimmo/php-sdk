@@ -20,14 +20,17 @@ abstract class EntityTestCase extends TestCase
      */
     abstract protected function doTestEntity($entity);
 
-    public function testEntity()
+    protected function createEntity($content)
     {
         $client = $this->createClient([
-            $this->createResponse($this->getFixtures(static::FIXTURE_FILE))
+            $this->createResponse($content)
         ]);
 
-        $entity = $client->request($this->getRequest());
+        return $client->request($this->getRequest());
+    }
 
-        $this->doTestEntity($entity);
+    public function testEntity()
+    {
+        $this->doTestEntity($this->createEntity(static::FIXTURE_FILE));
     }
 }

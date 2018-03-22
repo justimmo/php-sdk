@@ -114,6 +114,12 @@ class Employee implements Entity
     private $links;
 
     /**
+     * @var ImmobilienCard
+     * @JUSTIMMO\Relation(path="immobilienCard", targetEntity="Justimmo\Api\Entity\Employee\ImmobilienCard")
+     */
+    private $immobilienCard;
+
+    /**
      * @var int[]
      * @JUSTIMMO\Column(path="realtyIds", type="integer", multiple=true)
      */
@@ -260,4 +266,11 @@ class Employee implements Entity
         return $this->realtyIds;
     }
 
+    /**
+     * @return ImmobilienCard
+     */
+    public function getImmobilienCard()
+    {
+        return $this->immobilienCard;
+    }
 }

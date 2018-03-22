@@ -30,6 +30,7 @@ class EmployeeRequestTest extends RequestTestCase
         'pictures',
         'links',
         'employeeCategories',
+        'immobilienCard',
     ];
 
     const SORTS = [
