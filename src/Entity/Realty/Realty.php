@@ -46,7 +46,7 @@ class Realty implements Entity
 
     /**
      * @var BuildingProgress
-     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\BuildingProgess", targetPath="state")
+     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\BuildingProgress", targetPath="state")
      */
     private $buildingProgress;
 
