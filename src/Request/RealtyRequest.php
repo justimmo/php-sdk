@@ -2,17 +2,21 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Realty;
+use Justimmo\Api\Entity\Realty\MarketingState;
+use Justimmo\Api\Entity\Realty\MarketingType;
+use Justimmo\Api\Entity\Realty\Realty;
+use Justimmo\Api\Entity\Realty\Type;
 
 /**
  * @method $this withNumber()
  * @method $this withType()
  * @method $this withBuildingProgress()
  * @method $this withMarketingType()
- * @method $this withOccypancy()
+ * @method $this withOccupancy()
  * @method $this withRealtyType()
  * @method $this withSubRealtyType()
  * @method $this withRealtyState()
+ * @method $this withMarketingState()
  * @method $this withAddress()
  * @method $this withCoordinates()
  * @method $this withCoordinatesPrecise()
@@ -48,7 +52,6 @@ use Justimmo\Api\Entity\Realty;
  * @method $this withMaxRentDuration()
  * @method $this withIsReference()
  * @method $this withParent()
- * @method $this withChildren()
  * @method $this withShowInSearch()
  * @method $this withAttachments()
  * @method $this withLinks()
@@ -74,6 +77,7 @@ use Justimmo\Api\Entity\Realty;
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this filterByRealtyState($value)
+ * @method $this filterByMarketingState($value)
  * @method $this filterByCity($value)
  * @method $this filterByRegion($value)
  * @method $this filterByParent($value)
@@ -97,8 +101,10 @@ use Justimmo\Api\Entity\Realty;
  * @method $this sortByCreatedAt($direction = BaseApiRequest::ASC)
  * @method $this sortByUpdatedAt($direction = BaseApiRequest::ASC)
  */
-class RealtyRequest extends BaseApiRequest
+class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableRequest
 {
+    use DefaultSubRequest;
+
     const TEXT_FORMAT_PLAIN = 'plain';
     const TEXT_FORMAT_HTML  = 'html';
 
@@ -111,6 +117,7 @@ class RealtyRequest extends BaseApiRequest
         'realtyType',
         'subRealtyType',
         'realtyState',
+        'marketingState',
         'address',
         'coordinates',
         'coordinatesPrecise',
@@ -178,6 +185,8 @@ class RealtyRequest extends BaseApiRequest
         'buildingProgress',
         'realtyType',
         'subRealtyType',
+        'realtyState',
+        'marketingState',
         'occupancy',
         'reference',
         'buildingStyle',
@@ -191,7 +200,6 @@ class RealtyRequest extends BaseApiRequest
         'overallArea',
         'country',
         'federalState',
-        'realtyState',
         'city',
         'region',
         'parent',
@@ -221,6 +229,14 @@ class RealtyRequest extends BaseApiRequest
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getJoinableFilters()
+    {
+        return array_key_exists('f', $this->query) ? $this->query['f'] : [];
+    }
+
+    /**
      * Filters buyable realties
      * Shortcut for $this->filterByMarketingType(Realty::MARKETING_TYPE_BUY)
      *
@@ -228,7 +244,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function buyable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_BUY);
+        return $this->filterByMarketingType(MarketingType::BUY);
     }
 
     /**
@@ -239,7 +255,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function rentable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_RENT);
+        return $this->filterByMarketingType(MarketingType::RENT);
     }
 
     /**
@@ -250,7 +266,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function leasable()
     {
-        return $this->filterByMarketingType(Realty::MARKETING_TYPE_LEASE);
+        return $this->filterByMarketingType(MarketingType::LEASE);
     }
 
     /**
@@ -260,7 +276,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function simpleTypes()
     {
-        return $this->filterByType(Realty::TYPE_SIMPLE);
+        return $this->filterByType(Type::SIMPLE);
     }
 
     /**
@@ -270,7 +286,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function commercialProjects()
     {
-        return $this->filterByType(Realty::TYPE_COMMERCIAL_PROJECT);
+        return $this->filterByType(Type::COMMERCIAL_PROJECT);
     }
 
     /**
@@ -280,7 +296,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function residentialProjects()
     {
-        return $this->filterByType(Realty::TYPE_RESIDENTIAL_PROJECT);
+        return $this->filterByType(Type::RESIDENTIAL_PROJECT);
     }
 
     /**
@@ -290,7 +306,7 @@ class RealtyRequest extends BaseApiRequest
      */
     public function residentialSubunits()
     {
-        return $this->filterByType(Realty::TYPE_RESIDENTIAL_SUBUNIT);
+        return $this->filterByType(Type::RESIDENTIAL_SUBUNIT);
     }
 
     /**
@@ -300,9 +316,28 @@ class RealtyRequest extends BaseApiRequest
      */
     public function areas()
     {
-        return $this->filterByType(Realty::TYPE_AREA);
+        return $this->filterByType(Type::AREA);
     }
 
+    /**
+     * Shortcut for $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+     *
+     * @return $this
+     */
+    public function teasered()
+    {
+        return $this->filterByMarketingState(MarketingState::TEASER);
+    }
+
+    /**
+     * Shortcut for $this->filterByMarketingState(Realty::MARKETING_STATE_TEASER);
+     *
+     * @return $this
+     */
+    public function marketed()
+    {
+        return $this->filterByMarketingState(MarketingState::ACTIVE);
+    }
 
     /**
      * Return plain texts for wysiwyg fields
@@ -322,18 +357,6 @@ class RealtyRequest extends BaseApiRequest
     public function useHtmlTextFormat()
     {
         return $this->setQueryParameter('textFormat', self::TEXT_FORMAT_HTML);
-    }
-
-    /**
-     * Returns all realties regardless of their activity and feed settings.
-     * Only works for children of commercial and residential projects.
-     * filterByParent() must have been called
-     *
-     * @return $this
-     */
-    public function includeAll()
-    {
-        return $this->setQueryParameter('includeAll', 1);
     }
 
     /**
@@ -370,5 +393,21 @@ class RealtyRequest extends BaseApiRequest
             ->withPricePerM2()
             ->withPricePerM2From()
             ->with('detailedPrices');
+    }
+
+    /**
+     * Adds the children field
+     *
+     * @param RealtyRequest $request Optional filter to be executed on the children field
+     *
+     * @return $this
+     */
+    public function withChildren(RealtyRequest $request = null)
+    {
+        if ($request !== null) {
+            $this->addSubFilter('children', $request);
+        }
+
+        return $this->with('children');
     }
 }

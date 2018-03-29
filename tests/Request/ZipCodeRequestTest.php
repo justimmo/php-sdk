@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\ZipCode;
+use Justimmo\Api\Entity\Geo\ZipCode;
 use Justimmo\Api\Request\ZipCodeRequest;
 
 class ZipCodeRequestTest extends RequestTestCase
@@ -18,8 +18,11 @@ class ZipCodeRequestTest extends RequestTestCase
         'region',
     ];
 
+    const JOINABLE = [
+        'realties',
+    ];
+
     const FILTERS = [
-        'withRealties',
         'country',
         'federalState',
     ];

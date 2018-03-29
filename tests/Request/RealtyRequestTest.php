@@ -2,7 +2,10 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\Realty;
+use Justimmo\Api\Entity\Realty\MarketingState;
+use Justimmo\Api\Entity\Realty\MarketingType;
+use Justimmo\Api\Entity\Realty\Realty;
+use Justimmo\Api\Entity\Realty\Type;
 use Justimmo\Api\Request\RealtyRequest;
 
 class RealtyRequestTest extends RequestTestCase
@@ -20,6 +23,7 @@ class RealtyRequestTest extends RequestTestCase
         'realtyType',
         'subRealtyType',
         'realtyState',
+        'marketingState',
         'address',
         'coordinates',
         'coordinatesPrecise',
@@ -98,6 +102,7 @@ class RealtyRequestTest extends RequestTestCase
         'country',
         'federalState',
         'realtyState',
+        'marketingState',
         'city',
         'region',
         'parent',
@@ -129,12 +134,118 @@ class RealtyRequestTest extends RequestTestCase
         $this->assertEquals(['textFormat' => $request::TEXT_FORMAT_HTML], $request->getQuery());
     }
 
-    public function testIncludeAll()
+    public function testShortcutMarketingTypes()
     {
         $request = $this->getRequest();
 
-        $request->includeAll();
-        $this->assertEquals(['includeAll' => 1], $request->getQuery());
+        $request->rentable();
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::RENT]], $request->getQuery());
+
+        $request->buyable();
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::BUY]], $request->getQuery());
+
+        $request->leasable();
+        $this->assertEquals(['f' => ['marketingType' => MarketingType::LEASE]], $request->getQuery());
+    }
+
+    public function testShortcutTypes()
+    {
+        $request = $this->getRequest();
+
+        $request->simpleTypes();
+        $this->assertEquals(['f' => ['type' => Type::SIMPLE]], $request->getQuery());
+
+        $request->areas();
+        $this->assertEquals(['f' => ['type' => Type::AREA]], $request->getQuery());
+
+        $request->residentialProjects();
+        $this->assertEquals(['f' => ['type' => Type::RESIDENTIAL_PROJECT]], $request->getQuery());
+
+        $request->commercialProjects();
+        $this->assertEquals(['f' => ['type' => Type::COMMERCIAL_PROJECT]], $request->getQuery());
+
+        $request->residentialSubunits();
+        $this->assertEquals(['f' => ['type' => Type::RESIDENTIAL_SUBUNIT]], $request->getQuery());
+    }
+
+    public function testShortcutWiths()
+    {
+        $request = $this->getRequest();
+        $request->withDetailedAreas();
+        $this->assertEquals(['fields' => 'livingArea,floorArea,floorAreaFrom,surfaceArea,detailedAreas'], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withDetailedPrices();
+        $this->assertEquals(['fields' => 'price,priceFrom,pricePerM2,pricePerM2From,detailedPrices'], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withDetailedRooms();
+        $this->assertEquals(['fields' => 'rooms,detailedRooms'], $request->getQuery());
+    }
+
+    public function testShortcutMarketingStates()
+    {
+        $request = $this->getRequest();
+
+        $request->teasered();
+        $this->assertEquals(['f' => ['marketingState' => MarketingState::TEASER]], $request->getQuery());
+
+        $request->marketed();
+        $this->assertEquals(['f' => ['marketingState' => MarketingState::ACTIVE]], $request->getQuery());
+    }
+
+    public function testWithRealties()
+    {
+        $request = $this->getRequest();
+        $request->withChildren();
+        $this->assertEquals([
+            'fields' => 'children',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(new RealtyRequest());
+        $this->assertEquals([
+            'fields' => 'children',
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+        );
+        $this->assertEquals([
+            'fields'     => 'children',
+            'subFilters' => [
+                'children' => [
+                    'f' => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                ],
+            ],
+        ], $request->getQuery());
+
+        $request = $this->getRequest();
+        $request->withChildren(
+            (new RealtyRequest())
+                ->filterByRealtyType([1, 2])
+                ->filterByFederalState(17)
+                ->withNumber()
+                ->withTitle()
+        );
+        $this->assertEquals([
+            'fields'     => 'children',
+            'subFilters' => [
+                'children' => [
+                    'f'      => [
+                        'realtyType'   => [1, 2],
+                        'federalState' => 17,
+                    ],
+                    'fields' => 'number,title',
+                ],
+            ],
+        ], $request->getQuery());
     }
 }
 

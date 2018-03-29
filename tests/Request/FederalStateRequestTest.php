@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\FederalState;
+use Justimmo\Api\Entity\Geo\FederalState;
 use Justimmo\Api\Request\FederalStateRequest;
 
 class FederalStateRequestTest extends RequestTestCase
@@ -16,8 +16,11 @@ class FederalStateRequestTest extends RequestTestCase
     ];
 
     const FILTERS = [
-        'withRealties',
         'country',
+    ];
+
+    const JOINABLE = [
+        'realties',
     ];
 
     const SORTS = [

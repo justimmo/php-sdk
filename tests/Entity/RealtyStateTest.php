@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\RealtyState;
+use Justimmo\Api\Entity\Realty\RealtyState;
 use Justimmo\Api\Request\RealtyStateRequest;
 
 class RealtyStateTest extends EntityTestCase

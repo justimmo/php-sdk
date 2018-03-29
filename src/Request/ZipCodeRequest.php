@@ -2,14 +2,13 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\ZipCode;
+use Justimmo\Api\Entity\Geo\ZipCode;
 
 /**
  * @method $this withCountry()
  * @method $this withCity()
  * @method $this withFederalState()
  * @method $this withRegion()
- * @method $this filterByWithRealties($value)
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this sortByZip($direction = BaseApiRequest::ASC)
@@ -17,6 +16,8 @@ use Justimmo\Api\Entity\ZipCode;
  */
 class ZipCodeRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const FIELDS = [
         'country',
         'city',
@@ -25,7 +26,6 @@ class ZipCodeRequest extends BaseApiRequest
     ];
 
     const FILTERS = [
-        'withRealties',
         'country',
         'federalState',
     ];

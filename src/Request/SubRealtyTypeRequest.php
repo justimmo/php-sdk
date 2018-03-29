@@ -2,22 +2,22 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\SubRealtyType;
+use Justimmo\Api\Entity\Realty\SubRealtyType;
 
 /**
  * @method $this withRealtyType()
- * @method $this filterByWithRealties($value)
  * @method $this filterByRealtyType($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
 class SubRealtyTypeRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const FIELDS = [
         'realtyType'
     ];
 
     const FILTERS = [
-        'withRealties',
         'realtyType',
     ];
 

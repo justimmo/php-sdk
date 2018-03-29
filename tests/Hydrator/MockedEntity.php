@@ -63,6 +63,13 @@ class MockedEntity
     private $original;
 
     /**
+     * @var mixed
+     *
+     * @JUSTIMMO\Delegated(targetEntity="Justimmo\Api\Tests\Hydrator\MockedEntity", targetPath="name")
+     */
+    private $delegated;
+
+    /**
      * @return int
      */
     public function getId()
@@ -124,5 +131,13 @@ class MockedEntity
     public function getOriginal()
     {
         return $this->original;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDelegated()
+    {
+        return $this->delegated;
     }
 }

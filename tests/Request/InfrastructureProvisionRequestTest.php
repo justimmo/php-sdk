@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\InfrastructureProvision;
+use Justimmo\Api\Entity\Realty\InfrastructureProvision;
 use Justimmo\Api\Request\InfrastructureProvisionRequest;
 
 class InfrastructureProvisionRequestTest extends RequestTestCase

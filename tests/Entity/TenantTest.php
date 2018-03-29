@@ -2,9 +2,9 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Address;
-use Justimmo\Api\Entity\Country;
-use Justimmo\Api\Entity\GeoCoordinates;
+use Justimmo\Api\Entity\Geo\Address;
+use Justimmo\Api\Entity\Geo\Country;
+use Justimmo\Api\Entity\Geo\GeoCoordinates;
 use Justimmo\Api\Entity\Tenant;
 use Justimmo\Api\Request\TenantRequest;
 

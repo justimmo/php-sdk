@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\InfrastructureProvision;
+use Justimmo\Api\Entity\Realty\InfrastructureProvision;
 
 /**
  * @method $this sortByName($direction = BaseApiRequest::ASC)

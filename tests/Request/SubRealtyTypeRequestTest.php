@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\SubRealtyType;
+use Justimmo\Api\Entity\Realty\SubRealtyType;
 use Justimmo\Api\Request\SubRealtyTypeRequest;
 
 class SubRealtyTypeRequestTest extends RequestTestCase
@@ -19,8 +19,11 @@ class SubRealtyTypeRequestTest extends RequestTestCase
         'name',
     ];
 
+    const JOINABLE = [
+        'realties',
+    ];
+
     const FILTERS = [
-        'withRealties',
         'realtyType',
     ];
 

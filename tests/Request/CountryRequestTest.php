@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Request;
 
-use Justimmo\Api\Entity\Country;
+use Justimmo\Api\Entity\Geo\Country;
 use Justimmo\Api\Request\CountryRequest;
 
 class CountryRequestTest extends RequestTestCase
@@ -15,8 +15,8 @@ class CountryRequestTest extends RequestTestCase
         'name',
     ];
 
-    const FILTERS = [
-        'withRealties',
+    const JOINABLE = [
+        'realties',
     ];
 
     /**

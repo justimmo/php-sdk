@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\BuildingStyle;
+use Justimmo\Api\Entity\Realty\BuildingStyle;
 
 /**
  * @method $this sortByName($direction = BaseApiRequest::ASC)

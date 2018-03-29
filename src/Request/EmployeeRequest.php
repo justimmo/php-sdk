@@ -2,10 +2,9 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Employee;
+use Justimmo\Api\Entity\Employee\Employee;
 
 /**
- * @method $this filterByWithRealties($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  * @method $this sortByNumber($direction = BaseApiRequest::ASC)
  * @method $this sortByFirstName($direction = BaseApiRequest::ASC)
@@ -26,11 +25,13 @@ use Justimmo\Api\Entity\Employee;
  * @method $this withProfilePicture()
  * @method $this withPictures()
  * @method $this withLinks()
- * @method $this withRealtyIds()
  * @method $this withEmployeeCategories()
+ * @method $this withImmobilienCard()
  */
 class EmployeeRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const FIELDS = [
         'name',
         'number',
@@ -48,8 +49,8 @@ class EmployeeRequest extends BaseApiRequest
         'profilePicture',
         'pictures',
         'links',
-        'realtyIds',
         'employeeCategories',
+        'immobilienCard',
     ];
 
     const SORTS = [
@@ -57,10 +58,6 @@ class EmployeeRequest extends BaseApiRequest
         'number',
         'firstName',
         'lastName',
-    ];
-
-    const FILTERS = [
-        'withRealties',
     ];
 
     /**
@@ -77,5 +74,21 @@ class EmployeeRequest extends BaseApiRequest
     public function getEntityClass()
     {
         return Employee::class;
+    }
+
+    /**
+     * Adds the realtyIds field
+     *
+     * @param RealtyRequest $request Optional filter to be executed on the realtyIds field
+     *
+     * @return $this
+     */
+    public function withRealtyIds(RealtyRequest $request = null)
+    {
+        if ($request !== null) {
+            $this->addSubFilter('realtyIds', $request);
+        }
+
+        return $this->with('realtyIds');
     }
 }

@@ -70,13 +70,25 @@ abstract class BaseApiRequest implements EntityRequest
     public function getQuery()
     {
         if (!empty($this->sorts)) {
-            $this->query['sort'] = implode(',', array_unique($this->sorts));
+            $this->query['sort'] = $this->flattenArray($this->sorts);
         }
         if (!empty($this->fields)) {
-            $this->query['fields'] = implode(',', array_unique($this->fields));
+            $this->query['fields'] = $this->flattenArray($this->fields);
         }
 
         return $this->query;
+    }
+
+    /**
+     * Flattens an array to a comma separated list
+     *
+     * @param array $values
+     *
+     * @return string
+     */
+    protected function flattenArray(array $values = [])
+    {
+        return implode(',', array_unique($values));
     }
 
     /**
@@ -154,7 +166,7 @@ abstract class BaseApiRequest implements EntityRequest
             : [$this->query['f'][$field]];
 
         if (!is_array($value)) {
-            $value = [ $value ];
+            $value = [$value];
         }
 
         $values = array_unique(array_merge($originalValue, $value));
@@ -291,6 +303,49 @@ abstract class BaseApiRequest implements EntityRequest
             unset ($this->query[$key]);
         } else {
             $this->query[$key] = (int) $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Joins a request
+     *
+     * Request joins are used to join data to another request (eg All Federal States with active Realties)
+     * Only one request gets executed
+     *
+     * @param string     $name
+     * @param JoinableRequest $request
+     *
+     * @return $this
+     */
+    protected function joinRequest($name, JoinableRequest $request)
+    {
+        $filters = $request->getJoinableFilters();
+
+        return $this->filterBy($name, empty($filters) ? 1 : $filters);
+    }
+
+    /**
+     * Adds a subfilter to the Request
+     * SubFilters are used how related data should be filtered in the output (eg: realtyIds in Employee)
+     *
+     * @param string     $name
+     * @param SubRequest $request
+     *
+     * @return $this
+     */
+    protected function addSubFilter($name, SubRequest $request)
+    {
+        $filters = $request->getSubFilters();
+        $fields  = $request->getSubFields();
+
+        if (!empty($filters)) {
+            $this->query['subFilters'][$name]['f'] = $filters;
+        }
+
+        if (!empty($fields)) {
+            $this->query['subFilters'][$name]['fields'] = $this->flattenArray($fields);
         }
 
         return $this;

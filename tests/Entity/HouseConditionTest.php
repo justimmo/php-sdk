@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\HouseCondition;
+use Justimmo\Api\Entity\Realty\HouseCondition;
 use Justimmo\Api\Request\HouseConditionRequest;
 
 class HouseConditionTest extends EntityTestCase

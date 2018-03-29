@@ -2,8 +2,8 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Employee;
-use Justimmo\Api\Entity\EmployeeCategory;
+use Justimmo\Api\Entity\Employee\Employee;
+use Justimmo\Api\Entity\Employee\Category;
 use Justimmo\Api\Request\EmployeeCategoryRequest;
 
 class EmployeeCategoryTest extends EntityTestCase
@@ -22,11 +22,11 @@ class EmployeeCategoryTest extends EntityTestCase
     /**
      * @inheritdoc
      *
-     * @param EmployeeCategory $entity
+     * @param Category $entity
      */
     protected function doTestEntity($entity)
     {
-        $this->assertInstanceOf(EmployeeCategory::class, $entity);
+        $this->assertInstanceOf(Category::class, $entity);
         $this->assertEquals(5, $entity->getId());
         $this->assertEquals('Aussendienst', $entity->getName());
 

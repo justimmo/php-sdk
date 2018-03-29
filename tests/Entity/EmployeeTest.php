@@ -2,11 +2,12 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Address;
-use Justimmo\Api\Entity\Attachment;
-use Justimmo\Api\Entity\Country;
-use Justimmo\Api\Entity\Employee;
-use Justimmo\Api\Entity\Link;
+use Justimmo\Api\Entity\Employee\ImmobilienCard;
+use Justimmo\Api\Entity\Geo\Address;
+use Justimmo\Api\Entity\Attachment\Attachment;
+use Justimmo\Api\Entity\Geo\Country;
+use Justimmo\Api\Entity\Employee\Employee;
+use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Request\EmployeeRequest;
 
 class EmployeeTest extends EntityTestCase
@@ -202,9 +203,83 @@ class EmployeeTest extends EntityTestCase
         $this->assertTrue($link->isSocialNetwork());
 
 
-        $categories = $entity->getEmployeeCategories();
+        $categories = $entity->getCategories();
         $this->assertEquals(1, count($categories));
         $this->assertEquals(5254, $categories[0]->getId());
         $this->assertEquals("Geschäftsführung", $categories[0]->getName());
+
+        $immobilienCard = $entity->getImmobilienCard();
+        $this->assertNull($immobilienCard);
     }
+
+    /**
+     * @dataProvider immobilienCardProvider
+     *
+     * @param $content - the response
+     * @param $id      - expected parameter for the 1st check
+     * @param $uid     - expected parameter for the 2nd check
+     * @param $valid   - expected parameter for the 3rd check
+     */
+    public function testImmobilienCard2($content, $id, $uid, $valid)
+    {
+        $entity = $this->createEntity(json_encode($content));
+
+        /** @var ImmobilienCard $immobilienCard */
+        $immobilienCard = $entity->getImmobilienCard();
+
+        $this->assertEquals($id, $immobilienCard->getId());
+        $this->assertEquals($uid, $immobilienCard->getUid());
+        $this->assertEquals($valid, $immobilienCard->isValid());
+    }
+
+    public static function immobilienCardProvider()
+    {
+        $tests = [
+            [
+                [
+                    'id'             => 264110,
+                    'name'           => 'John Doe',
+                    'immobilienCard' => [
+                        'id'    => '',
+                        'uid'   => '',
+                        'valid' => false
+                    ]
+                ],
+                null,
+                null,
+                false
+            ],
+            [
+                [
+                    'id'             => 264110,
+                    'name'           => 'John Doe',
+                    'immobilienCard' => [
+                        'id'    => 'AT01005707',
+                        'uid'   => 6737,
+                        'valid' => true
+                    ]
+                ],
+                'AT01005707',
+                6737,
+                true
+            ],
+            [
+                [
+                    'id'             => 264110,
+                    'name'           => 'John Doe',
+                    'immobilienCard' => [
+                        'id'    => 'AT01005707',
+                        'uid'   => 'AT01005707',
+                        'valid' => false
+                    ]
+                ],
+                'AT01005707',
+                'AT01005707',
+                false
+            ]
+        ];
+
+        return $tests;
+    }
+
 }

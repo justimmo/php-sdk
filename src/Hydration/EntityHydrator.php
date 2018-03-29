@@ -4,10 +4,12 @@ namespace Justimmo\Api\Hydration;
 
 use Doctrine\Common\Annotations\Reader;
 use Justimmo\Api\Annotation\Column;
+use Justimmo\Api\Annotation\Delegated;
 use Justimmo\Api\Annotation\Entity;
 use Justimmo\Api\Annotation\PreHydrate;
 use Justimmo\Api\Annotation\Relation;
 use Justimmo\Api\ResultSet\Collection;
+use Justimmo\Api\Annotation\Collection as CollectionAnnotation;
 
 /**
  * Class EntityHydrator
@@ -95,10 +97,7 @@ class EntityHydrator
             $annotation = $this->reflectionProperties[$class][$path]['annotation'];
             /** @var \ReflectionProperty $reflProperty */
             $reflProperty = $this->reflectionProperties[$class][$path]['property'];
-
-            $castedValue = $annotation instanceof Column
-                ? $this->getValueFromColumnAnnotation($value, $annotation)
-                : $this->getValueFromRelationAnnotation($value, $annotation);
+            $castedValue = $this->castValueByAnnotation($value, $annotation);
 
             $reflProperty->setAccessible(true);
             $reflProperty->setValue($instance, $castedValue);
@@ -110,6 +109,32 @@ class EntityHydrator
         }
 
         return $instance;
+    }
+
+    /**
+     * Cast value by annotation
+     *
+     * @param mixed $value
+     * @param Column|Relation|Delegated $annotation
+     *
+     * @return mixed
+     */
+    private function castValueByAnnotation($value, $annotation)
+    {
+        if (!is_object($annotation)) {
+            throw new \InvalidArgumentException("Annotation must be an object");
+        }
+
+        switch (get_class($annotation)) {
+            case Column::class:
+                return $this->getValueFromColumnAnnotation($value, $annotation);
+            case Relation::class:
+                return $this->getValueFromRelationAnnotation($value, $annotation);
+            case Delegated::class:
+                return $this->getValueFromDelegatedAnnotation($value, $annotation);
+        }
+
+        throw new \InvalidArgumentException("Annotation " . get_class($annotation) . " is not supported.");
     }
 
     /**
@@ -139,9 +164,9 @@ class EntityHydrator
     }
 
     /**
-     * Resolve a Column annotation by by recursively calling the cast value
+     * Resolve a Column annotation by recursively calling the cast value
      *
-     * @param array  $values
+     * @param mixed  $values
      * @param Column $annotation
      *
      * @return mixed|null
@@ -165,7 +190,7 @@ class EntityHydrator
     }
 
     /**
-     * Resolve a Relation annotation by by recursively calling the hydrate action
+     * Resolve a Relation annotation by recursively calling the hydrate action
      *
      * @param array    $values
      * @param Relation $annotation
@@ -187,6 +212,21 @@ class EntityHydrator
         }
 
         return !empty($entities) ? new Collection($entities) : [];
+    }
+
+    /**
+     * Resolve a Delegated annotation by calling the hydrate action
+     *
+     * @param array     $values
+     * @param Delegated $annotation
+     *
+     * @return mixed|\Justimmo\Api\ResultSet\ResultSet
+     */
+    protected function getValueFromDelegatedAnnotation($values, Delegated $annotation)
+    {
+        return $this->hydrate([
+            $annotation->targetPath => $values,
+        ], $annotation->targetEntity);
     }
 
     /**
@@ -240,14 +280,18 @@ class EntityHydrator
             return $this->reflectionClasses[$class];
         }
 
-        $reflClass  = new \ReflectionClass($class);
-        $annotation = $this->reader->getClassAnnotation($reflClass, 'Justimmo\Api\Annotation\Entity');
-        if (empty($annotation)) {
-            throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity.');
-        }
+        $reflClass = new \ReflectionClass($class);
+        $isValid   = false;
 
         foreach ($this->reader->getClassAnnotations($reflClass) as $annotation) {
+            if (in_array(get_class($annotation), [Entity::class, CollectionAnnotation::class])) {
+                $isValid = true;
+            }
             $this->classAnnotations[$reflClass->name][get_class($annotation)] = $annotation;
+        }
+
+        if (!$isValid) {
+            throw new \InvalidArgumentException($class . ' is missing annotation Justimmo\Api\Annotation\Entity or Justimmo\Api\Annotation\Entity\Collection.');
         }
 
         $class = $reflClass->name;
@@ -255,7 +299,7 @@ class EntityHydrator
             $property = $reflProperty->getName();
 
             foreach ($this->reader->getPropertyAnnotations($reflProperty) as $annotation) {
-                if ($annotation instanceof Column || $annotation instanceof Relation) {
+                if (in_array(get_class($annotation), [Column::class, Relation::class, Delegated::class])) {
                     $path = $annotation->path ?: $property;
 
                     $this->reflectionProperties[$class][$path] = [

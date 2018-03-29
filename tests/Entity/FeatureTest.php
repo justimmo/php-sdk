@@ -2,8 +2,8 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Feature;
-use Justimmo\Api\Entity\FeatureGroup;
+use Justimmo\Api\Entity\Realty\Feature;
+use Justimmo\Api\Entity\Realty\FeatureGroup;
 use Justimmo\Api\Request\FeatureRequest;
 
 class FeatureTest extends EntityTestCase

@@ -2,20 +2,17 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\Country;
+use Justimmo\Api\Entity\Geo\Country;
 
 /**
- * @method $this filterByWithRealties($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
 class CountryRequest extends BaseApiRequest
 {
+    use RealtyFilterable;
+
     const SORTS = [
         'name',
-    ];
-
-    const FILTERS = [
-        'withRealties',
     ];
 
     /**

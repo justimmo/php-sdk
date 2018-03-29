@@ -2,8 +2,8 @@
 
 namespace Justimmo\Api\Tests\Entity;
 
-use Justimmo\Api\Entity\Realty;
-use Justimmo\Api\Entity\RealtyCategory;
+use Justimmo\Api\Entity\Realty\Realty;
+use Justimmo\Api\Entity\Realty\Category;
 use Justimmo\Api\Request\RealtyCategoryRequest;
 
 class RealtyCategoryTest extends EntityTestCase
@@ -22,11 +22,11 @@ class RealtyCategoryTest extends EntityTestCase
     /**
      * @inheritdoc
      *
-     * @param RealtyCategory $entity
+     * @param Category $entity
      */
     protected function doTestEntity($entity)
     {
-        $this->assertInstanceOf(RealtyCategory::class, $entity);
+        $this->assertInstanceOf(Category::class, $entity);
         $this->assertEquals(2905, $entity->getId());
         $this->assertEquals('Topobjekte', $entity->getName());
 

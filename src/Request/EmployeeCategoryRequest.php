@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
-use Justimmo\Api\Entity\EmployeeCategory;
+use Justimmo\Api\Entity\Employee\Category;
 
 /**
  * @method $this filterByWithEmployees($value)
@@ -36,6 +36,6 @@ class EmployeeCategoryRequest extends BaseApiRequest
      */
     public function getEntityClass()
     {
-        return EmployeeCategory::class;
+        return Category::class;
     }
 }
