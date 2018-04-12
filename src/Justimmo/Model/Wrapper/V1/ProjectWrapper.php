@@ -115,6 +115,18 @@ class ProjectWrapper extends AbstractWrapper
             $project->setContact($contact);
         }
 
+        if (isset($xml->objektkategorie)) {
+            foreach ($xml->objektkategorie->user_defined_anyfield as $anyField) {
+                foreach ($anyField->ji_kategorie as $kategorie) {
+                    $attributes = $this->attributesToArray($kategorie);
+
+                    if (array_key_exists('id', $attributes)) {
+                        $project->addCategory($attributes['id'], (string)$kategorie);
+                    }
+                }
+            }
+        }
+
         return $project;
     }
 

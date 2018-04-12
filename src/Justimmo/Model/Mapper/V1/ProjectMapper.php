@@ -134,6 +134,7 @@ class ProjectMapper extends AbstractMapper
         return array(
             'RealtyCategory' => 'tag_name',
             'Tag'            => 'tag_name',
+            'ProjectTag'     => 'project_tag_name',
             'Keyword'        => 'stichwort',
             'FederalStateId' => 'bundesland_id',
             'CountryIso2'    => 'land_iso2',

@@ -17,6 +17,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByIsReference($value)
  * @method ProjectQuery filterByCompletionDate($value)
  * @method ProjectQuery filterBySaleStart($value)
+ * @method ProjectQuery filterByProjectTag($value)
  */
 class ProjectQuery extends AbstractQuery
 {
