@@ -231,6 +231,11 @@ class Project
     protected $underConstruction = false;
 
     /**
+     * @var array
+     */
+    protected $categories = array();
+
+    /**
      * @param int $id
      *
      * @return $this
@@ -1249,5 +1254,38 @@ class Project
     public function isStateBuilding()
     {
         return $this->getProjectState() === self::PROJECT_STATE_BUILDING;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function setCategories($value)
+    {
+        $this->categories = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     *
+     * @return $this
+     */
+    public function addCategory($id, $name)
+    {
+        $this->categories[$id] = $name;
+
+        return $this;
     }
 }
