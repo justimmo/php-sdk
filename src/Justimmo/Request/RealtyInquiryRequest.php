@@ -7,14 +7,10 @@ use Justimmo\Model\Mapper\MapperInterface;
 
 class RealtyInquiryRequest implements RequestInterface
 {
-    /**
-     * @var JustimmoApiInterface
-     */
+    /** @var JustimmoApiInterface */
     protected $api;
 
-    /**
-     * @var MapperInterface
-     */
+    /** @var MapperInterface */
     protected $mapper;
 
     protected $realtyId;
@@ -37,15 +33,14 @@ class RealtyInquiryRequest implements RequestInterface
 
     protected $country = null;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = null;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $salutationId = null;
+
+    /** @var string */
+    protected $category = null;
 
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
@@ -269,7 +264,6 @@ class RealtyInquiryRequest implements RequestInterface
         return $this->salutationId;
     }
 
-
     /**
      * @param string $title
      */
@@ -290,6 +284,24 @@ class RealtyInquiryRequest implements RequestInterface
         return $this;
     }
 
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
     public function send()
     {
         $this->api->postRealtyInquiry(array(
@@ -305,6 +317,7 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('country')      => $this->getCountry(),
             $this->mapper->getFilterPropertyName('title')        => $this->getTitle(),
             $this->mapper->getFilterPropertyName('salutationId') => $this->getSalutationId(),
+            $this->mapper->getFilterPropertyName('category')     => $this->getCategory(),
         ));
     }
 }
