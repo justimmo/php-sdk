@@ -46,6 +46,12 @@ class Tenant implements Entity
     private $registerNumber;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $dataProtectionInformationUrl;
+
+    /**
      * @var Address
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\Address")
      */
@@ -103,5 +109,13 @@ class Tenant implements Entity
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataProtectionInformationUrl()
+    {
+        return $this->dataProtectionInformationUrl;
     }
 }
