@@ -25,6 +25,7 @@ class RealtyInquiryMapper extends AbstractMapper
             'country'      => 'land',
             'title'        => 'titel',
             'salutationId' => 'anrede_id',
+            'category'     => 'kategorie',
         );
     }
 
