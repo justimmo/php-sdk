@@ -35,6 +35,7 @@ class TenantTest extends EntityTestCase
         $this->assertEquals('+43 1 798 62 05', $entity->getPhone());
         $this->assertEquals('ATU11111111', $entity->getUid());
         $this->assertEquals('2222', $entity->getRegisterNumber());
+        $this->assertEquals('https://www.justimmo.at', $entity->getDataProtectionInformationUrl());
 
         $address = $entity->getAddress();
         $this->assertInstanceOf(Address::class, $address);
