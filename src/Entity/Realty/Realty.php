@@ -117,6 +117,12 @@ class Realty implements Entity
     private $prices;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $ownershipType;
+
+    /**
      * @var Texts
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty\Texts")
      */
@@ -439,6 +445,14 @@ class Realty implements Entity
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOwnershipType()
+    {
+        return $this->ownershipType;
     }
 
     /**

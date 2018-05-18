@@ -4,6 +4,7 @@ namespace Justimmo\Api\Entity\Geo;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
 use Justimmo\Api\Entity\Entity;
+use Justimmo\Api\Entity\Realty\Floor;
 
 /**
  * @JUSTIMMO\Entity()
@@ -29,16 +30,10 @@ class Address implements Entity
     private $doorNumber;
 
     /**
-     * @var integer
-     * @JUSTIMMO\Column(path="floor", type="integer")
+     * @var Floor
+     * @JUSTIMMO\Relation(path="floor", targetEntity="\Justimmo\Api\Entity\Realty\Floor")
      */
     private $floor;
-
-    /**
-     * @var string
-     * @JUSTIMMO\Column(path="floorDescription", type="string")
-     */
-    private $floorDescription;
 
     /**
      * @var string
@@ -144,19 +139,11 @@ class Address implements Entity
     }
 
     /**
-     * @return int
+     * @return Floor
      */
     public function getFloor()
     {
         return $this->floor;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFloorDescription()
-    {
-        return $this->floorDescription;
     }
 
     /**
