@@ -213,6 +213,52 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(20, $costs['zusatzkosten_8']->getVatInput());
         $this->assertFalse($costs['zusatzkosten_8']->getOptional());
 
+        $garages = $objekt->getGarages();
+        $this->assertEquals(4, count($garages));
+
+        $this->assertInstanceOf('\Justimmo\Model\Garage', $garages[0]);
+        $this->assertEquals('garage', $garages[0]->getType());
+        $this->assertEquals('Garage', $garages[0]->getName());
+        $this->assertEquals(50, $garages[0]->getQuantity());
+        $this->assertEquals('rent', $garages[0]->getMarketingType());
+        $this->assertEquals(250, $garages[0]->getNet());
+        $this->assertEquals(275, $garages[0]->getGross());
+        $this->assertEquals(25, $garages[0]->getVat());
+        $this->assertEquals('numeric', $garages[0]->getVatType());
+        $this->assertEquals(25, $garages[0]->getVatValue());
+
+        $this->assertInstanceOf('\Justimmo\Model\Garage', $garages[1]);
+        $this->assertEquals('outdoor_court', $garages[1]->getType());
+        $this->assertEquals('Stellplatz', $garages[1]->getName());
+        $this->assertEquals(100, $garages[1]->getQuantity());
+        $this->assertEquals('rent', $garages[1]->getMarketingType());
+        $this->assertEquals(60, $garages[1]->getNet());
+        $this->assertEquals(66, $garages[1]->getGross());
+        $this->assertEquals(6, $garages[1]->getVat());
+        $this->assertEquals('numeric', $garages[1]->getVatType());
+        $this->assertEquals(6, $garages[1]->getVatValue());
+
+        $this->assertInstanceOf('\Justimmo\Model\Garage', $garages[2]);
+        $this->assertEquals('carport', $garages[2]->getType());
+        $this->assertEquals('Carport', $garages[2]->getName());
+        $this->assertEquals(30, $garages[2]->getQuantity());
+        $this->assertEquals('buy', $garages[2]->getMarketingType());
+        $this->assertEquals(6500, $garages[2]->getNet());
+        $this->assertEquals(7150, $garages[2]->getGross());
+        $this->assertEquals(10, $garages[2]->getVat());
+        $this->assertEquals('percent', $garages[2]->getVatType());
+        $this->assertEquals(650, $garages[2]->getVatValue());
+
+        $this->assertInstanceOf('\Justimmo\Model\Garage', $garages[3]);
+        $this->assertEquals('car_park', $garages[3]->getType());
+        $this->assertEquals('Parkhaus', $garages[3]->getName());
+        $this->assertEquals(200, $garages[3]->getQuantity());
+        $this->assertEquals('buy', $garages[3]->getMarketingType());
+        $this->assertEquals(10000, $garages[3]->getNet());
+        $this->assertEquals(11000, $garages[3]->getGross());
+        $this->assertEquals(10, $garages[3]->getVat());
+        $this->assertEquals('percent', $garages[3]->getVatType());
+        $this->assertEquals(1000, $garages[3]->getVatValue());
 
         $this->assertEquals(11, count($objekt->getPictures()));
         $this->assertEquals(10, count($objekt->getPictures(null)));

@@ -102,6 +102,52 @@
                     <gruppe>other</gruppe>
                 </zusatzkosten_8>
             </zusatzkosten>
+            <stellplaetze>
+                <stellplatz>
+                    <art>garage</art>
+                    <name>Garage</name>
+                    <anzahl>50</anzahl>
+                    <vermarktungsart>rent</vermarktungsart>
+                    <netto>250</netto>
+                    <brutto>275</brutto>
+                    <ust>25</ust>
+                    <ust_typ>numeric</ust_typ>
+                    <ust_wert>25</ust_wert>
+                </stellplatz>
+                <stellplatz>
+                    <art>outdoor_court</art>
+                    <name>Stellplatz</name>
+                    <anzahl>100</anzahl>
+                    <vermarktungsart>rent</vermarktungsart>
+                    <netto>60</netto>
+                    <brutto>66</brutto>
+                    <ust>6</ust>
+                    <ust_typ>numeric</ust_typ>
+                    <ust_wert>6</ust_wert>
+                </stellplatz>
+                <stellplatz>
+                    <art>carport</art>
+                    <name>Carport</name>
+                    <anzahl>30</anzahl>
+                    <vermarktungsart>buy</vermarktungsart>
+                    <netto>6500</netto>
+                    <brutto>7150</brutto>
+                    <ust>10</ust>
+                    <ust_typ>percent</ust_typ>
+                    <ust_wert>650</ust_wert>
+                </stellplatz>
+                <stellplatz>
+                    <art>car_park</art>
+                    <name>Parkhaus</name>
+                    <anzahl>200</anzahl>
+                    <vermarktungsart>buy</vermarktungsart>
+                    <netto>10000</netto>
+                    <brutto>11000</brutto>
+                    <ust>10</ust>
+                    <ust_typ>percent</ust_typ>
+                    <ust_wert>1000</ust_wert>
+                </stellplatz>
+            </stellplaetze>
             <user_defined_simplefield feldname="monatlichekostenbrutto">906.6</user_defined_simplefield>
             <user_defined_anyfield>
                 <mwst_gesamt>265.6</mwst_gesamt>
@@ -117,6 +163,10 @@
             <mietpreis_pro_qm>13</mietpreis_pro_qm>
             <nebenkostenprom2von nebenkostenprom2bis="3">2</nebenkostenprom2von>
             <erschliessungskosten>12000</erschliessungskosten>
+            <stp_sonstige platzart="GARAGE" anzahl="50" stellplatzmiete="275"/>
+            <stp_sonstige platzart="FREIPLATZ" anzahl="100" stellplatzmiete="66"/>
+            <stp_sonstige platzart="CARPORT" anzahl="30" stellplatzkaufpreis="7150"/>
+            <stp_sonstige platzart="PARKHAUS" anzahl="200" stellplatzkaufpreis="11000"/>
         </preise>
         <flaechen>
             <nutzflaeche>150</nutzflaeche>
@@ -156,7 +206,7 @@
             <user_defined_simplefield feldname="epass_hwbklasse">B</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeewert">0.96</user_defined_simplefield>
             <user_defined_simplefield feldname="epass_fgeeklasse">B</user_defined_simplefield>
-            <alter alter_attr="Neubau" />
+            <alter alter_attr="Neubau"/>
         </zustand_angaben>
         <freitexte>
             <objekttitel>DEMOOBJEKT! Elegantes Büro neben Bristol und Oper</objekttitel>
@@ -176,7 +226,8 @@
                 ebenfalls möglich!&lt;br /&gt;Ein ähnliches Büro können Sie auch am Parkring und in der Börse mieten,
                 billigere Optionen zu 1280 ? monatlich im Twin Towers oder Airport.&lt;br /&gt;Wenn freie Kapazität
                 vorhanden, kann ein Einzelbüro auch zu ? 299.- monatlich gemietet werden! Das alles provisionsfrei!&lt;br
-                /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+            </objektbeschreibung>
             <objektbeschreibung_intern></objektbeschreibung_intern>
             <user_defined_anyfield>
                 <justimmo_freitext1>Freitext 1</justimmo_freitext1>
@@ -354,7 +405,7 @@
             <stand_vom>2014-11-05</stand_vom>
             <projekt_id>51</projekt_id>
             <user_defined_simplefield feldname="realty_system_type">simple</user_defined_simplefield>
-            <user_defined_simplefield feldname="parent_id" />
+            <user_defined_simplefield feldname="parent_id"/>
         </verwaltung_techn>
     </immobilie>
 </justimmo>

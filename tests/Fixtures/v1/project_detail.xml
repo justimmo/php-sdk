@@ -30,7 +30,8 @@
             &lt;p&gt;Mauris sodales blandit ligula non aliquam. Mauris vel justo mi, tristique ultrices urna. Praesent
             ac hendrerit dolor. In tempor eros sit amet neque iaculis convallis. Vivamus scelerisque sollicitudin nunc,
             at blandit est tempor vestibulum. Pellentesque rutrum feugiat lorem, ut ultrices eros gravida eget. Donec
-            laoreet tempor tincidunt.&lt;/p&gt;</beschreibung>
+            laoreet tempor tincidunt.&lt;/p&gt;
+        </beschreibung>
         <dreizeiler></dreizeiler>
         <land>AUT</land>
         <bundesland>Wien</bundesland>
@@ -60,12 +61,58 @@
         <haus_zustand>Erstbezug</haus_zustand>
         <lagebewertung>sehr gut</lagebewertung>
         <zustandsbewertung>gut</zustandsbewertung>
-        <nutzungsart wohnen="1" gewerbe="1" anlage="0" />
+        <nutzungsart wohnen="1" gewerbe="1" anlage="0"/>
         <referenz>0</referenz>
         <url>http://www.justimmo.at</url>
         <fertigstellung>2017-01-15</fertigstellung>
         <verkaufsstart>2017-02-01</verkaufsstart>
         <erstellt_am>2017-06-01 08:00:00</erstellt_am>
+        <stellplaetze>
+            <stellplatz>
+                <art>garage</art>
+                <name>Garage</name>
+                <anzahl>50</anzahl>
+                <vermarktungsart>rent</vermarktungsart>
+                <netto>250</netto>
+                <brutto>275</brutto>
+                <ust>25</ust>
+                <ust_typ>numeric</ust_typ>
+                <ust_wert>25</ust_wert>
+            </stellplatz>
+            <stellplatz>
+                <art>outdoor_court</art>
+                <name>Stellplatz</name>
+                <anzahl>100</anzahl>
+                <vermarktungsart>rent</vermarktungsart>
+                <netto>60</netto>
+                <brutto>66</brutto>
+                <ust>6</ust>
+                <ust_typ>numeric</ust_typ>
+                <ust_wert>6</ust_wert>
+            </stellplatz>
+            <stellplatz>
+                <art>carport</art>
+                <name>Carport</name>
+                <anzahl>30</anzahl>
+                <vermarktungsart>buy</vermarktungsart>
+                <netto>6500</netto>
+                <brutto>7150</brutto>
+                <ust>10</ust>
+                <ust_typ>percent</ust_typ>
+                <ust_wert>650</ust_wert>
+            </stellplatz>
+            <stellplatz>
+                <art>car_park</art>
+                <name>Parkhaus</name>
+                <anzahl>200</anzahl>
+                <vermarktungsart>buy</vermarktungsart>
+                <netto>10000</netto>
+                <brutto>11000</brutto>
+                <ust>10</ust>
+                <ust_typ>percent</ust_typ>
+                <ust_wert>1000</ust_wert>
+            </stellplatz>
+        </stellplaetze>
         <immobilien>
             <immobilie>
                 <id>195439</id>
@@ -84,7 +131,8 @@
                     Sie auch am Parkring und in der Börse mieten, billigere Optionen zu 1280 ? monatlich im Twin Towers
                     oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann ein Einzelbüro auch zu ? 299.-
                     monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br
-                    /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <etage></etage>
                 <tuernummer></tuernummer>
                 <plz>2460</plz>
@@ -112,7 +160,8 @@
                     Werktagen geöffnet.&lt;br /&gt;Büro im Twin Towers Wienerbergstrasse, auf Wunsch auch Opernnähe,
                     Parkring oder Börse.&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1
                     Monatsverträge oder langfristige Bindungen ebenfalls möglich! Keine Provisionszahlung!&lt;br /&gt;&lt;br
-                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <etage></etage>
                 <tuernummer></tuernummer>
                 <plz>1100</plz>
@@ -142,7 +191,8 @@
                     2 Souterrainräume, Abstellraum, Heizraum und Waschküche, Dusche und WC&lt;br /&gt;&lt;br /&gt;Im
                     uneinsichtigen Garten findet man mehrere lauschige Plätzchen z. B. mit Grill., eine automatische
                     Bewässerungsanlage.&lt;br /&gt;&lt;br /&gt;1 Garage, 1 Gartenraum.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br
-                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <anzahl_zimmer>7</anzahl_zimmer>
                 <etage></etage>
                 <tuernummer></tuernummer>
@@ -170,7 +220,8 @@
                     monatlich, benötigen aber eine Topadresse, dann zahlen Sie nur € 259- monatlich auf der Basis eines
                     Jahresvertrages. &lt;br /&gt;Brauchen Sie nur eine Adresse, dann sinkt der Mietpreis auf €
                     179.--(virtuelles Büro)&lt;br /&gt;Ihre Wunschadresse können Sie wählen: Ring, Mariahilferstrasse,
-                    Flughafen oder Wienerberg,&lt;br /&gt; Eine Besichtigung lohnt sich!&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                    Flughafen oder Wienerberg,&lt;br /&gt; Eine Besichtigung lohnt sich!&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <etage></etage>
                 <tuernummer></tuernummer>
                 <plz>1010</plz>
@@ -196,7 +247,8 @@
                     Werktagen geöffnet.&lt;br /&gt;Büro im Twin Towers Wienerbergstrasse, auf Wunsch auch Opernnähe,
                     Parkring oder Börse.&lt;br /&gt;Der Mietpreis ist auf der Basis eines Jahresvertrages kalkuliert, 1
                     Monatsverträge oder langfristige Bindungen ebenfalls möglich! Keine Provisionszahlung!&lt;br /&gt;&lt;br
-                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <etage></etage>
                 <tuernummer></tuernummer>
                 <plz>1100</plz>
@@ -221,7 +273,8 @@
                     Weinkeller&lt;br /&gt;&lt;br /&gt;Die letzen Stock eines Alt-Wienerhauses kürzlich ausgebaute
                     Dachgeschoßwohnung kann auch als Büro-Wohnung verwendet werden.&lt;br /&gt;Luxusausstattung: &lt;/p&gt;&#13;
                     &lt;p&gt;Eichenparkett, Gasetage, Marmorfliessen und Böden, Komplettküche, Wintergarten, Sauna,
-                    kleine Terrasse, 2 Bäder, 2 WCs, Wintergarten und 20 m2 Weinkeller!&lt;/p&gt;</objektbeschreibung>
+                    kleine Terrasse, 2 Bäder, 2 WCs, Wintergarten und 20 m2 Weinkeller!&lt;/p&gt;
+                </objektbeschreibung>
                 <anzahl_zimmer>5</anzahl_zimmer>
                 <etage></etage>
                 <tuernummer></tuernummer>
@@ -251,7 +304,8 @@
                     2 Souterrainräume, Abstellraum, Heizraum und Waschküche, Dusche und WC&lt;br /&gt;&lt;br /&gt;Im
                     uneinsichtigen Garten findet man mehrere lauschige Plätzchen z. B. mit Grill., eine automatische
                     Bewässerungsanlage.&lt;br /&gt;&lt;br /&gt;1 Garage, 1 Gartenraum.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br
-                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <anzahl_zimmer>7</anzahl_zimmer>
                 <etage></etage>
                 <tuernummer></tuernummer>
@@ -278,7 +332,8 @@
                     1 Garagenplatz enthalten.&lt;br /&gt;5 Minuten mit dem Auto nach Breitenlee, 10 Min. zum großen
                     Donaustädter Einkaufspark und in 100 Metern mitten in den Feldern! Die Haltestelle des städt.
                     Autobuses ist vor der Türe!&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br
-                    /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <anzahl_zimmer>3</anzahl_zimmer>
                 <etage>EG</etage>
                 <tuernummer></tuernummer>
@@ -314,7 +369,8 @@
                     Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr
                     pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob
                     alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts,
-                    Rafgenduks&lt;/p&gt;</objektbeschreibung>
+                    Rafgenduks&lt;/p&gt;
+                </objektbeschreibung>
                 <anzahl_zimmer>3</anzahl_zimmer>
                 <etage>EG</etage>
                 <tuernummer></tuernummer>
@@ -346,7 +402,8 @@
                     Sie auch am Parkring und in der Börse mieten, billigere Optionen zu 1280 ? monatlich im Twin Towers
                     oder Airport.&lt;br /&gt;Wenn freie Kapazität vorhanden, kann ein Einzelbüro auch zu ? 299.-
                     monatlich gemietet werden! Das alles provisionsfrei!&lt;br /&gt;&lt;br /&gt;&lt;br
-                    /&gt;&lt;/p&gt;</objektbeschreibung>
+                    /&gt;&lt;/p&gt;
+                </objektbeschreibung>
                 <etage>1. OG</etage>
                 <tuernummer></tuernummer>
                 <plz>1010</plz>
