@@ -4,6 +4,7 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Attachment;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Project;
+use Justimmo\Model\Garage;
 use Justimmo\Pager\ListPager;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 
@@ -123,7 +124,20 @@ class ProjectWrapper extends AbstractWrapper
                     if (array_key_exists('id', $attributes)) {
                         $project->addCategory($attributes['id'], (string)$kategorie);
                     }
+
                 }
+            }
+        }
+
+        if (isset($xml->stellplaetze)) {
+            $key = 0;
+
+            foreach ($xml->stellplaetze[0] as $stellplaetz) {
+                $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (double) $stellplaetz->brutto, (double) $stellplaetz->netto, (double) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (double) $stellplaetz->ust_wert);
+
+                $project->addGarage($key, $garage);
+
+                $key++;
             }
         }
 

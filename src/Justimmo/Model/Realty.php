@@ -33,7 +33,7 @@ class Realty
 
     protected $proximity;
 
-    protected $description ;
+    protected $description;
 
     protected $otherInformation;
 
@@ -400,6 +400,8 @@ class Realty
      * @var double
      */
     protected $financialContribution;
+
+    protected $garages = array();
 
     /**
      * @param null $nutzungsart
@@ -771,7 +773,7 @@ class Realty
         return $this;
     }
 
-     /**
+    /**
      * @param null $nutzflaeche
      *
      * @return $this
@@ -1616,7 +1618,7 @@ class Realty
     }
 
     /**
-     * @param      $type
+     * @param                     $type
      * @param null|string|boolean $group
      *
      * @return array
@@ -1628,7 +1630,7 @@ class Realty
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
             if ($attachment->getType() == $type && ($group === false || $group == $attachment->getGroup())) {
-                $attachments[] =  $attachment;
+                $attachments[] = $attachment;
             }
         }
 
@@ -3074,5 +3076,38 @@ class Realty
         $this->financialContribution = $financialContribution;
 
         return $this;
+    }
+
+    /**
+     * @param array $stellplaetze
+     *
+     * @return $this
+     */
+    public function setGarages(array $stellplaetze)
+    {
+        $this->garages = $stellplaetze;
+
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param Garage $stellplatz
+     *
+     * @return $this
+     */
+    public function addGarage($key, Garage $stellplatz)
+    {
+        $this->garages[$key] = $stellplatz;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGarages()
+    {
+        return $this->garages;
     }
 }

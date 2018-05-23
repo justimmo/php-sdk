@@ -236,6 +236,11 @@ class Project
     protected $categories = array();
 
     /**
+     * @var array
+     */
+    protected $garages = array();
+
+    /**
      * @param int $id
      *
      * @return $this
@@ -1147,7 +1152,7 @@ class Project
     }
 
     /**
-     * @param      $type
+     * @param                     $type
      * @param null|string|boolean $group
      *
      * @return array
@@ -1159,7 +1164,7 @@ class Project
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
             if ($attachment->getType() == $type && ($group === false || $group == $attachment->getGroup())) {
-                $attachments[] =  $attachment;
+                $attachments[] = $attachment;
             }
         }
 
@@ -1287,5 +1292,38 @@ class Project
         $this->categories[$id] = $name;
 
         return $this;
+    }
+
+    /**
+     * @param array $stellplaetze
+     *
+     * @return $this
+     */
+    public function setGarages(array $stellplaetze)
+    {
+        $this->garages = $stellplaetze;
+
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param Garage $stellplatz
+     *
+     * @return $this
+     */
+    public function addGarage($key, Garage $stellplatz)
+    {
+        $this->garages[$key] = $stellplatz;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGarages()
+    {
+        return $this->garages;
     }
 }

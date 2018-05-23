@@ -7,6 +7,7 @@ use Justimmo\Model\EnergyPass;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Realty;
 use Justimmo\Model\AdditionalCosts;
+use Justimmo\Model\Garage;
 use Justimmo\Pager\ListPager;
 
 class RealtyWrapper extends AbstractWrapper
@@ -309,6 +310,18 @@ class RealtyWrapper extends AbstractWrapper
                     }
 
                     $objekt->addAdditionalCosts($key, $costs);
+                }
+            }
+
+            if (isset($xml->preise->stellplaetze)) {
+                $key = 0;
+
+                foreach ($xml->preise->stellplaetze[0] as $stellplaetz) {
+                    $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (double) $stellplaetz->brutto, (double) $stellplaetz->netto, (double) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (double) $stellplaetz->ust_wert);
+
+                    $objekt->addGarage($key, $garage);
+
+                    $key++;
                 }
             }
 
