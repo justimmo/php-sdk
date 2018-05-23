@@ -140,6 +140,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'pricePerM2From',
         'pricePerM2',
         'detailedPrices',
+        'ownershipType',
         'energyCertificate',
         'infrastructureProvision',
         'yearOfConstruction',
@@ -350,7 +351,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
     }
 
     /**
-     * Return html texts for wyswyg fields
+     * Return html texts for wysiwyg fields
      *
      * @return $this
      */
