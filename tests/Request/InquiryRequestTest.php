@@ -43,7 +43,8 @@ class InquiryRequestTest extends \PHPUnit_Framework_TestCase
             ->setCountry('AT')
             ->setMessage('Test Message')
             ->setRealty(15)
-            ->setEmployee(20);
+            ->setEmployee(20)
+            ->setCategory(2);
 
         $this->assertEquals(Inquiry::class, $request->getEntityClass());
         $this->assertEquals('POST', $request->getMethod());
@@ -64,6 +65,7 @@ class InquiryRequestTest extends \PHPUnit_Framework_TestCase
                 'message'    => 'Test Message',
                 'realty'     => 15,
                 'employee'   => 20,
+                'category'   => 2,
             ],
         ], $request->getGuzzleOptions());
     }
