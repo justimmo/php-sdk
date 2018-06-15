@@ -46,7 +46,7 @@ class Realty implements Entity
 
     /**
      * @var BuildingProgress
-     * @JUSTIMMO\Delegated(targetEntity="\Justimmo\Api\Entity\Realty\BuildingProgress", targetPath="state")
+     * @JUSTIMMO\Relation(path="buildingProgress", targetEntity="\Justimmo\Api\Entity\Realty\BuildingProgress")
      */
     private $buildingProgress;
 
@@ -217,12 +217,6 @@ class Realty implements Entity
      * @JUSTIMMO\Column(type="date")
      */
     private $updatedAt;
-
-    /**
-     * @var \DateTime
-     * @JUSTIMMO\Column(type="date")
-     */
-    private $completionDate;
 
     /**
      * @var \DateTime
@@ -549,16 +543,6 @@ class Realty implements Entity
     public function getUpdatedAt($format = null)
     {
         return $this->formatDate($this->updatedAt, $format);
-    }
-
-    /**
-     * @param string $format Date format to be returned. If left empty the \DateTime class is returned.
-     *
-     * @return \DateTime|string
-     */
-    public function getCompletionDate($format = null)
-    {
-        return $this->formatDate($this->completionDate, $format);
     }
 
     /**

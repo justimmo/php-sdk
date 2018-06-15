@@ -3,26 +3,36 @@
 namespace Justimmo\Api\Entity\Realty;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\DateFormatable;
 use Justimmo\Api\Entity\Entity;
+use Justimmo\Api\Entity\Identifiable;
+use Justimmo\Api\Entity\Nameable;
 
 /**
- * @JUSTIMMO\Entity(cacheKey="state")
+ * @JUSTIMMO\Entity(cacheKey="id")
  */
 class BuildingProgress implements Entity
 {
+    use Identifiable, Nameable, DateFormatable;
+
     const BUILDING = 'building';
     const PLANNING = 'planning';
     const FINISHED = 'finished';
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var \DateTime
+     * @JUSTIMMO\Column(type="date")
      */
-    private $state;
+    private $completionDate;
 
-    public function __toString()
+    /**
+     * @param string $format Date format to be returned. If left empty the \DateTime class is returned.
+     *
+     * @return \DateTime|string
+     */
+    public function getCompletionDate($format = null)
     {
-        return (string) $this->state;
+        return $this->formatDate($this->completionDate, $format);
     }
 
     /**
@@ -32,7 +42,7 @@ class BuildingProgress implements Entity
      */
     public function isPlanning()
     {
-        return $this->state === self::PLANNING;
+        return $this->id === self::PLANNING;
     }
 
     /**
@@ -42,7 +52,7 @@ class BuildingProgress implements Entity
      */
     public function isBuilding()
     {
-        return $this->state === self::BUILDING;
+        return $this->id === self::BUILDING;
     }
 
     /**
@@ -52,6 +62,6 @@ class BuildingProgress implements Entity
      */
     public function isFinished()
     {
-        return $this->state === self::FINISHED;
+        return $this->id === self::FINISHED;
     }
 }
