@@ -57,7 +57,6 @@ class RealtyRequestTest extends RequestTestCase
         'createdAt',
         'updatedAt',
         'publishedAt',
-        'completionDate',
         'saleStart',
         'availableFrom',
         'maxRentDuration',

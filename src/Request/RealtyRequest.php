@@ -46,7 +46,6 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this withCreatedAt()
  * @method $this withUpdatedAt()
  * @method $this withPublishedAt()
- * @method $this withCompletionDate()
  * @method $this withSaleStart()
  * @method $this withAvailableFrom()
  * @method $this withMaxRentDuration()
@@ -152,7 +151,6 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'createdAt',
         'updatedAt',
         'publishedAt',
-        'completionDate',
         'saleStart',
         'availableFrom',
         'maxRentDuration',
