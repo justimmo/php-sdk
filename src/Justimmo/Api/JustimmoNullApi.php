@@ -70,6 +70,11 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
+    public function callTenant(array $params = array())
+    {
+        return $this->emptyXML();
+    }
+
     public function callRealtyCategories(array $params = array())
     {
         return $this->emptyXML();

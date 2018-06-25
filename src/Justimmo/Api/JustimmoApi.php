@@ -213,6 +213,14 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
+    public function callTenant(array $params = array())
+    {
+        return $this->call('main/tenant', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function callExpose($pk, $type = 'Default')
     {
         return $this->call('objekt/expose', array('objekt_id' => $pk, 'expose' => $type));

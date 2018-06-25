@@ -93,4 +93,14 @@ class BasicDataWrapperTest extends TestCase
             ),
         ), $list);
     }
+
+    public function testTenant()
+    {
+        $tenant = $this->wrapper->transformTenant($this->getFixtures('v1/tenant.xml'));
+
+        $this->assertEquals(2, $tenant['id']);
+        $this->assertEquals('Kanzlei Mustermann', $tenant['firma']);
+        $this->assertEquals('office@justimmo.at', $tenant['email']);
+        $this->assertEquals('https://www.justimmo.at/datenschutzinformation/', $tenant['datenschutzinformation_url']);
+    }
 }

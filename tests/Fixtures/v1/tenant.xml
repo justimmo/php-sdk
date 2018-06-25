@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <tenant>
+        <id>2</id>
+        <firma>Kanzlei Mustermann</firma>
+        <email>office@justimmo.at</email>
+        <datenschutzinformation_url>https://www.justimmo.at/datenschutzinformation/</datenschutzinformation_url>
+    </tenant>
+</justimmo>

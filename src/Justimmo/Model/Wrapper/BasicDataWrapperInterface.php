@@ -15,4 +15,6 @@ interface BasicDataWrapperInterface
     public function transformRealtyTypes($data);
 
     public function transformRealtyCategories($data);
+
+    public function transformTenant($data);
 }

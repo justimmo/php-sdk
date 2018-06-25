@@ -98,4 +98,11 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
         return $return;
     }
+
+    public function transformTenant($data)
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        return (array) $xml->tenant;
+    }
 }
