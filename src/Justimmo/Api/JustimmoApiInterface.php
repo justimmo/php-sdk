@@ -121,6 +121,15 @@ interface JustimmoApiInterface
     public function callRegions(array $params = array());
 
     /**
+     * Retrieve tenant data
+     *
+     * @param array $params
+     *
+     * @return string
+     */
+    public function callTenant(array $params = array());
+
+    /**
      * retrieve a realty type list
      *
      * @param array $params

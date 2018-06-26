@@ -106,6 +106,11 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('realtyTypes');
     }
 
+    public function callTenant(array $params = array())
+    {
+        return $this->getReturnValue('tenant');
+    }
+
     public function callRealtyCategories(array $params = array())
     {
         return $this->getReturnValue('realtyCategories');

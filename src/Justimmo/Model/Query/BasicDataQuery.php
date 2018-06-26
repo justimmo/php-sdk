@@ -174,6 +174,20 @@ class BasicDataQuery
     }
 
     /**
+     * @return array
+     */
+    public function findTenant()
+    {
+        $response = $this->api->callTenant($this->params);
+
+        $return = $this->wrapper->transformTenant($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
      * sets a value for a key
      *
      * @param $key
