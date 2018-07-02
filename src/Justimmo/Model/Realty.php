@@ -221,6 +221,8 @@ class Realty
 
     protected $toiletRoomCount;
 
+    protected $gardenCount;
+
     protected $balconyTerraceCount;
 
     protected $balconyTerraceArea;
@@ -571,6 +573,26 @@ class Realty
     public function getMarketingType()
     {
         return $this->marketingType;
+    }
+
+    /**
+     * @param int|null $anzahlGarten
+     *
+     * @return $this
+     */
+    public function setGardenCount($anzahlGarten)
+    {
+        $this->gardenCount = $anzahlGarten;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGardenCount()
+    {
+        return $this->gardenCount;
     }
 
     /**

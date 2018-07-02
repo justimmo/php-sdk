@@ -236,6 +236,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'terraceCount',
                 'type'     => 'int',
             ),
+            'anzahl_garten'                    => array(
+                'property' => 'gardenCount',
+                'type'     => 'int',
+            ),
             'gartenflaeche'                    => array(
                 'property' => 'gardenArea',
                 'type'     => 'double',
@@ -432,6 +436,13 @@ class RealtyMapper extends AbstractMapper
             'RentPerSqm'        => 'price_per_m2',
             'CreatedAt'         => 'created_at',
             'UpdatedAt'         => 'aktualisiert_am',
+            'Condition'         => 'zustand_id',
+            'GardenCount'       => 'anzahl_garten',
+            'BalconyCount'      => 'anzahl_balkons',
+            'LoggiaCount'       => 'anzahl_loggias',
+            'TerraceCount'      => 'anzahl_terrassen',
+            'Equipment'         => 'objekt_ausstattung_list',
+            'DisabilityAccess'  => 'barrierefrei',
         );
     }
 
