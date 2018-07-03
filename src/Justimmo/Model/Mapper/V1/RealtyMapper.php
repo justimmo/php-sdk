@@ -422,7 +422,7 @@ class RealtyMapper extends AbstractMapper
             'ZipCode'           => 'plz',
             'Rooms'             => 'zimmer',
             'PropertyNumber'    => 'objektnummer',
-            'Area'              => 'flaeche',
+            'Area'              => 'sort_flaeche',
             'LivingArea'        => 'wohnflaeche',
             'FloorArea'         => 'nutzflaeche',
             'SurfaceArea'       => 'grundflaeche',
