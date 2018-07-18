@@ -25,6 +25,7 @@ class RealtyWrapper extends AbstractWrapper
         'naehe',
         'objektbeschreibung',
         'sonstige_angaben',
+        'stiege',
         'etage',
         'tuernummer',
         'plz',
