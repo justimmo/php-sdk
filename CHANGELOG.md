@@ -1,3 +1,69 @@
+## 1.1.16
+ * Fix the value of the stair for projects
+ * Add support for realty calls
+   * filterByCondition() 
+   * filterByGardenCount()
+   * filterByBalconyCount()
+   * filterByLoggiaCount()
+   * filterByTerraceCount()
+   * filterByEquipment()
+   * filterByDisabilityAccess()
+
+## 1.1.15
+ * Add support for realties and projects: getGarages() (Garages)
+ * Available Functions of the model Garage
+   * getType() returns outdoor_court, garage, undergroud_car_park, carport, duplex, car_park or others
+   * getName()
+   * getQuantity()
+   * getMarketingType() returns rent or buy
+   * getNet()
+   * getGross()
+   * getVat()
+   * getVatType() returns numeric or percent
+   * getVatValue() returns the monetary value of the VAT
+
+## 1.1.14
+ * Inquiry: Assign existing contact category
+
+## 1.1.13
+ * Add support for projects
+   * categories / tags
+   * filter parameter project_tag_name
+
+## 1.1.12
+ * Add support for getCeilingHeight in realty calls
+
+## 1.1.11
+ * Add support for realties
+   * getMonthlyCosts() (Monatliche Kosten)
+   * getFinancialContribution() (Finanzierungsbeitrag)
+   * getInfrastructureProvision() (Aufschliessungskosten)
+
+## 1.1.10
+ * Add support for projects
+   * getProjectNumber() (Projektnummer)
+   * getCountry() (Land)
+   * getFederalState() (Bundesland)
+   * getProximity() (Nähe)
+   * getTierCount() (Anzahl Etagen)
+   * getAtticCount() (Anzahl Dachgeschoße)
+   * getStyleOfBuildingId() (Bauart)
+   * getYearOfConstruction() (Baujahr)
+   * getNoiseLevel() (Lärmpegel)
+   * getAvailability() (Beziehbar)
+   * getEpcValidUntil() (Energieausweis gültig bis)
+   * getEpcHeatingDemand() (HWB)
+   * getEpcHeatingDemandClass() (HWB Klasse)
+   * getEpcEnergyEfficiencyFactor() (fGEE)
+   * getEpcEnergyEfficiencyFactorClass() (fGEE Klasse)
+   * getCondition() (Zustand)
+   * getHouseCondition() (Haus Zustand)
+   * getAreaAssessment() (Lagebewertung)
+   * getPropertyAssessment() (Zustandsbewertung)
+   * getOccupancy() (Nutzungsart)
+   * getFreetext2() (Freitext 2)
+   * getCreatedAt() (Erstellt am)
+
 ## 1.1.9 
  * Add street, zip, city and url to Employee model
  * Add orientation to Realty model
