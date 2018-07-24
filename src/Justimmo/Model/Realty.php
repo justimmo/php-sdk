@@ -405,6 +405,8 @@ class Realty
 
     protected $garages = array();
 
+    protected $buyOnRequest = false;
+
     /**
      * @param null $nutzungsart
      *
@@ -3131,5 +3133,25 @@ class Realty
     public function getGarages()
     {
         return $this->garages;
+    }
+
+    /**
+     * @param bool $buyOnRequest
+     *
+     * @return $this
+     */
+    public function setBuyOnRequest($buyOnRequest)
+    {
+        $this->buyOnRequest = $buyOnRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getBuyOnRequest()
+    {
+        return $this->buyOnRequest;
     }
 }
