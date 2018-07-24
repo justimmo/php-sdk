@@ -285,13 +285,16 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->preise)) {
             $this->map($this->preisMapping, $xml->preise, $objekt);
-            $objekt->setTotalRent($this->cast($xml->preise->warmmiete, 'double'));
 
             if (isset($xml->preise->kaufpreis) && $xml->preise->kaufpreis->attributes() != null) {
                 $purchasePriceAttributes = $this->attributesToArray($xml->preise->kaufpreis->attributes());
                 if (array_key_exists('auf_anfrage', $purchasePriceAttributes)) {
                     $objekt->setBuyOnRequest($purchasePriceAttributes['auf_anfrage']);
                 }
+            }
+
+            if (isset($xml->preise->warmmiete)) {
+                $objekt->setTotalRent($this->cast($xml->preise->warmmiete, 'double'));
             }
 
             if (isset($xml->preise->kaufpreisnetto) && isset($xml->preise->kaufpreisnetto['kaufpreisust'])) {
