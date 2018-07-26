@@ -73,7 +73,7 @@ class Address implements Entity
 
     /**
      * @var AddressDisplayRule
-     * @JUSTIMMO\Delegated(path="addressDisplayRule", targetEntity="\Justimmo\Api\Entity\Geo\AddressDisplayRule", targetPath="rule")
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\AddressDisplayRule")
      */
     private $displayRule;
 
