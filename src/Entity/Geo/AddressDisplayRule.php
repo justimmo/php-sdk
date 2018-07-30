@@ -6,7 +6,7 @@ use Justimmo\Api\Annotation as JUSTIMMO;
 use Justimmo\Api\Entity\Entity;
 
 /**
- * @JUSTIMMO\Entity(cacheKey="rule")
+ * @JUSTIMMO\Entity
  */
 class AddressDisplayRule implements Entity
 {
@@ -20,7 +20,36 @@ class AddressDisplayRule implements Entity
      *
      * @JUSTIMMO\Column
      */
+
+    /**
+     * @var string
+     *
+     * @JUSTIMMO\Column(path="rule", type="string")
+     */
     private $rule;
+
+    /**
+     * @var boolean
+     *
+     * @JUSTIMMO\Column(path="exportStairTop", type="boolean")
+     */
+    private $exportStairTop;
+
+    /**
+     * @return string
+     */
+    public function getRule()
+    {
+        return $this->rule;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getExportStairTop()
+    {
+        return $this->exportStairTop;
+    }
 
     /**
      * Returns true if the address should be displayed with all its details
