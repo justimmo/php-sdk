@@ -221,8 +221,6 @@ class Realty
 
     protected $toiletRoomCount;
 
-    protected $gardenCount;
-
     protected $balconyTerraceCount;
 
     protected $balconyTerraceArea;
@@ -231,7 +229,11 @@ class Realty
 
     protected $terraceCount;
 
+    protected $gardenCount;
+
     protected $gardenArea;
+
+    protected $cellarCount;
 
     protected $cellarArea;
 
@@ -595,6 +597,26 @@ class Realty
     public function getGardenCount()
     {
         return $this->gardenCount;
+    }
+
+    /**
+     * @param int|null $anzahlKeller
+     *
+     * @return $this
+     */
+    public function setCellarCount($anzahlKeller)
+    {
+        $this->cellarCount = $anzahlKeller;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCellarCount()
+    {
+        return $this->cellarCount;
     }
 
     /**
