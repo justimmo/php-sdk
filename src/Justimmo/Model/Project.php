@@ -241,6 +241,52 @@ class Project
     protected $garages = array();
 
     /**
+     * @var float
+     */
+    protected $latitude;
+
+    /**
+     * @var float
+     */
+    protected $longitude;
+
+    /**
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param float $latitude
+     * @return Project
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param float $longitude
+     * @return Project
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+        return $this;
+    }
+
+    /**
      * @param int $id
      *
      * @return $this
