@@ -87,4 +87,16 @@ class RealtyQuery extends AbstractQuery
     {
         return $this->set('alleProjektObjekte', (int) $all);
     }
+
+    /**
+     * Search commercial realties by usable area of the sub realties
+     *
+     * @param bool $all
+     *
+     * @return $this
+     */
+    public function preciseAreaSearch($all = true)
+    {
+        return $this->set('preciseAreaSearch', (int) $all);
+    }
 }
