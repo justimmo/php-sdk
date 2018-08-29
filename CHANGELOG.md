@@ -1,3 +1,6 @@
+## 1.1.17
+ * Add support for preciseAreaSearch setting
+
 ## 1.1.16
  * Fix the value of the stair for projects
  * Add support for realty calls
