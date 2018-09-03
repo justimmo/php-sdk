@@ -143,8 +143,8 @@ class ProjectWrapper extends AbstractWrapper
 
         if (isset($xml->geokoordinaten)) {
             $coord = $this->attributesToArray($xml->geokoordinaten->attributes());
-            $project->setLatitude((float) $coord['breitengrad']);
-            $project->setLongitude((float) $coord['laengengrad']);
+            $project->setLatitude((double) $coord['breitengrad']);
+            $project->setLongitude((double) $coord['laengengrad']);
         }
 
         return $project;

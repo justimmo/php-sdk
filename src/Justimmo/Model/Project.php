@@ -265,6 +265,7 @@ class Project
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -283,6 +284,7 @@ class Project
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+        
         return $this;
     }
 
