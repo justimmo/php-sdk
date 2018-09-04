@@ -1202,6 +1202,16 @@ class Project
     }
 
     /**
+     * @param null|string|boolean $group
+     *
+     * @return array
+     */
+    public function getLinks($group = false)
+    {
+        return $this->getAttachmentsByType('link', $group);
+    }
+
+    /**
      * @param \Justimmo\Model\Employee $contact
      *
      * @return $this
