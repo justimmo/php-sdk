@@ -109,6 +109,7 @@ class RealtyWrapper extends AbstractWrapper
         'anzahl_terrassen',
         'anzahl_garten',
         'gartenflaeche',
+        'anzahl_keller',
         'kellerflaeche',
         'bueroflaeche',
         'lagerflaeche',

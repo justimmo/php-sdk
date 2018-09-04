@@ -244,6 +244,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'gardenArea',
                 'type'     => 'double',
             ),
+            'anzahl_keller'                    => array(
+                'property' => 'cellarCount',
+                'type'     => 'int',
+            ),
             'kellerflaeche'                    => array(
                 'property' => 'cellarArea',
                 'type'     => 'double',
@@ -441,6 +445,12 @@ class RealtyMapper extends AbstractMapper
             'BalconyCount'      => 'anzahl_balkons',
             'LoggiaCount'       => 'anzahl_loggias',
             'TerraceCount'      => 'anzahl_terrassen',
+            'CellarCount'       => 'anzahl_keller',
+            'GarageCount'       => 'anzahl_garagen',
+            'ParkingCount'      => 'anzahl_stellplaetze',
+            'ToiletRoomCount'   => 'anzahl_sep_wc',
+            'BathroomCount'     => 'anzahl_badezimmer',
+            'StoreRoomCount'    => 'anzahl_abstellraum',
             'Equipment'         => 'objekt_ausstattung_list',
             'DisabilityAccess'  => 'barrierefrei',
         );

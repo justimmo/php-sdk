@@ -1,3 +1,12 @@
+## 1.1.18
+ * Add support for realty calls
+   * filterByCellarCount()
+   * filterByGarageCount()
+   * filterByParkingCount()
+   * filterByToiletRoomCount()
+   * filterByBathRoomCount()
+   * filterByStoreRoomCount()
+
 ## 1.1.17
  * Add support for preciseAreaSearch setting
 
