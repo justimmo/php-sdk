@@ -111,7 +111,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Freitext 2 Test', $entry->getFreetext2());
         $this->assertEquals('Nähe Test', $entry->getProximity());
 
-        $this->assertEquals(20, count($entry->getAttachments()));
+        $this->assertEquals(21, count($entry->getAttachments()));
         $this->assertEquals(10, $entry->countRealties());
 
         $this->assertInstanceOf('\Datetime', $entry->getEpcValidUntil(null));
@@ -205,6 +205,12 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Bild 1', $pictures[0]->getTitle());
         $this->assertEquals('Bild 2', $pictures[1]->getTitle());
         $this->assertEquals('Bild 3', $pictures[2]->getTitle());
+
+        $links = $entry->getLinks();
+        $link = $links[0];
+        $this->assertEquals(1, count($links));
+        $this->assertEquals('JUSTIMMO', $link->getTitle());
+        $this->assertEquals('http://www.justimmo.at', $link->getUrl());
 
         $contact = $entry->getContact();
         $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);

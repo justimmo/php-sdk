@@ -491,6 +491,12 @@
                 <pfad>http://files.justimmo.at/public/pic/landscape/AJNg3ZLA5l.jpg</pfad>
             </bild>
         </bilder360>
+        <links>
+            <link>
+                <titel>JUSTIMMO</titel>
+                <pfad>http://www.justimmo.at</pfad>
+            </link>
+        </links>
         <videos/>
         <kontaktperson>
             <id>50</id>
