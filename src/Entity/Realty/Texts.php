@@ -59,6 +59,12 @@ class Texts implements Entity
     private $free4;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column(path="commercialComment")
+     */
+    private $commercialComment;
+
+    /**
      * @return string
      */
     public function getTitle()
@@ -121,4 +127,13 @@ class Texts implements Entity
     {
         return $this->free4;
     }
+
+    /**
+     * @return string
+     */
+    public function getCommercialComment()
+    {
+        return $this->commercialComment;
+    }
+
 }
