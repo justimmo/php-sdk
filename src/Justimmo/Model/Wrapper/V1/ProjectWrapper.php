@@ -151,6 +151,35 @@ class ProjectWrapper extends AbstractWrapper
             $project->setLongitude((double) $coord['laengengrad']);
         }
 
+        if (isset($xml->residential_aggregation_data)) {
+            $rad = $xml->residential_aggregation_data;
+
+            if (isset($rad->area_from)) {
+                $project->setAreaFrom((float)$rad->area_from);
+            }
+            if (isset($rad->area_to)) {
+                $project->setAreaTo((float)$rad->area_to);
+            }
+
+            if (isset($rad->price_from)) {
+                $project->setPriceFrom((float)$rad->price_from);
+            }
+            if (isset($rad->price_to)) {
+                $project->setPriceTo((float)$rad->price_to);
+            }
+
+            if (isset($rad->rooms_from)) {
+                $project->setRoomsFrom((float)$rad->rooms_from);
+            }
+            if (isset($rad->rooms_to)) {
+                $project->setRoomsTo((float)$rad->rooms_to);
+            }
+
+            if (isset($rad->available)) {
+                $project->setSubunitsAvailable((float)$rad->available);
+            }
+        }
+
         return $project;
     }
 
