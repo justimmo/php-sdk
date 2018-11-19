@@ -284,6 +284,12 @@ class Realty implements Entity
      */
     private $children;
 
+    /**
+     * @var \Justimmo\Api\Entity\Realty\ResidentialAggregationData
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty\ResidentialAggregationData", path="residentialAggregationData")
+     */
+    private $residentialAggregationData;
+
     public function __toString()
     {
         return (string) $this->getNumber();
@@ -633,6 +639,14 @@ class Realty implements Entity
     public function getAttachments()
     {
         return $this->attachments;
+    }
+
+    /**
+     * @return \Justimmo\Api\Entity\Realty\ResidentialAggregationData
+     */
+    public function getResidentialAggregationData()
+    {
+        return $this->residentialAggregationData;
     }
 }
 
