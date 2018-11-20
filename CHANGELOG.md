@@ -1,3 +1,6 @@
+## 1.1.20
+ * Add residential project aggregations
+
 ## 1.1.18
  * Add support for realty calls
    * filterByCellarCount()
