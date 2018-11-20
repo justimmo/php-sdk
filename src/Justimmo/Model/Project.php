@@ -251,6 +251,35 @@ class Project
     protected $longitude;
 
     /**
+     * @var float
+     */
+    protected $areaFrom;
+    /**
+     * @var float
+     */
+    protected $areaTo;
+    /**
+     * @var float
+     */
+    protected $priceFrom;
+    /**
+     * @var float
+     */
+    protected $priceTo;
+    /**
+     * @var float
+     */
+    protected $roomsFrom;
+    /**
+     * @var float
+     */
+    protected $roomsTo;
+    /**
+     * @var int
+     */
+    protected $subunitsAvailable;
+
+    /**
      * @return float
      */
     public function getLatitude()
@@ -284,7 +313,7 @@ class Project
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-        
+
         return $this;
     }
 
@@ -1383,5 +1412,117 @@ class Project
     public function getGarages()
     {
         return $this->garages;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAreaFrom()
+    {
+        return $this->areaFrom;
+    }
+
+    /**
+     * @param float $areaFrom
+     */
+    public function setAreaFrom($areaFrom)
+    {
+        $this->areaFrom = $areaFrom;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAreaTo()
+    {
+        return $this->areaTo;
+    }
+
+    /**
+     * @param float $areaTo
+     */
+    public function setAreaTo($areaTo)
+    {
+        $this->areaTo = $areaTo;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPriceFrom()
+    {
+        return $this->priceFrom;
+    }
+
+    /**
+     * @param float $priceFrom
+     */
+    public function setPriceFrom($priceFrom)
+    {
+        $this->priceFrom = $priceFrom;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPriceTo()
+    {
+        return $this->priceTo;
+    }
+
+    /**
+     * @param float $priceTo
+     */
+    public function setPriceTo($priceTo)
+    {
+        $this->priceTo = $priceTo;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRoomsFrom()
+    {
+        return $this->roomsFrom;
+    }
+
+    /**
+     * @param float $roomsFrom
+     */
+    public function setRoomsFrom($roomsFrom)
+    {
+        $this->roomsFrom = $roomsFrom;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRoomsTo()
+    {
+        return $this->roomsTo;
+    }
+
+    /**
+     * @param float $roomsTo
+     */
+    public function setRoomsTo($roomsTo)
+    {
+        $this->roomsTo = $roomsTo;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSubunitsAvailable()
+    {
+        return $this->subunitsAvailable;
+    }
+
+    /**
+     * @param int $subunitsAvailable
+     */
+    public function setSubunitsAvailable($subunitsAvailable)
+    {
+        $this->subunitsAvailable = $subunitsAvailable;
     }
 }
