@@ -73,6 +73,11 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this filterBySurfaceArea($value)
  * @method $this filterByFloorArea($value)
  * @method $this filterByOverallArea($value)
+ * @method $this filterByHasGarden($value)
+ * @method $this filterByHasBalcony($value)
+ * @method $this filterByHasTerrace($value)
+ * @method $this filterByHasLoggia($value)
+ * @method $this filterByHasDisabilityAccess($value)
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
  * @method $this filterByRealtyState($value)
@@ -198,6 +203,11 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'floorArea',
         'surfaceArea',
         'overallArea',
+        'hasGarden',
+        'hasBalcony',
+        'hasTerrace',
+        'hasLoggia',
+        'hasDisabilityAccess',
         'country',
         'federalState',
         'city',
