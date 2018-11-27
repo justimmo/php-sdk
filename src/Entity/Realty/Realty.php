@@ -117,8 +117,8 @@ class Realty implements Entity
     private $prices;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column
+     * @var OwnershipType
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty\OwnershipType")
      */
     private $ownershipType;
 
@@ -448,7 +448,7 @@ class Realty implements Entity
     }
 
     /**
-     * @return string
+     * @return OwnershipType
      */
     public function getOwnershipType()
     {
