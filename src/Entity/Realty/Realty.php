@@ -290,6 +290,13 @@ class Realty implements Entity
      */
     private $residentialAggregationData;
 
+    /**
+     * @var string
+     * @JUSTIMMO\Column
+     */
+    private $editUrl;
+
+
     public function __toString()
     {
         return (string) $this->getNumber();
@@ -648,5 +655,14 @@ class Realty implements Entity
     {
         return $this->residentialAggregationData;
     }
+
+    /**
+     * @return string
+     */
+    public function getEditUrl()
+    {
+        return $this->editUrl;
+    }
+
 }
 
