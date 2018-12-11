@@ -165,6 +165,12 @@ class Prices implements Entity
      * @var Price
      * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Price")
      */
+    private $heatingCostsPerM2;
+
+    /**
+     * @var Price
+     * @JUSTIMMO\Relation(targetEntity="Justimmo\Api\Entity\Price")
+     */
     private $yield;
 
     /**
@@ -443,6 +449,14 @@ class Prices implements Entity
     public function getOperatingCostsPerM2()
     {
         return $this->operatingCostsPerM2;
+    }
+
+    /**
+     * @return Price
+     */
+    public function getHeatingCostsPerM2()
+    {
+        return $this->heatingCostsPerM2;
     }
 
     /**
