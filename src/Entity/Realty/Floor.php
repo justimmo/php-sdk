@@ -15,7 +15,7 @@ class Floor implements Entity
 {
     /**
      * @var int
-     * @JUSTIMMO\Column(path="floor", type="integer")
+     * @JUSTIMMO\Column(path="floor", type="original")
      */
     private $floor;
 
