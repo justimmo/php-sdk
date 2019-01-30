@@ -87,6 +87,12 @@ class Realty implements Entity
     private $marketingState;
 
     /**
+     * @var bool
+     * @JUSTIMMO\Column(type="boolean")
+     */
+    private $exportState;
+
+    /**
      * @var Address
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\Address")
      */
@@ -364,6 +370,14 @@ class Realty implements Entity
     public function getMarketingState()
     {
         return $this->marketingState;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getExportState()
+    {
+        return $this->exportState;
     }
 
     /**
