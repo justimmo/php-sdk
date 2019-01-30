@@ -12,6 +12,8 @@ class Attachment
 
     protected $title = null;
 
+    protected $originalFilename = null;
+
     protected $data = array();
 
     protected $group = null;
@@ -181,6 +183,26 @@ class Attachment
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param null $originalFilename
+     *
+     * @return $this
+     */
+    public function setOriginalFilename($originalFilename)
+    {
+        $this->originalFilename = $originalFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getOriginalFilename()
+    {
+        return $this->originalFilename;
     }
 
     /**

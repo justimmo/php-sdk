@@ -97,10 +97,12 @@ abstract class AbstractWrapper implements WrapperInterface
                 $attachment = new Attachment($data['pfad'], $type, $group);
                 $attachment->mergeData($data);
                 $attachment->setTitle($this->cast($anhang->anhangtitel));
+                $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
                 $attachmentAware->addAttachment($attachment);
             } elseif (isset($anhang->pfad)) {
                 $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
                 $attachment->setTitle($this->cast($anhang->titel));
+                $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
                 $attachmentAware->addAttachment($attachment);
             }
         }
