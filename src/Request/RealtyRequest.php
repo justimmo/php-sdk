@@ -169,6 +169,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'isReadyForFinishing',
         'residentialAggregationData',
         'editUrl',
+        'pois',
     ];
 
     const SORTS = [

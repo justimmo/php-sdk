@@ -302,6 +302,12 @@ class Realty implements Entity
      */
     private $editUrl;
 
+    /**
+     * @var \Justimmo\Api\Entity\Realty\PoiGroups
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty\PoiGroups")
+     */
+    private $pois;
+
 
     public function __toString()
     {
@@ -678,5 +684,12 @@ class Realty implements Entity
         return $this->editUrl;
     }
 
-}
+    /**
+     * @return array
+     */
+    public function getPois()
+    {
+        return $this->pois;
+    }
 
+}
