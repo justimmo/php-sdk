@@ -409,6 +409,8 @@ class Realty
 
     protected $buyOnRequest = false;
 
+    protected $pois = array();
+
     /**
      * @param null $nutzungsart
      *
@@ -3175,5 +3177,32 @@ class Realty
     public function getBuyOnRequest()
     {
         return $this->buyOnRequest;
+    }
+
+    public function getPois()
+    {
+        return $this->pois;
+    }
+
+    public function setPois($pois)
+    {
+        $this->pois = $pois;
+
+        return $this;
+    }
+
+    public function addPoi($group, $name, $distance)
+    {
+        if (empty($group)) {
+            $group = 'other';
+        }
+
+        if (!isset($this->pois[$group])) {
+            $this->pois[$group] = array();
+        }
+
+        $this->pois[$group][$name] = $distance;
+
+        return $this;
     }
 }

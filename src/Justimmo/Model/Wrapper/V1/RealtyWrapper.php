@@ -282,6 +282,16 @@ class RealtyWrapper extends AbstractWrapper
             foreach ($xml->geo->user_defined_simplefield as $simpleField) {
                 $this->mapSimpleField($simpleField, $objekt);
             }
+
+            foreach ($xml->geo->user_defined_anyfield as $anyField) {
+                if (isset($anyField->ji_point_of_interest_distance)) {
+                    foreach ($anyField->ji_point_of_interest_distance->distance as $distance) {
+                        $distanceAttr = $this->attributesToArray($distance->attributes());
+
+                        $objekt->addPoi($distanceAttr['group'], $distanceAttr['type'], (float)$distance);
+                    }
+                }
+            }
         }
 
         if (isset($xml->preise)) {
