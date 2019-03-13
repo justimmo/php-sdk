@@ -303,8 +303,8 @@ class Realty implements Entity
     private $editUrl;
 
     /**
-     * @var \Justimmo\Api\Entity\Realty\PoiGroups
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Realty\PoiGroups")
+     * @var array
+     * @JUSTIMMO\Column(type="original")
      */
     private $pois;
 
@@ -687,7 +687,7 @@ class Realty implements Entity
     /**
      * @return array
      */
-    public function getPois()
+    public function getDistances()
     {
         return $this->pois;
     }
