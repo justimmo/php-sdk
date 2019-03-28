@@ -127,6 +127,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'coordinatesPrecise',
         'title',
         'coverPicture',
+        'tenant',
         'livingArea',
         'floorArea',
         'floorAreaFrom',
