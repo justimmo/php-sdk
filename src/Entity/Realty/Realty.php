@@ -10,6 +10,7 @@ use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Entity\DateFormatable;
 use Justimmo\Api\Entity\Identifiable;
+use Justimmo\Api\Entity\Tenant;
 
 /**
  * @JUSTIMMO\Entity()
@@ -97,6 +98,12 @@ class Realty implements Entity
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\Address")
      */
     private $address;
+
+    /**
+     * @var Tenant
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Tenant")
+     */
+    private $tenant;
 
     /**
      * @var Areas
@@ -400,6 +407,14 @@ class Realty implements Entity
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * @return Tenant
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
     }
 
     /**
