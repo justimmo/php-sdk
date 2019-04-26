@@ -1,3 +1,6 @@
+## 1.1.22
+ * Handles the group element of the general realty and residential project links
+
 ## 1.1.20
  * Add residential project aggregations
 
