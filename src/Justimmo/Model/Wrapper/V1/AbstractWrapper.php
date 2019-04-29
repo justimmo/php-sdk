@@ -103,6 +103,9 @@ abstract class AbstractWrapper implements WrapperInterface
                 $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
                 $attachmentAware->addAttachment($attachment);
             } elseif (isset($anhang->pfad)) {
+                if (isset($anhang->gruppe)) {
+                    $group = strtoupper($this->cast($anhang->gruppe));
+                }
                 $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
                 if (isset($anhang->vorschaubild)) {
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
