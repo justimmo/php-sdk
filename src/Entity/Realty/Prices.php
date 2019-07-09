@@ -79,9 +79,21 @@ class Prices implements Entity
 
     /**
      * @var string
+     * @var @JUSTIMMO\Column
+     */
+    private $commissionType;
+
+    /**
+     * @var string
      * @JUSTIMMO\Column
      */
     private $commissionText;
+
+    /**
+     * @var boolean
+     * @JUSTIMMO\Column
+     */
+    private $commissionTextAuto;
 
     /**
      * @var Price
@@ -342,9 +354,25 @@ class Prices implements Entity
     /**
      * @return string
      */
+    public function getCommissionType()
+    {
+        return $this->commissionType;
+    }
+
+    /**
+     * @return string
+     */
     public function getCommissionText()
     {
         return $this->commissionText;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getCommissionTextAuto()
+    {
+        return $this->commissionTextAuto;
     }
 
     /**
