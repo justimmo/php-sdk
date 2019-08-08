@@ -148,6 +148,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'tierCount',
                 'type'     => 'int',
             ),
+            'kaltmiete'                        => array(
+                'property' => 'totalRentWithoutHeating',
+                'type'     => 'double',
+            ),
             'nettokaltmiete'                   => array(
                 'property' => 'netRent',
                 'type'     => 'double',

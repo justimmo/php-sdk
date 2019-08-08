@@ -74,6 +74,7 @@ class RealtyWrapper extends AbstractWrapper
     protected $preisMapping = array(
         'kaufpreis',
         'kaufpreisnetto',
+        'kaltmiete',
         'nettokaltmiete',
         'nebenkosten',
         'heizkosten',
@@ -364,6 +365,12 @@ class RealtyWrapper extends AbstractWrapper
                 $objekt->setRentVatInput((float) $xml->preise->miete->ust_wert);
                 $objekt->setRentVat((float) $xml->preise->miete->ust);
                 $objekt->setRentVatValue((float) $xml->preise->miete->ust_berechneter_wert);
+            }
+
+            foreach ($xml->preise->user_defined_anyfield as $anyField) {
+                if (isset($anyField->mwst_gesamt)) {
+                    $objekt->setMonthlyCostsVat($anyField->mwst_gesamt);
+                }
             }
         }
 

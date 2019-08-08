@@ -53,6 +53,8 @@ class Realty
 
     protected $totalRent;
 
+    protected $totalRentWithoutHeating;
+
     protected $purchasePricePerSqm;
 
     /**
@@ -399,6 +401,11 @@ class Realty
      * @var double
      */
     protected $monthlyCosts;
+
+    /**
+     * @var double
+     */
+    protected $monthlyCostsVat;
 
     /**
      * @var double
@@ -3109,6 +3116,26 @@ class Realty
     /**
      * @return float
      */
+    public function getMonthlyCostsVat()
+    {
+        return $this->monthlyCostsVat;
+    }
+
+    /**
+     * @param float $monthlyCostsVat
+     *
+     * @return $this
+     */
+    public function setMonthlyCostsVat($monthlyCostsVat)
+    {
+        $this->monthlyCostsVat = $monthlyCostsVat;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
     public function getFinancialContribution()
     {
         return $this->financialContribution;
@@ -3204,5 +3231,25 @@ class Realty
         $this->pois[$group][$name] = $distance;
 
         return $this;
+    }
+
+    /**
+     * @param null $kaltmiete
+     *
+     * @return $this
+     */
+    public function setTotalRentWithoutHeating($kaltmiete)
+    {
+        $this->totalRentWithoutHeating = $kaltmiete;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getTotalRentWithoutHeating()
+    {
+        return $this->totalRentWithoutHeating;
     }
 }
