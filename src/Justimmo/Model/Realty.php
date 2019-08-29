@@ -308,6 +308,11 @@ class Realty
     /**
      * @var string
      */
+    protected $freetext4 = null;
+
+    /**
+     * @var string
+     */
     protected $costsExplanation;
 
     /**
@@ -2419,6 +2424,22 @@ class Realty
     public function setCostsExplanation($costsExplanation)
     {
         $this->costsExplanation = $costsExplanation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFreetext4()
+    {
+        return $this->freetext4;
+    }
+
+    /**
+     * @param string $freetext4
+     */
+    public function setFreetext4($freetext4)
+    {
+        $this->freetext4 = $freetext4;
     }
 
     /**

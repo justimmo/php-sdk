@@ -1,3 +1,6 @@
+## 1.1.24
+ * Added freetext4 field
+
 ## 1.1.22
  * Handles the group element of the general realty and residential project links
 

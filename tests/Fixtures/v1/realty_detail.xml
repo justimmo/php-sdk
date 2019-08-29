@@ -231,6 +231,7 @@
             <objektbeschreibung_intern></objektbeschreibung_intern>
             <user_defined_anyfield>
                 <justimmo_freitext1>Freitext 1</justimmo_freitext1>
+                <justimmo_freitext4>Freitext 4</justimmo_freitext4>
             </user_defined_anyfield>
         </freitexte>
         <anhaenge>

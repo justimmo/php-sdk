@@ -261,6 +261,9 @@ class RealtyWrapper extends AbstractWrapper
                 if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext3)) {
                     $objekt->setFreetext3((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext3);
                 }
+                if (isset($xml->freitexte->user_defined_anyfield->justimmo_freitext4)) {
+                    $objekt->setFreetext4((string) $xml->freitexte->user_defined_anyfield->justimmo_freitext4);
+                }
             }
         }
 

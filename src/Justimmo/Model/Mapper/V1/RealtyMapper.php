@@ -329,6 +329,9 @@ class RealtyMapper extends AbstractMapper
             'justimmo_freitext3'               => array(
                 'property' => 'freetext3',
             ),
+            'justimmo_freitext4'               => array(
+                'property' => 'freetext4',
+            ),
             'lage'                             => array(
                 'property' => 'locality',
             ),
