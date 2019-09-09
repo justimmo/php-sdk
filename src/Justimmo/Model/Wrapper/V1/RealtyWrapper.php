@@ -372,7 +372,7 @@ class RealtyWrapper extends AbstractWrapper
 
             foreach ($xml->preise->user_defined_anyfield as $anyField) {
                 if (isset($anyField->mwst_gesamt)) {
-                    $objekt->setMonthlyCostsVat($anyField->mwst_gesamt);
+                    $objekt->setMonthlyCostsVat((float) $anyField->mwst_gesamt);
                 }
             }
         }
