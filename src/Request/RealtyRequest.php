@@ -20,6 +20,7 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this withAddress()
  * @method $this withCoordinates()
  * @method $this withCoordinatesPrecise()
+ * @method $this withCoordinatesFuzzy()
  * @method $this withTitle()
  * @method $this withCoverPicture()
  * @method $this withLivingArea()
@@ -125,6 +126,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'address',
         'coordinates',
         'coordinatesPrecise',
+        'coordinatesFuzzy',
         'title',
         'coverPicture',
         'tenant',

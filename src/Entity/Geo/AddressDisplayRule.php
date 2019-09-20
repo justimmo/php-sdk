@@ -12,6 +12,7 @@ class AddressDisplayRule implements Entity
 {
     const NOTHING = 'nothing';
     const CITY    = 'city';
+    const FUZZY   = 'fuzzy';
     const STREET  = 'street';
     const FULL    = 'full';
 
@@ -89,5 +90,15 @@ class AddressDisplayRule implements Entity
     public function isCity()
     {
         return $this->rule === self::CITY;
+    }
+
+    /**
+     * Returns true if fuzzy coordinates should be displayed
+     *
+     * @return bool
+     */
+    public function isFuzzy()
+    {
+        return $this->rule === self::FUZZY;
     }
 }

@@ -17,6 +17,7 @@ use Justimmo\Api\Entity\Tenant;
  * @JUSTIMMO\PreHydrate(moveTo={
  *     "coordinates"="address",
  *     "coordinatesPrecise"="address",
+ *     "coordinatesFuzzy"="address",
  *     "title"="texts",
  *     "livingArea"="detailedAreas",
  *     "floorArea"="detailedAreas",

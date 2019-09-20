@@ -85,10 +85,15 @@ class Address implements Entity
 
     /**
      * @var GeoCoordinates
-     *
      * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\GeoCoordinates")
      */
     private $coordinatesPrecise;
+
+    /**
+     * @var ImpreciseGeoCoordinates
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Geo\ImpreciseGeoCoordinates")
+     */
+    private $coordinatesFuzzy;
 
     /**
      * @return string
@@ -192,5 +197,13 @@ class Address implements Entity
     public function getCoordinatesPrecise()
     {
         return $this->coordinatesPrecise;
+    }
+
+    /**
+     * @return ImpreciseGeoCoordinates
+     */
+    public function getCoordinatesFuzzy()
+    {
+        return $this->coordinatesFuzzy;
     }
 }
