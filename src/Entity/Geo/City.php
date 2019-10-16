@@ -9,28 +9,28 @@ use Justimmo\Api\Entity\Identifiable;
 /**
  * @JUSTIMMO\Entity(cacheKey="id")
  */
-class ZipCode implements Entity
+class City implements Entity
 {
     use Identifiable;
 
     /**
      * @var string
-     * @JUSTIMMO\Column(path="zip", type="string")
+     * @JUSTIMMO\Column(path="city", type="string")
      */
-    private $zip;
+    private $city;
 
 
     public function __toString()
     {
-        return (string) $this->getZip();
+        return (string) $this->getCity();
     }
 
 
     /**
      * @return string
      */
-    public function getZip()
+    public function getCity()
     {
-        return $this->zip;
+        return $this->city;
     }
 }

@@ -12,24 +12,16 @@ class ZipCodeRequestTest extends RequestTestCase
     const PATH_PREFIX = '/zip-codes';
 
     const FIELDS = [
-        'country',
-        'city',
-        'federalState',
-        'region',
     ];
 
     const JOINABLE = [
         'realties',
     ];
 
-    const FILTERS = [
-        'country',
-        'federalState',
-    ];
+    const FILTERS = [];
 
     const SORTS = [
         'zip',
-        'city',
     ];
 
     /**

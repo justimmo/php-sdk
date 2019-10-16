@@ -29,25 +29,7 @@ class ZipCodeTest extends EntityTestCase
     protected function doTestEntity($entity)
     {
         $this->assertInstanceOf(ZipCode::class, $entity);
-        $this->assertEquals(1915, $entity->getId());
+        $this->assertEquals(1200, $entity->getId());
         $this->assertEquals('1200', $entity->getZip());
-        $this->assertEquals('Wien', $entity->getCity());
-
-        $country      = $entity->getCountry();
-        $federalState = $entity->getFederalState();
-        $region       = $entity->getRegion();
-
-        $this->assertInstanceOf(Country::class, $country);
-        $this->assertEquals('AT', $country->getId());
-        $this->assertEquals('Österreich', $country->getName());
-
-        $this->assertInstanceOf(FederalState::class, $federalState);
-        $this->assertEquals(134, $federalState->getId());
-        $this->assertEquals('Wien', $federalState->getName());
-
-        $this->assertInstanceOf(Region::class, $region);
-        $this->assertEquals(7, $region->getId());
-        $this->assertEquals('20., Brigittenau', $region->getName());
-
     }
 }
