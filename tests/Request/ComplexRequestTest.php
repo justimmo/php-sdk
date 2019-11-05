@@ -11,33 +11,21 @@ class ComplexRequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new ZipCodeRequest();
         $request
-            ->filterByCountry(['AT', 'DE'])
-            ->filterByFederalState(['min' => 10, 'max' => 25])
             ->filterByRealties(
                 (new RealtyRequest())
                 ->filterByPrice(['max' => 2000])
                 ->rentable()
             )
-            ->withCity()
-            ->withCountry()
-            ->withFederalState()
-            ->sortByCity($request::DESC)
             ->sortByZip();
 
         $this->assertEquals([
             'f' => [
-                'country' => ['AT', 'DE'],
-                'federalState' => [
-                    'min' => 10,
-                    'max' => 25,
-                ],
                 'realties' => [
                     'price' => ['max' => 2000],
                     'marketingType' => 'rent'
                 ],
             ],
-            'fields' => 'city,country,federalState',
-            'sort' => '-city,zip',
+            'sort' => 'zip',
         ], $request->getQuery());
     }
 }
