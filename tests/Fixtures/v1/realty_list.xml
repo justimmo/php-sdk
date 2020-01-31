@@ -26,6 +26,9 @@
             <regionaler_zusatz>Flughafen Salzburg</regionaler_zusatz>
             <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.4100297</user_defined_simplefield>
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2545373</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_laengengrad">16.4100298</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_breitengrad">48.2545374</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_radius">250</user_defined_simplefield>
             <user_defined_simplefield feldname="ausrichtung">NOS</user_defined_simplefield>
         </geo>
         <kontaktperson>
@@ -3154,6 +3157,9 @@
             <tuernummer>10</tuernummer>
             <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.3911503</user_defined_simplefield>
             <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.2087578</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_laengengrad">16.3911504</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_breitengrad">48.2087579</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_radius">250</user_defined_simplefield>
             <user_defined_simplefield feldname="ausrichtung">S</user_defined_simplefield>
         </geo>
         <kontaktperson>

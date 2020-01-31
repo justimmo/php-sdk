@@ -1,3 +1,6 @@
+## 1.1.25
+ * Add properties for fuzzy coordinates (getLatitudeFuzzy, getLongitudeFuzzy, getRadiusFuzzy)
+
 ## 1.1.24
  * Added freetext4 field
 
