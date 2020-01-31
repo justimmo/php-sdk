@@ -381,6 +381,18 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'latitudePrecise',
                 'type'     => 'double',
             ),
+            'ungenaue_verortung_laengengrad' => array(
+                'property' => 'longitudeFuzzy',
+                'type'     => 'double',
+            ),
+            'ungenaue_verortung_breitengrad' => array(
+                'property' => 'latitudeFuzzy',
+                'type'     => 'double',
+            ),
+            'ungenaue_verortung_radius' => array(
+                'property' => 'radiusFuzzy',
+                'type'     => 'int',
+            ),
             'ausrichtung'                      => array(
                 'property' => 'orientation',
                 'type'     => 'string',

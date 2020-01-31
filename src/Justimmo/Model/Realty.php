@@ -153,6 +153,21 @@ class Realty
     protected $longitudePrecise;
 
     /**
+     * @var double|null
+     */
+    protected $latitudeFuzzy;
+
+    /**
+     * @var double|null
+     */
+    protected $longitudeFuzzy;
+
+    /**
+     * @var int|null
+     */
+    protected $radiusFuzzy;
+
+    /**
      * @var int
      */
     protected $orientation;
@@ -2895,6 +2910,53 @@ class Realty
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
+    public function getLatitudeFuzzy()
+    {
+        return $this->latitudeFuzzy;
+    }
+
+    /**
+     * @param float|null $latitudeFuzzy
+     */
+    public function setLatitudeFuzzy($latitudeFuzzy)
+    {
+        $this->latitudeFuzzy = $latitudeFuzzy;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getLongitudeFuzzy()
+    {
+        return $this->longitudeFuzzy;
+    }
+
+    /**
+     * @param float|null $longitudeFuzzy
+     */
+    public function setLongitudeFuzzy($longitudeFuzzy)
+    {
+        $this->longitudeFuzzy = $longitudeFuzzy;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRadiusFuzzy()
+    {
+        return $this->radiusFuzzy;
+    }
+
+    /**
+     * @param int|null $radiusFuzzy
+     */
+    public function setRadiusFuzzy($radiusFuzzy)
+    {
+        $this->radiusFuzzy = $radiusFuzzy;
+    }
 
     /**
      * Returns the orientation of the realty.
