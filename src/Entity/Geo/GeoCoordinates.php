@@ -14,13 +14,13 @@ class GeoCoordinates implements Entity
      * @var float
      * @JUSTIMMO\Column(path="lat", type="float")
      */
-    private $latitude;
+    protected $latitude;
 
     /**
      * @var float
      * @JUSTIMMO\Column(path="lng", type="float")
      */
-    private $longitude;
+    protected $longitude;
 
     /**
      * @return float

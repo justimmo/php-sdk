@@ -27,6 +27,7 @@ class RealtyRequestTest extends RequestTestCase
         'address',
         'coordinates',
         'coordinatesPrecise',
+        'coordinatesFuzzy',
         'title',
         'coverPicture',
         'livingArea',
