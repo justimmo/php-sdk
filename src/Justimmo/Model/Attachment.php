@@ -225,4 +225,22 @@ class Attachment
         return $this->group;
     }
 
+    /**
+     * @param string $size
+     *
+     * @return string|null
+     * @throws AttachmentSizeNotFoundException
+     */
+    public function getVideoPosterUrl($size = 'orig')
+    {
+        if ($this->getType() !== 'video') {
+            return null;
+        }
+
+        $videoUrl = $this->getUrl($size);
+        $posterUrlParts = explode('.', str_replace('/video/', '/pic/', $videoUrl));
+        $posterUrlParts[count($posterUrlParts)-1] = 'jpg';
+        return implode('.', $posterUrlParts);
+    }
+
 }
