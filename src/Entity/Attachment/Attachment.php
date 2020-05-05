@@ -199,4 +199,21 @@ class Attachment implements Entity
     {
         return in_array($this->group, self::GROUP_THREE60_PICTURES);
     }
+
+    /**
+     * @param string $config
+     *
+     * @return string|null
+     */
+    public function getVideoPosterUrl($config = 'orig')
+    {
+        if (!$this->isTypeVideo()) {
+            return null;
+        }
+
+        $videoUrl = $this->getUrlForConfig($config);
+        $posterUrlParts = explode('.', str_replace('/video/', '/pic/', $videoUrl));
+        $posterUrlParts[count($posterUrlParts)-1] = 'jpg';
+        return implode('.', $posterUrlParts);
+    }
 }
