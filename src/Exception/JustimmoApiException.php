@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Exception;
 
-interface JustimmoApiException
+interface JustimmoApiException extends \Throwable
 {
 
 }
