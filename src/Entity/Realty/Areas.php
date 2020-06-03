@@ -107,6 +107,12 @@ class Areas implements Entity
     private $parking;
 
     /**
+     * @var float
+     * @JUSTIMMO\Column(path="undevelopedAtticArea", type="float")
+     */
+    private $undevelopedAttic;
+
+    /**
      * @return float
      */
     public function getLiving()
@@ -233,4 +239,13 @@ class Areas implements Entity
     {
         return $this->parking;
     }
+
+    /**
+     * @return float|null
+     */
+    public function getUndevelopedAttic(): ?float
+    {
+        return $this->undevelopedAttic;
+    }
+
 }
