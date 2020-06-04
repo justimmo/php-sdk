@@ -43,6 +43,8 @@ class ProjectWrapper extends AbstractWrapper
         'sonstige_angaben',
         'freitext_1',
         'freitext_2',
+        'freitext_3',
+        'freitext_4',
         'lage',
         'referenz',
         'url',

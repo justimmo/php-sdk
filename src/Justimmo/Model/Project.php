@@ -46,6 +46,16 @@ class Project
     /**
      * @var string
      */
+    protected $freetext3;
+
+    /**
+     * @var string
+     */
+    protected $freetext4;
+
+    /**
+     * @var string
+     */
     protected $locality;
 
     /**
@@ -455,6 +465,46 @@ class Project
     public function getFreetext2()
     {
         return $this->freetext2;
+    }
+
+    /**
+     * @param string $freetext3
+     *
+     * @return $this
+     */
+    public function setFreetext3($freetext3)
+    {
+        $this->freetext3 = $freetext3;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFreetext3()
+    {
+        return $this->freetext3;
+    }
+
+    /**
+     * @param string $freetext4
+     *
+     * @return $this
+     */
+    public function setFreetext4($freetext4)
+    {
+        $this->freetext4 = $freetext4;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFreetext4()
+    {
+        return $this->freetext4;
     }
 
     /**
