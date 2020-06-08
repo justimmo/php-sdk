@@ -1,3 +1,6 @@
+## 1.1.26
+ * Added getVideoPosterUrl() helper to Attachment
+
 ## 1.1.25
  * Add properties for fuzzy coordinates (getLatitudeFuzzy, getLongitudeFuzzy, getRadiusFuzzy)
 
