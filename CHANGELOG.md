@@ -1,4 +1,5 @@
 ## 1.1.26
+ * Add freetext3 and freetext4 fields to project
  * Added getVideoPosterUrl() helper to Attachment
 
 ## 1.1.25

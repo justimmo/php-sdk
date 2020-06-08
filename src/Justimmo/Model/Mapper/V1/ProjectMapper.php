@@ -110,6 +110,12 @@ class ProjectMapper extends AbstractMapper
             'freitext_2'           => array(
                 'property' => 'freetext2',
             ),
+            'freitext_3'           => array(
+                'property' => 'freetext3',
+            ),
+            'freitext_4'           => array(
+                'property' => 'freetext4',
+            ),
             'referenz'             => array(
                 'property' => 'isReference',
                 'type'     => 'boolean',
