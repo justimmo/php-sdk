@@ -245,8 +245,8 @@ class Realty implements Entity
     private $availableFrom;
 
     /**
-     * @var integer
-     * @JUSTIMMO\Column(type="integer")
+     * @var string
+     * @JUSTIMMO\Column(type="string")
      */
     private $maxRentDuration;
 
