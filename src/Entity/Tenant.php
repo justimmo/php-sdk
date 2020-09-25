@@ -57,6 +57,12 @@ class Tenant implements Entity
      */
     private $address;
 
+    /**
+     * @var Favicon
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Favicon")
+     */
+    private $favicon;
+
 
     public function __toString()
     {
@@ -118,4 +124,13 @@ class Tenant implements Entity
     {
         return $this->dataProtectionInformationUrl;
     }
+
+    /**
+     * @return Favicon
+     */
+    public function getFavicon()
+    {
+        return $this->favicon;
+    }
+
 }
