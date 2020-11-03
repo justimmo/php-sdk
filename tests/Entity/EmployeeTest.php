@@ -61,6 +61,7 @@ class EmployeeTest extends EntityTestCase
         $profilePic = $entity->getProfilePicture();
         $this->assertInstanceOf(Attachment::class, $profilePic);
         $this->assertEquals('4004005', $profilePic->getId());
+        $this->assertEquals('7pPkLxEDBwCVrjrEy6L3Gt.jpg', $profilePic->getStorageKey());
         $this->assertEquals('https://files.justimmo.at/public/pic/orig/APRil3QC47.jpg', $profilePic->getUrl());
         $this->assertEquals('https://files.justimmo.at/public/pic/small/APRil3QC47.jpg', $profilePic->getUrlForConfig('small'));
         $this->assertEmpty($profilePic->getTitle());
@@ -80,6 +81,7 @@ class EmployeeTest extends EntityTestCase
         $picture = $pictures[0];
         $this->assertInstanceOf(Attachment::class, $picture);
         $this->assertEquals('20864645', $picture->getId());
+        $this->assertEquals('2EJg6tBMhjKAb8KOlSbaGl.jpg', $picture->getStorageKey());
         $this->assertEquals('https://files.justimmo.at/public/pic/orig/BPl6F4-4pB.jpg', $picture->getUrl());
         $this->assertEquals('Wolf', $picture->getTitle());
         $this->assertEquals('weiss', $picture->getDescription());

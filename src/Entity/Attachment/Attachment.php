@@ -85,6 +85,12 @@ class Attachment implements Entity
     private $group;
 
     /**
+     * @var string
+     * @JUSTIMMO\Column(path="storageKey", type="string")
+     */
+    private $storageKey;
+
+    /**
      * @return string
      */
     public function getUrl()
@@ -114,6 +120,14 @@ class Attachment implements Entity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStorageKey()
+    {
+        return $this->storageKey;
     }
 
     /**
