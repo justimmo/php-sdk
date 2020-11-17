@@ -42,6 +42,18 @@ class Areas implements Entity
 
     /**
      * @var float
+     * @JUSTIMMO\Column(path="freeArea", type="float")
+     */
+    private $free;
+
+    /**
+     * @var float
+     * @JUSTIMMO\Column(path="limitedRentalContractsArea", type="float")
+     */
+    private $limitedRentalContracts;
+
+    /**
+     * @var float
      * @JUSTIMMO\Column(path="storageArea", type="float")
      */
     private $storage;
@@ -150,6 +162,22 @@ class Areas implements Entity
     public function getOverall()
     {
         return $this->overall;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFree(): float
+    {
+        return $this->free;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLimitedRentalContracts(): float
+    {
+        return $this->limitedRentalContracts;
     }
 
     /**

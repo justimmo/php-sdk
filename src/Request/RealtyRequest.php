@@ -74,6 +74,8 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this filterBySurfaceArea($value)
  * @method $this filterByFloorArea($value)
  * @method $this filterByOverallArea($value)
+ * @method $this filterByFreeArea($value)
+ * @method $this filterByLimitedRentalContractsArea($value)
  * @method $this filterByHasUndevelopedAttic($value)
  * @method $this filterByUndevelopedAtticArea($value)
  * @method $this filterByHasGarden($value)
@@ -210,6 +212,8 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'floorArea',
         'surfaceArea',
         'overallArea',
+        'freeArea',
+        'limitedRentalContractsArea',
         'hasUndevelopedAttic',
         'undevelopedAtticArea',
         'hasGarden',
