@@ -165,17 +165,17 @@ class Areas implements Entity
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getFree(): float
+    public function getFree(): ?float
     {
         return $this->free;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getLimitedRentalContracts(): float
+    public function getLimitedRentalContracts(): ?float
     {
         return $this->limitedRentalContracts;
     }
