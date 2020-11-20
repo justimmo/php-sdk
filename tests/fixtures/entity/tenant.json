@@ -18,5 +18,10 @@
     "coordinates": {
         "lat": "48.208",
         "lng": "16.366"
+    },
+    "brandingImageData": {
+        "storageKey": "7pPkLxEDBwCVrjrEy6L3Gt.jpg",
+        "position": "bottom-right",
+        "fit": "contain"
     }
 }

@@ -91,6 +91,18 @@ class Attachment implements Entity
     private $storageKey;
 
     /**
+     * @var int
+     * @JUSTIMMO\Column(path="tenantId", type="integer")
+     */
+    private $tenantId;
+
+    /**
+     * @var string|null
+     * @JUSTIMMO\Column(path="mimeType", type="string")
+     */
+    private $mimeType;
+
+    /**
      * @return string
      */
     public function getUrl()
@@ -229,5 +241,19 @@ class Attachment implements Entity
         $posterUrlParts = explode('.', str_replace('/video/', '/pic/', $videoUrl));
         $posterUrlParts[count($posterUrlParts)-1] = 'jpg';
         return implode('.', $posterUrlParts);
+    }
+
+    public function getTenantId(): int
+    {
+        return $this->tenantId;
+    }
+
+    public function getMimeType(): ?string
+    {
+        if (!isset($this->mimeType)) {
+            return null;
+        }
+
+        return $this->mimeType;
     }
 }

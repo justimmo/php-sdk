@@ -52,5 +52,11 @@ class TenantTest extends EntityTestCase
         $this->assertInstanceOf(GeoCoordinates::class, $geo);
         $this->assertEquals('48.208', $geo->getLatitude());
         $this->assertEquals('16.366', $geo->getLongitude());
+
+        $brandingImageData = $entity->getBrandingImageData();
+        $this->assertNotNull($brandingImageData);
+        $this->assertEquals('7pPkLxEDBwCVrjrEy6L3Gt.jpg', $brandingImageData->getStorageKey());
+        $this->assertEquals('bottom-right', $brandingImageData->getPosition());
+        $this->assertEquals('contain', $brandingImageData->getFit());
     }
 }

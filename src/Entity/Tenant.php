@@ -3,6 +3,7 @@
 namespace Justimmo\Api\Entity;
 
 use Justimmo\Api\Annotation as JUSTIMMO;
+use Justimmo\Api\Entity\Attachment\Attachment;
 use Justimmo\Api\Entity\Geo\Address;
 
 /**
@@ -58,10 +59,16 @@ class Tenant implements Entity
     private $address;
 
     /**
-     * @var Favicon
-     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Favicon")
+     * @var Attachment|null
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\Attachment\Attachment")
      */
     private $favicon;
+
+    /**
+     * @var BrandingImageData|null
+     * @JUSTIMMO\Relation(targetEntity="\Justimmo\Api\Entity\BrandingImageData")
+     */
+    private $brandingImageData;
 
 
     public function __toString()
@@ -125,12 +132,21 @@ class Tenant implements Entity
         return $this->dataProtectionInformationUrl;
     }
 
-    /**
-     * @return Favicon
-     */
-    public function getFavicon()
+    public function getFavicon(): ?Attachment
     {
+        if (!isset($this->favicon)) {
+            return null;
+        }
+
         return $this->favicon;
     }
 
+    public function getBrandingImageData(): ?BrandingImageData
+    {
+        if (!isset($this->brandingImageData)) {
+            return null;
+        }
+
+        return $this->brandingImageData;
+    }
 }
