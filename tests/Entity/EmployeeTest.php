@@ -75,6 +75,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($profilePic->isGroupDocuments());
         $this->assertFalse($profilePic->isGroupVideos());
         $this->assertFalse($profilePic->isGroupDocuments());
+        $this->assertEquals(7, $profilePic->getTenantId());
 
         $pictures = $entity->getPictures();
         $this->assertEquals(1, count($pictures));
@@ -95,6 +96,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertFalse($picture->isGroupDocuments());
         $this->assertFalse($picture->isGroupVideos());
         $this->assertFalse($picture->isGroupDocuments());
+        $this->assertEquals(7, $picture->getTenantId());
 
         $links = $entity->getLinks();
         $this->assertEquals(7, count($links));
