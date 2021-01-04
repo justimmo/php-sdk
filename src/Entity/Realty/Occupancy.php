@@ -10,6 +10,7 @@ use Justimmo\Api\Entity\Entity;
  */
 class Occupancy implements Entity
 {
+    const ALL        = 'all';
     const LIVING     = 'living';
     const COMMERCIAL = 'commercial';
     const INVESTMENT = 'investment';
