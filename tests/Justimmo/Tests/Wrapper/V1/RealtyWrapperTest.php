@@ -365,5 +365,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(48.2545374, $objekt->getLatitudeFuzzy());
         $this->assertEquals(250, $objekt->getRadiusFuzzy());
         $this->assertEquals(Realty::ORIENTATION_SOUTH_EAST_WEST, $objekt->getOrientation());
+
+        $this->assertEquals(2, $objekt->getOwnershipTypeId());
     }
 }
