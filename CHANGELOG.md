@@ -1,3 +1,6 @@
+## 1.1.27
+ * Add support for ownership types
+
 ## 1.1.26
  * Add freetext3 and freetext4 fields to project
  * Added getVideoPosterUrl() helper to Attachment

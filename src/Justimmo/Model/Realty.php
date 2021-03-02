@@ -132,6 +132,11 @@ class Realty
     protected $subRealtyTypeId;
 
     /**
+     * @var int
+     */
+    protected $ownershipTypeId;
+
+    /**
      * @var string
      */
     protected $subRealtyTypeName;
@@ -565,6 +570,22 @@ class Realty
     {
         $this->subRealtyTypeId = $subRealtyTypeId;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOwnershipTypeId()
+    {
+        return $this->ownershipTypeId;
+    }
+
+    /**
+     * @param int $ownershipTypeId
+     */
+    public function setOwnershipTypeId($ownershipTypeId)
+    {
+        $this->ownershipTypeId = $ownershipTypeId;
     }
 
     /**

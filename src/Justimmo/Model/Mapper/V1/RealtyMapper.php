@@ -361,6 +361,10 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'styleOfBuildingId',
                 'type'     => 'int',
             ),
+            'ji_eigentumsform_id' => array(
+                'property' => 'ownershipTypeId',
+                'type'     => 'int',
+            ),
             'vermittelt_am'                    => array(
                 'property' => 'procuredAt',
                 'type'     => 'datetime',
