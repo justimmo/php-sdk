@@ -1,10 +1,11 @@
 <?php
+
 namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Exception\MethodNotFoundException;
-use Justimmo\Model\Wrapper\WrapperInterface;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
 {
@@ -97,7 +98,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function find()
     {
-        $method = $this->getListCall();
+        $method   = $this->getListCall();
         $response = $this->api->$method($this->params);
 
         $return = $this->wrapper->transformList($response);
@@ -125,8 +126,13 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function findPk($pk)
     {
-        $method = $this->getDetailCall();
-        $response = $this->api->$method($pk);
+        $params = array();
+        if (isset($this->params['picturesize'])) {
+            $params['picturesize'] = $this->params['picturesize'];
+        }
+
+        $method   = $this->getDetailCall();
+        $response = $this->api->$method($pk, $params);
 
         $return = $this->wrapper->transformSingle($response);
 
@@ -219,7 +225,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * adds a filter column
      *
-     * @param $key
+     * @param      $key
      * @param null $value
      *
      * @return $this
@@ -284,5 +290,27 @@ abstract class AbstractQuery implements QueryInterface
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * @param string|array $picturesize
+     *
+     * @return $this
+     */
+    public function setPicturesize($picturesize)
+    {
+        if (!is_array($picturesize)) {
+            $picturesize = array($picturesize);
+        }
+
+        foreach ($picturesize as $size) {
+            if (!in_array($size, array('big', 'big2', 'medium', 'small', 'pdf', 'wohnimpuls_medium', 's220x155', 's312x208', 'fullhd'))) {
+                $picturesize[] = 'medium';
+            }
+        }
+
+        $picturesize = array_unique(array_filter($picturesize));
+
+        return $this->set('picturesize', $picturesize);
     }
 }
