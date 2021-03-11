@@ -87,10 +87,19 @@ class Realty
      */
     protected $floorArea;
 
+    /**
+     * @var float
+     */
     protected $surfaceArea;
 
+    /**
+     * @var float
+     */
     protected $livingArea;
 
+    /**
+     * @var float
+     */
     protected $totalArea;
 
     /**
@@ -195,6 +204,9 @@ class Realty
 
     protected $regionalAddition;
 
+    /**
+     * @var float
+     */
     protected $netRent;
 
     protected $additionalCharges;
@@ -437,6 +449,9 @@ class Realty
      */
     protected $financialContribution;
 
+    /**
+     * @var Garage[]
+     */
     protected $garages = array();
 
     protected $buyOnRequest = false;
@@ -444,7 +459,7 @@ class Realty
     protected $pois = array();
 
     /**
-     * @param null $nutzungsart
+     * @param array $nutzungsart
      *
      * @return $this
      */
@@ -456,7 +471,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return null|array
      */
     public function getOccupancy()
     {
@@ -464,7 +479,7 @@ class Realty
     }
 
     /**
-     * @param null $objektart
+     * @param string $objektart
      *
      * @return $this
      */
@@ -610,7 +625,7 @@ class Realty
     }
 
     /**
-     * @param null $vermarktungsart
+     * @param array $vermarktungsart
      *
      * @return $this
      */
@@ -622,7 +637,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return array|null
      */
     public function getMarketingType()
     {
@@ -670,7 +685,7 @@ class Realty
     }
 
     /**
-     * @param null $dreizeiler
+     * @param string $dreizeiler
      *
      * @return $this
      */
@@ -682,7 +697,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getTeaser()
     {
@@ -690,7 +705,7 @@ class Realty
     }
 
     /**
-     * @param null $etage
+     * @param string $etage
      *
      * @return $this
      */
@@ -702,7 +717,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getTier()
     {
@@ -710,7 +725,7 @@ class Realty
     }
 
     /**
-     * @param null $gesamtmiete
+     * @param float $gesamtmiete
      *
      * @return $this
      */
@@ -722,7 +737,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTotalRent()
     {
@@ -730,7 +745,7 @@ class Realty
     }
 
     /**
-     * @param null $grundflaeche
+     * @param float $grundflaeche
      *
      * @return $this
      */
@@ -742,7 +757,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getSurfaceArea()
     {
@@ -770,7 +785,7 @@ class Realty
     }
 
     /**
-     * @param null $kaufpreis
+     * @param float $kaufpreis
      *
      * @return $this
      */
@@ -782,7 +797,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getPurchasePrice()
     {
@@ -790,7 +805,7 @@ class Realty
     }
 
     /**
-     * @param null $kaufpreisnetto
+     * @param float $kaufpreisnetto
      *
      * @return $this
      */
@@ -802,7 +817,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getPurchasePriceNet()
     {
@@ -810,7 +825,7 @@ class Realty
     }
 
     /**
-     * @param null $kaufpreisust
+     * @param float $kaufpreisust
      *
      * @return $this
      */
@@ -822,7 +837,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getPurchasePriceVat()
     {
@@ -850,7 +865,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getFloorAreaFrom()
     {
@@ -858,7 +873,7 @@ class Realty
     }
 
     /**
-     * @param null $floorAreaFrom
+     * @param float $floorAreaFrom
      *
      * @return $this
      */
@@ -870,7 +885,7 @@ class Realty
     }
 
     /**
-     * @param null $nutzflaeche
+     * @param float $nutzflaeche
      *
      * @return $this
      */
@@ -882,7 +897,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float
      */
     public function getFloorArea()
     {
@@ -890,7 +905,7 @@ class Realty
     }
 
     /**
-     * @param null $objektbeschreibung
+     * @param string $objektbeschreibung
      *
      * @return $this
      */
@@ -902,7 +917,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getDescription()
     {
@@ -950,7 +965,7 @@ class Realty
     }
 
     /**
-     * @param null $ort
+     * @param string $ort
      *
      * @return $this
      */
@@ -962,7 +977,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getPlace()
     {
@@ -970,7 +985,7 @@ class Realty
     }
 
     /**
-     * @param null $plz
+     * @param int $plz
      *
      * @return $this
      */
@@ -982,7 +997,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getZipCode()
     {
@@ -1002,7 +1017,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getProjectId()
     {
@@ -1010,7 +1025,7 @@ class Realty
     }
 
     /**
-     * @param null $status
+     * @param string $status
      *
      * @return $this
      */
@@ -1022,7 +1037,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getStatus()
     {
@@ -1030,7 +1045,7 @@ class Realty
     }
 
     /**
-     * @param null $titel
+     * @param string $titel
      *
      * @return $this
      */
@@ -1042,7 +1057,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getTitle()
     {
@@ -1050,7 +1065,7 @@ class Realty
     }
 
     /**
-     * @param null $tuernummer
+     * @param int $tuernummer
      *
      * @return $this
      */
@@ -1062,7 +1077,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getDoorNumber()
     {
@@ -1070,7 +1085,7 @@ class Realty
     }
 
     /**
-     * @param null $ausstattBeschr
+     * @param string $ausstattBeschr
      *
      * @return $this
      */
@@ -1082,7 +1097,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getEquipmentDescription()
     {
@@ -1090,7 +1105,7 @@ class Realty
     }
 
     /**
-     * @param null $breitengrad
+     * @param float $breitengrad
      *
      * @return $this
      */
@@ -1102,7 +1117,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getLatitude()
     {
@@ -1110,7 +1125,7 @@ class Realty
     }
 
     /**
-     * @param null $laengengrad
+     * @param float $laengengrad
      *
      * @return $this
      */
@@ -1122,7 +1137,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getLongitude()
     {
@@ -1130,7 +1145,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlEtagen
+     * @param int $anzahlEtagen
      *
      * @return $this
      */
@@ -1142,7 +1157,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTierCount()
     {
@@ -1270,7 +1285,7 @@ class Realty
     }
 
     /**
-     * @param null $regionalerZusatz
+     * @param string $regionalerZusatz
      *
      * @return $this
      */
@@ -1287,7 +1302,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getRegionalAddition()
     {
@@ -1295,7 +1310,7 @@ class Realty
     }
 
     /**
-     * @param null $strasse
+     * @param string $strasse
      *
      * @return $this
      */
@@ -1307,7 +1322,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getStreet()
     {
@@ -1315,7 +1330,7 @@ class Realty
     }
 
     /**
-     * @param null $gesamtMieteUst
+     * @param float $gesamtMieteUst
      *
      * @return $this
      */
@@ -1327,7 +1342,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTotalRentVat()
     {
@@ -1335,7 +1350,7 @@ class Realty
     }
 
     /**
-     * @param null $heizkosten
+     * @param float $heizkosten
      *
      * @return $this
      */
@@ -1347,7 +1362,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getHeatingCosts()
     {
@@ -1355,7 +1370,7 @@ class Realty
     }
 
     /**
-     * @param null $kaution
+     * @param float $kaution
      *
      * @return $this
      */
@@ -1367,7 +1382,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getSurety()
     {
@@ -1375,7 +1390,7 @@ class Realty
     }
 
     /**
-     * @param null $kautionText
+     * @param string $kautionText
      *
      * @return $this
      */
@@ -1387,7 +1402,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getSuretyText()
     {
@@ -1415,7 +1430,7 @@ class Realty
     }
 
     /**
-     * @param null $nebenkosten
+     * @param float $nebenkosten
      *
      * @return $this
      */
@@ -1427,7 +1442,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getAdditionalCharges()
     {
@@ -1435,7 +1450,7 @@ class Realty
     }
 
     /**
-     * @param null $nettoKaltMiete
+     * @param float $nettoKaltMiete
      *
      * @return $this
      */
@@ -1453,7 +1468,7 @@ class Realty
      *
      * If you want to value of the rent field only please us getRentNet()
      *
-     * @return null
+     * @return float|null
      */
     public function getNetRent()
     {
@@ -1461,7 +1476,7 @@ class Realty
     }
 
     /**
-     * @param null $nettoertragJaehrlich
+     * @param float $nettoertragJaehrlich
      *
      * @return $this
      */
@@ -1473,7 +1488,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getNetEarningYearly()
     {
@@ -1481,7 +1496,7 @@ class Realty
     }
 
     /**
-     * @param null $nettoertragMonatlich
+     * @param float $nettoertragMonatlich
      *
      * @return $this
      */
@@ -1493,7 +1508,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getNetEarningMonthly()
     {
@@ -1501,7 +1516,7 @@ class Realty
     }
 
     /**
-     * @param null $rendite
+     * @param float $rendite
      *
      * @return $this
      */
@@ -1513,7 +1528,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getYield()
     {
@@ -1521,7 +1536,7 @@ class Realty
     }
 
     /**
-     * @param null $waehrung
+     * @param string $waehrung
      *
      * @return $this
      */
@@ -1533,7 +1548,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getCurrency()
     {
@@ -1541,7 +1556,7 @@ class Realty
     }
 
     /**
-     * @param null $wohnbaufoerderung
+     * @param float $wohnbaufoerderung
      *
      * @return $this
      */
@@ -1553,7 +1568,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getBuildingSubsidies()
     {
@@ -1642,7 +1657,7 @@ class Realty
     }
 
     /**
-     * @param null $grundbucheintragung
+     * @param float $grundbucheintragung
      *
      * @return $this
      */
@@ -1654,7 +1669,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getLandRegistration()
     {
@@ -1662,7 +1677,7 @@ class Realty
     }
 
     /**
-     * @param null $grunderwerbssteuer
+     * @param float $grunderwerbssteuer
      *
      * @return $this
      */
@@ -1674,7 +1689,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTransferTax()
     {
@@ -1774,7 +1789,7 @@ class Realty
     }
 
     /**
-     * @param null $gesamtflaeche
+     * @param float $gesamtflaeche
      *
      * @return $this
      */
@@ -1786,7 +1801,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTotalArea()
     {
@@ -1794,7 +1809,7 @@ class Realty
     }
 
     /**
-     * @param null $wohnflaeche
+     * @param float $wohnflaeche
      *
      * @return $this
      */
@@ -1806,7 +1821,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getLivingArea()
     {
@@ -1814,7 +1829,7 @@ class Realty
     }
 
     /**
-     * @param null $zustand
+     * @param string|null $zustand
      *
      * @return $this
      */
@@ -1826,7 +1841,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getCondition()
     {
@@ -1834,7 +1849,7 @@ class Realty
     }
 
     /**
-     * @param null $erschließung
+     * @param string|null $erschließung
      *
      * @return $this
      */
@@ -1846,7 +1861,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getInfrastructureProvision()
     {
@@ -1854,7 +1869,7 @@ class Realty
     }
 
     /**
-     * @param null $baujahr
+     * @param int|null $baujahr
      *
      * @return $this
      */
@@ -1866,7 +1881,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getYearBuilt()
     {
@@ -1874,7 +1889,7 @@ class Realty
     }
 
     /**
-     * @param null $alter
+     * @param int|null $alter
      *
      * @return $this
      */
@@ -1886,7 +1901,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getAge()
     {
@@ -1906,7 +1921,7 @@ class Realty
     }
 
     /**
-     * @return \Justimmo\Model\EnergyPass
+     * @return \Justimmo\Model\EnergyPass|null
      */
     public function getEnergyPass()
     {
@@ -1947,7 +1962,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlAbstellraum
+     * @param int $anzahlAbstellraum
      *
      * @return $this
      */
@@ -1959,7 +1974,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getStoreRoomCount()
     {
@@ -1967,7 +1982,7 @@ class Realty
     }
 
     /**
-     * @param null $ceilingHeight
+     * @param float $ceilingHeight
      *
      * @return $this
      */
@@ -1979,7 +1994,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getCeilingHeight()
     {
@@ -1987,7 +2002,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlBadezimmer
+     * @param int $anzahlBadezimmer
      *
      * @return $this
      */
@@ -1999,7 +2014,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getBathroomCount()
     {
@@ -2007,7 +2022,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlBalkonTerrassen
+     * @param int $anzahlBalkonTerrassen
      *
      * @return $this
      */
@@ -2019,7 +2034,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getBalconyTerraceCount()
     {
@@ -2027,7 +2042,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlBalkone
+     * @param int $anzahlBalkone
      *
      * @return $this
      */
@@ -2039,7 +2054,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getBalconyCount()
     {
@@ -2047,7 +2062,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlGaragen
+     * @param int $anzahlGaragen
      *
      * @return $this
      */
@@ -2059,7 +2074,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getGarageCount()
     {
@@ -2067,7 +2082,7 @@ class Realty
     }
 
     /**
-     * @param null $garagenFlaeche
+     * @param float $garagenFlaeche
      *
      * @return $this
      */
@@ -2079,7 +2094,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getGarageArea()
     {
@@ -2087,7 +2102,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlStellplaetze
+     * @param int $anzahlStellplaetze
      *
      * @return $this
      */
@@ -2099,7 +2114,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getParkingCount()
     {
@@ -2107,7 +2122,7 @@ class Realty
     }
 
     /**
-     * @param null $stellplatzFlaeche
+     * @param float $stellplatzFlaeche
      *
      * @return $this
      */
@@ -2119,7 +2134,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getParkingArea()
     {
@@ -2127,7 +2142,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlLoggias
+     * @param int $anzahlLoggias
      *
      * @return $this
      */
@@ -2139,7 +2154,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getLoggiaCount()
     {
@@ -2147,7 +2162,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlSepWc
+     * @param int $anzahlSepWc
      *
      * @return $this
      */
@@ -2159,7 +2174,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getToiletRoomCount()
     {
@@ -2167,7 +2182,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlTerrassen
+     * @param int $anzahlTerrassen
      *
      * @return $this
      */
@@ -2179,7 +2194,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getTerraceCount()
     {
@@ -2187,7 +2202,7 @@ class Realty
     }
 
     /**
-     * @param null $anzahlZimmer
+     * @param float $anzahlZimmer
      *
      * @return $this
      */
@@ -2199,7 +2214,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getRoomCount()
     {
@@ -2207,7 +2222,7 @@ class Realty
     }
 
     /**
-     * @param null $balkonTerrassenFlaeche
+     * @param float $balkonTerrassenFlaeche
      *
      * @return $this
      */
@@ -2219,7 +2234,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getBalconyTerraceArea()
     {
@@ -2227,7 +2242,7 @@ class Realty
     }
 
     /**
-     * @param null $balkonsFlaeche
+     * @param float $balkonsFlaeche
      *
      * @return $this
      */
@@ -2239,7 +2254,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getBalconyArea()
     {
@@ -2247,7 +2262,7 @@ class Realty
     }
 
     /**
-     * @param null $bueroflaeche
+     * @param float $bueroflaeche
      *
      * @return $this
      */
@@ -2259,7 +2274,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getOfficeArea()
     {
@@ -2267,7 +2282,7 @@ class Realty
     }
 
     /**
-     * @param null $gartenflaeche
+     * @param float $gartenflaeche
      *
      * @return $this
      */
@@ -2279,7 +2294,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getGardenArea()
     {
@@ -2287,7 +2302,7 @@ class Realty
     }
 
     /**
-     * @param null $kellerflaeche
+     * @param float $kellerflaeche
      *
      * @return $this
      */
@@ -2299,7 +2314,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getCellarArea()
     {
@@ -2307,7 +2322,7 @@ class Realty
     }
 
     /**
-     * @param null $lagerflaeche
+     * @param float $lagerflaeche
      *
      * @return $this
      */
@@ -2319,7 +2334,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getStorageArea()
     {
@@ -2327,7 +2342,7 @@ class Realty
     }
 
     /**
-     * @param null $loggiasFlaeche
+     * @param float $loggiasFlaeche
      *
      * @return $this
      */
@@ -2339,7 +2354,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getLoggiaArea()
     {
@@ -2347,7 +2362,7 @@ class Realty
     }
 
     /**
-     * @param null $terrassenFlaeche
+     * @param float $terrassenFlaeche
      *
      * @return $this
      */
@@ -2359,7 +2374,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTerraceArea()
     {
@@ -2387,7 +2402,7 @@ class Realty
     }
 
     /**
-     * @param null $value
+     * @param float $value
      *
      * @return $this
      */
@@ -2399,7 +2414,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getContractEstablishmentCosts()
     {
@@ -2487,7 +2502,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getCommission()
     {
@@ -2495,7 +2510,7 @@ class Realty
     }
 
     /**
-     * @param null $value
+     * @param float $value
      *
      * @return $this
      */
@@ -2507,7 +2522,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getLocality()
     {
@@ -2515,7 +2530,7 @@ class Realty
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -2580,7 +2595,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return int|null
      */
     public function getStatusId()
     {
@@ -2588,7 +2603,7 @@ class Realty
     }
 
     /**
-     * @param null $statusId
+     * @param int $statusId
      *
      * @return $this
      */
@@ -2788,7 +2803,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getPurchasePricePerSqm()
     {
@@ -2796,7 +2811,7 @@ class Realty
     }
 
     /**
-     * @param null $purchasePricePerSqm
+     * @param float $purchasePricePerSqm
      *
      * @return $this
      */
@@ -2808,7 +2823,7 @@ class Realty
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getRentPerSqmFrom()
     {
@@ -2828,7 +2843,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getRentPerSqm()
     {
@@ -2836,7 +2851,7 @@ class Realty
     }
 
     /**
-     * @param null $rentPerSqm
+     * @param float $rentPerSqm
      *
      * @return $this
      */
@@ -2848,7 +2863,7 @@ class Realty
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getOperatingCostsPerSqmFrom()
     {
@@ -2868,7 +2883,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getOperatingCostsPerSqm()
     {
@@ -2876,7 +2891,7 @@ class Realty
     }
 
     /**
-     * @param null $operatingCostsPerSqm
+     * @param float $operatingCostsPerSqm
      *
      * @return $this
      */
@@ -3258,7 +3273,7 @@ class Realty
     }
 
     /**
-     * @param array $stellplaetze
+     * @param Garage[] $stellplaetze
      *
      * @return $this
      */
@@ -3283,7 +3298,7 @@ class Realty
     }
 
     /**
-     * @return array
+     * @return Garage[]
      */
     public function getGarages()
     {
@@ -3338,7 +3353,7 @@ class Realty
     }
 
     /**
-     * @param null $kaltmiete
+     * @param float $kaltmiete
      *
      * @return $this
      */
@@ -3350,7 +3365,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return float|null
      */
     public function getTotalRentWithoutHeating()
     {
