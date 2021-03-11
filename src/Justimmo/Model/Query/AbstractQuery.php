@@ -108,7 +108,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @return \Justimmo\Model\Realty
+     * @return \Justimmo\Model\Realty|null
      */
     public function findOne()
     {
