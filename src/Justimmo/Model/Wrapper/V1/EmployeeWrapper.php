@@ -50,6 +50,12 @@ class EmployeeWrapper extends AbstractWrapper
             if (isset($xml->bild->pfad_medium)) {
                 $attachment->addData('medium', (string) $xml->bild->pfad_medium);
             }
+
+            // add all formats
+            foreach ($xml->bild->children() as $key => $size) {
+                $attachment->addData((string)$key, (string)$size);
+            }
+
             $mitarbeiter->addAttachment($attachment);
         }
 
@@ -64,6 +70,12 @@ class EmployeeWrapper extends AbstractWrapper
             if (isset($xml->bild->big)) {
                 $attachment->addData('big', (string) $xml->bild->big);
             }
+
+            // add all formats
+            foreach ($xml->bild->children() as $key => $size) {
+                $attachment->addData((string)$key, (string)$size);
+            }
+
             $mitarbeiter->addAttachment($attachment);
         }
 

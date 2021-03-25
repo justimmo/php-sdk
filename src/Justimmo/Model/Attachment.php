@@ -7,26 +7,22 @@ use Justimmo\Exception\AttachmentSizeNotFoundException;
 class Attachment
 {
     protected $type;
-
     protected $extension;
-
-    protected $title = null;
-
+    protected $title            = null;
     protected $originalFilename = null;
-
-    protected $data = array();
-
-    protected $group = null;
+    protected $data             = array();
+    protected $group            = null;
+    private   $newStorageHost   = 'storage.justimmo.at';
+    private   $canConvertUrl    = true;
 
     protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg');
-
     protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
-
     protected static $linkGroups = array('LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL');
+
 
     public function __construct($path, $type = null, $group = null)
     {
-        $this->extension = pathinfo($path, PATHINFO_EXTENSION);
+        $this->extension = $this->extractExtension($path);
         $this->data['orig'] = $path;
         $this->group = $group;
         $this->type = $type;
@@ -34,14 +30,41 @@ class Attachment
         if ($type === null) {
             $this->type = $this->determineType();
         }
+
+        $this->canConvertUrl = $this->determineStorageServer($path);
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    private function extractExtension($path)
+    {
+        if (strpos($path, 'http') === 0) {
+            $parts = parse_url($path);
+
+            if (isset($parts['path'])) {
+                return strtolower(pathinfo($parts['path'], PATHINFO_EXTENSION));
+            }
+        }
+
+        return strtolower(pathinfo($path, PATHINFO_EXTENSION));
+    }
+
+    private function determineStorageServer($path)
+    {
+        if (strpos($path, 'http') === 0) {
+            $parts = parse_url($path);
+
+            return strtolower($parts['host']) !== $this->newStorageHost;
+        }
+
+        return true;
     }
 
     public function getUrl($size = 'orig')
     {
-        if (!array_key_exists($size, $this->data)) {
-            throw new AttachmentSizeNotFoundException('The size "' . $size . '" was not found');
-        }
-
         return $this->data[$size];
     }
 
@@ -55,7 +78,15 @@ class Attachment
      */
     public function calculateUrl($size = 'orig')
     {
-        return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/".$size."/", $this->getUrl());
+        if ($this->canConvertUrl) {
+            if (!in_array($size, array('big', 'big2', 'medium', 'small', 'pdf', 'wohnimpuls_medium', 's220x155', 's312x208', 'fullhd', 'hq', 'default'))) {
+                $size = 'medium';
+            }
+
+            return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/" . $size . "/", $this->getUrl());
+        }
+
+        return isset($this->data[$size]) ? $this->data[$size] : $this->data['orig'];
     }
 
     /**
