@@ -9,6 +9,23 @@ use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
 {
+    protected $pictureSizes = array(
+        'small',
+        's220x155',
+        's312x208',
+        'medium_unbranded',
+        'big_unbranded',
+        'big2_unbranded',
+        'fullhd_unbranded',
+        'fullhd_unbranded_downscale',
+        'medium',
+        'big',
+        'big2',
+        'fullhd',
+        'fullhd_downscale',
+        'orig'
+    );
+
     /**
      * @var array
      */
@@ -304,7 +321,7 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         foreach ($picturesize as $size) {
-            if (!in_array($size, array('big', 'big2', 'medium', 'small', 'pdf', 'wohnimpuls_medium', 's220x155', 's312x208', 'fullhd'))) {
+            if (!in_array($size, $this->pictureSizes)) {
                 $picturesize[] = 'medium';
             }
         }
