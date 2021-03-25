@@ -1,3 +1,6 @@
+## 1.2.0
+ * Add support for new attachment urls
+
 ## 1.1.27
  * Add support for ownership types
 
