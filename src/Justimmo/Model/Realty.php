@@ -610,7 +610,7 @@ class Realty
     }
 
     /**
-     * @param null $vermarktungsart
+     * @param array $vermarktungsart
      *
      * @return $this
      */
@@ -622,7 +622,7 @@ class Realty
     }
 
     /**
-     * @return null
+     * @return array|null
      */
     public function getMarketingType()
     {
