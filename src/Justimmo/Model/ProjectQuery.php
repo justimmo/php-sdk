@@ -8,6 +8,8 @@ use Justimmo\Model\Query\AbstractQuery;
  * Class ProjectQuery
  * @package Justimmo\Model
  *
+ * @method Project findPk($pk)
+ * @method Project|null findOne($pk)
  * @method ProjectQuery filterByRealtyCategory($value)
  * @method ProjectQuery filterByTag($value)
  * @method ProjectQuery filterByKeyword($value)

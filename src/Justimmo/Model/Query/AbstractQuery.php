@@ -126,7 +126,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @return \Justimmo\Model\Realty
+     * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project|null
      */
     public function findOne()
     {
@@ -139,7 +139,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @param int $pk
      *
-     * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee
+     * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project
      */
     public function findPk($pk)
     {
