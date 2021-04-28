@@ -27,7 +27,7 @@ class RegionRequestTest extends RequestTestCase
     ];
 
     const SORTS = [
-        'name',
+        'id',
     ];
 
     /**
