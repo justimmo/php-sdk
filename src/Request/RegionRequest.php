@@ -10,7 +10,7 @@ use Justimmo\Api\Entity\Geo\Region;
  * @method $this withZipCodes()
  * @method $this filterByCountry($value)
  * @method $this filterByFederalState($value)
- * @method $this sortByName($direction = BaseApiRequest::ASC)
+ * @method $this sortById($direction = BaseApiRequest::ASC)
  */
 class RegionRequest extends BaseApiRequest
 {
@@ -28,7 +28,7 @@ class RegionRequest extends BaseApiRequest
     ];
 
     const SORTS = [
-        'name',
+        'id',
     ];
 
     /**

@@ -8,7 +8,7 @@ use Justimmo\Api\Entity\Identifiable;
 use Justimmo\Api\Entity\Nameable;
 
 /**
- * @JUSTIMMO\Entity(cacheKey="id")
+ * @JUSTIMMO\Entity(cacheKey="code")
  */
 class Region implements Entity
 {
