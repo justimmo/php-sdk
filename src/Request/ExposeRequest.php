@@ -57,7 +57,10 @@ class ExposeRequest implements ApiRequest
     {
         return [
             'timeout' => 60,
-            'stream' => true,
+            'stream'  => true,
+            'headers' => [
+                'Cache-Control' => 'no-store',
+            ],
         ];
     }
 }
