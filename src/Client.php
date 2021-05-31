@@ -140,12 +140,11 @@ class Client
         $triesLeft = 2;
         $token     = $this->accessTokenProvider->getAccessToken();
 
-        $options = array_merge($options, [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-            ],
-            'query'   => $query,
-        ]);
+        if (!isset($options['headers'])) {
+            $options['headers'] = [];
+        }
+        $options['headers']['Authorization'] = 'Bearer ' . $token;
+        $options['query']                    = $query;
 
         while ($triesLeft > 0) {
             $triesLeft--;
