@@ -50,12 +50,6 @@ class Attachment implements Entity
 
     /**
      * @var string
-     * @JUSTIMMO\Column(path="url", type="string")
-     */
-    private $url;
-
-    /**
-     * @var string
      * @JUSTIMMO\Column(path="type", type="string")
      */
     private $type;
@@ -105,14 +99,6 @@ class Attachment implements Entity
     /**
      * @return string
      */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * @return string
-     */
     public function getFilename()
     {
         return $this->filename;
@@ -140,18 +126,6 @@ class Attachment implements Entity
     public function getStorageKey()
     {
         return $this->storageKey;
-    }
-
-    /**
-     * Returns the url to a specific picture config (size, branding, etc...)
-     *
-     * @param string $config
-     *
-     * @return string
-     */
-    public function getUrlForConfig($config = 'orig')
-    {
-        return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/" . $config . "/", $this->getUrl());
     }
 
     /**
@@ -224,23 +198,6 @@ class Attachment implements Entity
     public function isGroupThreeSixty()
     {
         return in_array($this->group, self::GROUP_THREE60_PICTURES);
-    }
-
-    /**
-     * @param string $config
-     *
-     * @return string|null
-     */
-    public function getVideoPosterUrl($config = 'orig')
-    {
-        if (!$this->isTypeVideo()) {
-            return null;
-        }
-
-        $videoUrl = $this->getUrlForConfig($config);
-        $posterUrlParts = explode('.', str_replace('/video/', '/pic/', $videoUrl));
-        $posterUrlParts[count($posterUrlParts)-1] = 'jpg';
-        return implode('.', $posterUrlParts);
     }
 
     public function getTenantId(): int
