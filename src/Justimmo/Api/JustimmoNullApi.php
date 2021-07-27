@@ -20,7 +20,7 @@ class JustimmoNullApi implements JustimmoApiInterface
         return '{}';
     }
 
-    public function callRealtyDetail($pk)
+    public function callRealtyDetail($pk, array $params = array())
     {
         return $this->emptyXML();
     }
@@ -40,7 +40,7 @@ class JustimmoNullApi implements JustimmoApiInterface
         return '<?xml version="1.0" encoding="UTF-8"?><justimmo><query-result><count>0</count></query-result></justimmo>';
     }
 
-    public function callProjectDetail($pk)
+    public function callProjectDetail($pk, array $params = array())
     {
         return $this->emptyXML();
     }

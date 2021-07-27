@@ -24,11 +24,12 @@ interface JustimmoApiInterface
     /**
      * calls the detail information of a single realty
      *
-     * @param $pk
+     * @param       $pk
+     * @param array $params
      *
      * @return string
      */
-    public function callRealtyDetail($pk);
+    public function callRealtyDetail($pk, array $params = array());
 
     /**
      * make a call to the team list with a set of given params
@@ -69,11 +70,12 @@ interface JustimmoApiInterface
     /**
      * calls the detail information of a single project
      *
-     * @param $pk
+     * @param       $pk
+     * @param array $params
      *
      * @return string
      */
-    public function callProjectDetail($pk);
+    public function callProjectDetail($pk, array $params = array());
 
     /**
      * Make a call to the project ids with a set of given params

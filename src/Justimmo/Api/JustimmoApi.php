@@ -125,9 +125,11 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyDetail($pk)
+    public function callRealtyDetail($pk, array $params = array())
     {
-        return $this->call('objekt/detail', array('objekt_id' => $pk));
+        $params['objekt_id'] = $pk;
+
+        return $this->call('objekt/detail', $params);
     }
 
     /**
@@ -141,9 +143,11 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callProjectDetail($pk)
+    public function callProjectDetail($pk, array $params = array())
     {
-        return $this->call('projekt/detail', array('id' => $pk));
+        $params['id'] = $pk;
+
+        return $this->call('projekt/detail', $params);
     }
 
     /**
