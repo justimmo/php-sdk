@@ -26,10 +26,38 @@ class Category implements Entity
     private $marketing = false;
 
     /**
+     * @var bool
+     * @JUSTIMMO\Column(type="boolean")
+     */
+    private $newsletter = false;
+
+    /**
+     * @var string|null
+     * @JUSTIMMO\Column(type="string")
+     */
+    private $newsletterLabel = null;
+
+    /**
      * @return bool
      */
     public function isMarketing()
     {
         return $this->marketing;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNewsletter()
+    {
+        return $this->newsletter;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNewsletterLabel()
+    {
+        return $this->newsletterLabel;
     }
 }

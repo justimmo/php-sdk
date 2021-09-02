@@ -6,6 +6,7 @@ use Justimmo\Api\Entity\Contact\Category;
 
 /**
  * @method $this filterByMarketing($value)
+ * @method $this filterByNewsletter($value)
  * @method $this sortByName($direction = BaseApiRequest::ASC)
  */
 class ContactCategoryRequest extends BaseApiRequest
@@ -15,7 +16,8 @@ class ContactCategoryRequest extends BaseApiRequest
     ];
 
     const FILTERS = [
-        'marketing'
+        'marketing',
+        'newsletter',
     ];
 
     /**
