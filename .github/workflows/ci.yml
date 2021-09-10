@@ -10,7 +10,6 @@ jobs:
             -   uses: actions/checkout@v2
             -   uses: php-actions/composer@v6
                 with:
-                    dev: no
                     args: --ignore-platform-reqs
 
             -   name: PHP 7.0
