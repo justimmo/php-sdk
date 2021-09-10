@@ -10,12 +10,6 @@ jobs:
             -   uses: actions/checkout@v2
             -   uses: php-actions/composer@v5
 
-            -   name: PHP 5.6
-                uses: php-actions/phpunit@v3
-                with:
-                    version: 5
-                    php_version: 5.6
-
             -   name: PHP 7.0
                 uses: php-actions/phpunit@v3
                 with:
