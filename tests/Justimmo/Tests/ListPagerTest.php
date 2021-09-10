@@ -11,7 +11,7 @@ class ListPagerTest extends TestCase
      */
     protected $pager;
 
-    public function setUp()
+    public function setUp(): void
     {
         $wrapper = new RealtyWrapper(new RealtyMapper());
         $this->pager = $wrapper->transformList($this->getFixtures('v1/realty_list.xml'));

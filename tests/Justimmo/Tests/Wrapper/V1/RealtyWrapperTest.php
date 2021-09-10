@@ -19,7 +19,7 @@ class RealtyWrapperTest extends TestCase
      */
     private $wrapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->wrapper = new RealtyWrapper(new RealtyMapper());
     }

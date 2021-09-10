@@ -11,7 +11,7 @@ class BasicDataWrapperTest extends TestCase
      */
     private $wrapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->wrapper = new BasicDataWrapper();
     }

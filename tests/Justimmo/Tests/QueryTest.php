@@ -5,15 +5,16 @@ use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
+use PHPUnit\Framework\TestCase;
 
-class QueryTest extends \PHPUnit_Framework_TestCase
+class QueryTest extends TestCase
 {
     /**
      * @var \Justimmo\Model\RealtyQuery
      */
     protected $query;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), new RealtyMapper());
     }

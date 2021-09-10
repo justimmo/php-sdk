@@ -4,15 +4,16 @@ namespace Justimmo\Tests;
 use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
 use Psr\Log\NullLogger;
+use PHPUnit\Framework\TestCase;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class ApiTest extends TestCase
 {
     /**
      * @var JustimmoApi
      */
     protected $api;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->api = $this->getMockBuilder('Justimmo\Api\JustimmoApi')
             ->setConstructorArgs(array('username', 'password', new NullLogger(), new NullCache()))

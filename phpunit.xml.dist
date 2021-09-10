@@ -7,7 +7,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
+         cacheResult="false"
          bootstrap="tests/bootstrap.php"
         >
     <testsuites>
@@ -15,9 +15,4 @@
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory>./src/Justimmo/</directory>
-        </whitelist>
-    </filter>
 </phpunit>
