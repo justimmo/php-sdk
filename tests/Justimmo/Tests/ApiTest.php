@@ -3,6 +3,10 @@ namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
+use Justimmo\Exception\AuthenticationException;
+use Justimmo\Exception\InvalidRequestException;
+use Justimmo\Exception\NotFoundException;
+use Justimmo\Exception\StatusCodeException;
 use Psr\Log\NullLogger;
 use PHPUnit\Framework\TestCase;
 
@@ -21,56 +25,50 @@ class ApiTest extends TestCase
             ->getMock();
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\AuthenticationException
-     * @expectedExceptionMessage Bad Username / Password 401
-     */
     public function testWrongUserData()
     {
+        $this->expectException(AuthenticationException::class);
+        $this->expectExceptionMessage('Bad Username / Password 401');
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('', 401));
 
         $this->api->callRealtyList();
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\NotFoundException
-     * @expectedExceptionMessage Api call not found: 404
-     */
     public function test404Response()
     {
+        $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('Api call not found: 404');
+
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('', 404));
 
         $this->api->callRealtyList();
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\StatusCodeException
-     * @expectedExceptionMessage The Api call returned status code 500
-     */
     public function test500Response()
     {
+        $this->expectException(StatusCodeException::class);
+        $this->expectExceptionMessage('The Api call returned status code 500');
+
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('', 500));
 
         $this->api->callRealtyList();
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\InvalidRequestException
-     * @expectedExceptionMessage The Api call returned status code 400
-     */
     public function testInvalidRequestWithoutBody()
     {
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('The Api call returned status code 400');
+
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('', 400));
 
         $this->api->callRealtyList();
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\InvalidRequestException
-     * @expectedExceptionMessage zimmer_von ["test" is not a number.]
-     */
     public function testInvalidRequestWithBody()
     {
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('zimmer_von ["test" is not a number.]');
+
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('<justimmo><error>zimmer_von ["test" is not a number.]</error></justimmo>', 400));
 
         $this->api->callRealtyList();

@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests;
 
+use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 
@@ -17,19 +18,17 @@ class ListPagerTest extends TestCase
         $this->pager = $wrapper->transformList($this->getFixtures('v1/realty_list.xml'));
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\MethodNotFoundException
-     */
     public function testWrongKeyGetter()
     {
+        $this->expectException(MethodNotFoundException::class);
+
         $this->pager->toKeyValue('getTest', 'getTitle');
     }
 
-    /**
-     * @expectedException \Justimmo\Exception\MethodNotFoundException
-     */
     public function testWrongValueGetter()
     {
+        $this->expectException(MethodNotFoundException::class);
+
         $this->pager->toKeyValue('getId', 'getTest');
     }
 
