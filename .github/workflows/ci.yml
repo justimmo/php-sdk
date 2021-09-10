@@ -11,6 +11,7 @@ jobs:
             -   uses: php-actions/composer@v6
                 with:
                     dev: no
+                    args: --ignore-platform-reqs
 
             -   name: PHP 7.0
                 uses: php-actions/phpunit@v3
