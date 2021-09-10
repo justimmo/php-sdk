@@ -8,6 +8,8 @@ use Justimmo\Tests\Model\ProjectQueryTest;
  * Class RealtyQuery
  * @package Justimmo\Model
  *
+ * @method Realty findPk($pk)
+ * @method Realty|null findOne($pk)
  * @method RealtyQuery filterByPrice($value)
  * @method RealtyQuery filterByRealtyTypeId($value)
  * @method RealtyQuery filterBySubRealtyTypeId($value)
