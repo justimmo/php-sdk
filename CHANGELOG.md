@@ -1,3 +1,7 @@
+## 1.2.4
+ * Add support for newsletter registration
+ * Fix multiple phpdoc types - thx @infabo
+
 ## 1.2.0
  * Add support for new attachment urls
 
