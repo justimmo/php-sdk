@@ -42,6 +42,16 @@ class RealtyInquiryRequest implements RequestInterface
     /** @var string */
     protected $category = null;
 
+    /**
+     * @var null|int[]
+     */
+    protected $newsletter = null;
+
+    /**
+     * @var bool
+     */
+    protected $doubleoptinCompleted = false;
+
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
         $this->api    = $api;
@@ -302,6 +312,16 @@ class RealtyInquiryRequest implements RequestInterface
         return $this->category;
     }
 
+    /**
+     * @param int[] $newsletter           An array of newsletter category ids of justimmo
+     * @param bool  $doubleoptinCompleted Wether a double optin has a already been completed.
+     *                                    If false, JUSTIMMO will handle double optin and send an email to the contact automatically
+     */
+    public function registerForNewsletter(array $newsletter, bool $doubleoptinCompleted)
+    {
+        $this->newsletter = $newsletter;
+    }
+
     public function send()
     {
         $this->api->postRealtyInquiry(array(
@@ -318,6 +338,8 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('title')        => $this->getTitle(),
             $this->mapper->getFilterPropertyName('salutationId') => $this->getSalutationId(),
             $this->mapper->getFilterPropertyName('category')     => $this->getCategory(),
+            'newsletter'                                         => $this->newsletter,
+            'doubleoptin_completed'                              => $this->doubleoptinCompleted ? '1' : '0',
         ));
     }
 }
