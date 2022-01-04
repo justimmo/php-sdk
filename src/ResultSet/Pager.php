@@ -36,7 +36,7 @@ class Pager extends Collection
      *
      * @return static
      */
-    public static function create(array $data = [], $nbResults, $limit = null, $offset = null)
+    public static function create(array $data = [], $nbResults = 0, $limit = null, $offset = null)
     {
         if ($limit === null) {
             $limit = count($data) ?: 10;

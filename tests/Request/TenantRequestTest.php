@@ -4,8 +4,9 @@ namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Entity\Tenant;
 use Justimmo\Api\Request\TenantRequest;
+use PHPUnit\Framework\TestCase;
 
-class TenantRequestTest extends \PHPUnit_Framework_TestCase
+class TenantRequestTest extends TestCase
 {
     public function testParams()
     {

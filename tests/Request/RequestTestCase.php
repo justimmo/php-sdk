@@ -5,6 +5,7 @@ namespace Justimmo\Api\Tests\Request;
 use Justimmo\Api\Request\BaseApiRequest;
 use Justimmo\Api\Request\RealtyRequest;
 use Justimmo\Api\Tests\TestCase;
+use function stat;
 
 abstract class RequestTestCase extends TestCase
 {
@@ -100,19 +101,15 @@ abstract class RequestTestCase extends TestCase
         ], $request->getQuery());
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testNotSupportedFilterMethod()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getRequest()->filterByDoesNotExists(1);
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testNotSupportedSortMethod()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getRequest()->sortByDoesNotExists('asc');
     }
 
@@ -154,6 +151,10 @@ abstract class RequestTestCase extends TestCase
 
     public function testFilterBy()
     {
+        if (empty(static::FILTERS)) {
+            $this->expectNotToPerformAssertions();
+            return;
+        }
         foreach (static::FILTERS as $i => $filter) {
             $method = 'filterBy' . ucfirst($filter);
 
@@ -218,6 +219,7 @@ abstract class RequestTestCase extends TestCase
     public function testWith()
     {
         if (empty(static::FIELDS)) {
+            $this->expectNotToPerformAssertions();
             return;
         }
 
@@ -239,6 +241,7 @@ abstract class RequestTestCase extends TestCase
     public function testJoinable()
     {
         if (empty(static::JOINABLE)) {
+            $this->expectNotToPerformAssertions();
             return;
         }
 

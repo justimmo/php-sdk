@@ -14,19 +14,15 @@ class PagerTest extends TestCase
         return Pager::create($data, 121, 15, 45);
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testWrongKeyGetter()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getPager()->toKeyValue('getTest', 'getTitle');
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testWrongValueGetter()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getPager()->toKeyValue('getId', 'getTest');
     }
 

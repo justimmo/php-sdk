@@ -2,7 +2,7 @@
 
 namespace Justimmo\Api\Tests;
 
-class DateFormattableTraitTest extends \PHPUnit_Framework_TestCase
+class DateFormattableTraitTest extends \PHPUnit\Framework\TestCase
 {
     public function testFormatDate()
     {

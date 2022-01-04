@@ -4,8 +4,9 @@ namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Request\RealtyRequest;
 use Justimmo\Api\Request\ZipCodeRequest;
+use PHPUnit\Framework\TestCase;
 
-class ComplexRequestTest extends \PHPUnit_Framework_TestCase
+class ComplexRequestTest extends TestCase
 {
     public function testCombinations()
     {

@@ -76,12 +76,10 @@ class EntityHydratorTest extends TestCase
         $this->assertSame([5, 410], $entity->getOriginal());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Argument 1 passed to Justimmo\Api\Hydration\EntityHydrator::castValue must be a scalar type.
-     */
     public function testScalarInvalid()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Argument 1 passed to Justimmo\Api\Hydration\EntityHydrator::castValue must be a scalar type.');
         $entity = $this->hydrate([
             'id'   => '15',
             'name' => ['test', 'test2'],
@@ -157,11 +155,9 @@ class EntityHydratorTest extends TestCase
         $this->assertSame('Delegation Test', $entity->getDelegated()->getName());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testRelationWrongNotation()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->hydrate([
             'id'          => 1,
             'name'        => 'Root',

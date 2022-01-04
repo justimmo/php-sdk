@@ -4,27 +4,24 @@ namespace Justimmo\Api\Tests\Request;
 
 use Justimmo\Api\Entity\Inquiry;
 use Justimmo\Api\Request\InquiryRequest;
+use PHPUnit\Framework\TestCase;
 
-class InquiryRequestTest extends \PHPUnit_Framework_TestCase
+class InquiryRequestTest extends TestCase
 {
     protected function getRequest($email = null)
     {
         return new InquiryRequest($email);
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testCall()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getRequest(null)->seRealty();
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testCall2()
     {
+        $this->expectException(\BadMethodCallException::class);
         $this->getRequest(null)->setRealty();
     }
 

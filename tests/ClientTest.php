@@ -6,7 +6,10 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Justimmo\Api\Entity\Realty\RealtyType;
+use Justimmo\Api\Exception\AuthorizationException;
 use Justimmo\Api\Exception\ClientException;
+use Justimmo\Api\Exception\NotFoundException;
+use Justimmo\Api\Exception\ServerException;
 use Justimmo\Api\Request\ExposeRequest;
 use Justimmo\Api\Request\RealtyTypeRequest;
 use Justimmo\Api\Request\TenantRequest;
@@ -28,12 +31,10 @@ class ClientTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\RequestException
-     * @expectedExceptionMessage Not Valid
-     */
     public function testGuzzleRequestException()
     {
+        $this->expectException(\Justimmo\Api\Exception\RequestException::class);
+        $this->expectExceptionMessage('Not Valid');
         $client = $this->createClient([
             new RequestException('Not Valid', new Request('GET', '/test')),
         ]);
@@ -41,11 +42,9 @@ class ClientTest extends TestCase
         $client->request(new TenantRequest());
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\AuthorizationException
-     */
     public function test401()
     {
+        $this->expectException(AuthorizationException::class);
         $client = $this->createClient([
             $this->createRequestException(401),
             $this->createRequestException(401),
@@ -54,11 +53,9 @@ class ClientTest extends TestCase
         $client->request(new TenantRequest());
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\AuthorizationException
-     */
     public function test403()
     {
+        $this->expectException(AuthorizationException::class);
         $client = $this->createClient([
             $this->createRequestException(403),
         ]);
@@ -66,11 +63,9 @@ class ClientTest extends TestCase
         $client->request(new TenantRequest());
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\ServerException
-     */
     public function test500()
     {
+        $this->expectException(ServerException::class);
         $client = $this->createClient([
             $this->createRequestException(500),
         ]);
@@ -78,11 +73,9 @@ class ClientTest extends TestCase
         $client->request(new TenantRequest());
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\NotFoundException
-     */
     public function test404()
     {
+        $this->expectException(NotFoundException::class);
         $client = $this->createClient([
             $this->createRequestException(404),
         ]);
@@ -90,12 +83,10 @@ class ClientTest extends TestCase
         $client->request(new TenantRequest());
     }
 
-    /**
-     * @expectedException \Justimmo\Api\Exception\ClientException
-     * @expectedExceptionMessage Response content type is not "application/json".
-     */
     public function testInvalidFormat()
     {
+        $this->expectException(ClientException::class);
+        $this->expectExceptionMessage('Response content type is not "application/json".');
         $client = $this->createClient([
             $this->createResponse('{}', 200, ['Content-type' => 'text/html']),
         ]);

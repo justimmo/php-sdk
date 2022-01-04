@@ -12,7 +12,7 @@ use Justimmo\Api\Authorization\StaticAccessTokenProvider;
 use Justimmo\Api\Client;
 use Justimmo\Api\Hydration\EntityHydrator;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     const FIXTURES_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'fixtures';
 
