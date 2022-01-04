@@ -23,3 +23,6 @@ jobs:
                 with:
                     version: 9
                     php_version: 8.1
+
+            -   name: Psalm
+                uses: docker://vimeo/psalm-github-actions
