@@ -2,11 +2,8 @@
 
 namespace Justimmo\Api;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\HandlerStack;
 use Justimmo\Api\Authorization\StaticAccessTokenProvider;
 use Justimmo\Api\Hydration\EntityHydrator;
@@ -16,33 +13,24 @@ use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 
 class ClientFactory
 {
-    protected static $annotationsLoaded = false;
-
     /**
      * Helper function to easyly create a client
      *
-     * @param string           $accessToken
-     * @param string     $locale
-     * @param Cache|null $cache
+     * @param string $accessToken
+     * @param string $locale
+     * @param Reader $annotationReader
      *
      * @return Client
      */
-    public static function create($accessToken, $locale = 'de', Cache $cache = null)
+    public static function create($accessToken, $locale = 'de', Reader $annotationReader)
     {
-        if (!static::$annotationsLoaded) {
-            static::$annotationsLoaded = true;
-            AnnotationRegistry::registerLoader('class_exists');
-        }
-
-        if ($cache === null) {
-            $cache = new ArrayCache();
-            $cache->setNamespace('justimmo:php-sdk:api:');
-        }
+        $doctrineCache = new ArrayCache();
+        $doctrineCache->setNamespace('justimmo:php-sdk:api:');
 
         $stack = HandlerStack::create();
         $stack->push(new CacheMiddleware(
             new PrivateCacheStrategy(
-                new DoctrineCacheStorage($cache)
+                new DoctrineCacheStorage($doctrineCache)
             )
         ), 'cache');
 
@@ -53,9 +41,7 @@ class ClientFactory
             ],
         ]);
 
-        $hydrator = new EntityHydrator(
-            new CachedReader(new AnnotationReader(), $cache)
-        );
+        $hydrator = new EntityHydrator($annotationReader);
 
         return new Client(
             $guzzle,

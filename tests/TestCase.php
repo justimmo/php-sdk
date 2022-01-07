@@ -3,8 +3,6 @@
 namespace Justimmo\Api\Tests;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\ArrayCache;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
@@ -12,7 +10,7 @@ use Justimmo\Api\Authorization\StaticAccessTokenProvider;
 use Justimmo\Api\Client;
 use Justimmo\Api\Hydration\EntityHydrator;
 
-class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     const FIXTURES_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'fixtures';
 
@@ -23,24 +21,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return string
      */
-    protected function getFixtures($file)
+    protected function getFixtures(string $file): string
     {
         return file_get_contents(self::FIXTURES_PATH . DIRECTORY_SEPARATOR . $file);
     }
 
-    /**
-     * Returns an entity hydrator
-     *
-     * @return EntityHydrator
-     */
-    protected function getHydrator()
+
+    protected function getHydrator(): EntityHydrator
     {
-        return new EntityHydrator(
-            new CachedReader(
-                new AnnotationReader(),
-                new ArrayCache()
-            )
-        );
+        return new EntityHydrator(new AnnotationReader());
     }
 
     /**

@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false"
          cacheResult="false"
-         bootstrap="tests/bootstrap.php">
+         bootstrap="vendor/autoload.php">
     <coverage>
         <include>
             <directory>./src/Justimmo/</directory>
