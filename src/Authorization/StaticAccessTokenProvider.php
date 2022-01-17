@@ -2,19 +2,11 @@
 
 namespace Justimmo\Api\Authorization;
 
-class StaticAccessTokenProvider implements AccessTokenProvider
+final class StaticAccessTokenProvider implements AccessTokenProvider
 {
-    /**
-     * @var string
-     */
-    private $accessToken;
+    private string $accessToken;
 
-    /**
-     * StaticAccessTokenProvider constructor.
-     *
-     * @param string $accessToken
-     */
-    public function __construct($accessToken)
+    public function __construct(string $accessToken)
     {
         $this->accessToken = $accessToken;
     }
@@ -22,7 +14,7 @@ class StaticAccessTokenProvider implements AccessTokenProvider
     /**
      * @inheritDoc
      */
-    public function getAccessToken()
+    public function getAccessToken(): string
     {
         return $this->accessToken;
     }
@@ -30,7 +22,7 @@ class StaticAccessTokenProvider implements AccessTokenProvider
     /**
      * @inheritDoc
      */
-    public function refreshAccessToken()
+    public function refreshAccessToken(): string
     {
         return $this->getAccessToken();
     }

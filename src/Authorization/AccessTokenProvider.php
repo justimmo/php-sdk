@@ -9,12 +9,12 @@ interface AccessTokenProvider
      *
      * @return string
      */
-    public function getAccessToken();
+    public function getAccessToken(): string;
 
     /**
      * Returns a new access token. Called by client if provied access token has been revoked by api
      *
      * @return string
      */
-    public function refreshAccessToken();
+    public function refreshAccessToken(): string;
 }

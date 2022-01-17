@@ -13,34 +13,18 @@ use Justimmo\Api\ResultSet\Pager;
 use Justimmo\Api\Request\ApiRequest;
 use Justimmo\Api\ResultSet\ResultSet;
 use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\ClientInterface as GuzzleClient;
+
 
 class Client
 {
     const BASE_URL = 'https://api.justimmo.at/rest/v2';
 
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $guzzle;
+    protected GuzzleClient $guzzle;
+    protected AccessTokenProvider $accessTokenProvider;
+    protected EntityHydrator $hydrator;
 
-    /**
-     * @var AccessTokenProvider
-     */
-    protected $accessTokenProvider;
-
-    /**
-     * @var EntityHydrator
-     */
-    protected $hydrator;
-
-    /**
-     * Client constructor.
-     *
-     * @param \GuzzleHttp\Client  $guzzle
-     * @param AccessTokenProvider $accessTokenProvider
-     * @param EntityHydrator      $hydrator
-     */
-    public function __construct(\GuzzleHttp\Client $guzzle, AccessTokenProvider $accessTokenProvider, EntityHydrator $hydrator)
+    public function __construct(GuzzleClient $guzzle, AccessTokenProvider $accessTokenProvider, EntityHydrator $hydrator)
     {
         $this->guzzle              = $guzzle;
         $this->accessTokenProvider = $accessTokenProvider;
