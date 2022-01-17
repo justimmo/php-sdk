@@ -6,7 +6,6 @@
     "require": {
         "php": ">=8.0",
         "doctrine/annotations": "^1.13",
-        "doctrine/cache": "^1.6",
         "guzzlehttp/guzzle": "^6.0",
         "kevinrob/guzzle-cache-middleware": "^2.0"
     },
