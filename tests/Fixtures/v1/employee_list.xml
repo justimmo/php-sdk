@@ -22,6 +22,8 @@
             <bild>
                 <pfad>http://files.justimmo.at/public/pic/user_small/ABVB1fBrug.png</pfad>
                 <pfad_medium>http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png</pfad_medium>
+                <fullhd>http://storage.justimmo.at/thumb/fb5f6c1c2303c13ce984ce27e929b78b/fc_h1080_w1920/ABVB1fBrug.jpg</fullhd>
+                <orig>http://storage.justimmo.at/file/ABVB1fBrug.jpg</orig>
             </bild>
             <vorname>Alexander</vorname>
             <nachname>Diem</nachname>
@@ -43,6 +45,8 @@
                     <format>.jpg</format>
                     <daten>
                         <pfad>https://files.justimmo.at/public/pic/big/Awf77iCGNE.jpg</pfad>
+                        <fullhd>http://storage.justimmo.at/thumb/fb5f6c1c2303c13ce984ce27e929b78b/fc_h1080_w1920/Awf77iCGNE.jpg</fullhd>
+                        <orig>http://storage.justimmo.at/file/Awf77iCGNE.jpg</orig>
                     </daten>
                 </anhang>
                 <anhang location="REMOTE" gruppe="LINKS">

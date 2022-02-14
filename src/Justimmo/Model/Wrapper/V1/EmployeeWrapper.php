@@ -4,6 +4,7 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Attachment;
 use Justimmo\Model\Employee;
 use Justimmo\Pager\ListPager;
+use function array_key_exists;
 
 class EmployeeWrapper extends AbstractWrapper
 {
@@ -109,6 +110,41 @@ class EmployeeWrapper extends AbstractWrapper
         $transformed->setNbResults($transformed->count());
 
         return $transformed;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function mapAttachmentGroup(\SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+    {
+        foreach ($xml as $anhang) {
+            $data = (array) $anhang->daten;
+            $attributes = $this->attributesToArray($anhang);
+            $group = $forceGroup ?: (array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null);
+            if (array_key_exists('pfad', $data)) {
+                $data['big'] = $data['pfad'];
+
+                $attachment = new Attachment($data['orig'] ?? $data['pfad'], $type, $group);
+                $attachment->mergeData($data);
+                if (isset($anhang->vorschaubild)) {
+                    $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
+                }
+                $attachment->setTitle($this->cast($anhang->anhangtitel));
+                $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
+                $attachmentAware->addAttachment($attachment);
+            } elseif (isset($anhang->pfad)) {
+                if (isset($anhang->gruppe)) {
+                    $group = strtoupper($this->cast($anhang->gruppe));
+                }
+                $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
+                if (isset($anhang->vorschaubild)) {
+                    $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
+                }
+                $attachment->setTitle($this->cast($anhang->titel));
+                $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
+                $attachmentAware->addAttachment($attachment);
+            }
+        }
     }
 
 }

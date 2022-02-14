@@ -23,7 +23,9 @@ abstract class AbstractQuery implements QueryInterface
         'big2',
         'fullhd',
         'fullhd_downscale',
-        'orig'
+        'orig',
+        'user_small',
+        'user_medium',
     );
 
     /**

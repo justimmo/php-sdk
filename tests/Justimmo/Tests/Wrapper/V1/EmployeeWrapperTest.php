@@ -46,6 +46,8 @@ class EmployeeWrapperTest extends TestCase
 
         $this->assertInstanceOf('\Justimmo\Model\Attachment', $entry->getProfilePicture());
         $this->assertEquals('http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png', $entry->getProfilePicture()->getUrl('medium'));
+        $this->assertEquals('http://storage.justimmo.at/thumb/fb5f6c1c2303c13ce984ce27e929b78b/fc_h1080_w1920/ABVB1fBrug.jpg', $entry->getProfilePicture()->getUrl('fullhd'));
+        $this->assertEquals('http://storage.justimmo.at/file/ABVB1fBrug.jpg', $entry->getProfilePicture()->getUrl('orig'));
 
         $attachments = $entry->getAttachments();
         foreach ($attachments as $attachment) {
@@ -54,11 +56,15 @@ class EmployeeWrapperTest extends TestCase
 
         $attachment = $attachments[0];
         $this->assertEquals('http://files.justimmo.at/public/pic/user_medium/ABVB1fBrug.png', $attachment->getUrl('medium'));
+        $this->assertEquals('http://storage.justimmo.at/thumb/fb5f6c1c2303c13ce984ce27e929b78b/fc_h1080_w1920/ABVB1fBrug.jpg', $attachment->getUrl('fullhd'));
+        $this->assertEquals('http://storage.justimmo.at/file/ABVB1fBrug.jpg', $attachment->getUrl('orig'));
         $this->assertEquals('PROFILBILD', $attachment->getGroup());
         $this->assertEquals('picture', $attachment->getType());
 
         $attachment = $attachments[1];
-        $this->assertEquals('https://files.justimmo.at/public/pic/big/Awf77iCGNE.jpg', $attachment->getUrl());
+        $this->assertEquals('https://files.justimmo.at/public/pic/big/Awf77iCGNE.jpg', $attachment->getUrl('big'));
+        $this->assertEquals('http://storage.justimmo.at/thumb/fb5f6c1c2303c13ce984ce27e929b78b/fc_h1080_w1920/Awf77iCGNE.jpg', $attachment->getUrl('fullhd'));
+        $this->assertEquals('http://storage.justimmo.at/file/Awf77iCGNE.jpg', $attachment->getUrl('orig'));
         $this->assertEmpty($attachment->getGroup());
         $this->assertEquals('picture', $attachment->getType());
 
