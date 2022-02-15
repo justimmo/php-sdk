@@ -1,3 +1,6 @@
+## 1.2.5
+ * Add support for picturesize parameter in employee calls
+
 ## 1.2.4
  * Add support for newsletter registration
  * Fix multiple phpdoc types - thx @infabo
