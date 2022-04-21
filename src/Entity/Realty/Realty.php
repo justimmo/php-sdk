@@ -11,6 +11,7 @@ use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Entity\DateFormatable;
 use Justimmo\Api\Entity\Identifiable;
 use Justimmo\Api\Entity\Tenant;
+use function in_array;
 
 /**
  * @JUSTIMMO\Entity()
@@ -708,4 +709,8 @@ class Realty implements Entity
         return $this->pois;
     }
 
+    public function isInActiveMarketing(): bool
+    {
+        return in_array($this->getRealtyState()->getId(), RealtyState::STATUS_IN_ACTIVE_MARKETING) && $this->exportState === true;
+    }
 }

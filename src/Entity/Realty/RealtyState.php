@@ -23,6 +23,12 @@ class RealtyState implements Entity
     const STATUS_CANCELED             = 9;
     const STATUS_EXTERNAL_PROCURED    = 10;
 
+    const STATUS_IN_ACTIVE_MARKETING = [
+        self::STATUS_ACTIVE,
+        self::STATUS_RESERVED,
+        self::STATUS_CONTRACT_PREPARATION
+    ];
+
     public function __toString()
     {
         return (string) $this->getName();
