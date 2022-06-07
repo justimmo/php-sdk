@@ -18,6 +18,7 @@ use Justimmo\Api\Entity\Inquiry;
  * @method $this setRealty($value) Must be an id of Realty entity.
  * @method $this setEmployee($value) Must be an id of Employee entity.
  * @method $this setCategory($value) Must be an id of Contact\Category entity.
+ * @method $this setPropertyOwner($value)
  */
 class InquiryRequest implements EntityRequest
 {
@@ -35,6 +36,7 @@ class InquiryRequest implements EntityRequest
         'realty',
         'employee',
         'category',
+        'propertyOwner',
     ];
 
     /**
