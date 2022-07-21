@@ -97,6 +97,19 @@ class Attachment implements Entity
     private $mimeType;
 
     /**
+     * @var integer|null
+     * @JUSTIMMO\Column(path="width", type="integer")
+     */
+    private ?int $width;
+
+    /**
+     * @var integer|null
+     * @JUSTIMMO\Column(path="height", type="integer")
+     */
+    private ?int $height;
+
+
+    /**
      * @return string
      */
     public function getFilename()
@@ -213,4 +226,15 @@ class Attachment implements Entity
 
         return $this->mimeType;
     }
+
+    public function getWidth(): ?int
+    {
+        return $this->width;
+    }
+
+    public function getHeight(): ?int
+    {
+        return $this->height;
+    }
+
 }
