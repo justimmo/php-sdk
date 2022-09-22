@@ -142,11 +142,16 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals($objekt->getSurfaceArea(), 150);
         $this->assertNull($objekt->getLivingArea());
         $this->assertNull($objekt->getTotalArea());
+        $this->assertEquals(377, $objekt->getSalesArea());
+        $this->assertEquals(113, $objekt->getTemporaryArea());
+        $this->assertEquals(115, $objekt->getWeightedArea());
+        $this->assertEquals(117, $objekt->getRawAtticArea());
         $this->assertEquals($objekt->getGarageCount(), 1);
         $this->assertEquals($objekt->getGarageArea(), 20.57);
         $this->assertEquals($objekt->getParkingCount(), 2);
         $this->assertEquals($objekt->getParkingArea(), 36.85);
         $this->assertEquals($objekt->getCeilingHeight(), 3.5);
+        $this->assertEquals(3.25, $objekt->getHallHeight());
 
         $this->assertEquals(450000, $objekt->getPurchasePrice());
         $this->assertEquals(3000, $objekt->getPurchasePricePerSqm());
@@ -368,4 +373,23 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(2, $objekt->getOwnershipTypeId());
     }
+
+    public function testTransformSingleNullValuesAndUnlimitedRent()
+    {
+        /** @var \Justimmo\Model\Realty $objekt */
+        $objekt = $this->wrapper->transformSingle($this->getFixtures('v1/realty_detail_2.xml'));
+
+        $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
+
+        $this->assertNull($objekt->getSalesArea());
+        $this->assertNull($objekt->getTemporaryArea());
+        $this->assertNull($objekt->getWeightedArea());
+        $this->assertNull($objekt->getRawAtticArea());
+
+        $this->assertNull($objekt->getHallHeight());
+
+        $this->assertEquals(0, $objekt->getRentDuration());
+        $this->assertEquals('unlimited', $objekt->getRentDurationType());
+    }
+
 }

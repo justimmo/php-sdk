@@ -108,6 +108,22 @@ class RealtyMapper extends AbstractMapper
                 'property' => 'buildableArea',
                 'type'     => 'double',
             ),
+            'verkaufsflaeche'                  => array(
+                'property' => 'salesArea',
+                'type'     => 'double',
+            ),
+            'befristete_flaeche'               => array(
+                'property' => 'temporaryArea',
+                'type'     => 'double',
+            ),
+            'gewichtete_flaeche'               => array(
+                'property' => 'weightedArea',
+                'type'     => 'double',
+            ),
+            'rohdachboden_flaeche'             => array(
+                'property' => 'rawAtticArea',
+                'type'     => 'double',
+            ),
             'wohnflaeche'                      => array(
                 'property' => 'livingArea',
                 'type'     => 'double',
@@ -302,6 +318,10 @@ class RealtyMapper extends AbstractMapper
             ),
             'raumhoehe'                        => array(
                 'property' => 'ceilingHeight',
+                'type'     => 'double',
+            ),
+            'hallenhoehe'                      => array(
+                'property' => 'hallHeight',
                 'type'     => 'double',
             ),
             'epass_hwbwert'                    => array(

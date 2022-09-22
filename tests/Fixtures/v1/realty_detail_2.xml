@@ -176,16 +176,11 @@
             <teilbar_ab>20</teilbar_ab>
             <grundstuecksflaeche>150</grundstuecksflaeche>
             <verbaubare_flaeche>355</verbaubare_flaeche>
-            <verkaufsflaeche>377</verkaufsflaeche>
             <anzahl_garagen>1</anzahl_garagen>
             <garagen_flaeche>20.57</garagen_flaeche>
             <anzahl_stellplaetze>2</anzahl_stellplaetze>
             <stellplatz_flaeche>36.85</stellplatz_flaeche>
             <raumhoehe>3.5</raumhoehe>
-            <user_defined_simplefield feldname="befristete_flaeche">113</user_defined_simplefield>
-            <user_defined_simplefield feldname="gewichtete_flaeche">115</user_defined_simplefield>
-            <user_defined_simplefield feldname="rohdachboden_flaeche">117</user_defined_simplefield>
-            <user_defined_simplefield feldname="hallenhoehe">3.25</user_defined_simplefield>
         </flaechen>
         <ausstattung>
             <ausricht_balkon_terrasse NORD="1"/>
@@ -397,7 +392,7 @@
             <verfuegbar_ab>November 2015</verfuegbar_ab>
             <status>aktiv</status>
             <status_id>5</status_id>
-            <max_mietdauer max_dauer="MONAT">5</max_mietdauer>
+            <max_mietdauer>unbefristet</max_mietdauer>
             <user_defined_simplefield feldname="ji_objektstatus">aktiv</user_defined_simplefield>
             <user_defined_simplefield feldname="ji_objektstatus_id">5</user_defined_simplefield>
             <user_defined_simplefield feldname="vermittelt_am">2015-11-11</user_defined_simplefield>

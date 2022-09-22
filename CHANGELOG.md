@@ -1,3 +1,13 @@
+## 1.2.6
+ * Extends Realty object with
+   * SalesArea (Verkaufsfläche)
+   * HallHeight (Hallenhöhe)
+   * TemporaryArea (Befristete Fläche)
+   * WeightedArea (Gewichtete Fläche)
+   * RawAtticArea (Rohdachbodenfläche)
+ * Bugfix
+   * Fixing RentDurationType to support unlimited (unbefristet) renting period
+
 ## 1.2.5
  * Add support for picturesize parameter in employee calls
 
