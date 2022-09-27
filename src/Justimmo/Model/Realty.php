@@ -103,6 +103,26 @@ class Realty
     protected $totalArea;
 
     /**
+     * @var float|null
+     */
+    protected $salesArea;
+
+    /**
+     * @var float|null
+     */
+    protected $shortTermArea;
+
+    /**
+     * @var float|null
+     */
+    protected $weightedArea;
+
+    /**
+     * @var float|null
+     */
+    protected $undevelopedAtticArea;
+
+    /**
      * @var int
      */
     protected $projectId;
@@ -294,6 +314,10 @@ class Realty
     protected $storeRoomCount;
 
     protected $ceilingHeight;
+    /**
+     * @var float|null
+     */
+    protected $hallHeight;
 
     protected $contractEstablishmentCosts;
 
@@ -1809,6 +1833,82 @@ class Realty
     }
 
     /**
+     * @return float|null
+     */
+    public function getSalesArea()
+    {
+        return $this->salesArea;
+    }
+
+    /**
+     * @param float|null $salesArea
+     * @return $this
+     */
+    public function setSalesArea($salesArea)
+    {
+        $this->salesArea = $salesArea;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getShortTermArea()
+    {
+        return $this->shortTermArea;
+    }
+
+    /**
+     * @param float|null $shortTermArea
+     * @return $this
+     */
+    public function setShortTermArea($shortTermArea)
+    {
+        $this->shortTermArea = $shortTermArea;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getWeightedArea()
+    {
+        return $this->weightedArea;
+    }
+
+    /**
+     * @param float|null $weightedArea
+     * @return $this
+     */
+    public function setWeightedArea($weightedArea)
+    {
+        $this->weightedArea = $weightedArea;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getUndevelopedAtticArea()
+    {
+        return $this->undevelopedAtticArea;
+    }
+
+    /**
+     * @param float|null $undevelopedAtticArea
+     * @return $this
+     */
+    public function setUndevelopedAtticArea($undevelopedAtticArea)
+    {
+        $this->undevelopedAtticArea = $undevelopedAtticArea;
+
+        return $this;
+    }
+
+    /**
      * @param float $wohnflaeche
      *
      * @return $this
@@ -1999,6 +2099,25 @@ class Realty
     public function getCeilingHeight()
     {
         return $this->ceilingHeight;
+    }
+
+    /**
+     * @param float|null $hallHeight
+     * @return $this;
+     */
+    public function setHallHeight($hallHeight)
+    {
+        $this->hallHeight = $hallHeight;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getHallHeight()
+    {
+        return $this->hallHeight;
     }
 
     /**

@@ -124,6 +124,7 @@ class RealtyWrapper extends AbstractWrapper
         'stellplatz_flaeche',
         'anzahl_abstellraum',
         'verbaubare_flaeche',
+        'verkaufsflaeche',
         'raumhoehe',
     );
 
@@ -196,11 +197,15 @@ class RealtyWrapper extends AbstractWrapper
             $objekt->setStatusId($this->cast($xml->verwaltung_objekt->status_id));
             $objekt->setAvailableFrom($this->cast($xml->verwaltung_objekt->verfuegbar_ab));
             if (isset($xml->verwaltung_objekt->max_mietdauer)) {
-                $objekt->setRentDuration($this->cast($xml->verwaltung_objekt->max_mietdauer, 'int'));
-                if ($xml->verwaltung_objekt->max_mietdauer->attributes()->max_dauer == 'JAHR') {
-                    $objekt->setRentDurationType('year');
-                } elseif ($xml->verwaltung_objekt->max_mietdauer->attributes()->max_dauer == 'MONAT') {
-                    $objekt->setRentDurationType('month');
+                if ($this->cast($xml->verwaltung_objekt->max_mietdauer, 'string') === 'unbefristet') {
+                    $objekt->setRentDurationType('unlimited');
+                } else {
+                    $objekt->setRentDuration($this->cast($xml->verwaltung_objekt->max_mietdauer, 'int'));
+                    if ($xml->verwaltung_objekt->max_mietdauer->attributes()->max_dauer == 'JAHR') {
+                        $objekt->setRentDurationType('year');
+                    } elseif ($xml->verwaltung_objekt->max_mietdauer->attributes()->max_dauer == 'MONAT') {
+                        $objekt->setRentDurationType('month');
+                    }
                 }
             }
 
@@ -388,6 +393,10 @@ class RealtyWrapper extends AbstractWrapper
         if (isset($xml->flaechen)) {
             $this->map($this->flaechenMapping, $xml->flaechen, $objekt);
             $objekt->setSurfaceArea($this->cast($xml->flaechen->grundstuecksflaeche));
+
+            foreach ($xml->flaechen->user_defined_simplefield as $simpleField) {
+                $this->mapSimpleField($simpleField, $objekt);
+            }
         }
 
         if (isset($xml->zustand_angaben)) {
