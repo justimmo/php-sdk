@@ -110,7 +110,7 @@ class Realty
     /**
      * @var float|null
      */
-    protected $temporaryArea;
+    protected $shortTermArea;
 
     /**
      * @var float|null
@@ -120,7 +120,7 @@ class Realty
     /**
      * @var float|null
      */
-    protected $rawAtticArea;
+    protected $undevelopedAtticArea;
 
     /**
      * @var int
@@ -1854,18 +1854,18 @@ class Realty
     /**
      * @return float|null
      */
-    public function getTemporaryArea()
+    public function getShortTermArea()
     {
-        return $this->temporaryArea;
+        return $this->shortTermArea;
     }
 
     /**
-     * @param float|null $temporaryArea
+     * @param float|null $shortTermArea
      * @return $this
      */
-    public function setTemporaryArea($temporaryArea)
+    public function setShortTermArea($shortTermArea)
     {
-        $this->temporaryArea = $temporaryArea;
+        $this->shortTermArea = $shortTermArea;
 
         return $this;
     }
@@ -1892,18 +1892,18 @@ class Realty
     /**
      * @return float|null
      */
-    public function getRawAtticArea()
+    public function getUndevelopedAtticArea()
     {
-        return $this->rawAtticArea;
+        return $this->undevelopedAtticArea;
     }
 
     /**
-     * @param float|null $rawAtticArea
+     * @param float|null $undevelopedAtticArea
      * @return $this
      */
-    public function setRawAtticArea($rawAtticArea)
+    public function setUndevelopedAtticArea($undevelopedAtticArea)
     {
-        $this->rawAtticArea = $rawAtticArea;
+        $this->undevelopedAtticArea = $undevelopedAtticArea;
 
         return $this;
     }

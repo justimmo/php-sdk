@@ -113,7 +113,7 @@ class RealtyMapper extends AbstractMapper
                 'type'     => 'double',
             ),
             'befristete_flaeche'               => array(
-                'property' => 'temporaryArea',
+                'property' => 'shortTermArea',
                 'type'     => 'double',
             ),
             'gewichtete_flaeche'               => array(
@@ -121,7 +121,7 @@ class RealtyMapper extends AbstractMapper
                 'type'     => 'double',
             ),
             'rohdachboden_flaeche'             => array(
-                'property' => 'rawAtticArea',
+                'property' => 'undevelopedAtticArea',
                 'type'     => 'double',
             ),
             'wohnflaeche'                      => array(

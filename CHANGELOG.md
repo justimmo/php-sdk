@@ -2,9 +2,9 @@
  * Extends Realty object with
    * SalesArea (Verkaufsfläche)
    * HallHeight (Hallenhöhe)
-   * TemporaryArea (Befristete Fläche)
+   * ShortTermArea (Befristete Fläche)
    * WeightedArea (Gewichtete Fläche)
-   * RawAtticArea (Rohdachbodenfläche)
+   * UndevelopedAtticArea (Rohdachbodenfläche)
  * Bugfix
    * Fixing RentDurationType to support unlimited (unbefristet) renting period
 

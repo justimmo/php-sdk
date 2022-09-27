@@ -143,9 +143,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($objekt->getLivingArea());
         $this->assertNull($objekt->getTotalArea());
         $this->assertEquals(377, $objekt->getSalesArea());
-        $this->assertEquals(113, $objekt->getTemporaryArea());
+        $this->assertEquals(113, $objekt->getShortTermArea());
         $this->assertEquals(115, $objekt->getWeightedArea());
-        $this->assertEquals(117, $objekt->getRawAtticArea());
+        $this->assertEquals(117, $objekt->getUndevelopedAtticArea());
         $this->assertEquals($objekt->getGarageCount(), 1);
         $this->assertEquals($objekt->getGarageArea(), 20.57);
         $this->assertEquals($objekt->getParkingCount(), 2);
@@ -382,9 +382,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertInstanceOf('\Justimmo\Model\Realty', $objekt);
 
         $this->assertNull($objekt->getSalesArea());
-        $this->assertNull($objekt->getTemporaryArea());
+        $this->assertNull($objekt->getShortTermArea());
         $this->assertNull($objekt->getWeightedArea());
-        $this->assertNull($objekt->getRawAtticArea());
+        $this->assertNull($objekt->getUndevelopedAtticArea());
 
         $this->assertNull($objekt->getHallHeight());
 
