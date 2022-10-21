@@ -149,6 +149,9 @@ abstract class AbstractQuery implements QueryInterface
         if (isset($this->params['picturesize'])) {
             $params['picturesize'] = $this->params['picturesize'];
         }
+        if (isset($this->params['alleProjektObjekte'])) {
+            $params['alleProjektObjekte'] = $this->params['alleProjektObjekte'];
+        }
 
         $method   = $this->getDetailCall();
         $response = $this->api->$method($pk, $params);
