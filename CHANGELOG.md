@@ -1,3 +1,7 @@
+## 1.2.7
+ * Extends findPk method in abstract query for project queries
+   * it needs to accept the parameter `alleProjektObjekte` to be able to list sub real-estates of a given project with status STATUS_PROCURED (8) and STATUS_EXTERNAL_PROCURED (10)
+
 ## 1.2.6
  * Extends Realty object with
    * SalesArea (Verkaufsfläche)
