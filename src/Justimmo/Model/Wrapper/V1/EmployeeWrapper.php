@@ -124,7 +124,7 @@ class EmployeeWrapper extends AbstractWrapper
             if (array_key_exists('pfad', $data)) {
                 $data['big'] = $data['pfad'];
 
-                $attachment = new Attachment($data['orig'] ?? $data['pfad'], $type, $group);
+                $attachment = new Attachment(isset($data['orig']) ? $data['orig'] : $data['pfad'], $type, $group);
                 $attachment->mergeData($data);
                 if (isset($anhang->vorschaubild)) {
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));

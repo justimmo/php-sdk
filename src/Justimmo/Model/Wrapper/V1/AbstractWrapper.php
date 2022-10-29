@@ -94,7 +94,8 @@ abstract class AbstractWrapper implements WrapperInterface
             $attributes = $this->attributesToArray($anhang);
             $group = $forceGroup ?: (array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null);
             if (array_key_exists('pfad', $data)) {
-                $attachment = new Attachment($data['pfad'], $type, $group);
+                $path = isset($data['orig']) ? $data['orig'] : $data['pfad'];
+                $attachment = new Attachment($path, $type, $group);
                 $attachment->mergeData($data);
                 if (isset($anhang->vorschaubild)) {
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
@@ -106,7 +107,8 @@ abstract class AbstractWrapper implements WrapperInterface
                 if (isset($anhang->gruppe)) {
                     $group = strtoupper($this->cast($anhang->gruppe));
                 }
-                $attachment = new Attachment($this->cast($anhang->pfad), $type, $group);
+                $path = isset($anhang->orig) ? $anhang->orig : $anhang->pfad;
+                $attachment = new Attachment($this->cast($path), $type, $group);
                 if (isset($anhang->vorschaubild)) {
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
                 }
