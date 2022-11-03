@@ -69,8 +69,8 @@ class Attachment
     }
 
     /**
-     * gets a url to an attachment size, even if the api does not return that size.
-     * BEWARE: this method cannot ensure that the url is a valid ressource
+     * gets an url to an attachment size, even if the api does not return that size.
+     * BEWARE: this method cannot ensure that the url is a valid resource
      *
      * @param string $size
      *
