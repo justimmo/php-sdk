@@ -94,6 +94,7 @@ use Justimmo\Api\Entity\Realty\Type;
  * @method $this filterByPriceNet($value)
  * @method $this filterByCompletionDate($value)
  * @method $this filterBySaleStart($value)
+ * @method $this filterByCondition($value)
  * @method $this filterByPublishedAt($value)
  * @method $this filterByCreatedAt($value)
  * @method $this filterByUpdatedAt($value)
@@ -230,6 +231,7 @@ class RealtyRequest extends BaseApiRequest implements SubRequest, JoinableReques
         'priceNet',
         'completionDate',
         'saleStart',
+        'condition',
         'publishedAt',
         'createdAt',
         'updatedAt',
