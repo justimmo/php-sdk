@@ -2,30 +2,31 @@
 
 namespace Justimmo\Api\Tests\Request;
 
+use BadMethodCallException;
 use Justimmo\Api\Entity\Inquiry;
 use Justimmo\Api\Request\InquiryRequest;
 use PHPUnit\Framework\TestCase;
 
 class InquiryRequestTest extends TestCase
 {
-    protected function getRequest($email = null)
+    protected function getRequest(string $email = null, ?string $alternativeRecipientAddress = null): InquiryRequest
     {
-        return new InquiryRequest($email);
+        return new InquiryRequest($email, $alternativeRecipientAddress);
     }
 
-    public function testCall()
+    public function testCall(): void
     {
-        $this->expectException(\BadMethodCallException::class);
-        $this->getRequest(null)->seRealty();
+        $this->expectException(BadMethodCallException::class);
+        $this->getRequest('test@test.at')->seRealty();
     }
 
-    public function testCall2()
+    public function testCall2(): void
     {
-        $this->expectException(\BadMethodCallException::class);
-        $this->getRequest(null)->setRealty();
+        $this->expectException(BadMethodCallException::class);
+        $this->getRequest('test@test.at')->setRealty();
     }
 
-    public function testParams()
+    public function testParams(): void
     {
         $request = $this->getRequest('test@test.at');
 
@@ -68,5 +69,18 @@ class InquiryRequestTest extends TestCase
             ],
         ], $request->getGuzzleOptions());
     }
+
+    public function testAlternativeRecipientAddress(): void
+    {
+        $request = $this->getRequest('test@test.at', 'recipient@test.at');
+
+        $this->assertEquals([
+            'form_params' => [
+                'email'                       => 'test@test.at',
+                'alternativeRecipientAddress' => 'recipient@test.at',
+            ],
+        ], $request->getGuzzleOptions());
+    }
+
 }
 
