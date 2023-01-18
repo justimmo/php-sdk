@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api\Request;
 
+use BadMethodCallException;
 use Justimmo\Api\Entity\Inquiry;
 
 /**
@@ -39,25 +40,24 @@ class InquiryRequest implements EntityRequest
         'propertyOwner',
     ];
 
-    /**
-     * @var array
-     */
-    protected $formParams = [];
+    protected array $formParams = [];
 
     /**
      * InquiryRequest constructor.
-     *
-     * @param string $email
      */
-    public function __construct($email)
+    public function __construct(string $email, ?string $alternativeRecipientAddress = null)
     {
         $this->formParams['email'] = $email;
+
+        if ($alternativeRecipientAddress !== null) {
+            $this->formParams['alternativeRecipientAddress'] = $alternativeRecipientAddress;
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public function getPath()
+    public function getPath(): string
     {
         return '/inquiry';
     }
@@ -65,7 +65,7 @@ class InquiryRequest implements EntityRequest
     /**
      * @inheritDoc
      */
-    public function getQuery()
+    public function getQuery(): array
     {
         return [];
     }
@@ -73,7 +73,7 @@ class InquiryRequest implements EntityRequest
     /**
      * @inheritDoc
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return 'POST';
     }
@@ -81,7 +81,7 @@ class InquiryRequest implements EntityRequest
     /**
      * @inheritDoc
      */
-    public function getGuzzleOptions()
+    public function getGuzzleOptions(): array
     {
         return [
             'form_params' => $this->formParams,
@@ -98,13 +98,8 @@ class InquiryRequest implements EntityRequest
 
     /**
      * Sets a parameter to be pushed as url encoded post body to the api
-     *
-     * @param string $key
-     * @param string $value
-     *
-     * @return $this
      */
-    public function setFormParam($key, $value)
+    public function setFormParam(string $key, ?string $value): self
     {
         $this->formParams[$key] = $value;
 
@@ -113,22 +108,17 @@ class InquiryRequest implements EntityRequest
 
     /**
      * Fills in form params if field is available
-     *
-     * @param string $method
-     * @param array  $arguments
-     *
-     * @return $this
      */
-    public function __call($method, array $arguments = [])
+    public function __call(string $method, array $arguments = []): self
     {
         $field = lcfirst(substr($method, 3));
-        if (strpos($method, 'set') === 0
+        if (str_starts_with($method, 'set')
             && in_array($field, self::AVAILABLE_FIELDS)
             && count($arguments) === 1
         ) {
-            return $this->setFormParam($field, $arguments[0]);
+            return $this->setFormParam($field, (string) $arguments[0]);
         }
 
-        throw new \BadMethodCallException('Method ' . $method . ' does not exist.');
+        throw new BadMethodCallException('Method ' . $method . ' does not exist.');
     }
 }
