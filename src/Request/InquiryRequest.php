@@ -98,8 +98,9 @@ class InquiryRequest implements EntityRequest
 
     /**
      * Sets a parameter to be pushed as url encoded post body to the api
+     * @psalm-suppress MissingParamType
      */
-    public function setFormParam(string $key, ?string $value): self
+    public function setFormParam(string $key, $value): self
     {
         $this->formParams[$key] = $value;
 
