@@ -1,3 +1,8 @@
+## 1.2.9
+ * Extends RealtyInquiryRequest with
+   * IsRealtyOwner (Anfragesteller ist Eigentümer einer Immobilie)
+   * RealtyOwnerConsultationRequest (Anfragesteller ist Eigentümer und wünscht Beratung)
+
 ## 1.2.8
  * Bugfix
    * Fixes a bug that picture size "orig" in Attachment::getData() would be overwritten by another size under certain circumstances

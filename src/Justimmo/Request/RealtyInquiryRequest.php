@@ -52,6 +52,16 @@ class RealtyInquiryRequest implements RequestInterface
      */
     protected $doubleoptinCompleted = false;
 
+    /**
+     * @var bool
+     */
+    protected $isRealtyOwner = false;
+
+    /**
+     * @var bool
+     */
+    protected $realtyOwnerConsultationRequest = false;
+
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
         $this->api    = $api;
@@ -313,6 +323,42 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
+     * @param bool $isRealtyOwner
+     */
+    public function setIsRealtyOwner($isRealtyOwner)
+    {
+        $this->isRealtyOwner = $isRealtyOwner;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsRealtyOwner()
+    {
+        return $this->isRealtyOwner;
+    }
+
+    /**
+     * @param bool $realtyOwnerConsultationRequest
+     */
+    public function setRealtyOwnerConsultationRequest($realtyOwnerConsultationRequest)
+    {
+        $this->realtyOwnerConsultationRequest = $realtyOwnerConsultationRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRealtyOwnerConsultationRequest()
+    {
+        return $this->realtyOwnerConsultationRequest;
+    }
+
+    /**
      * @param int[] $newsletter           An array of newsletter category ids of justimmo
      * @param bool  $doubleoptinCompleted Wether a double optin has a already been completed.
      *                                    If false, JUSTIMMO will handle double optin and send an email to the contact automatically
@@ -340,6 +386,8 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('category')     => $this->getCategory(),
             'newsletter'                                         => $this->newsletter,
             'doubleoptin_completed'                              => $this->doubleoptinCompleted ? '1' : '0',
+            'is_realty_owner'                                    => $this->isRealtyOwner ? '1' : '0',
+            'realty_owner_consultation_request'                  => $this->realtyOwnerConsultationRequest ? '1' : '0',
         ));
     }
 }
