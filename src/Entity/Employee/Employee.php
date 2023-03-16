@@ -9,6 +9,8 @@ use Justimmo\Api\Entity\Geo\Address;
 use Justimmo\Api\Entity\Attachment\Link;
 use Justimmo\Api\Entity\Identifiable;
 use Justimmo\Api\Entity\Nameable;
+use Justimmo\Api\Entity\ParsedUrl;
+use Justimmo\Api\ResultSet\ResultSet;
 
 /**
  * @JUSTIMMO\Entity()
@@ -18,242 +20,187 @@ class Employee implements Entity
     use Identifiable, Nameable;
 
     /**
-     * @var int
      * @JUSTIMMO\Column(path="number", type="integer")
      */
-    private $number;
+    private int $number;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="firstName", type="string")
      */
-    private $firstName;
+    private string $firstName;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="lastName", type="string")
      */
-    private $lastName;
+    private string $lastName;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="suffix", type="string")
      */
-    private $suffix;
+    private string $suffix;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="position", type="string")
      */
-    private $position;
+    private string $position;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="biography", type="string")
      */
-    private $biography;
+    private string $biography;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="mobile", type="string")
      */
-    private $mobile;
+    private string $mobile;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="phone", type="string")
      */
-    private $phone;
+    private string $phone;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="fax", type="string")
      */
-    private $fax;
+    private string $fax;
 
     /**
-     * @var string
      * @JUSTIMMO\Column(path="email", type="string")
      */
-    private $email;
+    private string $email;
 
     /**
-     * @var string
-     * @JUSTIMMO\Column(path="website", type="string")
+     * @JUSTIMMO\Column(path="companyName", type="string")
      */
-    private $website;
+    private string $companyName;
 
     /**
-     * @var Address
+     * @JUSTIMMO\Relation(path="website", targetEntity="Justimmo\Api\Entity\ParsedUrl")
+     */
+    private ParsedUrl $website;
+
+    /**
      * @JUSTIMMO\Relation(path="address", targetEntity="Justimmo\Api\Entity\Geo\Address")
      */
-    private $address;
+    private Address $address;
 
     /**
-     * @var Attachment
      * @JUSTIMMO\Relation(path="profilePicture", targetEntity="Justimmo\Api\Entity\Attachment\Attachment")
      */
-    private $profilePicture;
+    private Attachment $profilePicture;
 
     /**
-     * @var Attachment[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="pictures", targetEntity="Justimmo\Api\Entity\Attachment\Attachment", multiple=true)
      */
-    private $pictures;
+    private ResultSet $pictures;
 
     /**
-     * @var Category[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="employeeCategories", targetEntity="Justimmo\Api\Entity\Employee\Category", multiple=true)
      */
-    private $categories;
+    private ResultSet $categories;
 
     /**
-     * @var Link[]|\Justimmo\Api\ResultSet\ResultSet
      * @JUSTIMMO\Relation(path="links", targetEntity="Justimmo\Api\Entity\Attachment\Link", multiple=true)
      */
-    private $links;
+    private ResultSet $links;
 
     /**
-     * @var ImmobilienCard
      * @JUSTIMMO\Relation(path="immobilienCard", targetEntity="Justimmo\Api\Entity\Employee\ImmobilienCard")
      */
-    private $immobilienCard;
+    private ?ImmobilienCard $immobilienCard;
 
     /**
      * @var int[]
      * @JUSTIMMO\Column(path="realtyIds", type="integer", multiple=true)
      */
-    private $realtyIds;
+    private array $realtyIds;
 
     public function __toString()
     {
         return (string) $this->getName();
     }
 
-    /**
-     * @return int
-     */
-    public function getNumber()
+    public function getNumber(): int
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @return string
-     */
-    public function getSuffix()
+    public function getSuffix(): string
     {
         return $this->suffix;
     }
 
-    /**
-     * @return string
-     */
-    public function getPosition()
+    public function getPosition(): string
     {
         return $this->position;
     }
 
-    /**
-     * @return string
-     */
-    public function getBiography()
+    public function getBiography(): string
     {
         return $this->biography;
     }
 
-    /**
-     * @return string
-     */
-    public function getMobile()
+    public function getMobile(): string
     {
         return $this->mobile;
     }
 
-    /**
-     * @return string
-     */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
-    /**
-     * @return string
-     */
-    public function getFax()
+    public function getFax(): string
     {
         return $this->fax;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return string
-     */
-    public function getWebsite()
+    public function getCompanyName(): string
+    {
+        return $this->companyName;
+    }
+
+    public function getWebsite(): ParsedUrl
     {
         return $this->website;
     }
 
-    /**
-     * @return Address
-     */
-    public function getAddress()
+    public function getAddress(): Address
     {
         return $this->address;
     }
 
-    /**
-     * @return Attachment
-     */
-    public function getProfilePicture()
+    public function getProfilePicture(): Attachment
     {
         return $this->profilePicture;
     }
 
-    /**
-     * @return Attachment[]|\Justimmo\Api\ResultSet\ResultSet
-     */
-    public function getPictures()
+    public function getPictures(): ResultSet
     {
         return $this->pictures;
     }
 
-    /**
-     * @return Category[]|\Justimmo\Api\ResultSet\ResultSet
-     */
-    public function getCategories()
+    public function getCategories(): ResultSet
     {
         return $this->categories;
     }
 
-    /**
-     * @return Link[]|\Justimmo\Api\ResultSet\ResultSet
-     */
-    public function getLinks()
+    public function getLinks(): ResultSet
     {
         return $this->links;
     }
@@ -261,15 +208,12 @@ class Employee implements Entity
     /**
      * @return int[]
      */
-    public function getRealtyIds()
+    public function getRealtyIds(): array
     {
         return $this->realtyIds;
     }
 
-    /**
-     * @return ImmobilienCard
-     */
-    public function getImmobilienCard()
+    public function getImmobilienCard(): ?ImmobilienCard
     {
         return $this->immobilienCard;
     }
