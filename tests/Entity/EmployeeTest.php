@@ -18,7 +18,7 @@ class EmployeeTest extends EntityTestCase
     /**
      * @inheritdoc
      */
-    protected function getRequest()
+    protected function getRequest(): EmployeeRequest
     {
         return new EmployeeRequest();
     }
@@ -28,7 +28,7 @@ class EmployeeTest extends EntityTestCase
      *
      * @param Employee $entity
      */
-    protected function doTestEntity($entity)
+    protected function doTestEntity($entity): void
     {
         $this->assertInstanceOf(Employee::class, $entity);
         $this->assertEquals(264110, $entity->getId());
@@ -210,7 +210,10 @@ class EmployeeTest extends EntityTestCase
         $this->assertEquals("Geschäftsführung", $categories[0]->getName());
 
         $immobilienCard = $entity->getImmobilienCard();
-        $this->assertNull($immobilienCard);
+        $this->assertInstanceOf(ImmobilienCard::class, $immobilienCard);
+        $this->assertEquals($immobilienCard->getId(), '');
+        $this->assertEquals($immobilienCard->getUid(), '');
+        $this->assertIsBool($immobilienCard->isValid());
     }
 
     /**
@@ -221,7 +224,7 @@ class EmployeeTest extends EntityTestCase
      * @param $uid     - expected parameter for the 2nd check
      * @param $valid   - expected parameter for the 3rd check
      */
-    public function testImmobilienCard2($content, $id, $uid, $valid)
+    public function testImmobilienCard2($content, $id, $uid, $valid): void
     {
         $entity = $this->createEntity(json_encode($content));
 
@@ -233,7 +236,7 @@ class EmployeeTest extends EntityTestCase
         $this->assertEquals($valid, $immobilienCard->isValid());
     }
 
-    public static function immobilienCardProvider()
+    public static function immobilienCardProvider(): array
     {
         $tests = [
             [

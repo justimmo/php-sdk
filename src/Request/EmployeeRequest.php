@@ -21,6 +21,7 @@ use Justimmo\Api\Entity\Employee\Employee;
  * @method $this withFax()
  * @method $this withEmail()
  * @method $this withAddress()
+ * @method $this withCompanyName()
  * @method $this withWebsite()
  * @method $this withProfilePicture()
  * @method $this withPictures()
@@ -45,6 +46,7 @@ class EmployeeRequest extends BaseApiRequest
         'fax',
         'email',
         'address',
+        'companyName',
         'website',
         'profilePicture',
         'pictures',
