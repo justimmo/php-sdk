@@ -22,47 +22,47 @@ class Employee implements Entity
     /**
      * @JUSTIMMO\Column(path="number", type="integer")
      */
-    private int $number;
+    private $number;
 
     /**
      * @JUSTIMMO\Column(path="firstName", type="string")
      */
-    private string $firstName;
+    private string $firstName = '';
 
     /**
      * @JUSTIMMO\Column(path="lastName", type="string")
      */
-    private string $lastName;
+    private string $lastName = '';
 
     /**
      * @JUSTIMMO\Column(path="suffix", type="string")
      */
-    private string $suffix;
+    private string $suffix = '';
 
     /**
      * @JUSTIMMO\Column(path="position", type="string")
      */
-    private string $position;
+    private string $position = '';
 
     /**
      * @JUSTIMMO\Column(path="biography", type="string")
      */
-    private string $biography;
+    private string $biography = '';
 
     /**
      * @JUSTIMMO\Column(path="mobile", type="string")
      */
-    private string $mobile;
+    private string $mobile = '';
 
     /**
      * @JUSTIMMO\Column(path="phone", type="string")
      */
-    private string $phone;
+    private string $phone = '';
 
     /**
      * @JUSTIMMO\Column(path="fax", type="string")
      */
-    private string $fax;
+    private string $fax = '';
 
     /**
      * @JUSTIMMO\Column(path="email", type="string")
@@ -72,7 +72,7 @@ class Employee implements Entity
     /**
      * @JUSTIMMO\Column(path="companyName", type="string")
      */
-    private string $companyName;
+    private string $companyName = '';
 
     /**
      * @JUSTIMMO\Relation(path="website", targetEntity="Justimmo\Api\Entity\ParsedUrl")
