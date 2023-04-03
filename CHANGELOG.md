@@ -1,3 +1,7 @@
+## 1.2.10
+ * Bugfix
+   * fixes BasicDataWrapper::transformZipCodes will always use auto incremented array key ID instead of the JI related zip code ID.
+
 ## 1.2.9
  * Extends RealtyInquiryRequest with
    * IsRealtyOwner (Anfragesteller ist Eigentümer einer Immobilie)
