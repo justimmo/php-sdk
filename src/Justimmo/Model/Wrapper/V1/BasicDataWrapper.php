@@ -44,13 +44,18 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
         $return = array();
         foreach ($xml->postleitzahl as $postleitzahl) {
-            $return[(int) $postleitzahl->id] = array(
+            $entry = array(
                 'countryId'      => (int) $postleitzahl->landid,
                 'regionId'       => (int) $postleitzahl->regionid,
                 'zipCode'        => trim((string) $postleitzahl->plz),
                 'place'          => trim((string) $postleitzahl->ort),
                 'federalStateId' => (int) $postleitzahl->bundeslandid,
             );
+            if (($id = (int) $postleitzahl->id) !== 0) {
+                $return[$id] = $entry;
+            } else {
+                $return[] = $entry;
+            }
         }
 
         return $return;
