@@ -1,7 +1,3 @@
-## 1.2.10
- * Bugfix
-   * fixes BasicDataWrapper::transformZipCodes. Basic Data Wrapper uses the zip code ID if presented or uses auto incremented ID otherwise.
-
 ## 1.2.9
  * Extends RealtyInquiryRequest with
    * IsRealtyOwner (Anfragesteller ist Eigentümer einer Immobilie)
