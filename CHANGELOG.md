@@ -1,3 +1,10 @@
+## 1.2.12
+* Add company ("firma") to RealtyInquiryRequest
+
+## 1.2.11
+* Bugfix
+  * Fix type of parameter "numeric_prefix" of http_build_query function
+
 ## 1.2.10
  * Bugfix
    * fixes BasicDataWrapper::transformZipCodes will always use auto incremented array key ID instead of the JI related zip code ID.
