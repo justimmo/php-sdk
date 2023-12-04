@@ -62,6 +62,11 @@ class RealtyInquiryRequest implements RequestInterface
      */
     protected $realtyOwnerConsultationRequest = false;
 
+    /**
+     * @var string
+     */
+    protected $company = null;
+
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
         $this->api    = $api;
@@ -323,6 +328,22 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
      * @param bool $isRealtyOwner
      */
     public function setIsRealtyOwner($isRealtyOwner)
@@ -384,6 +405,7 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('title')        => $this->getTitle(),
             $this->mapper->getFilterPropertyName('salutationId') => $this->getSalutationId(),
             $this->mapper->getFilterPropertyName('category')     => $this->getCategory(),
+            $this->mapper->getFilterPropertyName('company')      => $this->getCompany(),
             'newsletter'                                         => $this->newsletter,
             'doubleoptin_completed'                              => $this->doubleoptinCompleted ? '1' : '0',
             'is_realty_owner'                                    => $this->isRealtyOwner ? '1' : '0',
