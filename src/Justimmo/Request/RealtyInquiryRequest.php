@@ -67,6 +67,11 @@ class RealtyInquiryRequest implements RequestInterface
      */
     protected $company = null;
 
+    /**
+     * @var bool
+     */
+    protected $fundingInquiry = false;
+
     public function __construct(JustimmoApiInterface $api, MapperInterface $mapper)
     {
         $this->api    = $api;
@@ -380,6 +385,24 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isFundingInquiry()
+    {
+        return $this->fundingInquiry;
+    }
+
+    /**
+     * @param bool $fundingInquiry
+     */
+    public function setFundingInquiry($fundingInquiry)
+    {
+        $this->fundingInquiry = $fundingInquiry;
+
+        return $this;
+    }
+
+    /**
      * @param int[] $newsletter           An array of newsletter category ids of justimmo
      * @param bool  $doubleoptinCompleted Wether a double optin has a already been completed.
      *                                    If false, JUSTIMMO will handle double optin and send an email to the contact automatically
@@ -410,6 +433,7 @@ class RealtyInquiryRequest implements RequestInterface
             'doubleoptin_completed'                              => $this->doubleoptinCompleted ? '1' : '0',
             'is_realty_owner'                                    => $this->isRealtyOwner ? '1' : '0',
             'realty_owner_consultation_request'                  => $this->realtyOwnerConsultationRequest ? '1' : '0',
+            $this->mapper->getFilterPropertyName('fundingInquiry') => $this->isFundingInquiry() ? '1' : '0',
         ));
     }
 }

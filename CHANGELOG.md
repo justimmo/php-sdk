@@ -1,3 +1,6 @@
+## 1.2.13
+* Add funding Inquiry ("funding_inquiry") to RealtyInquiryRequest
+ 
 ## 1.2.12
 * Add company ("firma") to RealtyInquiryRequest
 
