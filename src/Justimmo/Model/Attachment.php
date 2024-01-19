@@ -15,7 +15,7 @@ class Attachment
     private   $newStorageHost   = 'storage.justimmo.at';
     private   $canConvertUrl    = true;
 
-    protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg');
+    protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg', 'webp');
     protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
     protected static $linkGroups = array('LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL');
 
