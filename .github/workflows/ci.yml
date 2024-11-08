@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v3
             -   uses: php-actions/composer@v6
                 with:
                     args: --ignore-platform-reqs
@@ -47,3 +47,21 @@ jobs:
                 with:
                     version: 8
                     php_version: 8.0
+
+            -   name: PHP 8.1
+                uses: php-actions/phpunit@v3
+                with:
+                    version: 8
+                    php_version: 8.1
+
+            -   name: PHP 8.2
+                uses: php-actions/phpunit@v3
+                with:
+                    version: 8
+                    php_version: 8.2
+
+            -   name: PHP 8.3
+                uses: php-actions/phpunit@v3
+                with:
+                    version: 8
+                    php_version: 8.3
