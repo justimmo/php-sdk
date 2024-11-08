@@ -152,6 +152,9 @@ abstract class AbstractQuery implements QueryInterface
         if (isset($this->params['alleProjektObjekte'])) {
             $params['alleProjektObjekte'] = $this->params['alleProjektObjekte'];
         }
+        if (isset($this->params['objektIds'])) {
+            $params['objektIds'] = $this->params['objektIds'];
+        }
 
         $method   = $this->getDetailCall();
         $response = $this->api->$method($pk, $params);
