@@ -1,3 +1,12 @@
+## 1.2.14
+* Add support for webp images - thx @ManuelSzecsenyi
+* Fix type of surface area - thx @infabo
+* Allow filtering by project id - thx @infabo
+* Support "objektIds" parameter - thx @infabo
+* CI - Fix composer using wrong php version to install dependencies
+* CI - Add test runners for php 8.1, 8.2 and 8.3
+* Add support for psr/log 2.x and 3.x
+
 ## 1.2.13
 * Add funding Inquiry ("funding_inquiry") to RealtyInquiryRequest
  
