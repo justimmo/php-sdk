@@ -107,6 +107,8 @@ interface JustimmoApiInterface
     /**
      * retrieve a zip code list
      *
+     * @deprecated
+     *
      * @param array $params
      *
      * @return string
@@ -115,6 +117,8 @@ interface JustimmoApiInterface
 
     /**
      * retrieve a region list
+     *
+     * @deprecated - This call is deprecated and will be replaced with political districts in 2.0
      *
      * @param array $params
      *
