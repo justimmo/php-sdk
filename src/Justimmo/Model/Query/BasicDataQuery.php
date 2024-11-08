@@ -123,34 +123,6 @@ class BasicDataQuery
     /**
      * @return array
      */
-    public function findZipCodes()
-    {
-        $response = $this->api->callZipCodes($this->params);
-
-        $return = $this->wrapper->transformZipCodes($response);
-
-        $this->clear();
-
-        return $return;
-    }
-
-    /**
-     * @return array
-     */
-    public function findRegions()
-    {
-        $response = $this->api->callRegions($this->params);
-
-        $return = $this->wrapper->transformRegions($response);
-
-        $this->clear();
-
-        return $return;
-    }
-
-    /**
-     * @return array
-     */
     public function findRealtyTypes()
     {
         $response = $this->api->callRealtyTypes($this->params);

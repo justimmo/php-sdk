@@ -38,37 +38,6 @@ class BasicDataWrapper implements BasicDataWrapperInterface
         return $return;
     }
 
-    public function transformZipCodes($data)
-    {
-        $xml = new \SimpleXMLElement($data);
-
-        $return = array();
-        foreach ($xml->postleitzahl as $postleitzahl) {
-            $return[] = array(
-                'id'             => ((string) $postleitzahl->id === '') ? null : (int) $postleitzahl->id,
-                'countryId'      => ((string) $postleitzahl->landid === '') ? null : (int) $postleitzahl->landid,
-                'regionId'       => ((string) $postleitzahl->regionid === '') ? null : (int) $postleitzahl->regionid,
-                'zipCode'        => trim((string) $postleitzahl->plz),
-                'place'          => trim((string) $postleitzahl->ort),
-                'federalStateId' => ((string) $postleitzahl->bundeslandid === '') ? null : (int) $postleitzahl->bundeslandid,
-            );
-        }
-
-        return $return;
-    }
-
-    public function transformRegions($data)
-    {
-        $xml = new \SimpleXMLElement($data);
-
-        $return = array();
-        foreach ($xml->region as $region) {
-            $return[(int) $region->id] = trim((string) $region->name);
-        }
-
-        return $return;
-    }
-
     public function transformRealtyTypes($data)
     {
         $xml = new \SimpleXMLElement($data);

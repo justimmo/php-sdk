@@ -8,10 +8,6 @@ interface BasicDataWrapperInterface
 
     public function transformFederalStates($data);
 
-    public function transformZipCodes($data);
-
-    public function transformRegions($data);
-
     public function transformRealtyTypes($data);
 
     public function transformRealtyCategories($data);

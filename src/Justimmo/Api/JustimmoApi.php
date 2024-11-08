@@ -185,22 +185,6 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callZipCodes(array $params = array())
-    {
-        return $this->call('objekt/plzsUndOrte', $params);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function callRegions(array $params = array())
-    {
-        return $this->call('objekt/regionen', $params);
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function callRealtyTypes(array $params = array())
     {
         return $this->call('objekt/objektarten', $params);

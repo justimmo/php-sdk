@@ -55,16 +55,6 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
-    public function callZipCodes(array $params = array())
-    {
-        return $this->emptyXML();
-    }
-
-    public function callRegions(array $params = array())
-    {
-        return $this->emptyXML();
-    }
-
     public function callRealtyTypes(array $params = array())
     {
         return $this->emptyXML();

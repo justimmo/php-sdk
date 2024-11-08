@@ -36,53 +36,6 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals('05', $list[130]['fipsCode']);
     }
 
-    public function testZipCodes()
-    {
-        $list = $this->wrapper->transformZipCodes($this->getFixtures('v1/zip_codes.xml'));
-
-        $this->assertEquals(128, count($list));
-
-        $rowEmptyZipId = $list[0];
-        $this->assertNull($rowEmptyZipId['id']);
-        $this->assertEquals('Santa Ponça', $rowEmptyZipId['place']);
-        $this->assertEquals(69, $rowEmptyZipId['countryId']);
-        $this->assertNull($rowEmptyZipId['regionId']);
-        $this->assertEquals('07180', $rowEmptyZipId['zipCode']);
-        $this->assertEquals(4248, $rowEmptyZipId['federalStateId']);
-
-        $row537 = $this->getRowById($list, 537);
-        $this->assertEquals(537, $row537['id']);
-        $this->assertEquals('Lofer', $row537['place']);
-        $this->assertEquals(17, $row537['countryId']);
-        $this->assertEquals(115, $row537['regionId']);
-        $this->assertEquals('5090', $row537['zipCode']);
-        $this->assertEquals(130, $row537['federalStateId']);
-    }
-
-    private function getRowById($data, $id)
-    {
-        $match = null;
-        foreach ($data as $row) {
-            if ($row['id'] === $id) {
-                $match = $row;
-                break;
-            }
-        }
-
-        return $match;
-    }
-
-    public function testRegions()
-    {
-        $list = $this->wrapper->transformRegions($this->getFixtures('v1/regions.xml'));
-
-        $this->assertEquals(23, count($list));
-        $this->assertEquals('17., Hernals', $list[34]);
-        $this->assertEquals('12., Meidling', $list[68]);
-        $this->assertEquals('2., Leopoldstadt', $list[58]);
-        $this->assertEquals('22., Donaustadt', $list[12]);
-    }
-
     public function testRealtyTypes()
     {
         $list = $this->wrapper->transformRealtyTypes($this->getFixtures('v1/realty_types.xml'));

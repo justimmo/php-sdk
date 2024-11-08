@@ -105,28 +105,6 @@ interface JustimmoApiInterface
     public function callFederalStates(array $params = array());
 
     /**
-     * retrieve a zip code list
-     *
-     * @deprecated
-     *
-     * @param array $params
-     *
-     * @return string
-     */
-    public function callZipCodes(array $params = array());
-
-    /**
-     * retrieve a region list
-     *
-     * @deprecated - This call is deprecated and will be replaced with political districts in 2.0
-     *
-     * @param array $params
-     *
-     * @return string
-     */
-    public function callRegions(array $params = array());
-
-    /**
      * Retrieve tenant data
      *
      * @param array $params
