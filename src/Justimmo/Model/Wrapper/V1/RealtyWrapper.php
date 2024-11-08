@@ -392,7 +392,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->flaechen)) {
             $this->map($this->flaechenMapping, $xml->flaechen, $objekt);
-            $objekt->setSurfaceArea($this->cast($xml->flaechen->grundstuecksflaeche));
+            $objekt->setSurfaceArea($this->cast($xml->flaechen->grundstuecksflaeche, 'double'));
 
             foreach ($xml->flaechen->user_defined_simplefield as $simpleField) {
                 $this->mapSimpleField($simpleField, $objekt);
