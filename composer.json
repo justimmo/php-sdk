@@ -4,8 +4,8 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": ">=7.0",
-        "psr/log": "^1.0|^2.0|^3.0"
+        "php": ">=8.1",
+        "psr/log": "^2.0|^3.0"
     },
     "require-dev": {
         "symfony/debug": "^4.4",
