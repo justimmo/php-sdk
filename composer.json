@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.0",
-        "psr/log": "~1.0"
+        "psr/log": "^1.0|^2.0|^3.0"
     },
     "require-dev": {
         "symfony/debug": "^4.4",
