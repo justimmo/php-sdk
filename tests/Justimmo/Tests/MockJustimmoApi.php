@@ -91,15 +91,6 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('federalStates');
     }
 
-    public function callZipCodes(array $params = array())
-    {
-        return $this->getReturnValue('zipCodes');
-    }
-
-    public function callRegions(array $params = array())
-    {
-        return $this->getReturnValue('regions');
-    }
 
     public function callRealtyTypes(array $params = array())
     {

@@ -28,7 +28,7 @@ class ProjectWrapperTest extends TestCase
 
         $this->assertEquals(51, $entry->getId());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
-        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals(1, count($entry->getAttachments()));
@@ -78,7 +78,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals(51, $entry->getId());
         $this->assertEquals(3, $entry->getProjectNumber());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
-        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
         $this->assertEquals('AUT', $entry->getCountry());
         $this->assertEquals('Wien', $entry->getFederalState());
         $this->assertEquals('1030', $entry->getZipCode());
@@ -234,7 +234,7 @@ class ProjectWrapperTest extends TestCase
 
         $this->assertEquals(51, $entry->getId());
         $this->assertEquals('Neubau mitten im dritten', $entry->getTitle());
-        $this->assertContains('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', $entry->getDescription());
         $this->assertEquals('1030', $entry->getZipCode());
         $this->assertEquals('Wien', $entry->getPlace());
         $this->assertEquals('Kegelgasse', $entry->getStreet());

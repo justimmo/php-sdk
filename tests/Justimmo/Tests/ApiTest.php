@@ -21,7 +21,7 @@ class ApiTest extends TestCase
     {
         $this->api = $this->getMockBuilder('Justimmo\Api\JustimmoApi')
             ->setConstructorArgs(array('username', 'password', new NullLogger(), new NullCache()))
-            ->setMethods(array('createRequest'))
+            ->onlyMethods(array('createRequest'))
             ->getMock();
     }
 
