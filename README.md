@@ -1,7 +1,7 @@
 JUSTIMMO PHP-SDK
 ================
 [![CI](https://github.com/justimmo/php-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/justimmo/php-sdk/actions/workflows/ci.yml)
-[![Latest Stable Version](https://poser.pugx.org/justimmo/php-sdk/version.png)](https://packagist.org/packages/justimmo/php-sdk)
+[![Latest Version](https://img.shields.io/github/tag/justimmo/php-sdk.svg)](https://github.com/justimmo/php-sdk/releases)
 [![License](https://poser.pugx.org/justimmo/php-sdk/license.svg)](https://packagist.org/packages/justimmo/php-sdk)
 [![Total Downloads](https://poser.pugx.org/justimmo/php-sdk/downloads.svg)](https://packagist.org/packages/justimmo/php-sdk)
 
