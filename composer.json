@@ -8,11 +8,7 @@
         "psr/log": "^2.0|^3.0"
     },
     "require-dev": {
-        "symfony/debug": "^4.4",
         "phpunit/phpunit": "^6.5|^7.5|^8.5"
-    },
-    "suggest": {
-        "monolog/monolog": "~1.7"
     },
     "autoload": {
         "psr-4": { "Justimmo\\": "src/Justimmo" }
