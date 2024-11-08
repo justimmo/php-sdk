@@ -15,11 +15,11 @@
         "monolog/monolog": "~1.7"
     },
     "autoload": {
-        "psr-0": { "Justimmo": "src/" }
+        "psr-4": { "Justimmo\\": "src/Justimmo" }
     },
     "autoload-dev": {
-        "psr-0": {
-            "Justimmo": "tests/"
+        "psr-4": {
+            "Justimmo\\Tests\\": "tests/Justimmo/Tests"
         }
     }
 }

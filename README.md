@@ -7,35 +7,13 @@ JUSTIMMO PHP-SDK
 
 Installation
 ------------
-#### Composer (recommended)
-
-```
-$ composer require justimmo/php-sdk "~1.1"
-```
-Composer generates a vendor/autoload.php file. You can simply include this file
-```php  
-require_once __DIR__.'/vendor/autoload.php';
-```
-
-If composer is not available you can set it up
-```
-$ curl -s https://getcomposer.org/installer | php
-```
-For more install options please refer to the <a href="https://getcomposer.org/download/" target="_blank">Composer Documentation</a>
-
-#### manually
- * Download the latest stable release of php-sdk
- * Download https://github.com/php-fig/log
- * Extract php-sdk into your projects vendor folder
- * Extract log into the src folder of php-sdk
-
-```php
-require_once 'path_to_extraction/src/autoload.php';
+```bash
+$ composer require justimmo/php-sdk "^2.0"
 ```
 
 Documentation
 -------------
-<a href="http://justimmo.github.io/php-sdk/index.html" target="_blank">Read the full documentation</a>
+<a href="https://api-docs.justimmo.at/php-sdk/index.html" target="_blank">Read the full documentation</a>
 
 Usage Example
 -------------
