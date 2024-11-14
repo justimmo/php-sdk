@@ -31,6 +31,7 @@ class EmployeeWrapper extends AbstractWrapper
         'plz',
         'ort',
         'url',
+        'anrede',
     );
 
     public function transformSingle($data)

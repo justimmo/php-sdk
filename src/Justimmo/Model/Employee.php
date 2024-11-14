@@ -95,6 +95,11 @@ class Employee
     protected $url = null;
 
     /**
+     * @var null|string
+     */
+    protected $salutation = null;
+
+    /**
      * @param array $attachments
      *
      * @return $this
@@ -516,5 +521,21 @@ class Employee
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSalutation()
+    {
+        return $this->salutation;
+    }
+
+    /**
+     * @param null|string $salutation
+     */
+    public function setSalutation($salutation)
+    {
+        $this->salutation = $salutation;
     }
 }
