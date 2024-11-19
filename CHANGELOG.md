@@ -1,3 +1,6 @@
+## 1.2.15
+* Add salutation to Employee by @ZuzanaMuellner-JustImmo
+
 ## 1.2.14
 * Add support for webp images - thx @ManuelSzecsenyi
 * Fix type of surface area - thx @infabo
