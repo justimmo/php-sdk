@@ -63,6 +63,9 @@ class EmployeeMapper extends AbstractMapper
             'url'            => array(
                 'property' => 'url',
             ),
+            'anrede'         => array(
+                'property' => 'salutation',
+            ),
         );
     }
 
