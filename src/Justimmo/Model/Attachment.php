@@ -79,7 +79,7 @@ class Attachment
     public function calculateUrl($size = 'orig')
     {
         if ($this->canConvertUrl) {
-            if (!in_array($size, array('big', 'big2', 'medium', 'small', 'pdf', 'wohnimpuls_medium', 's220x155', 's312x208', 'fullhd', 'hq', 'default', 'orig'))) {
+            if (!in_array($size, array('big', 'big2', 'medium', 'small', 'pdf', 'wohnimpuls_medium', 's220x155', 's312x208', 'fullhd', 'hq', 'default', 'orig', 'medium_unbranded', 'big_unbranded', 'big2_unbranded', 'fullhd_unbranded', 'fullhd_unbranded_downscale', 'fullhd_downscale'))) {
                 $size = 'medium';
             }
 
