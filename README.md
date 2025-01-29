@@ -10,7 +10,7 @@ Installation
 #### Composer (recommended)
 
 ```
-$ composer require justimmo/php-sdk "~1.1"
+$ composer require justimmo/php-sdk "~1.2"
 ```
 Composer generates a vendor/autoload.php file. You can simply include this file
 ```php  
