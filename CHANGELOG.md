@@ -1,3 +1,6 @@
+## 1.2.16
+* Extend realty entity with rent_with_purchase_option.
+
 ## 1.2.15
 * Add salutation to Employee by @ZuzanaMuellner-JustImmo
 

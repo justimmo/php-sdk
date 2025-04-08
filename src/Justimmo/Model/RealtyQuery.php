@@ -2,7 +2,6 @@
 namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
-use Justimmo\Tests\Model\ProjectQueryTest;
 
 /**
  * Class RealtyQuery
@@ -45,6 +44,7 @@ use Justimmo\Tests\Model\ProjectQueryTest;
  * @method RealtyQuery filterByParentId($value)
  * @method RealtyQuery filterByRentPerSqm($value)
  * @method RealtyQuery filterByUpdatedAt($value)
+ * @method RealtyQuery filterByRentWithPurchaseOption($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')
