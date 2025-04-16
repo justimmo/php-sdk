@@ -18,7 +18,10 @@ class InvalidRequestException extends \Exception implements JustimmoException
      */
     public function setResponse($response)
     {
-        $xml = simplexml_load_string($response);
+        $xml = @simplexml_load_string($response);
+        if ($xml === false) {
+            return;
+        }
         if (!empty($xml->error)) {
             $this->message = (string) $xml->error;
         }
