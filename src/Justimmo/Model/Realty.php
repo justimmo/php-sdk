@@ -136,6 +136,11 @@ class Realty
     protected $marketingType;
 
     /**
+     * @var bool|null
+     */
+    protected $rentWithPurchaseOption;
+
+    /**
      * @var string
      */
     protected $realtyType;
@@ -666,6 +671,26 @@ class Realty
     public function getMarketingType()
     {
         return $this->marketingType;
+    }
+
+    /**
+     * @param ?bool $rentWithPurchaseOption
+     *
+     * @return $this
+     */
+    public function setRentWithPurchaseOption($rentWithPurchaseOption)
+    {
+        $this->rentWithPurchaseOption = $rentWithPurchaseOption;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getRentWithPurchaseOption()
+    {
+        return $this->rentWithPurchaseOption;
     }
 
     /**
