@@ -1,3 +1,6 @@
+## 1.2.18
+* Extending Attachment Entity with description.
+
 ## 1.2.16
 * Extend realty entity with rent_with_purchase_option.
 
