@@ -101,6 +101,9 @@ abstract class AbstractWrapper implements WrapperInterface
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
                 }
                 $attachment->setTitle($this->cast($anhang->anhangtitel));
+                if (isset($anhang->anhang_beschreibung)) {
+                    $attachment->setDescription($this->cast($anhang->anhang_beschreibung));
+                }
                 $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
                 $attachmentAware->addAttachment($attachment);
             } elseif (isset($anhang->pfad)) {
@@ -113,6 +116,9 @@ abstract class AbstractWrapper implements WrapperInterface
                     $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
                 }
                 $attachment->setTitle($this->cast($anhang->titel));
+                if (isset($anhang->anhang_beschreibung)) {
+                    $attachment->setDescription($this->cast($anhang->anhang_beschreibung));
+                }
                 $attachment->setOriginalFilename($this->cast($anhang->original_dateiname));
                 $attachmentAware->addAttachment($attachment);
             }

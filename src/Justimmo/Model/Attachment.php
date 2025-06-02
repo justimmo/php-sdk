@@ -9,6 +9,7 @@ class Attachment
     protected $type;
     protected $extension;
     protected $title            = null;
+    protected $description      = null;
     protected $originalFilename = null;
     protected $data             = array();
     protected $group            = null;
@@ -214,6 +215,22 @@ class Attachment
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param null $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
