@@ -1,3 +1,6 @@
+## 1.2.19
+* Add missing attachment descriptions to list and project calls.
+
 ## 1.2.18
 * Extending Attachment Entity with description.
 

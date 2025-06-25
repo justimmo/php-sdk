@@ -75,7 +75,11 @@ class ProjectWrapper extends AbstractWrapper
         }
 
         if (isset($xml->erstes_bild) && (((string) $xml->erstes_bild) != '')) {
-            $project->addAttachment(new Attachment((string) $xml->erstes_bild));
+            $attachment = new Attachment((string) $xml->erstes_bild);
+            if (isset($xml->erstes_bild_beschreibung) && (((string) $xml->erstes_bild_beschreibung) != '')) {
+                $attachment->setDescription((string) $xml->erstes_bild_beschreibung);
+            }
+            $project->addAttachment($attachment);
         }
 
         if (isset($xml->bilder) && isset($xml->bilder->bild)) {
