@@ -1,3 +1,6 @@
+## 1.2.20
+* Add suffix to RealtyInquiry
+ 
 ## 1.2.19
 * Add missing attachment descriptions to list and project calls.
 

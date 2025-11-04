@@ -36,6 +36,9 @@ class RealtyInquiryRequest implements RequestInterface
     /** @var string */
     protected $title = null;
 
+    /** @var string */
+    protected $suffix = null;
+
     /** @var int */
     protected $salutationId = null;
 
@@ -287,6 +290,14 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
+     * @return string
+     */
+    public function getSuffix()
+    {
+        return $this->suffix;
+    }
+
+    /**
      * @return int
      */
     public function getSalutationId()
@@ -300,6 +311,16 @@ class RealtyInquiryRequest implements RequestInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @param string $suffix
+     */
+    public function setSuffix($suffix)
+    {
+        $this->suffix = $suffix;
 
         return $this;
     }
@@ -426,6 +447,7 @@ class RealtyInquiryRequest implements RequestInterface
             $this->mapper->getFilterPropertyName('city')         => $this->getCity(),
             $this->mapper->getFilterPropertyName('country')      => $this->getCountry(),
             $this->mapper->getFilterPropertyName('title')        => $this->getTitle(),
+            $this->mapper->getFilterPropertyName('suffix')       => $this->getSuffix(),
             $this->mapper->getFilterPropertyName('salutationId') => $this->getSalutationId(),
             $this->mapper->getFilterPropertyName('category')     => $this->getCategory(),
             $this->mapper->getFilterPropertyName('company')      => $this->getCompany(),

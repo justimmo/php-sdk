@@ -24,6 +24,7 @@ class RealtyInquiryMapper extends AbstractMapper
             'city'         => 'ort',
             'country'      => 'land',
             'title'        => 'titel',
+            'suffix'       => 'suffix',
             'salutationId' => 'anrede_id',
             'category'     => 'kategorie',
             'company'      => 'firma',
