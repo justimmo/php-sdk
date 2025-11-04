@@ -1,5 +1,14 @@
-## 1.2.20
+## 1.2.23
 * Add suffix to RealtyInquiry
+
+## 1.2.22
+* [Picture Sizes] Added uhd_unbranded, uhd_downscale and uhd_unbranded_downscale
+
+## 1.2.21
+* [Picture Sizes] Renamed 4K to UHD
+
+## 1.2.20
+* Picture Sizes] Added 4K
  
 ## 1.2.19
 * Add missing attachment descriptions to list and project calls.
