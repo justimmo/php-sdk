@@ -47,3 +47,25 @@ jobs:
             with:
                 version: 8
                 php_version: 8.3
+    build-test-84:
+      runs-on: ubuntu-latest
+      steps:
+      -   uses: actions/checkout@v3
+      -   uses: php-actions/composer@v6
+          with:
+            php_version: 8.4
+      -   uses: php-actions/phpunit@v3
+          with:
+            version: 8
+            php_version: 8.4
+    build-test-85:
+      runs-on: ubuntu-latest
+      steps:
+      -   uses: actions/checkout@v3
+      -   uses: php-actions/composer@v6
+          with:
+            php_version: 8.5
+      -   uses: php-actions/phpunit@v3
+          with:
+            version: 8
+            php_version: 8.5
