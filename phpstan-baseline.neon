@@ -1,0 +1,3361 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Invalid type object to throw\.$#'
+			identifier: throw.notThrowable
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:__construct\(\) has parameter \$password with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:__construct\(\) has parameter \$username with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:call\(\) has parameter \$call with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:call\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callCountries\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callEmployeeIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callEmployeeList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callFederalStates\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyCategories\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyTypes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRegions\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callTenant\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callZipCodes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:createRequest\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:createRequest\(\) has parameter \$url with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:generateUrl\(\) has parameter \$call with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:generateUrl\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:postRealtyInquiry\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:setCurlOption\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:setCurlOption\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:setCurlOptions\(\) has parameter \$curlOptions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:throwError\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:throwError\(\) has parameter \$message with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Property Justimmo\\Api\\JustimmoApi\:\:\$curlOptions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Property Justimmo\\Api\\JustimmoApi\:\:\$supportedVersions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callCountries\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callEmployeeIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callEmployeeList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callFederalStates\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyCategories\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyTypes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRegions\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callTenant\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callZipCodes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:postRealtyInquiry\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoApiInterface.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callCountries\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callExpose\(\) should return string but returns null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callFederalStates\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyCategories\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyTypes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRegions\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callTenant\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callZipCodes\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:emptyXML\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:postRealtyInquiry\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Api/JustimmoNullApi.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\CacheInterface\:\:generateCacheKey\(\) has parameter \$url with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/CacheInterface.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\CacheInterface\:\:remove\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Cache/CacheInterface.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\CacheInterface\:\:remove\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/CacheInterface.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\CacheInterface\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Cache/CacheInterface.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\MemcacheCache\:\:__construct\(\) has parameter \$lifetime with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/MemcacheCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\MemcacheCache\:\:generateCacheKey\(\) has parameter \$url with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/MemcacheCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\MemcacheCache\:\:remove\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/MemcacheCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\NullCache\:\:generateCacheKey\(\) has parameter \$url with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/NullCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\NullCache\:\:generateCacheKey\(\) should return string but returns null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Cache/NullCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\NullCache\:\:remove\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Cache/NullCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\NullCache\:\:remove\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Cache/NullCache.php
+
+		-
+			message: '#^Method Justimmo\\Cache\\NullCache\:\:set\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Cache/NullCache.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:__construct\(\) has parameter \$url with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getInfo\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getInfos\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getOption\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:removeOption\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOption\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOption\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOptions\(\) has parameter \$options with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setParameters\(\) has parameter \$v with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setUrl\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Property Justimmo\\Curl\\CurlRequest\:\:\$content \(string\) does not accept bool\|string\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Property Justimmo\\Curl\\CurlRequest\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between null and null will always evaluate to false\.$#'
+			identifier: notIdentical.alwaysFalse
+			count: 2
+			path: src/Justimmo/Curl/CurlRequest.php
+
+		-
+			message: '#^Method Justimmo\\Exception\\InvalidRequestException\:\:setResponse\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Exception/InvalidRequestException.php
+
+		-
+			message: '#^Method Justimmo\\Model\\AdditionalCosts\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Property Justimmo\\Model\\AdditionalCosts\:\:\$gross \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Property Justimmo\\Model\\AdditionalCosts\:\:\$net \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Property Justimmo\\Model\\AdditionalCosts\:\:\$vat \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Property Justimmo\\Model\\AdditionalCosts\:\:\$vatInput \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Property Justimmo\\Model\\AdditionalCosts\:\:\$vatValue \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/AdditionalCosts.php
+
+		-
+			message: '#^Cannot access offset ''host'' on array\{scheme\?\: string, host\?\: string, port\?\: int\<0, 65535\>, user\?\: string, pass\?\: string, path\?\: string, query\?\: string, fragment\?\: string\}\|false\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:__construct\(\) has parameter \$group with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:__construct\(\) has parameter \$path with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:__construct\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:addData\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:addData\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:determineStorageServer\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:determineStorageServer\(\) has parameter \$path with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:getUrl\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:getUrl\(\) has parameter \$size with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:mergeData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:setData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Attachment\:\:setDescription\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$canConvertUrl has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$data has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$extension has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$group has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$linkGroups has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$newStorageHost has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$originalFilename has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$pictureExtensions has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$type has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Attachment\:\:\$videoExtensions has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Attachment.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getAttachmentsByType\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getCategory\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getEmail\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getFax\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getFirstName\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getLastName\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getMobile\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getPhone\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getPosition\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getSuffix\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:getTitle\(\) should return null but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setAttachments\(\) has parameter \$attachments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setCity\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setNumber\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setPostal\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setSalutation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setStreet\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Employee\:\:setUrl\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Employee\:\:\$attachments type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Employee.php
+
+		-
+			message: '#^Instanceof between DateTime and DateTime will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\EnergyPass\:\:getEnergyEfficiencyFactorClass\(\) should return null but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\EnergyPass\:\:getEnergyEfficiencyFactorValue\(\) should return null but returns float\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\EnergyPass\:\:getThermalHeatRequirementClass\(\) should return null but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\EnergyPass\:\:getThermalHeatRequirementValue\(\) should return null but returns float\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\EnergyPass\:\:getValidUntil\(\) should return DateTime\|null but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Property Justimmo\\Model\\EnergyPass\:\:\$energyEfficiencyFactorClass \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Property Justimmo\\Model\\EnergyPass\:\:\$energyEfficiencyFactorValue \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Property Justimmo\\Model\\EnergyPass\:\:\$thermalHeatRequirementClass \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Property Justimmo\\Model\\EnergyPass\:\:\$thermalHeatRequirementValue \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Property Justimmo\\Model\\EnergyPass\:\:\$validUntil \(DateTime\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Result of && is always true\.$#'
+			identifier: booleanAnd.alwaysTrue
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/Justimmo/Model/EnergyPass.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Garage\:\:__construct\(\) has parameter \$marketingType with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Garage\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Garage\:\:__construct\(\) has parameter \$quantity with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Garage\:\:__construct\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Garage\:\:\$gross \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Garage\:\:\$net \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Garage\:\:\$vat \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Garage\:\:\$vatValue \(float\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Garage.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/MapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/MapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/MapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/MapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/NullMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/NullMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/NullMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/NullMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getValues\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getProperty\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getType\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\EmployeeMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/EmployeeMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\EmployeeMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/EmployeeMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\ProjectMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/ProjectMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\ProjectMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/ProjectMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getProperty\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getType\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyMapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyMapper\:\:setOrientation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyMapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Mapper\\V1\\RealtyMapper\:\:\$ORIENTATION_MAPPING type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Mapper/V1/RealtyMapper.php
+
+		-
+			message: '#^Instanceof between DateTime and DateTime will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 4
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:addCategory\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:addCategory\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getAttachments\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getAttachmentsByType\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getCategories\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getDocuments\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getGarages\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getHouseNumber\(\) should return null but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getLinks\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getOccupancy\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getPictures\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getRealtyIds\(\) has invalid return type int\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getRealtyIds\(\) should return array\<int\> but returns array\<int\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getStreet\(\) should return null but returns string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:getVideos\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setAreaFrom\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setAreaTo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setAttachments\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setCategories\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setEpcValidUntil\(\) has parameter \$epcValidUntil with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setGarages\(\) has parameter \$stellplaetze with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setOccupancy\(\) has parameter \$occupancy with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setPriceFrom\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setPriceTo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setRealties\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setRoomsFrom\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setRoomsTo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setSaleStart\(\) should return \$this\(Justimmo\\Model\\Project\) but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Project\:\:setSubunitsAvailable\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(\\DateTime epcValidUntil\)\: Unexpected token "epcValidUntil", expected variable at offset 28 on line 2$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Parameter \$realtyIds of method Justimmo\\Model\\Project\:\:setRealtyIds\(\) has invalid type int\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$attachments type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$categories type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$garages type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$houseNumber \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$occupancy type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$realtyIds \(array\<int\>\) does not accept array\<int\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Project\:\:\$street \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Result of && is always true\.$#'
+			identifier: booleanAnd.alwaysTrue
+			count: 4
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 4
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 4
+			path: src/Justimmo/Model/Project.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:__call\(\) has parameter \$method with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:__call\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:filter\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:findIds\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:getParams\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:set\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:set\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setLimit\(\) has parameter \$limit with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setOffset\(\) has parameter \$offset with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setPicturesize\(\) has parameter \$picturesize with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Query\\AbstractQuery\:\:\$params type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Query\\AbstractQuery\:\:\$pictureSizes has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/Justimmo/Model/Query/AbstractQuery.php
+
+		-
+			message: '#^Call to method transformCountries\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformFederalStates\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformRealtyCategories\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformRealtyTypes\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformRegions\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformTenant\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Call to method transformZipCodes\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByCountry\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByFederalState\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findCountries\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findFederalStates\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findRealtyCategories\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findRealtyTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findRegions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findTenant\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findZipCodes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:getParams\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:set\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:set\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(\\Justimmo\\Model\\Mapper\\MapperInterface MapperInterface\)\: Unexpected token "MapperInterface", expected variable at offset 199 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$params type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$wrapper \(Justimmo\\Model\\Query\\BasicDataWrapper\) does not accept Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$wrapper has unknown class Justimmo\\Model\\Query\\BasicDataWrapper as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Justimmo/Model/Query/BasicDataQuery.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:clear\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:find\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:findOne\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:findPk\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:findPk\(\) has parameter \$pk with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:paginate\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:paginate\(\) has parameter \$maxPerPage with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Query\\QueryInterface\:\:paginate\(\) has parameter \$page with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Query/QueryInterface.php
+
+		-
+			message: '#^Instanceof between DateTime and DateTime will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 3
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addCategory\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addCategory\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addEquipment\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addEquipment\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addPoi\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addPoi\(\) has parameter \$distance with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addPoi\(\) has parameter \$group with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:addPoi\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getAdditionalCosts\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getAttachments\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getAttachmentsByType\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getCategories\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getDocuments\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getEquipment\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getLinks\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getMarketingType\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getOccupancy\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getPictures\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getPois\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getStyleOfBuilding\(\) should return string\|null but returns int\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:getVideos\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setAdditionalCosts\(\) has parameter \$zusatzkosten with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setAttachments\(\) has parameter \$attachments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setCategories\(\) has parameter \$value with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setCostsExplanation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setCostsExplanation\(\) has parameter \$costsExplanation with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setEquipment\(\) has parameter \$ausstattung with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setFreetext1\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setFreetext2\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setFreetext3\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setFreetext4\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setHallHeight\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setLatitudeFuzzy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setLongitudeFuzzy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setMarketingType\(\) has parameter \$vermarktungsart with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setOccupancy\(\) has parameter \$nutzungsart with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setOrientation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setOwnershipTypeId\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setPois\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setPois\(\) has parameter \$pois with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Realty\:\:setRadiusFuzzy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$freetext3$#'
+			identifier: parameter.notFound
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(\$this;\)\: Unexpected token ";", expected TOKEN_HORIZONTAL_WS at offset 61 on line 3$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$additionalCharges has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$additionalCosts has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$age has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$attachments has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$availableFrom has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$balconyArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$balconyCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$balconyTerraceArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$balconyTerraceCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$bathroomCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$buildingSubsidies has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$buyOnRequest has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$categories has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$ceilingHeight has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$cellarArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$cellarCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$commission has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$compensation has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$condition has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$contractEstablishmentCosts has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$country has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$currency has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$description has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$district has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$doorNumber has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$equipment has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$equipmentDescription has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$federalState has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$garageArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$garageCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$gardenArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$gardenCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$hallway has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$heatingCosts has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$houseNumber has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$id has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$infrastructureProvision has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$landParcel has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$landRegistration has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$latitude has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$locality has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$loggiaArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$loggiaCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$longitude has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$marketingType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$netEarningMonthly has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$netEarningYearly has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$occupancy has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$officeArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$otherInformation has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$parkingArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$parkingCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$place has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$pois has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$propertyNumber has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$proximity has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$purchasePrice has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$purchasePriceNet has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$purchasePricePerSqm has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$purchasePriceVat has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$regionalAddition has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$rentDuration has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$rentDurationType has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$roomCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$status has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$statusId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$storageArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$storeRoomCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$street has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$surety has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$surety_text has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$teaser has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$terraceArea has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$terraceCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$tier has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$tierCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$toiletRoomCount has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$totalRent has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$totalRentVat has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$totalRentWithoutHeating has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$transferTax has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$yearBuilt has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$yield has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Realty\:\:\$zipCode has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Result of && is always true\.$#'
+			identifier: booleanAnd.alwaysTrue
+			count: 3
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 3
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 3
+			path: src/Justimmo/Model/Realty.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformCountries\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformCountries\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformFederalStates\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformFederalStates\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRealtyCategories\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRealtyCategories\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRealtyTypes\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRealtyTypes\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRegions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformRegions\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformTenant\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformTenant\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformZipCodes\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\:\:transformZipCodes\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/BasicDataWrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\NullWrapper\:\:transformList\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/NullWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\NullWrapper\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/NullWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:attributesToArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:cast\(\) should return DateTime\|float\|int\|string\|null but returns bool\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:map\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:map\(\) has parameter \$mapping with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:map\(\) has parameter \$objekt with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:mapAttachmentGroup\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$description of method Justimmo\\Model\\Attachment\:\:setDescription\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$originalFilename of method Justimmo\\Model\\Attachment\:\:setOriginalFilename\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strtoupper expects string, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$title of method Justimmo\\Model\\Attachment\:\:setTitle\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Ternary operator condition is always false\.$#'
+			identifier: ternary.alwaysFalse
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformCountries\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformCountries\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformFederalStates\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformFederalStates\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRealtyCategories\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRealtyCategories\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRealtyTypes\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRealtyTypes\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRegions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformRegions\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformTenant\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformTenant\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformZipCodes\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\BasicDataWrapper\:\:transformZipCodes\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/BasicDataWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\EmployeeWrapper\:\:mapAttachmentGroup\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\EmployeeWrapper\:\:transformList\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\EmployeeWrapper\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$originalFilename of method Justimmo\\Model\\Attachment\:\:setOriginalFilename\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strtoupper expects string, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$title of method Justimmo\\Model\\Attachment\:\:setTitle\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\EmployeeWrapper\:\:\$simpleMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Ternary operator condition is always false\.$#'
+			identifier: ternary.alwaysFalse
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/EmployeeWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\ProjectWrapper\:\:transformList\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\ProjectWrapper\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$description of method Justimmo\\Model\\Attachment\:\:setDescription\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Justimmo\\Model\\Project\:\:addGarage\(\) expects string, int\<0, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$subunitsAvailable of method Justimmo\\Model\\Project\:\:setSubunitsAvailable\(\) expects int, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#3 \$type of method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:mapAttachmentGroup\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 6
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#4 \$forceGroup of method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:mapAttachmentGroup\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#5 \$gross of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#6 \$net of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#7 \$vat of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Parameter \#9 \$vatValue of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\ProjectWrapper\:\:\$simpleMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:mapSimpleField\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:mapSimpleField\(\) has parameter \$model with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:transformList\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$baujahr of method Justimmo\\Model\\Realty\:\:setYearBuilt\(\) expects int\|null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$description of method Justimmo\\Model\\Attachment\:\:setDescription\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$gesamtmiete of method Justimmo\\Model\\Realty\:\:setTotalRent\(\) expects float, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$grundflaeche of method Justimmo\\Model\\Realty\:\:setSurfaceArea\(\) expects float, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$gueltigBis of method Justimmo\\Model\\EnergyPass\:\:setValidUntil\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$kaufpreisust of method Justimmo\\Model\\Realty\:\:setPurchasePriceVat\(\) expects float, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Justimmo\\Model\\Realty\:\:addGarage\(\) expects string, int\<0, max\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$land of method Justimmo\\Model\\Realty\:\:setCountry\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$rentDuration of method Justimmo\\Model\\Realty\:\:setRentDuration\(\) expects int\|null, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$status of method Justimmo\\Model\\Realty\:\:setStatus\(\) expects string, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$statusId of method Justimmo\\Model\\Realty\:\:setStatusId\(\) expects int, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#1 \$value of method Justimmo\\Model\\Realty\:\:setAvailableFrom\(\) expects string, DateTime\|float\|int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#2 \$gross of class Justimmo\\Model\\AdditionalCosts constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#3 \$net of class Justimmo\\Model\\AdditionalCosts constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#4 \$vat of class Justimmo\\Model\\AdditionalCosts constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#5 \$gross of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#6 \$net of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#6 \$vatValue of class Justimmo\\Model\\AdditionalCosts constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#7 \$vat of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#7 \$vatInput of class Justimmo\\Model\\AdditionalCosts constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Parameter \#9 \$vatValue of class Justimmo\\Model\\Garage constructor expects null, float given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:\$energyMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:\$flaechenMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:\$geoMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:\$preisMapping has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Property Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:\$simpleMapping type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\WrapperInterface\:\:transformList\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/WrapperInterface.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\WrapperInterface\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/WrapperInterface.php
+
+		-
+			message: '#^Class Justimmo\\Pager\\ListPager extends generic class ArrayObject but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Justimmo/Pager/ListPager.php
+
+		-
+			message: '#^Method Justimmo\\Pager\\ListPager\:\:getLinks\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Pager/ListPager.php
+
+		-
+			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) has parameter \$keyGetter with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Pager/ListPager.php
+
+		-
+			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) has parameter \$valueGetter with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Pager/ListPager.php
+
+		-
+			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Justimmo/Pager/ListPager.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:registerForNewsletter\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:send\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setCategory\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setCompany\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setFundingInquiry\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setIsRealtyOwner\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setRealtyOwnerConsultationRequest\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setSalutationId\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setSuffix\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:setTitle\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$city has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$country has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$email has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$firstName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$lastName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$message has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$phone has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$realtyId has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$street has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$zipCode has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Justimmo/Request/RealtyInquiryRequest.php
+
+		-
+			message: '#^Method Justimmo\\Request\\RequestInterface\:\:send\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Request/RequestInterface.php

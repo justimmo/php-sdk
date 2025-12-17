@@ -69,3 +69,14 @@ jobs:
           with:
             version: 8
             php_version: 8.5
+    phpstan:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+        with:
+          php_version: 8.4
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          php_version: 8.4

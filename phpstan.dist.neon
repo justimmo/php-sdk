@@ -1,0 +1,10 @@
+parameters:
+    level: 7
+    paths:
+        - src
+    phpVersion: 80000
+    excludePaths:
+        - src/autoload.php
+
+includes:
+    - phpstan-baseline.neon
