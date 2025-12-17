@@ -4,12 +4,11 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.0",
         "psr/log": "^1.0|^2.0|^3.0"
     },
     "require-dev": {
-        "symfony/debug": "^4.4",
-        "phpunit/phpunit": "^6.5|^7.5|^8.5"
+        "phpunit/phpunit": "^9.6"
     },
     "suggest": {
         "monolog/monolog": "~1.7"
