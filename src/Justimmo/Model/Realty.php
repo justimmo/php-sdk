@@ -2867,7 +2867,7 @@ class Realty
      *
      * @return $this
      */
-    public function setProcuredAt(\DateTime $procuredAt = null)
+    public function setProcuredAt(?\DateTime $procuredAt = null)
     {
         $this->procuredAt = $procuredAt;
 
@@ -2893,7 +2893,7 @@ class Realty
      *
      * @return $this
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(?\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
 
@@ -2919,7 +2919,7 @@ class Realty
      *
      * @return $this
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(?\DateTime $updatedAt = null)
     {
         $this->updatedAt = $updatedAt;
 

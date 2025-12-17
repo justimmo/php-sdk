@@ -104,7 +104,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(34, $objekt->getPropertyNumber());
         $this->assertEquals('DEMOOBJEKT! Elegantes Büro neben Bristol und Oper', $objekt->getTitle());
         $this->assertEquals('<p>Sonstige angaben</p>', $objekt->getOtherInformation());
-        $this->assertContains('ausgestattetes 1 bis 2 Personenbüro', $objekt->getDescription());
+        $this->assertStringContainsString('ausgestattetes 1 bis 2 Personenbüro', $objekt->getDescription());
         $this->assertNull($objekt->getTier());
         $this->assertEquals(1, $objekt->getDoorNumber());
         $this->assertEquals(5, $objekt->getStair());

@@ -88,12 +88,12 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @param                 $username
      * @param                 $password
-     * @param LoggerInterface $logger
-     * @param CacheInterface  $cache
+     * @param ?LoggerInterface $logger
+     * @param ?CacheInterface  $cache
      * @param string          $version
      * @param string          $culture
      */
-    public function __construct($username, $password, LoggerInterface $logger = null, CacheInterface $cache = null, $version = 'v1', $culture = 'de')
+    public function __construct($username, $password, ?LoggerInterface $logger = null, ?CacheInterface $cache = null, $version = 'v1', $culture = 'de')
     {
         $this
             ->setLogger(($logger ?: new NullLogger()))
