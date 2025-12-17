@@ -101,6 +101,11 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('regions');
     }
 
+    public function callPoliticalDistricts(array $params = []): string
+    {
+        return $this->getReturnValue('politicalDistricts');
+    }
+
     public function callRealtyTypes(array $params = array())
     {
         return $this->getReturnValue('realtyTypes');

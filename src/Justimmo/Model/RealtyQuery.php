@@ -45,6 +45,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByRentPerSqm($value)
  * @method RealtyQuery filterByUpdatedAt($value)
  * @method RealtyQuery filterByRentWithPurchaseOption($value)
+ * @method RealtyQuery filterByPoliticalDistrictId($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')

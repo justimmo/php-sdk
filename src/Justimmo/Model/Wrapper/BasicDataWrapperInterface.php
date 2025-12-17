@@ -2,6 +2,8 @@
 
 namespace Justimmo\Model\Wrapper;
 
+use Justimmo\Model\PoliticalDistrict;
+
 interface BasicDataWrapperInterface
 {
     public function transformCountries($data);
@@ -11,6 +13,11 @@ interface BasicDataWrapperInterface
     public function transformZipCodes($data);
 
     public function transformRegions($data);
+
+    /**
+     * @return array<int, PoliticalDistrict>
+     */
+    public function transformPoliticalDistricts(mixed $data): array;
 
     public function transformRealtyTypes($data);
 

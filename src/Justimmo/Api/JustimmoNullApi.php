@@ -65,6 +65,11 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
+    public function callPoliticalDistricts(array $params = []): string
+    {
+        return $this->emptyXML();
+    }
+
     public function callRealtyTypes(array $params = array())
     {
         return $this->emptyXML();

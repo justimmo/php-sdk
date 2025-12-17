@@ -1,3 +1,14 @@
+## 1.3.0
+* Add support for political districts
+  * BasicDataQuery.findPoliticalDistricts
+  * RealtyQuery.filterByPolticialDistrictId
+  * Realty.getPoliticalDistrict
+* Deprecate regions in favor of political districts
+* Drop support for php 7.x
+* Bump phpunit to 9.5
+* [CI] Add jobs to run tests with php 8.4 and 8.5
+* [CI] Add static analysis with phpstan
+
 ## 1.2.23
 * Add suffix to RealtyInquiry
 

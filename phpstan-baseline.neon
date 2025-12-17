@@ -1663,48 +1663,6 @@ parameters:
 			path: src/Justimmo/Model/Query/AbstractQuery.php
 
 		-
-			message: '#^Call to method transformCountries\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformFederalStates\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformRealtyCategories\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformRealtyTypes\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformRegions\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformTenant\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Call to method transformZipCodes\(\) on an unknown class Justimmo\\Model\\Query\\BasicDataWrapper\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByCountry\(\) has parameter \$value with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -1777,26 +1735,8 @@ parameters:
 			path: src/Justimmo/Model/Query/BasicDataQuery.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(\\Justimmo\\Model\\Mapper\\MapperInterface MapperInterface\)\: Unexpected token "MapperInterface", expected variable at offset 199 on line 4$#'
-			identifier: phpDoc.parseError
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
 			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$params type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$wrapper \(Justimmo\\Model\\Query\\BasicDataWrapper\) does not accept Justimmo\\Model\\Wrapper\\BasicDataWrapperInterface\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$wrapper has unknown class Justimmo\\Model\\Query\\BasicDataWrapper as its type\.$#'
-			identifier: class.notFound
 			count: 1
 			path: src/Justimmo/Model/Query/BasicDataQuery.php
 

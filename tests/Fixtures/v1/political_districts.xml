@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <politischer_bezirk>
+        <id>25</id>
+        <name>Baden</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>1</id>
+        <name>Eisenstadt</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>3</id>
+        <name>Eisenstadt Umgebung</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>68</id>
+        <name>Graz</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>20</id>
+        <name>Krems an der Donau</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>8</id>
+        <name>Oberpullendorf</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>40</id>
+        <name>Tulln</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>16</id>
+        <name>Villach Land</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>103</id>
+        <name>Wien 10., Favoriten</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>112</id>
+        <name>Wien 19., Döbling</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>114</id>
+        <name>Wien 21., Floridsdorf</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>115</id>
+        <name>Wien 22., Donaustadt</name>
+    </politischer_bezirk>
+    <politischer_bezirk>
+        <id>99</id>
+        <name>Wien 6., Mariahilf</name>
+    </politischer_bezirk>
+</justimmo>

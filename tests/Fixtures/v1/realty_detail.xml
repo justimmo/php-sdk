@@ -35,6 +35,8 @@
             <user_defined_simplefield feldname="ungenaue_verortung_breitengrad">48.2545374</user_defined_simplefield>
             <user_defined_simplefield feldname="ungenaue_verortung_radius">250</user_defined_simplefield>
             <user_defined_simplefield feldname="ausrichtung">SOW</user_defined_simplefield>
+            <user_defined_simplefield feldname="politischer_bezirk">Baden</user_defined_simplefield>
+            <user_defined_simplefield feldname="politischer_bezirk_id">25</user_defined_simplefield>
         </geo>
         <kontaktperson>
             <id>50</id>

@@ -201,6 +201,14 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
+    public function callPoliticalDistricts(array $params = []): string
+    {
+        return $this->call('objekt/politischeBezirke', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function callRealtyTypes(array $params = array())
     {
         return $this->call('objekt/objektarten', $params);

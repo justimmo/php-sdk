@@ -118,13 +118,22 @@ interface JustimmoApiInterface
     /**
      * retrieve a region list
      *
-     * @deprecated - This call is deprecated and will be replaced with political districts in 2.0
+     * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
      *
      * @param array $params
      *
      * @return string
      */
     public function callRegions(array $params = array());
+
+    /**
+     * Retrieve a list of political districts
+     *
+     * @param array<string, scalar> $params
+     *
+     * @return string
+     */
+    public function callPoliticalDistricts(array $params = []): string;
 
     /**
      * Retrieve tenant data

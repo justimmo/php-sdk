@@ -1,10 +1,13 @@
 <?php
+
 namespace Justimmo\Tests\Wrapper\V1;
 
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 use Justimmo\Tests\TestCase;
+use Justimmo\Model\PoliticalDistrict;
+use function count;
 
-class BasicDataWrapperTest extends TestCase
+final class BasicDataWrapperTest extends TestCase
 {
     /**
      * @var BasicDataWrapper
@@ -83,6 +86,23 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals('22., Donaustadt', $list[12]);
     }
 
+    public function testPoliticalDistricts(): void
+    {
+        $list = $this->wrapper->transformPoliticalDistricts($this->getFixtures('v1/political_districts.xml'));
+
+        $this->assertCount(13, $list);
+
+        $entry = $list[112];
+        $this->assertInstanceOf(PoliticalDistrict::class, $entry);
+        $this->assertSame(112, $entry->getId());
+        $this->assertSame('Wien 19., Döbling', $entry->getName());
+
+        $entry = $list[20];
+        $this->assertInstanceOf(PoliticalDistrict::class, $entry);
+        $this->assertSame(20, $entry->getId());
+        $this->assertSame('Krems an der Donau', $entry->getName());
+    }
+
     public function testRealtyTypes()
     {
         $list = $this->wrapper->transformRealtyTypes($this->getFixtures('v1/realty_types.xml'));
@@ -101,19 +121,19 @@ class BasicDataWrapperTest extends TestCase
         $this->assertEquals(array(
             3469 => array(
                 'name'         => 'Kat 1',
-                'sortableRank' => 2
+                'sortableRank' => 2,
             ),
             3582 => array(
                 'name'         => 'Kat 2',
-                'sortableRank' => 0
+                'sortableRank' => 0,
             ),
             3140 => array(
                 'name'         => 'Luxusobjekte',
-                'sortableRank' => 1
+                'sortableRank' => 1,
             ),
             2057 => array(
                 'name'         => 'Referenzobjekte',
-                'sortableRank' => 3
+                'sortableRank' => 3,
             ),
         ), $list);
     }

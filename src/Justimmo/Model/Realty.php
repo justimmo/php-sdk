@@ -487,6 +487,8 @@ class Realty
 
     protected $pois = array();
 
+    protected ?PoliticalDistrict $politicalDistrict = null;
+
     /**
      * @param array $nutzungsart
      *
@@ -3514,5 +3516,17 @@ class Realty
     public function getTotalRentWithoutHeating()
     {
         return $this->totalRentWithoutHeating;
+    }
+
+    public function getPoliticalDistrict(): ?PoliticalDistrict
+    {
+        return $this->politicalDistrict;
+    }
+
+    public function setPoliticalDistrict(?PoliticalDistrict $politicalDistrict): self
+    {
+        $this->politicalDistrict = $politicalDistrict;
+
+        return $this;
     }
 }

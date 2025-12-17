@@ -2,7 +2,9 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
+use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
+use function trim;
 
 class BasicDataWrapper implements BasicDataWrapperInterface
 {
@@ -64,6 +66,22 @@ class BasicDataWrapper implements BasicDataWrapperInterface
         $return = array();
         foreach ($xml->region as $region) {
             $return[(int) $region->id] = trim((string) $region->name);
+        }
+
+        return $return;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function transformPoliticalDistricts(mixed $data): array
+    {
+        $xml = new \SimpleXMLElement($data);
+
+        $return = [];
+        foreach ($xml->politischer_bezirk as $politicalDistrict) {
+            $id          = (int) $politicalDistrict->id;
+            $return[$id] = new PoliticalDistrict($id, trim((string) $politicalDistrict->name));
         }
 
         return $return;

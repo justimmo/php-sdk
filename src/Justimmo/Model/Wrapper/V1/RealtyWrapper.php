@@ -5,6 +5,7 @@ namespace Justimmo\Model\Wrapper\V1;
 use Justimmo\Model\Attachment;
 use Justimmo\Model\EnergyPass;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
+use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Realty;
 use Justimmo\Model\AdditionalCosts;
 use Justimmo\Model\Garage;
@@ -250,7 +251,7 @@ class RealtyWrapper extends AbstractWrapper
                     $attributes = $this->attributesToArray($kategorie);
 
                     if (array_key_exists('id', $attributes)) {
-                        $objekt->addCategory($attributes['id'], (string)$kategorie);
+                        $objekt->addCategory($attributes['id'], (string) $kategorie);
                     }
                 }
             }
@@ -297,8 +298,16 @@ class RealtyWrapper extends AbstractWrapper
                 }
             }
 
+            $politicalDistrictId = $politicalDistrictName = null;
             foreach ($xml->geo->user_defined_simplefield as $simpleField) {
-                $this->mapSimpleField($simpleField, $objekt);
+                match ((string) ($simpleField->attributes()['feldname'] ?? '')) {
+                    'politischer_bezirk_id' => $politicalDistrictId = (int) $simpleField,
+                    'politischer_bezirk'    => $politicalDistrictName = (string) $simpleField,
+                    default                 => $this->mapSimpleField($simpleField, $objekt),
+                };
+            }
+            if ($politicalDistrictId !== null && $politicalDistrictName !== null) {
+                $objekt->setPoliticalDistrict(new PoliticalDistrict($politicalDistrictId, $politicalDistrictName));
             }
 
             foreach ($xml->geo->user_defined_anyfield as $anyField) {
@@ -306,7 +315,7 @@ class RealtyWrapper extends AbstractWrapper
                     foreach ($anyField->ji_point_of_interest_distance->distance as $distance) {
                         $distanceAttr = $this->attributesToArray($distance->attributes());
 
-                        $objekt->addPoi($distanceAttr['group'], $distanceAttr['type'], (float)$distance);
+                        $objekt->addPoi($distanceAttr['group'], $distanceAttr['type'], (float) $distance);
                     }
                 }
             }
@@ -343,7 +352,7 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
-                    $name = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
+                    $name  = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
                     $costs = new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (double) $zusatzkosten->ust_berechneter_wert, (double) $zusatzkosten->ust_wert);
 
                     if (isset($zusatzkosten->optional)) {
@@ -464,7 +473,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->kontaktperson)) {
             $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
-            $contact = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $contact         = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
             $objekt->setContact($contact);
         }
 
@@ -473,9 +482,10 @@ class RealtyWrapper extends AbstractWrapper
 
     /**
      * @param \SimpleXMLElement $simpleField
-     * @param $model
+     * @param                   $model
      */
-    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model) {
+    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model)
+    {
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {
             $setter = $this->mapper->getSetter($attributes['feldname']);

@@ -3,80 +3,80 @@ name: CI
 on: [ push ]
 
 jobs:
-    build-test-80:
-        runs-on: ubuntu-latest
-        steps:
-        -   uses: actions/checkout@v3
-        -   uses: php-actions/composer@v6
-            with:
-                php_version: 8.0
-        -   uses: php-actions/phpunit@v3
-            with:
-                version: 8
-                php_version: 8.0
-    build-test-81:
-        runs-on: ubuntu-latest
-        steps:
-        -   uses: actions/checkout@v3
-        -   uses: php-actions/composer@v6
-            with:
-                php_version: 8.1
-        -   uses: php-actions/phpunit@v3
-            with:
-                version: 8
-                php_version: 8.1
-    build-test-82:
-        runs-on: ubuntu-latest
-        steps:
-        -   uses: actions/checkout@v3
-        -   uses: php-actions/composer@v6
-            with:
-                php_version: 8.2
-        -   uses: php-actions/phpunit@v3
-            with:
-                version: 8
-                php_version: 8.2
-    build-test-83:
-        runs-on: ubuntu-latest
-        steps:
-        -   uses: actions/checkout@v3
-        -   uses: php-actions/composer@v6
-            with:
-                php_version: 8.3
-        -   uses: php-actions/phpunit@v3
-            with:
-                version: 8
-                php_version: 8.3
-    build-test-84:
-      runs-on: ubuntu-latest
-      steps:
-      -   uses: actions/checkout@v3
-      -   uses: php-actions/composer@v6
-          with:
-            php_version: 8.4
-      -   uses: php-actions/phpunit@v3
-          with:
-            version: 8
-            php_version: 8.4
-    build-test-85:
-      runs-on: ubuntu-latest
-      steps:
-      -   uses: actions/checkout@v3
-      -   uses: php-actions/composer@v6
-          with:
-            php_version: 8.5
-      -   uses: php-actions/phpunit@v3
-          with:
-            version: 8
-            php_version: 8.5
-    phpstan:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v3
-      - uses: php-actions/composer@v6
-        with:
-          php_version: 8.4
-      - name: PHPStan Static Analysis
-        uses: php-actions/phpstan@v3
-        with:
-          php_version: 8.4
+  build-test-80:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.0
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.0
+  build-test-81:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.1
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.1
+  build-test-82:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.2
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.2
+  build-test-83:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.3
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.3
+  build-test-84:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.4
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.4
+  build-test-85:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.5
+    - uses: php-actions/phpunit@v3
+      with:
+        version: 8
+        php_version: 8.5
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_version: 8.4
+    - name: PHPStan Static Analysis
+      uses: php-actions/phpstan@v3
+      with:
+        php_version: 8.4

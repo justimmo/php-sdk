@@ -481,6 +481,7 @@ class RealtyMapper extends AbstractMapper
             'Keyword'                => 'stichwort',
             'FederalStateId'         => 'bundesland_id',
             'StatusId'               => 'objekt_status_id',
+            'PoliticalDistrictId'    => 'politischer_bezirk_id',
             'Rent'                   => 'miete',
             'Buy'                    => 'kauf',
             'RealtySystemType'       => 'realty_type',

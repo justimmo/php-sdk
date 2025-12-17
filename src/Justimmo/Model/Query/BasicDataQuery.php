@@ -3,6 +3,7 @@ namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
 
 /**
@@ -17,28 +18,12 @@ class BasicDataQuery
     /**
      * @var array
      */
-    protected $params = array();
+    protected array $params = array();
 
-    /**
-     * @var JustimmoApiInterface
-     */
-    protected $api;
+    protected JustimmoApiInterface $api;
+    protected BasicDataWrapperInterface  $wrapper;
+    protected MapperInterface $mapper;
 
-    /**
-     * @var BasicDataWrapper
-     */
-    protected $wrapper;
-
-    /**
-     * @var MapperInterface
-     */
-    protected $mapper;
-
-    /**
-     * @param JustimmoApiInterface                              $api
-     * @param \Justimmo\Model\Wrapper\BasicDataWrapperInterface $wrapper
-     * @param \Justimmo\Model\Mapper\MapperInterface MapperInterface
-     */
     public function __construct(JustimmoApiInterface $api, BasicDataWrapperInterface $wrapper, MapperInterface $mapper)
     {
         $this->api     = $api;
@@ -142,6 +127,20 @@ class BasicDataQuery
         $response = $this->api->callRegions($this->params);
 
         $return = $this->wrapper->transformRegions($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
+     * @return array<int, PoliticalDistrict>
+     */
+    public function findPoliticalDistricts(): array
+    {
+        $response = $this->api->callRegions($this->params);
+
+        $return = $this->wrapper->transformPoliticalDistricts($response);
 
         $this->clear();
 

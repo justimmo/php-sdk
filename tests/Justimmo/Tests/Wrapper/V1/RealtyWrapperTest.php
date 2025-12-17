@@ -56,6 +56,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEmpty($entry->getParentId());
         $this->assertTrue($entry->getShowInSearch());
         $this->assertTrue($entry->getIsReference());
+        $this->assertNull($entry->getPoliticalDistrict());
 
         $entry = $list[1];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -66,6 +67,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEmpty($entry->getParentId());
         $this->assertFalse($entry->getShowInSearch());
         $this->assertFalse($entry->getIsReference());
+        $this->assertNull($entry->getPoliticalDistrict());
 
         $entry = $list[2];
         $this->assertInstanceOf('\Justimmo\Model\Realty', $entry);
@@ -372,6 +374,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(Realty::ORIENTATION_SOUTH_EAST_WEST, $objekt->getOrientation());
 
         $this->assertEquals(2, $objekt->getOwnershipTypeId());
+
+        $this->assertSame(25, $objekt->getPoliticalDistrict()->getId());
+        $this->assertSame('Baden', $objekt->getPoliticalDistrict()->getName());
     }
 
     public function testTransformSingleNullValuesAndUnlimitedRent()
