@@ -375,8 +375,8 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(2, $objekt->getOwnershipTypeId());
 
-        $this->assertSame(25, $objekt->getPoliticalDistrict()->getId());
-        $this->assertSame('Baden', $objekt->getPoliticalDistrict()->getName());
+        $this->assertSame(25, $objekt->getPoliticalDistrict()->id);
+        $this->assertSame('Baden', $objekt->getPoliticalDistrict()->name);
     }
 
     public function testTransformSingleNullValuesAndUnlimitedRent()

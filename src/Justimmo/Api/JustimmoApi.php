@@ -192,6 +192,8 @@ class JustimmoApi implements JustimmoApiInterface
 
     /**
      * @inheritdoc
+     *
+     * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
      */
     public function callRegions(array $params = array())
     {

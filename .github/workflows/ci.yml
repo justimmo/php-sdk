@@ -3,17 +3,6 @@ name: CI
 on: [ push ]
 
 jobs:
-  build-test-80:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: php-actions/composer@v6
-      with:
-        php_version: 8.0
-    - uses: php-actions/phpunit@v3
-      with:
-        version: 8
-        php_version: 8.0
   build-test-81:
     runs-on: ubuntu-latest
     steps:

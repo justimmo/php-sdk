@@ -59,6 +59,9 @@ class BasicDataWrapper implements BasicDataWrapperInterface
         return $return;
     }
 
+    /**
+     * @deprecated
+     */
     public function transformRegions($data)
     {
         $xml = new \SimpleXMLElement($data);

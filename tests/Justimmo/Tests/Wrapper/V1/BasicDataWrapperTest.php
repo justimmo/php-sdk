@@ -94,13 +94,13 @@ final class BasicDataWrapperTest extends TestCase
 
         $entry = $list[112];
         $this->assertInstanceOf(PoliticalDistrict::class, $entry);
-        $this->assertSame(112, $entry->getId());
-        $this->assertSame('Wien 19., Döbling', $entry->getName());
+        $this->assertSame(112, $entry->id);
+        $this->assertSame('Wien 19., Döbling', $entry->name);
 
         $entry = $list[20];
         $this->assertInstanceOf(PoliticalDistrict::class, $entry);
-        $this->assertSame(20, $entry->getId());
-        $this->assertSame('Krems an der Donau', $entry->getName());
+        $this->assertSame(20, $entry->id);
+        $this->assertSame('Krems an der Donau', $entry->name);
     }
 
     public function testRealtyTypes()

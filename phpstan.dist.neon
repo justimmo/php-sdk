@@ -2,7 +2,7 @@ parameters:
     level: 7
     paths:
         - src
-    phpVersion: 80000
+    phpVersion: 80100
     excludePaths:
         - src/autoload.php
 

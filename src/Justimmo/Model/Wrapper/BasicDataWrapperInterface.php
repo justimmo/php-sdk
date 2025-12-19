@@ -12,6 +12,9 @@ interface BasicDataWrapperInterface
 
     public function transformZipCodes($data);
 
+    /**
+     * @deprecated
+     */
     public function transformRegions($data);
 
     /**

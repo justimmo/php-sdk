@@ -121,6 +121,8 @@ class BasicDataQuery
 
     /**
      * @return array
+     *
+     * @deprecated This call is deprecated and will be removed in 2.x. Use findPoliticalDistricts instead.
      */
     public function findRegions()
     {

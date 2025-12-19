@@ -4,7 +4,7 @@
   * RealtyQuery.filterByPolticialDistrictId
   * Realty.getPoliticalDistrict
 * Deprecate regions in favor of political districts
-* Drop support for php 7.x
+* Drop support for php 7.x and 8.0
 * Bump phpunit to 9.5
 * [CI] Add jobs to run tests with php 8.4 and 8.5
 * [CI] Add static analysis with phpstan
