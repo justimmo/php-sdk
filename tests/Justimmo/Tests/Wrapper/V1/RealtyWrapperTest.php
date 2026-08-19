@@ -300,6 +300,9 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(0.96, $energiepass->getEnergyEfficiencyFactorValue());
         $this->assertEquals('B', $energiepass->getThermalHeatRequirementClass());
         $this->assertEquals(44, $energiepass->getThermalHeatRequirementValue());
+        $this->assertEquals(120.5, $energiepass->getFinalEnergyDemandValue());
+        $this->assertEquals('C', $energiepass->getFinalEnergyDemandClass());
+        $this->assertTrue($energiepass->getFinalEnergyDemandClassFossil());
 
         $this->assertEquals(array(
             'ausricht_balkon_terrasse' => 'NORD',
@@ -395,6 +398,13 @@ class RealtyWrapperTest extends TestCase
 
         $this->assertEquals(0, $objekt->getRentDuration());
         $this->assertEquals('unlimited', $objekt->getRentDurationType());
+
+        $energiepass = $objekt->getEnergyPass();
+
+        $this->assertInstanceOf('\Justimmo\Model\EnergyPass', $energiepass);
+        $this->assertNull($energiepass->getFinalEnergyDemandValue());
+        $this->assertNull($energiepass->getFinalEnergyDemandClass());
+        $this->assertNull($energiepass->getFinalEnergyDemandClassFossil());
     }
 
 }
