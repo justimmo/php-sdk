@@ -47,15 +47,15 @@ abstract class AbstractWrapper implements WrapperInterface
     {
         switch ($type) {
             case 'string':
-                return (string) $xml;
+                return trim((string) $xml);
             case 'int':
                 return (int) $xml;
             case 'double':
                 return (float) $xml;
             case 'boolean' :
-                return (bool) ((string) $xml);
+                return (bool) trim((string) $xml);
             case 'datetime':
-                $date = (string) $xml;
+                $date = trim((string) $xml);
                 if (empty($date)) {
                     return null;
                 }
@@ -63,6 +63,29 @@ abstract class AbstractWrapper implements WrapperInterface
             default:
                 return $xml;
         }
+    }
+
+    /**
+     * trims the string values of an array
+     *
+     * The api pretty prints some responses, which puts the value of an element
+     * on its own indented line. The resulting whitespace is part of the text
+     * node, so an url read straight out of the array fails
+     * filter_var(..., FILTER_VALIDATE_URL).
+     *
+     * @param array $values
+     *
+     * @return array
+     */
+    protected function trimValues(array $values)
+    {
+        foreach ($values as $key => $value) {
+            if (is_string($value)) {
+                $values[$key] = trim($value);
+            }
+        }
+
+        return $values;
     }
 
     /**
@@ -90,7 +113,7 @@ abstract class AbstractWrapper implements WrapperInterface
     protected function mapAttachmentGroup(\SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
     {
         foreach ($xml as $anhang) {
-            $data = (array) $anhang->daten;
+            $data = $this->trimValues((array) $anhang->daten);
             $attributes = $this->attributesToArray($anhang);
             $group = $forceGroup ?: (array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null);
             if (array_key_exists('pfad', $data)) {
