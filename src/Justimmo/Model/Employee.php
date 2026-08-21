@@ -100,6 +100,16 @@ class Employee
     protected $salutation = null;
 
     /**
+     * @var null|string
+     */
+    protected $company = null;
+
+    /**
+     * @var null|string
+     */
+    protected $country = null;
+
+    /**
      * @param array $attachments
      *
      * @return $this
@@ -537,5 +547,47 @@ class Employee
     public function setSalutation($salutation)
     {
         $this->salutation = $salutation;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param null|string $company
+     *
+     * @return $this
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * the iso 3166-1 alpha-3 country code, e.g. AUT
+     *
+     * @return null|string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param null|string $country
+     *
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
     }
 }

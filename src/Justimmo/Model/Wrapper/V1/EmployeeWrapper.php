@@ -32,6 +32,7 @@ class EmployeeWrapper extends AbstractWrapper
         'ort',
         'url',
         'anrede',
+        'firma',
     );
 
     public function transformSingle($data)
@@ -44,6 +45,14 @@ class EmployeeWrapper extends AbstractWrapper
 
         $mitarbeiter = new Employee();
         $this->map($this->simpleMapping, $xml, $mitarbeiter);
+
+        // the country is delivered as an attribute rather than a text node
+        if (isset($xml->land)) {
+            $attributes = $this->attributesToArray($xml->land);
+            if (array_key_exists('iso_land', $attributes)) {
+                $mitarbeiter->setCountry(trim((string) $attributes['iso_land']));
+            }
+        }
 
         //format used in team calls
         if (isset($xml->bild) && isset($xml->bild->pfad) && (((string) $xml->bild->pfad) != '')) {
