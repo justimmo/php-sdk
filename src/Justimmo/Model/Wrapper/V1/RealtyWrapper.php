@@ -177,18 +177,18 @@ class RealtyWrapper extends AbstractWrapper
 
         //list object attachment mapping
         if (isset($xml->erstes_bild)) {
-            $attachment = new Attachment((string) $xml->erstes_bild);
+            $attachment = new Attachment($this->cast($xml->erstes_bild));
             if (isset($xml->erstes_bild_beschreibung) && (((string) $xml->erstes_bild_beschreibung) != '')) {
                 $attachment->setDescription((string) $xml->erstes_bild_beschreibung);
             }
             $objekt->addAttachment($attachment);
         }
         if (isset($xml->zweites_bild)) {
-            $attachment = new Attachment((string) $xml->zweites_bild);
+            $attachment = new Attachment($this->cast($xml->zweites_bild));
             if (isset($xml->zweites_bild_beschreibung) && (((string) $xml->zweites_bild_beschreibung) != '')) {
                 $attachment->setDescription((string) $xml->zweites_bild_beschreibung);
             }
-            $objekt->addAttachment(new Attachment((string) $xml->zweites_bild));
+            $objekt->addAttachment(new Attachment($this->cast($xml->zweites_bild)));
         }
 
         //detailed attributes from detail view, OpenImmo

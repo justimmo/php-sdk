@@ -56,15 +56,15 @@ class EmployeeWrapper extends AbstractWrapper
 
         //format used in team calls
         if (isset($xml->bild) && isset($xml->bild->pfad) && (((string) $xml->bild->pfad) != '')) {
-            $attachment = new Attachment((string) $xml->bild->pfad);
+            $attachment = new Attachment($this->cast($xml->bild->pfad));
             $attachment->setGroup('PROFILBILD');
             if (isset($xml->bild->pfad_medium)) {
-                $attachment->addData('medium', (string) $xml->bild->pfad_medium);
+                $attachment->addData('medium', $this->cast($xml->bild->pfad_medium));
             }
 
             // add all formats
             foreach ($xml->bild->children() as $key => $size) {
-                $attachment->addData((string)$key, (string)$size);
+                $attachment->addData((string) $key, $this->cast($size));
             }
 
             $mitarbeiter->addAttachment($attachment);
@@ -72,19 +72,19 @@ class EmployeeWrapper extends AbstractWrapper
 
         //format used in project and realty calls
         if (isset($xml->bild) && isset($xml->bild->medium) && (((string) $xml->bild->medium) != '')) {
-            $attachment = new Attachment((string) $xml->bild->medium);
-            $attachment->addData('medium', (string) $xml->bild->medium);
+            $attachment = new Attachment($this->cast($xml->bild->medium));
+            $attachment->addData('medium', $this->cast($xml->bild->medium));
             $attachment->setGroup('PROFILBILD');
             if (isset($xml->bild->small)) {
-                $attachment->addData('small', (string) $xml->bild->small);
+                $attachment->addData('small', $this->cast($xml->bild->small));
             }
             if (isset($xml->bild->big)) {
-                $attachment->addData('big', (string) $xml->bild->big);
+                $attachment->addData('big', $this->cast($xml->bild->big));
             }
 
             // add all formats
             foreach ($xml->bild->children() as $key => $size) {
-                $attachment->addData((string)$key, (string)$size);
+                $attachment->addData((string) $key, $this->cast($size));
             }
 
             $mitarbeiter->addAttachment($attachment);

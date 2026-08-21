@@ -54,4 +54,40 @@ XML;
 
         $this->assertEquals('Ein Projekt', $project->getTitle());
     }
+
+    public function testContactPhotoSizesAreUsable()
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+        $project = $wrapper->transformSingle(<<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <projekt>
+        <id>1</id>
+        <kontaktperson>
+            <name>Mustermann</name>
+            <bild>
+                <small>
+                    https://storage.justimmo.at/thumb/abc/small.jpg
+                </small>
+                <medium>
+                    https://storage.justimmo.at/thumb/abc/medium.jpg
+                </medium>
+                <big>
+                    https://storage.justimmo.at/thumb/abc/big.jpg
+                </big>
+            </bild>
+        </kontaktperson>
+    </projekt>
+</justimmo>
+XML
+        );
+
+        $attachments = $project->getContact()->getAttachments();
+        $this->assertCount(1, $attachments);
+
+        foreach (array('small', 'medium', 'big') as $size) {
+            $url = $attachments[0]->getUrl($size);
+            $this->assertNotFalse(filter_var($url, FILTER_VALIDATE_URL), $size . ' must be a usable url');
+        }
+    }
 }
