@@ -51,7 +51,7 @@ abstract class AbstractWrapper implements WrapperInterface
             case 'int':
                 return (int) $xml;
             case 'double':
-                return (double) $xml;
+                return (float) $xml;
             case 'boolean' :
                 return (bool) ((string) $xml);
             case 'datetime':

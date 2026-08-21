@@ -143,7 +143,7 @@ class ProjectWrapper extends AbstractWrapper
             $key = 0;
 
             foreach ($xml->stellplaetze[0] as $stellplaetz) {
-                $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (double) $stellplaetz->brutto, (double) $stellplaetz->netto, (double) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (double) $stellplaetz->ust_wert);
+                $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (float) $stellplaetz->brutto, (float) $stellplaetz->netto, (float) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (float) $stellplaetz->ust_wert);
 
                 $project->addGarage($key, $garage);
 
@@ -153,8 +153,8 @@ class ProjectWrapper extends AbstractWrapper
 
         if (isset($xml->geokoordinaten)) {
             $coord = $this->attributesToArray($xml->geokoordinaten->attributes());
-            $project->setLatitude((double) $coord['breitengrad']);
-            $project->setLongitude((double) $coord['laengengrad']);
+            $project->setLatitude((float) $coord['breitengrad']);
+            $project->setLongitude((float) $coord['laengengrad']);
         }
 
         if (isset($xml->residential_aggregation_data)) {
