@@ -64,8 +64,24 @@ class Attachment
         return true;
     }
 
+    /**
+     * gets the url of an attachment size as returned by the api
+     *
+     * @param string $size
+     *
+     * @return string
+     * @throws AttachmentSizeNotFoundException if the api did not return the requested size
+     */
     public function getUrl($size = 'orig')
     {
+        if (!array_key_exists($size, $this->data)) {
+            throw new AttachmentSizeNotFoundException(sprintf(
+                'The attachment does not provide the size "%s". Available sizes: %s. Use calculateUrl() to derive an url for a size the api did not return.',
+                $size,
+                count($this->data) > 0 ? implode(', ', array_keys($this->data)) : 'none'
+            ));
+        }
+
         return $this->data[$size];
     }
 

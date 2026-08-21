@@ -177,18 +177,18 @@ class RealtyWrapper extends AbstractWrapper
 
         //list object attachment mapping
         if (isset($xml->erstes_bild)) {
-            $attachment = new Attachment((string) $xml->erstes_bild);
+            $attachment = new Attachment($this->cast($xml->erstes_bild));
             if (isset($xml->erstes_bild_beschreibung) && (((string) $xml->erstes_bild_beschreibung) != '')) {
                 $attachment->setDescription((string) $xml->erstes_bild_beschreibung);
             }
             $objekt->addAttachment($attachment);
         }
         if (isset($xml->zweites_bild)) {
-            $attachment = new Attachment((string) $xml->zweites_bild);
+            $attachment = new Attachment($this->cast($xml->zweites_bild));
             if (isset($xml->zweites_bild_beschreibung) && (((string) $xml->zweites_bild_beschreibung) != '')) {
                 $attachment->setDescription((string) $xml->zweites_bild_beschreibung);
             }
-            $objekt->addAttachment(new Attachment((string) $xml->zweites_bild));
+            $objekt->addAttachment(new Attachment($this->cast($xml->zweites_bild)));
         }
 
         //detailed attributes from detail view, OpenImmo
@@ -287,8 +287,8 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->geo->geokoordinaten)) {
                 $coord = $this->attributesToArray($xml->geo->geokoordinaten->attributes());
-                $objekt->setLatitude((double) $coord['breitengrad']);
-                $objekt->setLongitude((double) $coord['laengengrad']);
+                $objekt->setLatitude((float) $coord['breitengrad']);
+                $objekt->setLongitude((float) $coord['laengengrad']);
             }
 
             if (isset($xml->geo->land)) {
@@ -353,7 +353,7 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
                     $name  = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
-                    $costs = new AdditionalCosts((string) $name, (double) $zusatzkosten->brutto, (double) $zusatzkosten->netto, (double) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (double) $zusatzkosten->ust_berechneter_wert, (double) $zusatzkosten->ust_wert);
+                    $costs = new AdditionalCosts((string) $name, (float) $zusatzkosten->brutto, (float) $zusatzkosten->netto, (float) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (float) $zusatzkosten->ust_berechneter_wert, (float) $zusatzkosten->ust_wert);
 
                     if (isset($zusatzkosten->optional)) {
                         $costs->setOptional(filter_var((string) $zusatzkosten->optional, FILTER_VALIDATE_BOOLEAN));
@@ -367,7 +367,7 @@ class RealtyWrapper extends AbstractWrapper
                 $key = 0;
 
                 foreach ($xml->preise->stellplaetze[0] as $stellplaetz) {
-                    $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (double) $stellplaetz->brutto, (double) $stellplaetz->netto, (double) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (double) $stellplaetz->ust_wert);
+                    $garage = new Garage((string) $stellplaetz->art, (string) $stellplaetz->name, (int) $stellplaetz->anzahl, (string) $stellplaetz->vermarktungsart, (float) $stellplaetz->brutto, (float) $stellplaetz->netto, (float) $stellplaetz->ust, (string) $stellplaetz->ust_typ, (float) $stellplaetz->ust_wert);
 
                     $objekt->addGarage($key, $garage);
 
