@@ -73,9 +73,9 @@ abstract class AbstractWrapper implements WrapperInterface
      * node, so an url read straight out of the array fails
      * filter_var(..., FILTER_VALIDATE_URL).
      *
-     * @param array $values
+     * @param array<string, mixed> $values
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function trimValues(array $values)
     {
