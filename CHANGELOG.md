@@ -1,3 +1,6 @@
+## 1.3.1
+* Extend energy pass entity with eeb value and class.
+
 ## 1.3.0
 * Add support for political districts
   * BasicDataQuery.findPoliticalDistricts
