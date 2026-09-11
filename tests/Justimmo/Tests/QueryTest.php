@@ -5,18 +5,29 @@ use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use PHPUnit\Framework\TestCase;
 
 class QueryTest extends TestCase
 {
     /**
-     * @var \Justimmo\Model\RealtyQuery
+     * @var RealtyQuery
      */
     protected $query;
+
+    protected RecordingJustimmoApi $api;
+
+    /**
+     * A query with a wrapper which returns a real pager, needed for paginate()
+     */
+    protected RealtyQuery $pagerQuery;
 
     public function setUp(): void
     {
         $this->query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), new RealtyMapper());
+
+        $this->api        = new RecordingJustimmoApi();
+        $this->pagerQuery = new RealtyQuery($this->api, new RealtyWrapper(new RealtyMapper()), new RealtyMapper());
     }
 
     public function testSingle()
@@ -122,6 +133,50 @@ class QueryTest extends TestCase
             )
         ), $this->query->getParams());
 
+    }
+
+    /**
+     * paginate() must never send a negative offset to the api, no matter what page is given
+     *
+     * @dataProvider paginateProvider
+     */
+    public function testPaginate($page, $maxPerPage, $expectedOffset, $expectedLimit, $expectedPage)
+    {
+        $pager  = $this->pagerQuery->paginate($page, $maxPerPage);
+        $params = $this->api->getLastParams();
+
+        $this->assertSame($expectedOffset, $params['offset']);
+        $this->assertSame($expectedLimit, $params['limit']);
+        $this->assertSame($expectedPage, $pager->getPage());
+        $this->assertSame($expectedLimit, $pager->getMaxPerPage());
+    }
+
+    public function paginateProvider()
+    {
+        return array(
+            'first page'            => array(1, 100, 0, 100, 1),
+            'second page'           => array(2, 100, 100, 100, 2),
+            'page zero'             => array(0, 100, 0, 100, 1),
+            'negative page'         => array(-1, 100, 0, 100, 1),
+            'numeric string page'   => array('3', 100, 200, 100, 3),
+            'string page zero'      => array('0', 100, 0, 100, 1),
+            'null page'             => array(null, 100, 0, 100, 1),
+            'non numeric page'      => array('abc', 100, 0, 100, 1),
+            'float page'            => array(1.9, 100, 0, 100, 1),
+            'zero max per page'     => array(1, 0, 0, 1, 1),
+            'negative max per page' => array(1, -10, 0, 1, 1),
+        );
+    }
+
+    public function testPaginateDefaults()
+    {
+        $pager  = $this->pagerQuery->paginate();
+        $params = $this->api->getLastParams();
+
+        $this->assertSame(0, $params['offset']);
+        $this->assertSame(10, $params['limit']);
+        $this->assertSame(1, $pager->getPage());
+        $this->assertSame(10, $pager->getMaxPerPage());
     }
 
     public function testMagicMethodMapping()

@@ -105,6 +105,9 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function paginate($page = 1, $maxPerPage = 10)
     {
+        $page       = max(1, (int) $page);
+        $maxPerPage = max(1, (int) $maxPerPage);
+
         $this
             ->setLimit($maxPerPage)
             ->setOffset(($page - 1) * $maxPerPage);
