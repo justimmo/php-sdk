@@ -140,7 +140,7 @@ class BasicDataQuery
      */
     public function findPoliticalDistricts(): array
     {
-        $response = $this->api->callRegions($this->params);
+        $response = $this->api->callPoliticalDistricts($this->params);
 
         $return = $this->wrapper->transformPoliticalDistricts($response);
 
