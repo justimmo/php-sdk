@@ -1,3 +1,6 @@
+## 1.3.2
+* Fix paginate() sending a negative offset for page numbers below 1
+
 ## 1.3.1
 * Extend energy pass entity with eeb value and class.
 
