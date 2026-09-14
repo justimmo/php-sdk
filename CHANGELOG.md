@@ -1,3 +1,7 @@
+## 1.3.3
+* Identify the requests of the sdk with the header X-Justimmo-PHP-SDK-Version and with a User-Agent.
+  The version is read from the composer installation of the package
+
 ## 1.3.2
 * Fix paginate() sending a negative offset for page numbers below 1
 * Fix findPoliticalDistricts() calling the regions endpoint. It parsed a regions response for politischer_bezirk elements, which never exist there, so it always returned an empty array.

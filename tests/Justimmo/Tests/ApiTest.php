@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests;
 
+use Composer\InstalledVersions;
 use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
 use Justimmo\Exception\AuthenticationException;
@@ -72,6 +73,61 @@ class ApiTest extends TestCase
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('<justimmo><error>zimmer_von ["test" is not a number.]</error></justimmo>', 400));
 
         $this->api->callRealtyList();
+    }
+
+    /**
+     * Every request must be attributable to the sdk and to its version
+     */
+    public function testRequestsIdentifyTheSdk()
+    {
+        $api    = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $method = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+        $headers = $request->getOption(CURLOPT_HTTPHEADER);
+
+        $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+
+        $this->assertContains('X-Justimmo-PHP-SDK-Version: ' . $version, $headers);
+        $this->assertStringStartsWith('justimmo-php-sdk/', $request->getOption(CURLOPT_USERAGENT));
+    }
+
+    /**
+     * Headers set by the integrator must survive
+     */
+    public function testCustomHeadersAreKept()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_HTTPHEADER, ['X-Custom: keep me']);
+
+        $method = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+
+        $headers = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list')
+            ->getOption(CURLOPT_HTTPHEADER);
+
+        $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+
+        $this->assertContains('X-Custom: keep me', $headers);
+        $this->assertContains('X-Justimmo-PHP-SDK-Version: ' . $version, $headers);
+    }
+
+    /**
+     * A user agent of the integrator wins, the sdk only provides a default. The version header
+     * is appended in any case, so the request stays identifiable
+     */
+    public function testCustomUserAgentIsKept()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_USERAGENT, 'AcmeWebsite/2.1');
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+
+        $this->assertSame('AcmeWebsite/2.1', $request->getOption(CURLOPT_USERAGENT));
+        $this->assertContains(
+            'X-Justimmo-PHP-SDK-Version: ' . InstalledVersions::getPrettyVersion('justimmo/php-sdk'),
+            $request->getOption(CURLOPT_HTTPHEADER)
+        );
     }
 
     public function testGenerateUrl()
