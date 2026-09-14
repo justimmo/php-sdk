@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api;
 
+use Composer\InstalledVersions;
 use Justimmo\Cache\CacheInterface;
 use Justimmo\Cache\NullCache;
 use Justimmo\Curl\CurlRequest;
@@ -83,6 +84,11 @@ class JustimmoApi implements JustimmoApiInterface
         CURLOPT_RETURNTRANSFER    => true,
         CURLOPT_SSL_VERIFYPEER    => false,
     );
+
+    /**
+     * installed version of this package, resolved once per process
+     */
+    private static ?string $sdkVersion = null;
 
     /**
      *
@@ -539,11 +545,50 @@ class JustimmoApi implements JustimmoApiInterface
         return $this;
     }
 
+    /**
+     * The installed version of this package, "unknown" if it cannot be determined,
+     * eg. when the sdk is not installed with composer
+     */
+    private static function getSdkVersion(): string
+    {
+        if (self::$sdkVersion === null) {
+            $version = null;
+
+            if (class_exists(InstalledVersions::class)
+                && InstalledVersions::isInstalled('justimmo/php-sdk')
+            ) {
+                $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+            }
+
+            self::$sdkVersion = $version ?? 'unknown';
+        }
+
+        return self::$sdkVersion;
+    }
+
     protected function createRequest($url)
     {
-        return new CurlRequest($url, array(
-                CURLOPT_USERPWD        => $this->username . ':' . $this->password,
-                CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
-            ) + $this->curlOptions);
+        // requests of the sdk carry their own headers so they can be told apart from
+        // handwritten api calls, headers of the integrator are kept
+        $headers = [];
+        if (isset($this->curlOptions[CURLOPT_HTTPHEADER]) && is_array($this->curlOptions[CURLOPT_HTTPHEADER])) {
+            $headers = $this->curlOptions[CURLOPT_HTTPHEADER];
+        }
+
+        $headers[] = 'X-Justimmo-PHP-SDK-Version: ' . self::getSdkVersion();
+
+        $options = [
+                CURLOPT_USERPWD    => $this->username . ':' . $this->password,
+                CURLOPT_HTTPAUTH   => CURLAUTH_ANY,
+                CURLOPT_HTTPHEADER => $headers,
+            ] + $this->curlOptions;
+
+        // the user agent is only a default, an integrator who sets one keeps it. The sdk stays
+        // identifiable through the header above, which is appended to the headers of the caller
+        $options += [
+            CURLOPT_USERAGENT => 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')',
+        ];
+
+        return new CurlRequest($url, $options);
     }
 }
