@@ -35,6 +35,21 @@ class EnergyPass
     protected $energyEfficiencyFactorClass = null;
 
     /**
+     * @var float|null
+     */
+    protected $finalEnergyDemandValue = null;
+
+    /**
+     * @var string|null
+     */
+    protected $finalEnergyDemandClass = null;
+
+    /**
+     * @var bool|null
+     */
+    protected $finalEnergyDemandClassFossil = null;
+
+    /**
      * @param mixed $epart
      *
      * @return $this
@@ -160,4 +175,75 @@ class EnergyPass
         return $this->thermalHeatRequirementValue;
     }
 
+    /**
+     * @param float|null $eebWert
+     *
+     * @return $this
+     */
+    public function setFinalEnergyDemandValue($eebWert)
+    {
+        $this->finalEnergyDemandValue = $eebWert;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getFinalEnergyDemandValue()
+    {
+        return $this->finalEnergyDemandValue;
+    }
+
+    /**
+     * @param string|null $eebKlasse
+     *
+     * @return $this
+     */
+    public function setFinalEnergyDemandClass($eebKlasse)
+    {
+        $this->finalEnergyDemandClass = $eebKlasse;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFinalEnergyDemandClass()
+    {
+        return $this->finalEnergyDemandClass;
+    }
+
+    /**
+     * @param bool|null $fossil
+     *
+     * @return $this
+     */
+    public function setFinalEnergyDemandClassFossil($fossil)
+    {
+        $this->finalEnergyDemandClassFossil = $fossil;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getFinalEnergyDemandClassFossil()
+    {
+        return $this->finalEnergyDemandClassFossil;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFinalEnergyDemandClassWithFossilString()
+    {
+        if ($this->getFinalEnergyDemandClass() === null) {
+            return null;
+        }
+
+        return $this->finalEnergyDemandClass . ($this->finalEnergyDemandClassFossil ? ' fossil' : '');
+    }
 }

@@ -207,6 +207,8 @@
             <energiepass>
                 <epart>BEDARF</epart>
                 <gueltig_bis>2012-09-12</gueltig_bis>
+                <eebwert>120.5</eebwert>
+                <eebklasse fossil="1">C</eebklasse>
             </energiepass>
             <hwbwert>44</hwbwert>
             <hwbklasse>B</hwbklasse>

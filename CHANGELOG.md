@@ -4,6 +4,25 @@
 * `Attachment.getUrl` throws `AttachmentSizeNotFoundException` for a size the api did not return, instead of emitting a php warning and returning null
 * Map the contact person's `firma` and `land` to `Employee.company` and `Employee.country`
 
+## 1.3.4
+* The User-Agent of the sdk is appended to a User-Agent set by the integrator instead of yielding to
+  it, so a request stays attributable even when the caller sets an agent of their own. A User-Agent
+  is a list of product tokens, so the agent of the integrator stays first and intact. Both ways of
+  setting it are covered, CURLOPT_USERAGENT and a User-Agent entry in CURLOPT_HTTPHEADER, since curl
+  lets the header win over the option. A User-Agent header without a value removes the header in
+  curl and is left untouched
+
+## 1.3.3
+* Identify the requests of the sdk with the header X-Justimmo-PHP-SDK-Version and with a User-Agent.
+  The version is read from the composer installation of the package
+
+## 1.3.2
+* Fix paginate() sending a negative offset for page numbers below 1
+* Fix findPoliticalDistricts() calling the regions endpoint. It parsed a regions response for politischer_bezirk elements, which never exist there, so it always returned an empty array.
+
+## 1.3.1
+* Extend energy pass entity with eeb value and class.
+
 ## 1.3.0
 * Add support for political districts
   * BasicDataQuery.findPoliticalDistricts

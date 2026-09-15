@@ -2,6 +2,7 @@
 
 namespace Justimmo\Api;
 
+use Composer\InstalledVersions;
 use Justimmo\Cache\CacheInterface;
 use Justimmo\Cache\NullCache;
 use Justimmo\Curl\CurlRequest;
@@ -83,6 +84,11 @@ class JustimmoApi implements JustimmoApiInterface
         CURLOPT_RETURNTRANSFER    => true,
         CURLOPT_SSL_VERIFYPEER    => false,
     );
+
+    /**
+     * installed version of this package, resolved once per process
+     */
+    private static ?string $sdkVersion = null;
 
     /**
      *
@@ -539,11 +545,95 @@ class JustimmoApi implements JustimmoApiInterface
         return $this;
     }
 
+    /**
+     * The installed version of this package, "unknown" if it cannot be determined,
+     * eg. when the sdk is not installed with composer
+     */
+    private static function getSdkVersion(): string
+    {
+        if (self::$sdkVersion === null) {
+            $version = null;
+
+            if (class_exists(InstalledVersions::class)
+                && InstalledVersions::isInstalled('justimmo/php-sdk')
+            ) {
+                $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+            }
+
+            self::$sdkVersion = $version ?? 'unknown';
+        }
+
+        return self::$sdkVersion;
+    }
+
     protected function createRequest($url)
     {
-        return new CurlRequest($url, array(
-                CURLOPT_USERPWD        => $this->username . ':' . $this->password,
-                CURLOPT_HTTPAUTH       => CURLAUTH_ANY,
-            ) + $this->curlOptions);
+        // requests of the sdk carry their own headers so they can be told apart from
+        // handwritten api calls, headers of the integrator are kept
+        $headers = [];
+        if (isset($this->curlOptions[CURLOPT_HTTPHEADER]) && is_array($this->curlOptions[CURLOPT_HTTPHEADER])) {
+            $headers = $this->curlOptions[CURLOPT_HTTPHEADER];
+        }
+
+        $headers[] = 'X-Justimmo-PHP-SDK-Version: ' . self::getSdkVersion();
+
+        // an agent can be set through either option, and curl lets a User-Agent header win over
+        // CURLOPT_USERAGENT, so an agent in the header list gets the token appended there
+        foreach ($headers as $index => $header) {
+            if (!is_string($header) || stripos($header, 'user-agent:') !== 0) {
+                continue;
+            }
+
+            $headerAgent = trim(substr($header, strlen('user-agent:')));
+
+            // a header without a value removes it in curl, which is a deliberate choice and is
+            // left alone. Such a request stays identifiable through the version header above
+            if ($headerAgent === '') {
+                continue;
+            }
+
+            // the name is written back as the integrator spelled it, header names are case
+            // insensitive and there is no reason to rewrite theirs
+            $headers[$index] = substr($header, 0, strlen('user-agent:'))
+                . ' ' . self::appendSdkAgent($headerAgent);
+        }
+
+        $options = [
+                CURLOPT_USERPWD    => $this->username . ':' . $this->password,
+                CURLOPT_HTTPAUTH   => CURLAUTH_ANY,
+                CURLOPT_HTTPHEADER => $headers,
+            ] + $this->curlOptions;
+
+        $options[CURLOPT_USERAGENT] = self::appendSdkAgent(
+            isset($options[CURLOPT_USERAGENT]) && is_string($options[CURLOPT_USERAGENT])
+                ? $options[CURLOPT_USERAGENT]
+                : ''
+        );
+
+        return new CurlRequest($url, $options);
+    }
+
+    /**
+     * Appends the token of the sdk to a user agent of the integrator, so the api log can attribute
+     * the request even when the caller sets an agent of their own. Their agent stays first and
+     * intact, since a User-Agent is defined as a list of product tokens.
+     *
+     * The token is looked for at a product token boundary, at the start or after whitespace, so an
+     * agent which merely ends with our name, eg. a fork called my-justimmo-php-sdk, still gets it.
+     */
+    private static function appendSdkAgent(string $ownAgent): string
+    {
+        $sdkAgent = 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')';
+        $ownAgent = trim($ownAgent);
+
+        if ($ownAgent === '') {
+            return $sdkAgent;
+        }
+
+        if (preg_match('/(?:^|\s)justimmo-php-sdk\//', $ownAgent) === 1) {
+            return $ownAgent;
+        }
+
+        return $ownAgent . ' ' . $sdkAgent;
     }
 }

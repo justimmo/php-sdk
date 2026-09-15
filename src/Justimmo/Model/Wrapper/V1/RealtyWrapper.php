@@ -436,10 +436,25 @@ class RealtyWrapper extends AbstractWrapper
             }
 
             if (isset($xml->zustand_angaben->energiepass)) {
+                $energiepassXml = $xml->zustand_angaben->energiepass;
+
                 $energiepass = new EnergyPass();
                 $energiepass
-                    ->setEpart($this->cast($xml->zustand_angaben->energiepass->epart))
-                    ->setValidUntil($this->cast($xml->zustand_angaben->energiepass->gueltig_bis, 'datetime'));
+                    ->setEpart($this->cast($energiepassXml->epart))
+                    ->setValidUntil($this->cast($energiepassXml->gueltig_bis, 'datetime'));
+
+                if (isset($energiepassXml->eebwert)) {
+                    $energiepass->setFinalEnergyDemandValue((double) $energiepassXml->eebwert);
+                }
+
+                if (isset($energiepassXml->eebklasse)) {
+                    $energiepass->setFinalEnergyDemandClass((string) $energiepassXml->eebklasse);
+
+                    $data = $this->attributesToArray($energiepassXml->eebklasse);
+                    if (array_key_exists('fossil', $data)) {
+                        $energiepass->setFinalEnergyDemandClassFossil(filter_var($data['fossil'], FILTER_VALIDATE_BOOLEAN));
+                    }
+                }
 
                 foreach ($xml->zustand_angaben->user_defined_simplefield as $simpleField) {
                     $this->mapSimpleField($simpleField, $energiepass);

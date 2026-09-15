@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests;
 
+use Composer\InstalledVersions;
 use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
 use Justimmo\Exception\AuthenticationException;
@@ -72,6 +73,168 @@ class ApiTest extends TestCase
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('<justimmo><error>zimmer_von ["test" is not a number.]</error></justimmo>', 400));
 
         $this->api->callRealtyList();
+    }
+
+    /**
+     * Every request must be attributable to the sdk and to its version
+     */
+    public function testRequestsIdentifyTheSdk()
+    {
+        $api    = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $method = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+        $headers = $request->getOption(CURLOPT_HTTPHEADER);
+
+        $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+
+        $this->assertContains('X-Justimmo-PHP-SDK-Version: ' . $version, $headers);
+        $this->assertStringStartsWith('justimmo-php-sdk/', $request->getOption(CURLOPT_USERAGENT));
+    }
+
+    /**
+     * Headers set by the integrator must survive
+     */
+    public function testCustomHeadersAreKept()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_HTTPHEADER, ['X-Custom: keep me']);
+
+        $method = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+
+        $headers = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list')
+            ->getOption(CURLOPT_HTTPHEADER);
+
+        $version = InstalledVersions::getPrettyVersion('justimmo/php-sdk');
+
+        $this->assertContains('X-Custom: keep me', $headers);
+        $this->assertContains('X-Justimmo-PHP-SDK-Version: ' . $version, $headers);
+    }
+
+    /**
+     * A user agent of the integrator is kept and the sdk token appended to it, so the request
+     * stays attributable in the api log even where the caller sets an agent of their own
+     */
+    public function testSdkTokenIsAppendedToACustomUserAgent()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_USERAGENT, 'ImmoPlugin/3.2');
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+
+        $userAgent = $request->getOption(CURLOPT_USERAGENT);
+
+        $this->assertStringStartsWith('ImmoPlugin/3.2 ', $userAgent);
+        $this->assertStringContainsString('justimmo-php-sdk/', $userAgent);
+        $this->assertContains(
+            'X-Justimmo-PHP-SDK-Version: ' . InstalledVersions::getPrettyVersion('justimmo/php-sdk'),
+            $request->getOption(CURLOPT_HTTPHEADER)
+        );
+    }
+
+    /**
+     * A token which merely ends with our name, a fork or a wrapper, is not our token, so the sdk
+     * token still has to be appended next to it
+     */
+    public function testSdkTokenIsAppendedNextToASimilarlyNamedToken()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_USERAGENT, 'my-justimmo-php-sdk/1.0');
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+
+        $userAgent = $request->getOption(CURLOPT_USERAGENT);
+
+        $this->assertStringStartsWith('my-justimmo-php-sdk/1.0 ', $userAgent);
+        $this->assertSame(2, substr_count($userAgent, 'justimmo-php-sdk/'));
+    }
+
+    /**
+     * An integrator who carries the sdk token in their own agent does not get it twice
+     */
+    public function testSdkTokenIsNotAppendedTwice()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_USERAGENT, 'ImmoPlugin/3.2 justimmo-php-sdk/1.3.3');
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $request = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list');
+
+        $this->assertSame(
+            'ImmoPlugin/3.2 justimmo-php-sdk/1.3.3',
+            $request->getOption(CURLOPT_USERAGENT)
+        );
+    }
+
+    /**
+     * curl lets a User-Agent in the header list win over CURLOPT_USERAGENT, so an agent set that
+     * way has to carry the sdk token too, otherwise the request is not attributable
+     */
+    public function testSdkTokenIsAppendedToAUserAgentHeader()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_HTTPHEADER, ['X-Custom: keep me', 'User-Agent: ImmoPlugin/3.2']);
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $headers = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list')
+            ->getOption(CURLOPT_HTTPHEADER);
+
+        $this->assertContains('X-Custom: keep me', $headers);
+
+        $userAgent = null;
+        foreach ($headers as $header) {
+            if (stripos($header, 'user-agent:') === 0) {
+                $userAgent = $header;
+            }
+        }
+
+        $this->assertNotNull($userAgent, 'the user agent header of the integrator must survive');
+        $this->assertStringStartsWith('User-Agent: ImmoPlugin/3.2 ', $userAgent);
+        $this->assertStringContainsString('justimmo-php-sdk/', $userAgent);
+    }
+
+    /**
+     * A user agent header which already carries the token is left alone
+     */
+    public function testSdkTokenIsNotAppendedTwiceToAUserAgentHeader()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_HTTPHEADER, ['User-Agent: ImmoPlugin/3.2 justimmo-php-sdk/1.3.3']);
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $headers = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list')
+            ->getOption(CURLOPT_HTTPHEADER);
+
+        $userAgents = array_values(array_filter($headers, function ($header) {
+            return stripos($header, 'user-agent:') === 0;
+        }));
+
+        // one agent header, unchanged, and the token in it exactly once
+        $this->assertCount(1, $userAgents);
+        $this->assertSame('User-Agent: ImmoPlugin/3.2 justimmo-php-sdk/1.3.3', $userAgents[0]);
+        $this->assertSame(1, substr_count(implode("\n", $headers), 'justimmo-php-sdk/'));
+    }
+
+    /**
+     * A user agent header without a value removes the header in curl. That is a deliberate choice
+     * of the integrator and is not overruled, the version header still identifies the request
+     */
+    public function testAnEmptyUserAgentHeaderIsLeftAlone()
+    {
+        $api = new JustimmoApi('username', 'password', new NullLogger(), new NullCache());
+        $api->setCurlOption(CURLOPT_HTTPHEADER, ['User-Agent:']);
+
+        $method  = new \ReflectionMethod(JustimmoApi::class, 'createRequest');
+        $headers = $method->invoke($api, 'https://api.justimmo.at/rest/v1/objekt/list')
+            ->getOption(CURLOPT_HTTPHEADER);
+
+        $this->assertContains('User-Agent:', $headers);
+        $this->assertContains(
+            'X-Justimmo-PHP-SDK-Version: ' . InstalledVersions::getPrettyVersion('justimmo/php-sdk'),
+            $headers
+        );
     }
 
     public function testGenerateUrl()
