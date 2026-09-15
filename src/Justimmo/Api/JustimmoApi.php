@@ -577,18 +577,63 @@ class JustimmoApi implements JustimmoApiInterface
 
         $headers[] = 'X-Justimmo-PHP-SDK-Version: ' . self::getSdkVersion();
 
+        // an agent can be set through either option, and curl lets a User-Agent header win over
+        // CURLOPT_USERAGENT, so an agent in the header list gets the token appended there
+        foreach ($headers as $index => $header) {
+            if (!is_string($header) || stripos($header, 'user-agent:') !== 0) {
+                continue;
+            }
+
+            $headerAgent = trim(substr($header, strlen('user-agent:')));
+
+            // a header without a value removes it in curl, which is a deliberate choice and is
+            // left alone. Such a request stays identifiable through the version header above
+            if ($headerAgent === '') {
+                continue;
+            }
+
+            // the name is written back as the integrator spelled it, header names are case
+            // insensitive and there is no reason to rewrite theirs
+            $headers[$index] = substr($header, 0, strlen('user-agent:'))
+                . ' ' . self::appendSdkAgent($headerAgent);
+        }
+
         $options = [
                 CURLOPT_USERPWD    => $this->username . ':' . $this->password,
                 CURLOPT_HTTPAUTH   => CURLAUTH_ANY,
                 CURLOPT_HTTPHEADER => $headers,
             ] + $this->curlOptions;
 
-        // the user agent is only a default, an integrator who sets one keeps it. The sdk stays
-        // identifiable through the header above, which is appended to the headers of the caller
-        $options += [
-            CURLOPT_USERAGENT => 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')',
-        ];
+        $options[CURLOPT_USERAGENT] = self::appendSdkAgent(
+            isset($options[CURLOPT_USERAGENT]) && is_string($options[CURLOPT_USERAGENT])
+                ? $options[CURLOPT_USERAGENT]
+                : ''
+        );
 
         return new CurlRequest($url, $options);
+    }
+
+    /**
+     * Appends the token of the sdk to a user agent of the integrator, so the api log can attribute
+     * the request even when the caller sets an agent of their own. Their agent stays first and
+     * intact, since a User-Agent is defined as a list of product tokens.
+     *
+     * The token is looked for at a product token boundary, at the start or after whitespace, so an
+     * agent which merely ends with our name, eg. a fork called my-justimmo-php-sdk, still gets it.
+     */
+    private static function appendSdkAgent(string $ownAgent): string
+    {
+        $sdkAgent = 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')';
+        $ownAgent = trim($ownAgent);
+
+        if ($ownAgent === '') {
+            return $sdkAgent;
+        }
+
+        if (preg_match('/(?:^|\s)justimmo-php-sdk\//', $ownAgent) === 1) {
+            return $ownAgent;
+        }
+
+        return $ownAgent . ' ' . $sdkAgent;
     }
 }

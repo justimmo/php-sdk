@@ -1,3 +1,11 @@
+## 1.3.4
+* The User-Agent of the sdk is appended to a User-Agent set by the integrator instead of yielding to
+  it, so a request stays attributable even when the caller sets an agent of their own. A User-Agent
+  is a list of product tokens, so the agent of the integrator stays first and intact. Both ways of
+  setting it are covered, CURLOPT_USERAGENT and a User-Agent entry in CURLOPT_HTTPHEADER, since curl
+  lets the header win over the option. A User-Agent header without a value removes the header in
+  curl and is left untouched
+
 ## 1.3.3
 * Identify the requests of the sdk with the header X-Justimmo-PHP-SDK-Version and with a User-Agent.
   The version is read from the composer installation of the package
