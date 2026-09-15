@@ -1,7 +1,7 @@
 ## Unreleased
 * Replace deprecated `(double)` casts with `(float)` — every parsed response raised E_DEPRECATED on php 8.5
 * Trim whitespace from text nodes, so attachment urls from pretty printed responses are valid urls
-* `Attachment.getUrl` throws `AttachmentSizeNotFoundException` for a size the api did not return, instead of emitting a php warning and returning null
+* `Attachment.getUrl` returns null for a size the api did not return without emitting a php warning. Add `Attachment.getUrlOrFail`, which throws `AttachmentSizeNotFoundException` instead
 * Map the contact person's `firma` and `land` to `Employee.company` and `Employee.country`
 
 ## 1.3.4

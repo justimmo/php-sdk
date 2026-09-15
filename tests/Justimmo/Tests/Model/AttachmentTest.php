@@ -32,15 +32,39 @@ class AttachmentTest extends TestCase
         $this->assertEquals('http://files.justimmo.at/public/pic/big/test.jpg', $attachment->getUrl('big'));
     }
 
-    public function testGetUrlThrowsForASizeTheApiDidNotReturn()
+    public function testGetUrlReturnsNullForASizeTheApiDidNotReturn()
     {
         // Project images are returned with only the original size, so asking for
-        // a larger one used to emit a php warning and return null.
+        // a larger one used to emit a php warning next to the null.
+        $attachment = new Attachment('http://files.justimmo.at/public/pic/orig/test.jpg');
+
+        $this->assertNull($attachment->getUrl('big'));
+    }
+
+    public function testGetUrlOrFailReturnsTheRequestedSize()
+    {
+        $attachment = new Attachment('http://files.justimmo.at/public/pic/orig/test.jpg');
+        $attachment->mergeData(array('big' => 'http://files.justimmo.at/public/pic/big/test.jpg'));
+
+        $this->assertEquals('http://files.justimmo.at/public/pic/orig/test.jpg', $attachment->getUrlOrFail());
+        $this->assertEquals('http://files.justimmo.at/public/pic/big/test.jpg', $attachment->getUrlOrFail('big'));
+    }
+
+    public function testGetUrlOrFailThrowsForASizeTheApiDidNotReturn()
+    {
         $attachment = new Attachment('http://files.justimmo.at/public/pic/orig/test.jpg');
 
         $this->expectException(AttachmentSizeNotFoundException::class);
         $this->expectExceptionMessage('does not provide the size "big"');
 
-        $attachment->getUrl('big');
+        $attachment->getUrlOrFail('big');
+    }
+
+    public function testGetVideoPosterUrlReturnsNullForASizeTheApiDidNotReturn()
+    {
+        $attachment = new Attachment('http://files.justimmo.at/public/video/lq/test.mp4');
+
+        $this->assertEquals('http://files.justimmo.at/public/pic/lq/test.jpg', $attachment->getVideoPosterUrl());
+        $this->assertNull($attachment->getVideoPosterUrl('hq'));
     }
 }

@@ -69,12 +69,30 @@ class Attachment
      *
      * @param string $size
      *
-     * @return string
-     * @throws AttachmentSizeNotFoundException if the api did not return the requested size
+     * @return string|null null if the api did not return the requested size
      */
     public function getUrl($size = 'orig')
     {
         if (!array_key_exists($size, $this->data)) {
+            return null;
+        }
+
+        return $this->data[$size];
+    }
+
+    /**
+     * gets the url of an attachment size as returned by the api and throws if the api did not return it
+     *
+     * @param string $size
+     *
+     * @return string
+     * @throws AttachmentSizeNotFoundException if the api did not return the requested size
+     */
+    public function getUrlOrFail($size = 'orig')
+    {
+        $url = $this->getUrl($size);
+
+        if ($url === null) {
             throw new AttachmentSizeNotFoundException(sprintf(
                 'The attachment does not provide the size "%s". Available sizes: %s. Use calculateUrl() to derive an url for a size the api did not return.',
                 $size,
@@ -82,7 +100,7 @@ class Attachment
             ));
         }
 
-        return $this->data[$size];
+        return $url;
     }
 
     /**
@@ -315,8 +333,7 @@ class Attachment
     /**
      * @param string $size
      *
-     * @return string|null
-     * @throws AttachmentSizeNotFoundException
+     * @return string|null null if the attachment is not a video or the api did not return the requested size
      */
     public function getVideoPosterUrl($size = 'orig')
     {
@@ -325,6 +342,10 @@ class Attachment
         }
 
         $videoUrl = $this->getUrl($size);
+        if ($videoUrl === null) {
+            return null;
+        }
+
         $posterUrlParts = explode('.', str_replace('/video/', '/pic/', $videoUrl));
         $posterUrlParts[count($posterUrlParts)-1] = 'jpg';
         return implode('.', $posterUrlParts);
