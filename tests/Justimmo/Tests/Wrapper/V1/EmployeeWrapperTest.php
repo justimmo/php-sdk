@@ -83,4 +83,25 @@ class EmployeeWrapperTest extends TestCase
         $entry = $list[2];
         $this->assertEmpty($entry->getSuffix());
     }
+
+    public function testCompanyAndCountryAreMapped()
+    {
+        $wrapper = new EmployeeWrapper(new EmployeeMapper());
+        $employee = $wrapper->transformSingle(<<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <mitarbeiter>
+        <id>1</id>
+        <vorname>Max</vorname>
+        <name>Mustermann</name>
+        <firma>Muster Immobilien GmbH</firma>
+        <land iso_land="AUT"/>
+    </mitarbeiter>
+</justimmo>
+XML
+        );
+
+        $this->assertEquals('Muster Immobilien GmbH', $employee->getCompany());
+        $this->assertEquals('AUT', $employee->getCountry());
+    }
 }
