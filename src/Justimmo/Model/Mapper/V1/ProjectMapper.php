@@ -143,7 +143,6 @@ class ProjectMapper extends AbstractMapper
             'ProjectTag'     => 'project_tag_name',
             'Keyword'        => 'stichwort',
             'FederalStateId' => 'bundesland_id',
-            'CountryIso2'    => 'land_iso2',
             'ProjectState'   => 'projekt_status',
             'IsReference'    => 'referenz',
             'CompletionDate' => 'fertigstellung',

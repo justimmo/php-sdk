@@ -151,18 +151,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApi.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:createRequest\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:createRequest\(\) has parameter \$url with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:generateUrl\(\) has parameter \$call with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -641,12 +629,6 @@ parameters:
 			identifier: notIdentical.alwaysFalse
 			count: 2
 			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Exception\\InvalidRequestException\:\:setResponse\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/Justimmo/Exception/InvalidRequestException.php
 
 		-
 			message: '#^Method Justimmo\\Model\\AdditionalCosts\:\:__construct\(\) has parameter \$name with no type specified\.$#'

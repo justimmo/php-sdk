@@ -24,7 +24,7 @@ namespace Justimmo\Curl;
  *
  * @package Justimmo\Curl
  */
-class CurlRequest
+class CurlRequest implements CurlRequestInterface
 {
     /**
      * Options for curl request

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<response>
+  <type>https://symfony.com/errors/validation</type>
+  <title>Validation Failed</title>
+  <status>422</status>
+  <detail>orderType: The order type should be either "asc" or "desc".</detail>
+  <violations>
+    <propertyPath>orderType</propertyPath>
+    <title>The order type should be either "asc" or "desc".</title>
+    <template>The order type should be either "asc" or "desc".</template>
+    <parameters>
+      <item key="{{ value }}">"INVALID"</item>
+      <item key="{{ pattern }}">/^(asc|desc)$/i</item>
+    </parameters>
+    <type>urn:uuid:de1e3db3-5ed4-4941-aae4-59f3667cc3a3</type>
+  </violations>
+</response>

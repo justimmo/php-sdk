@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<response>
+  <type>https://symfony.com/errors/validation</type>
+  <title>Validation Failed</title>
+  <status>422</status>
+  <detail>orderType: The order type should be either "asc" or "desc".
+filter.zipCodes[0]: Diese Zeichenkette ist zu kurz. Sie sollte mindestens 4 Zeichen haben.</detail>
+  <violations>
+    <propertyPath>orderType</propertyPath>
+    <title>The order type should be either "asc" or "desc".</title>
+    <template>The order type should be either "asc" or "desc".</template>
+    <parameters>
+      <item key="{{ value }}">"INVALID"</item>
+      <item key="{{ pattern }}">/^(asc|desc)$/i</item>
+    </parameters>
+    <type>urn:uuid:de1e3db3-5ed4-4941-aae4-59f3667cc3a3</type>
+  </violations>
+  <violations>
+    <propertyPath>filter.zipCodes[0]</propertyPath>
+    <title>Diese Zeichenkette ist zu kurz. Sie sollte mindestens 4 Zeichen haben.</title>
+    <template>This value is too short. It should have {{ limit }} character or more.|This value is too short. It should have {{ limit }} characters or more.</template>
+    <parameters>
+      <item key="{{ value }}">"99"</item>
+      <item key="{{ limit }}">4</item>
+    </parameters>
+    <type>urn:uuid:9ff3fdc4-b214-49db-8718-39c315e33d45</type>
+  </violations>
+</response>
