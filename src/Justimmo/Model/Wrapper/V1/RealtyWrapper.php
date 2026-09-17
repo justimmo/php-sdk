@@ -444,7 +444,7 @@ class RealtyWrapper extends AbstractWrapper
                     ->setValidUntil($this->cast($energiepassXml->gueltig_bis, 'datetime'));
 
                 if (isset($energiepassXml->eebwert)) {
-                    $energiepass->setFinalEnergyDemandValue((double) $energiepassXml->eebwert);
+                    $energiepass->setFinalEnergyDemandValue((float) $energiepassXml->eebwert);
                 }
 
                 if (isset($energiepassXml->eebklasse)) {
