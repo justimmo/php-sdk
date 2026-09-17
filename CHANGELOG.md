@@ -1,3 +1,6 @@
+## Unreleased
+* Replace the last `(double)` cast with `(float)` — the final energy demand value raised E_DEPRECATED on php 8.5 for every realty with an energy pass
+
 ## 1.5.0
 * Upgrading from 1.4 needs no change. Every change below is additive or fixes a call which did not do what it said
     * `orderBy*()` calls which the api answered with a 400 now sort, and `orderBy('UpdatedAt')` sorts by the same column as `orderByUpdatedAt()`
