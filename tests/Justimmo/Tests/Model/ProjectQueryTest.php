@@ -110,6 +110,18 @@ class ProjectQueryTest extends TestCase
         ), $query->getParams());
     }
 
+    /**
+     * The api has no filter[land_iso2], so the deprecated method must not build any parameter.
+     * Without the explicit method the magic call would send filter[CountryIso2] instead.
+     */
+    public function testFilterByCountryIso2HasNoEffect()
+    {
+        $query = $this->getQuery();
+
+        $this->assertSame($query, $query->filterByCountryIso2('AT'));
+        $this->assertSame([], $query->getParams());
+    }
+
     public function testFindIds()
     {
         $api = new MockJustimmoApi(array('projectIds' => $this->getFixtures('v1/project_ids.json')));

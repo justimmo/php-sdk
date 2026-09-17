@@ -6,10 +6,11 @@ use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
 use Justimmo\Exception\AuthenticationException;
 use Justimmo\Exception\InvalidRequestException;
+use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
 use Justimmo\Exception\StatusCodeException;
+use Justimmo\Exception\ValidationException;
 use Psr\Log\NullLogger;
-use PHPUnit\Framework\TestCase;
 
 class ApiTest extends TestCase
 {
@@ -73,6 +74,273 @@ class ApiTest extends TestCase
         $this->api->method('createRequest')->willReturn(new MockCurlRequest('<justimmo><error>zimmer_von ["test" is not a number.]</error></justimmo>', 400));
 
         $this->api->callRealtyList();
+    }
+
+    public function test422XmlResponse()
+    {
+        $this->api->method('createRequest')->willReturn(
+            new MockCurlRequest($this->getFixtures('v1/validation_error.xml'), 422, 'text/xml; charset=UTF-8')
+        );
+
+        try {
+            $this->api->callRealtyList();
+            $this->fail('no ValidationException has been thrown');
+        } catch (ValidationException $e) {
+            // a 422 must stay catchable for everybody who catches the general exception
+            $this->assertInstanceOf(InvalidRequestException::class, $e);
+            $this->assertSame('orderType: The order type should be either "asc" or "desc".', $e->getMessage());
+            $this->assertSame([
+                [
+                    'propertyPath' => 'orderType',
+                    'message'      => 'The order type should be either "asc" or "desc".',
+                ],
+            ], $e->getViolations());
+        }
+    }
+
+    public function test422JsonResponse()
+    {
+        $this->api->method('createRequest')->willReturn(
+            new MockCurlRequest($this->getFixtures('v1/validation_error_multiple.json'), 422, 'application/json')
+        );
+
+        try {
+            $this->api->callRealtyIds();
+            $this->fail('no ValidationException has been thrown');
+        } catch (ValidationException $e) {
+            $this->assertSame([
+                [
+                    'propertyPath' => 'orderType',
+                    'message'      => 'The order type should be either "asc" or "desc".',
+                ],
+                [
+                    'propertyPath' => 'filter.zipCodes[0]',
+                    'message'      => 'Diese Zeichenkette ist zu kurz. Sie sollte mindestens 4 Zeichen haben.',
+                ],
+            ], $e->getViolations());
+            $this->assertStringContainsString('filter.zipCodes[0]', $e->getMessage());
+        }
+    }
+
+    /**
+     * In xml every violation is a repeated <violations> element rather than a list, so more than
+     * one of them has to be read as well. The json path is covered above with two, this is the
+     * same body in the format the list and detail endpoints answer with
+     */
+    public function test422XmlResponseWithSeveralViolations()
+    {
+        $this->api->method('createRequest')->willReturn(
+            new MockCurlRequest($this->getFixtures('v1/validation_error_multiple.xml'), 422, 'text/xml; charset=UTF-8')
+        );
+
+        try {
+            $this->api->callRealtyList();
+            $this->fail('no ValidationException has been thrown');
+        } catch (ValidationException $e) {
+            $this->assertSame([
+                [
+                    'propertyPath' => 'orderType',
+                    'message'      => 'The order type should be either "asc" or "desc".',
+                ],
+                [
+                    'propertyPath' => 'filter.zipCodes[0]',
+                    'message'      => 'Diese Zeichenkette ist zu kurz. Sie sollte mindestens 4 Zeichen haben.',
+                ],
+            ], $e->getViolations());
+            $this->assertStringContainsString('filter.zipCodes[0]', $e->getMessage());
+        }
+    }
+
+    /**
+     * A body which cannot be parsed must not break the exception. That happens with a proxy
+     * answering html, a truncated response, or a content type which does not match the body — in
+     * all of those the message of the sdk is kept and no violation is invented
+     */
+    public function testAnUnparsableBodyKeepsTheMessageOfTheSdk()
+    {
+        $bodies = [
+            'broken xml'            => ['<response><unclosed>', 'text/xml; charset=UTF-8'],
+            'truncated json'        => ['{"violations": [', 'application/json'],
+            'html from a proxy'     => ['<html><body>502 Bad Gateway</body></html>', 'text/html'],
+            'json body, xml header' => [$this->getFixtures('v1/validation_error_multiple.json'), 'text/xml; charset=UTF-8'],
+            'xml body, json header' => [$this->getFixtures('v1/validation_error.xml'), 'application/json'],
+        ];
+
+        foreach ($bodies as $case => list($body, $contentType)) {
+            $exception = new ValidationException('The Api call returned status code 422');
+            $exception->setResponse($body, $contentType);
+
+            $this->assertSame(
+                'The Api call returned status code 422',
+                $exception->getMessage(),
+                'the message of the sdk has to survive a body of the kind: ' . $case
+            );
+            $this->assertSame(
+                [],
+                $exception->getViolations(),
+                'no violation may be invented for a body of the kind: ' . $case
+            );
+        }
+    }
+
+    /**
+     * createRequest() stays overridable without a return type until 2.x, so a request object of an
+     * integrator may not have getContentType(), which is new in this version. The status exception
+     * of the sdk has to be thrown anyway, and the format of the error body is recognised by
+     * sniffing it instead of by its content type
+     */
+    public function testARequestWithoutGetContentTypeStillThrowsTheStatusException()
+    {
+        $legacyRequest = new class ($this->getFixtures('v1/validation_error_multiple.json')) {
+            private $content;
+
+            public function __construct($content)
+            {
+                $this->content = $content;
+            }
+
+            public function setOption($key, $value)
+            {
+                return $this;
+            }
+
+            public function get()
+            {
+                return $this->content;
+            }
+
+            public function getError()
+            {
+                return null;
+            }
+
+            public function getStatusCode()
+            {
+                return 422;
+            }
+
+            public function getContent()
+            {
+                return $this->content;
+            }
+
+            // deliberately no getContentType(), that is the point of this test
+        };
+
+        $this->api->method('createRequest')->willReturn($legacyRequest);
+
+        try {
+            $this->api->callRealtyIds();
+            $this->fail('no ValidationException has been thrown');
+        } catch (ValidationException $e) {
+            // the body was recognised as json without a content type telling us so
+            $this->assertCount(2, $e->getViolations());
+            $this->assertStringContainsString('filter.zipCodes[0]', $e->getMessage());
+        }
+    }
+
+    /**
+     * A response which stopped execution before has to stop it now as well, and with something
+     * the catch blocks of the caller still catch. The third column is the class the sdk threw
+     * before the status dispatch was introduced, so a `catch` written against an older version
+     * keeps working — for a 422 that is InvalidRequestException, of which ValidationException
+     * is a subclass.
+     *
+     * @dataProvider statusCodeProvider
+     */
+    public function testEveryStatusCodeThrowsSomethingTheOldCatchBlocksStillCatch($statusCode, $expected, $catchableAs)
+    {
+        $this->api->method('createRequest')->willReturn(new MockCurlRequest('', $statusCode));
+
+        try {
+            $this->api->callRealtyList();
+        } catch (JustimmoException $e) {
+            $this->assertInstanceOf($expected, $e);
+            $this->assertInstanceOf($catchableAs, $e);
+            $this->assertInstanceOf(\Exception::class, $e);
+
+            return;
+        }
+
+        $this->fail('status code ' . $statusCode . ' did not stop the execution');
+    }
+
+    public function statusCodeProvider()
+    {
+        return [
+            'moved permanently'     => [301, StatusCodeException::class, StatusCodeException::class],
+            'bad request'           => [400, InvalidRequestException::class, InvalidRequestException::class],
+            'unauthorized'          => [401, AuthenticationException::class, AuthenticationException::class],
+            'forbidden'             => [403, InvalidRequestException::class, InvalidRequestException::class],
+            'not found'             => [404, NotFoundException::class, NotFoundException::class],
+            'method not allowed'    => [405, InvalidRequestException::class, InvalidRequestException::class],
+            'unprocessable entity'  => [422, ValidationException::class, InvalidRequestException::class],
+            'too many requests'     => [429, InvalidRequestException::class, InvalidRequestException::class],
+            'internal server error' => [500, StatusCodeException::class, StatusCodeException::class],
+            'bad gateway'           => [502, StatusCodeException::class, StatusCodeException::class],
+            'service unavailable'   => [503, StatusCodeException::class, StatusCodeException::class],
+        ];
+    }
+
+    /**
+     * A 3xx or a 5xx becomes a StatusCodeException, which never reads the body, so the body must
+     * not be asked for either. The request of this test fails loudly if it is
+     */
+    public function testAServerErrorDoesNotReadTheBody()
+    {
+        $request = new class {
+            public function setOption($key, $value)
+            {
+                return $this;
+            }
+
+            public function get()
+            {
+                return '';
+            }
+
+            public function getError()
+            {
+                return null;
+            }
+
+            public function getStatusCode()
+            {
+                return 500;
+            }
+
+            public function getContentType()
+            {
+                return 'text/xml; charset=UTF-8';
+            }
+
+            public function getContent()
+            {
+                throw new \LogicException('the body must not be read for a server error');
+            }
+        };
+
+        $this->expectException(StatusCodeException::class);
+        $this->expectExceptionMessage('The Api call returned status code 500');
+
+        $this->api->method('createRequest')->willReturn($request);
+
+        $this->api->callRealtyList();
+    }
+
+    /**
+     * A 404 carries a generic body, its message must not replace the message of the sdk
+     */
+    public function test404ResponseKeepsItsMessage()
+    {
+        $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('Api call not found: 404');
+
+        $this->api->method('createRequest')->willReturn(
+            new MockCurlRequest($this->getFixtures('v1/not_found.xml'), 404, 'text/xml; charset=UTF-8')
+        );
+
+        $this->api->callRealtyDetail(0);
     }
 
     /**

@@ -2,62 +2,65 @@
 
 namespace Justimmo\Tests;
 
-class MockCurlRequest
-{
-    protected $statusCode = 200;
+use Justimmo\Curl\CurlRequestInterface;
 
-    protected $content;
+class MockCurlRequest implements CurlRequestInterface
+{
+    protected int $statusCode = 200;
+
+    protected ?string $content;
+
+    protected ?string $contentType;
 
     /**
      * MockCurlRequest constructor.
      *
-     * @param     $content
-     * @param int $statusCode
+     * @param string|null $content     raw response body
+     * @param int         $statusCode
+     * @param string|null $contentType the list and detail endpoints answer in xml, the ids endpoints in json
      */
-    public function __construct($content, $statusCode)
+    public function __construct(?string $content, int $statusCode, ?string $contentType = 'text/xml; charset=UTF-8')
     {
-        $this->content    = $content;
-        $this->statusCode = $statusCode;
+        $this->content     = $content;
+        $this->statusCode  = $statusCode;
+        $this->contentType = $contentType;
     }
 
-    /**
-     * @return int
-     */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->statusCode;
     }
 
-    public function getError()
+    public function getError(): ?string
     {
-        
+        return null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setOption()
+    public function getContentType(): ?string
     {
-
+        return $this->contentType;
     }
 
-    public function post()
+    public function setOption($key, $value): void
     {
-
     }
 
-    public function get()
+    public function setParameters(mixed $parameters = []): void
     {
-
     }
 
-    public function setParameter()
+    public function get(): mixed
     {
+        return null;
+    }
 
+    public function post(mixed $parameters = null): mixed
+    {
+        return null;
     }
 }

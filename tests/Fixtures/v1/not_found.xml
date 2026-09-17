@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<response>
+  <type>https://tools.ietf.org/html/rfc2616#section-10</type>
+  <title>An error occurred</title>
+  <status>404</status>
+  <detail>Not Found</detail>
+</response>

@@ -3,10 +3,17 @@
 namespace Justimmo\Api;
 
 use Composer\InstalledVersions;
+use Exception;
 use Justimmo\Cache\CacheInterface;
 use Justimmo\Cache\NullCache;
 use Justimmo\Curl\CurlRequest;
+use Justimmo\Curl\CurlRequestInterface;
+use Justimmo\Exception\AuthenticationException;
 use Justimmo\Exception\InvalidRequestException;
+use Justimmo\Exception\JustimmoException;
+use Justimmo\Exception\NotFoundException;
+use Justimmo\Exception\StatusCodeException;
+use Justimmo\Exception\ValidationException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -336,24 +343,20 @@ class JustimmoApi implements JustimmoApiInterface
             $this->throwError('The Api call returned an error: "' . $request->getError() . '"');
         }
 
-        if ($request->getStatusCode() == 401) {
-            $this->throwError('Bad Username / Password ' . $request->getStatusCode(), '\Justimmo\Exception\AuthenticationException');
-        }
+        $statusCode = (int) $request->getStatusCode();
 
-        if ($request->getStatusCode() == 404) {
-            $this->throwError('Api call not found: ' . $request->getStatusCode(), '\Justimmo\Exception\NotFoundException');
-        }
+        if ($statusCode !== 200) {
+            // only a client error carries a body the sdk reads: every exception for a 4xx extends
+            // InvalidRequestException and parses it, while a 3xx or a 5xx becomes a
+            // StatusCodeException, which ignores it. Asking for the body anyway would be wasted
+            // work on every server error
+            $isClientError = $statusCode >= 400 && $statusCode < 500;
 
-        if ($request->getStatusCode() >= 400 && $request->getStatusCode() < 500) {
-            $exception = new InvalidRequestException('The Api call returned status code ' . $request->getStatusCode());
-            $exception->setResponse($request->getContent());
-            $this->logger->error($exception->getMessage());
-
-            throw $exception;
-        }
-
-        if ($request->getStatusCode() != 200) {
-            $this->throwError('The Api call returned status code ' . $request->getStatusCode(), '\Justimmo\Exception\StatusCodeException');
+            throw $this->createStatusCodeException(
+                $statusCode,
+                $isClientError ? $request->getContent() : null,
+                $isClientError ? self::readContentType($request) : null
+            );
         }
 
         $this->cache->set($key, $response);
@@ -380,6 +383,58 @@ class JustimmoApi implements JustimmoApiInterface
     {
         $this->logger->error($message);
         throw new $exceptionClass($message);
+    }
+
+    /**
+     * The content type of a response, null when it cannot be determined.
+     *
+     * getContentType() is new in this version, while createRequest() stays overridable without a
+     * return type until 2.x. A request object of an integrator may therefore not have the method,
+     * and asking for it unconditionally would raise an Error instead of the status exception the
+     * caller is waiting for. Without a content type the format of an error body is recognised by
+     * sniffing it, see InvalidRequestException.
+     *
+     * The parameter is typed as object rather than as the interface on purpose: the point of the
+     * check is a request which does not honour that interface.
+     */
+    private static function readContentType(object $request): ?string
+    {
+        if (!method_exists($request, 'getContentType')) {
+            return null;
+        }
+
+        $contentType = $request->getContentType();
+
+        return is_string($contentType) ? $contentType : null;
+    }
+
+    /**
+     * Creates and logs the exception for a status code the api answered with
+     *
+     * @param int         $statusCode
+     * @param string|null $response    raw response body may carry the message of the api
+     * @param string|null $contentType content type of the response, decides how the body is parsed
+     */
+    protected function createStatusCodeException(
+        int $statusCode,
+        ?string $response,
+        ?string $contentType = null
+    ): Exception&JustimmoException {
+        $exception = match (true) {
+            $statusCode === 401                     => new AuthenticationException('Bad Username / Password ' . $statusCode),
+            $statusCode === 404                     => new NotFoundException('Api call not found: ' . $statusCode),
+            $statusCode === 422                     => new ValidationException('The Api call returned status code ' . $statusCode),
+            $statusCode >= 400 && $statusCode < 500 => new InvalidRequestException('The Api call returned status code ' . $statusCode),
+            default                                 => new StatusCodeException('The Api call returned status code ' . $statusCode),
+        };
+
+        if ($exception instanceof InvalidRequestException) {
+            $exception->setResponse($response, $contentType);
+        }
+
+        $this->logger->error($exception->getMessage());
+
+        return $exception;
     }
 
     /**
@@ -566,6 +621,16 @@ class JustimmoApi implements JustimmoApiInterface
         return self::$sdkVersion;
     }
 
+    /**
+     * Creates the request for an api call
+     *
+     * The native return type is added in 2.x, until then a subclass may override this method
+     * without declaring one
+     *
+     * @param string $url
+     *
+     * @return CurlRequestInterface
+     */
     protected function createRequest($url)
     {
         // requests of the sdk carry their own headers so they can be told apart from

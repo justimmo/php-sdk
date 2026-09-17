@@ -14,7 +14,6 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByTag($value)
  * @method ProjectQuery filterByKeyword($value)
  * @method ProjectQuery filterByFederalStateId($value)
- * @method ProjectQuery filterByCountryIso2($value)
  * @method ProjectQuery filterByProjectState($value)
  * @method ProjectQuery filterByIsReference($value)
  * @method ProjectQuery filterByCompletionDate($value)
@@ -82,5 +81,18 @@ class ProjectQuery extends AbstractQuery
     public function onlyRealtyIds($value = true)
     {
         return $this->set('objektIds', (int) $value);
+    }
+
+    /**
+     * @deprecated The api does not support filter[land_iso2], this filter has no effect
+     *             and will be removed in 2.x
+     *
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function filterByCountryIso2($value)
+    {
+        return $this;
     }
 }
