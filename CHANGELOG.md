@@ -1,3 +1,6 @@
+## Unreleased
+* Replace the last `(double)` cast with `(float)` — the final energy demand value raised E_DEPRECATED on php 8.5 for every realty with an energy pass
+
 ## 1.4.0
 * [Website API] Handle status code 422 of the migrated objekt and projekt endpoints
   * New ValidationException, thrown instead of the general InvalidRequestException
