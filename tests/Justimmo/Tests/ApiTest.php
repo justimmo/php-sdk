@@ -161,7 +161,8 @@ class ApiTest extends TestCase
         $bodies = [
             'broken xml'            => ['<response><unclosed>', 'text/xml; charset=UTF-8'],
             'truncated json'        => ['{"violations": [', 'application/json'],
-            'html from a proxy'     => ['<html><body>502 Bad Gateway</body></html>', 'text/html'],
+            // the unclosed br makes it invalid xml, which is what a proxy error page looks like
+            'html from a proxy'     => ['<html lang="en"><body>502 Bad Gateway<br></body></html>', 'text/html'],
             'json body, xml header' => [$this->getFixtures('v1/validation_error_multiple.json'), 'text/xml; charset=UTF-8'],
             'xml body, json header' => [$this->getFixtures('v1/validation_error.xml'), 'application/json'],
         ];
@@ -502,6 +503,18 @@ class ApiTest extends TestCase
         $this->assertContains(
             'X-Justimmo-PHP-SDK-Version: ' . InstalledVersions::getPrettyVersion('justimmo/php-sdk'),
             $headers
+        );
+    }
+
+    /**
+     * Parameters which serialise to nothing, an empty array for instance, used to leave a bare
+     * question mark on the url — which also gave the response a different cache key
+     */
+    public function testParamsWhichSerialiseToNothingLeaveNoQuestionMark()
+    {
+        $this->assertSame(
+            'https://api.justimmo.at/rest/v1/objekt/ids',
+            $this->api->generateUrl('objekt/ids', ['filter' => []])
         );
     }
 

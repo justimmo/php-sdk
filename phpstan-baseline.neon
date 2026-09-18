@@ -1615,24 +1615,6 @@ parameters:
 			path: src/Justimmo/Model/Query/AbstractQuery.php
 
 		-
-			message: '#^Property Justimmo\\Model\\Query\\AbstractQuery\:\:\$pictureSizes has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Strict comparison using \=\=\= between null and null will always evaluate to true\.$#'
-			identifier: identical.alwaysTrue
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Unreachable statement \- code above always terminates\.$#'
-			identifier: deadCode.unreachable
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByCountry\(\) has parameter \$value with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1

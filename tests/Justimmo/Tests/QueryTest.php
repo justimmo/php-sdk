@@ -151,6 +151,214 @@ class QueryTest extends TestCase
         $this->assertSame($expectedLimit, $pager->getMaxPerPage());
     }
 
+    /**
+     * An empty value filters nothing, so sending it only produced a parameter the api either
+     * ignores or rejects. `0`, `'0'` and `false` are values and have to survive
+     *
+     * @dataProvider emptyValueProvider
+     */
+    public function testAnEmptyValueIsNotSent($value)
+    {
+        $this->query->clear();
+        $this->query->filterByPrice($value);
+
+        $this->assertSame([], $this->query->getParams());
+    }
+
+    public function emptyValueProvider()
+    {
+        return [
+            'null'            => [null],
+            'empty string'    => [''],
+            'empty array'     => [[]],
+            'array of empties' => [['', null]],
+            'object'          => [new \DateTime('2099-12-31')],
+        ];
+    }
+
+    /**
+     * @dataProvider keptValueProvider
+     */
+    public function testAValueWhichLooksEmptyButIsNotIsSent($value, $expected)
+    {
+        $this->query->clear();
+        $this->query->filterByPrice($value);
+
+        $this->assertSame(['filter' => ['preis' => $expected]], $this->query->getParams());
+    }
+
+    public function keptValueProvider()
+    {
+        return [
+            'zero'        => [0, 0],
+            'string zero' => ['0', '0'],
+            'false'       => [false, false],
+        ];
+    }
+
+    /**
+     * An empty element used to reach the api as filter[plz][]=, which it rejects with a 422, so
+     * one empty input in a search form broke the whole request
+     */
+    public function testAnEmptyElementOfAnArrayIsDropped()
+    {
+        $this->query->clear();
+        $this->query->filterByZipCode(['1010', '', null]);
+
+        $this->assertSame(['filter' => ['plz' => ['1010']]], $this->query->getParams());
+    }
+
+    /**
+     * The empty elements have to go before the min/max branch reads the array, otherwise a range
+     * with one empty bound still sends it
+     */
+    public function testARangeWithAnEmptyBoundSendsOnlyTheOtherOne()
+    {
+        $this->query->clear();
+        $this->query->filterByPrice(['min' => '', 'max' => 800]);
+
+        $this->assertSame(['filter' => ['preis_bis' => 800]], $this->query->getParams());
+    }
+
+    /**
+     * http_build_query() serialises an object by its public properties, which produces parameters
+     * the api has never heard of under a filter name it knows. One which is stringable is used
+     */
+    public function testAStringableObjectIsSentAsItsString()
+    {
+        $this->query->clear();
+        $this->query->filterByKeyword(new class {
+            public $ignored = 'not this';
+
+            public function __toString()
+            {
+                return 'Wohnung';
+            }
+        });
+
+        $this->assertSame(['filter' => ['stichwort' => 'Wohnung']], $this->query->getParams());
+    }
+
+    /**
+     * The direction of the caller is passed on as written, the api matches it case insensitively.
+     * It used to be rewritten to asc, which reversed the sort the caller asked for
+     *
+     * @dataProvider directionProvider
+     */
+    public function testTheSortDirectionIsNotRewritten($given, $expected)
+    {
+        $this->query->clear();
+        $this->query->orderByPrice($given);
+
+        $this->assertSame(
+            ['orderby' => 'preis', 'ordertype' => $expected],
+            $this->query->getParams()
+        );
+    }
+
+    public function directionProvider()
+    {
+        return [
+            'lower case'  => ['desc', 'desc'],
+            'upper case'  => ['DESC', 'DESC'],
+            'mixed case'  => ['Asc', 'Asc'],
+            'empty falls back' => ['', 'asc'],
+        ];
+    }
+
+    /**
+     * A negative limit or offset can only be a bug and is clamped, which is what produced the
+     * negative offsets in the api log. Two values are deliberately left alone: `0`, because the
+     * documented range of limit is the api's to enforce rather than ours to copy, and a non numeric
+     * value, which is passed on so the api answers with a 422 the caller can see instead of it
+     * silently becoming 0 or 1
+     *
+     * @dataProvider limitOffsetProvider
+     */
+    public function testALimitOrOffsetWhichCanOnlyBeABugIsClamped($method, $given, $key, $expected)
+    {
+        $this->query->clear();
+        $this->query->$method($given);
+
+        $this->assertSame([$key => $expected], $this->query->getParams());
+    }
+
+    public function limitOffsetProvider()
+    {
+        return [
+            'negative offset'          => ['setOffset', -5, 'offset', 0],
+            'negative numeric string'  => ['setOffset', '-3', 'offset', 0],
+            // (int) -0.5 is 0, so casting before comparing would let a fraction slip through
+            'negative fraction offset' => ['setOffset', -0.5, 'offset', 0],
+            'negative fraction limit'  => ['setLimit', -0.5, 'limit', 1],
+            'negative exponent limit'  => ['setLimit', '-1e-3', 'limit', 1],
+            'zero offset'              => ['setOffset', 0, 'offset', 0],
+            'negative limit'           => ['setLimit', -5, 'limit', 1],
+            'float limit'              => ['setLimit', 1.9, 'limit', 1],
+            'numeric string limit'     => ['setLimit', '5', 'limit', 5],
+            // the documented range of limit is the api's to enforce, so 0 is passed on
+            'zero limit survives'      => ['setLimit', 0, 'limit', 0],
+            // junk is the api's business, it answers with a 422 which the caller can see
+            'non numeric limit'        => ['setLimit', 'abc', 'limit', 'abc'],
+            'non numeric offset'       => ['setOffset', 'abc', 'offset', 'abc'],
+        ];
+    }
+
+    /**
+     * An unknown picture size is the api's business, it ignores one it does not know. Appending
+     * medium next to it meant the caller received a size they never asked for
+     */
+    public function testAnUnknownPictureSizeIsSentAlone()
+    {
+        $this->query->clear();
+        $this->query->setPicturesize('does-not-exist');
+
+        $this->assertSame(['picturesize' => ['does-not-exist']], $this->query->getParams());
+    }
+
+    /**
+     * A call which leaves no usable size keeps the medium it has always sent
+     */
+    public function testAnEmptyPictureSizeStillSendsMedium()
+    {
+        $this->query->clear();
+        $this->query->setPicturesize('');
+
+        $this->assertSame(['picturesize' => ['medium']], $this->query->getParams());
+    }
+
+    /**
+     * The ids endpoints document neither limit nor offset, and sending limit made findIds() return
+     * every id rather than the first few
+     */
+    public function testFindIdsSendsNeitherLimitNorOffset()
+    {
+        $api = new class extends JustimmoNullApi {
+            /**
+             * @var array<string, mixed>|null
+             */
+            public $params = null;
+
+            public function callRealtyIds(array $params = array()): string
+            {
+                $this->params = $params;
+
+                return '[]';
+            }
+        };
+
+        $query = new RealtyQuery($api, new NullWrapper(), new RealtyMapper());
+        $query->setLimit(10)->setOffset(20)->filterByZipCode('1010')->findIds();
+
+        $this->assertSame(['filter' => ['plz' => '1010']], $api->params);
+
+        // the query itself keeps them, findIds() has never cleared its parameters
+        $this->assertSame(
+            ['limit' => 10, 'offset' => 20, 'filter' => ['plz' => '1010']],
+            $query->getParams()
+        );
+    }
+
     public function paginateProvider()
     {
         return array(

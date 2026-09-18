@@ -9,6 +9,12 @@ use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
 {
+    /**
+     * @deprecated No longer consulted. The api validates the picture size itself and ignores one it
+     *             does not know, so this copy of its enum only drifted. Removed in 2.x
+     *
+     * @var array<int, string>
+     */
     protected $pictureSizes = array(
         'small',
         's220x155',
@@ -174,14 +180,20 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * Get a array of realty, employee or project ids
+     * Get an array of realty, employee, or project ids
      *
      * @return array
      */
     public function findIds()
     {
+        $params = $this->params;
+
+        // the ids endpoints document neither, and sending limit made findIds() return every id
+        // instead of the first few, so a setLimit() before it was silently ignored
+        unset($params['limit'], $params['offset']);
+
         $method   = $this->getIdsCall();
-        $response = $this->api->$method($this->params);
+        $response = $this->api->$method($params);
 
         return json_decode($response);
     }
@@ -189,24 +201,47 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * sets the limit parameter
      *
+     * A negative limit can only be a bug and is clamped, which is the same mistake that produced
+     * the negative offsets in the api log. Nothing else is touched: the documented range of the
+     * limit is the api's to enforce rather than ours to copy, so `0` and a value above the
+     * documented maximum are passed on, as is a non numeric one, which the api answers with a 422
+     * the caller can see.
+     *
+     * The comparison happens before the cast on purpose. `(int) -0.5` is `0`, so casting first
+     * would let a negative fraction slip through as a limit of zero
+     *
      * @param $limit
      *
      * @return $this
      */
     public function setLimit($limit)
     {
+        if (is_numeric($limit)) {
+            $limit = $limit < 0 ? 1 : (int) $limit;
+        }
+
         return $this->set('limit', $limit);
     }
 
     /**
      * sets the offset parameter
      *
+     * A negative offset can only be a bug and is clamped to 0, which is the whole point of this
+     * change. A non numeric value is passed on for the api to reject rather than silently becoming
+     * the first page.
+     *
+     * Compared before the cast for the same reason as in setLimit()
+     *
      * @param $offset
      *
-     * @return mixed
+     * @return $this
      */
     public function setOffset($offset)
     {
+        if (is_numeric($offset)) {
+            $offset = $offset < 0 ? 0 : (int) $offset;
+        }
+
         return $this->set('offset', $offset);
     }
 
@@ -257,13 +292,15 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * adds a filter column
      *
-     * @param      $key
-     * @param null $value
+     * @param       $key
+     * @param mixed $value
      *
      * @return $this
      */
     public function filter($key, $value = null)
     {
+        $value = $this->normaliseFilterValue($value);
+
         if ($value === null) {
             return $this;
         }
@@ -287,6 +324,70 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * Drops from a filter value what the api cannot use: null, an empty string, an empty array and
+     * an object which cannot say how to become a string. `0`, `'0'` and `false` are values and stay.
+     *
+     * An element of an array is dropped by the same rule and an array with nothing left is dropped
+     * as a whole, so a search form which submitted one of three empty inputs no longer sends
+     * `filter[plz][]=1010&filter[plz][]=`, which the api rejects with a 422.
+     *
+     * This runs before the min/max handling of filter(), so a range with one empty bound sends only
+     * the bound which has a value.
+     *
+     * @return mixed null when nothing usable is left
+     */
+    private function normaliseFilterValue(mixed $value): mixed
+    {
+        // an object is serialised by its public properties, which produces parameters the api has
+        // never heard of under a filter name it knows, so only one which is stringable is kept
+        if (is_object($value)) {
+            return method_exists($value, '__toString') ? (string) $value : null;
+        }
+
+        if (is_array($value)) {
+            $clean = [];
+
+            // the keys are kept, so that min and max still reach the branch in filter()
+            foreach ($value as $key => $element) {
+                $element = $this->normaliseFilterValue($element);
+
+                if ($element !== null) {
+                    $clean[$key] = $element;
+                }
+            }
+
+            return $clean === [] ? null : $clean;
+        }
+
+        return $value === '' ? null : $value;
+    }
+
+    /**
+     * Adds a value to a filter which accepts a list, rather than replacing what is already there.
+     *
+     * Two methods can map onto one wire filter — filterByTag() and filterByRealtyCategory() both
+     * build `tag_name` — and calling both used to discard the first silently. A single value is
+     * still sent as a scalar, so a query which sets the filter once looks exactly as before.
+     *
+     * @return $this
+     */
+    protected function appendFilter(string $key, mixed $value): static
+    {
+        $values = [];
+        if (isset($this->params['filter'][$key])) {
+            $values = (array) $this->params['filter'][$key];
+        }
+
+        foreach (is_array($value) ? $value : [$value] as $element) {
+            $values[] = $element;
+        }
+
+        $values = array_values(array_unique($values, SORT_REGULAR));
+
+        return $this->filter($key, count($values) === 1 ? $values[0] : $values);
+    }
+
+    /**
      * magic call
      *
      * @param $method
@@ -306,7 +407,9 @@ abstract class AbstractQuery implements QueryInterface
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
             $key = $this->mapper->getFilterPropertyName(mb_substr($method, 7));
 
-            if (empty($params[0]) || !in_array($params[0], array('asc', 'desc'))) {
+            // the api matches the direction case insensitively, so DESC is valid and is passed
+            // on as the caller wrote it. Only a missing direction falls back
+            if (!isset($params[0]) || $params[0] === '') {
                 $params[0] = 'asc';
             }
 
@@ -335,13 +438,13 @@ abstract class AbstractQuery implements QueryInterface
             $picturesize = array($picturesize);
         }
 
-        foreach ($picturesize as $size) {
-            if (!in_array($size, $this->pictureSizes)) {
-                $picturesize[] = 'medium';
-            }
-        }
-
         $picturesize = array_unique(array_filter($picturesize));
+
+        // an unknown size is the api's business, it ignores one it does not know. Only a call
+        // which leaves no usable size at all keeps the medium it has always sent
+        if ($picturesize === []) {
+            $picturesize = ['medium'];
+        }
 
         return $this->set('picturesize', $picturesize);
     }

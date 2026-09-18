@@ -134,4 +134,15 @@ class ProjectQueryTest extends TestCase
             5,
         ), $query->findIds());
     }
+
+    /**
+     * Both methods build filter[tag_name] here too, see RealtyQueryTest
+     */
+    public function testTagAndRealtyCategoryAccumulate()
+    {
+        $query = $this->getQuery();
+        $query->filterByTag('A')->filterByRealtyCategory('B');
+
+        $this->assertSame(['filter' => ['tag_name' => ['A', 'B']]], $query->getParams());
+    }
 }
