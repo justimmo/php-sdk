@@ -10,8 +10,6 @@ use Justimmo\Model\Query\AbstractQuery;
  *
  * @method Project findPk($pk)
  * @method Project|null findOne($pk)
- * @method ProjectQuery filterByRealtyCategory($value)
- * @method ProjectQuery filterByTag($value)
  * @method ProjectQuery filterByKeyword($value)
  * @method ProjectQuery filterByFederalStateId($value)
  * @method ProjectQuery filterByProjectState($value)
@@ -94,5 +92,31 @@ class ProjectQuery extends AbstractQuery
     public function filterByCountryIso2($value)
     {
         return $this;
+    }
+
+    /**
+     * The api accepts a list here, and filterByRealtyCategory() builds the same wire filter, so
+     * both calls add to it instead of the second discarding the first
+     *
+     * @param string|array<int, string> $value
+     *
+     * @return $this
+     */
+    public function filterByTag($value)
+    {
+        return $this->appendFilter($this->mapper->getFilterPropertyName('Tag'), $value);
+    }
+
+    /**
+     * An alias of filterByTag(), both build filter[tag_name]. The api has no realty category
+     * filter of its own, so this name is deprecated in 1.5 and removed in 2.x
+     *
+     * @param string|array<int, string> $value
+     *
+     * @return $this
+     */
+    public function filterByRealtyCategory($value)
+    {
+        return $this->appendFilter($this->mapper->getFilterPropertyName('RealtyCategory'), $value);
     }
 }

@@ -1,3 +1,16 @@
+## 1.4.1
+* [Website API] Stop sending what the api rejects or ignores
+  * filter() no longer sends an empty value, and drops an empty element of an array value. `0`, `'0'` and `false` are values and are kept. A search form which submitted one of three empty inputs sent filter[plz][]=1010&filter[plz][]=, which the api answers with a 422
+  * filter() no longer lets an object be serialised by its public properties. One which implements __toString is sent as its string, any other is dropped
+  * findIds() no longer sends limit and offset, which the ids endpoints do not support. A setLimit() before findIds() was silently ignored and every id was returned
+  * setPicturesize() no longer appends "medium" next to a size it does not recognise, so the caller no longer receives a picture size they did not ask for. A call which leaves no usable size still sends medium
+  * RealtyQuery.filterByEquipment() wraps a single value in an array, which the api requires. It answered a scalar with a 422
+  * filterByTag() and filterByRealtyCategory() build the same filter[tag_name], so they now add to it instead of the second discarding the first. A single value is still sent as a scalar
+  * setLimit() and setOffset() clamp a negative argument, so the negative offset fixed in paginate() in 1.3.2 can no longer be produced through the setters either. Nothing else is clamped: the documented range of limit is the api's to enforce, so 0 and a value above the documented maximum are passed on, as is a non numeric value, which the api answers with a 422 the caller can see
+  * orderBy*() passes the sort direction on as written instead of rewriting anything unknown to "asc". The api matches asc and desc case insensitively, so "DESC" reversed the sort the caller asked for
+  * generateUrl() no longer appends a bare "?" for parameters which serialise to nothing. This changes the cache key of such a call once
+* [BC] AbstractQuery.$pictureSizes is deprecated and no longer consulted. The api validates the picture size itself. Removed in 2.x
+
 ## 1.4.0
 * [Website API] Handle status code 422 of the migrated objekt and projekt endpoints
   * New ValidationException, thrown instead of the general InvalidRequestException

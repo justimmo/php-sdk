@@ -291,7 +291,12 @@ class JustimmoApi implements JustimmoApiInterface
         if (count($params) > 0) {
             $queryString = http_build_query($params, '', '&');
             $queryString = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $queryString);
-            $url .= '?' . $queryString;
+
+            // params which serialise to nothing, an empty array for instance, used to leave a
+            // bare question mark on the url
+            if ($queryString !== '') {
+                $url .= '?' . $queryString;
+            }
         }
 
         return $url;

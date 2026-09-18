@@ -80,4 +80,54 @@ class RealtyQueryTest extends TestCase
             587622,
         ), $query->findIds());
     }
+
+    /**
+     * The api requires a list for this filter and rejects a scalar with a 422
+     */
+    public function testFilterByEquipmentWrapsAScalarInAnArray()
+    {
+        $query = $this->getQuery();
+        $query->filterByEquipment(1);
+
+        $this->assertSame(['filter' => ['objekt_ausstattung_list' => [1]]], $query->getParams());
+    }
+
+    public function testFilterByEquipmentLeavesAnArrayAlone()
+    {
+        $query = $this->getQuery();
+        $query->filterByEquipment([1, 2]);
+
+        $this->assertSame(['filter' => ['objekt_ausstattung_list' => [1, 2]]], $query->getParams());
+    }
+
+    /**
+     * Both methods build filter[tag_name], so the second used to discard the first silently.
+     * A single value is still sent as a scalar, so a query which sets it once is unchanged
+     */
+    public function testTagAndRealtyCategoryAccumulate()
+    {
+        $query = $this->getQuery();
+        $query->filterByTag('Neubau')->filterByRealtyCategory('Wohnung');
+
+        $this->assertSame(
+            ['filter' => ['tag_name' => ['Neubau', 'Wohnung']]],
+            $query->getParams()
+        );
+    }
+
+    public function testASingleTagIsStillSentAsAScalar()
+    {
+        $query = $this->getQuery();
+        $query->filterByTag('Neubau');
+
+        $this->assertSame(['filter' => ['tag_name' => 'Neubau']], $query->getParams());
+    }
+
+    public function testTheSameTagTwiceIsSentOnce()
+    {
+        $query = $this->getQuery();
+        $query->filterByTag('Neubau')->filterByRealtyCategory('Neubau');
+
+        $this->assertSame(['filter' => ['tag_name' => 'Neubau']], $query->getParams());
+    }
 }

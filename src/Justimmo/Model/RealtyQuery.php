@@ -13,8 +13,6 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByRealtyTypeId($value)
  * @method RealtyQuery filterBySubRealtyTypeId($value)
  * @method RealtyQuery filterByStyleOfBuildingId($value)
- * @method RealtyQuery filterByRealtyCategory($value)
- * @method RealtyQuery filterByTag($value)
  * @method RealtyQuery filterByZipCode($value)
  * @method RealtyQuery filterByRooms($value)
  * @method RealtyQuery filterByPropertyNumber($value)
@@ -32,7 +30,6 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByToiletRoomCount($value)
  * @method RealtyQuery filterByBathRoomCount($value)
  * @method RealtyQuery filterByStoreRoomCount($value)
- * @method RealtyQuery filterByEquipment($value)
  * @method RealtyQuery filterByDisabilityAccess($value)
  * @method RealtyQuery filterByCondition($value)
  * @method RealtyQuery filterByKeyword($value)
@@ -114,5 +111,46 @@ class RealtyQuery extends AbstractQuery
     public function preciseAreaSearch($all = true)
     {
         return $this->set('preciseAreaSearch', (int) $all);
+    }
+
+    /**
+     * The api accepts a list here, and filterByRealtyCategory() builds the same wire filter, so
+     * both calls add to it instead of the second discarding the first
+     *
+     * @param string|array<int, string> $value
+     *
+     * @return $this
+     */
+    public function filterByTag($value)
+    {
+        return $this->appendFilter($this->mapper->getFilterPropertyName('Tag'), $value);
+    }
+
+    /**
+     * An alias of filterByTag(), both build filter[tag_name]. The api has no realty category
+     * filter of its own, so this name is deprecated in 1.5 and removed in 2.x
+     *
+     * @param string|array<int, string> $value
+     *
+     * @return $this
+     */
+    public function filterByRealtyCategory($value)
+    {
+        return $this->appendFilter($this->mapper->getFilterPropertyName('RealtyCategory'), $value);
+    }
+
+    /**
+     * The api requires a list here and rejects a scalar with a 422, so a single value is wrapped
+     *
+     * @param string|int|array<int, string|int> $value
+     *
+     * @return $this
+     */
+    public function filterByEquipment($value)
+    {
+        return $this->filter(
+            $this->mapper->getFilterPropertyName('Equipment'),
+            is_array($value) ? $value : [$value]
+        );
     }
 }
