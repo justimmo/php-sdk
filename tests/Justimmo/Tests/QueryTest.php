@@ -36,36 +36,36 @@ class QueryTest extends TestCase
 
         $this->query->filterByPrice(455);
 
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'preis' => 455
-            )
-        ), $this->query->getParams());
+            ]
+        ], $this->query->getParams());
     }
 
     public function testRange()
     {
         $this->query->clear();
-        $this->query->filterByPrice(array('min' => 455, 'max' => 800));
+        $this->query->filterByPrice(['min' => 455, 'max' => 800]);
 
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'preis_von' => 455,
                 'preis_bis' => 800,
-            )
-        ), $this->query->getParams());
+            ]
+        ], $this->query->getParams());
     }
 
     public function testMultiple()
     {
         $this->query->clear();
-        $this->query->filterByPrice(array(455, 800));
+        $this->query->filterByPrice([455, 800]);
 
-        $this->assertEquals(array(
-            'filter' => array(
-                'preis' => array(455, 800)
-            )
-        ), $this->query->getParams());
+        $this->assertEquals([
+            'filter' => [
+                'preis' => [455, 800]
+            ]
+        ], $this->query->getParams());
     }
 
     public function testOrderBy()
@@ -73,16 +73,16 @@ class QueryTest extends TestCase
         $this->query->clear();
         $this->query->orderBy('Price');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'preis',
             'ordertype' => 'asc'
-        ), $this->query->getParams());
+        ], $this->query->getParams());
 
         $this->query->orderBy('Price', 'desc');
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'preis',
             'ordertype' => 'desc'
-        ), $this->query->getParams());
+        ], $this->query->getParams());
     }
 
     public function testOrderByCall()
@@ -90,22 +90,22 @@ class QueryTest extends TestCase
         $this->query->clear();
 
         $this->query->orderByPrice();
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'preis',
             'ordertype' => 'asc'
-        ), $this->query->getParams());
+        ], $this->query->getParams());
 
         $this->query->orderByPrice('desc');
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'preis',
             'ordertype' => 'desc'
-        ), $this->query->getParams());
+        ], $this->query->getParams());
 
         $this->query->orderByCreatedAt('desc');
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'created_at',
             'ordertype' => 'desc'
-        ), $this->query->getParams());
+        ], $this->query->getParams());
     }
 
     public function testFull()
@@ -116,22 +116,22 @@ class QueryTest extends TestCase
             ->setLimit(10)
             ->setOffset(5)
             ->filterByFederalStateId(5)
-            ->filterByPrice(array('min' => 455, 'max' => 800))
-            ->filterByZipCode(array('1020', '1030'));
+            ->filterByPrice(['min' => 455, 'max' => 800])
+            ->filterByZipCode(['1020', '1030']);
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'limit'     => 10,
             'offset'    => 5,
             'culture'   => 'de',
             'orderby'   => 'preis',
             'ordertype' => 'asc',
-            'filter'    => array(
+            'filter'    => [
                 'preis_von'     => 455,
                 'preis_bis'     => 800,
                 'bundesland_id' => 5,
-                'plz'           => array('1020', '1030')
-            )
-        ), $this->query->getParams());
+                'plz'           => ['1020', '1030']
+            ]
+        ], $this->query->getParams());
 
     }
 
@@ -339,7 +339,7 @@ class QueryTest extends TestCase
              */
             public $params = null;
 
-            public function callRealtyIds(array $params = array()): string
+            public function callRealtyIds(array $params = []): string
             {
                 $this->params = $params;
 
@@ -361,19 +361,19 @@ class QueryTest extends TestCase
 
     public function paginateProvider()
     {
-        return array(
-            'first page'            => array(1, 100, 0, 100, 1),
-            'second page'           => array(2, 100, 100, 100, 2),
-            'page zero'             => array(0, 100, 0, 100, 1),
-            'negative page'         => array(-1, 100, 0, 100, 1),
-            'numeric string page'   => array('3', 100, 200, 100, 3),
-            'string page zero'      => array('0', 100, 0, 100, 1),
-            'null page'             => array(null, 100, 0, 100, 1),
-            'non numeric page'      => array('abc', 100, 0, 100, 1),
-            'float page'            => array(1.9, 100, 0, 100, 1),
-            'zero max per page'     => array(1, 0, 0, 1, 1),
-            'negative max per page' => array(1, -10, 0, 1, 1),
-        );
+        return [
+            'first page'            => [1, 100, 0, 100, 1],
+            'second page'           => [2, 100, 100, 100, 2],
+            'page zero'             => [0, 100, 0, 100, 1],
+            'negative page'         => [-1, 100, 0, 100, 1],
+            'numeric string page'   => ['3', 100, 200, 100, 3],
+            'string page zero'      => ['0', 100, 0, 100, 1],
+            'null page'             => [null, 100, 0, 100, 1],
+            'non numeric page'      => ['abc', 100, 0, 100, 1],
+            'float page'            => [1.9, 100, 0, 100, 1],
+            'zero max per page'     => [1, 0, 0, 1, 1],
+            'negative max per page' => [1, -10, 0, 1, 1],
+        ];
     }
 
     public function testPaginateDefaults()
@@ -394,11 +394,11 @@ class QueryTest extends TestCase
             ->filterByParentId(12345)
             ->filterByRealtySystemType('area');
 
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'parent_id'   => 12345,
                 'realty_type' => 'area',
-            ),
-        ), $this->query->getParams());
+            ],
+        ], $this->query->getParams());
     }
 }

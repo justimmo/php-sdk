@@ -26,7 +26,7 @@ class AttachmentTest extends TestCase
     public function testGetUrlReturnsTheRequestedSize()
     {
         $attachment = new Attachment('http://files.justimmo.at/public/pic/orig/test.jpg');
-        $attachment->mergeData(array('big' => 'http://files.justimmo.at/public/pic/big/test.jpg'));
+        $attachment->mergeData(['big' => 'http://files.justimmo.at/public/pic/big/test.jpg']);
 
         $this->assertEquals('http://files.justimmo.at/public/pic/orig/test.jpg', $attachment->getUrl());
         $this->assertEquals('http://files.justimmo.at/public/pic/big/test.jpg', $attachment->getUrl('big'));
@@ -44,7 +44,7 @@ class AttachmentTest extends TestCase
     public function testGetUrlOrFailReturnsTheRequestedSize()
     {
         $attachment = new Attachment('http://files.justimmo.at/public/pic/orig/test.jpg');
-        $attachment->mergeData(array('big' => 'http://files.justimmo.at/public/pic/big/test.jpg'));
+        $attachment->mergeData(['big' => 'http://files.justimmo.at/public/pic/big/test.jpg']);
 
         $this->assertEquals('http://files.justimmo.at/public/pic/orig/test.jpg', $attachment->getUrlOrFail());
         $this->assertEquals('http://files.justimmo.at/public/pic/big/test.jpg', $attachment->getUrlOrFail('big'));

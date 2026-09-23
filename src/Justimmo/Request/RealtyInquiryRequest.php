@@ -435,7 +435,7 @@ class RealtyInquiryRequest implements RequestInterface
 
     public function send()
     {
-        $this->api->postRealtyInquiry(array(
+        $this->api->postRealtyInquiry([
             $this->mapper->getFilterPropertyName('realtyId')     => $this->getRealtyId(),
             $this->mapper->getFilterPropertyName('firstName')    => $this->getFirstName(),
             $this->mapper->getFilterPropertyName('lastName')     => $this->getLastName(),
@@ -456,6 +456,6 @@ class RealtyInquiryRequest implements RequestInterface
             'is_realty_owner'                                    => $this->isRealtyOwner ? '1' : '0',
             'realty_owner_consultation_request'                  => $this->realtyOwnerConsultationRequest ? '1' : '0',
             $this->mapper->getFilterPropertyName('fundingInquiry') => $this->isFundingInquiry() ? '1' : '0',
-        ));
+        ]);
     }
 }

@@ -11,14 +11,14 @@ class Attachment
     protected $title            = null;
     protected $description      = null;
     protected $originalFilename = null;
-    protected $data             = array();
+    protected $data             = [];
     protected $group            = null;
     private   $newStorageHost   = 'storage.justimmo.at';
     private   $canConvertUrl    = true;
 
-    protected static $pictureExtensions = array('jpg', 'gif', 'png', 'jpeg', 'webp');
-    protected static $videoExtensions = array('avi', 'mp4', 'mpg', 'wmv');
-    protected static $linkGroups = array('LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL');
+    protected static $pictureExtensions = ['jpg', 'gif', 'png', 'jpeg', 'webp'];
+    protected static $videoExtensions = ['avi', 'mp4', 'mpg', 'wmv'];
+    protected static $linkGroups = ['LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL'];
 
 
     public function __construct($path, $type = null, $group = null)
@@ -114,7 +114,7 @@ class Attachment
     public function calculateUrl($size = 'orig')
     {
         if ($this->canConvertUrl) {
-            if (!in_array($size, array(
+            if (!in_array($size, [
                 'big',
                 'big_unbranded',
                 'big2',
@@ -137,14 +137,14 @@ class Attachment
                 'hq',
                 'default',
                 'orig'
-            ))) {
+            ])) {
                 $size = 'medium';
             }
 
             return preg_replace("!\/(pic|video)\/(\w+)\/!", "/$1/" . $size . "/", $this->getUrl());
         }
 
-        return isset($this->data[$size]) ? $this->data[$size] : $this->data['orig'];
+        return $this->data[$size] ?? $this->data['orig'];
     }
 
     /**

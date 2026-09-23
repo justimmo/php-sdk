@@ -6,138 +6,138 @@ class ProjectMapper extends AbstractMapper
 {
     protected function getMapping()
     {
-        return array(
-            'id'                   => array(
+        return [
+            'id'                   => [
                 'type' => 'int',
-            ),
-            'nummer'               => array(
+            ],
+            'nummer'               => [
                 'property' => 'projectNumber',
-            ),
-            'titel'                => array(
+            ],
+            'titel'                => [
                 'property' => 'title',
-            ),
-            'beschreibung'         => array(
+            ],
+            'beschreibung'         => [
                 'property' => 'description',
-            ),
-            'land'                 => array(
+            ],
+            'land'                 => [
                 'property' => 'country',
-            ),
-            'bundesland'           => array(
+            ],
+            'bundesland'           => [
                 'property' => 'federalState',
-            ),
-            'ort'                  => array(
+            ],
+            'ort'                  => [
                 'property' => 'place',
-            ),
-            'plz'                  => array(
+            ],
+            'plz'                  => [
                 'property' => 'zipCode',
-            ),
-            'strasse'              => array(
+            ],
+            'strasse'              => [
                 'property' => 'street',
-            ),
-            'hausnummer'           => array(
+            ],
+            'hausnummer'           => [
                 'property' => 'houseNumber',
-            ),
-            'naehe'                => array(
+            ],
+            'naehe'                => [
                 'property' => 'proximity',
-            ),
-            'anzahl_etagen'        => array(
+            ],
+            'anzahl_etagen'        => [
                 'property' => 'tierCount',
                 'type'     => 'int',
-            ),
-            'anzahl_dachgeschosse' => array(
+            ],
+            'anzahl_dachgeschosse' => [
                 'property' => 'atticCount',
                 'type'     => 'int',
-            ),
-            'bauart_id'            => array(
+            ],
+            'bauart_id'            => [
                 'property' => 'styleOfBuildingId',
                 'type'     => 'int',
-            ),
-            'baujahr'              => array(
+            ],
+            'baujahr'              => [
                 'property' => 'yearOfConstruction',
-            ),
-            'laermpegel'           => array(
+            ],
+            'laermpegel'           => [
                 'property' => 'noiseLevel'
-            ),
-            'beziehbar'            => array(
+            ],
+            'beziehbar'            => [
                 'property' => 'availability'
-            ),
-            'ea_gueltig_bis'       => array(
+            ],
+            'ea_gueltig_bis'       => [
                 'property' => 'epcValidUntil',
                 'type'     => 'datetime',
-            ),
-            'ea_hwb'               => array(
+            ],
+            'ea_hwb'               => [
                 'property' => 'epcHeatingDemand'
-            ),
-            'ea_hwb_klasse'        => array(
+            ],
+            'ea_hwb_klasse'        => [
                 'property' => 'epcHeatingDemandClass'
-            ),
-            'ea_fgee'              => array(
+            ],
+            'ea_fgee'              => [
                 'property' => 'epcEnergyEfficiencyFactor'
-            ),
-            'ea_fgee_klasse'       => array(
+            ],
+            'ea_fgee_klasse'       => [
                 'property' => 'epcEnergyEfficiencyFactorClass'
-            ),
-            'zustand'              => array(
+            ],
+            'zustand'              => [
                 'property' => 'condition',
-            ),
-            'haus_zustand'         => array(
+            ],
+            'haus_zustand'         => [
                 'property' => 'houseCondition',
-            ),
-            'lagebewertung'        => array(
+            ],
+            'lagebewertung'        => [
                 'property' => 'areaAssessment',
-            ),
-            'zustandsbewertung'    => array(
+            ],
+            'zustandsbewertung'    => [
                 'property' => 'propertyAssessment',
-            ),
-            'nutzungsart'          => array(
+            ],
+            'nutzungsart'          => [
                 'property' => 'occupancy',
-            ),
-            'dreizeiler'           => array(
+            ],
+            'dreizeiler'           => [
                 'property' => 'teaser',
-            ),
-            'status'               => array(
+            ],
+            'status'               => [
                 'property' => 'projectState',
-            ),
-            'sonstige_angaben'     => array(
+            ],
+            'sonstige_angaben'     => [
                 'property' => 'miscellaneous',
-            ),
-            'lage'                 => array(
+            ],
+            'lage'                 => [
                 'property' => 'locality',
-            ),
-            'freitext_1'           => array(
+            ],
+            'freitext_1'           => [
                 'property' => 'freetext1',
-            ),
-            'freitext_2'           => array(
+            ],
+            'freitext_2'           => [
                 'property' => 'freetext2',
-            ),
-            'freitext_3'           => array(
+            ],
+            'freitext_3'           => [
                 'property' => 'freetext3',
-            ),
-            'freitext_4'           => array(
+            ],
+            'freitext_4'           => [
                 'property' => 'freetext4',
-            ),
-            'referenz'             => array(
+            ],
+            'referenz'             => [
                 'property' => 'isReference',
                 'type'     => 'boolean',
-            ),
-            'verkaufsstart'        => array(
+            ],
+            'verkaufsstart'        => [
                 'property' => 'saleStart',
                 'type'     => 'datetime',
-            ),
-            'fertigstellung'       => array(
+            ],
+            'fertigstellung'       => [
                 'property' => 'completionDate',
                 'type'     => 'datetime',
-            ),
-            'erstellt_am'          => array(
+            ],
+            'erstellt_am'          => [
                 'property' => 'createdAt',
                 'type'     => 'datetime',
-            ),
-        );
+            ],
+        ];
     }
 
     protected function getFilterMapping()
     {
-        return array(
+        return [
             'RealtyCategory' => 'tag_name',
             'Tag'            => 'tag_name',
             'ProjectTag'     => 'project_tag_name',
@@ -147,6 +147,6 @@ class ProjectMapper extends AbstractMapper
             'IsReference'    => 'referenz',
             'CompletionDate' => 'fertigstellung',
             'SaleStart'      => 'verkaufsstart',
-        );
+        ];
     }
 }

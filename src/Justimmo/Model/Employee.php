@@ -17,7 +17,7 @@ class Employee
     /**
      * @var array
      */
-    protected $attachments = array();
+    protected $attachments = [];
 
     /**
      * @var null|string
@@ -317,7 +317,7 @@ class Employee
      */
     public function getAttachmentsByType($type, $group = false)
     {
-        $attachments = array();
+        $attachments = [];
 
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {

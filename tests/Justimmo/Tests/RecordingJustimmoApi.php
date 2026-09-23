@@ -15,7 +15,7 @@ class RecordingJustimmoApi extends JustimmoNullApi
      */
     private ?array $lastParams = null;
 
-    public function callRealtyList(array $params = array()): string
+    public function callRealtyList(array $params = []): string
     {
         $this->lastParams = $params;
 

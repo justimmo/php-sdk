@@ -3,6 +3,7 @@
 namespace Justimmo\Model\Mapper\V1;
 
 use Justimmo\Model\Realty;
+use SimpleXMLElement;
 
 class RealtyMapper extends AbstractMapper
 {
@@ -507,10 +508,10 @@ class RealtyMapper extends AbstractMapper
     }
 
     /**
-     * @param \SimpleXMLElement $xml
+     * @param SimpleXMLElement $xml
      * @param Realty            $realty
      */
-    public function setOrientation(\SimpleXMLElement $xml, Realty $realty)
+    public function setOrientation(SimpleXMLElement $xml, Realty $realty)
     {
         $value = (string) $xml;
 

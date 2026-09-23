@@ -256,13 +256,13 @@ class Realty
 
     protected $totalRentVat;
 
-    protected $additionalCosts = array();
+    protected $additionalCosts = [];
 
     protected $transferTax;
 
     protected $landRegistration;
 
-    protected $attachments = array();
+    protected $attachments = [];
 
     protected $yearBuilt;
 
@@ -272,7 +272,7 @@ class Realty
 
     protected $condition;
 
-    protected $equipment = array();
+    protected $equipment = [];
 
     protected $roomCount;
 
@@ -330,7 +330,7 @@ class Realty
 
     protected $locality;
 
-    protected $categories = array();
+    protected $categories = [];
 
     protected $availableFrom;
 
@@ -481,11 +481,11 @@ class Realty
     /**
      * @var Garage[]
      */
-    protected $garages = array();
+    protected $garages = [];
 
     protected $buyOnRequest = false;
 
-    protected $pois = array();
+    protected $pois = [];
 
     protected ?PoliticalDistrict $politicalDistrict = null;
 
@@ -1787,7 +1787,7 @@ class Realty
      */
     public function getAttachmentsByType($type, $group = false)
     {
-        $attachments = array();
+        $attachments = [];
 
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {
@@ -3490,7 +3490,7 @@ class Realty
         }
 
         if (!isset($this->pois[$group])) {
-            $this->pois[$group] = array();
+            $this->pois[$group] = [];
         }
 
         $this->pois[$group][$name] = $distance;
