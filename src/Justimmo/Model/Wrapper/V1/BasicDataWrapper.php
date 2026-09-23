@@ -4,21 +4,22 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
+use SimpleXMLElement;
 use function trim;
 
 class BasicDataWrapper implements BasicDataWrapperInterface
 {
     public function transformCountries($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->land as $land) {
-            $return[(int) $land->id] = array(
+            $return[(int) $land->id] = [
                 'name' => (string) $land->name,
                 'iso2' => (string) $land->iso2,
                 'iso3' => (string) $land->iso3,
-            );
+            ];
         }
 
         return $return;
@@ -26,15 +27,15 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
     public function transformFederalStates($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->bundesland as $bundesland) {
-            $return[(int) $bundesland->id] = array(
+            $return[(int) $bundesland->id] = [
                 'name'      => (string) $bundesland->name,
                 'countryId' => (int) $bundesland->landid,
                 'fipsCode'  => (string) $bundesland->fipscode,
-            );
+            ];
         }
 
         return $return;
@@ -42,18 +43,18 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
     public function transformZipCodes($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->postleitzahl as $postleitzahl) {
-            $return[] = array(
+            $return[] = [
                 'id'             => ((string) $postleitzahl->id === '') ? null : (int) $postleitzahl->id,
                 'countryId'      => ((string) $postleitzahl->landid === '') ? null : (int) $postleitzahl->landid,
                 'regionId'       => ((string) $postleitzahl->regionid === '') ? null : (int) $postleitzahl->regionid,
                 'zipCode'        => trim((string) $postleitzahl->plz),
                 'place'          => trim((string) $postleitzahl->ort),
                 'federalStateId' => ((string) $postleitzahl->bundeslandid === '') ? null : (int) $postleitzahl->bundeslandid,
-            );
+            ];
         }
 
         return $return;
@@ -64,9 +65,9 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformRegions($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->region as $region) {
             $return[(int) $region->id] = trim((string) $region->name);
         }
@@ -79,7 +80,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformPoliticalDistricts(mixed $data): array
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
         $return = [];
         foreach ($xml->politischer_bezirk as $politicalDistrict) {
@@ -92,15 +93,15 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
     public function transformRealtyTypes($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->objektart as $objektart) {
-            $return[(int) $objektart->id] = array(
+            $return[(int) $objektart->id] = [
                 'name'      => (string) $objektart->name,
                 'key'       => (string) $objektart->key,
                 'attribute' => (string) $objektart->attributename,
-            );
+            ];
         }
 
         return $return;
@@ -108,14 +109,14 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
     public function transformRealtyCategories($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
-        $return = array();
+        $return = [];
         foreach ($xml->objektkategorie as $objektkategorie) {
-            $return[(int) $objektkategorie->id] = array(
+            $return[(int) $objektkategorie->id] = [
                 'name'         => (string) $objektkategorie->name,
                 'sortableRank' => (int) $objektkategorie->sortablerank,
-            );
+            ];
         }
 
         return $return;
@@ -123,7 +124,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
 
     public function transformTenant($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
         return (array) $xml->tenant;
     }

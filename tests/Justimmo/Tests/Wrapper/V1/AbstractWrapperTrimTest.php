@@ -85,7 +85,7 @@ XML
         $attachments = $project->getContact()->getAttachments();
         $this->assertCount(1, $attachments);
 
-        foreach (array('small', 'medium', 'big') as $size) {
+        foreach (['small', 'medium', 'big'] as $size) {
             $url = $attachments[0]->getUrl($size);
             $this->assertNotFalse(filter_var($url, FILTER_VALIDATE_URL), $size . ' must be a usable url');
         }

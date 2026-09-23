@@ -82,6 +82,6 @@ abstract class AbstractMapper implements MapperInterface
     {
         $mapping = $this->getMapping();
 
-        return array_key_exists($apiPropertyName, $mapping) ? $mapping[$apiPropertyName] : array();
+        return array_key_exists($apiPropertyName, $mapping) ? $mapping[$apiPropertyName] : [];
     }
 }

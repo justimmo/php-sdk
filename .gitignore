@@ -3,3 +3,4 @@ composer.lock
 index.php
 .idea/
 phpstan.neon
+.php-cs-fixer.cache

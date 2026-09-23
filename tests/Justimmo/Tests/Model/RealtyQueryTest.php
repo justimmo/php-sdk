@@ -22,31 +22,31 @@ class RealtyQueryTest extends TestCase
     {
         $query = $this->getQuery();
         $query->allProjectRealties(true);
-        $this->assertEquals(array('alleProjektObjekte' => 1), $query->getParams());
+        $this->assertEquals(['alleProjektObjekte' => 1], $query->getParams());
 
         $query = $this->getQuery();
         $query->allProjectRealties(false);
-        $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
+        $this->assertEquals(['alleProjektObjekte' => 0], $query->getParams());
     }
 
     public function testFilterByUpdatedAt()
     {
         $query = $this->getQuery();
         $query->filterByUpdatedAt('2017-01-12');
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'aktualisiert_am' => '2017-01-12',
-            ),
-        ), $query->getParams());
+            ],
+        ], $query->getParams());
 
         $query = $this->getQuery();
-        $query->filterByUpdatedAt(array('min' => '2017-01-12', 'max' => '2017-01-15'));
-        $this->assertEquals(array(
-            'filter' => array(
+        $query->filterByUpdatedAt(['min' => '2017-01-12', 'max' => '2017-01-15']);
+        $this->assertEquals([
+            'filter' => [
                 'aktualisiert_am_von' => '2017-01-12',
                 'aktualisiert_am_bis' => '2017-01-15',
-            ),
-        ), $query->getParams());
+            ],
+        ], $query->getParams());
     }
 
     public function testOrderByUpdatedAt()
@@ -54,31 +54,31 @@ class RealtyQueryTest extends TestCase
         $query = $this->getQuery();
         $query->orderByUpdatedAt('asc');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'updated_at',
             'ordertype' => 'asc',
-        ), $query->getParams());
+        ], $query->getParams());
 
         $query->orderByUpdatedAt('desc');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'orderby'   => 'updated_at',
             'ordertype' => 'desc',
-        ), $query->getParams());
+        ], $query->getParams());
     }
 
     public function testFindIds()
     {
-        $api   = new MockJustimmoApi(array('realtyIds' => $this->getFixtures('v1/realty_ids.json')));
+        $api   = new MockJustimmoApi(['realtyIds' => $this->getFixtures('v1/realty_ids.json')]);
         $query = $this->getQuery($api);
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             920153,
             728584,
             635873,
             587626,
             587622,
-        ), $query->findIds());
+        ], $query->findIds());
     }
 
     /**

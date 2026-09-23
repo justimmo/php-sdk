@@ -9,14 +9,14 @@ class MockJustimmoApi implements JustimmoApiInterface
     /**
      * @var string[]
      */
-    private $returnValues = array();
+    private $returnValues;
 
     /**
      * MockJustimmoApi constructor.
      *
      * @param array $returnValues
      */
-    public function __construct($returnValues = array())
+    public function __construct($returnValues = [])
     {
         $this->returnValues = $returnValues;
     }
@@ -45,23 +45,23 @@ class MockJustimmoApi implements JustimmoApiInterface
         return !empty($this->returnValues[$call]) ? $this->returnValues[$call] : $default;
     }
 
-    public function callRealtyList(array $params = array())
+    public function callRealtyList(array $params = [])
     {
         return $this->getReturnValue('realtyList');
     }
 
 
-    public function callRealtyIds(array $params = array())
+    public function callRealtyIds(array $params = [])
     {
         return $this->getReturnValue('realtyIds');
     }
 
-    public function callRealtyDetail($pk, array $params = array())
+    public function callRealtyDetail($pk, array $params = [])
     {
         return $this->getReturnValue('realtyDetail');
     }
 
-    public function callEmployeeList(array $params = array())
+    public function callEmployeeList(array $params = [])
     {
         return $this->getReturnValue('employeeList');
     }
@@ -71,32 +71,32 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('employeeDetail');
     }
 
-    public function callProjectList(array $params = array())
+    public function callProjectList(array $params = [])
     {
         return $this->getReturnValue('projectList');
     }
 
-    public function callProjectDetail($pk, array $params = array())
+    public function callProjectDetail($pk, array $params = [])
     {
         return $this->getReturnValue('projectDetail');
     }
 
-    public function callCountries(array $params = array())
+    public function callCountries(array $params = [])
     {
         return $this->getReturnValue('countries');
     }
 
-    public function callFederalStates(array $params = array())
+    public function callFederalStates(array $params = [])
     {
         return $this->getReturnValue('federalStates');
     }
 
-    public function callZipCodes(array $params = array())
+    public function callZipCodes(array $params = [])
     {
         return $this->getReturnValue('zipCodes');
     }
 
-    public function callRegions(array $params = array())
+    public function callRegions(array $params = [])
     {
         return $this->getReturnValue('regions');
     }
@@ -106,17 +106,17 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('politicalDistricts');
     }
 
-    public function callRealtyTypes(array $params = array())
+    public function callRealtyTypes(array $params = [])
     {
         return $this->getReturnValue('realtyTypes');
     }
 
-    public function callTenant(array $params = array())
+    public function callTenant(array $params = [])
     {
         return $this->getReturnValue('tenant');
     }
 
-    public function callRealtyCategories(array $params = array())
+    public function callRealtyCategories(array $params = [])
     {
         return $this->getReturnValue('realtyCategories');
     }
@@ -126,17 +126,17 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('expose');
     }
 
-    public function postRealtyInquiry(array $params = array())
+    public function postRealtyInquiry(array $params = [])
     {
         return $this->getReturnValue('realtyInquiry');
     }
 
-    public function callEmployeeIds(array $params = array())
+    public function callEmployeeIds(array $params = [])
     {
         return $this->getReturnValue('employeeIds');
     }
 
-    public function callProjectIds(array $params = array())
+    public function callProjectIds(array $params = [])
     {
         return $this->getReturnValue('projectIds');
     }

@@ -15,7 +15,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @var array<int, string>
      */
-    protected $pictureSizes = array(
+    protected $pictureSizes = [
         'small',
         's220x155',
         's312x208',
@@ -36,12 +36,12 @@ abstract class AbstractQuery implements QueryInterface
         'orig',
         'user_small',
         'user_medium',
-    );
+    ];
 
     /**
      * @var array
      */
-    protected $params = array();
+    protected $params = [];
 
     /**
      * @var JustimmoApiInterface
@@ -98,7 +98,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function clear()
     {
-        $this->params = array();
+        $this->params = [];
 
         return $this;
     }
@@ -158,7 +158,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function findPk($pk)
     {
-        $params = array();
+        $params = [];
         if (isset($this->params['picturesize'])) {
             $params['picturesize'] = $this->params['picturesize'];
         }
@@ -435,7 +435,7 @@ abstract class AbstractQuery implements QueryInterface
     public function setPicturesize($picturesize)
     {
         if (!is_array($picturesize)) {
-            $picturesize = array($picturesize);
+            $picturesize = [$picturesize];
         }
 
         $picturesize = array_unique(array_filter($picturesize));

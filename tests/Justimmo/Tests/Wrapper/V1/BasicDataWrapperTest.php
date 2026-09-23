@@ -118,24 +118,24 @@ final class BasicDataWrapperTest extends TestCase
         $list = $this->wrapper->transformRealtyCategories($this->getFixtures('v1/categories.xml'));
 
         $this->assertEquals(4, count($list));
-        $this->assertEquals(array(
-            3469 => array(
+        $this->assertEquals([
+            3469 => [
                 'name'         => 'Kat 1',
                 'sortableRank' => 2,
-            ),
-            3582 => array(
+            ],
+            3582 => [
                 'name'         => 'Kat 2',
                 'sortableRank' => 0,
-            ),
-            3140 => array(
+            ],
+            3140 => [
                 'name'         => 'Luxusobjekte',
                 'sortableRank' => 1,
-            ),
-            2057 => array(
+            ],
+            2057 => [
                 'name'         => 'Referenzobjekte',
                 'sortableRank' => 3,
-            ),
-        ), $list);
+            ],
+        ], $list);
     }
 
     public function testTenant()

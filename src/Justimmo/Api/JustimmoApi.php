@@ -30,7 +30,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @var array
      */
-    protected $supportedVersions = array('v1');
+    protected $supportedVersions = ['v1'];
 
     /**
      * base url where the justimmo api is located
@@ -75,7 +75,7 @@ class JustimmoApi implements JustimmoApiInterface
     protected $cache;
 
     /**
-     * culture for api calls to set if not explicetely set on call
+     * culture for api calls to set if not explicitly set on call
      *
      * @var string
      */
@@ -86,11 +86,11 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @var array
      */
-    protected $curlOptions = array(
+    protected $curlOptions = [
         CURLOPT_CONNECTTIMEOUT_MS => 2500,
         CURLOPT_RETURNTRANSFER    => true,
         CURLOPT_SSL_VERIFYPEER    => false,
-    );
+    ];
 
     /**
      * installed version of this package, resolved once per process
@@ -120,7 +120,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyList(array $params = array())
+    public function callRealtyList(array $params = [])
     {
         $params['showDetails'] = 1;
 
@@ -130,7 +130,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyIds(array $params = array())
+    public function callRealtyIds(array $params = [])
     {
         return $this->call('objekt/ids', $params);
     }
@@ -138,7 +138,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyDetail($pk, array $params = array())
+    public function callRealtyDetail($pk, array $params = [])
     {
         $params['objekt_id'] = $pk;
 
@@ -150,13 +150,13 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callEmployeeDetail($pk)
     {
-        return $this->call('team/detail', array('id' => $pk));
+        return $this->call('team/detail', ['id' => $pk]);
     }
 
     /**
      * @inheritdoc
      */
-    public function callProjectDetail($pk, array $params = array())
+    public function callProjectDetail($pk, array $params = [])
     {
         $params['id'] = $pk;
 
@@ -166,7 +166,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callEmployeeList(array $params = array())
+    public function callEmployeeList(array $params = [])
     {
         return $this->call('team/list', $params);
     }
@@ -174,7 +174,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callProjectList(array $params = array())
+    public function callProjectList(array $params = [])
     {
         return $this->call('projekt/list', $params);
     }
@@ -182,7 +182,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callCountries(array $params = array())
+    public function callCountries(array $params = [])
     {
         return $this->call('objekt/laender', $params);
     }
@@ -190,7 +190,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callFederalStates(array $params = array())
+    public function callFederalStates(array $params = [])
     {
         return $this->call('objekt/bundeslaender', $params);
     }
@@ -198,7 +198,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callZipCodes(array $params = array())
+    public function callZipCodes(array $params = [])
     {
         return $this->call('objekt/plzsUndOrte', $params);
     }
@@ -208,7 +208,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
      */
-    public function callRegions(array $params = array())
+    public function callRegions(array $params = [])
     {
         return $this->call('objekt/regionen', $params);
     }
@@ -224,7 +224,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyTypes(array $params = array())
+    public function callRealtyTypes(array $params = [])
     {
         return $this->call('objekt/objektarten', $params);
     }
@@ -232,7 +232,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callRealtyCategories(array $params = array())
+    public function callRealtyCategories(array $params = [])
     {
         return $this->call('objekt/kategorien', $params);
     }
@@ -240,7 +240,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callTenant(array $params = array())
+    public function callTenant(array $params = [])
     {
         return $this->call('main/tenant', $params);
     }
@@ -250,13 +250,13 @@ class JustimmoApi implements JustimmoApiInterface
      */
     public function callExpose($pk, $type = 'Default')
     {
-        return $this->call('objekt/expose', array('objekt_id' => $pk, 'expose' => $type));
+        return $this->call('objekt/expose', ['objekt_id' => $pk, 'expose' => $type]);
     }
 
     /**
      * @inheritdoc
      */
-    public function postRealtyInquiry(array $params = array())
+    public function postRealtyInquiry(array $params = [])
     {
         return $this->call('objekt/anfrage', $params);
     }
@@ -264,7 +264,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callEmployeeIds(array $params = array())
+    public function callEmployeeIds(array $params = [])
     {
         return $this->call('team/ids', $params);
     }
@@ -272,7 +272,7 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * @inheritdoc
      */
-    public function callProjectIds(array $params = array())
+    public function callProjectIds(array $params = [])
     {
         return $this->call('projekt/ids', $params);
     }
@@ -285,7 +285,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @return string
      */
-    public function generateUrl($call, array $params = array())
+    public function generateUrl($call, array $params = [])
     {
         $url = $this->baseUrl . '/' . $this->version . '/' . $call;
         if (count($params) > 0) {
@@ -310,7 +310,7 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * @return mixed
      */
-    public function call($call, array $params = array())
+    public function call($call, array $params = [])
     {
         $startTime = microtime(true);
 
@@ -319,19 +319,19 @@ class JustimmoApi implements JustimmoApiInterface
         }
 
         $url = $this->generateUrl($call, $params);
-        $this->logger->debug('call start', array(
+        $this->logger->debug('call start', [
             'url'      => $url,
-        ));
+        ]);
 
         $key = $this->cache->generateCacheKey($url);
         $content = $this->cache->get($key);
         if ($content !== false) {
-            $this->logger->debug('call end', array(
+            $this->logger->debug('call end', [
                 'url'      => $url,
                 'cache'    => true,
                 'time'     => microtime(true) - $startTime,
                 'response' => $content,
-            ));
+            ]);
 
             return $content;
         }
@@ -366,12 +366,12 @@ class JustimmoApi implements JustimmoApiInterface
 
         $this->cache->set($key, $response);
 
-        $this->logger->debug('call end', array(
+        $this->logger->debug('call end', [
             'url'      => $url,
             'cache'    => false,
             'time'     => microtime(true) - $startTime,
             'response' => $response,
-        ));
+        ]);
 
         return $response;
     }
