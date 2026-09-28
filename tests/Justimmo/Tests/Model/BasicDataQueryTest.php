@@ -21,7 +21,7 @@ class BasicDataQueryTest extends TestCase
 {
     private function getQuery(): BasicDataQuery
     {
-        $api = new MockJustimmoApi(array(
+        $api = new MockJustimmoApi([
             'countries'          => $this->getFixtures('v1/countries.xml'),
             'federalStates'      => $this->getFixtures('v1/federal_states.xml'),
             'zipCodes'           => $this->getFixtures('v1/zip_codes.xml'),
@@ -30,7 +30,7 @@ class BasicDataQueryTest extends TestCase
             'realtyTypes'        => $this->getFixtures('v1/realty_types.xml'),
             'realtyCategories'   => $this->getFixtures('v1/categories.xml'),
             'tenant'             => $this->getFixtures('v1/tenant.xml'),
-        ));
+        ]);
 
         $mapper = new BasicDataMapper();
 
@@ -115,14 +115,14 @@ class BasicDataQueryTest extends TestCase
     {
         $query = $this->getQuery()->filterByCountry(17);
 
-        $this->assertSame(array('land' => 17), $query->getParams());
+        $this->assertSame(['land' => 17], $query->getParams());
     }
 
     public function testFilterByFederalState(): void
     {
         $query = $this->getQuery()->filterByFederalState(130);
 
-        $this->assertSame(array('bundesland' => 130), $query->getParams());
+        $this->assertSame(['bundesland' => 130], $query->getParams());
     }
 
     /**
@@ -131,10 +131,10 @@ class BasicDataQueryTest extends TestCase
     public function testAll(): void
     {
         $query = $this->getQuery()->all(true);
-        $this->assertSame(array('alle' => true), $query->getParams());
+        $this->assertSame(['alle' => true], $query->getParams());
 
         $query = $this->getQuery()->all(false);
-        $this->assertSame(array('alle' => false), $query->getParams());
+        $this->assertSame(['alle' => false], $query->getParams());
     }
 
     /**
@@ -145,6 +145,6 @@ class BasicDataQueryTest extends TestCase
         $query = $this->getQuery();
         $query->filterByCountry(17)->findFederalStates();
 
-        $this->assertSame(array(), $query->getParams());
+        $this->assertSame([], $query->getParams());
     }
 }

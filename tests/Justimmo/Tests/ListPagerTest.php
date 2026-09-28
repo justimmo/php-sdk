@@ -34,14 +34,14 @@ class ListPagerTest extends TestCase
 
     public function testToKeyValue()
     {
-        $this->assertEquals(array(
+        $this->assertEquals([
             436942 => 'Geräumige Präsentationsfläche für Grossobjekte test',
             195429 => 'DEMOOBJEKT!-Seeblick und Golfplatz im Themalkurort Evian am Genfersee',
             195425 => 'DEMOOBJEKT! Grünruhelage in den Kornkammern Wiens',
             195422 => 'DEMOOBJEKT! Modernes Büro in Zentrumsnähe',
             66079  => 'DEMOOBJEKT! Elegantes Büro neben Bristol und Oper',
             66078  => 'DEMOOBJEKT! Preisgünstiges attraktives Büro mit Wien-Panoramablick',
-        ), $this->pager->toKeyValue('getId', 'getTitle'));
+        ], $this->pager->toKeyValue('getId', 'getTitle'));
     }
 
     public function testPagerOnePage()
@@ -51,7 +51,7 @@ class ListPagerTest extends TestCase
         $this->assertEquals(7, $this->pager->getNbResults());
         $this->assertEquals(1, $this->pager->getFirstPage());
         $this->assertEquals(1, $this->pager->getLastPage());
-        $this->assertEquals(array(1), $this->pager->getLinks(5));
+        $this->assertEquals([1], $this->pager->getLinks(5));
     }
 
     public function testPagerMultiPage()
@@ -63,6 +63,6 @@ class ListPagerTest extends TestCase
         $this->assertTrue($this->pager->haveToPaginate());
         $this->assertEquals(1, $this->pager->getFirstPage());
         $this->assertEquals(9, $this->pager->getLastPage());
-        $this->assertEquals(array(2,3,4,5,6), $this->pager->getLinks(5));
+        $this->assertEquals([2,3,4,5,6], $this->pager->getLinks(5));
     }
 }

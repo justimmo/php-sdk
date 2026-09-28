@@ -22,8 +22,8 @@ class ApiTest extends TestCase
     public function setUp(): void
     {
         $this->api = $this->getMockBuilder('Justimmo\Api\JustimmoApi')
-            ->setConstructorArgs(array('username', 'password', new NullLogger(), new NullCache()))
-            ->setMethods(array('createRequest'))
+            ->setConstructorArgs(['username', 'password', new NullLogger(), new NullCache()])
+            ->onlyMethods(['createRequest'])
             ->getMock();
     }
 
@@ -167,7 +167,7 @@ class ApiTest extends TestCase
             'xml body, json header' => [$this->getFixtures('v1/validation_error.xml'), 'application/json'],
         ];
 
-        foreach ($bodies as $case => list($body, $contentType)) {
+        foreach ($bodies as $case => [$body, $contentType]) {
             $exception = new ValidationException('The Api call returned status code 422');
             $exception->setResponse($body, $contentType);
 
@@ -520,16 +520,16 @@ class ApiTest extends TestCase
 
     public function testGenerateUrl()
     {
-        $this->assertEquals('https://api.justimmo.at/rest/v1/objekt/list?culture=de&orderby=preis&filter%5Bpreis_von%5D=500&filter%5Bpreis_bis%5D=1500&filter%5Bobjektart_id%5D=5&filter%5Bplz%5D%5B%5D=1020&filter%5Bplz%5D%5B%5D=1030', $this->api->generateUrl('objekt/list', array(
+        $this->assertEquals('https://api.justimmo.at/rest/v1/objekt/list?culture=de&orderby=preis&filter%5Bpreis_von%5D=500&filter%5Bpreis_bis%5D=1500&filter%5Bobjektart_id%5D=5&filter%5Bplz%5D%5B%5D=1020&filter%5Bplz%5D%5B%5D=1030', $this->api->generateUrl('objekt/list', [
             'culture' => 'de',
             'orderby' => 'preis',
-            'filter'  => array(
+            'filter'  => [
                 'preis_von'    => 500,
                 'preis_bis'    => 1500,
                 'objektart_id' => 5,
-                'plz'          => array('1020', '1030')
-            )
-        )));
+                'plz'          => ['1020', '1030']
+            ]
+        ]));
 
     }
 }

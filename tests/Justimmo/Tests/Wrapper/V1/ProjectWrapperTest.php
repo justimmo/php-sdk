@@ -96,11 +96,11 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('Erstbezug', $entry->getHouseCondition());
         $this->assertEquals('sehr gut', $entry->getAreaAssessment());
         $this->assertEquals('gut', $entry->getPropertyAssessment());
-        $this->assertEquals(array(
+        $this->assertEquals([
             'wohnen'  => true,
             'gewerbe' => true,
             'anlage'  => false,
-        ), $entry->getOccupancy());
+        ], $entry->getOccupancy());
 
         $this->assertTrue($entry->getUnderConstruction());
         $this->assertEquals(Project::PROJECT_STATE_BUILDING, $entry->getProjectState());
@@ -256,7 +256,7 @@ class ProjectWrapperTest extends TestCase
         $this->assertEquals('2017-02-01', $entry->getSaleStart());
 
         $this->assertEmpty($entry->getRealties());
-        $this->assertEquals(array(
+        $this->assertEquals([
             195439,
             195438,
             195437,
@@ -267,7 +267,7 @@ class ProjectWrapperTest extends TestCase
             66076,
             66046,
             66040,
-        ), $entry->getRealtyIds());
+        ], $entry->getRealtyIds());
     }
 
 }

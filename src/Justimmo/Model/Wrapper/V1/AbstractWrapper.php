@@ -2,9 +2,14 @@
 
 namespace Justimmo\Model\Wrapper\V1;
 
+use DateTime;
 use Justimmo\Model\Attachment;
+use Justimmo\Model\Employee;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Project;
+use Justimmo\Model\Realty;
 use Justimmo\Model\Wrapper\WrapperInterface;
+use SimpleXMLElement;
 
 abstract class AbstractWrapper implements WrapperInterface
 {
@@ -22,10 +27,10 @@ abstract class AbstractWrapper implements WrapperInterface
      * maps an mapping array between a SimpleXML and Objekt
      *
      * @param                   $mapping
-     * @param \SimpleXMLElement $xml
+     * @param SimpleXMLElement $xml
      * @param                   $objekt
      */
-    protected function map($mapping, \SimpleXMLElement $xml, $objekt)
+    protected function map($mapping, SimpleXMLElement $xml, $objekt)
     {
         foreach ($mapping as $key) {
             if (isset($xml->$key)) {
@@ -41,9 +46,9 @@ abstract class AbstractWrapper implements WrapperInterface
      * @param        $xml
      * @param string $type
      *
-     * @return float|int|null|string|\DateTime
+     * @return float|int|null|string|DateTime
      */
-    protected function cast(\SimpleXMLElement $xml, $type = 'string')
+    protected function cast(SimpleXMLElement $xml, $type = 'string')
     {
         switch ($type) {
             case 'string':
@@ -59,7 +64,7 @@ abstract class AbstractWrapper implements WrapperInterface
                 if (empty($date)) {
                     return null;
                 }
-                return new \DateTime($date);
+                return new DateTime($date);
             default:
                 return $xml;
         }
@@ -91,37 +96,37 @@ abstract class AbstractWrapper implements WrapperInterface
     /**
      * converts the attributes of a SimpleXmlElement to an array
      *
-     * @param \SimpleXMLElement $xml
+     * @param SimpleXMLElement $xml
      *
      * @return array
      */
-    protected function attributesToArray(\SimpleXMLElement $xml)
+    protected function attributesToArray(SimpleXMLElement $xml)
     {
         $array = (array) $xml;
 
-        return array_key_exists('@attributes', $array) ? $array['@attributes'] : array();
+        return array_key_exists('@attributes', $array) ? $array['@attributes'] : [];
     }
 
     /**
-     * @param \SimpleXMLElement                                                       $xml
-     * @param \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project $attachmentAware
-     * @param null                                                                    $type
-     * @param null                                                                    $forceGroup
+     * @param SimpleXMLElement        $xml
+     * @param Realty|Employee|Project $attachmentAware
+     * @param null                    $type
+     * @param null                    $forceGroup
      *
      * @internal param array $data
      */
-    protected function mapAttachmentGroup(\SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+    protected function mapAttachmentGroup(SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
     {
         foreach ($xml as $anhang) {
             $data = $this->trimValues((array) $anhang->daten);
             $attributes = $this->attributesToArray($anhang);
             $group = $forceGroup ?: (array_key_exists('gruppe', $attributes) ? $attributes['gruppe'] : null);
             if (array_key_exists('pfad', $data)) {
-                $path = isset($data['orig']) ? $data['orig'] : $data['pfad'];
+                $path = $data['orig'] ?? $data['pfad'];
                 $attachment = new Attachment($path, $type, $group);
                 $attachment->mergeData($data);
                 if (isset($anhang->vorschaubild)) {
-                    $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
+                    $attachment->mergeData(['vorschaubild' => $this->cast($anhang->vorschaubild)]);
                 }
                 $attachment->setTitle($this->cast($anhang->anhangtitel));
                 if (isset($anhang->anhang_beschreibung)) {
@@ -133,10 +138,10 @@ abstract class AbstractWrapper implements WrapperInterface
                 if (isset($anhang->gruppe)) {
                     $group = strtoupper($this->cast($anhang->gruppe));
                 }
-                $path = isset($anhang->orig) ? $anhang->orig : $anhang->pfad;
+                $path = $anhang->orig ?? $anhang->pfad;
                 $attachment = new Attachment($this->cast($path), $type, $group);
                 if (isset($anhang->vorschaubild)) {
-                    $attachment->mergeData(array('vorschaubild' => $this->cast($anhang->vorschaubild)));
+                    $attachment->mergeData(['vorschaubild' => $this->cast($anhang->vorschaubild)]);
                 }
                 $attachment->setTitle($this->cast($anhang->titel));
                 if (isset($anhang->anhang_beschreibung)) {

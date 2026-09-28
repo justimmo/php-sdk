@@ -18,7 +18,7 @@ class BasicDataQuery
     /**
      * @var array
      */
-    protected array $params = array();
+    protected array $params = [];
 
     protected JustimmoApiInterface $api;
     protected BasicDataWrapperInterface  $wrapper;
@@ -38,7 +38,7 @@ class BasicDataQuery
      */
     public function clear()
     {
-        $this->params = array();
+        $this->params = [];
 
         return $this;
     }

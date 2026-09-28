@@ -13,7 +13,7 @@ namespace Justimmo\Curl;
  * …
  * $content = $request->get();
  * or
- * $content = $request->post(array('username' => 'test));
+ * $content = $request->post(['username' => 'test']);
  * (supports put too)
  *
  * after that you can ask the lass about various information like
@@ -31,7 +31,7 @@ class CurlRequest implements CurlRequestInterface
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * the url
@@ -48,7 +48,7 @@ class CurlRequest implements CurlRequestInterface
     /**
      * @var mixed
      */
-    protected $infos = array();
+    protected $infos = [];
 
     /**
      * @var string
@@ -63,7 +63,7 @@ class CurlRequest implements CurlRequestInterface
      *
      * @throws CurlException
      */
-    public function __construct($url = null, $options = array())
+    public function __construct($url = null, $options = [])
     {
         $this->url     = $url;
         $this->options = $options;
@@ -153,7 +153,7 @@ class CurlRequest implements CurlRequestInterface
      */
     public function clearOptions()
     {
-        $this->options = array();
+        $this->options = [];
 
         return $this;
     }
@@ -225,7 +225,7 @@ class CurlRequest implements CurlRequestInterface
      *
      * @return $this
      */
-    public function setParameters($v = array())
+    public function setParameters($v = [])
     {
         $this->setOption(CURLOPT_POSTFIELDS, $v);
 

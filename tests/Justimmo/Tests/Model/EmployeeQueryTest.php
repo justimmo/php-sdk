@@ -19,14 +19,14 @@ class EmployeeQueryTest extends TestCase
 
     public function testFindIds()
     {
-        $api = new MockJustimmoApi(array('employeeIds' => $this->getFixtures('v1/employee_ids.json')));
+        $api = new MockJustimmoApi(['employeeIds' => $this->getFixtures('v1/employee_ids.json')]);
         $query = $this->getQuery($api);
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             1,
             2,
             4,
             5,
-        ), $query->findIds());
+        ], $query->findIds());
     }
 }

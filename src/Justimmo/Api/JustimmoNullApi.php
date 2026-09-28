@@ -10,22 +10,22 @@ namespace Justimmo\Api;
  */
 class JustimmoNullApi implements JustimmoApiInterface
 {
-    public function callRealtyList(array $params = array())
+    public function callRealtyList(array $params = [])
     {
         return '<?xml version="1.0" encoding="UTF-8"?><justimmo><query-result><count>0</count></query-result></justimmo>';
     }
 
-    public function callRealtyIds(array $params = array())
+    public function callRealtyIds(array $params = [])
     {
         return '{}';
     }
 
-    public function callRealtyDetail($pk, array $params = array())
+    public function callRealtyDetail($pk, array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callEmployeeList(array $params = array())
+    public function callEmployeeList(array $params = [])
     {
         return '<?xml version="1.0" encoding="UTF-8"?><justimmo></justimmo>';
     }
@@ -35,32 +35,32 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
-    public function callProjectList(array $params = array())
+    public function callProjectList(array $params = [])
     {
         return '<?xml version="1.0" encoding="UTF-8"?><justimmo><query-result><count>0</count></query-result></justimmo>';
     }
 
-    public function callProjectDetail($pk, array $params = array())
+    public function callProjectDetail($pk, array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callCountries(array $params = array())
+    public function callCountries(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callFederalStates(array $params = array())
+    public function callFederalStates(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callZipCodes(array $params = array())
+    public function callZipCodes(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callRegions(array $params = array())
+    public function callRegions(array $params = [])
     {
         return $this->emptyXML();
     }
@@ -70,17 +70,17 @@ class JustimmoNullApi implements JustimmoApiInterface
         return $this->emptyXML();
     }
 
-    public function callRealtyTypes(array $params = array())
+    public function callRealtyTypes(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callTenant(array $params = array())
+    public function callTenant(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callRealtyCategories(array $params = array())
+    public function callRealtyCategories(array $params = [])
     {
         return $this->emptyXML();
     }
@@ -90,17 +90,17 @@ class JustimmoNullApi implements JustimmoApiInterface
         return null;
     }
 
-    public function postRealtyInquiry(array $params = array())
+    public function postRealtyInquiry(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callEmployeeIds(array $params = array())
+    public function callEmployeeIds(array $params = [])
     {
         return $this->emptyXML();
     }
 
-    public function callProjectIds(array $params = array())
+    public function callProjectIds(array $params = [])
     {
         return $this->emptyXML();
     }

@@ -5,76 +5,76 @@ class EmployeeMapper extends AbstractMapper
 {
     protected function getMapping()
     {
-        return array(
-            'id'             => array(
+        return [
+            'id'             => [
                 'type' => 'int',
-            ),
-            'vorname'        => array(
+            ],
+            'vorname'        => [
                 'property' => 'firstName',
-            ),
-            'nachname'       => array(
+            ],
+            'nachname'       => [
                 'property' => 'lastName',
-            ),
-            'name'           => array(
+            ],
+            'name'           => [
                 'property' => 'lastName',
-            ),
-            'handy'          => array(
+            ],
+            'handy'          => [
                 'property' => 'mobile',
-            ),
-            'tel_handy'      => array(
+            ],
+            'tel_handy'      => [
                 'property' => 'mobile',
-            ),
-            'tel_fax'        => array(
+            ],
+            'tel_fax'        => [
                 'property' => 'fax',
-            ),
-            'tel'            => array(
+            ],
+            'tel'            => [
                 'property' => 'phone',
-            ),
-            'tel_zentrale'   => array(
+            ],
+            'tel_zentrale'   => [
                 'property' => 'phone',
-            ),
-            'kategorie'      => array(
+            ],
+            'kategorie'      => [
                 'property' => 'category',
-            ),
-            'titel'          => array(
+            ],
+            'titel'          => [
                 'property' => 'title',
-            ),
-            'email_direkt'   => array(
+            ],
+            'email_direkt'   => [
                 'property' => 'email',
-            ),
-            'personennummer' => array(
+            ],
+            'personennummer' => [
                 'property' => 'number',
-            ),
-            'suffix'         => array(
+            ],
+            'suffix'         => [
                 'property' => 'suffix',
-            ),
-            'bio'            => array(
+            ],
+            'bio'            => [
                 'property' => 'biography',
-            ),
-            'strasse'        => array(
+            ],
+            'strasse'        => [
                 'property' => 'street',
-            ),
-            'plz'            => array(
+            ],
+            'plz'            => [
                 'property' => 'postal',
-            ),
-            'ort'            => array(
+            ],
+            'ort'            => [
                 'property' => 'city',
-            ),
-            'url'            => array(
+            ],
+            'url'            => [
                 'property' => 'url',
-            ),
-            'anrede'         => array(
+            ],
+            'anrede'         => [
                 'property' => 'salutation',
-            ),
-            'firma'          => array(
+            ],
+            'firma'          => [
                 'property' => 'company',
-            ),
-        );
+            ],
+        ];
     }
 
     protected function getFilterMapping()
     {
-        return array();
+        return [];
     }
 
 }

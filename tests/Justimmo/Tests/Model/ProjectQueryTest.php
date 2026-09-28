@@ -22,92 +22,92 @@ class ProjectQueryTest extends TestCase
     {
         $query = $this->getQuery();
         $query->filterByProjectState(Project::PROJECT_STATE_BUILDING);
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'projekt_status' => Project::PROJECT_STATE_BUILDING,
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
 
         $query = $this->getQuery();
-        $query->filterByProjectState(array(Project::PROJECT_STATE_PLANNING, Project::PROJECT_STATE_BUILDING));
-        $this->assertEquals(array(
-            'filter' => array(
-                'projekt_status' => array(Project::PROJECT_STATE_PLANNING, Project::PROJECT_STATE_BUILDING)
-            )
-        ), $query->getParams());
+        $query->filterByProjectState([Project::PROJECT_STATE_PLANNING, Project::PROJECT_STATE_BUILDING]);
+        $this->assertEquals([
+            'filter' => [
+                'projekt_status' => [Project::PROJECT_STATE_PLANNING, Project::PROJECT_STATE_BUILDING]
+            ]
+        ], $query->getParams());
     }
 
     public function testFilterByCompletionDate()
     {
         $query = $this->getQuery();
         $query->filterByCompletionDate('2017-01-12');
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'fertigstellung' => '2017-01-12'
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
 
         $query = $this->getQuery();
-        $query->filterByCompletionDate(array('min' => '2017-01-12', 'max' => '2017-01-15'));
-        $this->assertEquals(array(
-            'filter' => array(
+        $query->filterByCompletionDate(['min' => '2017-01-12', 'max' => '2017-01-15']);
+        $this->assertEquals([
+            'filter' => [
                 'fertigstellung_von' => '2017-01-12',
                 'fertigstellung_bis' => '2017-01-15',
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
     }
 
     public function testFilterBySaleStart()
     {
         $query = $this->getQuery();
         $query->filterBySaleStart('2017-01-12');
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'verkaufsstart' => '2017-01-12'
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
 
         $query = $this->getQuery();
-        $query->filterBySaleStart(array('min' => '2017-01-12', 'max' => '2017-01-15'));
-        $this->assertEquals(array(
-            'filter' => array(
+        $query->filterBySaleStart(['min' => '2017-01-12', 'max' => '2017-01-15']);
+        $this->assertEquals([
+            'filter' => [
                 'verkaufsstart_von' => '2017-01-12',
                 'verkaufsstart_bis' => '2017-01-15',
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
     }
 
     public function testAllProjectRealties()
     {
         $query = $this->getQuery();
         $query->allProjectRealties(true);
-        $this->assertEquals(array('alleProjektObjekte' => 1), $query->getParams());
+        $this->assertEquals(['alleProjektObjekte' => 1], $query->getParams());
 
         $query = $this->getQuery();
         $query->allProjectRealties(false);
-        $this->assertEquals(array('alleProjektObjekte' => 0), $query->getParams());
+        $this->assertEquals(['alleProjektObjekte' => 0], $query->getParams());
     }
 
     public function testOnlyRealtyIds()
     {
         $query = $this->getQuery();
         $query->onlyRealtyIds(true);
-        $this->assertEquals(array('objektIds' => 1), $query->getParams());
+        $this->assertEquals(['objektIds' => 1], $query->getParams());
 
         $query = $this->getQuery();
         $query->onlyRealtyIds(false);
-        $this->assertEquals(array('objektIds' => 0), $query->getParams());
+        $this->assertEquals(['objektIds' => 0], $query->getParams());
     }
 
     public function testIsReference()
     {
         $query = $this->getQuery();
         $query->filterByIsReference(true);
-        $this->assertEquals(array(
-            'filter' => array(
+        $this->assertEquals([
+            'filter' => [
                 'referenz' => 1,
-            )
-        ), $query->getParams());
+            ]
+        ], $query->getParams());
     }
 
     /**
@@ -124,15 +124,15 @@ class ProjectQueryTest extends TestCase
 
     public function testFindIds()
     {
-        $api = new MockJustimmoApi(array('projectIds' => $this->getFixtures('v1/project_ids.json')));
+        $api = new MockJustimmoApi(['projectIds' => $this->getFixtures('v1/project_ids.json')]);
         $query = $this->getQuery($api);
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             1,
             2,
             4,
             5,
-        ), $query->findIds());
+        ], $query->findIds());
     }
 
     /**

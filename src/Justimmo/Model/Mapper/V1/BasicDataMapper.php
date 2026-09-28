@@ -7,16 +7,16 @@ class BasicDataMapper extends AbstractMapper
     protected function getMapping()
     {
         //there is no mapping
-        return array();
+        return [];
     }
 
     protected function getFilterMapping()
     {
-        return array(
+        return [
             'all'     => 'alle',
             'country' => 'land',
             'federalState' => 'bundesland',
-        );
+        ];
     }
 
     public function getSetter($apiPropertyName)

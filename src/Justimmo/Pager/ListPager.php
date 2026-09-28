@@ -66,7 +66,7 @@ class ListPager extends \ArrayObject
      */
     public function getLinks($nb_links = 5)
     {
-        $links = array();
+        $links = [];
         $tmp   = $this->page - floor($nb_links / 2);
         $check = $this->getLastPage() - $nb_links + 1;
         $limit = ($check > 0) ? $check : 1;
@@ -156,7 +156,7 @@ class ListPager extends \ArrayObject
      */
     public function toKeyValue($keyGetter, $valueGetter)
     {
-        $return = array();
+        $return = [];
         foreach ($this as $value) {
             if (!method_exists($value, $keyGetter)) {
                 throw new MethodNotFoundException('Method ' . $keyGetter . ' not found on ' . get_class($value));

@@ -216,17 +216,17 @@ class Project
     /**
      * @var Realty[]
      */
-    protected $realties = array();
+    protected $realties = [];
 
     /**
      * @var int[]
      */
-    protected $realtyIds = array();
+    protected $realtyIds = [];
 
     /**
      * @var array
      */
-    protected $attachments = array();
+    protected $attachments = [];
 
     /**
      * @var Employee
@@ -243,12 +243,12 @@ class Project
     /**
      * @var array
      */
-    protected $categories = array();
+    protected $categories = [];
 
     /**
      * @var array
      */
-    protected $garages = array();
+    protected $garages = [];
 
     /**
      * @var float
@@ -1286,7 +1286,7 @@ class Project
      */
     public function getAttachmentsByType($type, $group = false)
     {
-        $attachments = array();
+        $attachments = [];
 
         /** @var \Justimmo\Model\Attachment $attachment */
         foreach ($this->attachments as $attachment) {

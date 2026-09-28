@@ -7,12 +7,12 @@ class RealtyInquiryMapper extends AbstractMapper
     protected function getMapping()
     {
         //there is no mapping
-        return array();
+        return [];
     }
 
     protected function getFilterMapping()
     {
-        return array(
+        return [
             'firstName'    => 'vorname',
             'realtyId'     => 'objekt_id',
             'lastName'     => 'nachname',
@@ -29,7 +29,7 @@ class RealtyInquiryMapper extends AbstractMapper
             'category'     => 'kategorie',
             'company'      => 'firma',
             'fundingInquiry' => 'funding_inquiry',
-        );
+        ];
     }
 
     public function getSetter($apiPropertyName)

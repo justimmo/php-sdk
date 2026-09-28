@@ -10,6 +10,7 @@ use Justimmo\Model\Realty;
 use Justimmo\Model\AdditionalCosts;
 use Justimmo\Model\Garage;
 use Justimmo\Pager\ListPager;
+use SimpleXMLElement;
 
 class RealtyWrapper extends AbstractWrapper
 {
@@ -18,7 +19,7 @@ class RealtyWrapper extends AbstractWrapper
      *
      * @var array
      */
-    protected $simpleMapping = array(
+    protected $simpleMapping = [
         'id',
         'objektnummer',
         'titel',
@@ -54,9 +55,9 @@ class RealtyWrapper extends AbstractWrapper
         'vermittelt_am',
         'erstellt_am',
         'aktualisiert_am',
-    );
+    ];
 
-    protected $geoMapping = array(
+    protected $geoMapping = [
         'ort',
         'plz',
         'regionaler_zusatz',
@@ -70,9 +71,9 @@ class RealtyWrapper extends AbstractWrapper
         'tuernummer',
         'hausnummer',
         'stiege',
-    );
+    ];
 
-    protected $preisMapping = array(
+    protected $preisMapping = [
         'kaufpreis',
         'kaufpreisnetto',
         'kaltmiete',
@@ -95,9 +96,9 @@ class RealtyWrapper extends AbstractWrapper
         'freitext_preis',
         'erschliessungskosten',
         'rent_with_purchase_option',
-    );
+    ];
 
-    protected $flaechenMapping = array(
+    protected $flaechenMapping = [
         'nutzflaeche',
         'teilbar_ab',
         'grundflaeche',
@@ -128,18 +129,18 @@ class RealtyWrapper extends AbstractWrapper
         'verbaubare_flaeche',
         'verkaufsflaeche',
         'raumhoehe',
-    );
+    ];
 
-    protected $energyMapping = array(
+    protected $energyMapping = [
         'epass_hwbwert',
         'epass_hwbklasse',
         'epass_fgeewert',
         'epass_fgeeklasse',
-    );
+    ];
 
     public function transformList($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
         $transformed = new ListPager();
         $transformed->setNbResults((int) $xml->{'query-result'}->count);
@@ -164,7 +165,7 @@ class RealtyWrapper extends AbstractWrapper
      */
     public function transformSingle($data)
     {
-        $xml = new \SimpleXMLElement($data);
+        $xml = new SimpleXMLElement($data);
 
         if (isset($xml->immobilie)) {
             $xml = $xml->immobilie;
@@ -352,7 +353,7 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->preise->zusatzkosten)) {
                 foreach ($xml->preise->zusatzkosten[0] as $key => $zusatzkosten) {
-                    $name  = isset($zusatzkosten->name) ? $zusatzkosten->name : $key;
+                    $name  = $zusatzkosten->name ?? $key;
                     $costs = new AdditionalCosts((string) $name, (float) $zusatzkosten->brutto, (float) $zusatzkosten->netto, (float) $zusatzkosten->ust, (string) $zusatzkosten->ust_typ, (float) $zusatzkosten->ust_berechneter_wert, (float) $zusatzkosten->ust_wert);
 
                     if (isset($zusatzkosten->optional)) {
@@ -464,13 +465,13 @@ class RealtyWrapper extends AbstractWrapper
             }
 
             if (isset($xml->ausstattung[0])) {
-                /** @var \SimpleXMLElement $element */
+                /** @var SimpleXMLElement $element */
                 foreach ($xml->ausstattung[0] as $key => $element) {
                     if ((string) $element === "true" || (int) $element === 1) {
                         $objekt->addEquipment($key, $key);
                     } elseif ($element->attributes()->count()) {
                         $attributes = $this->attributesToArray($element);
-                        $value      = array();
+                        $value      = [];
                         foreach ($attributes as $k => $v) {
                             if ($v === "true" || $v == 1) {
                                 $value[] = $k;
@@ -496,10 +497,10 @@ class RealtyWrapper extends AbstractWrapper
     }
 
     /**
-     * @param \SimpleXMLElement $simpleField
+     * @param SimpleXMLElement $simpleField
      * @param                   $model
      */
-    protected function mapSimpleField(\SimpleXMLElement $simpleField, $model)
+    protected function mapSimpleField(SimpleXMLElement $simpleField, $model)
     {
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {

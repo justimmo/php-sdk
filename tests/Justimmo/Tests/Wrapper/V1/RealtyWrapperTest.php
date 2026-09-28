@@ -122,15 +122,15 @@ class RealtyWrapperTest extends TestCase
         $this->assertEmpty($objekt->getParentId());
         $this->assertTrue($objekt->getIsReference());
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'WOHNEN'  => false,
             'GEWERBE' => true,
             'ANLAGE'  => false,
-        ), $objekt->getOccupancy());
-        $this->assertEquals(array(
+        ], $objekt->getOccupancy());
+        $this->assertEquals([
             'KAUF'        => true,
             'MIETE_PACHT' => false,
-        ), $objekt->getMarketingType());
+        ], $objekt->getMarketingType());
         $this->assertEquals('Stephansplatz', $objekt->getStreet());
         $this->assertEquals('Am Graben', $objekt->getRegionalAddition());
         $this->assertEmpty($objekt->getHallway());
@@ -304,20 +304,20 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('C', $energiepass->getFinalEnergyDemandClass());
         $this->assertTrue($energiepass->getFinalEnergyDemandClassFossil());
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'ausricht_balkon_terrasse' => 'NORD',
-            'bad'                      => array('FENSTER', 'WANNE', 'DUSCHE', 'BIDET', 'PISSOIR'),
-            'boden'                    => array('PARKETT', 'STEIN', 'TEPPICH', 'MARMOR'),
+            'bad'                      => ['FENSTER', 'WANNE', 'DUSCHE', 'BIDET', 'PISSOIR'],
+            'boden'                    => ['PARKETT', 'STEIN', 'TEPPICH', 'MARMOR'],
             'fahrstuhl'                => 'PERSONEN',
             'heizungsart'              => 'FUSSBODEN',
-            'sicherheitstechnik'       => array('ALARMANLAGE', 'POLIZEIRUF'),
+            'sicherheitstechnik'       => ['ALARMANLAGE', 'POLIZEIRUF'],
             'kabel_sat_tv'             => 'kabel_sat_tv',
             'kamin'                    => 'kamin',
             'kueche'                   => 'OFFEN',
             'sauna'                    => 'sauna',
             'stellplatzart'            => 'TIEFGARAGE',
             'befeuerung'               => 'SOLAR',
-        ), $objekt->getEquipment());
+        ], $objekt->getEquipment());
 
         $contact = $objekt->getContact();
         $this->assertInstanceOf('\Justimmo\Model\Employee', $contact);
@@ -339,10 +339,10 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals('Im schönen Grünen', $objekt->getLocality());
 
         $this->assertEquals(2, count($objekt->getCategories()));
-        $this->assertEquals(array(
+        $this->assertEquals([
             19 => 'Demokategorie 1',
             85 => 'Demokategorie 2',
-        ), $objekt->getCategories());
+        ], $objekt->getCategories());
 
         $this->assertEquals('November 2015', $objekt->getAvailableFrom());
 
