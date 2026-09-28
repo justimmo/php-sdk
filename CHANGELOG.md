@@ -1,3 +1,11 @@
+## 1.4.2
+* Bring the code to current PHP conventions. No behaviour changes
+    * `array()` becomes `[]` across src/ and tests/, and the one `list()` becomes a short destructuring
+    * `isset($x) ? $x : $y` becomes `$x ?? $y` in Attachment and the wrappers. The two forms are the same operation
+    * SimpleXMLElement and DateTime are imported rather than written inline, with their docblocks adjusted
+    * setMethods() becomes onlyMethods() in the test suite, deprecated in phpunit 9 and removed in 10
+* Add a php-cs-fixer config plus `make cs` and `make cs-fix`, so the style is enforced rather than relitigated
+
 ## 1.4.1
 * [Website API] Stop sending what the api rejects or ignores
   * filter() no longer sends an empty value, and drops an empty element of an array value. `0`, `'0'` and `false` are values and are kept. A search form which submitted one of three empty inputs sent filter[plz][]=1010&filter[plz][]=, which the api answers with a 422
