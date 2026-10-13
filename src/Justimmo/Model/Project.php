@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Project
+class Project implements ModelInterface
 {
     const PROJECT_STATE_PLANNING = 'planning';
     const PROJECT_STATE_BUILDING = 'building';

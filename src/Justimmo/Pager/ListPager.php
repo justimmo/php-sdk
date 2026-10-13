@@ -4,7 +4,7 @@ namespace Justimmo\Pager;
 
 use Justimmo\Exception\MethodNotFoundException;
 
-class ListPager extends \ArrayObject
+class ListPager extends \ArrayObject implements PagerInterface
 {
     /**
      * max overall results

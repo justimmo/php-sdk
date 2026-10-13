@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Realty
+class Realty implements ModelInterface
 {
     /**
      * Orientation constants and their english identifiers.
