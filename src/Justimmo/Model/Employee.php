@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Employee
+class Employee implements ModelInterface
 {
     /**
      * @var int

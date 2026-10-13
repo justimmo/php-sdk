@@ -3096,35 +3096,10 @@ parameters:
 			count: 1
 			path: src/Justimmo/Model/Wrapper/WrapperInterface.php
 
-		-
-			message: '#^Class Justimmo\\Pager\\ListPager extends generic class ArrayObject but does not specify its types\: TKey, TValue$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/Justimmo/Pager/ListPager.php
 
-		-
-			message: '#^Method Justimmo\\Pager\\ListPager\:\:getLinks\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Pager/ListPager.php
 
-		-
-			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) has parameter \$keyGetter with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Pager/ListPager.php
 
-		-
-			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) has parameter \$valueGetter with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Pager/ListPager.php
 
-		-
-			message: '#^Method Justimmo\\Pager\\ListPager\:\:toKeyValue\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Pager/ListPager.php
 
 		-
 			message: '#^Method Justimmo\\Request\\RealtyInquiryRequest\:\:registerForNewsletter\(\) has no return type specified\.$#'

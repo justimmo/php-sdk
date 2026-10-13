@@ -1,3 +1,8 @@
+## 1.5.0
+* Two interfaces are added, so 2.0 can declare native types without a second breaking release
+    * `Justimmo\Pager\PagerInterface` — the public surface of a list result, implemented by `ListPager` unchanged. It carries native parameter types, which an implementation may omit, and no return types, which a subclass could not
+    * `Justimmo\Model\ModelInterface` — marks an entity the api returns, implemented by `Realty`, `Project` and `Employee`. Deliberately empty; the three share no method worth requiring
+
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
     * `array()` becomes `[]` across src/ and tests/, and the one `list()` becomes a short destructuring

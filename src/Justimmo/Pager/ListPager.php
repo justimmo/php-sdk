@@ -4,7 +4,10 @@ namespace Justimmo\Pager;
 
 use Justimmo\Exception\MethodNotFoundException;
 
-class ListPager extends \ArrayObject
+/**
+ * @extends \ArrayObject<int, mixed>
+ */
+class ListPager extends \ArrayObject implements PagerInterface
 {
     /**
      * max overall results
@@ -62,7 +65,7 @@ class ListPager extends \ArrayObject
      *
      * @param int $nb_links
      *
-     * @return array
+     * @return list<int>
      */
     public function getLinks($nb_links = 5)
     {
@@ -148,10 +151,10 @@ class ListPager extends \ArrayObject
     /**
      * converts the data into a key/value store array
      *
-     * @param $keyGetter
-     * @param $valueGetter
+     * @param string $keyGetter
+     * @param string $valueGetter
      *
-     * @return array
+     * @return array<int|string, mixed>
      * @throws \Justimmo\Exception\MethodNotFoundException
      */
     public function toKeyValue($keyGetter, $valueGetter)
