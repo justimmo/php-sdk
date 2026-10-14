@@ -9,6 +9,10 @@
     * `Justimmo\Model\Mapper\SupportedParametersInterface`, implemented by `AbstractMapper`, exposes the data per query call
     * Nothing validates against it yet. Strict mode arrives later in this release
     * `SupportedParameters::SPEC_VERSION` and `SPEC_HASH` record the spec the data came from. The hash covers the accepted parameters only, so a reworded description or a version bump does not trigger a regeneration
+* `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
+    * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
+    * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+    * Nothing throws it yet. Strict mode arrives later in this release
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
