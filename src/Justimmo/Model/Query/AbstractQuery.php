@@ -3,6 +3,7 @@
 namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
+use Justimmo\Api\StrictModeInterface;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
@@ -59,6 +60,13 @@ abstract class AbstractQuery implements QueryInterface
     protected $mapper;
 
     /**
+     * Strict mode for this query alone. null means the setting of the api is used
+     *
+     * @var bool|null
+     */
+    protected $strict = null;
+
+    /**
      * returns the method name what should be called on the api class for a list call
      *
      * @return string
@@ -89,6 +97,39 @@ abstract class AbstractQuery implements QueryInterface
         $this->api     = $api;
         $this->wrapper = $wrapper;
         $this->mapper  = $mapper;
+    }
+
+    /**
+     * Switches strict mode on or off for this query, whatever the api is set to
+     *
+     * In strict mode the SDK rejects a request the api would silently ignore, instead of sending
+     * it. Calling it with false opts a single query out of an api which has it on.
+     *
+     * Strict mode is how 2.0.0 behaves. 2.0.0 removes the switch and checks every request, so
+     * switching it on in 1.x shows ahead of time what the upgrade will reject.
+     *
+     * @return $this
+     */
+    public function strict(bool $strict = true)
+    {
+        $this->strict = $strict;
+
+        return $this;
+    }
+
+    /**
+     * Whether this query runs in strict mode
+     *
+     * The query decides when strict() was called on it, otherwise the api does. An api which does
+     * not know about strict mode at all is not strict.
+     */
+    public function isStrict(): bool
+    {
+        if ($this->strict !== null) {
+            return $this->strict;
+        }
+
+        return $this->api instanceof StrictModeInterface && $this->api->isStrict();
     }
 
     /**
