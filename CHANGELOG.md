@@ -2,6 +2,13 @@
 * Two interfaces are added, so 2.0 can declare native types without a second breaking release
     * `Justimmo\Pager\PagerInterface` — the public surface of a list result, implemented by `ListPager` unchanged. It carries native parameter types, which an implementation may omit, and no return types, which a subclass could not
     * `Justimmo\Model\ModelInterface` — marks an entity the api returns, implemented by `Realty`, `Project` and `Employee`. Deliberately empty; the three share no method worth requiring
+* The parameters the api officially supports are generated into the SDK instead of being maintained by hand
+    * `bin/generate-supported-parameters.php` reads `data/sdk-supported-parameters.json`, which the service repo writes from the hand-authored spec, and emits `SupportedParameters`. The output is committed, and the SDK never reads the JSON at runtime
+    * `--check` fails when the generated php and the JSON have drifted apart
+    * Both parameter levels of the spec are read, so `limit`, `offset`, `culture`, `picturesize` and `showDetails` are included
+    * `Justimmo\Model\Mapper\SupportedParametersInterface`, implemented by `AbstractMapper`, exposes the data per query call
+    * Nothing validates against it yet. Strict mode arrives later in this release
+    * `SupportedParameters::SPEC_VERSION` and `SPEC_HASH` record the spec the data came from. The hash covers the accepted parameters only, so a reworded description or a version bump does not trigger a regeneration
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes

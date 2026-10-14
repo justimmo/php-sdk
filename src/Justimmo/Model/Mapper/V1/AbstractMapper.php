@@ -3,8 +3,9 @@
 namespace Justimmo\Model\Mapper\V1;
 
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Mapper\SupportedParametersInterface;
 
-abstract class AbstractMapper implements MapperInterface
+abstract class AbstractMapper implements MapperInterface, SupportedParametersInterface
 {
     /**
      * get the mapping array
@@ -69,6 +70,34 @@ abstract class AbstractMapper implements MapperInterface
         }
 
         return $modelPropertyName;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    public function getSupportedFilters(string $call)
+    {
+        return SupportedParameters::FILTERS[$call] ?? [];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    public function getSupportedParameters(string $call)
+    {
+        return SupportedParameters::PARAMETERS[$call] ?? [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecVersion()
+    {
+        return SupportedParameters::SPEC_VERSION;
     }
 
     /**
