@@ -55,7 +55,11 @@ class SupportedParametersTest extends TestCase
                 $this->assertContains($filter['type'], ['string', 'integer', 'number', 'boolean'], $where);
 
                 $this->assertStringNotContainsString('filter[', $name, $where . ' is not a bare filter name');
-                $this->assertDoesNotMatchRegularExpression('/_(von|bis)$/', $name, $where . ' keeps a range suffix');
+                $this->assertSame(
+                    $name,
+                    preg_replace('/_(von|bis)$/', '', $name),
+                    $where . ' keeps a range suffix'
+                );
             }
         }
     }
