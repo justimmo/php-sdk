@@ -12,6 +12,9 @@ use IteratorAggregate;
  * what a list result offers a caller, so find() and paginate() can name a type in 2.x
  *
  * @package Justimmo\Pager
+ *
+ * @extends ArrayAccess<int, mixed>
+ * @extends IteratorAggregate<int, mixed>
  */
 interface PagerInterface extends ArrayAccess, Countable, IteratorAggregate
 {
@@ -35,7 +38,7 @@ interface PagerInterface extends ArrayAccess, Countable, IteratorAggregate
     /**
      * a range of page numbers around the current page, for rendering a pagination
      *
-     * @return array
+     * @return list<int>
      */
     public function getLinks(int $nb_links = 5);
 
@@ -74,7 +77,7 @@ interface PagerInterface extends ArrayAccess, Countable, IteratorAggregate
     /**
      * builds an associative array from the list, by calling two getters on each entry
      *
-     * @return array
+     * @return array<int|string, mixed>
      */
     public function toKeyValue(string $keyGetter, string $valueGetter);
 }
