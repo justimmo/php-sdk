@@ -23,7 +23,7 @@ use Psr\Log\NullLogger;
  *
  * @package Justimmo\Api
  */
-class JustimmoApi implements JustimmoApiInterface
+class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
     /**
      * api versions supported
@@ -31,6 +31,13 @@ class JustimmoApi implements JustimmoApiInterface
      * @var array
      */
     protected $supportedVersions = ['v1'];
+
+    /**
+     * Whether the SDK rejects a request the api would silently ignore, instead of sending it
+     *
+     * @var bool
+     */
+    protected $strict = false;
 
     /**
      * base url where the justimmo api is located
@@ -556,6 +563,24 @@ class JustimmoApi implements JustimmoApiInterface
         $this->cache = $cache;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStrict(bool $strict = true): static
+    {
+        $this->strict = $strict;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isStrict(): bool
+    {
+        return $this->strict;
     }
 
     /**
