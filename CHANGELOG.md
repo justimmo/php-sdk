@@ -13,6 +13,10 @@
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
     * Nothing throws it yet. Strict mode arrives later in this release
+* Strict mode is added, opt-in and off by default. In strict mode the SDK rejects a request the api would silently ignore instead of sending it
+    * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
+    * `Justimmo\Api\StrictModeInterface` carries the flag. It is separate from `JustimmoApiInterface`, so an api implemented outside the SDK keeps working and is simply never strict
+    * No rules are attached yet, so nothing behaves differently. They arrive later in this release
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
