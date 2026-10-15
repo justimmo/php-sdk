@@ -11,6 +11,11 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* Parameters are no longer sent to endpoints which do not accept them
+    * `culture` is not added to `objekt/ids`, `projekt/ids` and `team/ids`. None of the three documents it, and an ids call answers with a plain array of ids, which has no text to translate. A culture passed by the caller is still sent
+    * `findPk()` carries only `picturesize` into `objekt/detail`. `alleProjektObjekte` and `objektIds` are documented by `projekt/detail` alone, and a project detail call is unchanged
+    * A filter, a sort or a limit left on the query is no longer carried into a detail call either
+    * This changes the url of an ids call and of a realty detail call once, so a cached response under the old url is missed once
 * Strict mode is added, opt-in and off by default. In strict mode the SDK rejects a request the api would silently ignore instead of sending it
     * Strict mode is how 2.0.0 behaves. 2.0.0 removes the switch and checks every request, so switching it on now shows what the upgrade will reject
     * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
