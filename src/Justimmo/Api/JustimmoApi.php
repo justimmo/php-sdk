@@ -26,6 +26,16 @@ use Psr\Log\NullLogger;
 class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
     /**
+     * Calls which the culture is not sent to
+     *
+     * None of the three documents the parameter, and none of them could use it: an ids call
+     * answers with a plain array of ids, which carries no translatable text at all.
+     *
+     * @var array<int, string>
+     */
+    private const CALLS_WITHOUT_CULTURE = ['objekt/ids', 'projekt/ids', 'team/ids'];
+
+    /**
      * api versions supported
      *
      * @var array
@@ -321,7 +331,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     {
         $startTime = microtime(true);
 
-        if (!array_key_exists('culture', $params)) {
+        if (!array_key_exists('culture', $params) && !in_array($call, self::CALLS_WITHOUT_CULTURE, true)) {
             $params['culture'] = $this->culture;
         }
 
