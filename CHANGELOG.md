@@ -7,7 +7,6 @@
     * `--check` fails when the generated php and the JSON have drifted apart
     * Both parameter levels of the spec are read, so `limit`, `offset`, `culture`, `picturesize` and `showDetails` are included
     * `Justimmo\Model\Mapper\SupportedParametersInterface`, implemented by `AbstractMapper`, exposes the data per query call
-    * Nothing validates against it yet. Strict mode arrives later in this release
     * `SupportedParameters::SPEC_VERSION` and `SPEC_HASH` record the spec the data came from. The hash covers the accepted parameters only, so a reworded description or a version bump does not trigger a regeneration
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
@@ -16,7 +15,12 @@
 * Strict mode is added, opt-in and off by default. In strict mode the SDK rejects a request the api would silently ignore instead of sending it
     * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
     * `Justimmo\Api\StrictModeInterface` carries the flag. It is separate from `JustimmoApiInterface`, so an api implemented outside the SDK keeps working and is simply never strict
-    * No rules are attached yet, so nothing behaves differently. They arrive later in this release
+    * The first rule: a filter the api does not have throws `MethodNotFoundException` instead of being sent. This is the defect strict mode exists for — an unknown name used to reach the wire, where the api ignored it and answered 200 with the rows of a query that was never filtered, so a typo looked like a working search
+    * `filterByFoo()` is reported by the method name, a direct `filter('foo', ...)` call by the parameter it was given
+    * The wire names of a range, `filter[preis_von]` and `filter[preis_bis]`, are accepted next to the `['min' => …, 'max' => …]` form
+    * `filterByCreatedAt()` throws in strict mode. The api documents no `created_at` filter, so it has never been applied
+    * `orderBy*()` is unaffected, and an endpoint which documents no filter rejects nothing
+    * The remaining rules arrive later in this release
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
