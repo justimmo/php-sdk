@@ -5,6 +5,7 @@ use Justimmo\Api\JustimmoApi;
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Api\StrictModeInterface;
+use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\EmployeeQuery;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
@@ -183,5 +184,102 @@ class StrictModeTest extends TestCase
         $query = $this->query()->strict()->orderByCreatedAt('desc');
 
         $this->assertSame(['orderby' => 'created_at', 'ordertype' => 'desc'], $query->getParams());
+    }
+
+    /**
+     * The api has filter[preis_von] and filter[preis_bis] but no filter[preis], so a plain value
+     * is a request which comes back unfiltered
+     */
+    public function testAPlainValueOnARangeFilterThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[preis] is a range and has no plain form.');
+
+        $this->query()->strict()->filterByPrice(500000);
+    }
+
+    public function testTheRangeFormOfARangeFilterPasses(): void
+    {
+        $query = $this->query()->strict()->filterByPrice(['min' => 422000, 'max' => 696000]);
+
+        $this->assertSame(
+            ['filter' => ['preis_von' => 422000, 'preis_bis' => 696000]],
+            $query->getParams()
+        );
+    }
+
+    public function testAMinOrMaxOnAPlainFilterThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[miete] has no range');
+
+        $this->query()->strict()->filterByRent(['min' => 0]);
+    }
+
+    public function testAListOnASingleValueFilterThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[stichwort] takes a single value, a list was given.');
+
+        $this->query()->strict()->filterByKeyword(['haus', 'garten']);
+    }
+
+    public function testAListOnAListFilterPasses(): void
+    {
+        $query = $this->query()->strict()->filterByZipCode(['1010', '1020']);
+
+        $this->assertSame(['filter' => ['plz' => ['1010', '1020']]], $query->getParams());
+    }
+
+    public function testAValueOutsideAnEnumThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[miete] does not accept 7. The api knows 0, 1.');
+
+        $this->query()->strict()->filterByRent(7);
+    }
+
+    /**
+     * An enum is matched as the wire renders it, so true, 1 and "1" are one and the same request
+     */
+    public function testAnEnumIsMatchedTheWayTheRequestIsSent(): void
+    {
+        $this->assertSame(['filter' => ['miete' => true]], $this->query()->strict()->filterByRent(true)->getParams());
+        $this->assertSame(['filter' => ['miete' => '1']], $this->query()->strict()->filterByRent('1')->getParams());
+        $this->assertSame(['filter' => ['miete' => false]], $this->query()->strict()->filterByRent(false)->getParams());
+    }
+
+    public function testOneEndOfARangeTakesASingleValue(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[preis_von] is one end of a range');
+
+        $this->query()->strict()->filter('preis_von', [1, 2]);
+    }
+
+    /**
+     * Everything above is sent unchanged when the query is not strict
+     */
+    public function testNoValueIsRejectedWhenTheQueryIsNotStrict(): void
+    {
+        $this->assertSame(['filter' => ['preis' => 500000]], $this->query()->filterByPrice(500000)->getParams());
+        $this->assertSame(['filter' => ['miete' => 7]], $this->query()->filterByRent(7)->getParams());
+    }
+
+    /**
+     * The caller should not have to read the message to find out what was rejected
+     */
+    public function testTheExceptionNamesTheFilterAndTheValue(): void
+    {
+        try {
+            $this->query()->strict()->filterByKeyword(['haus', 'garten']);
+        } catch (InvalidFilterValueException $e) {
+            $this->assertSame('stichwort', $e->getFilter());
+            $this->assertSame(['haus', 'garten'], $e->getValue());
+
+            return;
+        }
+
+        $this->fail('a list on filter[stichwort] was accepted');
     }
 }

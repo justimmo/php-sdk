@@ -4,6 +4,7 @@ namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Api\StrictModeInterface;
+use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
@@ -336,6 +337,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return $this
      * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when the api has no such filter
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the filter cannot take that value
      */
     public function filter($key, $value = null)
     {
@@ -346,6 +348,8 @@ abstract class AbstractQuery implements QueryInterface
         if ($value === null) {
             return $this;
         }
+
+        $this->assertFilterValueIsSupported($key, $value);
 
         if (is_array($value)) {
             if (array_key_exists('min', $value)) {
@@ -382,11 +386,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     private function assertFilterIsSupported(string $key, string $called): void
     {
-        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
-            return;
-        }
-
-        $supported = $this->mapper->getSupportedFilters($this->getListCall());
+        $supported = $this->supportedFilters();
 
         if ($supported === [] || array_key_exists($key, $supported)) {
             return;
@@ -403,6 +403,144 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         throw new MethodNotFoundException($called . ' is not a filter this API has.');
+    }
+
+    /**
+     * Fails in strict mode when the api has the filter but cannot take that value
+     *
+     * Three things are rejected. The api answers all three the same way today: it discards the
+     * parameter and returns the rows of a wider search than the caller asked for.
+     *
+     *   - a plain value on a filter which only has a range form. filterByPrice(500000) sends
+     *     filter[preis], which does not exist; the api has filter[preis_von] and filter[preis_bis]
+     *   - a list on a filter which takes a single value
+     *   - a value outside an enum the spec documents
+     *
+     * The value has already been through normaliseFilterValue(), so an empty one never arrives
+     * here. The name has already been through assertFilterIsSupported(), so an unknown one is left
+     * to that guard rather than reported twice.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertFilterValueIsSupported(string $key, mixed $value): void
+    {
+        $supported = $this->supportedFilters();
+        $isBound   = !isset($supported[$key]) && preg_match('/^(.+)_(von|bis)$/', $key, $match) === 1;
+        $filter    = $supported[$isBound ? $match[1] : $key] ?? null;
+
+        if (!is_array($filter)) {
+            return;
+        }
+
+        // filter[preis_von] is one end of a range and carries a single value
+        if ($isBound) {
+            if (is_array($value)) {
+                $this->rejectFilterValue($key, $value, 'is one end of a range and takes a single value, a list was given.');
+            }
+
+            return;
+        }
+
+        $forms = is_array($filter['forms'] ?? null) ? $filter['forms'] : [];
+        $range = is_array($value) && (array_key_exists('min', $value) || array_key_exists('max', $value));
+
+        if ($range) {
+            if (!in_array('range', $forms, true)) {
+                $this->rejectFilterValue($key, $value, 'has no range, a min or a max was given. It takes a plain value.');
+            }
+
+            return;
+        }
+
+        if (!in_array('plain', $forms, true)) {
+            $this->rejectFilterValue($key, $value, 'is a range and has no plain form. Pass '
+                . "['min' => …] or ['max' => …], or set filter[{$key}_von] and filter[{$key}_bis] yourself.");
+        }
+
+        if (is_array($value) && !isset($filter['list'])) {
+            $this->rejectFilterValue($key, $value, 'takes a single value, a list was given.');
+        }
+
+        if (!is_array($filter['enum'] ?? null)) {
+            return;
+        }
+
+        foreach (is_array($value) ? $value : [$value] as $one) {
+            if (!$this->isInEnum($one, $filter['enum'])) {
+                $this->rejectFilterValue($key, $one, 'does not accept ' . $this->describeFilterValue($one)
+                    . '. The api knows ' . implode(', ', array_map([$this, 'describeFilterValue'], $filter['enum'])) . '.');
+            }
+        }
+    }
+
+    /**
+     * The filters the api documents for this query's list call, or none when there is nothing to
+     * judge against
+     *
+     * Empty means "do not judge" rather than "nothing is allowed": the query is not strict, the
+     * mapper comes from outside the SDK and cannot be asked, or the endpoint documents no filter.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function supportedFilters(): array
+    {
+        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+            return [];
+        }
+
+        return $this->mapper->getSupportedFilters($this->getListCall());
+    }
+
+    /**
+     * Whether a value is one the enum allows
+     *
+     * Compared as strings, because that is what reaches the api: true is sent as 1 and the integer
+     * 1 and the string "1" are the same request. Anything which is not a scalar is left alone, so
+     * that this never becomes a second type check.
+     *
+     * @param array<int, mixed> $enum
+     */
+    private function isInEnum(mixed $value, array $enum): bool
+    {
+        if (is_bool($value)) {
+            $value = $value ? 1 : 0;
+        }
+
+        if (!is_scalar($value)) {
+            return true;
+        }
+
+        foreach ($enum as $allowed) {
+            if (is_scalar($allowed) && (string) $allowed === (string) $value) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Renders a value for an exception message, so that "0" and 0 can be told apart
+     */
+    private function describeFilterValue(mixed $value): string
+    {
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+
+        if (is_string($value)) {
+            return '"' . $value . '"';
+        }
+
+        return is_scalar($value) ? (string) $value : gettype($value);
+    }
+
+    /**
+     * @throws InvalidFilterValueException
+     */
+    private function rejectFilterValue(string $key, mixed $value, string $problem): never
+    {
+        throw new InvalidFilterValueException('filter[' . $key . '] ' . $problem, $key, $value);
     }
 
     /**
