@@ -202,14 +202,10 @@ abstract class AbstractQuery implements QueryInterface
     public function findPk($pk)
     {
         $params = [];
-        if (isset($this->params['picturesize'])) {
-            $params['picturesize'] = $this->params['picturesize'];
-        }
-        if (isset($this->params['alleProjektObjekte'])) {
-            $params['alleProjektObjekte'] = $this->params['alleProjektObjekte'];
-        }
-        if (isset($this->params['objektIds'])) {
-            $params['objektIds'] = $this->params['objektIds'];
+        foreach ($this->getDetailParams() as $name) {
+            if (isset($this->params[$name])) {
+                $params[$name] = $this->params[$name];
+            }
         }
 
         $method   = $this->getDetailCall();
@@ -220,6 +216,20 @@ abstract class AbstractQuery implements QueryInterface
         $this->clear();
 
         return $return;
+    }
+
+    /**
+     * The parameters findPk() carries into the detail call
+     *
+     * Only picturesize is carried over, and ProjectQuery widens this. The api client adds culture
+     * itself. JustimmoApi::callEmployeeDetail() takes no parameters, so it sends none of them to
+     * team/detail.
+     *
+     * @return array<int, string>
+     */
+    protected function getDetailParams(): array
+    {
+        return ['picturesize'];
     }
 
     /**
