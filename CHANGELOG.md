@@ -11,7 +11,6 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
-    * Nothing throws it yet. Strict mode arrives later in this release
 * Strict mode is added, opt-in and off by default. In strict mode the SDK rejects a request the api would silently ignore instead of sending it
     * Strict mode is how 2.0.0 behaves. 2.0.0 removes the switch and checks every request, so switching it on now shows what the upgrade will reject
     * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
@@ -21,6 +20,11 @@
     * The wire names of a range, `filter[preis_von]` and `filter[preis_bis]`, are accepted next to the `['min' => …, 'max' => …]` form
     * `filterByCreatedAt()` throws in strict mode. The api documents no `created_at` filter, so it has never been applied
     * `orderBy*()` is unaffected, and an endpoint which documents no filter rejects nothing
+    * The second rule: a filter the api does have, handed a value it cannot take, throws `InvalidFilterValueException`
+    * A plain value on a filter which only has a range. `filterByPrice(500000)` sent `filter[preis]`, which the api does not have — it has `filter[preis_von]` and `filter[preis_bis]` — so the search came back unfiltered. Six documented methods are affected: `filterByPrice()`, `filterByRooms()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. All six take `['min' => …, 'max' => …]`
+    * A list on a filter which takes a single value, and a min or a max on a filter which has no range
+    * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
+    * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
     * The remaining rules arrive later in this release
 
 ## 1.4.2
