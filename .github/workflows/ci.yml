@@ -12,7 +12,7 @@ jobs:
         php_version: 8.1
     - uses: php-actions/phpunit@v3
       with:
-        version: 8
+        version: 9
         php_version: 8.1
   build-test-82:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
         php_version: 8.2
     - uses: php-actions/phpunit@v3
       with:
-        version: 8
+        version: 9
         php_version: 8.2
   build-test-83:
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
         php_version: 8.3
     - uses: php-actions/phpunit@v3
       with:
-        version: 8
+        version: 9
         php_version: 8.3
   build-test-84:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
         php_version: 8.4
     - uses: php-actions/phpunit@v3
       with:
-        version: 8
+        version: 9
         php_version: 8.4
   build-test-85:
     runs-on: ubuntu-latest
@@ -56,7 +56,7 @@ jobs:
         php_version: 8.5
     - uses: php-actions/phpunit@v3
       with:
-        version: 8
+        version: 9
         php_version: 8.5
   phpstan:
     runs-on: ubuntu-latest
