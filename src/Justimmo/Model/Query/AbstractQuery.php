@@ -6,6 +6,7 @@ use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Api\StrictModeInterface;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Mapper\SupportedParametersInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
@@ -337,9 +338,12 @@ abstract class AbstractQuery implements QueryInterface
      * @param mixed $value
      *
      * @return $this
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when the api has no such filter
      */
     public function filter($key, $value = null)
     {
+        $this->assertFilterIsSupported($key, 'filter[' . $key . ']');
+
         $value = $this->normaliseFilterValue($value);
 
         if ($value === null) {
@@ -362,6 +366,46 @@ abstract class AbstractQuery implements QueryInterface
         $this->params['filter'][$key] = $value;
 
         return $this;
+    }
+
+    /**
+     * Fails in strict mode when the api has no filter of that name
+     *
+     * This is the defect strict mode exists for. Until now an unknown name travelled to the wire,
+     * where the api ignored it and answered 200 with the rows of a query that was never filtered,
+     * so a typo or a filter the api had dropped looked like a working search.
+     *
+     * `$called` is what the caller wrote: a magic `filterByFoo()` is reported as the method, a
+     * direct filter() call as the parameter. The list call is the yardstick, because that is where
+     * filters are sent. A call the generated data does not know, an endpoint which documents no
+     * filter at all, and a mapper from outside the SDK leave nothing to compare against — those are
+     * let through rather than made unusable.
+     *
+     * @throws MethodNotFoundException
+     */
+    private function assertFilterIsSupported(string $key, string $called): void
+    {
+        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+            return;
+        }
+
+        $supported = $this->mapper->getSupportedFilters($this->getListCall());
+
+        if ($supported === [] || array_key_exists($key, $supported)) {
+            return;
+        }
+
+        // a range may also be addressed by its wire names, filter[preis_von] and filter[preis_bis],
+        // which the generated data folds into one entry under the base name
+        if (preg_match('/^(.+)_(von|bis)$/', $key, $match)) {
+            $forms = $supported[$match[1]]['forms'] ?? null;
+
+            if (is_array($forms) && in_array('range', $forms, true)) {
+                return;
+            }
+        }
+
+        throw new MethodNotFoundException($called . ' is not a filter this API has.');
     }
 
     /**
@@ -441,6 +485,10 @@ abstract class AbstractQuery implements QueryInterface
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
             $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
+
+            // filter() runs the same check, but by then the name is the mapped one. Checking
+            // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
+            $this->assertFilterIsSupported($key, $method . '()');
 
             return $this->filter($key, $params[0]);
         }
