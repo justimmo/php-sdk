@@ -68,6 +68,14 @@ class QueryTest extends TestCase
         ], $this->query->getParams());
     }
 
+    public function testANullFilterNameIsStoredUnderTheEmptyName()
+    {
+        $this->query->clear();
+        $this->query->filter(null, 455);
+
+        $this->assertSame(['filter' => ['' => 455]], $this->query->getParams());
+    }
+
     public function testOrderBy()
     {
         $this->query->clear();
