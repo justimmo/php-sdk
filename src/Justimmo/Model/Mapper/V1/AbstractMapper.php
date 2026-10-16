@@ -3,9 +3,10 @@
 namespace Justimmo\Model\Mapper\V1;
 
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Mapper\OrderMappingInterface;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
 
-abstract class AbstractMapper implements MapperInterface, SupportedParametersInterface
+abstract class AbstractMapper implements MapperInterface, OrderMappingInterface, SupportedParametersInterface
 {
     /**
      * get the mapping array
@@ -61,10 +62,43 @@ abstract class AbstractMapper implements MapperInterface, SupportedParametersInt
 
     public function getFilterPropertyName($modelPropertyName)
     {
-        $lowerModelPropertyName = mb_strtolower($modelPropertyName);
-        $mapping = $this->getFilterMapping();
+        return $this->translate($this->getFilterMapping(), $modelPropertyName);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrderPropertyName(string $column): string
+    {
+        return $this->translate($this->getOrderMapping(), $column);
+    }
+
+    /**
+     * Get the mapping of model property names to the columns the api sorts by
+     *
+     * Empty by default, so a mapper which has no sort columns of its own passes the name through,
+     * exactly as the filter mapping does.
+     *
+     * @return array<string, string>
+     */
+    protected function getOrderMapping(): array
+    {
+        return [];
+    }
+
+    /**
+     * Looks a model property name up in a mapping, case insensitively
+     *
+     * @param array<string, string> $mapping
+     *
+     * @return string the mapped name, or the name unchanged when the mapping has no entry
+     */
+    private function translate(array $mapping, string $modelPropertyName): string
+    {
+        $lower = mb_strtolower($modelPropertyName);
+
         foreach ($mapping as $key => $value) {
-            if ($lowerModelPropertyName == mb_strtolower($key)) {
+            if ($lower === mb_strtolower($key)) {
                 return $value;
             }
         }
@@ -77,7 +111,7 @@ abstract class AbstractMapper implements MapperInterface, SupportedParametersInt
      *
      * @return array<string, array<string, mixed>>
      */
-    public function getSupportedFilters(string $call)
+    public function getSupportedFilters(string $call): array
     {
         return SupportedParameters::FILTERS[$call] ?? [];
     }
@@ -87,7 +121,7 @@ abstract class AbstractMapper implements MapperInterface, SupportedParametersInt
      *
      * @return array<string, array<string, mixed>>
      */
-    public function getSupportedParameters(string $call)
+    public function getSupportedParameters(string $call): array
     {
         return SupportedParameters::PARAMETERS[$call] ?? [];
     }
@@ -95,7 +129,7 @@ abstract class AbstractMapper implements MapperInterface, SupportedParametersInt
     /**
      * {@inheritdoc}
      */
-    public function getSpecVersion()
+    public function getSpecVersion(): string
     {
         return SupportedParameters::SPEC_VERSION;
     }

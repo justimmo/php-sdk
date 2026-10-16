@@ -11,6 +11,16 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* Builders are added for the filters the api documents and the SDK could not send
+    * `RealtyQuery` gains `filterByCountryId()` for `land_id` and `filterByOwnerId()` for `owner_id`
+    * `ProjectQuery` gains fifteen. Thirteen reuse the names `RealtyQuery` already gives the same filters, so one method means one thing on both queries: `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. `filterByProjectPropertyNumber()` is new
+    * `filterByArea()` sends `sort_flaeche` on an objekt query and `flaeche` on a projekt one. Both are the same column; projekt simply has no `sort_flaeche`
+    * `RealtyQuery::orderByPublishedAt()` is added. `published_at` is one of the six columns the api sorts by and no method reached it
+* Sorting no longer reads the filter mapping
+    * The two are different namespaces and the api spells them differently: a realty is filtered by `aktualisiert_am` and sorted by `updated_at`. One table serving both meant a new filter silently created a new, broken sort method
+    * `Justimmo\Model\Mapper\OrderMappingInterface` carries the sort columns. It is separate from `MapperInterface`, so a mapper written outside the SDK keeps working and keeps using its filter names for sorting
+    * `ProjectQuery::orderByCreatedAt()` and `orderByUpdatedAt()` now send `created_at` and `updated_at`. They sent the method name itself before, which the api does not sort by
+    * `orderBy*()` with a name the mapper has no sort column for now sends that name rather than the filter it happens to share it with. Both are columns the api does not sort by, so neither sorted anything
 * Parameters are no longer sent to endpoints which do not accept them
     * `culture` is not added to `objekt/ids`, `projekt/ids` and `team/ids`. None of the three documents it, and an ids call answers with a plain array of ids, which has no text to translate. A culture passed by the caller is still sent
     * `findPk()` carries only `picturesize` into `objekt/detail`. `alleProjektObjekte` and `objektIds` are documented by `projekt/detail` alone, and a project detail call is unchanged

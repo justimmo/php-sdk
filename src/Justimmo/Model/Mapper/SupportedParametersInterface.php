@@ -21,7 +21,7 @@ interface SupportedParametersInterface
      *
      * @return array<string, array<string, mixed>>
      */
-    public function getSupportedFilters(string $call);
+    public function getSupportedFilters(string $call): array;
 
     /**
      * Everything the call accepts that is not a filter, keyed by name
@@ -30,12 +30,10 @@ interface SupportedParametersInterface
      *
      * @return array<string, array<string, mixed>>
      */
-    public function getSupportedParameters(string $call);
+    public function getSupportedParameters(string $call): array;
 
     /**
      * The spec version the supported parameters were generated from
-     *
-     * @return string
      */
-    public function getSpecVersion();
+    public function getSpecVersion(): string;
 }

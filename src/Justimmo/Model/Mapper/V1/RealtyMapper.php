@@ -469,6 +469,8 @@ class RealtyMapper extends AbstractMapper
             'RealtyTypeId'           => 'objektart_id',
             'SubRealtyTypeId'        => 'subobjektart_id',
             'StyleOfBuildingId'      => 'bauart_id',
+            'CountryId'              => 'land_id',
+            'OwnerId'                 => 'owner_id',
             'RealtyCategory'         => 'tag_name',
             'Tag'                    => 'tag_name',
             'ZipCode'                => 'plz',
@@ -504,6 +506,30 @@ class RealtyMapper extends AbstractMapper
             'Equipment'              => 'objekt_ausstattung_list',
             'DisabilityAccess'       => 'barrierefrei',
             'RentWithPurchaseOption' => 'rent_with_purchase_option',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * objekt sorts by six columns, and they are not spelled like the filters: the filter is
+     * aktualisiert_am, the sort column updated_at. The five entries below the line send a column
+     * the api does not sort by; they are kept so that nothing changes here, and are deprecated.
+     */
+    protected function getOrderMapping(): array
+    {
+        return [
+            'Price'          => 'preis',
+            'PropertyNumber' => 'objektnummer',
+            'ZipCode'        => 'plz',
+            'CreatedAt'      => 'created_at',
+            'PublishedAt'    => 'published_at',
+
+            'UpdatedAt'      => 'aktualisiert_am',
+            'Area'           => 'sort_flaeche',
+            'LivingArea'     => 'wohnflaeche',
+            'FloorArea'      => 'nutzflaeche',
+            'SurfaceArea'    => 'grundflaeche',
         ];
     }
 

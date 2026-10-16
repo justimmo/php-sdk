@@ -17,6 +17,23 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByCompletionDate($value)
  * @method ProjectQuery filterBySaleStart($value)
  * @method ProjectQuery filterByProjectTag($value)
+ * @method ProjectQuery filterByBuy($value)
+ * @method ProjectQuery filterByRent($value)
+ * @method ProjectQuery filterByRealtyTypeId($value)
+ * @method ProjectQuery filterBySubRealtyTypeId($value)
+ * @method ProjectQuery filterByStatusId($value)
+ * @method ProjectQuery filterByZipCode($value)
+ * @method ProjectQuery filterByPropertyNumber($value)
+ * @method ProjectQuery filterByProjectPropertyNumber($value)
+ * @method ProjectQuery filterByOwnerId($value)
+ * @method ProjectQuery filterByPrice($value)
+ * @method ProjectQuery filterByRooms($value)
+ * @method ProjectQuery filterByArea($value)
+ * @method ProjectQuery filterByLivingArea($value)
+ * @method ProjectQuery filterByFloorArea($value)
+ * @method ProjectQuery filterBySurfaceArea($value)
+ * @method ProjectQuery orderByCreatedAt($direction = 'asc')
+ * @method ProjectQuery orderByUpdatedAt($direction = 'asc')
  */
 class ProjectQuery extends AbstractQuery
 {
