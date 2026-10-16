@@ -43,6 +43,8 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery filterByUpdatedAt($value)
  * @method RealtyQuery filterByRentWithPurchaseOption($value)
  * @method RealtyQuery filterByPoliticalDistrictId($value)
+ * @method RealtyQuery filterByCountryId($value)
+ * @method RealtyQuery filterByOwnerId($value)
  * @method RealtyQuery orderByPrice($direction = 'asc')
  * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
  * @method RealtyQuery orderByArea($direction = 'asc')
@@ -50,6 +52,8 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery orderByFloorArea($direction = 'asc')
  * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
  * @method RealtyQuery orderByCreatedAt($direction = 'asc')
+ * @method RealtyQuery orderByPublishedAt($direction = 'asc')
+ * @method RealtyQuery orderByZipCode($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
 {

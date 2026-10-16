@@ -409,4 +409,24 @@ class QueryTest extends TestCase
             ],
         ], $this->query->getParams());
     }
+
+    /**
+     * @dataProvider untranslatedColumnProvider
+     */
+    public function testANullOrABooleanColumnIsSentUntranslated($column)
+    {
+        $this->query->clear();
+        $this->query->orderBy($column);
+
+        $this->assertSame(['orderby' => $column, 'ordertype' => 'asc'], $this->query->getParams());
+    }
+
+    public function untranslatedColumnProvider()
+    {
+        return [
+            'null'  => [null],
+            'false' => [false],
+            'true'  => [true],
+        ];
+    }
 }
