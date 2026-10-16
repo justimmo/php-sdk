@@ -469,6 +469,8 @@ class RealtyMapper extends AbstractMapper
             'RealtyTypeId'           => 'objektart_id',
             'SubRealtyTypeId'        => 'subobjektart_id',
             'StyleOfBuildingId'      => 'bauart_id',
+            'CountryId'              => 'land_id',
+            'OwnerId'                 => 'owner_id',
             'RealtyCategory'         => 'tag_name',
             'Tag'                    => 'tag_name',
             'ZipCode'                => 'plz',
@@ -505,6 +507,20 @@ class RealtyMapper extends AbstractMapper
             'DisabilityAccess'       => 'barrierefrei',
             'RentWithPurchaseOption' => 'rent_with_purchase_option',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * Only the names sorting adds are declared here. Everything else is inherited, so a filter
+     * name keeps translating for sorting as it did before the two tables were split.
+     */
+    protected function getOrderMapping(): array
+    {
+        return [
+            // sortable, and not a filter at all
+            'PublishedAt' => 'published_at',
+        ] + $this->getFilterMapping();
     }
 
     /**

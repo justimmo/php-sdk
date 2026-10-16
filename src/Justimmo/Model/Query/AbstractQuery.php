@@ -7,6 +7,7 @@ use Justimmo\Api\StrictModeInterface;
 use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Mapper\OrderMappingInterface;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
@@ -308,7 +309,22 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function orderBy($column, $direction = 'asc')
     {
-        return $this->order($this->mapper->getFilterPropertyName($column), $direction);
+        return $this->order($this->orderPropertyName($column), $direction);
+    }
+
+    /**
+     * Translates a model property name into the column the api sorts by
+     *
+     * A mapper which does not separate its sort columns from its filters is asked for the filter
+     * name, which is what every mapper did before 1.5.0.
+     */
+    private function orderPropertyName(string $column): string
+    {
+        if ($this->mapper instanceof OrderMappingInterface) {
+            return $this->mapper->getOrderPropertyName($column);
+        }
+
+        return $this->mapper->getFilterPropertyName($column);
     }
 
     /**
@@ -642,7 +658,7 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
-            $key = $this->mapper->getFilterPropertyName(mb_substr($method, 7));
+            $key = $this->orderPropertyName(mb_substr($method, 7));
 
             // the api matches the direction case insensitively, so DESC is valid and is passed
             // on as the caller wrote it. Only a missing direction falls back

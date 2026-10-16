@@ -11,6 +11,16 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* Builders are added for the filters the api documents and the SDK could not send
+    * `RealtyQuery` gains `filterByCountryId()` for `land_id` and `filterByOwnerId()` for `owner_id`
+    * `ProjectQuery` gains fifteen. Thirteen reuse the names `RealtyQuery` already gives the same filters, so one method means one thing on both queries: `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. `filterByProjectPropertyNumber()` is new
+    * `filterByArea()` sends `sort_flaeche` on an objekt query and `flaeche` on a projekt one. Both are the same column; projekt simply has no `sort_flaeche`
+    * `RealtyQuery::orderByPublishedAt()` is added. `published_at` is one of the six columns the api sorts by and no method reached it
+* Sorting has a mapping of its own, which extends the filter mapping
+    * The api spells the two differently in one place: a realty is filtered by `aktualisiert_am` and sorted by `updated_at`. One table serving both meant that name could only be right for one of them
+    * `Justimmo\Model\Mapper\OrderMappingInterface` carries the sort columns. It is separate from `MapperInterface`, so a mapper written outside the SDK keeps working and keeps using its filter names for sorting
+    * It inherits the filter mapping and overrides only the names where the two differ, so everything which translated for sorting before still does
+    * `ProjectQuery::orderByCreatedAt()` and `orderByUpdatedAt()` now send `created_at` and `updated_at`. They sent the method name itself before, which the api does not sort by
 * Parameters are no longer sent to endpoints which do not accept them
     * `culture` is not added to `objekt/ids`, `projekt/ids` and `team/ids`. None of the three documents it, and an ids call answers with a plain array of ids, which has no text to translate. A culture passed by the caller is still sent
     * `findPk()` carries only `picturesize` into `objekt/detail`. `alleProjektObjekte` and `objektIds` are documented by `projekt/detail` alone, and a project detail call is unchanged
