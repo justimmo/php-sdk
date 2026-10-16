@@ -266,6 +266,97 @@ class StrictModeTest extends TestCase
         $this->assertSame(['filter' => ['miete' => 7]], $this->query()->filterByRent(7)->getParams());
     }
 
+    public function testAKnownPictureSizePasses(): void
+    {
+        $query = $this->query()->strict()->setPicturesize(['big', 'orig']);
+
+        $this->assertSame(['picturesize' => ['big', 'orig']], $query->getParams());
+    }
+
+    /**
+     * The api replaces a size it does not know with the fallback of the endpoint, so a typo
+     * answers with pictures of a size nobody asked for
+     */
+    public function testAnUnknownPictureSizeThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('picturesize does not accept "thumb".');
+
+        $this->query()->strict()->setPicturesize('thumb');
+    }
+
+    public function testEveryRequestedSizeIsChecked(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('"thumb"');
+
+        $this->query()->strict()->setPicturesize(['big', 'thumb']);
+    }
+
+    /**
+     * The message carries the documentation, because the sizes are listed in a third repository
+     */
+    public function testTheMessageNamesTheSizesTheApiKnows(): void
+    {
+        try {
+            $this->query()->strict()->setPicturesize('thumb');
+        } catch (InvalidFilterValueException $e) {
+            $this->assertStringContainsString('fullhd_unbranded_downscale', $e->getMessage());
+            $this->assertStringContainsString('orig', $e->getMessage());
+            $this->assertSame('picturesize', $e->getFilter());
+            $this->assertSame('thumb', $e->getValue());
+
+            return;
+        }
+
+        $this->fail('an unknown picture size was accepted');
+    }
+
+    /**
+     * user_small and user_medium are employee sizes. The api accepts them on an objekt call only
+     * because one allow list serves every endpoint, and they produce no usable realty picture
+     */
+    public function testAnEmployeeSizeIsNotARealtySize(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('"user_small"');
+
+        $this->query()->strict()->setPicturesize('user_small');
+    }
+
+    /**
+     * The team endpoints document no picture size at all, so there is nothing to judge against
+     */
+    public function testTheTeamEndpointsAreNotJudged(): void
+    {
+        $mapper = new EmployeeMapper();
+        $query  = new EmployeeQuery(new JustimmoNullApi(), new EmployeeWrapper($mapper), $mapper);
+
+        $this->assertSame(
+            ['picturesize' => ['user_small']],
+            $query->strict()->setPicturesize('user_small')->getParams()
+        );
+    }
+
+    public function testAnUnknownPictureSizeIsSentWhenTheQueryIsNotStrict(): void
+    {
+        $this->assertSame(
+            ['picturesize' => ['thumb']],
+            $this->query()->setPicturesize('thumb')->getParams()
+        );
+    }
+
+    /**
+     * A call which leaves no usable size still sends the medium it has sent since 1.4.1
+     */
+    public function testAnEmptyPictureSizeStillFallsBackToMedium(): void
+    {
+        $this->assertSame(
+            ['picturesize' => ['medium']],
+            $this->query()->strict()->setPicturesize('')->getParams()
+        );
+    }
+
     /**
      * The caller should not have to read the message to find out what was rejected
      */

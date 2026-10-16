@@ -30,7 +30,10 @@
     * A list on a filter which takes a single value, and a min or a max on a filter which has no range
     * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
     * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
-    * The remaining rules arrive later in this release
+    * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
+    * The sizes are read per endpoint from the spec, so `user_small` and `user_medium` are rejected on an objekt or projekt call. The api accepts them there only because one allowlist serves every endpoint, and they produce no usable realty picture
+    * The team calls document no picture size, so nothing is rejected on an `EmployeeQuery`
+    * The `alle=1` rule arrives later in this release
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes

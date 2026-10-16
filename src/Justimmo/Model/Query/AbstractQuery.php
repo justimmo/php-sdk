@@ -671,6 +671,7 @@ abstract class AbstractQuery implements QueryInterface
      * @param string|array $picturesize
      *
      * @return $this
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the api has no such size
      */
     public function setPicturesize($picturesize)
     {
@@ -680,12 +681,54 @@ abstract class AbstractQuery implements QueryInterface
 
         $picturesize = array_unique(array_filter($picturesize));
 
-        // an unknown size is the api's business, it ignores one it does not know. Only a call
-        // which leaves no usable size at all keeps the medium it has always sent
+        $this->assertPictureSizesAreSupported($picturesize);
+
+        // only a call which leaves no usable size at all keeps the medium it has always sent
         if ($picturesize === []) {
             $picturesize = ['medium'];
         }
 
         return $this->set('picturesize', $picturesize);
+    }
+
+    /**
+     * Fails in strict mode when the api has no picture size of that name
+     *
+     * The api does not ignore a size it does not know. It replaces it with the fallback of the
+     * endpoint, so a typo answers with pictures of a size nobody asked for, and nothing in the
+     * response says which size was served.
+     *
+     * The sizes are read per endpoint from the spec, so a query whose endpoint documents none -
+     * the team calls - and a mapper from outside the SDK leave nothing to compare against.
+     *
+     * @param array<int, mixed> $sizes
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertPictureSizesAreSupported(array $sizes): void
+    {
+        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+            return;
+        }
+
+        $parameter = $this->mapper->getSupportedParameters($this->getListCall())['picturesize'] ?? null;
+        $enum      = is_array($parameter) && is_array($parameter['enum'] ?? null) ? $parameter['enum'] : [];
+
+        if ($enum === []) {
+            return;
+        }
+
+        foreach ($sizes as $size) {
+            if ($this->isInEnum($size, $enum)) {
+                continue;
+            }
+
+            throw new InvalidFilterValueException(
+                'picturesize does not accept ' . $this->describeFilterValue($size)
+                . '. The api knows ' . implode(', ', $enum) . '.',
+                'picturesize',
+                $size
+            );
+        }
     }
 }
