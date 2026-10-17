@@ -529,6 +529,8 @@ class RealtyMapper extends AbstractMapper
     /**
      * @param SimpleXMLElement $xml
      * @param Realty            $realty
+     *
+     * @return void
      */
     public function setOrientation(SimpleXMLElement $xml, Realty $realty)
     {

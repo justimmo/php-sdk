@@ -28,6 +28,8 @@ class NullCache implements CacheInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
     public function set($key, $value)
     {
@@ -38,6 +40,8 @@ class NullCache implements CacheInterface
      * removes a key entry from the cache
      *
      * @param $key
+     *
+     * @return void
      */
     public function remove($key)
     {

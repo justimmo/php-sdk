@@ -18,20 +18,24 @@ interface CacheInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
     public function set($key, $value);
 
     /**
      * removes a key entry from the cache
      *
-     * @param $key
+     * @param string $key
+     *
+     * @return void
      */
     public function remove($key);
 
     /**
      * generates a cache key
      *
-     * @param $url
+     * @param string $url
      *
      * @return string
      */
