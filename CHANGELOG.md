@@ -11,6 +11,13 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* Twenty six setters on `Realty`, `Project`, `Employee`, `Attachment` and `RealtyInquiryRequest` return `$this`, as the other setters of those classes already did
+    * They returned nothing, so a call could not be chained off them. The change is additive: a call which returned `null` now returns the object, and chaining off it no longer fatals
+    * `Project::setSaleStart()` was the only one whose docblock noticed, and it promised `$this` while returning nothing
+* The public surface says what it takes and what it returns
+    * `@param` and `@return` are added to every public method which had neither, so 2.0 can declare those types natively and an integrator sees the signature a release before it is enforced
+    * `QueryInterface` documents `PagerInterface` and `ModelInterface`, which is what those two interfaces were added for
+    * Seven methods are left undocumented on purpose, because the class contradicts the interface it implements: `JustimmoNullApi::callExpose()` returns null where `JustimmoApiInterface` says string, and the stub mappers `BasicDataMapper` and `RealtyInquiryMapper` return nothing from `getSetter()`, `getProperty()` and `getType()` where `MapperInterface` says string. They have to be resolved before those types can be declared
 * `RealtyQuery::orderByRooms()` is added
     * A realty list can be sorted by the number of rooms, and no method reached that
 * `orderBy('UpdatedAt')` sorts by `updated_at`, the same as `orderByUpdatedAt()`
