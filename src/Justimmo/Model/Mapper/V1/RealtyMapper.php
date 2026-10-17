@@ -469,6 +469,8 @@ class RealtyMapper extends AbstractMapper
             'RealtyTypeId'           => 'objektart_id',
             'SubRealtyTypeId'        => 'subobjektart_id',
             'StyleOfBuildingId'      => 'bauart_id',
+            'CountryId'              => 'land_id',
+            'OwnerId'                 => 'owner_id',
             'RealtyCategory'         => 'tag_name',
             'Tag'                    => 'tag_name',
             'ZipCode'                => 'plz',
@@ -508,8 +510,35 @@ class RealtyMapper extends AbstractMapper
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * Sorting is not spelled like filtering: a realty is filtered by aktualisiert_am and sorted by
+     * updated_at. The api sorts by any column of the realty table, so the four below the line work
+     * although the spec documents neither them nor roughly two hundred others.
+     */
+    protected function getOrderMapping(): array
+    {
+        return [
+            'Price'          => 'preis',
+            'PropertyNumber' => 'objektnummer',
+            'ZipCode'        => 'plz',
+            'CreatedAt'      => 'created_at',
+            'PublishedAt'    => 'published_at',
+            'UpdatedAt'      => 'updated_at',
+
+            'Area'           => 'sort_flaeche',
+            'LivingArea'     => 'wohnflaeche',
+            'FloorArea'      => 'nutzflaeche',
+            'SurfaceArea'    => 'grundflaeche',
+            'Rooms'          => 'zimmer',
+        ];
+    }
+
+    /**
      * @param SimpleXMLElement $xml
      * @param Realty            $realty
+     *
+     * @return void
      */
     public function setOrientation(SimpleXMLElement $xml, Realty $realty)
     {

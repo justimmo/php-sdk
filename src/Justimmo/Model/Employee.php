@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Employee
+class Employee implements ModelInterface
 {
     /**
      * @var int
@@ -463,10 +463,14 @@ class Employee
 
     /**
      * @param null|string $number
+     *
+     * @return $this
      */
     public function setNumber($number)
     {
         $this->number = $number;
+
+        return $this;
     }
 
     /**
@@ -479,10 +483,14 @@ class Employee
 
     /**
      * @param null|string $street
+     *
+     * @return $this
      */
     public function setStreet($street)
     {
         $this->street = $street;
+
+        return $this;
     }
 
     /**
@@ -495,10 +503,14 @@ class Employee
 
     /**
      * @param null|string $postal
+     *
+     * @return $this
      */
     public function setPostal($postal)
     {
         $this->postal = $postal;
+
+        return $this;
     }
 
     /**
@@ -511,10 +523,14 @@ class Employee
 
     /**
      * @param null|string $city
+     *
+     * @return $this
      */
     public function setCity($city)
     {
         $this->city = $city;
+
+        return $this;
     }
 
     /**
@@ -527,10 +543,14 @@ class Employee
 
     /**
      * @param null|string $url
+     *
+     * @return $this
      */
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
     }
 
     /**
@@ -543,10 +563,14 @@ class Employee
 
     /**
      * @param null|string $salutation
+     *
+     * @return $this
      */
     public function setSalutation($salutation)
     {
         $this->salutation = $salutation;
+
+        return $this;
     }
 
     /**

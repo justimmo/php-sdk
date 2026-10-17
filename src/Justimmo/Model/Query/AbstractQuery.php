@@ -3,8 +3,12 @@
 namespace Justimmo\Model\Query;
 
 use Justimmo\Api\JustimmoApiInterface;
+use Justimmo\Api\StrictModeInterface;
+use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
+use Justimmo\Model\Mapper\OrderMappingInterface;
+use Justimmo\Model\Mapper\SupportedParametersInterface;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
@@ -59,6 +63,13 @@ abstract class AbstractQuery implements QueryInterface
     protected $mapper;
 
     /**
+     * Strict mode for this query alone. null means the setting of the api is used
+     *
+     * @var bool|null
+     */
+    protected $strict = null;
+
+    /**
      * returns the method name what should be called on the api class for a list call
      *
      * @return string
@@ -89,6 +100,36 @@ abstract class AbstractQuery implements QueryInterface
         $this->api     = $api;
         $this->wrapper = $wrapper;
         $this->mapper  = $mapper;
+    }
+
+    /**
+     * Switches strict mode on or off for this query, whatever the api is set to
+     *
+     * In strict mode the SDK rejects a request the api would silently ignore, instead of sending
+     * it. Calling it with false opts a single query out of an api which has it on.
+     *
+     * @return $this
+     */
+    public function strict(bool $strict = true)
+    {
+        $this->strict = $strict;
+
+        return $this;
+    }
+
+    /**
+     * Whether this query runs in strict mode
+     *
+     * The query decides when strict() was called on it, otherwise the api does. An api which does
+     * not know about strict mode at all is not strict.
+     */
+    public function isStrict(): bool
+    {
+        if ($this->strict !== null) {
+            return $this->strict;
+        }
+
+        return $this->api instanceof StrictModeInterface && $this->api->isStrict();
     }
 
     /**
@@ -130,6 +171,8 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function find()
     {
+        $this->assertFiltersApplyWithAll();
+
         $method   = $this->getListCall();
         $response = $this->api->$method($this->params);
 
@@ -159,14 +202,10 @@ abstract class AbstractQuery implements QueryInterface
     public function findPk($pk)
     {
         $params = [];
-        if (isset($this->params['picturesize'])) {
-            $params['picturesize'] = $this->params['picturesize'];
-        }
-        if (isset($this->params['alleProjektObjekte'])) {
-            $params['alleProjektObjekte'] = $this->params['alleProjektObjekte'];
-        }
-        if (isset($this->params['objektIds'])) {
-            $params['objektIds'] = $this->params['objektIds'];
+        foreach ($this->getDetailParams() as $name) {
+            if (isset($this->params[$name])) {
+                $params[$name] = $this->params[$name];
+            }
         }
 
         $method   = $this->getDetailCall();
@@ -180,12 +219,28 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * The parameters findPk() carries into the detail call
+     *
+     * A detail call accepts far fewer parameters than a list call, and the api ignores the rest,
+     * so a filter or a sort left on the query is dropped instead of being sent. objekt/detail and
+     * team/detail document picturesize alone; ProjectQuery widens this.
+     *
+     * @return array<int, string>
+     */
+    protected function getDetailParams(): array
+    {
+        return ['picturesize'];
+    }
+
+    /**
      * Get an array of realty, employee, or project ids
      *
      * @return array
      */
     public function findIds()
     {
+        $this->assertFiltersApplyWithAll();
+
         $params = $this->params;
 
         // the ids endpoints document neither, and sending limit made findIds() return every id
@@ -255,7 +310,22 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function orderBy($column, $direction = 'asc')
     {
-        return $this->order($this->mapper->getFilterPropertyName($column), $direction);
+        return $this->order($this->orderPropertyName($column), $direction);
+    }
+
+    /**
+     * Translates a model property name into the column the api sorts by
+     *
+     * A mapper which does not separate its sort columns from its filters is asked for the filter
+     * name, which is what every mapper did before 1.5.0.
+     */
+    private function orderPropertyName(string $column): string
+    {
+        if ($this->mapper instanceof OrderMappingInterface) {
+            return $this->mapper->getOrderPropertyName($column);
+        }
+
+        return $this->mapper->getFilterPropertyName($column);
     }
 
     /**
@@ -296,14 +366,20 @@ abstract class AbstractQuery implements QueryInterface
      * @param mixed $value
      *
      * @return $this
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when the api has no such filter
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the filter cannot take that value
      */
     public function filter($key, $value = null)
     {
+        $this->assertFilterIsSupported($key, 'filter[' . $key . ']');
+
         $value = $this->normaliseFilterValue($value);
 
         if ($value === null) {
             return $this;
         }
+
+        $this->assertFilterValueIsSupported($key, $value);
 
         if (is_array($value)) {
             if (array_key_exists('min', $value)) {
@@ -321,6 +397,229 @@ abstract class AbstractQuery implements QueryInterface
         $this->params['filter'][$key] = $value;
 
         return $this;
+    }
+
+    /**
+     * Fails in strict mode when the api has no filter of that name
+     *
+     * This is the defect strict mode exists for. Until now an unknown name travelled to the wire,
+     * where the api ignored it and answered 200 with the rows of a query that was never filtered,
+     * so a typo or a filter the api had dropped looked like a working search.
+     *
+     * `$called` is what the caller wrote: a magic `filterByFoo()` is reported as the method, a
+     * direct filter() call as the parameter. The list call is the yardstick, because that is where
+     * filters are sent. A call the generated data does not know, an endpoint which documents no
+     * filter at all, and a mapper from outside the SDK leave nothing to compare against — those are
+     * let through rather than made unusable.
+     *
+     * @throws MethodNotFoundException
+     */
+    protected function assertFilterIsSupported(string $key, string $called): void
+    {
+        $supported = $this->supportedFilters();
+
+        if ($supported === [] || array_key_exists($key, $supported)) {
+            return;
+        }
+
+        // a range may also be addressed by its wire names, filter[preis_von] and filter[preis_bis],
+        // which the generated data folds into one entry under the base name
+        if (preg_match('/^(.+)_(von|bis)$/', $key, $match)) {
+            $forms = $supported[$match[1]]['forms'] ?? null;
+
+            if (is_array($forms) && in_array('range', $forms, true)) {
+                return;
+            }
+        }
+
+        throw new MethodNotFoundException($called . ' is not a filter this API has.');
+    }
+
+    /**
+     * Fails in strict mode when the api has the filter but cannot take that value
+     *
+     * Three things are rejected. The api answers all three the same way today: it discards the
+     * parameter and returns the rows of a wider search than the caller asked for.
+     *
+     *   - a plain value on a filter which only has a range form. filterByPrice(500000) sends
+     *     filter[preis], which does not exist; the api has filter[preis_von] and filter[preis_bis]
+     *   - a list on a filter which takes a single value
+     *   - a value outside an enum the spec documents
+     *
+     * The value has already been through normaliseFilterValue(), so an empty one never arrives
+     * here. The name has already been through assertFilterIsSupported(), so an unknown one is left
+     * to that guard rather than reported twice.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertFilterValueIsSupported(string $key, mixed $value): void
+    {
+        $supported = $this->supportedFilters();
+        $isBound   = !isset($supported[$key]) && preg_match('/^(.+)_(von|bis)$/', $key, $match) === 1;
+        $filter    = $supported[$isBound ? $match[1] : $key] ?? null;
+
+        if (!is_array($filter)) {
+            return;
+        }
+
+        // filter[preis_von] is one end of a range and carries a single value
+        if ($isBound) {
+            if (is_array($value)) {
+                $this->rejectFilterValue($key, $value, 'is one end of a range and takes a single value, a list was given.');
+            }
+
+            return;
+        }
+
+        $forms = is_array($filter['forms'] ?? null) ? $filter['forms'] : [];
+        $range = is_array($value) && (array_key_exists('min', $value) || array_key_exists('max', $value));
+
+        if ($range) {
+            if (!in_array('range', $forms, true)) {
+                $this->rejectFilterValue($key, $value, 'has no range, a min or a max was given. It takes a plain value.');
+            }
+
+            return;
+        }
+
+        if (!in_array('plain', $forms, true)) {
+            $this->rejectFilterValue($key, $value, 'is a range and has no plain form. Pass '
+                . "['min' => …] or ['max' => …], or set filter[{$key}_von] and filter[{$key}_bis] yourself.");
+        }
+
+        if (is_array($value) && !isset($filter['list'])) {
+            $this->rejectFilterValue($key, $value, 'takes a single value, a list was given.');
+        }
+
+        if (!is_array($filter['enum'] ?? null)) {
+            return;
+        }
+
+        foreach (is_array($value) ? $value : [$value] as $one) {
+            if (!$this->isInEnum($one, $filter['enum'])) {
+                $this->rejectFilterValue($key, $one, 'does not accept ' . $this->describeFilterValue($one)
+                    . '. The api knows ' . implode(', ', array_map([$this, 'describeFilterValue'], $filter['enum'])) . '.');
+            }
+        }
+    }
+
+    /**
+     * Fails in strict mode when all() is combined with a filter the api will not apply
+     *
+     * all() asks for every project, whether it still has real-estates which match. The api
+     * answers that by applying the project-level filters and dropping the realty-level ones, so a
+     * query which asks for projects with a rent of under a thousand and calls all() receives every
+     * project instead, with no sign that half the request was discarded.
+     *
+     * A project-level filter is unaffected and stays silent, which is the common case: asking for
+     * every project with a given tag is a legitimate request and the api honours it.
+     *
+     * The check runs where the request is built rather than in all() or filter(), because the two
+     * can be called in either order.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertFiltersApplyWithAll(): void
+    {
+        if (!$this->isStrict() || (int) ($this->params['alle'] ?? 0) !== 1) {
+            return;
+        }
+
+        $supported = $this->supportedFilters();
+
+        if ($supported === []) {
+            return;
+        }
+
+        foreach ($this->params['filter'] ?? [] as $key => $value) {
+            $filter = $supported[$key] ?? null;
+
+            if ($filter === null && preg_match('/^(.+)_(von|bis)$/', (string) $key, $match)) {
+                $filter = $supported[$match[1]] ?? null;
+            }
+
+            // an unknown name is the business of assertFilterIsSupported(), not of this rule
+            if (!is_array($filter) || ($filter['level'] ?? 'realty') !== 'realty') {
+                continue;
+            }
+
+            throw new InvalidFilterValueException(
+                'filter[' . $key . '] is a realty-level filter and is ignored while all() is set. '
+                . 'Remove all(), or drop the filter.',
+                (string) $key,
+                $value
+            );
+        }
+    }
+
+    /**
+     * The filters the api documents for this query's list call, or none when there is nothing to
+     * judge against
+     *
+     * Empty means "do not judge" rather than "nothing is allowed": the query is not strict, the
+     * mapper comes from outside the SDK and cannot be asked, or the endpoint documents no filter.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function supportedFilters(): array
+    {
+        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+            return [];
+        }
+
+        return $this->mapper->getSupportedFilters($this->getListCall());
+    }
+
+    /**
+     * Whether a value is one the enum allows
+     *
+     * Compared as strings, because that is what reaches the api: true is sent as 1 and the integer
+     * 1 and the string "1" are the same request. Anything which is not a scalar is left alone, so
+     * that this never becomes a second type check.
+     *
+     * @param array<int, mixed> $enum
+     */
+    private function isInEnum(mixed $value, array $enum): bool
+    {
+        if (is_bool($value)) {
+            $value = $value ? 1 : 0;
+        }
+
+        if (!is_scalar($value)) {
+            return true;
+        }
+
+        foreach ($enum as $allowed) {
+            if (is_scalar($allowed) && (string) $allowed === (string) $value) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Renders a value for an exception message, so that "0" and 0 can be told apart
+     */
+    private function describeFilterValue(mixed $value): string
+    {
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+
+        if (is_string($value)) {
+            return '"' . $value . '"';
+        }
+
+        return is_scalar($value) ? (string) $value : gettype($value);
+    }
+
+    /**
+     * @throws InvalidFilterValueException
+     */
+    private function rejectFilterValue(string $key, mixed $value, string $problem): never
+    {
+        throw new InvalidFilterValueException('filter[' . $key . '] ' . $problem, $key, $value);
     }
 
     /**
@@ -401,11 +700,15 @@ abstract class AbstractQuery implements QueryInterface
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
             $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
 
+            // filter() runs the same check, but by then the name is the mapped one. Checking
+            // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
+            $this->assertFilterIsSupported($key, $method . '()');
+
             return $this->filter($key, $params[0]);
         }
 
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
-            $key = $this->mapper->getFilterPropertyName(mb_substr($method, 7));
+            $key = $this->orderPropertyName(mb_substr($method, 7));
 
             // the api matches the direction case insensitively, so DESC is valid and is passed
             // on as the caller wrote it. Only a missing direction falls back
@@ -431,6 +734,7 @@ abstract class AbstractQuery implements QueryInterface
      * @param string|array $picturesize
      *
      * @return $this
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the api has no such size
      */
     public function setPicturesize($picturesize)
     {
@@ -440,12 +744,54 @@ abstract class AbstractQuery implements QueryInterface
 
         $picturesize = array_unique(array_filter($picturesize));
 
-        // an unknown size is the api's business, it ignores one it does not know. Only a call
-        // which leaves no usable size at all keeps the medium it has always sent
+        $this->assertPictureSizesAreSupported($picturesize);
+
+        // only a call which leaves no usable size at all keeps the medium it has always sent
         if ($picturesize === []) {
             $picturesize = ['medium'];
         }
 
         return $this->set('picturesize', $picturesize);
+    }
+
+    /**
+     * Fails in strict mode when the api has no picture size of that name
+     *
+     * The api does not ignore a size it does not know. It replaces it with the fallback of the
+     * endpoint, so a typo answers with pictures of a size nobody asked for, and nothing in the
+     * response says which size was served.
+     *
+     * The sizes are read per endpoint from the spec, so a query whose endpoint documents none -
+     * the team calls - and a mapper from outside the SDK leave nothing to compare against.
+     *
+     * @param array<int, mixed> $sizes
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertPictureSizesAreSupported(array $sizes): void
+    {
+        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+            return;
+        }
+
+        $parameter = $this->mapper->getSupportedParameters($this->getListCall())['picturesize'] ?? null;
+        $enum      = is_array($parameter) && is_array($parameter['enum'] ?? null) ? $parameter['enum'] : [];
+
+        if ($enum === []) {
+            return;
+        }
+
+        foreach ($sizes as $size) {
+            if ($this->isInEnum($size, $enum)) {
+                continue;
+            }
+
+            throw new InvalidFilterValueException(
+                'picturesize does not accept ' . $this->describeFilterValue($size)
+                . '. The api knows ' . implode(', ', $enum) . '.',
+                'picturesize',
+                $size
+            );
+        }
     }
 }

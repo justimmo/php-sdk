@@ -2,7 +2,7 @@
 
 namespace Justimmo\Model;
 
-class Project
+class Project implements ModelInterface
 {
     const PROJECT_STATE_PLANNING = 'planning';
     const PROJECT_STATE_BUILDING = 'building';
@@ -1112,6 +1112,8 @@ class Project
     public function setSaleStart($saleStart)
     {
         $this->saleStart = $saleStart;
+
+        return $this;
     }
 
     /**
@@ -1474,10 +1476,14 @@ class Project
 
     /**
      * @param float $areaFrom
+     *
+     * @return $this
      */
     public function setAreaFrom($areaFrom)
     {
         $this->areaFrom = $areaFrom;
+
+        return $this;
     }
 
     /**
@@ -1490,10 +1496,14 @@ class Project
 
     /**
      * @param float $areaTo
+     *
+     * @return $this
      */
     public function setAreaTo($areaTo)
     {
         $this->areaTo = $areaTo;
+
+        return $this;
     }
 
     /**
@@ -1506,10 +1516,14 @@ class Project
 
     /**
      * @param float $priceFrom
+     *
+     * @return $this
      */
     public function setPriceFrom($priceFrom)
     {
         $this->priceFrom = $priceFrom;
+
+        return $this;
     }
 
     /**
@@ -1522,10 +1536,14 @@ class Project
 
     /**
      * @param float $priceTo
+     *
+     * @return $this
      */
     public function setPriceTo($priceTo)
     {
         $this->priceTo = $priceTo;
+
+        return $this;
     }
 
     /**
@@ -1538,10 +1556,14 @@ class Project
 
     /**
      * @param float $roomsFrom
+     *
+     * @return $this
      */
     public function setRoomsFrom($roomsFrom)
     {
         $this->roomsFrom = $roomsFrom;
+
+        return $this;
     }
 
     /**
@@ -1554,10 +1576,14 @@ class Project
 
     /**
      * @param float $roomsTo
+     *
+     * @return $this
      */
     public function setRoomsTo($roomsTo)
     {
         $this->roomsTo = $roomsTo;
+
+        return $this;
     }
 
     /**
@@ -1570,9 +1596,13 @@ class Project
 
     /**
      * @param int $subunitsAvailable
+     *
+     * @return $this
      */
     public function setSubunitsAvailable($subunitsAvailable)
     {
         $this->subunitsAvailable = $subunitsAvailable;
+
+        return $this;
     }
 }
