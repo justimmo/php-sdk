@@ -9,9 +9,12 @@ use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\EmployeeQuery;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
+use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
 
@@ -355,6 +358,120 @@ class StrictModeTest extends TestCase
             ['picturesize' => ['medium']],
             $this->query()->strict()->setPicturesize('')->getParams()
         );
+    }
+
+    /**
+     * all() on its own is an ordinary request, and a common one, so the rule must never fire
+     * without a filter next to it
+     */
+    public function testAllOnItsOwnIsAllowed(): void
+    {
+        $this->assertSame(['alle' => 1], $this->projectQuery()->strict()->all()->getParams());
+
+        $this->projectQuery()->strict()->all()->findIds();
+    }
+
+    /**
+     * A project level filter still applies while all() is set, so asking for every project with a
+     * given tag is legitimate and stays silent
+     *
+     * @dataProvider projectLevelFilterProvider
+     */
+    public function testAllWithAProjectLevelFilterIsAllowed(string $method, $value): void
+    {
+        $query = $this->projectQuery()->strict()->all();
+
+        $this->assertSame($query, $query->$method($value));
+
+        $query->findIds();
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: mixed}>
+     */
+    public function projectLevelFilterProvider(): array
+    {
+        return [
+            'tag'            => ['filterByProjectTag', 'Website'],
+            'state'          => ['filterByProjectState', 'building'],
+            'reference'      => ['filterByIsReference', 1],
+            'completion'     => ['filterByCompletionDate', ['min' => '2026-01-01']],
+            'sale start'     => ['filterBySaleStart', ['min' => '2026-01-01']],
+            'property number'=> ['filterByProjectPropertyNumber', 'A-1'],
+        ];
+    }
+
+    /**
+     * The api drops a realty level filter while all() is set and answers with every project, so
+     * the search returns more than was asked for and nothing says so
+     */
+    public function testAllWithARealtyLevelFilterThrows(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[miete] is a realty-level filter and is ignored while all() is set.');
+
+        $this->projectQuery()->strict()->all()->filterByRent(1)->findIds();
+    }
+
+    public function testTheWireNamesOfARangeAreCheckedToo(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[preis_von]');
+
+        $this->projectQuery()->strict()->all()->filterByPrice(['min' => 1])->findIds();
+    }
+
+    /**
+     * all() may be called before or after the filter, which is why the rule runs where the request
+     * is built rather than in either setter
+     */
+    public function testTheOrderOfAllAndTheFilterDoesNotMatter(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+
+        $this->projectQuery()->strict()->filterByRent(1)->all()->findIds();
+    }
+
+    public function testFindIsCheckedAsWellAsFindIds(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+
+        $this->projectQuery()->strict()->all()->filterByRent(1)->find();
+    }
+
+    public function testAllFalseIsNotAll(): void
+    {
+        $this->projectQuery()->strict()->all(false)->filterByRent(1)->findIds();
+
+        $this->assertTrue(true, 'all(false) leaves the filter applied');
+    }
+
+    public function testTheRuleIsSilentWhenTheQueryIsNotStrict(): void
+    {
+        $params = $this->projectQuery()->all()->filterByRent(1)->getParams();
+
+        $this->assertSame(['alle' => 1, 'filter' => ['miete' => 1]], $params);
+    }
+
+    public function testTheExceptionNamesTheRejectedFilter(): void
+    {
+        try {
+            $this->projectQuery()->strict()->all()->filterByRent(1)->findIds();
+        } catch (InvalidFilterValueException $e) {
+            $this->assertSame('miete', $e->getFilter());
+            $this->assertSame(1, $e->getValue());
+
+            return;
+        }
+
+        $this->fail('a realty level filter was accepted next to all()');
+    }
+
+    private function projectQuery(): ProjectQuery
+    {
+        $mapper = new ProjectMapper();
+
+        return new ProjectQuery(new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper);
     }
 
     /**
