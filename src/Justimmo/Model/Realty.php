@@ -628,10 +628,14 @@ class Realty implements ModelInterface
 
     /**
      * @param int $ownershipTypeId
+     *
+     * @return $this
      */
     public function setOwnershipTypeId($ownershipTypeId)
     {
         $this->ownershipTypeId = $ownershipTypeId;
+
+        return $this;
     }
 
     /**
@@ -2569,10 +2573,14 @@ class Realty implements ModelInterface
 
     /**
      * @param null|string $freetext1
+     *
+     * @return $this
      */
     public function setFreetext1($freetext1)
     {
         $this->freetext1 = $freetext1;
+
+        return $this;
     }
 
     /**
@@ -2585,10 +2593,14 @@ class Realty implements ModelInterface
 
     /**
      * @param null|string $freetext2
+     *
+     * @return $this
      */
     public function setFreetext2($freetext2)
     {
         $this->freetext2 = $freetext2;
+
+        return $this;
     }
 
     /**
@@ -2601,10 +2613,14 @@ class Realty implements ModelInterface
 
     /**
      * @param null|string $freetext3
+     *
+     * @return $this
      */
     public function setFreetext3($freetext3)
     {
         $this->freetext3 = $freetext3;
+
+        return $this;
     }
 
     /**
@@ -2617,10 +2633,14 @@ class Realty implements ModelInterface
 
     /**
      * @param null|string $freetext3
+     *
+     * @return $this
      */
     public function setCostsExplanation($costsExplanation)
     {
         $this->costsExplanation = $costsExplanation;
+
+        return $this;
     }
 
     /**
@@ -2633,10 +2653,14 @@ class Realty implements ModelInterface
 
     /**
      * @param string $freetext4
+     *
+     * @return $this
      */
     public function setFreetext4($freetext4)
     {
         $this->freetext4 = $freetext4;
+
+        return $this;
     }
 
     /**
@@ -3102,10 +3126,14 @@ class Realty implements ModelInterface
 
     /**
      * @param float|null $latitudeFuzzy
+     *
+     * @return $this
      */
     public function setLatitudeFuzzy($latitudeFuzzy)
     {
         $this->latitudeFuzzy = $latitudeFuzzy;
+
+        return $this;
     }
 
     /**
@@ -3118,10 +3146,14 @@ class Realty implements ModelInterface
 
     /**
      * @param float|null $longitudeFuzzy
+     *
+     * @return $this
      */
     public function setLongitudeFuzzy($longitudeFuzzy)
     {
         $this->longitudeFuzzy = $longitudeFuzzy;
+
+        return $this;
     }
 
     /**
@@ -3134,10 +3166,14 @@ class Realty implements ModelInterface
 
     /**
      * @param int|null $radiusFuzzy
+     *
+     * @return $this
      */
     public function setRadiusFuzzy($radiusFuzzy)
     {
         $this->radiusFuzzy = $radiusFuzzy;
+
+        return $this;
     }
 
     /**
@@ -3152,10 +3188,14 @@ class Realty implements ModelInterface
 
     /**
      * @param int $orientation
+     *
+     * @return $this
      */
     public function setOrientation($orientation)
     {
         $this->orientation = $orientation;
+
+        return $this;
     }
 
     /**
@@ -3471,11 +3511,23 @@ class Realty implements ModelInterface
         return $this->buyOnRequest;
     }
 
+    /**
+     * The points of interest of the realty, grouped as the api returned them.
+     *
+     * @return array<int, array<string, mixed>>
+     */
     public function getPois()
     {
         return $this->pois;
     }
 
+    /**
+     * Replaces the points of interest.
+     *
+     * @param array<int, array<string, mixed>> $pois
+     *
+     * @return $this
+     */
     public function setPois($pois)
     {
         $this->pois = $pois;
@@ -3483,6 +3535,15 @@ class Realty implements ModelInterface
         return $this;
     }
 
+    /**
+     * Adds one point of interest to a group.
+     *
+     * @param string $group
+     * @param string $name
+     * @param float|int|string|null $distance
+     *
+     * @return $this
+     */
     public function addPoi($group, $name, $distance)
     {
         if (empty($group)) {

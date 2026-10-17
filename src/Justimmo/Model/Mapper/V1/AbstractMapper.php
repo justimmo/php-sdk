@@ -60,6 +60,9 @@ abstract class AbstractMapper implements MapperInterface, OrderMappingInterface,
         return array_key_exists('property', $values) ? $values['property'] : $apiPropertyName;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilterPropertyName($modelPropertyName)
     {
         return $this->translate($this->getFilterMapping(), $modelPropertyName);
