@@ -174,6 +174,8 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function find()
     {
+        $this->assertFiltersApplyWithAll();
+
         $method   = $this->getListCall();
         $response = $this->api->$method($this->params);
 
@@ -240,6 +242,8 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function findIds()
     {
+        $this->assertFiltersApplyWithAll();
+
         $params = $this->params;
 
         // the ids endpoints document neither, and sending limit made findIds() return every id
@@ -499,6 +503,55 @@ abstract class AbstractQuery implements QueryInterface
                 $this->rejectFilterValue($key, $one, 'does not accept ' . $this->describeFilterValue($one)
                     . '. The api knows ' . implode(', ', array_map([$this, 'describeFilterValue'], $filter['enum'])) . '.');
             }
+        }
+    }
+
+    /**
+     * Fails in strict mode when all() is combined with a filter the api will not apply
+     *
+     * all() asks for every project, whether it still has real-estates which match. The api
+     * answers that by applying the project-level filters and dropping the realty-level ones, so a
+     * query which asks for projects with a rent of under a thousand and calls all() receives every
+     * project instead, with no sign that half the request was discarded.
+     *
+     * A project-level filter is unaffected and stays silent, which is the common case: asking for
+     * every project with a given tag is a legitimate request and the api honours it.
+     *
+     * The check runs where the request is built rather than in all() or filter(), because the two
+     * can be called in either order.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertFiltersApplyWithAll(): void
+    {
+        if (!$this->isStrict() || (int) ($this->params['alle'] ?? 0) !== 1) {
+            return;
+        }
+
+        $supported = $this->supportedFilters();
+
+        if ($supported === []) {
+            return;
+        }
+
+        foreach ($this->params['filter'] ?? [] as $key => $value) {
+            $filter = $supported[$key] ?? null;
+
+            if ($filter === null && preg_match('/^(.+)_(von|bis)$/', (string) $key, $match)) {
+                $filter = $supported[$match[1]] ?? null;
+            }
+
+            // an unknown name is the business of assertFilterIsSupported(), not of this rule
+            if (!is_array($filter) || ($filter['level'] ?? 'realty') !== 'realty') {
+                continue;
+            }
+
+            throw new InvalidFilterValueException(
+                'filter[' . $key . '] is a realty-level filter and is ignored while all() is set. '
+                . 'Remove all(), or drop the filter.',
+                (string) $key,
+                $value
+            );
         }
     }
 

@@ -60,7 +60,9 @@
     * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
     * The sizes are read per endpoint from the specification
     * A picture size is not checked on an `EmployeeQuery`
-    * The `alle=1` rule arrives later in this release
+    * The fourth and last rule: `all()` combined with a realty-level filter throws `InvalidFilterValueException`. `all()` asks for every project whether or not it still has matching realties, so the api applies the project-level filters and drops the realty-level ones — the search returns every project and nothing in the response says half the request was discarded
+    * `all()` on its own is untouched, and so is `all()` with a project-level filter such as `filterByProjectTag()`. Asking for every project with a given tag is a legitimate request which the api honours
+    * The check runs where the request is built, so it does not matter whether `all()` is called before or after the filter
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
