@@ -93,7 +93,7 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * C2 — preis is a range filter, so the plain form has to be absent
+     * preis is a range filter, so the plain form has to be absent
      */
     public function testRangeOnlyFilterHasNoPlainForm(): void
     {
@@ -117,7 +117,7 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * B5 — the project filter level is readable, and only on projekt endpoints
+     * The project filter level is readable, and only on projekt endpoints
      */
     public function testProjectFilterLevel(): void
     {
@@ -140,7 +140,7 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * C4 — the sort columns come from the spec, and they differ per endpoint
+     * The sort columns come from the spec, and they differ per endpoint
      */
     public function testOrderByColumns(): void
     {
@@ -154,7 +154,7 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * C7 — the picture sizes are an enum, not a hand kept list
+     * The picture sizes are an enum, not a hand kept list
      */
     public function testPictureSizes(): void
     {

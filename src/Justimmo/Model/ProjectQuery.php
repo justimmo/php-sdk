@@ -137,7 +137,10 @@ class ProjectQuery extends AbstractQuery
 
     /**
      * An alias of filterByTag(), both build filter[tag_name]. The api has no realty category
-     * filter of its own, so this name is deprecated in 1.5 and removed in 2.x
+     * filter of its own, so this name says something the api does not have.
+     *
+     * @deprecated Use filterByTag(). Both build filter[tag_name]; this name suggests a filter
+     *             which does not exist. Removed in 2.x
      *
      * @param string|array<int, string> $value
      *

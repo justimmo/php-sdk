@@ -11,6 +11,16 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* `RealtyQuery::orderByRooms()` is added
+    * A realty list can be sorted by the number of rooms, and no method reached that
+* `orderBy('UpdatedAt')` sorts by `updated_at`, the same as `orderByUpdatedAt()`
+    * The documentation says `orderByXXX()` is a shortcut for `orderBy('XXX')`. For this one column it was not: the method was corrected years ago to send `updated_at`, the mapping was not, so the long form sent `aktualisiert_am` — the filter name, which is not a column of the realty table and which the api answers with a 400
+    * `filterByUpdatedAt()` still sends `filter[aktualisiert_am_von]` and `filter[aktualisiert_am_bis]`. Filtering and sorting use different names for this one, which is why they now live in different tables
+* Two methods are deprecated. Both still work and are removed in 2.x
+    * `filterByRealtyCategory()` on both queries — an alias of `filterByTag()`, both build `filter[tag_name]`. The api has no realty category filter, so the name describes something which does not exist
+    * `RealtyQuery::filterByCreatedAt()` — the api has no `filter[created_at]`, so the filter has always been discarded and the search came back unfiltered. Strict mode rejects it
+* `JustimmoApi::getSdkVersion()` and `appendSdkAgent()` are `protected` rather than `private`
+    * A subclass which replaces `createRequest()` with its own transport loses the sdk's User-Agent token and version header, and had to reimplement them. It can now call ours
 * Builders are added for the filters the api documents and the SDK could not send
     * `RealtyQuery` gains `filterByCountryId()` for `land_id` and `filterByOwnerId()` for `owner_id`
     * `ProjectQuery` gains fifteen. Thirteen reuse the names `RealtyQuery` already gives the same filters, so one method means one thing on both queries: `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. `filterByProjectPropertyNumber()` is new
@@ -20,7 +30,7 @@
     * The two are different namespaces and the api spells them differently: a realty is filtered by `aktualisiert_am` and sorted by `updated_at`. One table serving both meant a new filter silently created a new, broken sort method
     * `Justimmo\Model\Mapper\OrderMappingInterface` carries the sort columns. It is separate from `MapperInterface`, so a mapper written outside the SDK keeps working and keeps using its filter names for sorting
     * `ProjectQuery::orderByCreatedAt()` and `orderByUpdatedAt()` now send `created_at` and `updated_at`. They sent the method name itself before, which the api does not sort by
-    * `orderBy*()` with a name the mapper has no sort column for now sends that name rather than the filter it happens to share it with. Both are columns the api does not sort by, so neither sorted anything
+    * `orderBy()` no longer translates through the filter mapping. A name the sort mapping does not know is passed on as written
 * Parameters are no longer sent to endpoints which do not accept them
     * `culture` is not added to `objekt/ids`, `projekt/ids` and `team/ids`. None of the three documents it, and an ids call answers with a plain array of ids, which has no text to translate. A culture passed by the caller is still sent
     * `findPk()` carries only `picturesize` into `objekt/detail`. `alleProjektObjekte` and `objektIds` are documented by `projekt/detail` alone, and a project detail call is unchanged
@@ -40,8 +50,8 @@
     * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
     * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
     * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
-    * The sizes are read per endpoint from the spec, so `user_small` and `user_medium` are rejected on an objekt or projekt call. The api accepts them there only because one allowlist serves every endpoint, and they produce no usable realty picture
-    * The team calls document no picture size, so nothing is rejected on an `EmployeeQuery`
+    * The sizes are read per endpoint from the specification
+    * A picture size is not checked on an `EmployeeQuery`
     * The `alle=1` rule arrives later in this release
 
 ## 1.4.2

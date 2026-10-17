@@ -512,9 +512,9 @@ class RealtyMapper extends AbstractMapper
     /**
      * {@inheritdoc}
      *
-     * objekt sorts by six columns, and they are not spelled like the filters: the filter is
-     * aktualisiert_am, the sort column updated_at. The five entries below the line send a column
-     * the api does not sort by; they are kept so that nothing changes here, and are deprecated.
+     * Sorting is not spelled like filtering: a realty is filtered by aktualisiert_am and sorted by
+     * updated_at. The api sorts by any column of the realty table, so the four below the line work
+     * although the spec documents neither them nor roughly two hundred others.
      */
     protected function getOrderMapping(): array
     {
@@ -524,12 +524,13 @@ class RealtyMapper extends AbstractMapper
             'ZipCode'        => 'plz',
             'CreatedAt'      => 'created_at',
             'PublishedAt'    => 'published_at',
+            'UpdatedAt'      => 'updated_at',
 
-            'UpdatedAt'      => 'aktualisiert_am',
             'Area'           => 'sort_flaeche',
             'LivingArea'     => 'wohnflaeche',
             'FloorArea'      => 'nutzflaeche',
             'SurfaceArea'    => 'grundflaeche',
+            'Rooms'          => 'zimmer',
         ];
     }
 

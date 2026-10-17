@@ -39,20 +39,24 @@ class MappingTest extends TestCase
     ];
 
     /**
-     * Sort columns a mapper sends which the api does not sort by. All five are carried over
-     * unchanged so that nothing moves for a caller who uses them, and all five are deprecated
+     * Sort columns a mapper sends which the spec does not document
+     *
+     * All four work. The api sorts by any column of the realty table, so the enum in the spec is
+     * the documented subset rather than the accepted set - the controller falls through to
+     * ObjektPeer::translateFieldName(), and the parity run measured all four answering ok. A name
+     * which is neither a column nor a special case is answered with a 400 rather than ignored,
+     * which is why this list is worth watching
      */
-    const SORTS_THE_API_DOES_NOT_HAVE = [
-        'callRealtyList'  => ['aktualisiert_am', 'grundflaeche', 'nutzflaeche', 'sort_flaeche', 'wohnflaeche'],
+    const SORTS_OUTSIDE_THE_DOCUMENTED_ENUM = [
+        'callRealtyList'  => ['grundflaeche', 'nutzflaeche', 'sort_flaeche', 'wohnflaeche', 'zimmer'],
         'callProjectList' => [],
     ];
 
     /**
-     * Columns the api sorts by which no method reaches. orderByUpdatedAt() sends the filter name
-     * instead of updated_at, and is deprecated
+     * Columns the spec documents which no method reaches
      */
     const SORTS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => ['updated_at'],
+        'callRealtyList'  => [],
         'callProjectList' => [],
     ];
 
@@ -99,24 +103,24 @@ class MappingTest extends TestCase
     /**
      * @dataProvider queryCallProvider
      */
-    public function testNoMethodSendsASortColumnTheApiDoesNotHave(string $call, string $mapper): void
+    public function testNoMethodSendsAnUndocumentedSortColumn(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
-            self::SORTS_THE_API_DOES_NOT_HAVE[$call],
+            self::SORTS_OUTSIDE_THE_DOCUMENTED_ENUM[$call],
             array_diff($this->sortColumns($mapper), $this->sortColumnsOfTheApi($call)),
-            $call . ': these sort columns are sent and the api does not sort by them'
+            $call . ': these sort columns are sent and the spec documents none of them'
         );
     }
 
     /**
      * @dataProvider queryCallProvider
      */
-    public function testEverySortColumnOfTheApiCanBeReached(string $call, string $mapper): void
+    public function testEveryDocumentedSortColumnCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
             self::SORTS_WITHOUT_A_METHOD[$call],
             array_diff($this->sortColumnsOfTheApi($call), $this->sortColumns($mapper)),
-            $call . ': the api sorts by these columns and no method reaches them'
+            $call . ': the spec documents these sort columns and no method reaches them'
         );
     }
 
@@ -188,8 +192,8 @@ class MappingTest extends TestCase
     }
 
     /**
-     * C4 was that the sort columns were read out of the filter mapping. filterByPrice now exists
-     * on a project query, and orderByPrice must not start sending its filter name
+     * The sort columns used to be read out of the filter mapping. filterByPrice now exists on a
+     * project query, and orderByPrice must not start sending its filter name
      */
     public function testSortingDoesNotReadTheFilterMapping(): void
     {
@@ -224,6 +228,50 @@ class MappingTest extends TestCase
         $this->assertSame(
             ['orderby' => 'published_at', 'ordertype' => 'asc'],
             $this->realtyQuery()->orderByPublishedAt()->getParams()
+        );
+    }
+
+    /**
+     * The documentation says orderByXXX() is a shortcut for orderBy('XXX'), so the two have to
+     * send the same thing. They did not for UpdatedAt: the method was corrected years ago to send
+     * updated_at, the mapping was not, and orderBy('UpdatedAt') sent the filter name - which the
+     * api answers with a 400, since aktualisiert_am is not a column of the realty table
+     */
+    public function testTheTwoSortFormsAgree(): void
+    {
+        $mapper = new RealtyMapper();
+
+        foreach (['Price', 'PropertyNumber', 'ZipCode', 'CreatedAt', 'PublishedAt', 'UpdatedAt', 'Rooms'] as $name) {
+            $method = $this->realtyQuery()->{'orderBy' . $name}('desc')->getParams();
+            $plain  = $this->realtyQuery()->orderBy($name, 'desc')->getParams();
+
+            $this->assertSame($plain, $method, 'orderBy' . $name . '() and orderBy(\'' . $name . '\')');
+            $this->assertContains($mapper->getOrderPropertyName($name), $plain);
+        }
+    }
+
+    /**
+     * Sorting by zimmer is a tenth of all sorting on the api and no method reached it. The range
+     * filter is documented, so the column is part of the official surface
+     */
+    public function testRoomsCanBeSortedBy(): void
+    {
+        $this->assertSame(
+            ['orderby' => 'zimmer', 'ordertype' => 'desc'],
+            $this->realtyQuery()->orderByRooms('desc')->getParams()
+        );
+    }
+
+    public function testUpdatedAtIsSortedByTheColumnAndFilteredByTheOtherName(): void
+    {
+        $this->assertSame(
+            ['orderby' => 'updated_at', 'ordertype' => 'asc'],
+            $this->realtyQuery()->orderByUpdatedAt()->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['aktualisiert_am_von' => 1]],
+            $this->realtyQuery()->filterByUpdatedAt(['min' => 1])->getParams()
         );
     }
 
