@@ -6,6 +6,7 @@ use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Api\StrictModeInterface;
 use Justimmo\Exception\InvalidFilterValueException;
+use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\EmployeeQuery;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
@@ -201,6 +202,19 @@ class StrictModeTest extends TestCase
         $this->query()->strict()->filterByPrice(500000);
     }
 
+    public function testAWellFormedRangePasses(): void
+    {
+        $this->assertSame(
+            ['filter' => ['preis_von' => 1, 'preis_bis' => 2]],
+            $this->query()->strict()->filterByPrice(['min' => 1, 'max' => 2])->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['preis_von' => 1]],
+            $this->query()->strict()->filterByPrice(['min' => 1])->getParams()
+        );
+    }
+
     public function testTheRangeFormOfARangeFilterPasses(): void
     {
         $query = $this->query()->strict()->filterByPrice(['min' => 422000, 'max' => 696000]);
@@ -252,6 +266,153 @@ class StrictModeTest extends TestCase
         $this->assertSame(['filter' => ['miete' => false]], $this->query()->strict()->filterByRent(false)->getParams());
     }
 
+    /**
+     * Each end of a range is one value, whichever way the range was written
+     *
+     * @dataProvider rangeBoundProvider
+     */
+    public function testEachEndOfARangeTakesASingleValue(array $value, string $expected): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage($expected);
+
+        $this->query()->strict()->filterByPrice($value);
+    }
+
+    /**
+     * @return array<string, array{0: array<string, mixed>, 1: string}>
+     */
+    public function rangeBoundProvider(): array
+    {
+        return [
+            'a list as min'  => [['min' => [1, 2]], 'filter[preis] takes a single value as min, a list was given.'],
+            'a list as max'  => [['min' => 1, 'max' => [3]], 'filter[preis] takes a single value as max, a list was given.'],
+            'a map as min'   => [['min' => ['a' => 1]], 'filter[preis] takes a single value as min, a list was given.'],
+        ];
+    }
+
+    /**
+     * A range is written with min and max, and filter() reads no other key
+     *
+     * @dataProvider unknownRangeKeyProvider
+     */
+    public function testAnUnknownKeyInARangeThrows(array $value, string $expected): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage($expected);
+
+        $this->query()->strict()->filterByPrice($value);
+    }
+
+    /**
+     * @return array<string, array{0: array<array-key, mixed>, 1: string}>
+     */
+    public function unknownRangeKeyProvider(): array
+    {
+        return [
+            'beside a min'  => [['min' => 1, 'foo' => 2], 'filter[preis] takes min and max. It does not know "foo".'],
+            'beside a max'  => [['max' => 2, 'von' => 1], 'filter[preis] takes min and max. It does not know "von".'],
+            'two of them'   => [['min' => 1, 'foo' => 2, 'bar' => 3], 'filter[preis] takes min and max. It does not know "foo", "bar".'],
+            'a numeric key' => [['min' => 1, 0 => 2], 'filter[preis] takes min and max. It does not know 0.'],
+        ];
+    }
+
+    /**
+     * An unknown key in a range is only caught while strict mode is already on
+     *
+     * filter() drops the key on the way in, so by the time the request is built the query holds a
+     * well-formed filter[preis_von] and there is nothing left to object to. Catching it later would
+     * mean recording every dropped key on the query in case strict mode is switched on afterwards.
+     * The other rejections do hold both ways round, which
+     * testARejectionHoldsWhicheverWayRoundStrictIsSwitchedOn covers.
+     */
+    public function testAnUnknownRangeKeyIsOnlyCaughtWhileStrictModeIsOn(): void
+    {
+        $query = $this->query()->filterByPrice(['min' => 1, 'foo' => 2])->strict();
+
+        $this->assertSame(['filter' => ['preis_von' => 1]], $query->getParams());
+    }
+
+    /**
+     * A value the normaliser would throw away is refused, not dropped
+     *
+     * @dataProvider discardedValueProvider
+     */
+    public function testAValueTheApiCannotUseThrows(string $call, $value, string $expected): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage($expected);
+
+        $this->query()->strict()->$call($value);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: mixed, 2: string}>
+     */
+    public function discardedValueProvider(): array
+    {
+        $hint = '. Pass a string, or an object with a __toString().';
+
+        return [
+            'as the value'   => ['filterByKeyword', new \stdClass(), 'filter[stichwort] cannot take stdClass' . $hint],
+            'as a range end' => ['filterByPrice', ['min' => new \stdClass()], 'filter[preis] cannot take stdClass' . $hint],
+            'inside a list'  => ['filterByZipCode', ['1010', new \stdClass()], 'filter[plz] cannot take stdClass' . $hint],
+            'a date object'  => ['filterByKeyword', new \DateTime('2026-01-01'), 'filter[stichwort] cannot take DateTime' . $hint],
+            'one level down' => ['filterByPrice', ['min' => [new \stdClass()], 'max' => 5], 'filter[preis] cannot take stdClass' . $hint],
+        ];
+    }
+
+    /**
+     * An omitted value is not a wrong one, and a stringable object is a value
+     *
+     * A search form with an optional input submits an empty one on every request. Refusing those
+     * would break the form the moment strict mode was switched on, so they are still dropped.
+     */
+    public function testAnOmittedValueAndAStringableObjectStillPass(): void
+    {
+        $stringable = new class {
+            public function __toString(): string
+            {
+                return '1010';
+            }
+        };
+
+        $this->assertSame([], $this->query()->strict()->filterByKeyword(null)->getParams());
+        $this->assertSame([], $this->query()->strict()->filterByKeyword('')->getParams());
+        $this->assertSame([], $this->query()->strict()->filterByZipCode([])->getParams());
+
+        $this->assertSame(
+            ['filter' => ['plz' => ['1010']]],
+            $this->query()->strict()->filterByZipCode(['1010', ''])->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['preis_bis' => 5]],
+            $this->query()->strict()->filterByPrice(['min' => '', 'max' => 5])->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['plz' => '1010']],
+            $this->query()->strict()->filterByZipCode($stringable)->getParams()
+        );
+    }
+
+    /**
+     * A discarded value is only caught while strict mode is already on
+     *
+     * The same limit as testAnUnknownRangeKeyIsOnlyCaughtWhileStrictModeIsOn. filter() has dropped
+     * the object by the time the request is built, so there is nothing left to refuse.
+     */
+    public function testADiscardedValueIsOnlyCaughtWhileStrictModeIsOn(): void
+    {
+        $query = $this->query()->filterByKeyword(new \stdClass())->strict();
+
+        $this->assertSame([], $query->getParams());
+    }
+
+    /**
+     * A range written as its two wire names is already two single values
+     */
     public function testOneEndOfARangeTakesASingleValue(): void
     {
         $this->expectException(InvalidFilterValueException::class);
@@ -465,6 +626,66 @@ class StrictModeTest extends TestCase
         }
 
         $this->fail('a realty level filter was accepted next to all()');
+    }
+
+    /**
+     * Every rejection, run with strict() called before the offending call and after it
+     *
+     * A query can be switched to strict at any point, and until the request was checked where it
+     * is built, everything set beforehand escaped every rule: filterByPrice(500000)->strict() was
+     * sent. The rules still run as each value is set, which is where the better message comes
+     * from, and this is the backstop.
+     *
+     * The exception class is not asserted here. One case legitimately differs: a min on a filter
+     * with no range is filter[miete] when the rule runs at the setter, and filter[miete_von] by
+     * the time the request is built, which is a name the api genuinely does not have. Both
+     * implement JustimmoException, which is what a caller catches.
+     *
+     * @dataProvider rejectedCallProvider
+     */
+    public function testARejectionHoldsWhicheverWayRoundStrictIsSwitchedOn(string $kind, callable $call): void
+    {
+        $this->assertRejects($kind, $call, true);
+        $this->assertRejects($kind, $call, false);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: callable}>
+     */
+    public function rejectedCallProvider(): array
+    {
+        return [
+            'unknown filter name'        => ['realty', function ($q) { return $q->filterByNonsense('x'); }],
+            'plain on a range filter'    => ['realty', function ($q) { return $q->filterByPrice(500000); }],
+            'list on a single value'     => ['realty', function ($q) { return $q->filterByKeyword(['haus', 'garten']); }],
+            'a list inside a list'       => ['realty', function ($q) { return $q->filterByZipCode([['1010']]); }],
+            'a value outside an enum'    => ['realty', function ($q) { return $q->filterByRent(7); }],
+            'a min on a plain filter'    => ['realty', function ($q) { return $q->filterByRent(['min' => 0]); }],
+            'a list as a range bound'    => ['realty', function ($q) { return $q->filterByPrice(['min' => [1, 2]]); }],
+            'an unknown picture size'    => ['realty', function ($q) { return $q->setPicturesize('thumb'); }],
+            'an employee size on realty' => ['realty', function ($q) { return $q->setPicturesize('user_small'); }],
+            'all() and a realty filter'  => ['project', function ($q) { return $q->all()->filterByRent(1); }],
+        ];
+    }
+
+    /**
+     * Runs one case and fails unless the sdk refused it
+     */
+    private function assertRejects(string $kind, callable $call, bool $strictFirst): void
+    {
+        $query = $kind === 'project' ? $this->projectQuery() : $this->query();
+        $when  = $strictFirst ? 'strict() first' : 'strict() last';
+
+        try {
+            $strictFirst ? $call($query->strict()) : $call($query)->strict();
+            $query->findIds();
+        } catch (JustimmoException $e) {
+            $this->assertInstanceOf(JustimmoException::class, $e, $when);
+
+            return;
+        }
+
+        $this->fail('the call was sent with ' . $when);
     }
 
     private function projectQuery(): ProjectQuery

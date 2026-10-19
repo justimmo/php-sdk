@@ -148,10 +148,16 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * Every exception the sdk raises implements Justimmo\Exception\JustimmoException, so one catch
+     * covers the api failures as well as the two declared below.
+     *
      * @param int $page
      * @param int $maxPerPage
      *
      * @return \Justimmo\Pager\ListPager
+     *
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
      */
     public function paginate($page = 1, $maxPerPage = 10)
     {
@@ -170,11 +176,17 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * Every exception the sdk raises implements Justimmo\Exception\JustimmoException, so one catch
+     * covers the api failures as well as the two declared below.
+     *
      * @return \Justimmo\Pager\ListPager
+     *
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
      */
     public function find()
     {
-        $this->assertFiltersApplyWithAll();
+        $this->assertTheRequestIsSupported();
 
         $method   = $this->getListCall();
         $response = $this->api->$method($this->params);
@@ -187,7 +199,13 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * Every exception the sdk raises implements Justimmo\Exception\JustimmoException, so one catch
+     * covers the api failures as well as the two declared below.
+     *
      * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project|null
+     *
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
      */
     public function findOne()
     {
@@ -198,12 +216,20 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * Every exception the sdk raises implements Justimmo\Exception\JustimmoException, so one catch
+     * covers the api failures as well as the two declared below.
+     *
      * @param int $pk
      *
      * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project
+     *
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
      */
     public function findPk($pk)
     {
+        $this->assertTheRequestIsSupported();
+
         $params = [];
         foreach ($this->getDetailParams() as $name) {
             if (isset($this->params[$name])) {
@@ -238,11 +264,17 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * Get an array of realty, employee, or project ids
      *
+     * Every exception the sdk raises implements Justimmo\Exception\JustimmoException, so one catch
+     * covers the api failures as well as the two declared below.
+     *
      * @return array
+     *
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
      */
     public function findIds()
     {
-        $this->assertFiltersApplyWithAll();
+        $this->assertTheRequestIsSupported();
 
         $params = $this->params;
 
@@ -375,6 +407,7 @@ abstract class AbstractQuery implements QueryInterface
     public function filter($key, $value = null)
     {
         $this->assertFilterIsSupported($key, 'filter[' . $key . ']');
+        $this->assertFilterValueSurvivesNormalisation($key, $value);
 
         $value = $this->normaliseFilterValue($value);
 
@@ -446,7 +479,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      *   - a plain value on a filter which only has a range form. filterByPrice(500000) sends
      *     filter[preis], which does not exist; the api has filter[preis_von] and filter[preis_bis]
-     *   - a list on a filter which takes a single value
+     *   - a list on a filter which takes a single value, or a list inside a list
      *   - a value outside an enum the spec documents
      *
      * The value has already been through normaliseFilterValue(), so an empty one never arrives
@@ -482,6 +515,27 @@ abstract class AbstractQuery implements QueryInterface
                 $this->rejectFilterValue($key, $value, 'has no range, a min or a max was given. It takes a plain value.');
             }
 
+            // min and max are the only keys the range branch of filter() reads. Any other one was
+            // dropped there, so a typo used to narrow the search to the end which was spelled right
+            $unknown = array_diff(array_keys($value), ['min', 'max']);
+
+            if ($unknown !== []) {
+                $this->rejectFilterValue($key, $value, 'takes min and max. It does not know '
+                    . implode(', ', array_map([$this, 'describeFilterValue'], $unknown)) . '.');
+            }
+
+            // each end of a range is one value. No range filter in the spec accepts a list, which
+            // the service script asserts when it writes the contract
+            foreach (['min', 'max'] as $bound) {
+                if (is_array($value[$bound] ?? null)) {
+                    $this->rejectFilterValue(
+                        $key,
+                        $value[$bound],
+                        'takes a single value as ' . $bound . ', a list was given.'
+                    );
+                }
+            }
+
             return;
         }
 
@@ -494,6 +548,11 @@ abstract class AbstractQuery implements QueryInterface
             $this->rejectFilterValue($key, $value, 'takes a single value, a list was given.');
         }
 
+        // a list carries single values. A list inside it reached the wire as filter[plz][0][0]
+        if (is_array($value) && array_filter($value, 'is_array') !== []) {
+            $this->rejectFilterValue($key, $value, 'takes a list of single values, a nested list was given.');
+        }
+
         if (!is_array($filter['enum'] ?? null)) {
             return;
         }
@@ -504,6 +563,38 @@ abstract class AbstractQuery implements QueryInterface
                     . '. The api knows ' . implode(', ', array_map([$this, 'describeFilterValue'], $filter['enum'])) . '.');
             }
         }
+    }
+
+    /**
+     * Fails in strict mode when anything the query has collected is something the api cannot take
+     *
+     * Each rule also runs as the value is set, which is where the better message comes from: a
+     * magic call can name itself there, and the caller learns of the mistake on the line which
+     * made it. But strict() may be switched on after the filters were set, and until this existed
+     * everything set beforehand escaped every rule - so the request is checked once more where it
+     * is built, which is the one place the mode is always known.
+     *
+     * The filters are read as the wire sees them, so a range reaches this as its two bounds.
+     *
+     * @throws MethodNotFoundException
+     * @throws InvalidFilterValueException
+     */
+    private function assertTheRequestIsSupported(): void
+    {
+        if (!$this->isStrict()) {
+            return;
+        }
+
+        foreach ($this->params['filter'] ?? [] as $key => $value) {
+            $this->assertFilterIsSupported((string) $key, 'filter[' . $key . ']');
+            $this->assertFilterValueIsSupported((string) $key, $value);
+        }
+
+        if (isset($this->params['picturesize'])) {
+            $this->assertPictureSizesAreSupported((array) $this->params['picturesize']);
+        }
+
+        $this->assertFiltersApplyWithAll();
     }
 
     /**
@@ -623,6 +714,41 @@ abstract class AbstractQuery implements QueryInterface
     private function rejectFilterValue(string $key, mixed $value, string $problem): never
     {
         throw new InvalidFilterValueException('filter[' . $key . '] ' . $problem, $key, $value);
+    }
+
+    /**
+     * Fails in strict mode on a value normaliseFilterValue() is about to throw away
+     *
+     * An object which cannot say how to become a string is dropped, because serialising it by its
+     * public properties would send parameters the api has never heard of. Dropping it without a
+     * word is the problem: one filter becomes none, or a list comes back shorter, and the api
+     * answers 200 with the rows of a search nobody asked for.
+     *
+     * null, an empty string and an empty array are left alone. Those are an omitted value, not a
+     * wrong one, and a search form with an optional input submits them on every request.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertFilterValueSurvivesNormalisation(string $key, mixed $value): void
+    {
+        if (!$this->isStrict()) {
+            return;
+        }
+
+        // the normaliser drops an object at any depth, and an array it empties with it, so
+        // ['min' => [$object]] used to search on max alone
+        if (is_array($value)) {
+            foreach ($value as $one) {
+                $this->assertFilterValueSurvivesNormalisation($key, $one);
+            }
+
+            return;
+        }
+
+        if (is_object($value) && !method_exists($value, '__toString')) {
+            $this->rejectFilterValue($key, $value, 'cannot take ' . $value::class
+                . '. Pass a string, or an object with a __toString().');
+        }
     }
 
     /**
