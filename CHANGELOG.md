@@ -47,6 +47,7 @@
     * Strict mode is how 2.0.0 behaves. 2.0.0 removes the switch and checks every request, so switching it on now shows what the upgrade will reject
     * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
     * `Justimmo\Api\StrictModeInterface` carries the flag. It is separate from `JustimmoApiInterface`, so an api implemented outside the SDK keeps working and is simply never strict
+    * The rules run as each value is set, which is where the message naming the method comes from, and again where the request is built. So it makes no difference whether `strict()` is called before or after the filters
     * The first rule: a filter the api does not have throws `MethodNotFoundException` instead of being sent. This is the defect strict mode exists for — an unknown name used to reach the wire, where the api ignored it and answered 200 with the rows of a query that was never filtered, so a typo looked like a working search
     * `filterByFoo()` is reported by the method name, a direct `filter('foo', ...)` call by the parameter it was given
     * The wire names of a range, `filter[preis_von]` and `filter[preis_bis]`, are accepted next to the `['min' => …, 'max' => …]` form
@@ -54,7 +55,9 @@
     * `orderBy*()` is unaffected, and an endpoint which documents no filter rejects nothing
     * The second rule: a filter the api does have, handed a value it cannot take, throws `InvalidFilterValueException`
     * A plain value on a filter which only has a range. `filterByPrice(500000)` sent `filter[preis]`, which the api does not have — it has `filter[preis_von]` and `filter[preis_bis]` — so the search came back unfiltered. Six documented methods are affected: `filterByPrice()`, `filterByRooms()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. All six take `['min' => …, 'max' => …]`
-    * A list on a filter which takes a single value, and a min or a max on a filter which has no range
+    * A list on a filter which takes a single value, a list inside a list, a min or a max on a filter which has no range, and a list as either end of a range
+    * A key other than `min` and `max` in a range. `['min' => 1, 'von' => 2]` dropped the misspelled end and searched on the other one alone. It is caught while strict mode is on, not when it is switched on after the call, because the key is already gone by then
+    * A value the api cannot use. An object with no `__toString()` was dropped without a word, so `filterByCompletionDate(new DateTime(…))` has always returned the unfiltered list. `null`, an empty string and an empty array are still dropped: those are an omitted value, not a wrong one, and a search form with an optional input submits them on every request
     * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
     * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
     * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
