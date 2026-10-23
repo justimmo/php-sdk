@@ -587,6 +587,9 @@ abstract class AbstractQuery implements QueryInterface
 
         foreach ($this->params['filter'] ?? [] as $key => $value) {
             $this->assertFilterIsSupported((string) $key, 'filter[' . $key . ']');
+            // set() does not normalise, so an object it was given is still here and would vanish
+            // from the url
+            $this->assertFilterValueSurvivesNormalisation((string) $key, $value);
             $this->assertFilterValueIsSupported((string) $key, $value);
         }
 

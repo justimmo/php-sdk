@@ -665,6 +665,7 @@ class StrictModeTest extends TestCase
             'an unknown picture size'    => ['realty', function ($q) { return $q->setPicturesize('thumb'); }],
             'an employee size on realty' => ['realty', function ($q) { return $q->setPicturesize('user_small'); }],
             'all() and a realty filter'  => ['project', function ($q) { return $q->all()->filterByRent(1); }],
+            'an object passed to set()'  => ['realty', function ($q) { return $q->set('filter', ['stichwort' => new \stdClass()]); }],
         ];
     }
 
