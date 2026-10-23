@@ -53,6 +53,7 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
  * @method RealtyQuery orderByCreatedAt($direction = 'asc')
  * @method RealtyQuery orderByPublishedAt($direction = 'asc')
+ * @method RealtyQuery orderByRooms($direction = 'asc')
  * @method RealtyQuery orderByZipCode($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
@@ -131,8 +132,33 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
+     * Filters by the date a realty was created.
+     *
+     * The api has no filter[created_at] and never had one, so this has always been discarded and
+     * the search came back unfiltered. Strict mode rejects it.
+     *
+     * @deprecated The api has no such filter. There is no replacement; filter by
+     *             filterByUpdatedAt() if a date range is what you need. Removed in 2.x
+     *
+     * @param string|array<string, mixed> $value
+     *
+     * @return $this
+     */
+    public function filterByCreatedAt($value)
+    {
+        $key = $this->mapper->getFilterPropertyName('CreatedAt');
+
+        $this->assertFilterIsSupported($key, 'filterByCreatedAt()');
+
+        return $this->filter($key, $value);
+    }
+
+    /**
      * An alias of filterByTag(), both build filter[tag_name]. The api has no realty category
-     * filter of its own, so this name is deprecated in 1.5 and removed in 2.x
+     * filter of its own, so this name says something the api does not have.
+     *
+     * @deprecated Use filterByTag(). Both build filter[tag_name]; this name suggests a filter
+     *             which does not exist. Removed in 2.x
      *
      * @param string|array<int, string> $value
      *

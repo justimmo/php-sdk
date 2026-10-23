@@ -432,7 +432,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @throws MethodNotFoundException
      */
-    private function assertFilterIsSupported(string $key, string $called): void
+    protected function assertFilterIsSupported(string $key, string $called): void
     {
         $supported = $this->supportedFilters();
 

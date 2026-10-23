@@ -11,6 +11,16 @@
 * `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
     * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
     * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
+* `RealtyQuery::orderByRooms()` is added
+    * A realty list can be sorted by the number of rooms, and no method reached that
+* `orderBy('UpdatedAt')` sorts by `updated_at`, the same as `orderByUpdatedAt()`
+    * The documentation says `orderByXXX()` is a shortcut for `orderBy('XXX')`. For this one column it was not: the method was corrected years ago to send `updated_at`, the mapping was not, so the long form sent `aktualisiert_am` — the filter name, which is not a column of the realty table and which the api answers with a 400
+    * `filterByUpdatedAt()` still sends `filter[aktualisiert_am_von]` and `filter[aktualisiert_am_bis]`. Filtering and sorting use different names for this one, which is why they now live in different tables
+* Two methods are deprecated. Both still work and are removed in 2.x
+    * `filterByRealtyCategory()` on both queries — an alias of `filterByTag()`, both build `filter[tag_name]`. The api has no realty category filter, so the name describes something which does not exist
+    * `RealtyQuery::filterByCreatedAt()` — the api has no `filter[created_at]`, so the filter has always been discarded and the search came back unfiltered. Strict mode rejects it
+* `JustimmoApi::getSdkVersion()` and `appendSdkAgent()` are `protected` rather than `private`
+    * A subclass which replaces `createRequest()` with its own transport loses the sdk's User-Agent token and version header, and had to reimplement them. It can now call ours
 * Builders are added for the filters the api documents and the SDK could not send
     * `RealtyQuery` gains `filterByCountryId()` for `land_id` and `filterByOwnerId()` for `owner_id`
     * `ProjectQuery` gains fifteen. Thirteen reuse the names `RealtyQuery` already gives the same filters, so one method means one thing on both queries: `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. `filterByProjectPropertyNumber()` is new
@@ -41,8 +51,8 @@
     * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
     * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
     * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
-    * The sizes are read per endpoint from the spec, so `user_small` and `user_medium` are rejected on an objekt or projekt call. The api accepts them there only because one allowlist serves every endpoint, and they produce no usable realty picture
-    * The team calls document no picture size, so nothing is rejected on an `EmployeeQuery`
+    * The sizes are read per endpoint from the specification
+    * A picture size is not checked on an `EmployeeQuery`
     * The `alle=1` rule arrives later in this release
 
 ## 1.4.2
