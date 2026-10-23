@@ -1,71 +1,61 @@
 ## 1.5.0
-* Two interfaces are added, so 2.0 can declare native types without a second breaking release
-    * `Justimmo\Pager\PagerInterface` — the public surface of a list result, implemented by `ListPager` unchanged. It carries native parameter types, which an implementation may omit, and no return types, which a subclass could not
-    * `Justimmo\Model\ModelInterface` — marks an entity the api returns, implemented by `Realty`, `Project` and `Employee`. Deliberately empty; the three share no method worth requiring
-* The parameters the api officially supports are generated into the SDK instead of being maintained by hand
-    * `bin/generate-supported-parameters.php` reads `data/sdk-supported-parameters.json`, which the service repo writes from the hand-authored spec, and emits `SupportedParameters`. The output is committed, and the SDK never reads the JSON at runtime
-    * `--check` fails when the generated php and the JSON have drifted apart
-    * Both parameter levels of the spec are read, so `limit`, `offset`, `culture`, `picturesize` and `showDetails` are included
-    * `Justimmo\Model\Mapper\SupportedParametersInterface`, implemented by `AbstractMapper`, exposes the data per query call
-    * `SupportedParameters::SPEC_VERSION` and `SPEC_HASH` record the spec the data came from. The hash covers the accepted parameters only, so a reworded description or a version bump does not trigger a regeneration
-* `Justimmo\Exception\InvalidFilterValueException` is added, for a known filter handed a value it cannot take
-    * It extends `InvalidArgumentException` and implements `JustimmoException`, so it is catchable either way
-    * `getFilter()` and `getValue()` name what was rejected, so a caller does not have to read the message to find out
-* Twenty six setters on `Realty`, `Project`, `Employee`, `Attachment` and `RealtyInquiryRequest` return `$this`, as the other setters of those classes already did
-    * They returned nothing, so a call could not be chained off them. The change is additive: a call which returned `null` now returns the object, and chaining off it no longer fatals
-    * `Project::setSaleStart()` was the only one whose docblock noticed, and it promised `$this` while returning nothing
-* The public surface says what it takes and what it returns
-    * `@param` and `@return` are added to every public method which had neither, so 2.0 can declare those types natively and an integrator sees the signature a release before it is enforced
-    * `QueryInterface` documents `PagerInterface` and `ModelInterface`, which is what those two interfaces were added for
-    * Seven methods are left undocumented on purpose, because the class contradicts the interface it implements: `JustimmoNullApi::callExpose()` returns null where `JustimmoApiInterface` says string, and the stub mappers `BasicDataMapper` and `RealtyInquiryMapper` return nothing from `getSetter()`, `getProperty()` and `getType()` where `MapperInterface` says string. They have to be resolved before those types can be declared
-* `RealtyQuery::orderByRooms()` is added
-    * A realty list can be sorted by the number of rooms, and no method reached that
+* Upgrading from 1.4 needs no change. Every change below is additive or fixes a call which did not do what it said
+    * `orderBy*()` calls which the api answered with a 400 now sort, and `orderBy('UpdatedAt')` sorts by the same column as `orderByUpdatedAt()`
+    * An ids call no longer adds `culture`, and a realty detail call no longer sends what `allProjectRealties()` set. The SDK caches a response under its url, and these urls change. So after the upgrade, each such call is fetched from the api once, and cached again
+* Preparing for 2.0.0 needs changes. Strict mode is new in 1.5.0, and you switch it on yourself. In 2.0.0 it is always on, and the switch is removed. Lines marked [Strict] below take effect only while strict mode is switched on in 1.5.0, and so do the lines under them. In 2.0.0 they are always on
+    * Switch strict mode on with `$api->setStrict(true)` and fix what it rejects. What strict mode rejects in 1.5.0, 2.0.0 will reject too
+    * Pass a range to the six methods which only have one. `filterByRooms(3)` becomes `filterByRooms(['min' => 3, 'max' => 3])`. The six are listed under strict mode below
+    * Replace the two deprecated methods, `filterByRealtyCategory()` and `RealtyQuery::filterByCreatedAt()`. Both are removed in 2.0.0
+* Two interfaces are added
+    * `Justimmo\Pager\PagerInterface` — the public surface of a list result, implemented by `ListPager`
+    * `Justimmo\Model\ModelInterface` — marks an entity the api returns, implemented by `Realty`, `Project` and `Employee`. It has no methods
+* `Justimmo\Model\Mapper\SupportedParametersInterface` is added. A mapper lists the filters and parameters the api supports for each query call
+    * `getSupportedFilters()` and `getSupportedParameters()` return the lists, and `getSpecVersion()` returns the version of the api specification they come from. All three work with strict mode off
+    * The lists inform, they do not restrict. With strict mode off, every filter is sent as in 1.4.2, whether it is on the list or not
+    * [Strict] In strict mode, a filter, a value or a picture size which the list does not allow is refused with an exception instead of being sent
+* Twenty-six setters on `Realty`, `Project`, `Employee`, `Attachment` and `RealtyInquiryRequest` return `$this`, as the other setters of those classes already did
+    * A call which returned `null` now returns the object, so it can be chained
+* Public methods document what they take and what they return
+    * The `@param` and `@return` tags show the types 2.0.0 will declare natively
+* `RealtyQuery::orderByRooms()` and `RealtyQuery::orderByPublishedAt()` are added
 * `orderBy('UpdatedAt')` sorts by `updated_at`, the same as `orderByUpdatedAt()`
-    * The documentation says `orderByXXX()` is a shortcut for `orderBy('XXX')`. For this one column it was not: the method was corrected years ago to send `updated_at`, the mapping was not, so the long form sent `aktualisiert_am` — the filter name, which is not a column of the realty table and which the api answers with a 400
-    * `filterByUpdatedAt()` still sends `filter[aktualisiert_am_von]` and `filter[aktualisiert_am_bis]`. Filtering and sorting use different names for this one, which is why they now live in different tables
-* Two methods are deprecated. Both still work and are removed in 2.x
-    * `filterByRealtyCategory()` on both queries — an alias of `filterByTag()`, both build `filter[tag_name]`. The api has no realty category filter, so the name describes something which does not exist
-    * `RealtyQuery::filterByCreatedAt()` — the api has no `filter[created_at]`, so the filter has always been discarded and the search came back unfiltered. Strict mode rejects it
+    * It sent `aktualisiert_am` before, which the api answers with a 400. `filterByUpdatedAt()` is unchanged
+* Two methods are deprecated. Both still work and are removed in 2.0.0
+    * `filterByRealtyCategory()` on both queries. Use `filterByTag()`, which builds the same filter
+    * `RealtyQuery::filterByCreatedAt()`. The api has no `created_at` filter, so the search has always come back unfiltered. Strict mode rejects it
 * `JustimmoApi::getSdkVersion()` and `appendSdkAgent()` are `protected` rather than `private`
-    * A subclass which replaces `createRequest()` with its own transport loses the sdk's User-Agent token and version header, and had to reimplement them. It can now call ours
-* Builders are added for the filters the api documents and the SDK could not send
-    * `RealtyQuery` gains `filterByCountryId()` for `land_id` and `filterByOwnerId()` for `owner_id`
-    * `ProjectQuery` gains fifteen. Thirteen reuse the names `RealtyQuery` already gives the same filters, so one method means one thing on both queries: `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. `filterByProjectPropertyNumber()` is new
-    * `filterByArea()` sends `sort_flaeche` on an objekt query and `flaeche` on a projekt one. Both are the same column; projekt simply has no `sort_flaeche`
-    * `RealtyQuery::orderByPublishedAt()` is added. `published_at` is one of the six columns the api sorts by and no method reached it
-* Sorting has a mapping of its own, which extends the filter mapping
-    * The api spells the two differently in one place: a realty is filtered by `aktualisiert_am` and sorted by `updated_at`. One table serving both meant that name could only be right for one of them
-    * `Justimmo\Model\Mapper\OrderMappingInterface` carries the sort columns. It is separate from `MapperInterface`, so a mapper written outside the SDK keeps working and keeps using its filter names for sorting
-    * It inherits the filter mapping and overrides only the names where the two differ, so everything which translated for sorting before still does
-    * `ProjectQuery::orderByCreatedAt()` and `orderByUpdatedAt()` now send `created_at` and `updated_at`. They sent the method name itself before, which the api does not sort by
+    * A subclass which replaces `createRequest()` with its own transport can call them, and keeps the SDK's User-Agent token and version header
+* Builders are added for filters the api documents
+    * `RealtyQuery` gains `filterByCountryId()` and `filterByOwnerId()`
+    * `ProjectQuery` gains `filterByBuy()`, `filterByRent()`, `filterByPrice()`, `filterByRooms()`, `filterByZipCode()`, `filterByPropertyNumber()`, `filterByRealtyTypeId()`, `filterBySubRealtyTypeId()`, `filterByStatusId()`, `filterByOwnerId()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()`, `filterBySurfaceArea()` and `filterByProjectPropertyNumber()`. Except the last one, each has the same name and meaning as on `RealtyQuery`
+* Sorting has a mapping of its own
+    * `Justimmo\Model\Mapper\OrderMappingInterface` carries the sort column names. A mapper written outside the SDK does not need it, and keeps sorting by its filter names
+    * `ProjectQuery::orderByCreatedAt()` and `orderByUpdatedAt()` now sort. Before, they sent a name the api does not sort by
 * Parameters are no longer sent to endpoints which do not accept them
-    * `culture` is not added to `objekt/ids`, `projekt/ids` and `team/ids`. None of the three documents it, and an ids call answers with a plain array of ids, which has no text to translate. A culture passed by the caller is still sent
-    * `findPk()` carries only `picturesize` into `objekt/detail`. `alleProjektObjekte` and `objektIds` are documented by `projekt/detail` alone, and a project detail call is unchanged
-    * A filter, a sort or a limit left on the query is no longer carried into a detail call either
-    * This changes the url of an ids call and of a realty detail call once, so a cached response under the old url is missed once
-* Strict mode is added, opt-in and off by default. In strict mode the SDK rejects a request the api would silently ignore instead of sending it
-    * Strict mode is how 2.0.0 behaves. 2.0.0 removes the switch and checks every request, so switching it on now shows what the upgrade will reject
-    * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, `$query->strict(false)` opts a single query back out
-    * `Justimmo\Api\StrictModeInterface` carries the flag. It is separate from `JustimmoApiInterface`, so an api implemented outside the SDK keeps working and is simply never strict
-    * The rules run as each value is set, which is where the message naming the method comes from, and again where the request is built. So it makes no difference whether `strict()` is called before or after the filters
-    * The first rule: a filter the api does not have throws `MethodNotFoundException` instead of being sent. This is the defect strict mode exists for — an unknown name used to reach the wire, where the api ignored it and answered 200 with the rows of a query that was never filtered, so a typo looked like a working search
-    * `filterByFoo()` is reported by the method name, a direct `filter('foo', ...)` call by the parameter it was given
+    * An ids call no longer adds `culture`. A culture you set yourself is still sent
+    * A realty detail call no longer sends what `allProjectRealties()` set. The picture size is the only setting it takes from the query
+    * The SDK caches a response under its url, and these urls change. So after the upgrade, each such call is fetched from the api once, and cached again
+* The strict mode switch is added. It is off by default. 2.0.0 removes it because strict mode is always on there
+    * `$api->setStrict(true)` switches it on for every query built on that api, `$query->strict()` for one query, and `$query->strict(false)` switches one query back off
+    * `Justimmo\Api\StrictModeInterface` carries the flag. An api class written outside the SDK does not need it and is never strict
+    * It makes no difference whether `strict()` is called before or after the filters
+    * Two shapes are only caught while strict mode is already on: a key other than `min` and `max` in a range, and an object with no `__toString()`
+* [Strict] Strict mode rejects a request the api would silently ignore, instead of sending it
+    * `filter()`, `setPicturesize()`, `find()`, `findOne()`, `paginate()`, `findPk()` and `findIds()` declare the exceptions they throw in strict mode. In 2.0.0 they throw them whenever a rule is broken
+    * A filter the api does not have throws `MethodNotFoundException`. Before, the api ignored it and answered with an unfiltered list, so a typo looked like a working search
+    * The message names `filterByFoo()` when that method was called, or the parameter given to `filter()`
     * The wire names of a range, `filter[preis_von]` and `filter[preis_bis]`, are accepted next to the `['min' => …, 'max' => …]` form
-    * `filterByCreatedAt()` throws in strict mode. The api documents no `created_at` filter, so it has never been applied
-    * `orderBy*()` is unaffected, and an endpoint which documents no filter rejects nothing
-    * The second rule: a filter the api does have, handed a value it cannot take, throws `InvalidFilterValueException`
-    * A plain value on a filter which only has a range. `filterByPrice(500000)` sent `filter[preis]`, which the api does not have — it has `filter[preis_von]` and `filter[preis_bis]` — so the search came back unfiltered. Six documented methods are affected: `filterByPrice()`, `filterByRooms()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. All six take `['min' => …, 'max' => …]`
-    * A list on a filter which takes a single value, a list inside a list, a min or a max on a filter which has no range, and a list as either end of a range
-    * A key other than `min` and `max` in a range. `['min' => 1, 'von' => 2]` dropped the misspelled end and searched on the other one alone. It is caught while strict mode is on, not when it is switched on after the call, because the key is already gone by then
-    * A value the api cannot use. An object with no `__toString()` was dropped without a word, so `filterByCompletionDate(new DateTime(…))` has always returned the unfiltered list. `null`, an empty string and an empty array are still dropped: those are an omitted value, not a wrong one, and a search form with an optional input submits them on every request
-    * A value outside an enum the spec documents. Matched the way the request is rendered, so `true`, `1` and `"1"` are one value
-    * The message names what the api does accept, and `getFilter()` and `getValue()` carry the same in machine readable form
-    * The third rule: a picture size the api does not have throws `InvalidFilterValueException`. The api does not ignore an unknown size, it replaces it with the fallback of the endpoint, so a typo answers with pictures of a size nobody asked for and nothing in the response says so
-    * The sizes are read per endpoint from the specification
-    * A picture size is not checked on an `EmployeeQuery`
-    * The fourth and last rule: `all()` combined with a realty-level filter throws `InvalidFilterValueException`. `all()` asks for every project whether or not it still has matching realties, so the api applies the project-level filters and drops the realty-level ones — the search returns every project and nothing in the response says half the request was discarded
-    * `all()` on its own is untouched, and so is `all()` with a project-level filter such as `filterByProjectTag()`. Asking for every project with a given tag is a legitimate request which the api honours
-    * The check runs where the request is built, so it does not matter whether `all()` is called before or after the filter
+    * `filterByCreatedAt()` throws, because the api has no `created_at` filter
+    * `AbstractQuery::assertFilterIsSupported()` is `protected`, so a query subclass can check a filter name the same way
+    * `orderBy*()` is not checked, and an endpoint without filters rejects nothing
+    * A value a filter cannot take throws `InvalidFilterValueException`, which is new. It extends `InvalidArgumentException` and implements `JustimmoException`. The message names what the api accepts, and `getFilter()` and `getValue()` return what was rejected
+    * A plain value is rejected on a filter which only has a range. `filterByPrice(500000)` came back unfiltered. Six methods only have a range: `filterByPrice()`, `filterByRooms()`, `filterByArea()`, `filterByLivingArea()`, `filterByFloorArea()` and `filterBySurfaceArea()`. All six take `['min' => …, 'max' => …]`
+    * A list is rejected on a filter which takes a single value, and so are a list inside a list, a min or a max on a filter which has no range, and a list as either end of a range
+    * A key other than `min` and `max` in a range is rejected. `['min' => 1, 'von' => 2]` searched on the `min` alone
+    * An object with no `__toString()` is rejected. `filterByCompletionDate(new DateTime(…))` came back unfiltered. `null`, an empty string and an empty array are still dropped silently, as an omitted value
+    * A value outside the values a filter allows is rejected. `true`, `1` and `"1"` count as the same value
+    * A picture size the endpoint does not have throws `InvalidFilterValueException`. Before, the api replaced it with a default size without saying so. A picture size is not checked on an `EmployeeQuery`
+    * `all()` together with a realty-level filter throws `InvalidFilterValueException`. The api drops the realty-level filters when `all()` is set, so the search returned every project. `all()` alone, or with a project-level filter such as `filterByProjectTag()`, is not affected
 
 ## 1.4.2
 * Bring the code to current PHP conventions. No behaviour changes
