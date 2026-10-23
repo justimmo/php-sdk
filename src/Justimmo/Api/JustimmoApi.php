@@ -643,8 +643,11 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * The installed version of this package, "unknown" if it cannot be determined,
      * eg. when the sdk is not installed with composer
+     *
+     * Protected rather than private so that a subclass which replaces createRequest() with its own
+     * transport can still identify itself as this sdk, instead of reimplementing the token
      */
-    private static function getSdkVersion(): string
+    protected static function getSdkVersion(): string
     {
         if (self::$sdkVersion === null) {
             $version = null;
@@ -725,8 +728,11 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      *
      * The token is looked for at a product token boundary, at the start or after whitespace, so an
      * agent which merely ends with our name, eg. a fork called my-justimmo-php-sdk, still gets it.
+     *
+     * Protected rather than private for the same reason as getSdkVersion(): a transport written
+     * outside the sdk has to be able to attach the token itself.
      */
-    private static function appendSdkAgent(string $ownAgent): string
+    protected static function appendSdkAgent(string $ownAgent): string
     {
         $sdkAgent = 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')';
         $ownAgent = trim($ownAgent);

@@ -512,12 +512,15 @@ class RealtyMapper extends AbstractMapper
     /**
      * {@inheritdoc}
      *
-     * Only the names sorting adds are declared here. Everything else is inherited, so a filter
-     * name keeps translating for sorting as it did before the two tables were split.
+     * Only the names where sorting is not spelled like filtering are declared here. Everything else
+     * is inherited, so a filter name keeps translating for sorting as it did before the two tables
+     * were split.
      */
     protected function getOrderMapping(): array
     {
         return [
+            // the filter is aktualisiert_am, the sort column updated_at
+            'UpdatedAt'   => 'updated_at',
             // sortable, and not a filter at all
             'PublishedAt' => 'published_at',
         ] + $this->getFilterMapping();

@@ -39,11 +39,10 @@ class MappingTest extends TestCase
     ];
 
     /**
-     * Columns the api sorts by which no method reaches. orderByUpdatedAt() sends the filter name
-     * instead of updated_at, and is deprecated
+     * Columns the spec documents which no method reaches
      */
     const SORTS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => ['updated_at'],
+        'callRealtyList'  => [],
         'callProjectList' => [],
     ];
 
@@ -110,12 +109,12 @@ class MappingTest extends TestCase
     /**
      * @dataProvider queryCallProvider
      */
-    public function testEverySortColumnOfTheApiCanBeReached(string $call, string $mapper): void
+    public function testEveryDocumentedSortColumnCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
             self::SORTS_WITHOUT_A_METHOD[$call],
             array_diff($this->sortColumnsOfTheApi($call), $this->sortColumns($mapper)),
-            $call . ': the api sorts by these columns and no method reaches them'
+            $call . ': the spec documents these sort columns and no method reaches them'
         );
     }
 
@@ -187,17 +186,17 @@ class MappingTest extends TestCase
     }
 
     /**
-     * The sort mapping inherits the filter mapping and adds the columns which are not filters
+     * The sort mapping overrides the filter mapping only where the api spells the two differently
      */
-    public function testSortingExtendsTheFilterMapping(): void
+    public function testSortingOverridesTheFilterMappingWhereTheyDiffer(): void
     {
         $mapper = new RealtyMapper();
 
-        // a column which is sortable and not a filter
-        $this->assertSame('PublishedAt', $mapper->getFilterPropertyName('PublishedAt'));
-        $this->assertSame('published_at', $mapper->getOrderPropertyName('PublishedAt'));
+        // the one name which differs
+        $this->assertSame('aktualisiert_am', $mapper->getFilterPropertyName('UpdatedAt'));
+        $this->assertSame('updated_at', $mapper->getOrderPropertyName('UpdatedAt'));
 
-        // and one of the many which are both
+        // and one of the many which do not
         $this->assertSame('zustand_id', $mapper->getFilterPropertyName('Condition'));
         $this->assertSame('zustand_id', $mapper->getOrderPropertyName('Condition'));
     }
@@ -224,6 +223,49 @@ class MappingTest extends TestCase
         $this->assertSame(
             ['orderby' => 'published_at', 'ordertype' => 'asc'],
             $this->realtyQuery()->orderByPublishedAt()->getParams()
+        );
+    }
+
+    /**
+     * The documentation says orderByXXX() is a shortcut for orderBy('XXX'), so the two have to
+     * send the same thing. They did not for UpdatedAt: the method was corrected years ago to send
+     * updated_at, the mapping was not, and orderBy('UpdatedAt') sent the filter name, which the
+     * api answers with a 400
+     */
+    public function testTheTwoSortFormsAgree(): void
+    {
+        $mapper = new RealtyMapper();
+
+        foreach (['Price', 'PropertyNumber', 'ZipCode', 'CreatedAt', 'PublishedAt', 'UpdatedAt', 'Rooms'] as $name) {
+            $method = $this->realtyQuery()->{'orderBy' . $name}('desc')->getParams();
+            $plain  = $this->realtyQuery()->orderBy($name, 'desc')->getParams();
+
+            $this->assertSame($plain, $method, 'orderBy' . $name . '() and orderBy(\'' . $name . '\')');
+            $this->assertContains($mapper->getOrderPropertyName($name), $plain);
+        }
+    }
+
+    /**
+     * A realty list can be sorted by the number of rooms, and no method reached that
+     */
+    public function testRoomsCanBeSortedBy(): void
+    {
+        $this->assertSame(
+            ['orderby' => 'zimmer', 'ordertype' => 'desc'],
+            $this->realtyQuery()->orderByRooms('desc')->getParams()
+        );
+    }
+
+    public function testUpdatedAtIsSortedByTheColumnAndFilteredByTheOtherName(): void
+    {
+        $this->assertSame(
+            ['orderby' => 'updated_at', 'ordertype' => 'asc'],
+            $this->realtyQuery()->orderByUpdatedAt()->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['aktualisiert_am_von' => 1]],
+            $this->realtyQuery()->filterByUpdatedAt(['min' => 1])->getParams()
         );
     }
 
