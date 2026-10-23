@@ -296,6 +296,34 @@ class MappingTest extends TestCase
     }
 
     /**
+     * A subclass of a mapper of the SDK inherits the sort mapping, and may translate names of its
+     * own by replacing getFilterPropertyName(). Sorting went through that method before 1.5.0 and
+     * still has to, except for a name which sorting spells differently
+     */
+    public function testASubclassWhichTranslatesItsOwnNamesKeepsSortingByThem(): void
+    {
+        $mapper = new class extends RealtyMapper {
+            public function getFilterPropertyName($modelPropertyName)
+            {
+                if ($modelPropertyName === 'Custom') {
+                    return 'custom_column';
+                }
+
+                return parent::getFilterPropertyName($modelPropertyName);
+            }
+        };
+
+        $query = new RealtyQuery(new JustimmoNullApi(), new RealtyWrapper($mapper), $mapper);
+
+        $this->assertSame(
+            ['orderby' => 'custom_column', 'ordertype' => 'asc'],
+            $query->orderBy('Custom')->getParams()
+        );
+
+        $this->assertSame('updated_at', $mapper->getOrderPropertyName('UpdatedAt'));
+    }
+
+    /**
      * Asserts that a difference is exactly the one we know about
      *
      * The expectation is a list rather than a count, so a new gap cannot hide behind an old one,

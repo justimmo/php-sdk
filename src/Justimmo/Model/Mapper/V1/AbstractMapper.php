@@ -73,7 +73,16 @@ abstract class AbstractMapper implements MapperInterface, OrderMappingInterface,
      */
     public function getOrderPropertyName(string $column): string
     {
-        return $this->translate($this->getOrderMapping(), $column);
+        $sort = $this->translate($this->getOrderMapping(), $column);
+
+        // a name which sorting spells differently wins. Every other one is translated as a filter
+        // name through the public method, as before 1.5.0, so a subclass which replaced it keeps
+        // sorting by its own names
+        if ($sort !== $this->translate($this->getFilterMapping(), $column)) {
+            return $sort;
+        }
+
+        return $this->getFilterPropertyName($column);
     }
 
     /**
