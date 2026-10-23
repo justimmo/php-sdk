@@ -23,14 +23,31 @@ use Psr\Log\NullLogger;
  *
  * @package Justimmo\Api
  */
-class JustimmoApi implements JustimmoApiInterface
+class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
+    /**
+     * Calls which the culture is not sent to
+     *
+     * None of the three documents the parameter, and none of them could use it: an ids call
+     * answers with a plain array of ids, which carries no translatable text at all.
+     *
+     * @var array<int, string>
+     */
+    private const CALLS_WITHOUT_CULTURE = ['objekt/ids', 'projekt/ids', 'team/ids'];
+
     /**
      * api versions supported
      *
      * @var array
      */
     protected $supportedVersions = ['v1'];
+
+    /**
+     * Whether the SDK rejects a request the api would silently ignore, instead of sending it
+     *
+     * @var bool
+     */
+    protected $strict = false;
 
     /**
      * base url where the justimmo api is located
@@ -314,7 +331,7 @@ class JustimmoApi implements JustimmoApiInterface
     {
         $startTime = microtime(true);
 
-        if (!array_key_exists('culture', $params)) {
+        if (!array_key_exists('culture', $params) && !in_array($call, self::CALLS_WITHOUT_CULTURE, true)) {
             $params['culture'] = $this->culture;
         }
 
@@ -559,6 +576,24 @@ class JustimmoApi implements JustimmoApiInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setStrict(bool $strict = true): static
+    {
+        $this->strict = $strict;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isStrict(): bool
+    {
+        return $this->strict;
+    }
+
+    /**
      * @param string $value
      *
      * @return $this
@@ -608,8 +643,11 @@ class JustimmoApi implements JustimmoApiInterface
     /**
      * The installed version of this package, "unknown" if it cannot be determined,
      * eg. when the sdk is not installed with composer
+     *
+     * Protected rather than private so that a subclass which replaces createRequest() with its own
+     * transport can still identify itself as this sdk, instead of reimplementing the token
      */
-    private static function getSdkVersion(): string
+    protected static function getSdkVersion(): string
     {
         if (self::$sdkVersion === null) {
             $version = null;
@@ -690,8 +728,11 @@ class JustimmoApi implements JustimmoApiInterface
      *
      * The token is looked for at a product token boundary, at the start or after whitespace, so an
      * agent which merely ends with our name, eg. a fork called my-justimmo-php-sdk, still gets it.
+     *
+     * Protected rather than private for the same reason as getSdkVersion(): a transport written
+     * outside the sdk has to be able to attach the token itself.
      */
-    private static function appendSdkAgent(string $ownAgent): string
+    protected static function appendSdkAgent(string $ownAgent): string
     {
         $sdkAgent = 'justimmo-php-sdk/' . self::getSdkVersion() . ' (php ' . PHP_VERSION . ')';
         $ownAgent = trim($ownAgent);

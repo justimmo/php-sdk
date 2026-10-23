@@ -307,6 +307,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param string $title
+     *
+     * @return $this
      */
     public function setTitle($title)
     {
@@ -317,6 +319,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param string $suffix
+     *
+     * @return $this
      */
     public function setSuffix($suffix)
     {
@@ -327,6 +331,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param int $salutationId
+     *
+     * @return $this
      */
     public function setSalutationId($salutationId)
     {
@@ -337,6 +343,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param string $category
+     *
+     * @return $this
      */
     public function setCategory($category)
     {
@@ -363,14 +371,20 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param string $company
+     *
+     * @return $this
      */
     public function setCompany($company)
     {
         $this->company = $company;
+
+        return $this;
     }
 
     /**
      * @param bool $isRealtyOwner
+     *
+     * @return $this
      */
     public function setIsRealtyOwner($isRealtyOwner)
     {
@@ -389,6 +403,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param bool $realtyOwnerConsultationRequest
+     *
+     * @return $this
      */
     public function setRealtyOwnerConsultationRequest($realtyOwnerConsultationRequest)
     {
@@ -415,6 +431,8 @@ class RealtyInquiryRequest implements RequestInterface
 
     /**
      * @param bool $fundingInquiry
+     *
+     * @return $this
      */
     public function setFundingInquiry($fundingInquiry)
     {
@@ -427,12 +445,17 @@ class RealtyInquiryRequest implements RequestInterface
      * @param int[] $newsletter           An array of newsletter category ids of justimmo
      * @param bool  $doubleoptinCompleted Wether a double optin has a already been completed.
      *                                    If false, JUSTIMMO will handle double optin and send an email to the contact automatically
+     *
+     * @return void
      */
     public function registerForNewsletter(array $newsletter, bool $doubleoptinCompleted)
     {
         $this->newsletter = $newsletter;
     }
 
+    /**
+     * @return void
+     */
     public function send()
     {
         $this->api->postRealtyInquiry([

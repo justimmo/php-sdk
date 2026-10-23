@@ -138,15 +138,48 @@ class ProjectMapper extends AbstractMapper
     protected function getFilterMapping()
     {
         return [
-            'RealtyCategory' => 'tag_name',
-            'Tag'            => 'tag_name',
-            'ProjectTag'     => 'project_tag_name',
-            'Keyword'        => 'stichwort',
-            'FederalStateId' => 'bundesland_id',
-            'ProjectState'   => 'projekt_status',
-            'IsReference'    => 'referenz',
-            'CompletionDate' => 'fertigstellung',
-            'SaleStart'      => 'verkaufsstart',
+            'RealtyCategory'        => 'tag_name',
+            'Tag'                   => 'tag_name',
+            'ProjectTag'            => 'project_tag_name',
+            'Keyword'               => 'stichwort',
+            'FederalStateId'        => 'bundesland_id',
+            'ProjectState'          => 'projekt_status',
+            'IsReference'           => 'referenz',
+            'CompletionDate'        => 'fertigstellung',
+            'SaleStart'             => 'verkaufsstart',
+
+            // the fifteen the api documents and the SDK could not send. Thirteen reuse the names
+            // RealtyMapper already gives them, so one method means one thing on both queries
+            'Area'                  => 'flaeche',
+            'SurfaceArea'           => 'grundflaeche',
+            'Buy'                   => 'kauf',
+            'Rent'                  => 'miete',
+            'FloorArea'             => 'nutzflaeche',
+            'StatusId'              => 'objekt_status_id',
+            'RealtyTypeId'          => 'objektart_id',
+            'PropertyNumber'        => 'objektnummer',
+            'OwnerId'               => 'owner_id',
+            'ZipCode'               => 'plz',
+            'Price'                 => 'preis',
+            'ProjectPropertyNumber' => 'projekt_objektnummer',
+            'SubRealtyTypeId'       => 'subobjektart_id',
+            'LivingArea'            => 'wohnflaeche',
+            'Rooms'                 => 'zimmer',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * projekt sorts by created_at and updated_at, and neither of them is a filter, so both have to
+     * be declared here. Everything else is inherited from the filter mapping, as it was before the
+     * two tables were split.
+     */
+    protected function getOrderMapping(): array
+    {
+        return [
+            'CreatedAt' => 'created_at',
+            'UpdatedAt' => 'updated_at',
+        ] + $this->getFilterMapping();
     }
 }

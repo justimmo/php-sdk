@@ -54,6 +54,13 @@ class ProjectWrapper extends AbstractWrapper
         'erstellt_am',
     ];
 
+    /**
+     * Transforms a detail call into a Project.
+     *
+     * @param string|\SimpleXMLElement $data the raw response of the api call
+     *
+     * @return \Justimmo\Model\Project
+     */
     public function transformSingle($data)
     {
         $xml = new SimpleXMLElement($data);
@@ -116,14 +123,14 @@ class ProjectWrapper extends AbstractWrapper
         if (isset($xml->immobilien->immobilie)) {
             $wrapper = new RealtyWrapper(new RealtyMapper());
             foreach ($xml->immobilien->immobilie as $immobilie) {
-                $realty = $wrapper->transformSingle($immobilie->asXML());
+                $realty = $wrapper->transformSingle((string) $immobilie->asXML());
                 $project->addRealty($realty);
             }
         }
 
         if (isset($xml->kontaktperson)) {
             $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
-            $contact = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $contact = $employeeWrapper->transformSingle((string) $xml->kontaktperson->asXML());
             $project->setContact($contact);
         }
 
@@ -190,13 +197,20 @@ class ProjectWrapper extends AbstractWrapper
         return $project;
     }
 
+    /**
+     * Transforms a list call into a pager of Project objects.
+     *
+     * @param string|\SimpleXMLElement $data the raw response of the api call
+     *
+     * @return \Justimmo\Pager\ListPager
+     */
     public function transformList($data)
     {
         $xml = new SimpleXMLElement($data);
 
         $list = new ListPager();
         foreach ($xml->projekt as $projekt) {
-            $project = $this->transformSingle($projekt->asXML());
+            $project = $this->transformSingle((string) $projekt->asXML());
             $list->append($project);
         }
 
