@@ -4,6 +4,7 @@
     * [BC] `findIds()` throws `InvalidResponseException` when the body is not a JSON list. It returned `null` for a body which is not JSON, as if the api had found nothing, and an object or `null` for JSON which is not a list
     * A call which gets no answer, for example after a timeout, throws the new `Justimmo\Exception\ConnectionException`. It extends `\InvalidArgumentException`, which was thrown before, so an existing catch still catches it
 * The `@param` tags name the parameter and its type everywhere. A static analyser may now report calls which 2.0.0 will reject
+* [BC] A `user_defined_simplefield` no longer overwrites the official node of the same name. For a realty, `getTier()` returns `<etage>`, for example "5. Etage". The floor joined with its comment, which `getTier()` returned before, is in the new `getTierDescription()`. A realty without `<etage>` still gets the joined text from `getTier()` (#174)
 * Reading a realty with a final energy demand value no longer emits a deprecation notice on PHP 8.5
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 

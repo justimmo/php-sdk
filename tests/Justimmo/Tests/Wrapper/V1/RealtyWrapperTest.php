@@ -407,4 +407,59 @@ class RealtyWrapperTest extends TestCase
         $this->assertNull($energiepass->getFinalEnergyDemandClassFossil());
     }
 
+    public function testTheFloorComesFromTheOfficialNodeAndTheCombinedTextIsKept(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<geo><etage>5. Etage</etage><user_defined_simplefield feldname="etage">5. Etage / Dachgeschoss</user_defined_simplefield></geo>'
+        ));
+
+        $this->assertSame('5. Etage', $objekt->getTier());
+        $this->assertSame('5. Etage / Dachgeschoss', $objekt->getTierDescription());
+    }
+
+    public function testWithoutTheOfficialNodeTheFloorComesFromTheCombinedTextAsBefore(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<geo><user_defined_simplefield feldname="etage">5. Etage / Dachgeschoss</user_defined_simplefield></geo>'
+        ));
+
+        $this->assertSame('5. Etage / Dachgeschoss', $objekt->getTier());
+        $this->assertSame('5. Etage / Dachgeschoss', $objekt->getTierDescription());
+    }
+
+    public function testASimpleFieldDoesNotOverwriteAnOfficialNodeOfTheSameName(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<preise><user_defined_simplefield feldname="kaufpreis">1</user_defined_simplefield><kaufpreis>250000</kaufpreis></preise>'
+        ));
+
+        $this->assertSame(250000.0, $objekt->getPurchasePrice());
+    }
+
+    public function testASimpleFieldWithoutAnOfficialNodeStillSetsItsValue(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<preise><user_defined_simplefield feldname="monatlichekostenbrutto">250.5</user_defined_simplefield></preise>'
+        ));
+
+        $this->assertSame(250.5, $objekt->getMonthlyCosts());
+    }
+
+    public function testAnOfficialNodeOfOneRealtyDoesNotBlockTheNextOne(): void
+    {
+        $list = $this->wrapper->transformList(
+            '<?xml version="1.0"?><justimmo>'
+            . '<immobilie><preise><kaufpreis>250000</kaufpreis></preise></immobilie>'
+            . '<immobilie><preise><user_defined_simplefield feldname="kaufpreis">300000</user_defined_simplefield></preise></immobilie>'
+            . '</justimmo>'
+        );
+
+        $this->assertSame(250000.0, $list[0]->getPurchasePrice());
+        $this->assertSame(300000.0, $list[1]->getPurchasePrice());
+    }
+
+    private static function realty(string $blocks): string
+    {
+        return '<?xml version="1.0"?><justimmo><immobilie>' . $blocks . '</immobilie></justimmo>';
+    }
 }

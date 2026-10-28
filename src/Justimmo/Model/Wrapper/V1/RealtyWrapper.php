@@ -310,7 +310,15 @@ class RealtyWrapper extends AbstractWrapper
 
             $politicalDistrictId = $politicalDistrictName = null;
             foreach ($xml->geo->user_defined_simplefield as $simpleField) {
-                match ((string) ($simpleField->attributes()['feldname'] ?? '')) {
+                $name = (string) ($simpleField->attributes()['feldname'] ?? '');
+
+                // the floor joined with its comment, next to the plain floor in <etage>. It still goes
+                // through mapSimpleField() below, which fills getTier() only where <etage> is missing
+                if ($name === 'etage') {
+                    $objekt->setTierDescription(trim((string) $simpleField));
+                }
+
+                match ($name) {
                     'politischer_bezirk_id' => $politicalDistrictId = (int) $simpleField,
                     'politischer_bezirk'    => $politicalDistrictName = (string) $simpleField,
                     default                 => $this->mapSimpleField($simpleField, $objekt),
@@ -514,6 +522,10 @@ class RealtyWrapper extends AbstractWrapper
         $attributes = $this->attributesToArray($simpleField);
         if (array_key_exists('feldname', $attributes)) {
             $setter = $this->mapper->getSetter($attributes['feldname']);
+
+            if ($this->isSetByNode($model, $setter)) {
+                return;
+            }
 
             if (method_exists($this->mapper, $setter)) {
                 $this->mapper->$setter($simpleField, $model);
