@@ -25,7 +25,7 @@ abstract class AbstractMapper implements MapperInterface, OrderMappingInterface,
     /**
      * gets the setter for a api property name
      *
-     * @param $apiPropertyName
+     * @param string $apiPropertyName
      *
      * @return mixed
      */
@@ -37,7 +37,7 @@ abstract class AbstractMapper implements MapperInterface, OrderMappingInterface,
     }
 
     /**
-     * @param $apiPropertyName
+     * @param string $apiPropertyName
      *
      * @return string
      */
@@ -49,7 +49,7 @@ abstract class AbstractMapper implements MapperInterface, OrderMappingInterface,
     }
 
     /**
-     * @param $apiPropertyName
+     * @param string $apiPropertyName
      *
      * @return string
      */

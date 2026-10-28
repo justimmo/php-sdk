@@ -1784,7 +1784,7 @@ class Realty implements ModelInterface
     }
 
     /**
-     * @param                     $type
+     * @param string              $type
      * @param null|string|boolean $group
      *
      * @return array
@@ -2080,8 +2080,8 @@ class Realty implements ModelInterface
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string|array<int|string, string> $value
      *
      * @return $this
      */
@@ -2632,7 +2632,7 @@ class Realty implements ModelInterface
     }
 
     /**
-     * @param null|string $freetext3
+     * @param null|string $costsExplanation
      *
      * @return $this
      */
@@ -2732,8 +2732,8 @@ class Realty implements ModelInterface
     }
 
     /**
-     * @param $id
-     * @param $name
+     * @param int|string $id
+     * @param string $name
      *
      * @return $this
      */

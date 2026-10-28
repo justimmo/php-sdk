@@ -298,7 +298,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * generates a url for an api request
      *
-     * @param       $call
+     * @param string $call
      * @param array $params
      *
      * @return string
@@ -323,7 +323,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * Makes a call to the justimmo api
      *
-     * @param $call
+     * @param string $call
      * @param array $params
      *
      * @return mixed
@@ -631,8 +631,8 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * sets a specific option for curl requests
      *
-     * @param $key
-     * @param $value
+     * @param int $key
+     * @param mixed $value
      *
      * @return $this
      */

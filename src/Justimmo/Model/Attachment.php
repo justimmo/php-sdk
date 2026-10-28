@@ -190,8 +190,8 @@ class Attachment
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */

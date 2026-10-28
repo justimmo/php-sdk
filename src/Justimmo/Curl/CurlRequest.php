@@ -114,7 +114,7 @@ class CurlRequest implements CurlRequestInterface
     /**
      * retrieve an info about this curl request
      *
-     * @param $key
+     * @param string $key
      *
      * @return mixed
      * @throws CurlException
@@ -163,7 +163,7 @@ class CurlRequest implements CurlRequestInterface
     /**
      * sets a new set of options, overrides the old ones
      *
-     * @param $options
+     * @param array<int, mixed> $options
      *
      * @return $this
      */
@@ -177,8 +177,8 @@ class CurlRequest implements CurlRequestInterface
     /**
      * sets a specifig option for this curl request
      *
-     * @param $key
-     * @param $value
+     * @param int $key
+     * @param mixed $value
      *
      * @return $this
      */
@@ -192,7 +192,7 @@ class CurlRequest implements CurlRequestInterface
     /**
      * gets the value of an option in this curl request
      *
-     * @param $key
+     * @param int $key
      *
      * @return mixed
      * @throws CurlException
@@ -209,7 +209,7 @@ class CurlRequest implements CurlRequestInterface
     /**
      * removes an option from this curl request
      *
-     * @param $key
+     * @param int $key
      *
      * @return $this
      */

@@ -48,7 +48,7 @@ class MemcacheCache implements CacheInterface
     /**
      * removes a key entry from the cache
      *
-     * @param $key
+     * @param string $key
      *
      * @return bool
      */
@@ -60,7 +60,7 @@ class MemcacheCache implements CacheInterface
     /**
      * generates a cache key
      *
-     * @param $url
+     * @param string $url
      *
      * @return string
      */
