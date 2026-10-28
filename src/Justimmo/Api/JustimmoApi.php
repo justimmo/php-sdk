@@ -9,6 +9,7 @@ use Justimmo\Cache\NullCache;
 use Justimmo\Curl\CurlRequest;
 use Justimmo\Curl\CurlRequestInterface;
 use Justimmo\Exception\AuthenticationException;
+use Justimmo\Exception\ConnectionException;
 use Justimmo\Exception\InvalidRequestException;
 use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
@@ -361,8 +362,10 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 
         $response = $request->get();
 
+        // no answer at all, such as a timeout or a host which cannot be resolved. It was a plain
+        // InvalidArgumentException, which catch (JustimmoException $e) did not catch
         if ($request->getError()) {
-            $this->throwError('The Api call returned an error: "' . $request->getError() . '"');
+            $this->throwError('The Api call returned an error: "' . $request->getError() . '"', ConnectionException::class);
         }
 
         $statusCode = (int) $request->getStatusCode();

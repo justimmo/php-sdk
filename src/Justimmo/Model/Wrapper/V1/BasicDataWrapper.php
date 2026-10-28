@@ -4,11 +4,12 @@ namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
-use SimpleXMLElement;
 use function trim;
 
 class BasicDataWrapper implements BasicDataWrapperInterface
 {
+    use ParsesXml;
+
     /**
      * Transforms the country list into an array keyed by the country id.
      *
@@ -18,7 +19,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformCountries($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->land as $land) {
@@ -41,7 +42,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformFederalStates($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->bundesland as $bundesland) {
@@ -64,7 +65,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformZipCodes($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->postleitzahl as $postleitzahl) {
@@ -89,7 +90,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformRegions($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->region as $region) {
@@ -104,7 +105,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformPoliticalDistricts(mixed $data): array
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->politischer_bezirk as $politicalDistrict) {
@@ -124,7 +125,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformRealtyTypes($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->objektart as $objektart) {
@@ -147,7 +148,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformRealtyCategories($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $return = [];
         foreach ($xml->objektkategorie as $objektkategorie) {
@@ -169,7 +170,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
      */
     public function transformTenant($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         return (array) $xml->tenant;
     }

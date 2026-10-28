@@ -23,7 +23,8 @@ class JustimmoNullApi implements JustimmoApiInterface
      */
     public function callRealtyIds(array $params = [])
     {
-        return '{}';
+        // an ids call answers with a json list, so findIds() returns an empty array
+        return '[]';
     }
 
     /**
@@ -145,7 +146,8 @@ class JustimmoNullApi implements JustimmoApiInterface
      */
     public function callEmployeeIds(array $params = [])
     {
-        return $this->emptyXML();
+        // an ids call answers with a json list, like callRealtyIds()
+        return '[]';
     }
 
     /**
@@ -153,7 +155,8 @@ class JustimmoNullApi implements JustimmoApiInterface
      */
     public function callProjectIds(array $params = [])
     {
-        return $this->emptyXML();
+        // an ids call answers with a json list, like callRealtyIds()
+        return '[]';
     }
 
     protected function emptyXML()

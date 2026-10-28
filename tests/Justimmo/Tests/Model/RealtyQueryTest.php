@@ -3,6 +3,7 @@
 namespace Justimmo\Tests\Model;
 
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Exception\InvalidResponseException;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
@@ -79,6 +80,60 @@ class RealtyQueryTest extends TestCase
             587626,
             587622,
         ], $query->findIds());
+    }
+
+    /**
+     * A body which is not json came back as null, as if the api had found nothing
+     *
+     * @dataProvider bodyWhichIsNotJsonProvider
+     */
+    public function testFindIdsWithABodyWhichIsNotJsonThrows(string $body): void
+    {
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('The api answered with a body which is not valid JSON');
+
+        $this->getQuery(new MockJustimmoApi(['realtyIds' => $body]))->findIds();
+    }
+
+    public function bodyWhichIsNotJsonProvider(): array
+    {
+        return [
+            'an empty body'        => [''],
+            'an html error page'   => ['<html><body>502 Bad Gateway</body></html>'],
+            'a list which was cut' => ['[920153, 7285'],
+        ];
+    }
+
+    /**
+     * Valid json which is not a list must not pass for a result either
+     *
+     * @dataProvider jsonWhichIsNotAListProvider
+     */
+    public function testFindIdsWithJsonWhichIsNotAListThrows(string $body): void
+    {
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('The api answered with JSON which is not a list of ids');
+
+        $this->getQuery(new MockJustimmoApi(['realtyIds' => $body]))->findIds();
+    }
+
+    /**
+     * @return array<string, array{0: string}>
+     */
+    public function jsonWhichIsNotAListProvider(): array
+    {
+        return [
+            'null'            => ['null'],
+            'an error object' => ['{"error":"maintenance"}'],
+            'an empty object' => ['{}'],
+            'a number'        => ['5'],
+            'a string'        => ['"maintenance"'],
+        ];
+    }
+
+    public function testFindIdsWithAnEmptyListReturnsAnEmptyArray(): void
+    {
+        $this->assertSame([], $this->getQuery(new MockJustimmoApi(['realtyIds' => '[]']))->findIds());
     }
 
     /**

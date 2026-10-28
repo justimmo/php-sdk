@@ -7,10 +7,11 @@ use Justimmo\Model\Project;
 use Justimmo\Model\Garage;
 use Justimmo\Pager\ListPager;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
-use SimpleXMLElement;
 
 class ProjectWrapper extends AbstractWrapper
 {
+    use ParsesXml;
+
     protected $simpleMapping = [
         'id',
         'nummer',
@@ -63,7 +64,7 @@ class ProjectWrapper extends AbstractWrapper
      */
     public function transformSingle($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         if (isset($xml->projekt)) {
             $xml = $xml->projekt;
@@ -206,7 +207,7 @@ class ProjectWrapper extends AbstractWrapper
      */
     public function transformList($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $list = new ListPager();
         foreach ($xml->projekt as $projekt) {

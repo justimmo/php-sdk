@@ -9,6 +9,8 @@ use function array_key_exists;
 
 class EmployeeWrapper extends AbstractWrapper
 {
+    use ParsesXml;
+
     protected $simpleMapping = [
         'id',
         'email',
@@ -45,7 +47,7 @@ class EmployeeWrapper extends AbstractWrapper
      */
     public function transformSingle($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         if (isset($xml->mitarbeiter)) {
             $xml = $xml->mitarbeiter;
@@ -114,7 +116,7 @@ class EmployeeWrapper extends AbstractWrapper
      */
     public function transformList($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $transformed = new ListPager();
         foreach ($xml->kategorie as $kategorie) {

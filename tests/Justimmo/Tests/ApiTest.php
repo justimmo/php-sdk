@@ -5,6 +5,7 @@ use Composer\InstalledVersions;
 use Justimmo\Api\JustimmoApi;
 use Justimmo\Cache\NullCache;
 use Justimmo\Exception\AuthenticationException;
+use Justimmo\Exception\ConnectionException;
 use Justimmo\Exception\InvalidRequestException;
 use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
@@ -185,6 +186,26 @@ class ApiTest extends TestCase
     }
 
     /**
+     * A framework may turn every PHP warning into an exception, even a suppressed one. Its exception
+     * must not replace the status exception of the sdk when the error body is broken
+     */
+    public function testAThrowingErrorHandlerKeepsTheStatusException(): void
+    {
+        set_error_handler(function (int $errno, string $errstr): bool {
+            throw new \ErrorException($errstr, 0, $errno);
+        });
+
+        try {
+            $exception = new InvalidRequestException('The Api call returned status code 400');
+            $exception->setResponse('<response><unclosed>', 'text/xml; charset=UTF-8');
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertSame('The Api call returned status code 400', $exception->getMessage());
+    }
+
+    /**
      * createRequest() stays overridable without a return type until 2.x, so a request object of an
      * integrator may not have getContentType(), which is new in this version. The status exception
      * of the sdk has to be thrown anyway, and the format of the error body is recognised by
@@ -281,6 +302,33 @@ class ApiTest extends TestCase
             'bad gateway'           => [502, StatusCodeException::class, StatusCodeException::class],
             'service unavailable'   => [503, StatusCodeException::class, StatusCodeException::class],
         ];
+    }
+
+    /**
+     * A call which got no answer at all, such as a timeout, threw a plain InvalidArgumentException,
+     * which catch (JustimmoException $e) did not catch. A catch written for the old class must
+     * still catch it
+     */
+    public function testANetworkErrorIsAJustimmoException(): void
+    {
+        $this->api->method('createRequest')->willReturn(new class('', 0) extends MockCurlRequest {
+            public function getError(): ?string
+            {
+                return 'Operation timed out after 10000 milliseconds';
+            }
+        });
+
+        try {
+            $this->api->callRealtyList();
+        } catch (JustimmoException $e) {
+            $this->assertInstanceOf(ConnectionException::class, $e);
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertStringContainsString('Operation timed out', $e->getMessage());
+
+            return;
+        }
+
+        $this->fail('a network error did not stop the execution');
     }
 
     /**
