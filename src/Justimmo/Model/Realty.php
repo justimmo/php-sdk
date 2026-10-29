@@ -39,6 +39,8 @@ class Realty implements ModelInterface
 
     protected $tier;
 
+    protected ?string $tierDescription = null;
+
     protected $doorNumber;
 
     protected $zipCode;
@@ -777,6 +779,25 @@ class Realty implements ModelInterface
     public function getTier()
     {
         return $this->tier;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setTierDescription(?string $tierDescription): static
+    {
+        $this->tierDescription = $tierDescription;
+
+        return $this;
+    }
+
+    /**
+     * The floor joined with its comment, for example "5. Etage / Dachgeschoss". getTier() returns
+     * the floor alone
+     */
+    public function getTierDescription(): ?string
+    {
+        return $this->tierDescription;
     }
 
     /**

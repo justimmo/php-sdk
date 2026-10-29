@@ -10,6 +10,7 @@ use Justimmo\Model\Project;
 use Justimmo\Model\Realty;
 use Justimmo\Model\Wrapper\WrapperInterface;
 use SimpleXMLElement;
+use WeakMap;
 
 abstract class AbstractWrapper implements WrapperInterface
 {
@@ -18,13 +19,24 @@ abstract class AbstractWrapper implements WrapperInterface
      */
     protected $mapper;
 
+    /**
+     * For each model, the setters which map() filled from an official node. mapSimpleField() reads
+     * it to leave those values alone.
+     *
+     * A WeakMap, because one wrapper often transforms many responses: an entry disappears with its
+     * model, so the wrapper does not keep real-estates in memory which the caller no longer uses
+     *
+     * @var WeakMap<object, array<string, true>>|null
+     */
+    private ?WeakMap $nodeSetters = null;
+
     public function __construct(MapperInterface $mapper)
     {
         $this->mapper = $mapper;
     }
 
     /**
-     * maps an mapping array between a SimpleXML and Objekt
+     * maps a mapping array between a SimpleXML and Objekt
      *
      * @param                   $mapping
      * @param SimpleXMLElement $xml
@@ -36,8 +48,26 @@ abstract class AbstractWrapper implements WrapperInterface
             if (isset($xml->$key)) {
                 $setter = $this->mapper->getSetter($key);
                 $objekt->$setter($this->cast($xml->$key, $this->mapper->getType($key)));
+
+                $this->nodeSetters ??= new WeakMap();
+                $this->nodeSetters[$objekt] = [$setter => true] + ($this->nodeSetters[$objekt] ?? []);
             }
         }
+    }
+
+    /**
+     * Whether an official node has already filled this setter of the model
+     *
+     * A user_defined_simplefield can carry the name of an official node, and the official value
+     * wins, whichever of the two the response lists first
+     */
+    protected function isSetByNode(object $model, string $setter): bool
+    {
+        if ($this->nodeSetters === null || !isset($this->nodeSetters[$model])) {
+            return false;
+        }
+
+        return isset($this->nodeSetters[$model][$setter]);
     }
 
     /**
