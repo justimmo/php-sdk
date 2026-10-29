@@ -1,0 +1,1099 @@
+realty: filter(name:null, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:null, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:null, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de
+realty: set(name:null, int) => objekt/list?=455&showDetails=1&culture=de
+realty: orderBy(name:null) => objekt/list?ordertype=asc&showDetails=1&culture=de
+realty: order(name:null) => objekt/list?ordertype=asc&showDetails=1&culture=de
+realty: filter(name:empty, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:empty, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:empty, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de
+realty: set(name:empty, int) => objekt/list?=455&showDetails=1&culture=de
+realty: orderBy(name:empty) => objekt/list?orderby=&ordertype=asc&showDetails=1&culture=de
+realty: order(name:empty) => objekt/list?orderby=&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:zero, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:zero, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:zero, min-max) => objekt/list?filter[0_von]=1&filter[0_bis]=2&showDetails=1&culture=de
+realty: set(name:zero, int) => objekt/list?0=455&showDetails=1&culture=de
+realty: orderBy(name:zero) => objekt/list?orderby=0&ordertype=asc&showDetails=1&culture=de
+realty: order(name:zero) => objekt/list?orderby=0&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:one, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:one, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:one, min-max) => objekt/list?filter[1_von]=1&filter[1_bis]=2&showDetails=1&culture=de
+realty: set(name:one, int) => objekt/list?1=455&showDetails=1&culture=de
+realty: orderBy(name:one) => objekt/list?orderby=1&ordertype=asc&showDetails=1&culture=de
+realty: order(name:one) => objekt/list?orderby=1&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:false, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:false, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:false, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de
+realty: set(name:false, int) => objekt/list?0=455&showDetails=1&culture=de
+realty: orderBy(name:false) => objekt/list?orderby=0&ordertype=asc&showDetails=1&culture=de
+realty: order(name:false) => objekt/list?orderby=0&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:true, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:true, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:true, min-max) => objekt/list?filter[1_von]=1&filter[1_bis]=2&showDetails=1&culture=de
+realty: set(name:true, int) => objekt/list?1=455&showDetails=1&culture=de
+realty: orderBy(name:true) => objekt/list?orderby=1&ordertype=asc&showDetails=1&culture=de
+realty: order(name:true) => objekt/list?orderby=1&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:float, int) => objekt/list?filter[]=455&showDetails=1&culture=de
+realty: filter(name:float, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:float, min-max) => objekt/list?filter[1.5_von]=1&filter[1.5_bis]=2&showDetails=1&culture=de
+realty: set(name:float, int) => objekt/list?1=455&showDetails=1&culture=de
+realty: orderBy(name:float) => objekt/list?orderby=1.5&ordertype=asc&showDetails=1&culture=de
+realty: order(name:float) => objekt/list?orderby=1.5&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:stringable, int) => throws TypeError
+realty: filter(name:stringable, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:stringable, min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de
+realty: set(name:stringable, int) => throws TypeError
+realty: orderBy(name:stringable) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: order(name:stringable) => objekt/list?ordertype=asc&showDetails=1&culture=de
+realty: filter(name:Price, int) => objekt/list?filter[Price]=455&showDetails=1&culture=de
+realty: filter(name:Price, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:Price, min-max) => objekt/list?filter[Price_von]=1&filter[Price_bis]=2&showDetails=1&culture=de
+realty: set(name:Price, int) => objekt/list?Price=455&showDetails=1&culture=de
+realty: orderBy(name:Price) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: order(name:Price) => objekt/list?orderby=Price&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:price, int) => objekt/list?filter[price]=455&showDetails=1&culture=de
+realty: filter(name:price, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:price, min-max) => objekt/list?filter[price_von]=1&filter[price_bis]=2&showDetails=1&culture=de
+realty: set(name:price, int) => objekt/list?price=455&showDetails=1&culture=de
+realty: orderBy(name:price) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: order(name:price) => objekt/list?orderby=price&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:preis, int) => objekt/list?filter[preis]=455&showDetails=1&culture=de
+realty: filter(name:preis, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:preis, min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de
+realty: set(name:preis, int) => objekt/list?preis=455&showDetails=1&culture=de
+realty: orderBy(name:preis) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: order(name:preis) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:unknown, int) => objekt/list?filter[Foo]=455&showDetails=1&culture=de
+realty: filter(name:unknown, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:unknown, min-max) => objekt/list?filter[Foo_von]=1&filter[Foo_bis]=2&showDetails=1&culture=de
+realty: set(name:unknown, int) => objekt/list?Foo=455&showDetails=1&culture=de
+realty: orderBy(name:unknown) => objekt/list?orderby=Foo&ordertype=asc&showDetails=1&culture=de
+realty: order(name:unknown) => objekt/list?orderby=Foo&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:UpdatedAt, int) => objekt/list?filter[UpdatedAt]=455&showDetails=1&culture=de
+realty: filter(name:UpdatedAt, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:UpdatedAt, min-max) => objekt/list?filter[UpdatedAt_von]=1&filter[UpdatedAt_bis]=2&showDetails=1&culture=de
+realty: set(name:UpdatedAt, int) => objekt/list?UpdatedAt=455&showDetails=1&culture=de
+realty: orderBy(name:UpdatedAt) => objekt/list?orderby=updated_at&ordertype=asc&showDetails=1&culture=de
+realty: order(name:UpdatedAt) => objekt/list?orderby=UpdatedAt&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:CreatedAt, int) => objekt/list?filter[CreatedAt]=455&showDetails=1&culture=de
+realty: filter(name:CreatedAt, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:CreatedAt, min-max) => objekt/list?filter[CreatedAt_von]=1&filter[CreatedAt_bis]=2&showDetails=1&culture=de
+realty: set(name:CreatedAt, int) => objekt/list?CreatedAt=455&showDetails=1&culture=de
+realty: orderBy(name:CreatedAt) => objekt/list?orderby=created_at&ordertype=asc&showDetails=1&culture=de
+realty: order(name:CreatedAt) => objekt/list?orderby=CreatedAt&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:PublishedAt, int) => objekt/list?filter[PublishedAt]=455&showDetails=1&culture=de
+realty: filter(name:PublishedAt, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:PublishedAt, min-max) => objekt/list?filter[PublishedAt_von]=1&filter[PublishedAt_bis]=2&showDetails=1&culture=de
+realty: set(name:PublishedAt, int) => objekt/list?PublishedAt=455&showDetails=1&culture=de
+realty: orderBy(name:PublishedAt) => objekt/list?orderby=published_at&ordertype=asc&showDetails=1&culture=de
+realty: order(name:PublishedAt) => objekt/list?orderby=PublishedAt&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:Rooms, int) => objekt/list?filter[Rooms]=455&showDetails=1&culture=de
+realty: filter(name:Rooms, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:Rooms, min-max) => objekt/list?filter[Rooms_von]=1&filter[Rooms_bis]=2&showDetails=1&culture=de
+realty: set(name:Rooms, int) => objekt/list?Rooms=455&showDetails=1&culture=de
+realty: orderBy(name:Rooms) => objekt/list?orderby=zimmer&ordertype=asc&showDetails=1&culture=de
+realty: order(name:Rooms) => objekt/list?orderby=Rooms&ordertype=asc&showDetails=1&culture=de
+realty: filter(name:preis_von, int) => objekt/list?filter[preis_von]=455&showDetails=1&culture=de
+realty: filter(name:preis_von, null) => objekt/list?showDetails=1&culture=de
+realty: filter(name:preis_von, min-max) => objekt/list?filter[preis_von_von]=1&filter[preis_von_bis]=2&showDetails=1&culture=de
+realty: set(name:preis_von, int) => objekt/list?preis_von=455&showDetails=1&culture=de
+realty: orderBy(name:preis_von) => objekt/list?orderby=preis_von&ordertype=asc&showDetails=1&culture=de
+realty: order(name:preis_von) => objekt/list?orderby=preis_von&ordertype=asc&showDetails=1&culture=de
+realty: plain => objekt/list?showDetails=1&culture=de
+project: filter(name:null, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:null, null) => projekt/list?culture=de
+project: filter(name:null, min-max) => projekt/list?filter[_von]=1&filter[_bis]=2&culture=de
+project: set(name:null, int) => projekt/list?=455&culture=de
+project: orderBy(name:null) => projekt/list?ordertype=asc&culture=de
+project: order(name:null) => projekt/list?ordertype=asc&culture=de
+project: filter(name:empty, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:empty, null) => projekt/list?culture=de
+project: filter(name:empty, min-max) => projekt/list?filter[_von]=1&filter[_bis]=2&culture=de
+project: set(name:empty, int) => projekt/list?=455&culture=de
+project: orderBy(name:empty) => projekt/list?orderby=&ordertype=asc&culture=de
+project: order(name:empty) => projekt/list?orderby=&ordertype=asc&culture=de
+project: filter(name:zero, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:zero, null) => projekt/list?culture=de
+project: filter(name:zero, min-max) => projekt/list?filter[0_von]=1&filter[0_bis]=2&culture=de
+project: set(name:zero, int) => projekt/list?0=455&culture=de
+project: orderBy(name:zero) => projekt/list?orderby=0&ordertype=asc&culture=de
+project: order(name:zero) => projekt/list?orderby=0&ordertype=asc&culture=de
+project: filter(name:one, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:one, null) => projekt/list?culture=de
+project: filter(name:one, min-max) => projekt/list?filter[1_von]=1&filter[1_bis]=2&culture=de
+project: set(name:one, int) => projekt/list?1=455&culture=de
+project: orderBy(name:one) => projekt/list?orderby=1&ordertype=asc&culture=de
+project: order(name:one) => projekt/list?orderby=1&ordertype=asc&culture=de
+project: filter(name:false, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:false, null) => projekt/list?culture=de
+project: filter(name:false, min-max) => projekt/list?filter[_von]=1&filter[_bis]=2&culture=de
+project: set(name:false, int) => projekt/list?0=455&culture=de
+project: orderBy(name:false) => projekt/list?orderby=0&ordertype=asc&culture=de
+project: order(name:false) => projekt/list?orderby=0&ordertype=asc&culture=de
+project: filter(name:true, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:true, null) => projekt/list?culture=de
+project: filter(name:true, min-max) => projekt/list?filter[1_von]=1&filter[1_bis]=2&culture=de
+project: set(name:true, int) => projekt/list?1=455&culture=de
+project: orderBy(name:true) => projekt/list?orderby=1&ordertype=asc&culture=de
+project: order(name:true) => projekt/list?orderby=1&ordertype=asc&culture=de
+project: filter(name:float, int) => projekt/list?filter[]=455&culture=de
+project: filter(name:float, null) => projekt/list?culture=de
+project: filter(name:float, min-max) => projekt/list?filter[1.5_von]=1&filter[1.5_bis]=2&culture=de
+project: set(name:float, int) => projekt/list?1=455&culture=de
+project: orderBy(name:float) => projekt/list?orderby=1.5&ordertype=asc&culture=de
+project: order(name:float) => projekt/list?orderby=1.5&ordertype=asc&culture=de
+project: filter(name:stringable, int) => throws TypeError
+project: filter(name:stringable, null) => projekt/list?culture=de
+project: filter(name:stringable, min-max) => projekt/list?filter[preis_von]=1&filter[preis_bis]=2&culture=de
+project: set(name:stringable, int) => throws TypeError
+project: orderBy(name:stringable) => projekt/list?orderby=preis&ordertype=asc&culture=de
+project: order(name:stringable) => projekt/list?ordertype=asc&culture=de
+project: filter(name:Price, int) => projekt/list?filter[Price]=455&culture=de
+project: filter(name:Price, null) => projekt/list?culture=de
+project: filter(name:Price, min-max) => projekt/list?filter[Price_von]=1&filter[Price_bis]=2&culture=de
+project: set(name:Price, int) => projekt/list?Price=455&culture=de
+project: orderBy(name:Price) => projekt/list?orderby=preis&ordertype=asc&culture=de
+project: order(name:Price) => projekt/list?orderby=Price&ordertype=asc&culture=de
+project: filter(name:price, int) => projekt/list?filter[price]=455&culture=de
+project: filter(name:price, null) => projekt/list?culture=de
+project: filter(name:price, min-max) => projekt/list?filter[price_von]=1&filter[price_bis]=2&culture=de
+project: set(name:price, int) => projekt/list?price=455&culture=de
+project: orderBy(name:price) => projekt/list?orderby=preis&ordertype=asc&culture=de
+project: order(name:price) => projekt/list?orderby=price&ordertype=asc&culture=de
+project: filter(name:preis, int) => projekt/list?filter[preis]=455&culture=de
+project: filter(name:preis, null) => projekt/list?culture=de
+project: filter(name:preis, min-max) => projekt/list?filter[preis_von]=1&filter[preis_bis]=2&culture=de
+project: set(name:preis, int) => projekt/list?preis=455&culture=de
+project: orderBy(name:preis) => projekt/list?orderby=preis&ordertype=asc&culture=de
+project: order(name:preis) => projekt/list?orderby=preis&ordertype=asc&culture=de
+project: filter(name:unknown, int) => projekt/list?filter[Foo]=455&culture=de
+project: filter(name:unknown, null) => projekt/list?culture=de
+project: filter(name:unknown, min-max) => projekt/list?filter[Foo_von]=1&filter[Foo_bis]=2&culture=de
+project: set(name:unknown, int) => projekt/list?Foo=455&culture=de
+project: orderBy(name:unknown) => projekt/list?orderby=Foo&ordertype=asc&culture=de
+project: order(name:unknown) => projekt/list?orderby=Foo&ordertype=asc&culture=de
+project: filter(name:UpdatedAt, int) => projekt/list?filter[UpdatedAt]=455&culture=de
+project: filter(name:UpdatedAt, null) => projekt/list?culture=de
+project: filter(name:UpdatedAt, min-max) => projekt/list?filter[UpdatedAt_von]=1&filter[UpdatedAt_bis]=2&culture=de
+project: set(name:UpdatedAt, int) => projekt/list?UpdatedAt=455&culture=de
+project: orderBy(name:UpdatedAt) => projekt/list?orderby=updated_at&ordertype=asc&culture=de
+project: order(name:UpdatedAt) => projekt/list?orderby=UpdatedAt&ordertype=asc&culture=de
+project: filter(name:CreatedAt, int) => projekt/list?filter[CreatedAt]=455&culture=de
+project: filter(name:CreatedAt, null) => projekt/list?culture=de
+project: filter(name:CreatedAt, min-max) => projekt/list?filter[CreatedAt_von]=1&filter[CreatedAt_bis]=2&culture=de
+project: set(name:CreatedAt, int) => projekt/list?CreatedAt=455&culture=de
+project: orderBy(name:CreatedAt) => projekt/list?orderby=created_at&ordertype=asc&culture=de
+project: order(name:CreatedAt) => projekt/list?orderby=CreatedAt&ordertype=asc&culture=de
+project: filter(name:PublishedAt, int) => projekt/list?filter[PublishedAt]=455&culture=de
+project: filter(name:PublishedAt, null) => projekt/list?culture=de
+project: filter(name:PublishedAt, min-max) => projekt/list?filter[PublishedAt_von]=1&filter[PublishedAt_bis]=2&culture=de
+project: set(name:PublishedAt, int) => projekt/list?PublishedAt=455&culture=de
+project: orderBy(name:PublishedAt) => projekt/list?orderby=PublishedAt&ordertype=asc&culture=de
+project: order(name:PublishedAt) => projekt/list?orderby=PublishedAt&ordertype=asc&culture=de
+project: filter(name:Rooms, int) => projekt/list?filter[Rooms]=455&culture=de
+project: filter(name:Rooms, null) => projekt/list?culture=de
+project: filter(name:Rooms, min-max) => projekt/list?filter[Rooms_von]=1&filter[Rooms_bis]=2&culture=de
+project: set(name:Rooms, int) => projekt/list?Rooms=455&culture=de
+project: orderBy(name:Rooms) => projekt/list?orderby=zimmer&ordertype=asc&culture=de
+project: order(name:Rooms) => projekt/list?orderby=Rooms&ordertype=asc&culture=de
+project: filter(name:preis_von, int) => projekt/list?filter[preis_von]=455&culture=de
+project: filter(name:preis_von, null) => projekt/list?culture=de
+project: filter(name:preis_von, min-max) => projekt/list?filter[preis_von_von]=1&filter[preis_von_bis]=2&culture=de
+project: set(name:preis_von, int) => projekt/list?preis_von=455&culture=de
+project: orderBy(name:preis_von) => projekt/list?orderby=preis_von&ordertype=asc&culture=de
+project: order(name:preis_von) => projekt/list?orderby=preis_von&ordertype=asc&culture=de
+project: plain => projekt/list?culture=de
+employee: filter(name:null, int) => team/list?filter[]=455&culture=de
+employee: filter(name:null, null) => team/list?culture=de
+employee: filter(name:null, min-max) => team/list?filter[_von]=1&filter[_bis]=2&culture=de
+employee: set(name:null, int) => team/list?=455&culture=de
+employee: orderBy(name:null) => team/list?ordertype=asc&culture=de
+employee: order(name:null) => team/list?ordertype=asc&culture=de
+employee: filter(name:empty, int) => team/list?filter[]=455&culture=de
+employee: filter(name:empty, null) => team/list?culture=de
+employee: filter(name:empty, min-max) => team/list?filter[_von]=1&filter[_bis]=2&culture=de
+employee: set(name:empty, int) => team/list?=455&culture=de
+employee: orderBy(name:empty) => team/list?orderby=&ordertype=asc&culture=de
+employee: order(name:empty) => team/list?orderby=&ordertype=asc&culture=de
+employee: filter(name:zero, int) => team/list?filter[]=455&culture=de
+employee: filter(name:zero, null) => team/list?culture=de
+employee: filter(name:zero, min-max) => team/list?filter[0_von]=1&filter[0_bis]=2&culture=de
+employee: set(name:zero, int) => team/list?0=455&culture=de
+employee: orderBy(name:zero) => team/list?orderby=0&ordertype=asc&culture=de
+employee: order(name:zero) => team/list?orderby=0&ordertype=asc&culture=de
+employee: filter(name:one, int) => team/list?filter[]=455&culture=de
+employee: filter(name:one, null) => team/list?culture=de
+employee: filter(name:one, min-max) => team/list?filter[1_von]=1&filter[1_bis]=2&culture=de
+employee: set(name:one, int) => team/list?1=455&culture=de
+employee: orderBy(name:one) => team/list?orderby=1&ordertype=asc&culture=de
+employee: order(name:one) => team/list?orderby=1&ordertype=asc&culture=de
+employee: filter(name:false, int) => team/list?filter[]=455&culture=de
+employee: filter(name:false, null) => team/list?culture=de
+employee: filter(name:false, min-max) => team/list?filter[_von]=1&filter[_bis]=2&culture=de
+employee: set(name:false, int) => team/list?0=455&culture=de
+employee: orderBy(name:false) => team/list?orderby=0&ordertype=asc&culture=de
+employee: order(name:false) => team/list?orderby=0&ordertype=asc&culture=de
+employee: filter(name:true, int) => team/list?filter[]=455&culture=de
+employee: filter(name:true, null) => team/list?culture=de
+employee: filter(name:true, min-max) => team/list?filter[1_von]=1&filter[1_bis]=2&culture=de
+employee: set(name:true, int) => team/list?1=455&culture=de
+employee: orderBy(name:true) => team/list?orderby=1&ordertype=asc&culture=de
+employee: order(name:true) => team/list?orderby=1&ordertype=asc&culture=de
+employee: filter(name:float, int) => team/list?filter[]=455&culture=de
+employee: filter(name:float, null) => team/list?culture=de
+employee: filter(name:float, min-max) => team/list?filter[1.5_von]=1&filter[1.5_bis]=2&culture=de
+employee: set(name:float, int) => team/list?1=455&culture=de
+employee: orderBy(name:float) => team/list?orderby=1.5&ordertype=asc&culture=de
+employee: order(name:float) => team/list?orderby=1.5&ordertype=asc&culture=de
+employee: filter(name:stringable, int) => throws TypeError
+employee: filter(name:stringable, null) => team/list?culture=de
+employee: filter(name:stringable, min-max) => team/list?filter[preis_von]=1&filter[preis_bis]=2&culture=de
+employee: set(name:stringable, int) => throws TypeError
+employee: orderBy(name:stringable) => team/list?orderby=preis&ordertype=asc&culture=de
+employee: order(name:stringable) => team/list?ordertype=asc&culture=de
+employee: filter(name:Price, int) => team/list?filter[Price]=455&culture=de
+employee: filter(name:Price, null) => team/list?culture=de
+employee: filter(name:Price, min-max) => team/list?filter[Price_von]=1&filter[Price_bis]=2&culture=de
+employee: set(name:Price, int) => team/list?Price=455&culture=de
+employee: orderBy(name:Price) => team/list?orderby=Price&ordertype=asc&culture=de
+employee: order(name:Price) => team/list?orderby=Price&ordertype=asc&culture=de
+employee: filter(name:price, int) => team/list?filter[price]=455&culture=de
+employee: filter(name:price, null) => team/list?culture=de
+employee: filter(name:price, min-max) => team/list?filter[price_von]=1&filter[price_bis]=2&culture=de
+employee: set(name:price, int) => team/list?price=455&culture=de
+employee: orderBy(name:price) => team/list?orderby=price&ordertype=asc&culture=de
+employee: order(name:price) => team/list?orderby=price&ordertype=asc&culture=de
+employee: filter(name:preis, int) => team/list?filter[preis]=455&culture=de
+employee: filter(name:preis, null) => team/list?culture=de
+employee: filter(name:preis, min-max) => team/list?filter[preis_von]=1&filter[preis_bis]=2&culture=de
+employee: set(name:preis, int) => team/list?preis=455&culture=de
+employee: orderBy(name:preis) => team/list?orderby=preis&ordertype=asc&culture=de
+employee: order(name:preis) => team/list?orderby=preis&ordertype=asc&culture=de
+employee: filter(name:unknown, int) => team/list?filter[Foo]=455&culture=de
+employee: filter(name:unknown, null) => team/list?culture=de
+employee: filter(name:unknown, min-max) => team/list?filter[Foo_von]=1&filter[Foo_bis]=2&culture=de
+employee: set(name:unknown, int) => team/list?Foo=455&culture=de
+employee: orderBy(name:unknown) => team/list?orderby=Foo&ordertype=asc&culture=de
+employee: order(name:unknown) => team/list?orderby=Foo&ordertype=asc&culture=de
+employee: filter(name:UpdatedAt, int) => team/list?filter[UpdatedAt]=455&culture=de
+employee: filter(name:UpdatedAt, null) => team/list?culture=de
+employee: filter(name:UpdatedAt, min-max) => team/list?filter[UpdatedAt_von]=1&filter[UpdatedAt_bis]=2&culture=de
+employee: set(name:UpdatedAt, int) => team/list?UpdatedAt=455&culture=de
+employee: orderBy(name:UpdatedAt) => team/list?orderby=UpdatedAt&ordertype=asc&culture=de
+employee: order(name:UpdatedAt) => team/list?orderby=UpdatedAt&ordertype=asc&culture=de
+employee: filter(name:CreatedAt, int) => team/list?filter[CreatedAt]=455&culture=de
+employee: filter(name:CreatedAt, null) => team/list?culture=de
+employee: filter(name:CreatedAt, min-max) => team/list?filter[CreatedAt_von]=1&filter[CreatedAt_bis]=2&culture=de
+employee: set(name:CreatedAt, int) => team/list?CreatedAt=455&culture=de
+employee: orderBy(name:CreatedAt) => team/list?orderby=CreatedAt&ordertype=asc&culture=de
+employee: order(name:CreatedAt) => team/list?orderby=CreatedAt&ordertype=asc&culture=de
+employee: filter(name:PublishedAt, int) => team/list?filter[PublishedAt]=455&culture=de
+employee: filter(name:PublishedAt, null) => team/list?culture=de
+employee: filter(name:PublishedAt, min-max) => team/list?filter[PublishedAt_von]=1&filter[PublishedAt_bis]=2&culture=de
+employee: set(name:PublishedAt, int) => team/list?PublishedAt=455&culture=de
+employee: orderBy(name:PublishedAt) => team/list?orderby=PublishedAt&ordertype=asc&culture=de
+employee: order(name:PublishedAt) => team/list?orderby=PublishedAt&ordertype=asc&culture=de
+employee: filter(name:Rooms, int) => team/list?filter[Rooms]=455&culture=de
+employee: filter(name:Rooms, null) => team/list?culture=de
+employee: filter(name:Rooms, min-max) => team/list?filter[Rooms_von]=1&filter[Rooms_bis]=2&culture=de
+employee: set(name:Rooms, int) => team/list?Rooms=455&culture=de
+employee: orderBy(name:Rooms) => team/list?orderby=Rooms&ordertype=asc&culture=de
+employee: order(name:Rooms) => team/list?orderby=Rooms&ordertype=asc&culture=de
+employee: filter(name:preis_von, int) => team/list?filter[preis_von]=455&culture=de
+employee: filter(name:preis_von, null) => team/list?culture=de
+employee: filter(name:preis_von, min-max) => team/list?filter[preis_von_von]=1&filter[preis_von_bis]=2&culture=de
+employee: set(name:preis_von, int) => team/list?preis_von=455&culture=de
+employee: orderBy(name:preis_von) => team/list?orderby=preis_von&ordertype=asc&culture=de
+employee: order(name:preis_von) => team/list?orderby=preis_von&ordertype=asc&culture=de
+employee: plain => team/list?culture=de
+realty: filter(preis, null) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(null) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(null) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(null) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(null) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(null) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(null) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(null) => objekt/list?showDetails=1&culture=de
+realty: set(filter, null) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], null) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, null) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, null) => objekt/list?showDetails=1&culture=de
+realty: set(limit, null) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(null) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(null) => objekt/list?showDetails=1&culture=de
+realty: setOffset(null) => objekt/list?showDetails=1&culture=de
+realty: paginate(null) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, null) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, null) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(null) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: orderByUpdatedAt(null) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(null) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(null) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(null) => projekt/list?alle=0&culture=de
+project: allProjectRealties(null) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(null) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, empty) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(empty) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(empty) => objekt/list?showDetails=1&culture=de
+realty: set(filter, empty) => objekt/list?filter=&showDetails=1&culture=de
+realty: set(filter[preis], empty) => objekt/list?filter[preis]=&showDetails=1&culture=de
+realty: set(picturesize, empty) => objekt/list?picturesize=&showDetails=1&culture=de
+realty: set(orderby, empty) => objekt/list?orderby=&showDetails=1&culture=de
+realty: set(limit, empty) => objekt/list?limit=&showDetails=1&culture=de
+realty: setPicturesize(empty) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(empty) => objekt/list?limit=&showDetails=1&culture=de
+realty: setOffset(empty) => objekt/list?offset=&showDetails=1&culture=de
+realty: paginate(empty) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, empty) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, empty) => objekt/list?orderby=preis&ordertype=&showDetails=1&culture=de
+realty: orderByPrice(empty) => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: orderByUpdatedAt(empty) => objekt/list?orderby=updated_at&ordertype=&showDetails=1&culture=de
+realty: allProjectRealties(empty) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(empty) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(empty) => projekt/list?alle=0&culture=de
+project: allProjectRealties(empty) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(empty) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, zero) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByPrice(zero) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByFoo(zero) => objekt/list?filter[Foo]=0&showDetails=1&culture=de
+realty: filterByTag(zero) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByRealtyCategory(zero) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByEquipment(zero) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
+realty: filterByCreatedAt(zero) => objekt/list?filter[created_at]=0&showDetails=1&culture=de
+realty: filterByZipCode(zero) => objekt/list?filter[plz]=0&showDetails=1&culture=de
+realty: set(filter, zero) => objekt/list?filter=0&showDetails=1&culture=de
+realty: set(filter[preis], zero) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: set(picturesize, zero) => objekt/list?picturesize=0&showDetails=1&culture=de
+realty: set(orderby, zero) => objekt/list?orderby=0&showDetails=1&culture=de
+realty: set(limit, zero) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setPicturesize(zero) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(zero) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setOffset(zero) => objekt/list?offset=0&showDetails=1&culture=de
+realty: paginate(zero) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, zero) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, zero) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByPrice(zero) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByUpdatedAt(zero) => objekt/list?orderby=updated_at&ordertype=0&showDetails=1&culture=de
+realty: allProjectRealties(zero) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(zero) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(zero) => projekt/list?alle=0&culture=de
+project: allProjectRealties(zero) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(zero) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, zero-str) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByPrice(zero-str) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByFoo(zero-str) => objekt/list?filter[Foo]=0&showDetails=1&culture=de
+realty: filterByTag(zero-str) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByRealtyCategory(zero-str) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByEquipment(zero-str) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
+realty: filterByCreatedAt(zero-str) => objekt/list?filter[created_at]=0&showDetails=1&culture=de
+realty: filterByZipCode(zero-str) => objekt/list?filter[plz]=0&showDetails=1&culture=de
+realty: set(filter, zero-str) => objekt/list?filter=0&showDetails=1&culture=de
+realty: set(filter[preis], zero-str) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: set(picturesize, zero-str) => objekt/list?picturesize=0&showDetails=1&culture=de
+realty: set(orderby, zero-str) => objekt/list?orderby=0&showDetails=1&culture=de
+realty: set(limit, zero-str) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setPicturesize(zero-str) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(zero-str) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setOffset(zero-str) => objekt/list?offset=0&showDetails=1&culture=de
+realty: paginate(zero-str) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, zero-str) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, zero-str) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByPrice(zero-str) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByUpdatedAt(zero-str) => objekt/list?orderby=updated_at&ordertype=0&showDetails=1&culture=de
+realty: allProjectRealties(zero-str) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(zero-str) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(zero-str) => projekt/list?alle=0&culture=de
+project: allProjectRealties(zero-str) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(zero-str) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, false) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByPrice(false) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: filterByFoo(false) => objekt/list?filter[Foo]=0&showDetails=1&culture=de
+realty: filterByTag(false) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByRealtyCategory(false) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
+realty: filterByEquipment(false) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
+realty: filterByCreatedAt(false) => objekt/list?filter[created_at]=0&showDetails=1&culture=de
+realty: filterByZipCode(false) => objekt/list?filter[plz]=0&showDetails=1&culture=de
+realty: set(filter, false) => objekt/list?filter=0&showDetails=1&culture=de
+realty: set(filter[preis], false) => objekt/list?filter[preis]=0&showDetails=1&culture=de
+realty: set(picturesize, false) => objekt/list?picturesize=0&showDetails=1&culture=de
+realty: set(orderby, false) => objekt/list?orderby=0&showDetails=1&culture=de
+realty: set(limit, false) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setPicturesize(false) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(false) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setOffset(false) => objekt/list?offset=0&showDetails=1&culture=de
+realty: paginate(false) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, false) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, false) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByPrice(false) => objekt/list?orderby=preis&ordertype=0&showDetails=1&culture=de
+realty: orderByUpdatedAt(false) => objekt/list?orderby=updated_at&ordertype=0&showDetails=1&culture=de
+realty: allProjectRealties(false) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(false) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(false) => projekt/list?alle=0&culture=de
+project: allProjectRealties(false) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(false) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, true) => objekt/list?filter[preis]=1&showDetails=1&culture=de
+realty: filterByPrice(true) => objekt/list?filter[preis]=1&showDetails=1&culture=de
+realty: filterByFoo(true) => objekt/list?filter[Foo]=1&showDetails=1&culture=de
+realty: filterByTag(true) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByRealtyCategory(true) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByEquipment(true) => objekt/list?filter[objekt_ausstattung_list][]=1&showDetails=1&culture=de
+realty: filterByCreatedAt(true) => objekt/list?filter[created_at]=1&showDetails=1&culture=de
+realty: filterByZipCode(true) => objekt/list?filter[plz]=1&showDetails=1&culture=de
+realty: set(filter, true) => objekt/list?filter=1&showDetails=1&culture=de
+realty: set(filter[preis], true) => objekt/list?filter[preis]=1&showDetails=1&culture=de
+realty: set(picturesize, true) => objekt/list?picturesize=1&showDetails=1&culture=de
+realty: set(orderby, true) => objekt/list?orderby=1&showDetails=1&culture=de
+realty: set(limit, true) => objekt/list?limit=1&showDetails=1&culture=de
+realty: setPicturesize(true) => objekt/list?picturesize[]=1&showDetails=1&culture=de
+realty: setLimit(true) => objekt/list?limit=1&showDetails=1&culture=de
+realty: setOffset(true) => objekt/list?offset=1&showDetails=1&culture=de
+realty: paginate(true) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, true) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, true) => objekt/list?orderby=preis&ordertype=1&showDetails=1&culture=de
+realty: orderByPrice(true) => objekt/list?orderby=preis&ordertype=1&showDetails=1&culture=de
+realty: orderByUpdatedAt(true) => objekt/list?orderby=updated_at&ordertype=1&showDetails=1&culture=de
+realty: allProjectRealties(true) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(true) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(true) => projekt/list?alle=1&culture=de
+project: allProjectRealties(true) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(true) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, int) => objekt/list?filter[preis]=455&showDetails=1&culture=de
+realty: filterByPrice(int) => objekt/list?filter[preis]=455&showDetails=1&culture=de
+realty: filterByFoo(int) => objekt/list?filter[Foo]=455&showDetails=1&culture=de
+realty: filterByTag(int) => objekt/list?filter[tag_name]=455&showDetails=1&culture=de
+realty: filterByRealtyCategory(int) => objekt/list?filter[tag_name]=455&showDetails=1&culture=de
+realty: filterByEquipment(int) => objekt/list?filter[objekt_ausstattung_list][]=455&showDetails=1&culture=de
+realty: filterByCreatedAt(int) => objekt/list?filter[created_at]=455&showDetails=1&culture=de
+realty: filterByZipCode(int) => objekt/list?filter[plz]=455&showDetails=1&culture=de
+realty: set(filter, int) => objekt/list?filter=455&showDetails=1&culture=de
+realty: set(filter[preis], int) => objekt/list?filter[preis]=455&showDetails=1&culture=de
+realty: set(picturesize, int) => objekt/list?picturesize=455&showDetails=1&culture=de
+realty: set(orderby, int) => objekt/list?orderby=455&showDetails=1&culture=de
+realty: set(limit, int) => objekt/list?limit=455&showDetails=1&culture=de
+realty: setPicturesize(int) => objekt/list?picturesize[]=455&showDetails=1&culture=de
+realty: setLimit(int) => objekt/list?limit=455&showDetails=1&culture=de
+realty: setOffset(int) => objekt/list?offset=455&showDetails=1&culture=de
+realty: paginate(int) => objekt/list?limit=10&offset=4540&showDetails=1&culture=de throws Error
+realty: paginate(1, int) => objekt/list?limit=455&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, int) => objekt/list?orderby=preis&ordertype=455&showDetails=1&culture=de
+realty: orderByPrice(int) => objekt/list?orderby=preis&ordertype=455&showDetails=1&culture=de
+realty: orderByUpdatedAt(int) => objekt/list?orderby=updated_at&ordertype=455&showDetails=1&culture=de
+realty: allProjectRealties(int) => objekt/list?alleProjektObjekte=455&showDetails=1&culture=de
+realty: preciseAreaSearch(int) => objekt/list?preciseAreaSearch=455&showDetails=1&culture=de
+project: all(int) => projekt/list?alle=455&culture=de
+project: allProjectRealties(int) => projekt/list?alleProjektObjekte=455&culture=de
+project: onlyRealtyIds(int) => projekt/list?objektIds=455&culture=de
+realty: filter(preis, neg) => objekt/list?filter[preis]=-5&showDetails=1&culture=de
+realty: filterByPrice(neg) => objekt/list?filter[preis]=-5&showDetails=1&culture=de
+realty: filterByFoo(neg) => objekt/list?filter[Foo]=-5&showDetails=1&culture=de
+realty: filterByTag(neg) => objekt/list?filter[tag_name]=-5&showDetails=1&culture=de
+realty: filterByRealtyCategory(neg) => objekt/list?filter[tag_name]=-5&showDetails=1&culture=de
+realty: filterByEquipment(neg) => objekt/list?filter[objekt_ausstattung_list][]=-5&showDetails=1&culture=de
+realty: filterByCreatedAt(neg) => objekt/list?filter[created_at]=-5&showDetails=1&culture=de
+realty: filterByZipCode(neg) => objekt/list?filter[plz]=-5&showDetails=1&culture=de
+realty: set(filter, neg) => objekt/list?filter=-5&showDetails=1&culture=de
+realty: set(filter[preis], neg) => objekt/list?filter[preis]=-5&showDetails=1&culture=de
+realty: set(picturesize, neg) => objekt/list?picturesize=-5&showDetails=1&culture=de
+realty: set(orderby, neg) => objekt/list?orderby=-5&showDetails=1&culture=de
+realty: set(limit, neg) => objekt/list?limit=-5&showDetails=1&culture=de
+realty: setPicturesize(neg) => objekt/list?picturesize[]=-5&showDetails=1&culture=de
+realty: setLimit(neg) => objekt/list?limit=1&showDetails=1&culture=de
+realty: setOffset(neg) => objekt/list?offset=0&showDetails=1&culture=de
+realty: paginate(neg) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, neg) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, neg) => objekt/list?orderby=preis&ordertype=-5&showDetails=1&culture=de
+realty: orderByPrice(neg) => objekt/list?orderby=preis&ordertype=-5&showDetails=1&culture=de
+realty: orderByUpdatedAt(neg) => objekt/list?orderby=updated_at&ordertype=-5&showDetails=1&culture=de
+realty: allProjectRealties(neg) => objekt/list?alleProjektObjekte=-5&showDetails=1&culture=de
+realty: preciseAreaSearch(neg) => objekt/list?preciseAreaSearch=-5&showDetails=1&culture=de
+project: all(neg) => projekt/list?alle=-5&culture=de
+project: allProjectRealties(neg) => projekt/list?alleProjektObjekte=-5&culture=de
+project: onlyRealtyIds(neg) => projekt/list?objektIds=-5&culture=de
+realty: filter(preis, float) => objekt/list?filter[preis]=1.5&showDetails=1&culture=de
+realty: filterByPrice(float) => objekt/list?filter[preis]=1.5&showDetails=1&culture=de
+realty: filterByFoo(float) => objekt/list?filter[Foo]=1.5&showDetails=1&culture=de
+realty: filterByTag(float) => objekt/list?filter[tag_name]=1.5&showDetails=1&culture=de
+realty: filterByRealtyCategory(float) => objekt/list?filter[tag_name]=1.5&showDetails=1&culture=de
+realty: filterByEquipment(float) => objekt/list?filter[objekt_ausstattung_list][]=1.5&showDetails=1&culture=de
+realty: filterByCreatedAt(float) => objekt/list?filter[created_at]=1.5&showDetails=1&culture=de
+realty: filterByZipCode(float) => objekt/list?filter[plz]=1.5&showDetails=1&culture=de
+realty: set(filter, float) => objekt/list?filter=1.5&showDetails=1&culture=de
+realty: set(filter[preis], float) => objekt/list?filter[preis]=1.5&showDetails=1&culture=de
+realty: set(picturesize, float) => objekt/list?picturesize=1.5&showDetails=1&culture=de
+realty: set(orderby, float) => objekt/list?orderby=1.5&showDetails=1&culture=de
+realty: set(limit, float) => objekt/list?limit=1.5&showDetails=1&culture=de
+realty: setPicturesize(float) => objekt/list?picturesize[]=1.5&showDetails=1&culture=de
+realty: setLimit(float) => objekt/list?limit=1&showDetails=1&culture=de
+realty: setOffset(float) => objekt/list?offset=1&showDetails=1&culture=de
+realty: paginate(float) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, float) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, float) => objekt/list?orderby=preis&ordertype=1.5&showDetails=1&culture=de
+realty: orderByPrice(float) => objekt/list?orderby=preis&ordertype=1.5&showDetails=1&culture=de
+realty: orderByUpdatedAt(float) => objekt/list?orderby=updated_at&ordertype=1.5&showDetails=1&culture=de
+realty: allProjectRealties(float) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(float) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(float) => projekt/list?alle=1&culture=de
+project: allProjectRealties(float) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(float) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, nan) => objekt/list?filter[preis]=NAN&showDetails=1&culture=de
+realty: filterByPrice(nan) => objekt/list?filter[preis]=NAN&showDetails=1&culture=de
+realty: filterByFoo(nan) => objekt/list?filter[Foo]=NAN&showDetails=1&culture=de
+realty: filterByTag(nan) => objekt/list?filter[tag_name]=NAN&showDetails=1&culture=de
+realty: filterByRealtyCategory(nan) => objekt/list?filter[tag_name]=NAN&showDetails=1&culture=de
+realty: filterByEquipment(nan) => objekt/list?filter[objekt_ausstattung_list][]=NAN&showDetails=1&culture=de
+realty: filterByCreatedAt(nan) => objekt/list?filter[created_at]=NAN&showDetails=1&culture=de
+realty: filterByZipCode(nan) => objekt/list?filter[plz]=NAN&showDetails=1&culture=de
+realty: set(filter, nan) => objekt/list?filter=NAN&showDetails=1&culture=de
+realty: set(filter[preis], nan) => objekt/list?filter[preis]=NAN&showDetails=1&culture=de
+realty: set(picturesize, nan) => objekt/list?picturesize=NAN&showDetails=1&culture=de
+realty: set(orderby, nan) => objekt/list?orderby=NAN&showDetails=1&culture=de
+realty: set(limit, nan) => objekt/list?limit=NAN&showDetails=1&culture=de
+realty: setPicturesize(nan) => objekt/list?picturesize[]=NAN&showDetails=1&culture=de
+realty: setLimit(nan) => objekt/list?limit=0&showDetails=1&culture=de
+realty: setOffset(nan) => objekt/list?offset=0&showDetails=1&culture=de
+realty: paginate(nan) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, nan) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, nan) => objekt/list?orderby=preis&ordertype=NAN&showDetails=1&culture=de
+realty: orderByPrice(nan) => objekt/list?orderby=preis&ordertype=NAN&showDetails=1&culture=de
+realty: orderByUpdatedAt(nan) => objekt/list?orderby=updated_at&ordertype=NAN&showDetails=1&culture=de
+realty: allProjectRealties(nan) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(nan) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(nan) => projekt/list?alle=0&culture=de
+project: allProjectRealties(nan) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(nan) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, str) => objekt/list?filter[preis]=abc&showDetails=1&culture=de
+realty: filterByPrice(str) => objekt/list?filter[preis]=abc&showDetails=1&culture=de
+realty: filterByFoo(str) => objekt/list?filter[Foo]=abc&showDetails=1&culture=de
+realty: filterByTag(str) => objekt/list?filter[tag_name]=abc&showDetails=1&culture=de
+realty: filterByRealtyCategory(str) => objekt/list?filter[tag_name]=abc&showDetails=1&culture=de
+realty: filterByEquipment(str) => objekt/list?filter[objekt_ausstattung_list][]=abc&showDetails=1&culture=de
+realty: filterByCreatedAt(str) => objekt/list?filter[created_at]=abc&showDetails=1&culture=de
+realty: filterByZipCode(str) => objekt/list?filter[plz]=abc&showDetails=1&culture=de
+realty: set(filter, str) => objekt/list?filter=abc&showDetails=1&culture=de
+realty: set(filter[preis], str) => objekt/list?filter[preis]=abc&showDetails=1&culture=de
+realty: set(picturesize, str) => objekt/list?picturesize=abc&showDetails=1&culture=de
+realty: set(orderby, str) => objekt/list?orderby=abc&showDetails=1&culture=de
+realty: set(limit, str) => objekt/list?limit=abc&showDetails=1&culture=de
+realty: setPicturesize(str) => objekt/list?picturesize[]=abc&showDetails=1&culture=de
+realty: setLimit(str) => objekt/list?limit=abc&showDetails=1&culture=de
+realty: setOffset(str) => objekt/list?offset=abc&showDetails=1&culture=de
+realty: paginate(str) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, str) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, str) => objekt/list?orderby=preis&ordertype=abc&showDetails=1&culture=de
+realty: orderByPrice(str) => objekt/list?orderby=preis&ordertype=abc&showDetails=1&culture=de
+realty: orderByUpdatedAt(str) => objekt/list?orderby=updated_at&ordertype=abc&showDetails=1&culture=de
+realty: allProjectRealties(str) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(str) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(str) => projekt/list?alle=0&culture=de
+project: allProjectRealties(str) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(str) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, num-str) => objekt/list?filter[preis]=12&showDetails=1&culture=de
+realty: filterByPrice(num-str) => objekt/list?filter[preis]=12&showDetails=1&culture=de
+realty: filterByFoo(num-str) => objekt/list?filter[Foo]=12&showDetails=1&culture=de
+realty: filterByTag(num-str) => objekt/list?filter[tag_name]=12&showDetails=1&culture=de
+realty: filterByRealtyCategory(num-str) => objekt/list?filter[tag_name]=12&showDetails=1&culture=de
+realty: filterByEquipment(num-str) => objekt/list?filter[objekt_ausstattung_list][]=12&showDetails=1&culture=de
+realty: filterByCreatedAt(num-str) => objekt/list?filter[created_at]=12&showDetails=1&culture=de
+realty: filterByZipCode(num-str) => objekt/list?filter[plz]=12&showDetails=1&culture=de
+realty: set(filter, num-str) => objekt/list?filter=12&showDetails=1&culture=de
+realty: set(filter[preis], num-str) => objekt/list?filter[preis]=12&showDetails=1&culture=de
+realty: set(picturesize, num-str) => objekt/list?picturesize=12&showDetails=1&culture=de
+realty: set(orderby, num-str) => objekt/list?orderby=12&showDetails=1&culture=de
+realty: set(limit, num-str) => objekt/list?limit=12&showDetails=1&culture=de
+realty: setPicturesize(num-str) => objekt/list?picturesize[]=12&showDetails=1&culture=de
+realty: setLimit(num-str) => objekt/list?limit=12&showDetails=1&culture=de
+realty: setOffset(num-str) => objekt/list?offset=12&showDetails=1&culture=de
+realty: paginate(num-str) => objekt/list?limit=10&offset=110&showDetails=1&culture=de throws Error
+realty: paginate(1, num-str) => objekt/list?limit=12&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, num-str) => objekt/list?orderby=preis&ordertype=12&showDetails=1&culture=de
+realty: orderByPrice(num-str) => objekt/list?orderby=preis&ordertype=12&showDetails=1&culture=de
+realty: orderByUpdatedAt(num-str) => objekt/list?orderby=updated_at&ordertype=12&showDetails=1&culture=de
+realty: allProjectRealties(num-str) => objekt/list?alleProjektObjekte=12&showDetails=1&culture=de
+realty: preciseAreaSearch(num-str) => objekt/list?preciseAreaSearch=12&showDetails=1&culture=de
+project: all(num-str) => projekt/list?alle=12&culture=de
+project: allProjectRealties(num-str) => projekt/list?alleProjektObjekte=12&culture=de
+project: onlyRealtyIds(num-str) => projekt/list?objektIds=12&culture=de
+realty: filter(preis, stringable) => objekt/list?filter[preis]=x&showDetails=1&culture=de
+realty: filterByPrice(stringable) => objekt/list?filter[preis]=x&showDetails=1&culture=de
+realty: filterByFoo(stringable) => objekt/list?filter[Foo]=x&showDetails=1&culture=de
+realty: filterByTag(stringable) => objekt/list?filter[tag_name]=x&showDetails=1&culture=de
+realty: filterByRealtyCategory(stringable) => objekt/list?filter[tag_name]=x&showDetails=1&culture=de
+realty: filterByEquipment(stringable) => objekt/list?filter[objekt_ausstattung_list][]=x&showDetails=1&culture=de
+realty: filterByCreatedAt(stringable) => objekt/list?filter[created_at]=x&showDetails=1&culture=de
+realty: filterByZipCode(stringable) => objekt/list?filter[plz]=x&showDetails=1&culture=de
+realty: set(filter, stringable) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], stringable) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, stringable) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, stringable) => objekt/list?showDetails=1&culture=de
+realty: set(limit, stringable) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(stringable) => objekt/list?showDetails=1&culture=de
+realty: setLimit(stringable) => objekt/list?showDetails=1&culture=de
+realty: setOffset(stringable) => objekt/list?showDetails=1&culture=de
+realty: paginate(stringable) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, stringable) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(stringable) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(stringable) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(stringable) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(stringable) => projekt/list?alle=1&culture=de
+project: allProjectRealties(stringable) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(stringable) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, object) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(object) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(object) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(object) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(object) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(object) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(object) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(object) => objekt/list?showDetails=1&culture=de
+realty: set(filter, object) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], object) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, object) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, object) => objekt/list?showDetails=1&culture=de
+realty: set(limit, object) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(object) => objekt/list?showDetails=1&culture=de
+realty: setLimit(object) => objekt/list?showDetails=1&culture=de
+realty: setOffset(object) => objekt/list?showDetails=1&culture=de
+realty: paginate(object) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, object) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, object) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(object) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(object) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(object) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(object) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(object) => projekt/list?alle=1&culture=de
+project: allProjectRealties(object) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(object) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, date) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(date) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(date) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(date) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(date) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(date) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(date) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(date) => objekt/list?showDetails=1&culture=de
+realty: set(filter, date) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], date) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, date) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, date) => objekt/list?showDetails=1&culture=de
+realty: set(limit, date) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(date) => objekt/list?showDetails=1&culture=de
+realty: setLimit(date) => objekt/list?showDetails=1&culture=de
+realty: setOffset(date) => objekt/list?showDetails=1&culture=de
+realty: paginate(date) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, date) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, date) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(date) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(date) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(date) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(date) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(date) => projekt/list?alle=1&culture=de
+project: allProjectRealties(date) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(date) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, list) => objekt/list?filter[preis][]=1&filter[preis][]=2&showDetails=1&culture=de
+realty: filterByPrice(list) => objekt/list?filter[preis][]=1&filter[preis][]=2&showDetails=1&culture=de
+realty: filterByFoo(list) => objekt/list?filter[Foo][]=1&filter[Foo][]=2&showDetails=1&culture=de
+realty: filterByTag(list) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
+realty: filterByRealtyCategory(list) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
+realty: filterByEquipment(list) => objekt/list?filter[objekt_ausstattung_list][]=1&filter[objekt_ausstattung_list][]=2&showDetails=1&culture=de
+realty: filterByCreatedAt(list) => objekt/list?filter[created_at][]=1&filter[created_at][]=2&showDetails=1&culture=de
+realty: filterByZipCode(list) => objekt/list?filter[plz][]=1&filter[plz][]=2&showDetails=1&culture=de
+realty: set(filter, list) => objekt/list?filter[]=1&filter[]=2&showDetails=1&culture=de
+realty: set(filter[preis], list) => objekt/list?filter[preis][]=1&filter[preis][]=2&showDetails=1&culture=de
+realty: set(picturesize, list) => objekt/list?picturesize[]=1&picturesize[]=2&showDetails=1&culture=de
+realty: set(orderby, list) => objekt/list?orderby[]=1&orderby[]=2&showDetails=1&culture=de
+realty: set(limit, list) => objekt/list?limit[]=1&limit[]=2&showDetails=1&culture=de
+realty: setPicturesize(list) => objekt/list?picturesize[]=1&picturesize[]=2&showDetails=1&culture=de
+realty: setLimit(list) => objekt/list?limit[]=1&limit[]=2&showDetails=1&culture=de
+realty: setOffset(list) => objekt/list?offset[]=1&offset[]=2&showDetails=1&culture=de
+realty: paginate(list) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, list) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, list) => objekt/list?orderby=preis&ordertype[]=1&ordertype[]=2&showDetails=1&culture=de
+realty: orderByPrice(list) => objekt/list?orderby=preis&ordertype[]=1&ordertype[]=2&showDetails=1&culture=de
+realty: orderByUpdatedAt(list) => objekt/list?orderby=updated_at&ordertype[]=1&ordertype[]=2&showDetails=1&culture=de
+realty: allProjectRealties(list) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(list) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(list) => projekt/list?alle=1&culture=de
+project: allProjectRealties(list) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(list) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(empty-list) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(empty-list) => objekt/list?showDetails=1&culture=de
+realty: set(filter, empty-list) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], empty-list) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, empty-list) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, empty-list) => objekt/list?showDetails=1&culture=de
+realty: set(limit, empty-list) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(empty-list) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(empty-list) => objekt/list?showDetails=1&culture=de
+realty: setOffset(empty-list) => objekt/list?showDetails=1&culture=de
+realty: paginate(empty-list) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, empty-list) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, empty-list) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(empty-list) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(empty-list) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(empty-list) => objekt/list?alleProjektObjekte=0&showDetails=1&culture=de
+realty: preciseAreaSearch(empty-list) => objekt/list?preciseAreaSearch=0&showDetails=1&culture=de
+project: all(empty-list) => projekt/list?alle=0&culture=de
+project: allProjectRealties(empty-list) => projekt/list?alleProjektObjekte=0&culture=de
+project: onlyRealtyIds(empty-list) => projekt/list?objektIds=0&culture=de
+realty: filter(preis, list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(list-null) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(list-null) => objekt/list?showDetails=1&culture=de
+realty: set(filter, list-null) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], list-null) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, list-null) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, list-null) => objekt/list?showDetails=1&culture=de
+realty: set(limit, list-null) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(list-null) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(list-null) => objekt/list?showDetails=1&culture=de
+realty: setOffset(list-null) => objekt/list?showDetails=1&culture=de
+realty: paginate(list-null) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, list-null) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, list-null) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(list-null) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(list-null) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(list-null) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(list-null) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(list-null) => projekt/list?alle=1&culture=de
+project: allProjectRealties(list-null) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(list-null) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, list-empty) => objekt/list?filter[preis][]=x&showDetails=1&culture=de
+realty: filterByPrice(list-empty) => objekt/list?filter[preis][]=x&showDetails=1&culture=de
+realty: filterByFoo(list-empty) => objekt/list?filter[Foo][]=x&showDetails=1&culture=de
+realty: filterByTag(list-empty) => objekt/list?filter[tag_name][]=x&showDetails=1&culture=de
+realty: filterByRealtyCategory(list-empty) => objekt/list?filter[tag_name][]=x&showDetails=1&culture=de
+realty: filterByEquipment(list-empty) => objekt/list?filter[objekt_ausstattung_list][]=x&showDetails=1&culture=de
+realty: filterByCreatedAt(list-empty) => objekt/list?filter[created_at][]=x&showDetails=1&culture=de
+realty: filterByZipCode(list-empty) => objekt/list?filter[plz][]=x&showDetails=1&culture=de
+realty: set(filter, list-empty) => objekt/list?filter[]=&filter[]=x&showDetails=1&culture=de
+realty: set(filter[preis], list-empty) => objekt/list?filter[preis][]=&filter[preis][]=x&showDetails=1&culture=de
+realty: set(picturesize, list-empty) => objekt/list?picturesize[]=&picturesize[]=x&showDetails=1&culture=de
+realty: set(orderby, list-empty) => objekt/list?orderby[]=&orderby[]=x&showDetails=1&culture=de
+realty: set(limit, list-empty) => objekt/list?limit[]=&limit[]=x&showDetails=1&culture=de
+realty: setPicturesize(list-empty) => objekt/list?picturesize[]=x&showDetails=1&culture=de
+realty: setLimit(list-empty) => objekt/list?limit[]=&limit[]=x&showDetails=1&culture=de
+realty: setOffset(list-empty) => objekt/list?offset[]=&offset[]=x&showDetails=1&culture=de
+realty: paginate(list-empty) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, list-empty) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, list-empty) => objekt/list?orderby=preis&ordertype[]=&ordertype[]=x&showDetails=1&culture=de
+realty: orderByPrice(list-empty) => objekt/list?orderby=preis&ordertype[]=&ordertype[]=x&showDetails=1&culture=de
+realty: orderByUpdatedAt(list-empty) => objekt/list?orderby=updated_at&ordertype[]=&ordertype[]=x&showDetails=1&culture=de
+realty: allProjectRealties(list-empty) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(list-empty) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(list-empty) => projekt/list?alle=1&culture=de
+project: allProjectRealties(list-empty) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(list-empty) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, nested) => objekt/list?filter[preis][][]=1&showDetails=1&culture=de
+realty: filterByPrice(nested) => objekt/list?filter[preis][][]=1&showDetails=1&culture=de
+realty: filterByFoo(nested) => objekt/list?filter[Foo][][]=1&showDetails=1&culture=de
+realty: filterByTag(nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
+realty: filterByRealtyCategory(nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
+realty: filterByEquipment(nested) => objekt/list?filter[objekt_ausstattung_list][][]=1&showDetails=1&culture=de
+realty: filterByCreatedAt(nested) => objekt/list?filter[created_at][][]=1&showDetails=1&culture=de
+realty: filterByZipCode(nested) => objekt/list?filter[plz][][]=1&showDetails=1&culture=de
+realty: set(filter, nested) => objekt/list?filter[][]=1&showDetails=1&culture=de
+realty: set(filter[preis], nested) => objekt/list?filter[preis][][]=1&showDetails=1&culture=de
+realty: set(picturesize, nested) => objekt/list?picturesize[][]=1&showDetails=1&culture=de
+realty: set(orderby, nested) => objekt/list?orderby[][]=1&showDetails=1&culture=de
+realty: set(limit, nested) => objekt/list?limit[][]=1&showDetails=1&culture=de
+realty: setPicturesize(nested) => objekt/list?picturesize[][]=1&showDetails=1&culture=de
+realty: setLimit(nested) => objekt/list?limit[][]=1&showDetails=1&culture=de
+realty: setOffset(nested) => objekt/list?offset[][]=1&showDetails=1&culture=de
+realty: paginate(nested) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, nested) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, nested) => objekt/list?orderby=preis&ordertype[][]=1&showDetails=1&culture=de
+realty: orderByPrice(nested) => objekt/list?orderby=preis&ordertype[][]=1&showDetails=1&culture=de
+realty: orderByUpdatedAt(nested) => objekt/list?orderby=updated_at&ordertype[][]=1&showDetails=1&culture=de
+realty: allProjectRealties(nested) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(nested) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(nested) => projekt/list?alle=1&culture=de
+project: allProjectRealties(nested) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(nested) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, assoc) => objekt/list?filter[preis][a]=1&showDetails=1&culture=de
+realty: filterByPrice(assoc) => objekt/list?filter[preis][a]=1&showDetails=1&culture=de
+realty: filterByFoo(assoc) => objekt/list?filter[Foo][a]=1&showDetails=1&culture=de
+realty: filterByTag(assoc) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByRealtyCategory(assoc) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByEquipment(assoc) => objekt/list?filter[objekt_ausstattung_list][a]=1&showDetails=1&culture=de
+realty: filterByCreatedAt(assoc) => objekt/list?filter[created_at][a]=1&showDetails=1&culture=de
+realty: filterByZipCode(assoc) => objekt/list?filter[plz][a]=1&showDetails=1&culture=de
+realty: set(filter, assoc) => objekt/list?filter[a]=1&showDetails=1&culture=de
+realty: set(filter[preis], assoc) => objekt/list?filter[preis][a]=1&showDetails=1&culture=de
+realty: set(picturesize, assoc) => objekt/list?picturesize[a]=1&showDetails=1&culture=de
+realty: set(orderby, assoc) => objekt/list?orderby[a]=1&showDetails=1&culture=de
+realty: set(limit, assoc) => objekt/list?limit[a]=1&showDetails=1&culture=de
+realty: setPicturesize(assoc) => objekt/list?picturesize[a]=1&showDetails=1&culture=de
+realty: setLimit(assoc) => objekt/list?limit[a]=1&showDetails=1&culture=de
+realty: setOffset(assoc) => objekt/list?offset[a]=1&showDetails=1&culture=de
+realty: paginate(assoc) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, assoc) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, assoc) => objekt/list?orderby=preis&ordertype[a]=1&showDetails=1&culture=de
+realty: orderByPrice(assoc) => objekt/list?orderby=preis&ordertype[a]=1&showDetails=1&culture=de
+realty: orderByUpdatedAt(assoc) => objekt/list?orderby=updated_at&ordertype[a]=1&showDetails=1&culture=de
+realty: allProjectRealties(assoc) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(assoc) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(assoc) => projekt/list?alle=1&culture=de
+project: allProjectRealties(assoc) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(assoc) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min) => objekt/list?filter[preis_von]=1&showDetails=1&culture=de
+realty: filterByPrice(min) => objekt/list?filter[preis_von]=1&showDetails=1&culture=de
+realty: filterByFoo(min) => objekt/list?filter[Foo_von]=1&showDetails=1&culture=de
+realty: filterByTag(min) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByRealtyCategory(min) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
+realty: filterByEquipment(min) => objekt/list?filter[objekt_ausstattung_list_von]=1&showDetails=1&culture=de
+realty: filterByCreatedAt(min) => objekt/list?filter[created_at_von]=1&showDetails=1&culture=de
+realty: filterByZipCode(min) => objekt/list?filter[plz_von]=1&showDetails=1&culture=de
+realty: set(filter, min) => objekt/list?filter[min]=1&showDetails=1&culture=de
+realty: set(filter[preis], min) => objekt/list?filter[preis][min]=1&showDetails=1&culture=de
+realty: set(picturesize, min) => objekt/list?picturesize[min]=1&showDetails=1&culture=de
+realty: set(orderby, min) => objekt/list?orderby[min]=1&showDetails=1&culture=de
+realty: set(limit, min) => objekt/list?limit[min]=1&showDetails=1&culture=de
+realty: setPicturesize(min) => objekt/list?picturesize[min]=1&showDetails=1&culture=de
+realty: setLimit(min) => objekt/list?limit[min]=1&showDetails=1&culture=de
+realty: setOffset(min) => objekt/list?offset[min]=1&showDetails=1&culture=de
+realty: paginate(min) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min) => objekt/list?orderby=preis&ordertype[min]=1&showDetails=1&culture=de
+realty: orderByPrice(min) => objekt/list?orderby=preis&ordertype[min]=1&showDetails=1&culture=de
+realty: orderByUpdatedAt(min) => objekt/list?orderby=updated_at&ordertype[min]=1&showDetails=1&culture=de
+realty: allProjectRealties(min) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, max) => objekt/list?filter[preis_bis]=2&showDetails=1&culture=de
+realty: filterByPrice(max) => objekt/list?filter[preis_bis]=2&showDetails=1&culture=de
+realty: filterByFoo(max) => objekt/list?filter[Foo_bis]=2&showDetails=1&culture=de
+realty: filterByTag(max) => objekt/list?filter[tag_name]=2&showDetails=1&culture=de
+realty: filterByRealtyCategory(max) => objekt/list?filter[tag_name]=2&showDetails=1&culture=de
+realty: filterByEquipment(max) => objekt/list?filter[objekt_ausstattung_list_bis]=2&showDetails=1&culture=de
+realty: filterByCreatedAt(max) => objekt/list?filter[created_at_bis]=2&showDetails=1&culture=de
+realty: filterByZipCode(max) => objekt/list?filter[plz_bis]=2&showDetails=1&culture=de
+realty: set(filter, max) => objekt/list?filter[max]=2&showDetails=1&culture=de
+realty: set(filter[preis], max) => objekt/list?filter[preis][max]=2&showDetails=1&culture=de
+realty: set(picturesize, max) => objekt/list?picturesize[max]=2&showDetails=1&culture=de
+realty: set(orderby, max) => objekt/list?orderby[max]=2&showDetails=1&culture=de
+realty: set(limit, max) => objekt/list?limit[max]=2&showDetails=1&culture=de
+realty: setPicturesize(max) => objekt/list?picturesize[max]=2&showDetails=1&culture=de
+realty: setLimit(max) => objekt/list?limit[max]=2&showDetails=1&culture=de
+realty: setOffset(max) => objekt/list?offset[max]=2&showDetails=1&culture=de
+realty: paginate(max) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, max) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, max) => objekt/list?orderby=preis&ordertype[max]=2&showDetails=1&culture=de
+realty: orderByPrice(max) => objekt/list?orderby=preis&ordertype[max]=2&showDetails=1&culture=de
+realty: orderByUpdatedAt(max) => objekt/list?orderby=updated_at&ordertype[max]=2&showDetails=1&culture=de
+realty: allProjectRealties(max) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(max) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(max) => projekt/list?alle=1&culture=de
+project: allProjectRealties(max) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(max) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de
+realty: filterByPrice(min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de
+realty: filterByFoo(min-max) => objekt/list?filter[Foo_von]=1&filter[Foo_bis]=2&showDetails=1&culture=de
+realty: filterByTag(min-max) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
+realty: filterByRealtyCategory(min-max) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
+realty: filterByEquipment(min-max) => objekt/list?filter[objekt_ausstattung_list_von]=1&filter[objekt_ausstattung_list_bis]=2&showDetails=1&culture=de
+realty: filterByCreatedAt(min-max) => objekt/list?filter[created_at_von]=1&filter[created_at_bis]=2&showDetails=1&culture=de
+realty: filterByZipCode(min-max) => objekt/list?filter[plz_von]=1&filter[plz_bis]=2&showDetails=1&culture=de
+realty: set(filter, min-max) => objekt/list?filter[min]=1&filter[max]=2&showDetails=1&culture=de
+realty: set(filter[preis], min-max) => objekt/list?filter[preis][min]=1&filter[preis][max]=2&showDetails=1&culture=de
+realty: set(picturesize, min-max) => objekt/list?picturesize[min]=1&picturesize[max]=2&showDetails=1&culture=de
+realty: set(orderby, min-max) => objekt/list?orderby[min]=1&orderby[max]=2&showDetails=1&culture=de
+realty: set(limit, min-max) => objekt/list?limit[min]=1&limit[max]=2&showDetails=1&culture=de
+realty: setPicturesize(min-max) => objekt/list?picturesize[min]=1&picturesize[max]=2&showDetails=1&culture=de
+realty: setLimit(min-max) => objekt/list?limit[min]=1&limit[max]=2&showDetails=1&culture=de
+realty: setOffset(min-max) => objekt/list?offset[min]=1&offset[max]=2&showDetails=1&culture=de
+realty: paginate(min-max) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min-max) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min-max) => objekt/list?orderby=preis&ordertype[min]=1&ordertype[max]=2&showDetails=1&culture=de
+realty: orderByPrice(min-max) => objekt/list?orderby=preis&ordertype[min]=1&ordertype[max]=2&showDetails=1&culture=de
+realty: orderByUpdatedAt(min-max) => objekt/list?orderby=updated_at&ordertype[min]=1&ordertype[max]=2&showDetails=1&culture=de
+realty: allProjectRealties(min-max) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min-max) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min-max) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min-max) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min-max) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min-null) => objekt/list?filter[preis_bis]=5&showDetails=1&culture=de
+realty: filterByPrice(min-null) => objekt/list?filter[preis_bis]=5&showDetails=1&culture=de
+realty: filterByFoo(min-null) => objekt/list?filter[Foo_bis]=5&showDetails=1&culture=de
+realty: filterByTag(min-null) => objekt/list?filter[tag_name][]=5&showDetails=1&culture=de
+realty: filterByRealtyCategory(min-null) => objekt/list?filter[tag_name][]=5&showDetails=1&culture=de
+realty: filterByEquipment(min-null) => objekt/list?filter[objekt_ausstattung_list_bis]=5&showDetails=1&culture=de
+realty: filterByCreatedAt(min-null) => objekt/list?filter[created_at_bis]=5&showDetails=1&culture=de
+realty: filterByZipCode(min-null) => objekt/list?filter[plz_bis]=5&showDetails=1&culture=de
+realty: set(filter, min-null) => objekt/list?filter[max]=5&showDetails=1&culture=de
+realty: set(filter[preis], min-null) => objekt/list?filter[preis][max]=5&showDetails=1&culture=de
+realty: set(picturesize, min-null) => objekt/list?picturesize[max]=5&showDetails=1&culture=de
+realty: set(orderby, min-null) => objekt/list?orderby[max]=5&showDetails=1&culture=de
+realty: set(limit, min-null) => objekt/list?limit[max]=5&showDetails=1&culture=de
+realty: setPicturesize(min-null) => objekt/list?picturesize[max]=5&showDetails=1&culture=de
+realty: setLimit(min-null) => objekt/list?limit[max]=5&showDetails=1&culture=de
+realty: setOffset(min-null) => objekt/list?offset[max]=5&showDetails=1&culture=de
+realty: paginate(min-null) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min-null) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min-null) => objekt/list?orderby=preis&ordertype[max]=5&showDetails=1&culture=de
+realty: orderByPrice(min-null) => objekt/list?orderby=preis&ordertype[max]=5&showDetails=1&culture=de
+realty: orderByUpdatedAt(min-null) => objekt/list?orderby=updated_at&ordertype[max]=5&showDetails=1&culture=de
+realty: allProjectRealties(min-null) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min-null) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min-null) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min-null) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min-null) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(min-empty) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(min-empty) => objekt/list?showDetails=1&culture=de
+realty: set(filter, min-empty) => objekt/list?filter[min]=&filter[max]=&showDetails=1&culture=de
+realty: set(filter[preis], min-empty) => objekt/list?filter[preis][min]=&filter[preis][max]=&showDetails=1&culture=de
+realty: set(picturesize, min-empty) => objekt/list?picturesize[min]=&picturesize[max]=&showDetails=1&culture=de
+realty: set(orderby, min-empty) => objekt/list?orderby[min]=&orderby[max]=&showDetails=1&culture=de
+realty: set(limit, min-empty) => objekt/list?limit[min]=&limit[max]=&showDetails=1&culture=de
+realty: setPicturesize(min-empty) => objekt/list?picturesize[]=medium&showDetails=1&culture=de
+realty: setLimit(min-empty) => objekt/list?limit[min]=&limit[max]=&showDetails=1&culture=de
+realty: setOffset(min-empty) => objekt/list?offset[min]=&offset[max]=&showDetails=1&culture=de
+realty: paginate(min-empty) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min-empty) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min-empty) => objekt/list?orderby=preis&ordertype[min]=&ordertype[max]=&showDetails=1&culture=de
+realty: orderByPrice(min-empty) => objekt/list?orderby=preis&ordertype[min]=&ordertype[max]=&showDetails=1&culture=de
+realty: orderByUpdatedAt(min-empty) => objekt/list?orderby=updated_at&ordertype[min]=&ordertype[max]=&showDetails=1&culture=de
+realty: allProjectRealties(min-empty) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min-empty) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min-empty) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min-empty) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min-empty) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min-nested) => objekt/list?filter[preis_von][]=1&showDetails=1&culture=de
+realty: filterByPrice(min-nested) => objekt/list?filter[preis_von][]=1&showDetails=1&culture=de
+realty: filterByFoo(min-nested) => objekt/list?filter[Foo_von][]=1&showDetails=1&culture=de
+realty: filterByTag(min-nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
+realty: filterByRealtyCategory(min-nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
+realty: filterByEquipment(min-nested) => objekt/list?filter[objekt_ausstattung_list_von][]=1&showDetails=1&culture=de
+realty: filterByCreatedAt(min-nested) => objekt/list?filter[created_at_von][]=1&showDetails=1&culture=de
+realty: filterByZipCode(min-nested) => objekt/list?filter[plz_von][]=1&showDetails=1&culture=de
+realty: set(filter, min-nested) => objekt/list?filter[min][]=1&showDetails=1&culture=de
+realty: set(filter[preis], min-nested) => objekt/list?filter[preis][min][]=1&showDetails=1&culture=de
+realty: set(picturesize, min-nested) => objekt/list?picturesize[min][]=1&showDetails=1&culture=de
+realty: set(orderby, min-nested) => objekt/list?orderby[min][]=1&showDetails=1&culture=de
+realty: set(limit, min-nested) => objekt/list?limit[min][]=1&showDetails=1&culture=de
+realty: setPicturesize(min-nested) => objekt/list?picturesize[min][]=1&showDetails=1&culture=de
+realty: setLimit(min-nested) => objekt/list?limit[min][]=1&showDetails=1&culture=de
+realty: setOffset(min-nested) => objekt/list?offset[min][]=1&showDetails=1&culture=de
+realty: paginate(min-nested) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min-nested) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min-nested) => objekt/list?orderby=preis&ordertype[min][]=1&showDetails=1&culture=de
+realty: orderByPrice(min-nested) => objekt/list?orderby=preis&ordertype[min][]=1&showDetails=1&culture=de
+realty: orderByUpdatedAt(min-nested) => objekt/list?orderby=updated_at&ordertype[min][]=1&showDetails=1&culture=de
+realty: allProjectRealties(min-nested) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min-nested) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min-nested) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min-nested) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min-nested) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, min-stringable) => objekt/list?filter[preis_von]=3&showDetails=1&culture=de
+realty: filterByPrice(min-stringable) => objekt/list?filter[preis_von]=3&showDetails=1&culture=de
+realty: filterByFoo(min-stringable) => objekt/list?filter[Foo_von]=3&showDetails=1&culture=de
+realty: filterByTag(min-stringable) => objekt/list?filter[tag_name]=3&showDetails=1&culture=de
+realty: filterByRealtyCategory(min-stringable) => objekt/list?filter[tag_name]=3&showDetails=1&culture=de
+realty: filterByEquipment(min-stringable) => objekt/list?filter[objekt_ausstattung_list_von]=3&showDetails=1&culture=de
+realty: filterByCreatedAt(min-stringable) => objekt/list?filter[created_at_von]=3&showDetails=1&culture=de
+realty: filterByZipCode(min-stringable) => objekt/list?filter[plz_von]=3&showDetails=1&culture=de
+realty: set(filter, min-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], min-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, min-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, min-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(limit, min-stringable) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(min-stringable) => objekt/list?showDetails=1&culture=de
+realty: setLimit(min-stringable) => objekt/list?showDetails=1&culture=de
+realty: setOffset(min-stringable) => objekt/list?showDetails=1&culture=de
+realty: paginate(min-stringable) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, min-stringable) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, min-stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(min-stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(min-stringable) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(min-stringable) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(min-stringable) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(min-stringable) => projekt/list?alle=1&culture=de
+project: allProjectRealties(min-stringable) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(min-stringable) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, list-stringable) => objekt/list?filter[preis][]=a&showDetails=1&culture=de
+realty: filterByPrice(list-stringable) => objekt/list?filter[preis][]=a&showDetails=1&culture=de
+realty: filterByFoo(list-stringable) => objekt/list?filter[Foo][]=a&showDetails=1&culture=de
+realty: filterByTag(list-stringable) => objekt/list?filter[tag_name]=a&showDetails=1&culture=de
+realty: filterByRealtyCategory(list-stringable) => objekt/list?filter[tag_name]=a&showDetails=1&culture=de
+realty: filterByEquipment(list-stringable) => objekt/list?filter[objekt_ausstattung_list][]=a&showDetails=1&culture=de
+realty: filterByCreatedAt(list-stringable) => objekt/list?filter[created_at][]=a&showDetails=1&culture=de
+realty: filterByZipCode(list-stringable) => objekt/list?filter[plz][]=a&showDetails=1&culture=de
+realty: set(filter, list-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], list-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, list-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, list-stringable) => objekt/list?showDetails=1&culture=de
+realty: set(limit, list-stringable) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(list-stringable) => objekt/list?showDetails=1&culture=de
+realty: setLimit(list-stringable) => objekt/list?showDetails=1&culture=de
+realty: setOffset(list-stringable) => objekt/list?showDetails=1&culture=de
+realty: paginate(list-stringable) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, list-stringable) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, list-stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(list-stringable) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(list-stringable) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(list-stringable) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(list-stringable) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(list-stringable) => projekt/list?alle=1&culture=de
+project: allProjectRealties(list-stringable) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(list-stringable) => projekt/list?objektIds=1&culture=de
+realty: filter(preis, list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByPrice(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByFoo(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByTag(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByRealtyCategory(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByEquipment(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByCreatedAt(list-object) => objekt/list?showDetails=1&culture=de
+realty: filterByZipCode(list-object) => objekt/list?showDetails=1&culture=de
+realty: set(filter, list-object) => objekt/list?showDetails=1&culture=de
+realty: set(filter[preis], list-object) => objekt/list?showDetails=1&culture=de
+realty: set(picturesize, list-object) => objekt/list?showDetails=1&culture=de
+realty: set(orderby, list-object) => objekt/list?showDetails=1&culture=de
+realty: set(limit, list-object) => objekt/list?showDetails=1&culture=de
+realty: setPicturesize(list-object) => objekt/list?showDetails=1&culture=de
+realty: setLimit(list-object) => objekt/list?showDetails=1&culture=de
+realty: setOffset(list-object) => objekt/list?showDetails=1&culture=de
+realty: paginate(list-object) => objekt/list?limit=10&offset=0&showDetails=1&culture=de throws Error
+realty: paginate(1, list-object) => objekt/list?limit=1&offset=0&showDetails=1&culture=de throws Error
+realty: orderBy(Price, list-object) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByPrice(list-object) => objekt/list?orderby=preis&showDetails=1&culture=de
+realty: orderByUpdatedAt(list-object) => objekt/list?orderby=updated_at&showDetails=1&culture=de
+realty: allProjectRealties(list-object) => objekt/list?alleProjektObjekte=1&showDetails=1&culture=de
+realty: preciseAreaSearch(list-object) => objekt/list?preciseAreaSearch=1&showDetails=1&culture=de
+project: all(list-object) => projekt/list?alle=1&culture=de
+project: allProjectRealties(list-object) => projekt/list?alleProjektObjekte=1&culture=de
+project: onlyRealtyIds(list-object) => projekt/list?objektIds=1&culture=de
+realty: filterBy() => objekt/list?filter[]=1&showDetails=1&culture=de
+realty: filterByPrice() => throws Justimmo\Exception\MethodNotFoundException
+realty: filterByPrice(1, 2) => throws Justimmo\Exception\MethodNotFoundException
+realty: orderByPrice() => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de
+realty: orderByPrice(asc, x) => throws Justimmo\Exception\MethodNotFoundException
+realty: orderBy() => throws ArgumentCountError
+realty: filterByPrice(min) + filter(preis_von) => objekt/list?filter[preis_von]=2&showDetails=1&culture=de
+realty: filterByTag(a) x2 => objekt/list?filter[tag_name]=a&showDetails=1&culture=de
+realty: filterByTag(a) + filterByTag([b, a]) => objekt/list?filter[tag_name][]=a&filter[tag_name][]=b&showDetails=1&culture=de
+project: filterByPrice(1) + all() => projekt/list?filter[preis]=1&alle=1&culture=de
