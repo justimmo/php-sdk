@@ -3,6 +3,7 @@
     * A response body which is not XML, for example an empty body or one which was cut off, throws the new `Justimmo\Exception\InvalidResponseException`. It threw a plain `\Exception` before, and a broken body also raised PHP warnings. The warnings are gone. The new class extends `\Exception`, so an existing `catch (\Exception $e)` still catches it
     * [BC] `findIds()` throws `InvalidResponseException` when the body is not a JSON list. It returned `null` for a body which is not JSON, as if the api had found nothing, and an object or `null` for JSON which is not a list
     * A call which gets no answer, for example after a timeout, throws the new `Justimmo\Exception\ConnectionException`. It extends `\InvalidArgumentException`, which was thrown before, so an existing catch still catches it
+* The `@param` tags name the parameter and its type everywhere. A static analyser may now report calls which 2.0.0 will reject
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 
 ## 1.5.0

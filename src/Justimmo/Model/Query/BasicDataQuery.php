@@ -57,7 +57,7 @@ class BasicDataQuery
 
     /**
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */
@@ -68,7 +68,7 @@ class BasicDataQuery
 
     /**
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */
@@ -194,8 +194,8 @@ class BasicDataQuery
     /**
      * sets a value for a key
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */

@@ -315,7 +315,7 @@ abstract class AbstractQuery implements QueryInterface
      * The comparison happens before the cast on purpose. `(int) -0.5` is `0`, so casting first
      * would let a negative fraction slip through as a limit of zero
      *
-     * @param $limit
+     * @param int|float|string $limit
      *
      * @return $this
      */
@@ -337,7 +337,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * Compared before the cast for the same reason as in setLimit()
      *
-     * @param $offset
+     * @param int|float|string $offset
      *
      * @return $this
      */
@@ -413,8 +413,8 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * sets a value for a key
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */
@@ -428,7 +428,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * adds a filter column
      *
-     * @param       $key
+     * @param string|null $key
      * @param mixed $value
      *
      * @return $this

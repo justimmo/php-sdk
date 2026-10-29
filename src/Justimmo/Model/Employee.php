@@ -310,7 +310,7 @@ class Employee implements ModelInterface
     }
 
     /**
-     * @param      $type
+     * @param string              $type
      * @param null|string|boolean $group
      *
      * @return array

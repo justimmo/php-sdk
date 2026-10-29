@@ -19,12 +19,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApi.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:call\(\) has parameter \$call with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:call\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -33,12 +27,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callCountries\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApi.php
 
@@ -55,18 +43,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApi.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callFederalStates\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -75,12 +51,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApi.php
 
@@ -105,12 +75,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApi.php
 
@@ -151,12 +115,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApi.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:generateUrl\(\) has parameter \$call with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:generateUrl\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -165,18 +123,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:postRealtyInquiry\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:setCurlOption\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApi\:\:setCurlOption\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApi.php
 
@@ -217,12 +163,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApiInterface.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApiInterface.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callEmployeeIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -235,18 +175,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoApiInterface.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApiInterface.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoApiInterface.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callFederalStates\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -255,12 +183,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApiInterface.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApiInterface.php
 
@@ -285,12 +207,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoApiInterface.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoApiInterface\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoApiInterface.php
 
@@ -343,12 +259,6 @@ parameters:
 			path: src/Justimmo/Api/JustimmoNullApi.php
 
 		-
-			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoNullApi.php
-
-		-
 			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeIds\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -357,18 +267,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callEmployeeList\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoNullApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callExpose\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Api/JustimmoNullApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callExpose\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoNullApi.php
 
@@ -387,12 +285,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoNullApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callProjectDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoNullApi.php
 
@@ -417,12 +309,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyDetail\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Api/JustimmoNullApi.php
-
-		-
-			message: '#^Method Justimmo\\Api\\JustimmoNullApi\:\:callRealtyDetail\(\) has parameter \$pk with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Api/JustimmoNullApi.php
 
@@ -499,44 +385,8 @@ parameters:
 			path: src/Justimmo/Curl/CurlRequest.php
 
 		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getInfo\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
 			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getInfos\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:getOption\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:removeOption\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOption\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOption\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Curl/CurlRequest.php
-
-		-
-			message: '#^Method Justimmo\\Curl\\CurlRequest\:\:setOptions\(\) has parameter \$options with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Curl/CurlRequest.php
 
@@ -620,18 +470,6 @@ parameters:
 
 		-
 			message: '#^Method Justimmo\\Model\\Attachment\:\:__construct\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Attachment.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Attachment\:\:addData\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Attachment.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Attachment\:\:addData\(\) has parameter \$value with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Attachment.php
@@ -737,12 +575,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: src/Justimmo/Model/Attachment.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Employee\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Employee.php
 
 		-
 			message: '#^Method Justimmo\\Model\\Employee\:\:getAttachmentsByType\(\) return type has no value type specified in iterable type array\.$#'
@@ -955,86 +787,14 @@ parameters:
 			path: src/Justimmo/Model/Garage.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/MapperInterface.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/MapperInterface.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/MapperInterface.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\MapperInterface\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/MapperInterface.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/NullMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/NullMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/NullMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\NullMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/NullMapper.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getFilterMapping\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getFilterPropertyName\(\) has parameter \$modelPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getMapping\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\AbstractMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Mapper/V1/AbstractMapper.php
 
@@ -1063,26 +823,8 @@ parameters:
 			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getProperty\(\) should return string but return statement is missing\.$#'
 			identifier: return.missing
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\BasicDataMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Mapper/V1/BasicDataMapper.php
 
@@ -1129,26 +871,8 @@ parameters:
 			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getProperty\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getProperty\(\) should return string but return statement is missing\.$#'
 			identifier: return.missing
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getSetter\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Mapper\\V1\\RealtyInquiryMapper\:\:getType\(\) has parameter \$apiPropertyName with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Mapper/V1/RealtyInquiryMapper.php
 
@@ -1183,26 +907,8 @@ parameters:
 			path: src/Justimmo/Model/Project.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Project\:\:addCategory\(\) has parameter \$id with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Project.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Project\:\:addCategory\(\) has parameter \$name with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Project.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Project\:\:getAttachments\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Project.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Project\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Project.php
 
@@ -1291,12 +997,6 @@ parameters:
 			path: src/Justimmo/Model/Project.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Project\:\:setEpcValidUntil\(\) has parameter \$epcValidUntil with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Project.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Project\:\:setGarages\(\) has parameter \$stellplaetze with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1311,12 +1011,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Model\\Project\:\:setRealties\(\) has parameter \$value with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Project.php
-
-		-
-			message: '#^PHPDoc tag @param has invalid value \(\\DateTime epcValidUntil\)\: Unexpected token "epcValidUntil", expected variable at offset 28 on line 2$#'
-			identifier: phpDoc.parseError
 			count: 1
 			path: src/Justimmo/Model/Project.php
 
@@ -1399,12 +1093,6 @@ parameters:
 			path: src/Justimmo/Model/Query/AbstractQuery.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:filter\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:findIds\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1413,30 +1101,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:getParams\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:set\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:set\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setLimit\(\) has parameter \$limit with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setOffset\(\) has parameter \$offset with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Query/AbstractQuery.php
 
@@ -1451,18 +1115,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByCountry\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:filterByFederalState\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
 
 		-
 			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:findCountries\(\) return type has no value type specified in iterable type array\.$#'
@@ -1507,18 +1159,6 @@ parameters:
 			path: src/Justimmo/Model/Query/BasicDataQuery.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:set\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Query\\BasicDataQuery\:\:set\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Query/BasicDataQuery.php
-
-		-
 			message: '#^Property Justimmo\\Model\\Query\\BasicDataQuery\:\:\$params type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1531,30 +1171,6 @@ parameters:
 			path: src/Justimmo/Model/Realty.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:addCategory\(\) has parameter \$id with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:addCategory\(\) has parameter \$name with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:addEquipment\(\) has parameter \$key with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:addEquipment\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Realty\:\:getAdditionalCosts\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1563,12 +1179,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Model\\Realty\:\:getAttachments\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:getAttachmentsByType\(\) has parameter \$type with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/Justimmo/Model/Realty.php
 
@@ -1651,12 +1261,6 @@ parameters:
 			path: src/Justimmo/Model/Realty.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Realty\:\:setCostsExplanation\(\) has parameter \$costsExplanation with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
 			message: '#^Method Justimmo\\Model\\Realty\:\:setEquipment\(\) has parameter \$ausstattung with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1677,12 +1281,6 @@ parameters:
 		-
 			message: '#^Method Justimmo\\Model\\Realty\:\:setOccupancy\(\) has parameter \$nutzungsart with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
-			message: '#^PHPDoc tag @param references unknown parameter\: \$freetext3$#'
-			identifier: parameter.notFound
 			count: 1
 			path: src/Justimmo/Model/Realty.php
 
@@ -2395,12 +1993,6 @@ parameters:
 			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
-
-		-
 			message: '#^Parameter \#1 \$baujahr of method Justimmo\\Model\\Realty\:\:setYearBuilt\(\) expects int\|null, DateTime\|float\|int\|string\|null given\.$#'
 			identifier: argument.type
 			count: 1
@@ -2555,23 +2147,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Wrapper\\WrapperInterface\:\:transformList\(\) has parameter \$data with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Wrapper/WrapperInterface.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Wrapper\\WrapperInterface\:\:transformSingle\(\) has parameter \$data with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Wrapper/WrapperInterface.php
-
-
-
-
-
 
 		-
 			message: '#^Property Justimmo\\Request\\RealtyInquiryRequest\:\:\$city has no type specified\.$#'

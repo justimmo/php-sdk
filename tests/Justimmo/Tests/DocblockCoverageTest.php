@@ -37,7 +37,8 @@ class DocblockCoverageTest extends TestCase
     }
 
     /**
-     * Every untyped parameter of a public method is described
+     * Every untyped parameter of a public method has a @param tag with a type and its own name.
+     * Counting the tags let a tag without a type, or with the name of another parameter, pass
      */
     public function testEveryUntypedParameterIsDescribed(): void
     {
@@ -86,15 +87,20 @@ class DocblockCoverageTest extends TestCase
             return $nativeReturn !== '' || strpos($doc, '@return') !== false;
         }
 
-        $untyped = 0;
-
         foreach (explode(',', $args) as $argument) {
-            if (trim($argument) !== '' && !preg_match('~^\s*\??[\w\\\\|]+\s+\$~', $argument)) {
-                $untyped++;
+            if (trim($argument) === '' || preg_match('~^\s*\??[\w\\\\|]+\s+\$~', $argument)) {
+                continue;
+            }
+
+            preg_match('~\$(\w+)~', $argument, $name);
+
+            // the type may not contain a $, so a name mentioned in another tag's description cannot count
+            if (!preg_match('~@param[ \t]+[^\s$][^\n$]*?[ \t]&?(?:\.\.\.)?\$' . $name[1] . '\b~', $doc)) {
+                return false;
             }
         }
 
-        return $untyped === 0 || substr_count($doc, '@param') >= $untyped;
+        return true;
     }
 
     private function classOf(string $source): string

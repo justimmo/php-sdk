@@ -24,7 +24,7 @@ interface JustimmoApiInterface
     /**
      * calls the detail information of a single realty
      *
-     * @param       $pk
+     * @param int $pk
      * @param array $params
      *
      * @return string
@@ -43,7 +43,7 @@ interface JustimmoApiInterface
     /**
      * calls the detail information of a single employee
      *
-     * @param $pk
+     * @param int $pk
      *
      * @return string
      */
@@ -70,7 +70,7 @@ interface JustimmoApiInterface
     /**
      * calls the detail information of a single project
      *
-     * @param       $pk
+     * @param int $pk
      * @param array $params
      *
      * @return string
@@ -165,8 +165,8 @@ interface JustimmoApiInterface
     /**
      * retrieves the expose for a realty
      *
-     * @param   $pk
-     * @param   $type
+     * @param int $pk
+     * @param string $type
      *
      * @return string
      */

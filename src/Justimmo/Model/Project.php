@@ -808,7 +808,7 @@ class Project implements ModelInterface
     }
 
     /**
-     * @param \DateTime epcValidUntil
+     * @param \DateTime|null $epcValidUntil
      *
      * @return $this
      */
@@ -1281,7 +1281,7 @@ class Project implements ModelInterface
     }
 
     /**
-     * @param                     $type
+     * @param string              $type
      * @param null|string|boolean $group
      *
      * @return array
@@ -1421,8 +1421,8 @@ class Project implements ModelInterface
     }
 
     /**
-     * @param $id
-     * @param $name
+     * @param int|string $id
+     * @param string $name
      *
      * @return $this
      */

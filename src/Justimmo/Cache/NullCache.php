@@ -39,7 +39,7 @@ class NullCache implements CacheInterface
     /**
      * removes a key entry from the cache
      *
-     * @param $key
+     * @param string $key
      *
      * @return void
      */
@@ -51,7 +51,7 @@ class NullCache implements CacheInterface
     /**
      * generates a cache key to store
      *
-     * @param $url
+     * @param string $url
      *
      * @return string
      */

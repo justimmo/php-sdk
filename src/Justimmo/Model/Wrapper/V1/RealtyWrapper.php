@@ -168,7 +168,7 @@ class RealtyWrapper extends AbstractWrapper
     }
 
     /**
-     * @param $data
+     * @param string $data the raw response of the api call
      *
      * @return Realty
      */
