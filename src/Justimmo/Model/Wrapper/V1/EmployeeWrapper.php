@@ -36,6 +36,13 @@ class EmployeeWrapper extends AbstractWrapper
         'firma',
     ];
 
+    /**
+     * Transforms a detail call into a Employee.
+     *
+     * @param string $data the raw response of the api call
+     *
+     * @return \Justimmo\Model\Employee
+     */
     public function transformSingle($data)
     {
         $xml = new SimpleXMLElement($data);
@@ -98,6 +105,13 @@ class EmployeeWrapper extends AbstractWrapper
         return $mitarbeiter;
     }
 
+    /**
+     * Transforms a list call into a pager of Employee objects.
+     *
+     * @param string $data the raw response of the api call
+     *
+     * @return \Justimmo\Pager\ListPager
+     */
     public function transformList($data)
     {
         $xml = new SimpleXMLElement($data);
@@ -107,7 +121,7 @@ class EmployeeWrapper extends AbstractWrapper
             $attributes = $this->attributesToArray($kategorie);
 
             foreach ($kategorie->mitarbeiter as $mitarbeiter) {
-                $member = $this->transformSingle($mitarbeiter->asXML());
+                $member = $this->transformSingle((string) $mitarbeiter->asXML());
                 if (array_key_exists('name', $attributes)) {
                     $member->setCategory($attributes['name']);
                 }

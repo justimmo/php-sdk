@@ -17,6 +17,23 @@ use Justimmo\Model\Query\AbstractQuery;
  * @method ProjectQuery filterByCompletionDate($value)
  * @method ProjectQuery filterBySaleStart($value)
  * @method ProjectQuery filterByProjectTag($value)
+ * @method ProjectQuery filterByBuy($value)
+ * @method ProjectQuery filterByRent($value)
+ * @method ProjectQuery filterByRealtyTypeId($value)
+ * @method ProjectQuery filterBySubRealtyTypeId($value)
+ * @method ProjectQuery filterByStatusId($value)
+ * @method ProjectQuery filterByZipCode($value)
+ * @method ProjectQuery filterByPropertyNumber($value)
+ * @method ProjectQuery filterByProjectPropertyNumber($value)
+ * @method ProjectQuery filterByOwnerId($value)
+ * @method ProjectQuery filterByPrice($value)
+ * @method ProjectQuery filterByRooms($value)
+ * @method ProjectQuery filterByArea($value)
+ * @method ProjectQuery filterByLivingArea($value)
+ * @method ProjectQuery filterByFloorArea($value)
+ * @method ProjectQuery filterBySurfaceArea($value)
+ * @method ProjectQuery orderByCreatedAt($direction = 'asc')
+ * @method ProjectQuery orderByUpdatedAt($direction = 'asc')
  */
 class ProjectQuery extends AbstractQuery
 {
@@ -43,6 +60,17 @@ class ProjectQuery extends AbstractQuery
     public function getIdsCall()
     {
         return 'callProjectIds';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * projekt/detail is the only detail call which documents alleProjektObjekte and objektIds, so
+     * it is the only one which still receives them
+     */
+    protected function getDetailParams(): array
+    {
+        return ['picturesize', 'alleProjektObjekte', 'objektIds'];
     }
 
     /**
@@ -109,7 +137,10 @@ class ProjectQuery extends AbstractQuery
 
     /**
      * An alias of filterByTag(), both build filter[tag_name]. The api has no realty category
-     * filter of its own, so this name is deprecated in 1.5 and removed in 2.x
+     * filter of its own, so this name says something the api does not have.
+     *
+     * @deprecated Use filterByTag(). Both build filter[tag_name]; this name suggests a filter
+     *             which does not exist. Removed in 2.x
      *
      * @param string|array<int, string> $value
      *

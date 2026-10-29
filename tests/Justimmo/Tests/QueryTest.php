@@ -68,6 +68,14 @@ class QueryTest extends TestCase
         ], $this->query->getParams());
     }
 
+    public function testANullFilterNameIsStoredUnderTheEmptyName()
+    {
+        $this->query->clear();
+        $this->query->filter(null, 455);
+
+        $this->assertSame(['filter' => ['' => 455]], $this->query->getParams());
+    }
+
     public function testOrderBy()
     {
         $this->query->clear();
@@ -400,5 +408,25 @@ class QueryTest extends TestCase
                 'realty_type' => 'area',
             ],
         ], $this->query->getParams());
+    }
+
+    /**
+     * @dataProvider untranslatedColumnProvider
+     */
+    public function testANullOrABooleanColumnIsSentUntranslated($column)
+    {
+        $this->query->clear();
+        $this->query->orderBy($column);
+
+        $this->assertSame(['orderby' => $column, 'ordertype' => 'asc'], $this->query->getParams());
+    }
+
+    public function untranslatedColumnProvider()
+    {
+        return [
+            'null'  => [null],
+            'false' => [false],
+            'true'  => [true],
+        ];
     }
 }

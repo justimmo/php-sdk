@@ -163,6 +163,9 @@ class BasicDataQuery
         return $return;
     }
 
+    /**
+     * @return array<int|string, mixed>
+     */
     public function findRealtyCategories()
     {
         $response = $this->api->callRealtyCategories($this->params);

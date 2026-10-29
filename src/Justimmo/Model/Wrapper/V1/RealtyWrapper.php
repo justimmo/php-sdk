@@ -138,6 +138,13 @@ class RealtyWrapper extends AbstractWrapper
         'epass_fgeeklasse',
     ];
 
+    /**
+     * Transforms a list call into a pager of Realty objects.
+     *
+     * @param string $data the raw response of the api call
+     *
+     * @return \Justimmo\Pager\ListPager
+     */
     public function transformList($data)
     {
         $xml = new SimpleXMLElement($data);
@@ -147,7 +154,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->immobilie)) {
             foreach ($xml->immobilie as $immobilie) {
-                $objekt = $this->transformSingle($immobilie->asXML());
+                $objekt = $this->transformSingle((string) $immobilie->asXML());
                 $transformed->append($objekt);
             }
         }
@@ -489,7 +496,7 @@ class RealtyWrapper extends AbstractWrapper
 
         if (isset($xml->kontaktperson)) {
             $employeeWrapper = new EmployeeWrapper(new EmployeeMapper());
-            $contact         = $employeeWrapper->transformSingle($xml->kontaktperson->asXML());
+            $contact         = $employeeWrapper->transformSingle((string) $xml->kontaktperson->asXML());
             $objekt->setContact($contact);
         }
 

@@ -469,6 +469,8 @@ class RealtyMapper extends AbstractMapper
             'RealtyTypeId'           => 'objektart_id',
             'SubRealtyTypeId'        => 'subobjektart_id',
             'StyleOfBuildingId'      => 'bauart_id',
+            'CountryId'              => 'land_id',
+            'OwnerId'                 => 'owner_id',
             'RealtyCategory'         => 'tag_name',
             'Tag'                    => 'tag_name',
             'ZipCode'                => 'plz',
@@ -508,8 +510,27 @@ class RealtyMapper extends AbstractMapper
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * Only the names where sorting is not spelled like filtering are declared here. Everything else
+     * is inherited, so a filter name keeps translating for sorting as it did before the two tables
+     * were split.
+     */
+    protected function getOrderMapping(): array
+    {
+        return [
+            // the filter is aktualisiert_am, the sort column updated_at
+            'UpdatedAt'   => 'updated_at',
+            // sortable, and not a filter at all
+            'PublishedAt' => 'published_at',
+        ] + $this->getFilterMapping();
+    }
+
+    /**
      * @param SimpleXMLElement $xml
      * @param Realty            $realty
+     *
+     * @return void
      */
     public function setOrientation(SimpleXMLElement $xml, Realty $realty)
     {
