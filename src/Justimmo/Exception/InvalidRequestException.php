@@ -103,7 +103,20 @@ class InvalidRequestException extends Exception implements JustimmoException
      */
     private function xmlToArray(string $response): ?array
     {
-        $xml = @simplexml_load_string($response);
+        // collected instead of suppressed: @ still calls an error handler, and one which throws
+        // would replace the status exception with its own
+        $collecting = libxml_use_internal_errors(true);
+
+        try {
+            $xml = simplexml_load_string($response);
+        } finally {
+            if (!$collecting) {
+                libxml_clear_errors();
+            }
+
+            libxml_use_internal_errors($collecting);
+        }
+
         if ($xml === false) {
             return null;
         }

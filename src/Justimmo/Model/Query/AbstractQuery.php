@@ -2,9 +2,11 @@
 
 namespace Justimmo\Model\Query;
 
+use JsonException;
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Api\StrictModeInterface;
 use Justimmo\Exception\InvalidFilterValueException;
+use Justimmo\Exception\InvalidResponseException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Mapper\OrderMappingInterface;
@@ -285,7 +287,20 @@ abstract class AbstractQuery implements QueryInterface
         $method   = $this->getIdsCall();
         $response = $this->api->$method($params);
 
-        return json_decode($response);
+        // a body which is not json used to come back as null, as if the api had found nothing
+        try {
+            $ids = json_decode($response ?? '', false, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            throw new InvalidResponseException('The api answered with a body which is not valid JSON: ' . $e->getMessage(), 0, $e);
+        }
+
+        // the api answers a list, an empty one when nothing matches; anything else, like an error
+        // object or null, must not pass for a result
+        if (!is_array($ids)) {
+            throw new InvalidResponseException('The api answered with JSON which is not a list of ids');
+        }
+
+        return $ids;
     }
 
     /**

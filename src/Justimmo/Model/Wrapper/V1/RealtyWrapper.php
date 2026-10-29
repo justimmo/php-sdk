@@ -14,6 +14,8 @@ use SimpleXMLElement;
 
 class RealtyWrapper extends AbstractWrapper
 {
+    use ParsesXml;
+
     /**
      * simple attributes mostly used in list call
      *
@@ -147,7 +149,7 @@ class RealtyWrapper extends AbstractWrapper
      */
     public function transformList($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         $transformed = new ListPager();
         $transformed->setNbResults((int) $xml->{'query-result'}->count);
@@ -172,7 +174,7 @@ class RealtyWrapper extends AbstractWrapper
      */
     public function transformSingle($data)
     {
-        $xml = new SimpleXMLElement($data);
+        $xml = $this->parseXml($data);
 
         if (isset($xml->immobilie)) {
             $xml = $xml->immobilie;

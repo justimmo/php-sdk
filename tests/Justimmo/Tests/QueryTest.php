@@ -2,9 +2,15 @@
 namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Model\EmployeeQuery;
+use Justimmo\Model\Mapper\V1\EmployeeMapper;
+use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
+use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use PHPUnit\Framework\TestCase;
 
@@ -428,5 +434,17 @@ class QueryTest extends TestCase
             'false' => [false],
             'true'  => [true],
         ];
+    }
+
+    /**
+     * findIds() promises an array, so the null api answers an empty json list, not an empty object
+     */
+    public function testTheNullApiFindsNoIds(): void
+    {
+        $api = new JustimmoNullApi();
+
+        $this->assertSame([], (new RealtyQuery($api, new RealtyWrapper(new RealtyMapper()), new RealtyMapper()))->findIds());
+        $this->assertSame([], (new ProjectQuery($api, new ProjectWrapper(new ProjectMapper()), new ProjectMapper()))->findIds());
+        $this->assertSame([], (new EmployeeQuery($api, new EmployeeWrapper(new EmployeeMapper()), new EmployeeMapper()))->findIds());
     }
 }

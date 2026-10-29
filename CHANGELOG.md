@@ -1,3 +1,10 @@
+## 1.6.0
+* Every failed call throws an exception which implements `JustimmoException`, so `catch (JustimmoException $e)` catches them all
+    * A response body which is not XML, for example an empty body or one which was cut off, throws the new `Justimmo\Exception\InvalidResponseException`. It threw a plain `\Exception` before, and a broken body also raised PHP warnings. The warnings are gone. The new class extends `\Exception`, so an existing `catch (\Exception $e)` still catches it
+    * [BC] `findIds()` throws `InvalidResponseException` when the body is not a JSON list. It returned `null` for a body which is not JSON, as if the api had found nothing, and an object or `null` for JSON which is not a list
+    * A call which gets no answer, for example after a timeout, throws the new `Justimmo\Exception\ConnectionException`. It extends `\InvalidArgumentException`, which was thrown before, so an existing catch still catches it
+* `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
+
 ## 1.5.0
 * Upgrading from 1.4 needs no change. Every change below is additive or fixes a call which did not do what it said
     * `orderBy*()` calls which the api answered with a 400 now sort, and `orderBy('UpdatedAt')` sorts by the same column as `orderByUpdatedAt()`
