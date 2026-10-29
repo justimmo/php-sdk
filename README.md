@@ -12,6 +12,9 @@ Installation
 ```
 $ composer require justimmo/php-sdk "~1.2"
 ```
+The wide constraint is on purpose: Composer installs the newest version your PHP can run. 1.4 and
+later need PHP 8.1, so an older PHP gets an older 1.x instead of a failed install.
+
 Composer generates a vendor/autoload.php file. You can simply include this file
 ```php  
 require_once __DIR__.'/vendor/autoload.php';
@@ -53,8 +56,8 @@ $api = new JustimmoApi('username', 'password');
 $mapper = new RealtyMapper();
 $wrapper = new RealtyWrapper($mapper);
 $query = new RealtyQuery($api, $wrapper, $mapper);
-$realties = $query->filterByPrice(array('min' => 500, 'max' => 1500))
-    ->filterByZipCode(1020)
+$realties = $query->filterByPrice(['min' => 500, 'max' => 1500])
+    ->filterByZipCode('1020')
     ->orderBy('price', 'desc')
     ->find();
 
@@ -66,3 +69,20 @@ foreach ($realties as $realty) {
 //fetching Realty by PrimaryKey
 $query->findPk(12345);
 ```
+
+Strict mode
+-----------
+The api ignores a filter it does not have, or a value it cannot take, and answers with an
+unfiltered list. A typo then looks like a working search. Since 1.5.0, strict mode rejects such a
+request with an exception instead of sending it. It is off by default:
+
+``` php
+$api->setStrict(true);     // every query built on this api
+$query->strict();          // or one query
+
+$query->filterByPrice(1000);                           // throws: the price filter only takes a range
+$query->filterByPrice(['min' => 1000, 'max' => 1000]); // fine
+```
+
+In 2.0.0, strict mode is always on. What strict mode rejects in 1.5.0, 2.0.0 will reject too, so
+switching it on now shows what to change before the upgrade.
