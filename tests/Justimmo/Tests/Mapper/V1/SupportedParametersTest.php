@@ -237,7 +237,7 @@ class SupportedParametersTest extends TestCase
         $this->assertSame(
             $document['spec_hash'],
             SupportedParameters::SPEC_HASH,
-            'SupportedParameters.php is stale. Run bin/generate-supported-parameters.php'
+            'SupportedParameters.php is stale. Run php bin/generate-supported-parameters.php'
         );
         $this->assertSame($document['spec_version'], SupportedParameters::SPEC_VERSION);
 

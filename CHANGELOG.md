@@ -6,6 +6,9 @@
 * The `@param` tags name the parameter and its type everywhere. A static analyser may now report calls which 2.0.0 will reject
 * [BC] A `user_defined_simplefield` no longer overwrites the official node of the same name. For a realty, `getTier()` returns `<etage>`, for example "5. Etage". The floor joined with its comment, which `getTier()` returned before, is in the new `getTierDescription()`. A realty without `<etage>` still gets the joined text from `getTier()` (#174)
 * Reading a realty with a final energy demand value no longer emits a deprecation notice on PHP 8.5
+* `filter()` wraps a single value in a list where the api takes nothing but a list, as `filterByEquipment()` always has. The api answered the single value with a 422. Today this is `filter('objekt_ausstattung_list', …)` on the realty query
+* [Strict] `filterByTag()` and `filterByRealtyCategory()` reject a range or a nested list, as `filter()` does. Merged into the list of values, it passed before
+* [Strict] A single value which `set()` stores on a filter which takes nothing but a list is rejected when the request is built
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 
 ## 1.5.0

@@ -449,6 +449,11 @@ abstract class AbstractQuery implements QueryInterface
             return $this;
         }
 
+        // the api answers a single value on a filter which takes nothing but a list with a 422
+        if (!is_array($value) && $this->isListOnly($key)) {
+            $value = [$value];
+        }
+
         $this->assertFilterValueIsSupported($key, $value);
 
         if (is_array($value)) {
@@ -516,6 +521,9 @@ abstract class AbstractQuery implements QueryInterface
      *   - a list on a filter which takes a single value, or a list inside a list
      *   - a value outside an enum the spec documents
      *
+     * A fourth one only set() can produce: a single value on a filter which takes nothing but a
+     * list. filter() wraps it, and the api answers it with a 422 rather than a wider search.
+     *
      * The value has already been through normaliseFilterValue(), so an empty one never arrives
      * here. The name has already been through assertFilterIsSupported(), so an unknown one is left
      * to that guard rather than reported twice.
@@ -579,6 +587,12 @@ abstract class AbstractQuery implements QueryInterface
 
         if (is_array($value) && !isset($filter['list'])) {
             $this->rejectFilterValue($key, $value, 'takes a single value, a list was given.');
+        }
+
+        // filter() wraps a single value itself, so one found here came from set()
+        if (!is_array($value) && !empty($filter['list_only'])) {
+            $this->rejectFilterValue($key, $value, 'takes nothing but a list, a single value was given. '
+                . 'Pass a list, or use filter(), which wraps a single value.');
         }
 
         // a list carries single values. A list inside it reached the wire as filter[plz][0][0]
@@ -707,6 +721,22 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         return $this->mapper->getSupportedFilters($this->getListCall());
+    }
+
+    /**
+     * Whether the api takes nothing but a list for this filter
+     *
+     * Read in both modes, unlike supportedFilters(): wrapping a single value judges nothing, it
+     * turns a request the api answers with a 422 into one it can serve. A mapper from outside the
+     * SDK has no data to read, so its values are sent as they are given.
+     */
+    private function isListOnly(string $key): bool
+    {
+        if (!$this->mapper instanceof SupportedParametersInterface) {
+            return false;
+        }
+
+        return ($this->mapper->getSupportedFilters($this->getListCall())[$key]['list_only'] ?? false) === true;
     }
 
     /**
@@ -871,6 +901,19 @@ abstract class AbstractQuery implements QueryInterface
      */
     protected function appendFilter(string $key, mixed $value): static
     {
+        // converted once, here: the check below and filter() would each call __toString() again,
+        // and a conversion which reads a stream returns an empty string the second time
+        $value = $this->stringifyObjects($value);
+
+        // checked as the caller gave it. Merged into the list below, a range or a nested list
+        // comes out as a list which looks valid, and filter() can no longer tell
+        $this->assertFilterValueSurvivesNormalisation($key, $value);
+        $normalised = $this->normaliseFilterValue($value);
+
+        if ($normalised !== null) {
+            $this->assertFilterValueIsSupported($key, $normalised);
+        }
+
         $values = [];
         if (isset($this->params['filter'][$key])) {
             $values = (array) $this->params['filter'][$key];
@@ -883,6 +926,19 @@ abstract class AbstractQuery implements QueryInterface
         $values = array_values(array_unique($values, SORT_REGULAR));
 
         return $this->filter($key, count($values) === 1 ? $values[0] : $values);
+    }
+
+    /**
+     * A stringable object as its string, at any depth. Everything else stays as it is, so an
+     * object without __toString() is still left to the normaliser and to strict mode
+     */
+    private function stringifyObjects(mixed $value): mixed
+    {
+        if (is_object($value) && method_exists($value, '__toString')) {
+            return (string) $value;
+        }
+
+        return is_array($value) ? array_map([$this, 'stringifyObjects'], $value) : $value;
     }
 
     /**

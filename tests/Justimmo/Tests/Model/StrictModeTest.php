@@ -14,6 +14,7 @@ use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\RealtyQuery;
+use Justimmo\Model\Wrapper\NullWrapper;
 use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
 use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
@@ -699,6 +700,195 @@ class StrictModeTest extends TestCase
         $mapper = new ProjectMapper();
 
         return new ProjectQuery(new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper);
+    }
+
+    /**
+     * The api answers a single value on a list-only filter with a 422, so filter() wraps it, as
+     * filterByEquipment() always has. This judges nothing, so it happens in both modes
+     */
+    public function testAListOnlyFilterWrapsASingleValueInBothModes(): void
+    {
+        foreach ([false, true] as $strict) {
+            $query = $this->query()->strict($strict)->filter('objekt_ausstattung_list', 5);
+
+            $this->assertSame([5], $query->getParams()['filter']['objekt_ausstattung_list'], 'strict ' . var_export($strict, true));
+        }
+    }
+
+    /**
+     * set() stores a value as it is given, so only the check of the request can catch it
+     */
+    public function testASingleValueThroughSetIsRejectedOnAListOnlyFilter(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[objekt_ausstattung_list] takes nothing but a list');
+
+        $this->query()->strict()->set('filter', ['objekt_ausstattung_list' => 5])->findIds();
+    }
+
+    /**
+     * filterByTag() and filterByRealtyCategory() merge the value into a list. A range or a nested
+     * list came out of that as a list which looked valid, so it was let through
+     *
+     * @dataProvider appendedValueProvider
+     */
+    public function testAnAppendedValueIsCheckedBeforeItIsMerged(string $kind, string $method, mixed $value): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+
+        $query = $kind === 'project' ? $this->projectQuery() : $this->query();
+        $query->strict()->$method($value);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: string, 2: mixed}>
+     */
+    public function appendedValueProvider(): array
+    {
+        $cases = [];
+        foreach (['realty', 'project'] as $kind) {
+            foreach (['filterByTag', 'filterByRealtyCategory'] as $method) {
+                $cases[$kind . ' ' . $method . ', a range']       = [$kind, $method, ['min' => 1, 'max' => 2]];
+                $cases[$kind . ' ' . $method . ', a nested list'] = [$kind, $method, [['a']]];
+            }
+        }
+
+        return $cases;
+    }
+
+    /**
+     * The check before the merge must not convert a stringable object a second time. One whose
+     * conversion reads a stream would hand filter() an empty string instead of the tag
+     */
+    public function testAnAppendedObjectIsConvertedOnce(): void
+    {
+        foreach ([false, true] as $strict) {
+            $tag = new class () {
+                public int $conversions = 0;
+
+                public function __toString(): string
+                {
+                    $this->conversions++;
+
+                    return 'Website';
+                }
+            };
+
+            $query = $this->query()->strict($strict)->filterByTag($tag);
+
+            $this->assertSame(1, $tag->conversions, 'strict ' . var_export($strict, true));
+            $this->assertSame('Website', $query->getParams()['filter']['tag_name'], 'strict ' . var_export($strict, true));
+        }
+    }
+
+    /**
+     * filter(), the filterBy…() method of the same filter and set() must agree on every value:
+     * all reject it, or all let it through. No outcome is listed, so a new value shape, a new
+     * method or a new rule is compared without touching this test.
+     *
+     * set() is compared only where filter() stores the value unchanged, because set() does not
+     * normalise. A method which writes no filter even with strict mode off is skipped, because
+     * there is nothing to compare.
+     */
+    public function testEveryEntryPointGivesAFilterValueTheSameVerdict(): void
+    {
+        $stringable = new class ('x') {
+            public function __construct(private string $value)
+            {
+            }
+
+            public function __toString(): string
+            {
+                return $this->value;
+            }
+        };
+
+        $values = [
+            'null' => null, 'empty' => '', 'zero' => 0, 'zero-str' => '0', 'false' => false, 'true' => true,
+            'int' => 455, 'neg' => -5, 'float' => 1.5, 'nan' => NAN, 'str' => 'abc', 'num-str' => '12',
+            'stringable' => $stringable, 'object' => new \stdClass(), 'date' => new \DateTime('2026-01-02'),
+            'list' => [1, 2], 'empty-list' => [], 'list-null' => [null], 'list-empty' => ['', 'x'],
+            'nested' => [[1]], 'assoc' => ['a' => 1], 'min' => ['min' => 1], 'max' => ['max' => 2],
+            'min-max' => ['min' => 1, 'max' => 2], 'min-null' => ['min' => null, 'max' => 5],
+            'min-empty' => ['min' => '', 'max' => ''], 'min-nested' => ['min' => [1]],
+            'min-stringable' => ['min' => $stringable], 'list-stringable' => [$stringable],
+            'list-object' => [new \stdClass()],
+        ];
+
+        $queries = [
+            RealtyQuery::class   => RealtyMapper::class,
+            ProjectQuery::class  => ProjectMapper::class,
+            EmployeeQuery::class => EmployeeMapper::class,
+        ];
+
+        $disagreements = [];
+        foreach ($queries as $queryClass => $mapperClass) {
+            $make = fn (bool $strict) => (new $queryClass(new JustimmoNullApi(), new NullWrapper(), new $mapperClass()))->strict($strict);
+
+            $verdict = function (callable $build) use ($make): string {
+                $query = $make(true);
+
+                try {
+                    $build($query);
+                    $query->find();
+                } catch (\Throwable $e) {
+                    return $e::class;
+                }
+
+                return 'passes';
+            };
+
+            foreach ($this->filterMethodNames($queryClass) as $name) {
+                $wire = (new $mapperClass())->getFilterPropertyName($name);
+
+                if (($make(false)->{'filterBy' . $name}('x')->getParams()['filter'] ?? []) === []) {
+                    continue;
+                }
+
+                foreach ($values as $valueName => $value) {
+                    // a placeholder, because a filter which stores nothing must not match a null value
+                    $params = $make(false)->filter($wire, $value)->getParams()['filter'] ?? [];
+                    $stored = array_key_exists($wire, $params) ? $params[$wire] : new \stdClass();
+
+                    $verdicts = [
+                        'filter' => $verdict(fn ($query) => $query->filter($wire, $value)),
+                        'method' => $verdict(fn ($query) => $query->{'filterBy' . $name}($value)),
+                    ];
+
+                    if ($stored === $value) {
+                        $verdicts['set'] = $verdict(fn ($query) => $query->set('filter', [$wire => $value]));
+                    }
+
+                    if (count(array_unique($verdicts)) > 1) {
+                        $disagreements[] = (new \ReflectionClass($queryClass))->getShortName()
+                            . " filterBy{$name}() / filter[{$wire}], {$valueName}: " . json_encode($verdicts);
+                    }
+                }
+            }
+        }
+
+        $this->assertSame([], $disagreements);
+    }
+
+    /**
+     * The magic methods the query documents, and the ones it implements
+     *
+     * @return array<int, string>
+     */
+    private function filterMethodNames(string $queryClass): array
+    {
+        $class = new \ReflectionClass($queryClass);
+
+        preg_match_all('/@method\s+\S+\s+filterBy(\w+)\(/', (string) $class->getDocComment(), $documented);
+        $names = $documented[1];
+
+        foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+            if (preg_match('/^filterBy(\w+)$/', $method->getName(), $match)) {
+                $names[] = $match[1];
+            }
+        }
+
+        return array_values(array_unique($names));
     }
 
     /**
