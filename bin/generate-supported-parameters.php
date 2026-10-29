@@ -63,11 +63,11 @@ function check(string $php, array $document): never
     $committed = is_readable(OUTPUT) ? file_get_contents(OUTPUT) : null;
 
     if ($committed === null) {
-        fail('SupportedParameters.php does not exist. Run bin/generate-supported-parameters.php');
+        fail('SupportedParameters.php does not exist. Run php bin/generate-supported-parameters.php');
     }
 
     if ($committed !== $php) {
-        fail('SupportedParameters.php and the json have drifted. Run bin/generate-supported-parameters.php');
+        fail('SupportedParameters.php and the json have drifted. Run php bin/generate-supported-parameters.php');
     }
 
     printf("SupportedParameters.php is current, spec %s\n", $document['spec_version']);
@@ -163,9 +163,10 @@ final class SupportedParameters
      * The filters each call accepts, keyed by the api filter name without brackets and without a
      * _von or _bis suffix
      *
-     * "forms" says which of filter[x], filter[x_von] and filter[x_bis] are allowed. "list" and
-     * "enum" describe the plain form, because a range form is always a scalar. "level" decides
-     * whether alle=1 voids the filter.
+     * "forms" says which of filter[x], filter[x_von] and filter[x_bis] are allowed. "type" is the
+     * type of one value. "list", "list_only" and "enum" describe the plain form, because a range
+     * form is always a scalar: "list" allows a list, "list_only" allows nothing else. "level"
+     * decides whether alle=1 voids the filter.
      */
     const FILTERS = %3$s;
 

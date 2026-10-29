@@ -34,9 +34,10 @@ final class SupportedParameters
      * The filters each call accepts, keyed by the api filter name without brackets and without a
      * _von or _bis suffix
      *
-     * "forms" says which of filter[x], filter[x_von] and filter[x_bis] are allowed. "list" and
-     * "enum" describe the plain form, because a range form is always a scalar. "level" decides
-     * whether alle=1 voids the filter.
+     * "forms" says which of filter[x], filter[x_von] and filter[x_bis] are allowed. "type" is the
+     * type of one value. "list", "list_only" and "enum" describe the plain form, because a range
+     * form is always a scalar: "list" allows a list, "list_only" allows nothing else. "level"
+     * decides whether alle=1 voids the filter.
      */
     const FILTERS = [
         'callRealtyList' => [
