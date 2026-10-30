@@ -225,12 +225,13 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return \Justimmo\Model\Realty|\Justimmo\Model\Employee|\Justimmo\Model\Project
      *
-     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when a filter the api does not have was set
-     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a value the api cannot take was set
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when a picture size the api does not know was set
      */
     public function findPk($pk)
     {
-        $this->assertTheRequestIsSupported();
+        // the detail call sends none of the filters and not all(), so only the picture size is
+        // judged, against what the detail call documents
+        $this->assertTheStoredPictureSizeIsSupported($this->getDetailCall());
 
         $params = [];
         foreach ($this->getDetailParams() as $name) {
@@ -645,15 +646,27 @@ abstract class AbstractQuery implements QueryInterface
             }
         }
 
-        if (isset($this->params['picturesize'])) {
-            $sizes = $this->params['picturesize'];
-
-            // set() may store a single size. (array) would turn an object into its properties,
-            // and one without any into an empty list which passes
-            $this->assertPictureSizesAreSupported(is_array($sizes) ? $sizes : [$sizes]);
-        }
+        $this->assertTheStoredPictureSizeIsSupported($this->getListCall());
 
         $this->assertFiltersApplyWithAll();
+    }
+
+    /**
+     * Fails in strict mode when the picture size the query carries is one the call does not know
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertTheStoredPictureSizeIsSupported(string $call): void
+    {
+        if (!$this->isStrict() || !isset($this->params['picturesize'])) {
+            return;
+        }
+
+        $sizes = $this->params['picturesize'];
+
+        // set() may store a single size. (array) would turn an object into its properties,
+        // and one without any into an empty list which passes
+        $this->assertPictureSizesAreSupported(is_array($sizes) ? $sizes : [$sizes], $call);
     }
 
     /**
@@ -999,7 +1012,7 @@ abstract class AbstractQuery implements QueryInterface
 
         $picturesize = array_unique(array_filter($picturesize));
 
-        $this->assertPictureSizesAreSupported($picturesize);
+        $this->assertPictureSizesAreSupported($picturesize, $this->getListCall());
 
         // only a call which leaves no usable size at all keeps the medium it has always sent
         if ($picturesize === []) {
@@ -1020,16 +1033,17 @@ abstract class AbstractQuery implements QueryInterface
      * the team calls - and a mapper from outside the SDK leave nothing to compare against.
      *
      * @param array<int, mixed> $sizes
+     * @param string            $call  the api call whose sizes are compared against
      *
      * @throws InvalidFilterValueException
      */
-    private function assertPictureSizesAreSupported(array $sizes): void
+    private function assertPictureSizesAreSupported(array $sizes, string $call): void
     {
         if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
             return;
         }
 
-        $parameter = $this->mapper->getSupportedParameters($this->getListCall())['picturesize'] ?? null;
+        $parameter = $this->mapper->getSupportedParameters($call)['picturesize'] ?? null;
         $enum      = is_array($parameter) && is_array($parameter['enum'] ?? null) ? $parameter['enum'] : [];
 
         if ($enum === []) {
