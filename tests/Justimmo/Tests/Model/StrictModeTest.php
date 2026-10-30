@@ -490,6 +490,40 @@ class StrictModeTest extends TestCase
     }
 
     /**
+     * array_unique() compares the sizes as strings, so two nested lists raised "Array to string
+     * conversion" before the check could refuse them
+     */
+    public function testNestedPictureSizesAreRefusedWithoutAWarning(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('picturesize does not accept');
+
+        $this->query()->strict()->setPicturesize([['medium'], ['big']]);
+    }
+
+    /**
+     * Two objects without __toString() made array_unique() throw an \Error, which is no
+     * JustimmoException
+     */
+    public function testObjectsAsPictureSizesAreRefusedWithoutAnError(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('picturesize does not accept');
+
+        $this->query()->strict()->setPicturesize([new \stdClass(), new \stdClass()]);
+    }
+
+    /**
+     * A size asked for twice is still sent once
+     */
+    public function testARepeatedPictureSizeIsSentOnce(): void
+    {
+        $query = $this->query()->strict()->setPicturesize(['big', 'big', 'orig']);
+
+        $this->assertSame(['picturesize' => [0 => 'big', 2 => 'orig']], $query->getParams());
+    }
+
+    /**
      * The team endpoints document no picture size at all, so there is nothing to judge against
      */
     public function testTheTeamEndpointsAreNotJudged(): void

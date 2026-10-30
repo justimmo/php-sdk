@@ -1010,9 +1010,13 @@ abstract class AbstractQuery implements QueryInterface
             $picturesize = [$picturesize];
         }
 
-        $picturesize = array_unique(array_filter($picturesize));
+        $picturesize = array_filter($picturesize);
 
+        // array_unique() compares the sizes as strings, so it warns on a nested list and fails on
+        // an object without __toString(). Checked first, strict mode refuses either of them instead
         $this->assertPictureSizesAreSupported($picturesize, $this->getListCall());
+
+        $picturesize = array_unique($picturesize);
 
         // only a call which leaves no usable size at all keeps the medium it has always sent
         if ($picturesize === []) {

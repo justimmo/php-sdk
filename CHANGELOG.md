@@ -10,6 +10,7 @@
 * [Strict] `filterByTag()` and `filterByRealtyCategory()` reject a range or a nested list, as `filter()` does. Merged into the list of values, it passed before
 * [Strict] A single value which `set()` stores on a filter which takes nothing but a list is rejected when the request is built
 * [Strict] `findPk()` checks only the picture size. It rejected a filter, or a realty-level filter next to `all()`, though the detail call sends neither
+* [Strict] `setPicturesize()` refuses nested lists and objects with an `InvalidFilterValueException`. Two of them raised a PHP warning, or an `\Error` for objects, before the check could run
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 
 ## 1.5.0
