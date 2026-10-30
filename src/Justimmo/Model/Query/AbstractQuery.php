@@ -253,15 +253,15 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * The parameters findPk() carries into the detail call
      *
-     * Only picturesize is carried over, and ProjectQuery widens this. The api client adds culture
-     * itself. JustimmoApi::callEmployeeDetail() takes no parameters, so it sends none of them to
-     * team/detail.
+     * Only picturesize and culture are carried over, and ProjectQuery widens this. Without a
+     * culture on the query, the api client adds its own. JustimmoApi::callEmployeeDetail() takes
+     * no parameters, so it sends none of them to team/detail.
      *
      * @return array<int, string>
      */
     protected function getDetailParams(): array
     {
-        return ['picturesize'];
+        return ['picturesize', 'culture'];
     }
 
     /**
@@ -996,6 +996,19 @@ abstract class AbstractQuery implements QueryInterface
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * The language of the texts in the answer, for this query alone
+     *
+     * JustimmoApi::setCulture() sets it for every query built on the api. The ids calls have no
+     * text to translate, but a culture set here is still sent to them.
+     *
+     * @return $this
+     */
+    public function setCulture(string $culture): static
+    {
+        return $this->set('culture', $culture);
     }
 
     /**

@@ -70,7 +70,7 @@ class ProjectQuery extends AbstractQuery
      */
     protected function getDetailParams(): array
     {
-        return ['picturesize', 'alleProjektObjekte', 'objektIds'];
+        return ['picturesize', 'culture', 'alleProjektObjekte', 'objektIds'];
     }
 
     /**
