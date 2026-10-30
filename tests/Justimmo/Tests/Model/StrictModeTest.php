@@ -163,6 +163,7 @@ class StrictModeTest extends TestCase
         );
 
         $this->expectException(MethodNotFoundException::class);
+        $this->expectExceptionMessage('filterByCreatedAt()');
         $this->query()->strict()->filterByCreatedAt('2026-01-01');
     }
 

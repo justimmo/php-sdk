@@ -966,13 +966,7 @@ abstract class AbstractQuery implements QueryInterface
     public function __call($method, $params)
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
-            $key = $this->mapper->getFilterPropertyName(mb_substr($method, 8));
-
-            // filter() runs the same check, but by then the name is the mapped one. Checking
-            // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
-            $this->assertFilterIsSupported($key, $method . '()');
-
-            return $this->filter($key, $params[0]);
+            return $this->filterThroughMapper(mb_substr($method, 8), $params[0], $method);
         }
 
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
@@ -988,6 +982,26 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));
+    }
+
+    /**
+     * What a magic filterBy…() call does, for a method which is written out only to carry a
+     * docblock
+     *
+     * @param string $property the model property name, as in filterBy<property>()
+     * @param string $method   the method the caller wrote, for the message
+     *
+     * @return $this
+     */
+    protected function filterThroughMapper(string $property, mixed $value, string $method): static
+    {
+        $key = $this->mapper->getFilterPropertyName($property);
+
+        // filter() runs the same check, but by then the name is the mapped one. Checking
+        // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
+        $this->assertFilterIsSupported($key, $method . '()');
+
+        return $this->filter($key, $value);
     }
 
     /**
