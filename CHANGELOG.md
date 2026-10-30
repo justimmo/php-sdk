@@ -9,6 +9,7 @@
 * `filter()` wraps a single value in a list where the api takes nothing but a list, as `filterByEquipment()` always has. The api answered the single value with a 422. Today this is `filter('objekt_ausstattung_list', …)` on the realty query
 * [Strict] `filterByTag()` and `filterByRealtyCategory()` reject a range or a nested list, as `filter()` does. Merged into the list of values, it passed before
 * [Strict] A single value which `set()` stores on a filter which takes nothing but a list is rejected when the request is built
+* [Strict] `findPk()` checks only the picture size. It rejected a filter, or a realty-level filter next to `all()`, though the detail call sends neither
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 
 ## 1.5.0

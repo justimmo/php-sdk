@@ -630,6 +630,85 @@ class StrictModeTest extends TestCase
     }
 
     /**
+     * A detail call sends neither the filters nor all(), so nothing is lost and the project is
+     * served as asked
+     */
+    public function testAllAndARealtyFilterDoNotStopAProjectDetailCall(): void
+    {
+        $api    = $this->detailApi();
+        $mapper = new ProjectMapper();
+        $query  = new ProjectQuery($api, new ProjectWrapper($mapper), $mapper);
+
+        $query->strict()->all()->filterByPrice(['min' => 100000])->findPk(12345);
+
+        $this->assertSame([12345], $api->pks);
+    }
+
+    /**
+     * A filter set before strict() is caught by find(), which sends it, and not by findPk()
+     */
+    public function testAFilterSetBeforeStrictDoesNotStopADetailCall(): void
+    {
+        $api    = $this->detailApi();
+        $mapper = new RealtyMapper();
+        $query  = new RealtyQuery($api, new RealtyWrapper($mapper), $mapper);
+
+        $query->filterByPrice(500000)->strict()->findPk(12345);
+
+        $this->assertSame([12345], $api->pks);
+    }
+
+    /**
+     * The detail call sends the picture size, so a size it does not know is still refused
+     */
+    public function testAnUnknownPictureSizeStillStopsADetailCall(): void
+    {
+        $api    = $this->detailApi();
+        $mapper = new RealtyMapper();
+        $query  = new RealtyQuery($api, new RealtyWrapper($mapper), $mapper);
+
+        try {
+            $query->setPicturesize('thumb')->strict()->findPk(12345);
+        } catch (InvalidFilterValueException $e) {
+            $this->assertStringContainsString('picturesize does not accept "thumb".', $e->getMessage());
+            $this->assertSame([], $api->pks);
+
+            return;
+        }
+
+        $this->fail('an unknown picture size was sent to the detail call');
+    }
+
+    /**
+     * A null api which answers a detail call with an empty document, and records the ids it was
+     * asked for. JustimmoNullApi answers with a body which has no root element, which no longer
+     * parses
+     */
+    private function detailApi(): JustimmoNullApi
+    {
+        return new class extends JustimmoNullApi {
+            /**
+             * @var array<int, mixed>
+             */
+            public array $pks = [];
+
+            public function callRealtyDetail(mixed $pk, array $params = []): string
+            {
+                $this->pks[] = $pk;
+
+                return '<?xml version="1.0" encoding="UTF-8"?><justimmo></justimmo>';
+            }
+
+            public function callProjectDetail(mixed $pk, array $params = []): string
+            {
+                $this->pks[] = $pk;
+
+                return '<?xml version="1.0" encoding="UTF-8"?><justimmo></justimmo>';
+            }
+        };
+    }
+
+    /**
      * Every rejection, run with strict() called before the offending call and after it
      *
      * A query can be switched to strict at any point, and until the request was checked where it
