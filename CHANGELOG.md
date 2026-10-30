@@ -11,6 +11,7 @@
 * [Strict] A single value which `set()` stores on a filter which takes nothing but a list is rejected when the request is built
 * `setCulture()` is added to the queries. It sets the language for one query, as `set('culture', …)` did
 * A culture set on the query reaches `findPk()` too. A realty or a project came back in the culture of the `JustimmoApi`, so a list in English gave a detail in German. The url of such a detail call changes, so it is fetched from the api once, and cached again
+* `AbstractQuery::filterThroughMapper()` is added, `protected`. It does what a magic `filterBy…()` call does, so a query subclass can write a filter method out, for example to carry a docblock
 * [Strict] `findPk()` checks only the picture size. It rejected a filter, or a realty-level filter next to `all()`, though the detail call sends neither
 * [Strict] `setPicturesize()` refuses nested lists and objects with an `InvalidFilterValueException`. Two of them raised a PHP warning, or an `\Error` for objects, before the check could run
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers

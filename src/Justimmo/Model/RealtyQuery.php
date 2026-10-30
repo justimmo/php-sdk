@@ -83,11 +83,14 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * Api only accepts english updated_at fieldname for ordering
+     * The api sorts by updated_at alone, whatever the mapper calls the column
+     *
+     * RealtyMapper::getOrderMapping() names it too, but a mapper from outside the SDK may only know
+     * its filter names, and the filter is aktualisiert_am. So the column is named here.
      *
      * @param string $direction
      *
-     * @return RealtyQuery
+     * @return $this
      */
     public function orderByUpdatedAt($direction = 'asc')
     {
@@ -146,11 +149,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function filterByCreatedAt($value)
     {
-        $key = $this->mapper->getFilterPropertyName('CreatedAt');
-
-        $this->assertFilterIsSupported($key, 'filterByCreatedAt()');
-
-        return $this->filter($key, $value);
+        return $this->filterThroughMapper('CreatedAt', $value, 'filterByCreatedAt');
     }
 
     /**
