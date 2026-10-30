@@ -115,6 +115,42 @@ class EndpointParametersTest extends TestCase
         $this->assertSame([], $api->params);
     }
 
+    /**
+     * A list in English and the detail of one of its realties in German was what a culture on the
+     * query gave before
+     */
+    public function testARealtyDetailCallCarriesTheCultureOfTheQuery(): void
+    {
+        $api = $this->detailSpy();
+
+        (new RealtyQuery($api, new RealtyWrapper($mapper = new RealtyMapper()), $mapper))
+            ->setCulture('en')
+            ->findPk(1);
+
+        $this->assertSame(['culture' => 'en'], $api->params);
+    }
+
+    public function testAProjectDetailCallCarriesTheCultureOfTheQuery(): void
+    {
+        $api = $this->detailSpy();
+
+        (new ProjectQuery($api, new ProjectWrapper($mapper = new ProjectMapper()), $mapper))
+            ->setCulture('en')
+            ->findPk(1);
+
+        $this->assertSame(['culture' => 'en'], $api->params);
+    }
+
+    /**
+     * The culture reaches a list call the way set('culture', …) always sent it
+     */
+    public function testAListCallCarriesTheCultureOfTheQuery(): void
+    {
+        $query = new RealtyQuery(new JustimmoNullApi(), new RealtyWrapper($mapper = new RealtyMapper()), $mapper);
+
+        $this->assertSame(['culture' => 'en'], $query->setCulture('en')->getParams());
+    }
+
     private function prepare(AbstractQuery $query): AbstractQuery
     {
         return $query

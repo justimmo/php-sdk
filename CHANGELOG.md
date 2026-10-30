@@ -9,6 +9,8 @@
 * `filter()` wraps a single value in a list where the api takes nothing but a list, as `filterByEquipment()` always has. The api answered the single value with a 422. Today this is `filter('objekt_ausstattung_list', …)` on the realty query
 * [Strict] `filterByTag()` and `filterByRealtyCategory()` reject a range or a nested list, as `filter()` does. Merged into the list of values, it passed before
 * [Strict] A single value which `set()` stores on a filter which takes nothing but a list is rejected when the request is built
+* `setCulture()` is added to the queries. It sets the language for one query, as `set('culture', …)` did
+* A culture set on the query reaches `findPk()` too. A realty or a project came back in the culture of the `JustimmoApi`, so a list in English gave a detail in German. The url of such a detail call changes, so it is fetched from the api once, and cached again
 * [Strict] `findPk()` checks only the picture size. It rejected a filter, or a realty-level filter next to `all()`, though the detail call sends neither
 * [Strict] `setPicturesize()` refuses nested lists and objects with an `InvalidFilterValueException`. Two of them raised a PHP warning, or an `\Error` for objects, before the check could run
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
