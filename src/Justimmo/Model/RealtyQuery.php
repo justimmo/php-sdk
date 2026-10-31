@@ -9,52 +9,6 @@ use Justimmo\Model\Query\AbstractQuery;
  *
  * @method Realty findPk($pk)
  * @method Realty|null findOne($pk)
- * @method RealtyQuery filterByPrice($value)
- * @method RealtyQuery filterByRealtyTypeId($value)
- * @method RealtyQuery filterBySubRealtyTypeId($value)
- * @method RealtyQuery filterByStyleOfBuildingId($value)
- * @method RealtyQuery filterByZipCode($value)
- * @method RealtyQuery filterByRooms($value)
- * @method RealtyQuery filterByPropertyNumber($value)
- * @method RealtyQuery filterByArea($value)
- * @method RealtyQuery filterByLivingArea($value)
- * @method RealtyQuery filterByFloorArea($value)
- * @method RealtyQuery filterBySurfaceArea($value)
- * @method RealtyQuery filterByGardenCount($value)
- * @method RealtyQuery filterByBalconyCount($value)
- * @method RealtyQuery filterByLoggiaCount($value)
- * @method RealtyQuery filterByTerraceCount($value)
- * @method RealtyQuery filterByCellarCount($value)
- * @method RealtyQuery filterByGarageCount($value)
- * @method RealtyQuery filterByParkingCount($value)
- * @method RealtyQuery filterByToiletRoomCount($value)
- * @method RealtyQuery filterByBathRoomCount($value)
- * @method RealtyQuery filterByStoreRoomCount($value)
- * @method RealtyQuery filterByDisabilityAccess($value)
- * @method RealtyQuery filterByCondition($value)
- * @method RealtyQuery filterByKeyword($value)
- * @method RealtyQuery filterByFederalStateId($value)
- * @method RealtyQuery filterByStatusId($value)
- * @method RealtyQuery filterByRent($value)
- * @method RealtyQuery filterByBuy($value)
- * @method RealtyQuery filterByRealtySystemType($value)
- * @method RealtyQuery filterByParentId($value)
- * @method RealtyQuery filterByRentPerSqm($value)
- * @method RealtyQuery filterByUpdatedAt($value)
- * @method RealtyQuery filterByRentWithPurchaseOption($value)
- * @method RealtyQuery filterByPoliticalDistrictId($value)
- * @method RealtyQuery filterByCountryId($value)
- * @method RealtyQuery filterByOwnerId($value)
- * @method RealtyQuery orderByPrice($direction = 'asc')
- * @method RealtyQuery orderByPropertyNumber($direction = 'asc')
- * @method RealtyQuery orderByArea($direction = 'asc')
- * @method RealtyQuery orderByLivingArea($direction = 'asc')
- * @method RealtyQuery orderByFloorArea($direction = 'asc')
- * @method RealtyQuery orderBySurfaceArea($direction = 'asc')
- * @method RealtyQuery orderByCreatedAt($direction = 'asc')
- * @method RealtyQuery orderByPublishedAt($direction = 'asc')
- * @method RealtyQuery orderByRooms($direction = 'asc')
- * @method RealtyQuery orderByZipCode($direction = 'asc')
  */
 class RealtyQuery extends AbstractQuery
 {
@@ -83,6 +37,510 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
+     * Filters by the price, filter[preis_von] and filter[preis_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByPrice($value)
+    {
+        return $this->filterThroughMapper('Price', $value, 'filterByPrice');
+    }
+
+    /**
+     * Filters by the realty type, filter[objektart_id]
+     *
+     * @param int|array<int, int> $value one id or a list of ids
+     *
+     * @return $this
+     */
+    public function filterByRealtyTypeId($value)
+    {
+        return $this->filterThroughMapper('RealtyTypeId', $value, 'filterByRealtyTypeId');
+    }
+
+    /**
+     * Filters by the sub realty type, filter[subobjektart_id]
+     *
+     * @param int|array<int, int> $value one id or a list of ids
+     *
+     * @return $this
+     */
+    public function filterBySubRealtyTypeId($value)
+    {
+        return $this->filterThroughMapper('SubRealtyTypeId', $value, 'filterBySubRealtyTypeId');
+    }
+
+    /**
+     * Filters by the style of building, filter[bauart_id]
+     *
+     * @param int $value 1 or 2
+     *
+     * @return $this
+     */
+    public function filterByStyleOfBuildingId($value)
+    {
+        return $this->filterThroughMapper('StyleOfBuildingId', $value, 'filterByStyleOfBuildingId');
+    }
+
+    /**
+     * Filters by the zip code, filter[plz], or filter[plz_von] and filter[plz_bis]
+     *
+     * @param string|array<int, string>|array{min?: string, max?: string} $value one zip code, a list of them, or a range
+     *
+     * @return $this
+     */
+    public function filterByZipCode($value)
+    {
+        return $this->filterThroughMapper('ZipCode', $value, 'filterByZipCode');
+    }
+
+    /**
+     * Filters by the number of rooms, filter[zimmer_von] and filter[zimmer_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByRooms($value)
+    {
+        return $this->filterThroughMapper('Rooms', $value, 'filterByRooms');
+    }
+
+    /**
+     * Filters by the property number, filter[objektnummer], or filter[objektnummer_von] and filter[objektnummer_bis]
+     *
+     * @param string|array{min?: string, max?: string} $value one property number, or a range
+     *
+     * @return $this
+     */
+    public function filterByPropertyNumber($value)
+    {
+        return $this->filterThroughMapper('PropertyNumber', $value, 'filterByPropertyNumber');
+    }
+
+    /**
+     * Filters by the area, filter[sort_flaeche_von] and filter[sort_flaeche_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByArea($value)
+    {
+        return $this->filterThroughMapper('Area', $value, 'filterByArea');
+    }
+
+    /**
+     * Filters by the living area, filter[wohnflaeche_von] and filter[wohnflaeche_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByLivingArea($value)
+    {
+        return $this->filterThroughMapper('LivingArea', $value, 'filterByLivingArea');
+    }
+
+    /**
+     * Filters by the floor area, filter[nutzflaeche_von] and filter[nutzflaeche_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByFloorArea($value)
+    {
+        return $this->filterThroughMapper('FloorArea', $value, 'filterByFloorArea');
+    }
+
+    /**
+     * Filters by the surface area, filter[grundflaeche_von] and filter[grundflaeche_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterBySurfaceArea($value)
+    {
+        return $this->filterThroughMapper('SurfaceArea', $value, 'filterBySurfaceArea');
+    }
+
+    /**
+     * Filters by the number of gardens, filter[anzahl_garten_von] and filter[anzahl_garten_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByGardenCount($value)
+    {
+        return $this->filterThroughMapper('GardenCount', $value, 'filterByGardenCount');
+    }
+
+    /**
+     * Filters by the number of balconies, filter[anzahl_balkons_von] and filter[anzahl_balkons_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByBalconyCount($value)
+    {
+        return $this->filterThroughMapper('BalconyCount', $value, 'filterByBalconyCount');
+    }
+
+    /**
+     * Filters by the number of loggias, filter[anzahl_loggias_von] and filter[anzahl_loggias_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByLoggiaCount($value)
+    {
+        return $this->filterThroughMapper('LoggiaCount', $value, 'filterByLoggiaCount');
+    }
+
+    /**
+     * Filters by the number of terraces, filter[anzahl_terrassen_von] and filter[anzahl_terrassen_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByTerraceCount($value)
+    {
+        return $this->filterThroughMapper('TerraceCount', $value, 'filterByTerraceCount');
+    }
+
+    /**
+     * Filters by the number of cellars, filter[anzahl_keller_von] and filter[anzahl_keller_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByCellarCount($value)
+    {
+        return $this->filterThroughMapper('CellarCount', $value, 'filterByCellarCount');
+    }
+
+    /**
+     * Filters by the number of garages, filter[anzahl_garagen_von] and filter[anzahl_garagen_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByGarageCount($value)
+    {
+        return $this->filterThroughMapper('GarageCount', $value, 'filterByGarageCount');
+    }
+
+    /**
+     * Filters by the number of parking spaces, filter[anzahl_stellplaetze_von] and filter[anzahl_stellplaetze_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByParkingCount($value)
+    {
+        return $this->filterThroughMapper('ParkingCount', $value, 'filterByParkingCount');
+    }
+
+    /**
+     * Filters by the number of separate toilets, filter[anzahl_sep_wc_von] and filter[anzahl_sep_wc_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByToiletRoomCount($value)
+    {
+        return $this->filterThroughMapper('ToiletRoomCount', $value, 'filterByToiletRoomCount');
+    }
+
+    /**
+     * Filters by the number of bathrooms, filter[anzahl_badezimmer_von] and filter[anzahl_badezimmer_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByBathRoomCount($value)
+    {
+        return $this->filterThroughMapper('BathRoomCount', $value, 'filterByBathRoomCount');
+    }
+
+    /**
+     * Filters by the number of store rooms, filter[anzahl_abstellraum_von] and filter[anzahl_abstellraum_bis]
+     *
+     * @param array{min?: int, max?: int} $value
+     *
+     * @return $this
+     */
+    public function filterByStoreRoomCount($value)
+    {
+        return $this->filterThroughMapper('StoreRoomCount', $value, 'filterByStoreRoomCount');
+    }
+
+    /**
+     * Filters by disability access, filter[barrierefrei]
+     *
+     * @param int|bool $value 1 or true for yes, 0 or false for no
+     *
+     * @return $this
+     */
+    public function filterByDisabilityAccess($value)
+    {
+        return $this->filterThroughMapper('DisabilityAccess', $value, 'filterByDisabilityAccess');
+    }
+
+    /**
+     * Filters by the condition, filter[zustand_id]
+     *
+     * @param int $value the id of the condition
+     *
+     * @return $this
+     */
+    public function filterByCondition($value)
+    {
+        return $this->filterThroughMapper('Condition', $value, 'filterByCondition');
+    }
+
+    /**
+     * Filters by a keyword, filter[stichwort]
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function filterByKeyword($value)
+    {
+        return $this->filterThroughMapper('Keyword', $value, 'filterByKeyword');
+    }
+
+    /**
+     * Filters by the federal state, filter[bundesland_id]
+     *
+     * @param int|array<int, int> $value one id or a list of ids
+     *
+     * @return $this
+     */
+    public function filterByFederalStateId($value)
+    {
+        return $this->filterThroughMapper('FederalStateId', $value, 'filterByFederalStateId');
+    }
+
+    /**
+     * Filters by the status of the realty, filter[objekt_status_id]
+     *
+     * @param int|array<int, int> $value one id or a list of ids
+     *
+     * @return $this
+     */
+    public function filterByStatusId($value)
+    {
+        return $this->filterThroughMapper('StatusId', $value, 'filterByStatusId');
+    }
+
+    /**
+     * Filters by whether the realty is for rent, filter[miete]
+     *
+     * @param int|bool $value 1 or true for yes, 0 or false for no
+     *
+     * @return $this
+     */
+    public function filterByRent($value)
+    {
+        return $this->filterThroughMapper('Rent', $value, 'filterByRent');
+    }
+
+    /**
+     * Filters by whether the realty is for sale, filter[kauf]
+     *
+     * @param int|bool $value 1 or true for yes, 0 or false for no
+     *
+     * @return $this
+     */
+    public function filterByBuy($value)
+    {
+        return $this->filterThroughMapper('Buy', $value, 'filterByBuy');
+    }
+
+    /**
+     * Filters by the realty system type, filter[realty_type]
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function filterByRealtySystemType($value)
+    {
+        return $this->filterThroughMapper('RealtySystemType', $value, 'filterByRealtySystemType');
+    }
+
+    /**
+     * Filters by the parent realty, filter[parent_id]
+     *
+     * @param int $value the id of the parent realty
+     *
+     * @return $this
+     */
+    public function filterByParentId($value)
+    {
+        return $this->filterThroughMapper('ParentId', $value, 'filterByParentId');
+    }
+
+    /**
+     * Filters by the price per square metre, filter[price_per_m2_von] and filter[price_per_m2_bis]
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterByRentPerSqm($value)
+    {
+        return $this->filterThroughMapper('RentPerSqm', $value, 'filterByRentPerSqm');
+    }
+
+    /**
+     * Filters by the date of the last update, filter[aktualisiert_am_von] and filter[aktualisiert_am_bis]
+     *
+     * @param array{min?: string, max?: string} $value dates, for example 2026-01-31
+     *
+     * @return $this
+     */
+    public function filterByUpdatedAt($value)
+    {
+        return $this->filterThroughMapper('UpdatedAt', $value, 'filterByUpdatedAt');
+    }
+
+    /**
+     * Filters by a rent with a purchase option, filter[rent_with_purchase_option]
+     *
+     * @param int|bool $value 1 or true for yes, 0 or false for no
+     *
+     * @return $this
+     */
+    public function filterByRentWithPurchaseOption($value)
+    {
+        return $this->filterThroughMapper('RentWithPurchaseOption', $value, 'filterByRentWithPurchaseOption');
+    }
+
+    /**
+     * Filters by the political district, filter[politischer_bezirk_id]
+     *
+     * @param int $value the id of the political district
+     *
+     * @return $this
+     */
+    public function filterByPoliticalDistrictId($value)
+    {
+        return $this->filterThroughMapper('PoliticalDistrictId', $value, 'filterByPoliticalDistrictId');
+    }
+
+    /**
+     * Filters by the country, filter[land_id]
+     *
+     * @param int|array<int, int> $value one id or a list of ids
+     *
+     * @return $this
+     */
+    public function filterByCountryId($value)
+    {
+        return $this->filterThroughMapper('CountryId', $value, 'filterByCountryId');
+    }
+
+    /**
+     * Filters by the owner, filter[owner_id]
+     *
+     * @param int $value the id of the owner
+     *
+     * @return $this
+     */
+    public function filterByOwnerId($value)
+    {
+        return $this->filterThroughMapper('OwnerId', $value, 'filterByOwnerId');
+    }
+
+    /**
+     * Filters by the project the realty belongs to, filter[projekt_id]
+     *
+     * @param int $value the id of the project
+     *
+     * @return $this
+     */
+    public function filterByProjectId($value)
+    {
+        return $this->filterThroughMapper('ProjectId', $value, 'filterByProjectId');
+    }
+
+    /**
+     * Sorts by the price, orderby=preis
+     *
+     * @param string $direction asc or desc
+     *
+     * @return $this
+     */
+    public function orderByPrice($direction = 'asc')
+    {
+        return $this->orderThroughMapper('Price', $direction);
+    }
+
+    /**
+     * Sorts by the property number, orderby=objektnummer
+     *
+     * @param string $direction asc or desc
+     *
+     * @return $this
+     */
+    public function orderByPropertyNumber($direction = 'asc')
+    {
+        return $this->orderThroughMapper('PropertyNumber', $direction);
+    }
+
+    /**
+     * Sorts by the date the realty was created, orderby=created_at
+     *
+     * @param string $direction asc or desc
+     *
+     * @return $this
+     */
+    public function orderByCreatedAt($direction = 'asc')
+    {
+        return $this->orderThroughMapper('CreatedAt', $direction);
+    }
+
+    /**
+     * Sorts by the date the realty was published, orderby=published_at
+     *
+     * @param string $direction asc or desc
+     *
+     * @return $this
+     */
+    public function orderByPublishedAt($direction = 'asc')
+    {
+        return $this->orderThroughMapper('PublishedAt', $direction);
+    }
+
+    /**
+     * Sorts by the zip code, orderby=plz
+     *
+     * @param string $direction asc or desc
+     *
+     * @return $this
+     */
+    public function orderByZipCode($direction = 'asc')
+    {
+        return $this->orderThroughMapper('ZipCode', $direction);
+    }
+
+    /**
      * The api sorts by updated_at alone, whatever the mapper calls the column
      *
      * RealtyMapper::getOrderMapping() names it too, but a mapper from outside the SDK may only know
@@ -94,7 +552,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function orderByUpdatedAt($direction = 'asc')
     {
-        return $this->order('updated_at', $direction);
+        return $this->setOrder('updated_at', $direction);
     }
 
     /**
@@ -106,7 +564,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function allProjectRealties($all = true)
     {
-        return $this->set('alleProjektObjekte', (int) $all);
+        return $this->setParameter('alleProjektObjekte', (int) $all);
     }
 
     /**
@@ -118,7 +576,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function preciseAreaSearch($all = true)
     {
-        return $this->set('preciseAreaSearch', (int) $all);
+        return $this->setParameter('preciseAreaSearch', (int) $all);
     }
 
     /**
@@ -149,6 +607,8 @@ class RealtyQuery extends AbstractQuery
      */
     public function filterByCreatedAt($value)
     {
+        $this->triggerDeprecation('RealtyQuery::filterByCreatedAt() is deprecated and is removed in 2.0.0. The api has no created_at filter, so it has never filtered.');
+
         return $this->filterThroughMapper('CreatedAt', $value, 'filterByCreatedAt');
     }
 
@@ -165,6 +625,8 @@ class RealtyQuery extends AbstractQuery
      */
     public function filterByRealtyCategory($value)
     {
+        $this->triggerDeprecation('filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.');
+
         return $this->appendFilter($this->mapper->getFilterPropertyName('RealtyCategory'), $value);
     }
 
@@ -177,7 +639,7 @@ class RealtyQuery extends AbstractQuery
      */
     public function filterByEquipment($value)
     {
-        return $this->filter(
+        return $this->applyFilter(
             $this->mapper->getFilterPropertyName('Equipment'),
             is_array($value) ? $value : [$value]
         );
