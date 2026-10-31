@@ -985,24 +985,23 @@ class StrictModeTest extends TestCase
     }
 
     /**
-     * The magic methods the query documents, and the ones it implements
+     * The filterBy…() methods the query has
      *
      * @return array<int, string>
      */
     private function filterMethodNames(string $queryClass): array
     {
-        $class = new \ReflectionClass($queryClass);
+        $class   = new \ReflectionClass($queryClass);
+        $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
 
-        preg_match_all('/@method\s+\S+\s+filterBy(\w+)\(/', (string) $class->getDocComment(), $documented);
-        $names = $documented[1];
-
-        foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+        $names = [];
+        foreach ($methods as $method) {
             if (preg_match('/^filterBy(\w+)$/', $method->getName(), $match)) {
                 $names[] = $match[1];
             }
         }
 
-        return array_values(array_unique($names));
+        return $names;
     }
 
     /**

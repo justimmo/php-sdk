@@ -15,6 +15,8 @@ use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
  */
 class BasicDataQuery
 {
+    use TriggersDeprecations;
+
     /**
      * @var array
      */
@@ -52,7 +54,7 @@ class BasicDataQuery
      */
     public function all($value)
     {
-        return $this->set($this->mapper->getFilterPropertyName('all'), $value === true);
+        return $this->setParameter($this->mapper->getFilterPropertyName('all'), $value === true);
     }
 
     /**
@@ -63,7 +65,7 @@ class BasicDataQuery
      */
     public function filterByCountry($value)
     {
-        return $this->set($this->mapper->getFilterPropertyName('country'), $value);
+        return $this->setParameter($this->mapper->getFilterPropertyName('country'), $value);
     }
 
     /**
@@ -74,7 +76,7 @@ class BasicDataQuery
      */
     public function filterByFederalState($value)
     {
-        return $this->set($this->mapper->getFilterPropertyName('federalState'), $value);
+        return $this->setParameter($this->mapper->getFilterPropertyName('federalState'), $value);
     }
 
     /**
@@ -194,12 +196,29 @@ class BasicDataQuery
     /**
      * sets a value for a key
      *
+     * @deprecated Use all(), filterByCountry() or filterByFederalState(). Protected in 2.0.0
+     *
      * @param string $key
      * @param mixed $value
      *
      * @return $this
      */
     public function set($key, $value)
+    {
+        $this->triggerDeprecation('BasicDataQuery::set() is deprecated and is protected in 2.0.0. Use all(), filterByCountry() or filterByFederalState().');
+
+        return $this->setParameter($key, $value);
+    }
+
+    /**
+     * What set() does, for the SDK and for a subclass, without the deprecation notice
+     *
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    protected function setParameter(mixed $key, mixed $value): static
     {
         $this->params[$key] = $value;
 

@@ -14,6 +14,15 @@
 * `AbstractQuery::filterThroughMapper()` is added, `protected`. It does what a magic `filterBy…()` call does, so a query subclass can write a filter method out, for example to carry a docblock
 * [Strict] `findPk()` checks only the picture size. It rejected a filter, or a realty-level filter next to `all()`, though the detail call sends neither
 * [Strict] `setPicturesize()` refuses nested lists and objects with an `InvalidFilterValueException`. Two of them raised a PHP warning, or an `\Error` for objects, before the check could run
+* Every filter and every sort the api documents is a real method on `RealtyQuery` and `ProjectQuery`. They replace the `@method` lines and send what the magic calls sent
+    * `RealtyQuery::filterByProjectId()` is added, for `filter[projekt_id]`
+    * [BC] A call without a value, like `filterByPrice()`, throws PHP's `ArgumentCountError`; the magic call threw a `MethodNotFoundException`. A second argument, like `orderByPrice('asc', 'x')`, is ignored, as PHP ignores it for every method; the magic call threw a `MethodNotFoundException`
+* What 2.0.0 makes protected or removes emits a deprecation notice (`E_USER_DEPRECATED`), once per request and method. The call still works as before
+    * `set()`, `filter()`, `order()` and `orderBy()` of the queries, and `BasicDataQuery::set()`. 2.0.0 makes them protected. Use the method of the parameter, for example `setLimit()`, `setCulture()`, `filterByPrice()` or `orderByPrice()`
+    * A magic `filterBy…()` or `orderBy…()` call. Every name the api documents has a real method now, so a magic call is a name it does not document, and 2.0.0 removes the magic call. This includes `RealtyQuery::orderByArea()`, `orderByLivingArea()`, `orderByFloorArea()`, `orderBySurfaceArea()` and `orderByRooms()`: the api does not document these sorts, and there is no replacement
+    * The deprecated `RealtyQuery::filterByCreatedAt()`, `filterByRealtyCategory()` on both queries, and `ProjectQuery::filterByCountryIso2()`
+* `setParameter()`, `applyFilter()`, `setOrder()` and `orderThroughMapper()` are added, `protected`. They do what `set()`, `filter()`, `order()` and a magic `orderBy…()` call do, without the notice, so a query subclass can use them
+    * [BC] The SDK calls them itself, so `setLimit()` no longer calls `set()`. A query subclass which overrides `set()`, `filter()` or `order()` is no longer called by the methods of the SDK
 * `JustimmoNullApi::callRealtyIds()`, `callProjectIds()` and `callEmployeeIds()` return `'[]'`, so `findIds()` returns an empty array. The realty call returned `'{}'`, which `findIds()` turned into an empty object, and the other two an XML declaration, which is not what an ids call answers
 
 ## 1.5.0

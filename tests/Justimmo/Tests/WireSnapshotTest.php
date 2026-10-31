@@ -21,13 +21,25 @@ use Justimmo\Model\Wrapper\NullWrapper;
  *
  * Every case runs on the realty query. The project and the employee query share its code and differ
  * in their mapper, so they get the cases about names, and the project query its own methods.
- * Warnings and deprecations are not recorded, because they differ between PHP versions.
+ * The deprecation notices of the SDK are recorded after the url. The warnings of PHP itself are not,
+ * because they differ between PHP versions.
+ *
+ * WIRE_SNAPSHOT_UPDATE=1 writes the fixture instead of comparing against it. Review the diff before
+ * committing it: every changed line is a request, an exception or a notice which changed.
  */
 class WireSnapshotTest extends TestCase
 {
     public function testFindSendsWhatTheSnapshotRecorded(): void
     {
-        $this->assertSame($this->getFixtures('wire-snapshot.txt'), implode("\n", self::snapshot()) . "\n");
+        $snapshot = implode("\n", self::snapshot()) . "\n";
+
+        if (getenv('WIRE_SNAPSHOT_UPDATE')) {
+            file_put_contents(__DIR__ . '/../../Fixtures/wire-snapshot.txt', $snapshot);
+
+            $this->markTestSkipped('The fixture was written. Review its diff.');
+        }
+
+        $this->assertSame($this->getFixtures('wire-snapshot.txt'), $snapshot);
     }
 
     /**
@@ -35,12 +47,29 @@ class WireSnapshotTest extends TestCase
      */
     private static function snapshot(): array
     {
-        $lines = [];
+        $lines   = [];
+        $notices = [];
 
-        set_error_handler(fn () => true);
+        // by reference, so the loop below reads what the handler collects during each case
+        set_error_handler(function (int $level, string $message) use (&$notices) {
+            if ($level === E_USER_DEPRECATED) {
+                $notices[] = $message;
+            }
+
+            return true;
+        });
         try {
             foreach (self::cases() as $name => [$type, $build]) {
-                $lines[] = $name . ' => ' . self::send($type, $build);
+                // a notice is emitted once per request, and each case should show its own
+                self::forgetTheDeprecationNotices();
+                $notices = [];
+
+                $line = $name . ' => ' . self::send($type, $build);
+                foreach ($notices as $notice) {
+                    $line .= ' | ' . $notice;
+                }
+
+                $lines[] = $line;
             }
         } finally {
             restore_error_handler();
