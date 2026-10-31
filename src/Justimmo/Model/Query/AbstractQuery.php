@@ -1020,8 +1020,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * magic call
      *
-     * Every filter and every sort the api documents has a method of its own, so a name which
-     * arrives here is one the api does not document. 2.0.0 removes the magic call.
+     * Every filter and every sort the api documents has a method of its own. A name which
+     * arrives here is one the api does not document, or the wire name of a documented one, like
+     * filterBypreis(). 2.0.0 removes the magic call.
      *
      * @param $method
      * @param $params
@@ -1032,18 +1033,64 @@ abstract class AbstractQuery implements QueryInterface
     public function __call($method, $params)
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
-            $this->triggerDeprecation($method . '() is deprecated and is removed in 2.0.0. The api does not document this filter.');
+            $property = mb_substr($method, 8);
+            $key      = $this->mapper->getFilterPropertyName($property);
 
-            return $this->filterThroughMapper(mb_substr($method, 8), $params[0], $method);
+            $this->triggerDeprecation($method . '() is deprecated and is removed in 2.0.0. '
+                . $this->replacementOf('filterBy', $key, 'filter'));
+
+            return $this->filterThroughMapper($property, $params[0], $method);
         }
 
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
-            $this->triggerDeprecation($method . '() is deprecated and is removed in 2.0.0. The api does not document this sort.');
+            $property = mb_substr($method, 7);
+            $column   = $this->orderPropertyName($property);
 
-            return $this->orderThroughMapper(mb_substr($method, 7), $params[0] ?? null);
+            $this->triggerDeprecation($method . '() is deprecated and is removed in 2.0.0. '
+                . $this->replacementOf('orderBy', $column, 'sort'));
+
+            return $this->orderThroughMapper($property, $params[0] ?? null);
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));
+    }
+
+    /**
+     * The sentence of a magic call's notice which says what to use instead
+     *
+     * The replacement is the written-out method which sends the same filter or sorts by the same
+     * column. A deprecated method is no replacement, so filterBytag_name() points to filterByTag()
+     * and not to filterByRealtyCategory().
+     *
+     * @param string $prefix filterBy or orderBy
+     * @param string $sent   the filter or the column the magic call sends
+     * @param string $kind   filter or sort, for the sentence
+     */
+    private function replacementOf(string $prefix, string $sent, string $kind): string
+    {
+        $class   = new \ReflectionClass($this);
+        $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
+
+        foreach ($methods as $method) {
+            if (!preg_match('/^' . $prefix . '(\w+)$/', $method->getName(), $match)) {
+                continue;
+            }
+
+            $docComment = (string) $method->getDocComment();
+            if (str_contains($docComment, '@deprecated')) {
+                continue;
+            }
+
+            $name = $prefix === 'filterBy'
+                ? $this->mapper->getFilterPropertyName($match[1])
+                : $this->orderPropertyName($match[1]);
+
+            if ($name === $sent) {
+                return 'Use ' . $method->getName() . '().';
+            }
+        }
+
+        return 'The SDK has no method for this ' . $kind . '.';
     }
 
     /**

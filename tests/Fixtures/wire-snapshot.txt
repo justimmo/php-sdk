@@ -309,7 +309,7 @@ employee: order(name:preis_von) => team/list?orderby=preis_von&ordertype=asc&cul
 employee: plain => team/list?culture=de
 realty: filter(preis, null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(null) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(null) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(null) => objekt/list?showDetails=1&culture=de
@@ -335,7 +335,7 @@ project: allProjectRealties(null) => projekt/list?alleProjektObjekte=0&culture=d
 project: onlyRealtyIds(null) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(empty) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(empty) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(empty) => objekt/list?showDetails=1&culture=de
@@ -361,7 +361,7 @@ project: allProjectRealties(empty) => projekt/list?alleProjektObjekte=0&culture=
 project: onlyRealtyIds(empty) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, zero) => objekt/list?filter[preis]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(zero) => objekt/list?filter[preis]=0&showDetails=1&culture=de
-realty: filterByFoo(zero) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(zero) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(zero) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
 realty: filterByRealtyCategory(zero) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(zero) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
@@ -387,7 +387,7 @@ project: allProjectRealties(zero) => projekt/list?alleProjektObjekte=0&culture=d
 project: onlyRealtyIds(zero) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, zero-str) => objekt/list?filter[preis]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(zero-str) => objekt/list?filter[preis]=0&showDetails=1&culture=de
-realty: filterByFoo(zero-str) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(zero-str) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(zero-str) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
 realty: filterByRealtyCategory(zero-str) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(zero-str) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
@@ -413,7 +413,7 @@ project: allProjectRealties(zero-str) => projekt/list?alleProjektObjekte=0&cultu
 project: onlyRealtyIds(zero-str) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, false) => objekt/list?filter[preis]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(false) => objekt/list?filter[preis]=0&showDetails=1&culture=de
-realty: filterByFoo(false) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(false) => objekt/list?filter[Foo]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(false) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de
 realty: filterByRealtyCategory(false) => objekt/list?filter[tag_name]=0&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(false) => objekt/list?filter[objekt_ausstattung_list][]=0&showDetails=1&culture=de
@@ -439,7 +439,7 @@ project: allProjectRealties(false) => projekt/list?alleProjektObjekte=0&culture=
 project: onlyRealtyIds(false) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, true) => objekt/list?filter[preis]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(true) => objekt/list?filter[preis]=1&showDetails=1&culture=de
-realty: filterByFoo(true) => objekt/list?filter[Foo]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(true) => objekt/list?filter[Foo]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(true) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
 realty: filterByRealtyCategory(true) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(true) => objekt/list?filter[objekt_ausstattung_list][]=1&showDetails=1&culture=de
@@ -465,7 +465,7 @@ project: allProjectRealties(true) => projekt/list?alleProjektObjekte=1&culture=d
 project: onlyRealtyIds(true) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, int) => objekt/list?filter[preis]=455&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(int) => objekt/list?filter[preis]=455&showDetails=1&culture=de
-realty: filterByFoo(int) => objekt/list?filter[Foo]=455&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(int) => objekt/list?filter[Foo]=455&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(int) => objekt/list?filter[tag_name]=455&showDetails=1&culture=de
 realty: filterByRealtyCategory(int) => objekt/list?filter[tag_name]=455&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(int) => objekt/list?filter[objekt_ausstattung_list][]=455&showDetails=1&culture=de
@@ -491,7 +491,7 @@ project: allProjectRealties(int) => projekt/list?alleProjektObjekte=455&culture=
 project: onlyRealtyIds(int) => projekt/list?objektIds=455&culture=de
 realty: filter(preis, neg) => objekt/list?filter[preis]=-5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(neg) => objekt/list?filter[preis]=-5&showDetails=1&culture=de
-realty: filterByFoo(neg) => objekt/list?filter[Foo]=-5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(neg) => objekt/list?filter[Foo]=-5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(neg) => objekt/list?filter[tag_name]=-5&showDetails=1&culture=de
 realty: filterByRealtyCategory(neg) => objekt/list?filter[tag_name]=-5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(neg) => objekt/list?filter[objekt_ausstattung_list][]=-5&showDetails=1&culture=de
@@ -517,7 +517,7 @@ project: allProjectRealties(neg) => projekt/list?alleProjektObjekte=-5&culture=d
 project: onlyRealtyIds(neg) => projekt/list?objektIds=-5&culture=de
 realty: filter(preis, float) => objekt/list?filter[preis]=1.5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(float) => objekt/list?filter[preis]=1.5&showDetails=1&culture=de
-realty: filterByFoo(float) => objekt/list?filter[Foo]=1.5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(float) => objekt/list?filter[Foo]=1.5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(float) => objekt/list?filter[tag_name]=1.5&showDetails=1&culture=de
 realty: filterByRealtyCategory(float) => objekt/list?filter[tag_name]=1.5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(float) => objekt/list?filter[objekt_ausstattung_list][]=1.5&showDetails=1&culture=de
@@ -543,7 +543,7 @@ project: allProjectRealties(float) => projekt/list?alleProjektObjekte=1&culture=
 project: onlyRealtyIds(float) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, nan) => objekt/list?filter[preis]=NAN&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(nan) => objekt/list?filter[preis]=NAN&showDetails=1&culture=de
-realty: filterByFoo(nan) => objekt/list?filter[Foo]=NAN&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(nan) => objekt/list?filter[Foo]=NAN&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(nan) => objekt/list?filter[tag_name]=NAN&showDetails=1&culture=de
 realty: filterByRealtyCategory(nan) => objekt/list?filter[tag_name]=NAN&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(nan) => objekt/list?filter[objekt_ausstattung_list][]=NAN&showDetails=1&culture=de
@@ -569,7 +569,7 @@ project: allProjectRealties(nan) => projekt/list?alleProjektObjekte=0&culture=de
 project: onlyRealtyIds(nan) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, str) => objekt/list?filter[preis]=abc&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(str) => objekt/list?filter[preis]=abc&showDetails=1&culture=de
-realty: filterByFoo(str) => objekt/list?filter[Foo]=abc&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(str) => objekt/list?filter[Foo]=abc&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(str) => objekt/list?filter[tag_name]=abc&showDetails=1&culture=de
 realty: filterByRealtyCategory(str) => objekt/list?filter[tag_name]=abc&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(str) => objekt/list?filter[objekt_ausstattung_list][]=abc&showDetails=1&culture=de
@@ -595,7 +595,7 @@ project: allProjectRealties(str) => projekt/list?alleProjektObjekte=0&culture=de
 project: onlyRealtyIds(str) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, num-str) => objekt/list?filter[preis]=12&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(num-str) => objekt/list?filter[preis]=12&showDetails=1&culture=de
-realty: filterByFoo(num-str) => objekt/list?filter[Foo]=12&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(num-str) => objekt/list?filter[Foo]=12&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(num-str) => objekt/list?filter[tag_name]=12&showDetails=1&culture=de
 realty: filterByRealtyCategory(num-str) => objekt/list?filter[tag_name]=12&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(num-str) => objekt/list?filter[objekt_ausstattung_list][]=12&showDetails=1&culture=de
@@ -621,7 +621,7 @@ project: allProjectRealties(num-str) => projekt/list?alleProjektObjekte=12&cultu
 project: onlyRealtyIds(num-str) => projekt/list?objektIds=12&culture=de
 realty: filter(preis, stringable) => objekt/list?filter[preis]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(stringable) => objekt/list?filter[preis]=x&showDetails=1&culture=de
-realty: filterByFoo(stringable) => objekt/list?filter[Foo]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(stringable) => objekt/list?filter[Foo]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(stringable) => objekt/list?filter[tag_name]=x&showDetails=1&culture=de
 realty: filterByRealtyCategory(stringable) => objekt/list?filter[tag_name]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(stringable) => objekt/list?filter[objekt_ausstattung_list][]=x&showDetails=1&culture=de
@@ -647,7 +647,7 @@ project: allProjectRealties(stringable) => projekt/list?alleProjektObjekte=1&cul
 project: onlyRealtyIds(stringable) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(object) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(object) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(object) => objekt/list?showDetails=1&culture=de
@@ -673,7 +673,7 @@ project: allProjectRealties(object) => projekt/list?alleProjektObjekte=1&culture
 project: onlyRealtyIds(object) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, date) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(date) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(date) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(date) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(date) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(date) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(date) => objekt/list?showDetails=1&culture=de
@@ -699,7 +699,7 @@ project: allProjectRealties(date) => projekt/list?alleProjektObjekte=1&culture=d
 project: onlyRealtyIds(date) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, list) => objekt/list?filter[preis][]=1&filter[preis][]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(list) => objekt/list?filter[preis][]=1&filter[preis][]=2&showDetails=1&culture=de
-realty: filterByFoo(list) => objekt/list?filter[Foo][]=1&filter[Foo][]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(list) => objekt/list?filter[Foo][]=1&filter[Foo][]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(list) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
 realty: filterByRealtyCategory(list) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(list) => objekt/list?filter[objekt_ausstattung_list][]=1&filter[objekt_ausstattung_list][]=2&showDetails=1&culture=de
@@ -725,7 +725,7 @@ project: allProjectRealties(list) => projekt/list?alleProjektObjekte=1&culture=d
 project: onlyRealtyIds(list) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, empty-list) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(empty-list) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(empty-list) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(empty-list) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(empty-list) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(empty-list) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(empty-list) => objekt/list?showDetails=1&culture=de
@@ -751,7 +751,7 @@ project: allProjectRealties(empty-list) => projekt/list?alleProjektObjekte=0&cul
 project: onlyRealtyIds(empty-list) => projekt/list?objektIds=0&culture=de
 realty: filter(preis, list-null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(list-null) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(list-null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(list-null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(list-null) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(list-null) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(list-null) => objekt/list?showDetails=1&culture=de
@@ -777,7 +777,7 @@ project: allProjectRealties(list-null) => projekt/list?alleProjektObjekte=1&cult
 project: onlyRealtyIds(list-null) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, list-empty) => objekt/list?filter[preis][]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(list-empty) => objekt/list?filter[preis][]=x&showDetails=1&culture=de
-realty: filterByFoo(list-empty) => objekt/list?filter[Foo][]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(list-empty) => objekt/list?filter[Foo][]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(list-empty) => objekt/list?filter[tag_name][]=x&showDetails=1&culture=de
 realty: filterByRealtyCategory(list-empty) => objekt/list?filter[tag_name][]=x&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(list-empty) => objekt/list?filter[objekt_ausstattung_list][]=x&showDetails=1&culture=de
@@ -803,7 +803,7 @@ project: allProjectRealties(list-empty) => projekt/list?alleProjektObjekte=1&cul
 project: onlyRealtyIds(list-empty) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, nested) => objekt/list?filter[preis][][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(nested) => objekt/list?filter[preis][][]=1&showDetails=1&culture=de
-realty: filterByFoo(nested) => objekt/list?filter[Foo][][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(nested) => objekt/list?filter[Foo][][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
 realty: filterByRealtyCategory(nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(nested) => objekt/list?filter[objekt_ausstattung_list][][]=1&showDetails=1&culture=de
@@ -829,7 +829,7 @@ project: allProjectRealties(nested) => projekt/list?alleProjektObjekte=1&culture
 project: onlyRealtyIds(nested) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, assoc) => objekt/list?filter[preis][a]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(assoc) => objekt/list?filter[preis][a]=1&showDetails=1&culture=de
-realty: filterByFoo(assoc) => objekt/list?filter[Foo][a]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(assoc) => objekt/list?filter[Foo][a]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(assoc) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
 realty: filterByRealtyCategory(assoc) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(assoc) => objekt/list?filter[objekt_ausstattung_list][a]=1&showDetails=1&culture=de
@@ -855,7 +855,7 @@ project: allProjectRealties(assoc) => projekt/list?alleProjektObjekte=1&culture=
 project: onlyRealtyIds(assoc) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min) => objekt/list?filter[preis_von]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min) => objekt/list?filter[preis_von]=1&showDetails=1&culture=de
-realty: filterByFoo(min) => objekt/list?filter[Foo_von]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min) => objekt/list?filter[Foo_von]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de
 realty: filterByRealtyCategory(min) => objekt/list?filter[tag_name]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min) => objekt/list?filter[objekt_ausstattung_list_von]=1&showDetails=1&culture=de
@@ -881,7 +881,7 @@ project: allProjectRealties(min) => projekt/list?alleProjektObjekte=1&culture=de
 project: onlyRealtyIds(min) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, max) => objekt/list?filter[preis_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(max) => objekt/list?filter[preis_bis]=2&showDetails=1&culture=de
-realty: filterByFoo(max) => objekt/list?filter[Foo_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(max) => objekt/list?filter[Foo_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(max) => objekt/list?filter[tag_name]=2&showDetails=1&culture=de
 realty: filterByRealtyCategory(max) => objekt/list?filter[tag_name]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(max) => objekt/list?filter[objekt_ausstattung_list_bis]=2&showDetails=1&culture=de
@@ -907,7 +907,7 @@ project: allProjectRealties(max) => projekt/list?alleProjektObjekte=1&culture=de
 project: onlyRealtyIds(max) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min-max) => objekt/list?filter[preis_von]=1&filter[preis_bis]=2&showDetails=1&culture=de
-realty: filterByFoo(min-max) => objekt/list?filter[Foo_von]=1&filter[Foo_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min-max) => objekt/list?filter[Foo_von]=1&filter[Foo_bis]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min-max) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de
 realty: filterByRealtyCategory(min-max) => objekt/list?filter[tag_name][]=1&filter[tag_name][]=2&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min-max) => objekt/list?filter[objekt_ausstattung_list_von]=1&filter[objekt_ausstattung_list_bis]=2&showDetails=1&culture=de
@@ -933,7 +933,7 @@ project: allProjectRealties(min-max) => projekt/list?alleProjektObjekte=1&cultur
 project: onlyRealtyIds(min-max) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min-null) => objekt/list?filter[preis_bis]=5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min-null) => objekt/list?filter[preis_bis]=5&showDetails=1&culture=de
-realty: filterByFoo(min-null) => objekt/list?filter[Foo_bis]=5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min-null) => objekt/list?filter[Foo_bis]=5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min-null) => objekt/list?filter[tag_name][]=5&showDetails=1&culture=de
 realty: filterByRealtyCategory(min-null) => objekt/list?filter[tag_name][]=5&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min-null) => objekt/list?filter[objekt_ausstattung_list_bis]=5&showDetails=1&culture=de
@@ -959,7 +959,7 @@ project: allProjectRealties(min-null) => projekt/list?alleProjektObjekte=1&cultu
 project: onlyRealtyIds(min-null) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min-empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min-empty) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(min-empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min-empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min-empty) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(min-empty) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min-empty) => objekt/list?showDetails=1&culture=de
@@ -985,7 +985,7 @@ project: allProjectRealties(min-empty) => projekt/list?alleProjektObjekte=1&cult
 project: onlyRealtyIds(min-empty) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min-nested) => objekt/list?filter[preis_von][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min-nested) => objekt/list?filter[preis_von][]=1&showDetails=1&culture=de
-realty: filterByFoo(min-nested) => objekt/list?filter[Foo_von][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min-nested) => objekt/list?filter[Foo_von][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min-nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de
 realty: filterByRealtyCategory(min-nested) => objekt/list?filter[tag_name][]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min-nested) => objekt/list?filter[objekt_ausstattung_list_von][]=1&showDetails=1&culture=de
@@ -1011,7 +1011,7 @@ project: allProjectRealties(min-nested) => projekt/list?alleProjektObjekte=1&cul
 project: onlyRealtyIds(min-nested) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, min-stringable) => objekt/list?filter[preis_von]=3&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(min-stringable) => objekt/list?filter[preis_von]=3&showDetails=1&culture=de
-realty: filterByFoo(min-stringable) => objekt/list?filter[Foo_von]=3&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(min-stringable) => objekt/list?filter[Foo_von]=3&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(min-stringable) => objekt/list?filter[tag_name]=3&showDetails=1&culture=de
 realty: filterByRealtyCategory(min-stringable) => objekt/list?filter[tag_name]=3&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(min-stringable) => objekt/list?filter[objekt_ausstattung_list_von]=3&showDetails=1&culture=de
@@ -1037,7 +1037,7 @@ project: allProjectRealties(min-stringable) => projekt/list?alleProjektObjekte=1
 project: onlyRealtyIds(min-stringable) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, list-stringable) => objekt/list?filter[preis][]=a&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(list-stringable) => objekt/list?filter[preis][]=a&showDetails=1&culture=de
-realty: filterByFoo(list-stringable) => objekt/list?filter[Foo][]=a&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(list-stringable) => objekt/list?filter[Foo][]=a&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(list-stringable) => objekt/list?filter[tag_name]=a&showDetails=1&culture=de
 realty: filterByRealtyCategory(list-stringable) => objekt/list?filter[tag_name]=a&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(list-stringable) => objekt/list?filter[objekt_ausstattung_list][]=a&showDetails=1&culture=de
@@ -1063,7 +1063,7 @@ project: allProjectRealties(list-stringable) => projekt/list?alleProjektObjekte=
 project: onlyRealtyIds(list-stringable) => projekt/list?objektIds=1&culture=de
 realty: filter(preis, list-object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().
 realty: filterByPrice(list-object) => objekt/list?showDetails=1&culture=de
-realty: filterByFoo(list-object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterByFoo(list-object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByTag(list-object) => objekt/list?showDetails=1&culture=de
 realty: filterByRealtyCategory(list-object) => objekt/list?showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterByRealtyCategory() is deprecated and is removed in 2.0.0. Use filterByTag(), which builds the same filter.
 realty: filterByEquipment(list-object) => objekt/list?showDetails=1&culture=de
@@ -1087,7 +1087,7 @@ realty: preciseAreaSearch(list-object) => objekt/list?preciseAreaSearch=1&showDe
 project: all(list-object) => projekt/list?alle=1&culture=de
 project: allProjectRealties(list-object) => projekt/list?alleProjektObjekte=1&culture=de
 project: onlyRealtyIds(list-object) => projekt/list?objektIds=1&culture=de
-realty: filterBy() => objekt/list?filter[]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterBy() is deprecated and is removed in 2.0.0. The api does not document this filter.
+realty: filterBy() => objekt/list?filter[]=1&showDetails=1&culture=de | Since justimmo/php-sdk 1.6.0: filterBy() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.
 realty: filterByPrice() => throws ArgumentCountError
 realty: filterByPrice(1, 2) => objekt/list?filter[preis]=1&showDetails=1&culture=de
 realty: orderByPrice() => objekt/list?orderby=preis&ordertype=asc&showDetails=1&culture=de

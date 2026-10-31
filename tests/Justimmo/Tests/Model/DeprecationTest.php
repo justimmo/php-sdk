@@ -58,10 +58,31 @@ class DeprecationTest extends TestCase
     {
         $this->assertSame(
             [
-                self::SINCE . 'filterByFoo() is deprecated and is removed in 2.0.0. The api does not document this filter.',
-                self::SINCE . 'orderByArea() is deprecated and is removed in 2.0.0. The api does not document this sort.',
+                self::SINCE . 'filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.',
+                self::SINCE . 'orderByArea() is deprecated and is removed in 2.0.0. The SDK has no method for this sort.',
             ],
             $this->notices(fn () => $this->realty()->filterByFoo('x')->orderByArea())
+        );
+    }
+
+    /**
+     * A wire name still reaches a documented filter or sort, and the notice names the method
+     * which sends it. A deprecated method is not named, though it sends the same filter
+     */
+    public function testAWireNameNamesTheMethodToUse(): void
+    {
+        $this->assertSame(
+            [
+                self::SINCE . 'filterBypreis() is deprecated and is removed in 2.0.0. Use filterByPrice().',
+                self::SINCE . 'orderBypreis() is deprecated and is removed in 2.0.0. Use orderByPrice().',
+                self::SINCE . 'filterBytag_name() is deprecated and is removed in 2.0.0. Use filterByTag().',
+                self::SINCE . 'filterByflaeche() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.',
+            ],
+            $this->notices(fn () => $this->realty()
+                ->filterBypreis(['min' => 100])
+                ->orderBypreis()
+                ->filterBytag_name('a')
+                ->filterByflaeche(['min' => 50]))
         );
     }
 
