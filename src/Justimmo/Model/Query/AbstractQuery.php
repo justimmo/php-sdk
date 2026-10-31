@@ -15,6 +15,18 @@ use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
 {
+    use TriggersDeprecations;
+
+    /**
+     * Sort columns a query names itself, keyed by the property of the orderBy…() method
+     *
+     * orderPropertyName() reads them before it asks the mapper. RealtyQuery names updated_at here,
+     * because a mapper from outside the SDK may know only the filter name of that column.
+     *
+     * @var array<string, string>
+     */
+    protected const SORT_COLUMNS = [];
+
     /**
      * @deprecated No longer consulted. The api validates the picture size itself and ignores one it
      *             does not know, so this copy of its enum only drifted. Removed in 2.x
@@ -326,7 +338,7 @@ abstract class AbstractQuery implements QueryInterface
             $limit = $limit < 0 ? 1 : (int) $limit;
         }
 
-        return $this->set('limit', $limit);
+        return $this->setParameter('limit', $limit);
     }
 
     /**
@@ -348,11 +360,14 @@ abstract class AbstractQuery implements QueryInterface
             $offset = $offset < 0 ? 0 : (int) $offset;
         }
 
-        return $this->set('offset', $offset);
+        return $this->setParameter('offset', $offset);
     }
 
     /**
      * translates and sets the order of a call
+     *
+     * @deprecated Use the orderBy…() method of the column, for example orderByPrice(). Protected
+     *             in 2.0.0
      *
      * @param string $column
      * @param string $direction
@@ -361,12 +376,14 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function orderBy($column, $direction = 'asc')
     {
+        $this->triggerDeprecation('orderBy', 'orderBy() is deprecated and is protected in 2.0.0. Use the orderBy…() method of the column, for example orderByPrice().');
+
         // a null or a boolean was sent untranslated before 1.5.0, and the mappers take a string
         if (self::isSentUntranslated($column)) {
-            return $this->order($column, $direction);
+            return $this->setOrder($column, $direction);
         }
 
-        return $this->order($this->orderPropertyName($column), $direction);
+        return $this->setOrder($this->orderPropertyName($column), $direction);
     }
 
     /**
@@ -383,11 +400,16 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * Translates a model property name into the column the api sorts by
      *
-     * A mapper which does not separate its sort columns from its filters is asked for the filter
-     * name, which is what every mapper did before 1.5.0.
+     * A column the query names itself comes first. A mapper which does not separate its sort
+     * columns from its filters is asked for the filter name, which is what every mapper did before
+     * 1.5.0.
      */
     private function orderPropertyName(string $column): string
     {
+        if (isset(static::SORT_COLUMNS[$column])) {
+            return static::SORT_COLUMNS[$column];
+        }
+
         if ($this->mapper instanceof OrderMappingInterface) {
             return $this->mapper->getOrderPropertyName($column);
         }
@@ -398,6 +420,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * sets order for a call
      *
+     * @deprecated Use the orderBy…() method of the column, for example orderByPrice(). Protected
+     *             in 2.0.0
+     *
      * @param string $column
      * @param string $direction
      *
@@ -405,8 +430,23 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function order($column, $direction = 'asc')
     {
-        $this->set('orderby', $column);
-        $this->set('ordertype', $direction);
+        $this->triggerDeprecation('order', 'order() is deprecated and is protected in 2.0.0. Use the orderBy…() method of the column, for example orderByPrice().');
+
+        return $this->setOrder($column, $direction);
+    }
+
+    /**
+     * What order() does, for the SDK and for a query subclass, without the deprecation notice
+     *
+     * @param string $column
+     * @param string $direction
+     *
+     * @return $this
+     */
+    protected function setOrder(mixed $column, mixed $direction): static
+    {
+        $this->setParameter('orderby', $column);
+        $this->setParameter('ordertype', $direction);
 
         return $this;
     }
@@ -414,12 +454,30 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * sets a value for a key
      *
+     * @deprecated Use the method of the parameter, for example setLimit(), setCulture() or a
+     *             filterBy…() method. Protected in 2.0.0
+     *
      * @param string $key
      * @param mixed $value
      *
      * @return $this
      */
     public function set($key, $value)
+    {
+        $this->triggerDeprecation('set', 'set() is deprecated and is protected in 2.0.0. Use the method of the parameter, for example setLimit(), setCulture() or a filterBy…() method.');
+
+        return $this->setParameter($key, $value);
+    }
+
+    /**
+     * What set() does, for the SDK and for a query subclass, without the deprecation notice
+     *
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    protected function setParameter(mixed $key, mixed $value): static
     {
         $this->params[$key] = $value;
 
@@ -429,6 +487,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * adds a filter column
      *
+     * @deprecated Use the filterBy…() method of the filter, for example filterByPrice(). Protected
+     *             in 2.0.0
+     *
      * @param string|null $key
      * @param mixed $value
      *
@@ -437,6 +498,23 @@ abstract class AbstractQuery implements QueryInterface
      * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the filter cannot take that value
      */
     public function filter($key, $value = null)
+    {
+        $this->triggerDeprecation('filter', 'filter() is deprecated and is protected in 2.0.0. Use the filterBy…() method of the filter, for example filterByPrice().');
+
+        return $this->applyFilter($key, $value);
+    }
+
+    /**
+     * What filter() does, for the SDK and for a query subclass, without the deprecation notice
+     *
+     * @param string|null $key
+     * @param mixed $value
+     *
+     * @return $this
+     * @throws \Justimmo\Exception\MethodNotFoundException in strict mode, when the api has no such filter
+     * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the filter cannot take that value
+     */
+    protected function applyFilter(mixed $key, mixed $value): static
     {
         // a null name was stored under the empty name before 1.5.0, and the checks take a string
         $key ??= '';
@@ -938,7 +1016,7 @@ abstract class AbstractQuery implements QueryInterface
 
         $values = array_values(array_unique($values, SORT_REGULAR));
 
-        return $this->filter($key, count($values) === 1 ? $values[0] : $values);
+        return $this->applyFilter($key, count($values) === 1 ? $values[0] : $values);
     }
 
     /**
@@ -957,6 +1035,10 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * magic call
      *
+     * Every filter and every sort the api documents has a method of its own. A name which
+     * arrives here is one the api does not document, or the wire name of a documented one, like
+     * filterBypreis(). 2.0.0 removes the magic call.
+     *
      * @param $method
      * @param $params
      *
@@ -966,22 +1048,106 @@ abstract class AbstractQuery implements QueryInterface
     public function __call($method, $params)
     {
         if (mb_strpos($method, 'filterBy') === 0 && count($params) == 1) {
-            return $this->filterThroughMapper(mb_substr($method, 8), $params[0], $method);
+            $property = mb_substr($method, 8);
+            $key      = $this->mapper->getFilterPropertyName($property);
+
+            $this->triggerDeprecation($method, fn () => $method . '() is deprecated and is removed in 2.0.0. '
+                . $this->replacementOf('filterBy', $key, 'filter'));
+
+            return $this->filterThroughMapper($property, $params[0], $method);
         }
 
         if (mb_strpos($method, 'orderBy') === 0 && count($params) <= 1) {
-            $key = $this->orderPropertyName(mb_substr($method, 7));
+            $property = mb_substr($method, 7);
+            $column   = $this->orderPropertyName($property);
 
-            // the api matches the direction case insensitively, so DESC is valid and is passed
-            // on as the caller wrote it. Only a missing direction falls back
-            if (!isset($params[0]) || $params[0] === '') {
-                $params[0] = 'asc';
-            }
+            $this->triggerDeprecation($method, fn () => $method . '() is deprecated and is removed in 2.0.0. '
+                . $this->replacementOf('orderBy', $column, 'sort'));
 
-            return $this->order($key, $params[0]);
+            return $this->orderThroughMapper($property, $params[0] ?? null);
         }
 
         throw new MethodNotFoundException('The method ' . $method . ' was not found in ' . get_class($this));
+    }
+
+    /**
+     * The sentence of a magic call's notice which says what to use instead
+     *
+     * The replacement is the written-out method which sends the same filter or sorts by the same
+     * column. One end of a range, like filterBypreis_von(), points to the method of the range with
+     * min or max, here filterByPrice(['min' => …]).
+     *
+     * Looking it up scans the methods of the query, so __call() asks for it only when the notice
+     * is emitted, once per class and method.
+     *
+     * @param string $prefix filterBy or orderBy
+     * @param string $sent   the filter or the column the magic call sends
+     * @param string $kind   filter or sort, for the sentence
+     */
+    private function replacementOf(string $prefix, string $sent, string $kind): string
+    {
+        $method = $this->methodWhichSends($prefix, $sent);
+        if ($method !== null) {
+            return 'Use ' . $method . '().';
+        }
+
+        if ($prefix === 'filterBy' && preg_match('/^(.+)_(von|bis)$/', $sent, $match) && $this->takesARange($match[1])) {
+            $method = $this->methodWhichSends($prefix, $match[1]);
+            if ($method !== null) {
+                $end = $match[2] === 'von' ? 'min' : 'max';
+
+                return 'Use ' . $method . "(['" . $end . "' => …]).";
+            }
+        }
+
+        return 'The SDK has no method for this ' . $kind . '.';
+    }
+
+    /**
+     * The public method which sends the filter or sorts by the column, if there is one
+     *
+     * A deprecated method is no replacement, so filterBytag_name() points to filterByTag() and not
+     * to filterByRealtyCategory().
+     */
+    private function methodWhichSends(string $prefix, string $sent): ?string
+    {
+        $class   = new \ReflectionClass($this);
+        $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
+
+        foreach ($methods as $method) {
+            if (!preg_match('/^' . $prefix . '(\w+)$/', $method->getName(), $match)) {
+                continue;
+            }
+
+            $docComment = (string) $method->getDocComment();
+            if (str_contains($docComment, '@deprecated')) {
+                continue;
+            }
+
+            $name = $prefix === 'filterBy'
+                ? $this->mapper->getFilterPropertyName($match[1])
+                : $this->orderPropertyName($match[1]);
+
+            if ($name === $sent) {
+                return $method->getName();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Whether the api documents the filter as a range on the list call
+     */
+    private function takesARange(string $filter): bool
+    {
+        if (!$this->mapper instanceof SupportedParametersInterface) {
+            return false;
+        }
+
+        $filters = $this->mapper->getSupportedFilters($this->getListCall());
+
+        return in_array('range', $filters[$filter]['forms'] ?? [], true);
     }
 
     /**
@@ -1001,7 +1167,25 @@ abstract class AbstractQuery implements QueryInterface
         // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
         $this->assertFilterIsSupported($key, $method . '()');
 
-        return $this->filter($key, $value);
+        return $this->applyFilter($key, $value);
+    }
+
+    /**
+     * What a magic orderBy…() call does, for the orderBy…() methods which are written out
+     *
+     * @param string $property the model property name, as in orderBy<property>()
+     *
+     * @return $this
+     */
+    protected function orderThroughMapper(string $property, mixed $direction): static
+    {
+        // the api matches the direction case insensitively, so DESC is valid and is passed on as
+        // the caller wrote it. Only a missing direction falls back
+        if ($direction === null || $direction === '') {
+            $direction = 'asc';
+        }
+
+        return $this->setOrder($this->orderPropertyName($property), $direction);
     }
 
     /**
@@ -1022,7 +1206,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function setCulture(string $culture): static
     {
-        return $this->set('culture', $culture);
+        return $this->setParameter('culture', $culture);
     }
 
     /**
@@ -1050,7 +1234,7 @@ abstract class AbstractQuery implements QueryInterface
             $picturesize = ['medium'];
         }
 
-        return $this->set('picturesize', $picturesize);
+        return $this->setParameter('picturesize', $picturesize);
     }
 
     /**
