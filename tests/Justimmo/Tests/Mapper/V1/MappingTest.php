@@ -2,6 +2,7 @@
 namespace Justimmo\Tests\Mapper\V1;
 
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\OrderMappingInterface;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
@@ -296,6 +297,39 @@ class MappingTest extends TestCase
     }
 
     /**
+     * A mapper written before 1.5.0 knows the updated time only by its filter name,
+     * aktualisiert_am, which the api answers as a sort column with a 400. The realty query names
+     * the sort column itself, so sorting still uses updated_at, and filtering keeps the filter name
+     */
+    public function testUpdatedAtIsSortedByItsColumnWithAMapperWithoutASortMapping(): void
+    {
+        $mapper = new class () extends NullMapper {
+            public function getFilterPropertyName(mixed $modelPropertyName): string
+            {
+                return $modelPropertyName === 'UpdatedAt' ? 'aktualisiert_am' : (string) $modelPropertyName;
+            }
+        };
+
+        $this->assertNotInstanceOf(OrderMappingInterface::class, $mapper);
+
+        $this->assertSame(
+            ['orderby' => 'updated_at', 'ordertype' => 'asc'],
+            $this->queryWith($mapper)->orderByUpdatedAt()->getParams()
+        );
+
+        // the deprecated orderBy() names the column the same way
+        $this->assertSame(
+            ['orderby' => 'updated_at', 'ordertype' => 'desc'],
+            $this->queryWith($mapper)->orderBy('UpdatedAt', 'desc')->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['aktualisiert_am_von' => 1]],
+            $this->queryWith($mapper)->filterByUpdatedAt(['min' => 1])->getParams()
+        );
+    }
+
+    /**
      * A subclass of a mapper of the SDK inherits the sort mapping, and may translate names of its
      * own by replacing getFilterPropertyName(). Sorting went through that method before 1.5.0 and
      * still has to, except for a name which sorting spells differently
@@ -386,6 +420,11 @@ class MappingTest extends TestCase
     private function sortColumnsOfTheApi(string $call): array
     {
         return SupportedParameters::PARAMETERS[$call]['orderby']['enum'];
+    }
+
+    private function queryWith(MapperInterface $mapper): RealtyQuery
+    {
+        return new RealtyQuery(new JustimmoNullApi(), new RealtyWrapper($mapper), $mapper);
     }
 
     private function realtyQuery(): RealtyQuery
