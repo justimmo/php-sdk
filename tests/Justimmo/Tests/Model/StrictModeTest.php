@@ -9,6 +9,7 @@ use Justimmo\Exception\InvalidFilterValueException;
 use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\EmployeeQuery;
+use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
@@ -786,6 +787,7 @@ class StrictModeTest extends TestCase
             'a list as a picture size'   => ['realty', function ($q) { return $q->setPicturesize([['medium']]); }],
             'a picture size from set()'  => ['realty', function ($q) { return $q->set('picturesize', [['medium']]); }],
             'an object as picturesize'   => ['realty', function ($q) { return $q->set('picturesize', new \stdClass()); }],
+            'an object as the filters'   => ['realty', function ($q) { return $q->set('filter', new \ArrayObject(['preis' => 1])); }],
         ];
     }
 
@@ -1019,5 +1021,324 @@ class StrictModeTest extends TestCase
         }
 
         $this->fail('a list on filter[stichwort] was accepted');
+    }
+
+    /**
+     * Without strict mode, each rejection is a deprecation notice with the message strict mode
+     * throws, and the call goes on. 2.0.0 is always strict.
+     *
+     * A magic call of a name the api does not have is the exception: its own notice already says
+     * that the SDK has no method for it, so the name is not reported twice.
+     *
+     * @dataProvider rejectedCallProvider
+     */
+    public function testEveryRejectionIsANoticeWithoutStrictMode(string $kind, callable $call): void
+    {
+        $strictQuery = $kind === 'project' ? $this->projectQuery() : $this->query();
+
+        try {
+            $call($strictQuery->strict());
+            $strictQuery->findIds();
+            $this->fail('strict mode let the call through');
+        } catch (MethodNotFoundException|InvalidFilterValueException $e) {
+            $exception = $e;
+        }
+
+        self::forgetTheDeprecationNotices();
+        $query   = $kind === 'project' ? $this->projectQuery() : $this->query();
+        $notices = $this->errors(function () use ($call, $query) {
+            $call($query);
+            $query->findIds();
+        });
+
+        $class = $kind === 'project' ? 'ProjectQuery' : 'RealtyQuery';
+        $name  = $exception instanceof MethodNotFoundException ? 'a MethodNotFoundException' : 'an InvalidFilterValueException';
+        $wants = 'Since justimmo/php-sdk 1.6.0: ' . $class . ': ' . $exception->getMessage() . ' 2.0.0 throws ' . $name . ' here.';
+
+        if ($exception instanceof MethodNotFoundException && str_ends_with($exception->getMessage(), '() is not a filter this API has.')) {
+            $this->assertNotContains($wants, $notices);
+            $this->assertCount(1, $notices);
+            $this->assertStringContainsString('The SDK has no method for this filter.', $notices[0]);
+
+            return;
+        }
+
+        $this->assertContains($wants, $notices);
+    }
+
+    /**
+     * One notice per class and message. A second filter with the same mistake is a notice of its
+     * own, and so is the same mistake on another query class
+     */
+    public function testAStrictNoticeIsEmittedOncePerMessage(): void
+    {
+        self::forgetTheDeprecationNotices();
+
+        $notices = $this->errors(function () {
+            $this->query()->filterByPrice(500000)->filterByPrice(400000);
+            $this->query()->filterByPrice(500000);
+            $this->query()->filterByRent(7);
+            $this->projectQuery()->filterByPrice(500000);
+        });
+
+        $this->assertSame(
+            [
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[preis] is a range and has no plain form. Pass [\'min\' => …] or [\'max\' => …]. 2.0.0 throws an InvalidFilterValueException here.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[miete] does not accept 7. The api knows 0, 1. 2.0.0 throws an InvalidFilterValueException here.',
+                'Since justimmo/php-sdk 1.6.0: ProjectQuery: filter[preis] is a range and has no plain form. Pass [\'min\' => …] or [\'max\' => …]. 2.0.0 throws an InvalidFilterValueException here.',
+            ],
+            $notices
+        );
+    }
+
+    /**
+     * One mistake is one notice. filter() turns a min into filter[miete_von], and the name is not
+     * reported again when the request is built. A method whose own notice says that the api has
+     * no such filter gets no second one either
+     */
+    public function testAMistakeIsReportedOnceUpToTheRequest(): void
+    {
+        self::forgetTheDeprecationNotices();
+
+        $notices = $this->errors(function () {
+            $this->query()->filterByRent(['min' => 0])->findIds();
+            $this->query()->filterByEquipment(['min' => 1])->findIds();
+            $this->query()->filterByCreatedAt(['min' => '2026-01-01'])->findIds();
+            $this->query()->filterByFoo(['min' => 1])->findIds();
+            $this->query()->filterByPrice(['min' => [1, 2]])->findIds();
+        });
+
+        $this->assertSame(
+            [
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[miete] has no range, a min or a max was given. It takes a plain value. 2.0.0 throws an InvalidFilterValueException here.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[objekt_ausstattung_list] has no range, a min or a max was given. It takes a plain value. 2.0.0 throws an InvalidFilterValueException here.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery::filterByCreatedAt() is deprecated and is removed in 2.0.0. The api has no created_at filter, so it has never filtered.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery::filterByFoo() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[preis] takes a single value as min, a list was given. 2.0.0 throws an InvalidFilterValueException here.',
+            ],
+            $notices
+        );
+    }
+
+    /**
+     * set('filter', …) replaces what a method set, so find() checks the filters again
+     */
+    public function testWhatSetStoresAfterAMethodIsChecked(): void
+    {
+        self::forgetTheDeprecationNotices();
+        $query = $this->query();
+
+        $notices = $this->errors(function () use ($query) {
+            $query->filterByPrice(['min' => 1])->set('filter', ['preis' => ['min' => 100]])->findIds();
+        });
+
+        $this->assertSame(
+            [
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery::set() is deprecated and is protected in 2.0.0. Use the method of the parameter, for example setLimit(), setCulture() or a filterBy…() method.',
+                'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[preis] was given a min or a max through set(), which the api ignores. Use the filterBy…() method of the filter, which sends filter[preis_von] and filter[preis_bis]. 2.0.0 throws an InvalidFilterValueException here.',
+            ],
+            $notices
+        );
+    }
+
+    /**
+     * A method without a notice of its own reports an unknown name once, under its own name.
+     * Here the mapper documents filters, but not preis
+     */
+    public function testAnUnknownNameOfAnOrdinaryMethodIsReportedOnce(): void
+    {
+        self::forgetTheDeprecationNotices();
+
+        $mapper = new class () extends RealtyMapper {
+            public function getSupportedFilters(string $call): array
+            {
+                return ['plz' => ['forms' => ['plain'], 'level' => 'realty']];
+            }
+        };
+        $query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), $mapper);
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.6.0: RealtyQuery: filterByPrice() is not a filter this API has. 2.0.0 throws a MethodNotFoundException here.'],
+            $this->errors(fn () => $query->filterByPrice(500000)->findIds())
+        );
+    }
+
+    /**
+     * A method which writes nothing, or writes another name, does not hide what set() stored
+     */
+    public function testWhatSetStoredBeforeAMethodIsChecked(): void
+    {
+        self::forgetTheDeprecationNotices();
+
+        $notices = $this->errors(function () {
+            $this->query()->set('filter', ['preis' => 500000])->filterByPrice(null)->findIds();
+            $this->query()->set('filter', ['miete' => 7])->filterByRent(['min' => 0])->findIds();
+        });
+
+        $this->assertContains(
+            'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[preis] is a range and has no plain form. Pass [\'min\' => …] or [\'max\' => …]. 2.0.0 throws an InvalidFilterValueException here.',
+            $notices
+        );
+        $this->assertContains(
+            'Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[miete] does not accept 7. The api knows 0, 1. 2.0.0 throws an InvalidFilterValueException here.',
+            $notices
+        );
+    }
+
+    /**
+     * The url reads an object by its public properties, so an ArrayObject or a generator as the
+     * filters sends no filter at all. Strict mode refuses it, without strict mode it is a notice.
+     * A generator is not iterated, so a second findIds() does not fail on it
+     */
+    public function testAnObjectAsTheFiltersIsRefused(): void
+    {
+        $objects = [
+            'ArrayObject' => fn () => new \ArrayObject(['preis' => 500000]),
+            'Generator'   => fn () => (function () {
+                yield 'preis' => 500000;
+            })(),
+        ];
+
+        foreach ($objects as $class => $make) {
+            try {
+                $this->query()->strict()->set('filter', $make())->findIds();
+                $this->fail('strict mode sent ' . $class . ' as the filters');
+            } catch (InvalidFilterValueException $e) {
+                $this->assertStringStartsWith('filter cannot take ' . $class . ' through set().', $e->getMessage());
+            }
+
+            self::forgetTheDeprecationNotices();
+
+            $api = new class () extends JustimmoNullApi {
+                /** @var array<int, string> */
+                public array $urls = [];
+
+                public function callRealtyIds(array $params = []): string
+                {
+                    $this->urls[] = http_build_query($params);
+
+                    return '[]';
+                }
+            };
+
+            $filters = $make();
+            $query   = $this->query($api);
+            $notices = $this->errors(function () use ($query, $filters) {
+                $query->set('filter', $filters)->findIds();
+                $query->set('filter', $filters)->findIds();
+            });
+
+            $this->assertSame(['', ''], $api->urls, $class);
+            $this->assertCount(2, $notices, $class);
+            $this->assertStringContainsString('RealtyQuery: filter cannot take ' . $class . ' through set().', $notices[1]);
+        }
+    }
+
+    /**
+     * all() is read as an integer, and an object stored by set() must not turn into a PHP warning
+     */
+    public function testAnObjectAsAllRaisesNoWarning(): void
+    {
+        self::forgetTheDeprecationNotices();
+        $query = $this->projectQuery();
+
+        $errors = $this->errors(fn () => $query->set('alle', new \stdClass())->filterByRent(1)->findIds());
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.6.0: ProjectQuery::set() is deprecated and is protected in 2.0.0. Use the method of the parameter, for example setLimit(), setCulture() or a filterBy…() method.'],
+            $errors
+        );
+    }
+
+    /**
+     * The message names an anonymous class without the file it is declared in
+     */
+    public function testAnAnonymousObjectIsNamedWithoutItsFile(): void
+    {
+        $this->expectException(InvalidFilterValueException::class);
+        $this->expectExceptionMessage('filter[stichwort] cannot take class@anonymous. Pass a string');
+
+        $this->query()->strict()->filterByKeyword(new class () {
+        });
+    }
+
+    /**
+     * NAN is in no enum, and turning it into a string raises a PHP warning since PHP 8.5
+     */
+    public function testNanOnAnEnumIsANoticeWithoutAWarning(): void
+    {
+        self::forgetTheDeprecationNotices();
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.6.0: RealtyQuery: filter[miete] does not accept NAN. The api knows 0, 1. 2.0.0 throws an InvalidFilterValueException here.'],
+            $this->errors(fn () => $this->query()->filterByRent(NAN))
+        );
+    }
+
+    /**
+     * The notice changes nothing in the request
+     */
+    public function testAStrictNoticeLeavesTheRequestAsItWas(): void
+    {
+        $query = $this->query();
+
+        $this->errors(fn () => $query->filterByPrice(500000)->filterByRent(7)->setPicturesize('thumb'));
+
+        $this->assertSame(['filter' => ['preis' => 500000, 'miete' => 7], 'picturesize' => ['thumb']], $query->getParams());
+    }
+
+    /**
+     * A mapper from outside the SDK has no data to judge against, so it stays silent, as in
+     * strict mode
+     */
+    public function testAMapperFromOutsideTheSdkGivesNoStrictNotice(): void
+    {
+        self::forgetTheDeprecationNotices();
+        $query = new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), new NullMapper());
+
+        $this->assertSame([], $this->errors(function () use ($query) {
+            $query->filterByPrice(500000)->setPicturesize('thumb')->findIds();
+        }));
+    }
+
+    /**
+     * set() stores whatever it is given. The rules now run without strict mode too, and a filter
+     * which is not a list must not turn into a PHP warning there
+     */
+    public function testAFilterWhichIsNotAListRaisesNoWarning(): void
+    {
+        self::forgetTheDeprecationNotices();
+        $query = $this->query();
+
+        $errors = $this->errors(fn () => $query->set('filter', 'x')->findIds());
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.6.0: RealtyQuery::set() is deprecated and is protected in 2.0.0. Use the method of the parameter, for example setLimit(), setCulture() or a filterBy…() method.'],
+            $errors
+        );
+    }
+
+    /**
+     * Every error the call raises, deprecation notices and PHP warnings alike, in order
+     *
+     * @return array<int, string>
+     */
+    private function errors(callable $call): array
+    {
+        $errors = [];
+
+        set_error_handler(function (int $level, string $message) use (&$errors) {
+            $errors[] = $message;
+
+            return true;
+        });
+
+        try {
+            $call();
+        } finally {
+            restore_error_handler();
+        }
+
+        return $errors;
     }
 }

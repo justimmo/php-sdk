@@ -15,7 +15,7 @@ namespace Justimmo\Model\Query;
 trait TriggersDeprecations
 {
     /**
-     * The methods whose notice was emitted in this process, keyed by class and method
+     * The notices emitted in this process, keyed by class and method, or by class and rule
      *
      * @var array<string, true>
      */
@@ -31,19 +31,41 @@ trait TriggersDeprecations
      */
     protected function triggerDeprecation(string $method, string|\Closure $message): void
     {
-        $key = static::class . '::' . $method;
+        $this->emitDeprecation($method, function () use ($message) {
+            $class = new \ReflectionClass($this);
+
+            if ($message instanceof \Closure) {
+                $message = $message();
+            }
+
+            return $class->getShortName() . '::' . $message;
+        });
+    }
+
+    /**
+     * Whether the deprecated method's own notice was emitted in this process
+     */
+    private function deprecationWasTriggered(string $method): bool
+    {
+        return isset(self::$deprecationsTriggered[static::class . '::' . $method]);
+    }
+
+    /**
+     * Emits a notice once per class and key
+     *
+     * @param string   $key     what the notice is about
+     * @param \Closure $message returns the notice without the version in front. Called only when
+     *                          the notice is emitted
+     */
+    private function emitDeprecation(string $key, \Closure $message): void
+    {
+        $key = static::class . '::' . $key;
         if (isset(self::$deprecationsTriggered[$key])) {
             return;
         }
 
         self::$deprecationsTriggered[$key] = true;
 
-        if ($message instanceof \Closure) {
-            $message = $message();
-        }
-
-        $class = new \ReflectionClass($this);
-
-        trigger_error('Since justimmo/php-sdk 1.6.0: ' . $class->getShortName() . '::' . $message, E_USER_DEPRECATED);
+        trigger_error('Since justimmo/php-sdk 1.6.0: ' . $message(), E_USER_DEPRECATED);
     }
 }
