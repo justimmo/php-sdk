@@ -152,6 +152,9 @@ class DeprecationTest extends TestCase
         $magicQuery = $this->query($label);
         $notices    = $this->notices(fn () => $magicQuery->$magic($value));
 
+        // a value the filter cannot take, like 1 on an enum, adds a notice of strict mode's rules
+        $notices = array_values(array_filter($notices, fn (string $notice) => str_contains($notice, '::' . $magic . '()')));
+
         $this->assertCount(1, $notices);
         $this->assertSame(1, preg_match("/ Use (\\w+)\\((?:\\['(min|max)' => …\\])?\\)\\.$/u", $notices[0], $match), $notices[0]);
 

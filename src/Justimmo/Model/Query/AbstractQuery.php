@@ -28,6 +28,28 @@ abstract class AbstractQuery implements QueryInterface
     protected const SORT_COLUMNS = [];
 
     /**
+     * Filter names a filterBy…() method set, which get no second "not a filter" notice
+     *
+     * filterByFoo(1) and filterByCreatedAt() already say in their own notice that the api has no
+     * such filter. Any other method gets the notice once, under its own name, like
+     * "filterByPrice() is not a filter this API has.", and filter() does not repeat it.
+     *
+     * @var array<string, true>
+     */
+    private array $methodNames = [];
+
+    /**
+     * Filters the SDK wrote itself, which find() does not check again without strict mode
+     *
+     * They were checked when they were set. filterByRent(['min' => 0]) already says "filter[miete]
+     * has no range", and is stored as filter[miete_von]. A filter set() stored is not on the list,
+     * and set('filter', …) empties it.
+     *
+     * @var array<string, true>
+     */
+    private array $quietNames = [];
+
+    /**
      * @deprecated No longer consulted. The api validates the picture size itself and ignores one it
      *             does not know, so this copy of its enum only drifted. Removed in 2.x
      *
@@ -156,7 +178,9 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function clear()
     {
-        $this->params = [];
+        $this->params      = [];
+        $this->methodNames = [];
+        $this->quietNames  = [];
 
         return $this;
     }
@@ -243,7 +267,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         // the detail call sends none of the filters and not all(), so only the picture size is
         // judged, against what the detail call documents
-        $this->assertTheStoredPictureSizeIsSupported($this->getDetailCall());
+        $this->judge(fn () => $this->assertTheStoredPictureSizeIsSupported($this->getDetailCall()));
 
         $params = [];
         foreach ($this->getDetailParams() as $name) {
@@ -479,6 +503,12 @@ abstract class AbstractQuery implements QueryInterface
      */
     protected function setParameter(mixed $key, mixed $value): static
     {
+        // the filters are replaced, so what was quiet is no longer what the SDK wrote
+        if ($key === 'filter') {
+            $this->methodNames = [];
+            $this->quietNames  = [];
+        }
+
         $this->params[$key] = $value;
 
         return $this;
@@ -520,7 +550,7 @@ abstract class AbstractQuery implements QueryInterface
         $key ??= '';
 
         $this->assertFilterIsSupported($key, 'filter[' . $key . ']');
-        $this->assertFilterValueSurvivesNormalisation($key, $value);
+        $this->judge(fn () => $this->assertFilterValueSurvivesNormalisation($key, $value));
 
         $value = $this->normaliseFilterValue($value);
 
@@ -533,14 +563,16 @@ abstract class AbstractQuery implements QueryInterface
             $value = [$value];
         }
 
-        $this->assertFilterValueIsSupported($key, $value);
+        $this->judge(fn () => $this->assertFilterValueIsSupported($key, $value));
 
         if (is_array($value)) {
             if (array_key_exists('min', $value)) {
                 $this->params['filter'][$key . '_von'] = $value['min'];
+                $this->quietNames[$key . '_von']       = true;
             }
             if (array_key_exists('max', $value)) {
                 $this->params['filter'][$key . '_bis'] = $value['max'];
+                $this->quietNames[$key . '_bis']       = true;
             }
 
             if (array_key_exists('min', $value) || array_key_exists('max', $value)) {
@@ -549,12 +581,24 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         $this->params['filter'][$key] = $value;
+        $this->quietNames[$key]       = true;
 
         return $this;
     }
 
     /**
-     * Fails in strict mode when the api has no filter of that name
+     * Fails in strict mode when the api has no filter of that name. Without strict mode, it emits
+     * a deprecation notice instead, see judge()
+     *
+     * @throws MethodNotFoundException
+     */
+    protected function assertFilterIsSupported(string $key, string $called): void
+    {
+        $this->judge(fn () => $this->checkFilterName($key, $called), $key);
+    }
+
+    /**
+     * Fails when the api has no filter of that name
      *
      * This is the defect strict mode exists for. Until now an unknown name travelled to the wire,
      * where the api ignored it and answered 200 with the rows of a query that was never filtered,
@@ -568,7 +612,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @throws MethodNotFoundException
      */
-    protected function assertFilterIsSupported(string $key, string $called): void
+    private function checkFilterName(string $key, string $called): void
     {
         $supported = $this->supportedFilters();
 
@@ -590,7 +634,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * Fails in strict mode when the api has the filter but cannot take that value
+     * Fails when the api has the filter but cannot take that value
      *
      * Three things are rejected. The api answers all three the same way today: it discards the
      * parameter and returns the rows of a wider search than the caller asked for.
@@ -660,8 +704,7 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         if (!in_array('plain', $forms, true)) {
-            $this->rejectFilterValue($key, $value, 'is a range and has no plain form. Pass '
-                . "['min' => …] or ['max' => …], or set filter[{$key}_von] and filter[{$key}_bis] yourself.");
+            $this->rejectFilterValue($key, $value, "is a range and has no plain form. Pass ['min' => …] or ['max' => …].");
         }
 
         if (is_array($value) && !isset($filter['list'])) {
@@ -671,7 +714,7 @@ abstract class AbstractQuery implements QueryInterface
         // filter() wraps a single value itself, so one found here came from set()
         if (!is_array($value) && !empty($filter['list_only'])) {
             $this->rejectFilterValue($key, $value, 'takes nothing but a list, a single value was given. '
-                . 'Pass a list, or use filter(), which wraps a single value.');
+                . 'Pass a list, or use the filterBy…() method of the filter, which wraps a single value.');
         }
 
         // a list carries single values. A list inside it reached the wire as filter[plz][0][0]
@@ -707,36 +750,126 @@ abstract class AbstractQuery implements QueryInterface
      */
     private function assertTheRequestIsSupported(): void
     {
-        if (!$this->isStrict()) {
-            return;
+        $this->judge(fn () => $this->assertTheFiltersAreNoObject());
+
+        foreach ($this->storedFilters() as $key => $value) {
+            $key = (string) $key;
+
+            $this->assertFilterIsSupported($key, 'filter[' . $key . ']');
+
+            // a quiet name was judged when it was set, see $quietNames
+            $this->judge(function () use ($key, $value) {
+                $this->assertFilterValueHasNoObject($key, $value);
+                $this->assertFilterValueIsSupported($key, $value);
+
+                // filter() has turned min and max into the _von and _bis names by now, so a range
+                // found here came from set(), and the api ignores filter[preis][min]
+                if (is_array($value) && (array_key_exists('min', $value) || array_key_exists('max', $value))) {
+                    $this->rejectFilterValue($key, $value, 'was given a min or a max through set(), which the api ignores. '
+                        . "Use the filterBy…() method of the filter, which sends filter[{$key}_von] and filter[{$key}_bis].");
+                }
+            }, $key);
         }
 
-        foreach ($this->params['filter'] ?? [] as $key => $value) {
-            $this->assertFilterIsSupported((string) $key, 'filter[' . $key . ']');
-            $this->assertFilterValueHasNoObject((string) $key, $value);
-            $this->assertFilterValueIsSupported((string) $key, $value);
+        $this->judge(fn () => $this->assertTheStoredPictureSizeIsSupported($this->getListCall()));
 
-            // filter() has turned min and max into the _von and _bis names by now, so a range
-            // found here came from set(), and the api ignores filter[preis][min]
-            if (is_array($value) && (array_key_exists('min', $value) || array_key_exists('max', $value))) {
-                $this->rejectFilterValue((string) $key, $value, 'was given a min or a max through set(). Use filter(), '
-                    . "or set filter[{$key}_von] and filter[{$key}_bis] yourself.");
-            }
-        }
-
-        $this->assertTheStoredPictureSizeIsSupported($this->getListCall());
-
-        $this->assertFiltersApplyWithAll();
+        $this->judge(fn () => $this->assertFiltersApplyWithAll());
     }
 
     /**
-     * Fails in strict mode when the picture size the query carries is one the call does not know
+     * Fails when set() stored an object as the filters
+     *
+     * The url sends an object by its public properties, so an ArrayObject or a generator sends no
+     * filter at all, and the api answers with the rows of an unfiltered search.
+     *
+     * @throws InvalidFilterValueException
+     */
+    private function assertTheFiltersAreNoObject(): void
+    {
+        $filters = $this->params['filter'] ?? null;
+
+        if (is_object($filters)) {
+            throw new InvalidFilterValueException(
+                'filter cannot take ' . get_debug_type($filters) . ' through set(). The url sends only its public '
+                . 'properties, so the api may get no filter at all. Pass an array, or use the filterBy…() methods.',
+                'filter',
+                $filters
+            );
+        }
+    }
+
+    /**
+     * The filters the query sends, for the rules which read them
+     *
+     * set() stores what it is given, and foreach warns on anything which is not an array or an
+     * object. The rules run without strict mode too, so such a value is passed over, not turned
+     * into a new PHP warning.
+     *
+     * An object is read by its public properties, because that is what the url sends. An
+     * ArrayObject or a generator sends no filter at all, and a generator is never iterated here.
+     *
+     * @return array<mixed>
+     */
+    private function storedFilters(): array
+    {
+        $filters = $this->params['filter'] ?? [];
+
+        if (is_object($filters)) {
+            return get_object_vars($filters);
+        }
+
+        return is_array($filters) ? $filters : [];
+    }
+
+    /**
+     * Runs a strict rule. In strict mode its exception is thrown. Otherwise it becomes a
+     * deprecation notice, and the request goes out unchanged
+     *
+     * 2.0.0 is always strict, so what strict mode refuses today throws there. The notice carries
+     * the message of the exception and says so. It is emitted once per class and message.
+     *
+     * @param string|null $filter the filter the rule checks. Some get no notice, see
+     *                            $methodNames and $quietNames
+     *
+     * @throws MethodNotFoundException
+     * @throws InvalidFilterValueException
+     */
+    private function judge(\Closure $rule, ?string $filter = null): void
+    {
+        try {
+            $rule();
+        } catch (MethodNotFoundException|InvalidFilterValueException $exception) {
+            if ($this->isStrict()) {
+                throw $exception;
+            }
+
+            if ($filter !== null && $exception instanceof MethodNotFoundException && isset($this->methodNames[$filter])) {
+                return;
+            }
+
+            if ($filter !== null && isset($this->quietNames[$filter])) {
+                return;
+            }
+
+            $this->emitDeprecation('strict ' . $exception->getMessage(), function () use ($exception) {
+                $query = new \ReflectionClass($this);
+                $class = new \ReflectionClass($exception);
+                $name  = $class->getShortName();
+
+                return $query->getShortName() . ': ' . $exception->getMessage() . ' 2.0.0 throws '
+                    . (str_starts_with($name, 'I') ? 'an ' : 'a ') . $name . ' here.';
+            });
+        }
+    }
+
+    /**
+     * Fails when the picture size the query carries is one the call does not know
      *
      * @throws InvalidFilterValueException
      */
     private function assertTheStoredPictureSizeIsSupported(string $call): void
     {
-        if (!$this->isStrict() || !isset($this->params['picturesize'])) {
+        if (!isset($this->params['picturesize'])) {
             return;
         }
 
@@ -748,7 +881,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * Fails in strict mode when all() is combined with a filter the api will not apply
+     * Fails when all() is combined with a filter the api will not apply
      *
      * all() asks for every project, whether it still has real-estates which match. The api
      * answers that by applying the project-level filters and dropping the realty-level ones, so a
@@ -765,7 +898,10 @@ abstract class AbstractQuery implements QueryInterface
      */
     private function assertFiltersApplyWithAll(): void
     {
-        if (!$this->isStrict() || (int) ($this->params['alle'] ?? 0) !== 1) {
+        $all = $this->params['alle'] ?? 0;
+
+        // set() may store an object, and casting it to an integer raises a PHP warning
+        if (is_object($all) || (int) $all !== 1) {
             return;
         }
 
@@ -775,7 +911,7 @@ abstract class AbstractQuery implements QueryInterface
             return;
         }
 
-        foreach ($this->params['filter'] ?? [] as $key => $value) {
+        foreach ($this->storedFilters() as $key => $value) {
             $filter = $supported[$key] ?? null;
 
             if ($filter === null && preg_match('/^(.+)_(von|bis)$/', (string) $key, $match)) {
@@ -800,14 +936,14 @@ abstract class AbstractQuery implements QueryInterface
      * The filters the api documents for this query's list call, or none when there is nothing to
      * judge against
      *
-     * Empty means "do not judge" rather than "nothing is allowed": the query is not strict, the
-     * mapper comes from outside the SDK and cannot be asked, or the endpoint documents no filter.
+     * Empty means "do not judge" rather than "nothing is allowed": the mapper comes from outside
+     * the SDK and cannot be asked, or the endpoint documents no filter.
      *
      * @return array<string, array<string, mixed>>
      */
     private function supportedFilters(): array
     {
-        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+        if (!$this->mapper instanceof SupportedParametersInterface) {
             return [];
         }
 
@@ -817,17 +953,13 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * Whether the api takes nothing but a list for this filter
      *
-     * Read in both modes, unlike supportedFilters(): wrapping a single value judges nothing, it
-     * turns a request the api answers with a 422 into one it can serve. A mapper from outside the
-     * SDK has no data to read, so its values are sent as they are given.
+     * Wrapping a single value judges nothing, it turns a request the api answers with a 422 into
+     * one it can serve, so it happens in strict mode and without it. A mapper from outside the SDK
+     * has no data to read, so its values are sent as they are given.
      */
     private function isListOnly(string $key): bool
     {
-        if (!$this->mapper instanceof SupportedParametersInterface) {
-            return false;
-        }
-
-        return ($this->mapper->getSupportedFilters($this->getListCall())[$key]['list_only'] ?? false) === true;
+        return ($this->supportedFilters()[$key]['list_only'] ?? false) === true;
     }
 
     /**
@@ -847,6 +979,11 @@ abstract class AbstractQuery implements QueryInterface
 
         if (!is_scalar($value)) {
             return true;
+        }
+
+        // no enum has it, and turning it into a string raises a PHP warning since PHP 8.5
+        if (is_float($value) && is_nan($value)) {
+            return false;
         }
 
         foreach ($enum as $allowed) {
@@ -871,6 +1008,10 @@ abstract class AbstractQuery implements QueryInterface
             return '"' . $value . '"';
         }
 
+        if (is_float($value) && is_nan($value)) {
+            return 'NAN';
+        }
+
         return is_scalar($value) ? (string) $value : gettype($value);
     }
 
@@ -883,7 +1024,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * Fails in strict mode on a value normaliseFilterValue() is about to throw away
+     * Fails on a value normaliseFilterValue() is about to throw away
      *
      * An object which cannot say how to become a string is dropped, because serialising it by its
      * public properties would send parameters the api has never heard of. Dropping it without a
@@ -897,10 +1038,6 @@ abstract class AbstractQuery implements QueryInterface
      */
     private function assertFilterValueSurvivesNormalisation(string $key, mixed $value): void
     {
-        if (!$this->isStrict()) {
-            return;
-        }
-
         // the normaliser drops an object at any depth, and an array it empties with it, so
         // ['min' => [$object]] used to search on max alone
         if (is_array($value)) {
@@ -912,7 +1049,7 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         if (is_object($value) && !method_exists($value, '__toString')) {
-            $this->rejectFilterValue($key, $value, 'cannot take ' . $value::class
+            $this->rejectFilterValue($key, $value, 'cannot take ' . get_debug_type($value)
                 . '. Pass a string, or an object with a __toString().');
         }
     }
@@ -937,8 +1074,8 @@ abstract class AbstractQuery implements QueryInterface
         }
 
         if (is_object($value)) {
-            $this->rejectFilterValue($key, $value, 'cannot take ' . $value::class
-                . ' through set(). Pass a string, or use filter(), which converts an object with a __toString().');
+            $this->rejectFilterValue($key, $value, 'cannot take ' . get_debug_type($value)
+                . ' through set(). Pass a string, or use the filterBy…() method of the filter, which converts an object with a __toString().');
         }
     }
 
@@ -998,11 +1135,11 @@ abstract class AbstractQuery implements QueryInterface
 
         // checked as the caller gave it. Merged into the list below, a range or a nested list
         // comes out as a list which looks valid, and filter() can no longer tell
-        $this->assertFilterValueSurvivesNormalisation($key, $value);
+        $this->judge(fn () => $this->assertFilterValueSurvivesNormalisation($key, $value));
         $normalised = $this->normaliseFilterValue($value);
 
         if ($normalised !== null) {
-            $this->assertFilterValueIsSupported($key, $normalised);
+            $this->judge(fn () => $this->assertFilterValueIsSupported($key, $normalised));
         }
 
         $values = [];
@@ -1163,9 +1300,18 @@ abstract class AbstractQuery implements QueryInterface
     {
         $key = $this->mapper->getFilterPropertyName($property);
 
+        // a magic call and filterByCreatedAt() say in their own notice that the api has no such
+        // filter, so the name gets no second one
+        if ($this->deprecationWasTriggered($method)) {
+            $this->methodNames[$key] = true;
+        }
+
         // filter() runs the same check, but by then the name is the mapped one. Checking
         // first reports filterByFoo(), rather than a filter[Foo] the caller never wrote
         $this->assertFilterIsSupported($key, $method . '()');
+
+        // reported once, under the method the caller wrote, so filter() does not repeat it
+        $this->methodNames[$key] = true;
 
         return $this->applyFilter($key, $value);
     }
@@ -1225,7 +1371,7 @@ abstract class AbstractQuery implements QueryInterface
 
         // array_unique() compares the sizes as strings, so it warns on a nested list and fails on
         // an object without __toString(). Checked first, strict mode refuses either of them instead
-        $this->assertPictureSizesAreSupported($picturesize, $this->getListCall());
+        $this->judge(fn () => $this->assertPictureSizesAreSupported($picturesize, $this->getListCall()));
 
         $picturesize = array_unique($picturesize);
 
@@ -1238,7 +1384,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * Fails in strict mode when the api has no picture size of that name
+     * Fails when the api has no picture size of that name
      *
      * The api does not ignore a size it does not know. It replaces it with the fallback of the
      * endpoint, so a typo answers with pictures of a size nobody asked for, and nothing in the
@@ -1254,7 +1400,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     private function assertPictureSizesAreSupported(array $sizes, string $call): void
     {
-        if (!$this->isStrict() || !$this->mapper instanceof SupportedParametersInterface) {
+        if (!$this->mapper instanceof SupportedParametersInterface) {
             return;
         }
 
