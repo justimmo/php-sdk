@@ -1,0 +1,1434 @@
+class Justimmo\Api\JustimmoApi implements Justimmo\Api\JustimmoApiInterface, Justimmo\Api\StrictModeInterface
+Justimmo\Api\JustimmoApi::protected $baseUrl
+Justimmo\Api\JustimmoApi::protected $cache
+Justimmo\Api\JustimmoApi::protected $culture
+Justimmo\Api\JustimmoApi::protected $curlOptions
+Justimmo\Api\JustimmoApi::protected $logger
+Justimmo\Api\JustimmoApi::protected $password
+Justimmo\Api\JustimmoApi::protected $strict
+Justimmo\Api\JustimmoApi::protected $supportedVersions
+Justimmo\Api\JustimmoApi::protected $username
+Justimmo\Api\JustimmoApi::protected $version
+Justimmo\Api\JustimmoApi::public __construct($username, $password, ?Psr\Log\LoggerInterface $logger = null, ?Justimmo\Cache\CacheInterface $cache = null, $version = 'v1', $culture = 'de')
+Justimmo\Api\JustimmoApi::protected static appendSdkAgent(string $ownAgent): string
+Justimmo\Api\JustimmoApi::public call($call, array $params = [])
+Justimmo\Api\JustimmoApi::public callCountries(array $params = [])
+Justimmo\Api\JustimmoApi::public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoApi::public callEmployeeIds(array $params = [])
+Justimmo\Api\JustimmoApi::public callEmployeeList(array $params = [])
+Justimmo\Api\JustimmoApi::public callExpose($pk, $type = 'Default')
+Justimmo\Api\JustimmoApi::public callFederalStates(array $params = [])
+Justimmo\Api\JustimmoApi::public callPoliticalDistricts(array $params = []): string
+Justimmo\Api\JustimmoApi::public callProjectDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApi::public callProjectIds(array $params = [])
+Justimmo\Api\JustimmoApi::public callProjectList(array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyCategories(array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyIds(array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyList(array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyTypes(array $params = [])
+Justimmo\Api\JustimmoApi::public callRegions(array $params = [])
+Justimmo\Api\JustimmoApi::public callTenant(array $params = [])
+Justimmo\Api\JustimmoApi::public callZipCodes(array $params = [])
+Justimmo\Api\JustimmoApi::protected createRequest($url)
+Justimmo\Api\JustimmoApi::protected createStatusCodeException(int $statusCode, ?string $response, ?string $contentType = null): Exception&Justimmo\Exception\JustimmoException
+Justimmo\Api\JustimmoApi::public generateUrl($call, array $params = [])
+Justimmo\Api\JustimmoApi::public getBaseUrl()
+Justimmo\Api\JustimmoApi::public getCulture()
+Justimmo\Api\JustimmoApi::public getPassword()
+Justimmo\Api\JustimmoApi::protected static getSdkVersion(): string
+Justimmo\Api\JustimmoApi::public getUsername()
+Justimmo\Api\JustimmoApi::public getVersion()
+Justimmo\Api\JustimmoApi::public isStrict(): bool
+Justimmo\Api\JustimmoApi::public postRealtyInquiry(array $params = [])
+Justimmo\Api\JustimmoApi::public setBaseUrl($baseUrl)
+Justimmo\Api\JustimmoApi::public setCache(Justimmo\Cache\CacheInterface $cache)
+Justimmo\Api\JustimmoApi::public setCulture($value)
+Justimmo\Api\JustimmoApi::public setCurlOption($key, $value)
+Justimmo\Api\JustimmoApi::public setCurlOptions($curlOptions)
+Justimmo\Api\JustimmoApi::public setLogger(Psr\Log\LoggerInterface $logger)
+Justimmo\Api\JustimmoApi::public setPassword($password)
+Justimmo\Api\JustimmoApi::public setStrict(bool $strict = true): static
+Justimmo\Api\JustimmoApi::public setUsername($username)
+Justimmo\Api\JustimmoApi::public setVersion($version)
+Justimmo\Api\JustimmoApi::protected throwError($message, $exceptionClass = '\\InvalidArgumentException')
+
+interface Justimmo\Api\JustimmoApiInterface
+Justimmo\Api\JustimmoApiInterface::abstract public callCountries(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeIds(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeList(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callExpose($pk, $type = 'Default')
+Justimmo\Api\JustimmoApiInterface::abstract public callFederalStates(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callPoliticalDistricts(array $params = []): string
+Justimmo\Api\JustimmoApiInterface::abstract public callProjectDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callProjectIds(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callProjectList(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyCategories(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyIds(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyList(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyTypes(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRegions(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callTenant(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callZipCodes(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public postRealtyInquiry(array $params = [])
+
+class Justimmo\Api\JustimmoNullApi implements Justimmo\Api\JustimmoApiInterface
+Justimmo\Api\JustimmoNullApi::public callCountries(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoNullApi::public callEmployeeIds(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callEmployeeList(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callExpose($pk, $type = 'Default')
+Justimmo\Api\JustimmoNullApi::public callFederalStates(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callPoliticalDistricts(array $params = []): string
+Justimmo\Api\JustimmoNullApi::public callProjectDetail($pk, array $params = [])
+Justimmo\Api\JustimmoNullApi::public callProjectIds(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callProjectList(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyCategories(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyIds(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyList(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyTypes(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRegions(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callTenant(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callZipCodes(array $params = [])
+Justimmo\Api\JustimmoNullApi::protected emptyXML()
+Justimmo\Api\JustimmoNullApi::public postRealtyInquiry(array $params = [])
+
+interface Justimmo\Api\StrictModeInterface
+Justimmo\Api\StrictModeInterface::abstract public isStrict(): bool
+Justimmo\Api\StrictModeInterface::abstract public setStrict(bool $strict = true): static
+
+interface Justimmo\Cache\CacheInterface
+Justimmo\Cache\CacheInterface::abstract public generateCacheKey($url)
+Justimmo\Cache\CacheInterface::abstract public get($key)
+Justimmo\Cache\CacheInterface::abstract public remove($key)
+Justimmo\Cache\CacheInterface::abstract public set($key, $value)
+
+class Justimmo\Cache\MemcacheCache implements Justimmo\Cache\CacheInterface
+Justimmo\Cache\MemcacheCache::public __construct(Memcache $memcache, $lifetime = 600)
+Justimmo\Cache\MemcacheCache::public generateCacheKey($url)
+Justimmo\Cache\MemcacheCache::public get($key)
+Justimmo\Cache\MemcacheCache::public remove($key)
+Justimmo\Cache\MemcacheCache::public set($key, $value)
+
+class Justimmo\Cache\NullCache implements Justimmo\Cache\CacheInterface
+Justimmo\Cache\NullCache::public generateCacheKey($url)
+Justimmo\Cache\NullCache::public get($key)
+Justimmo\Cache\NullCache::public remove($key)
+Justimmo\Cache\NullCache::public set($key, $value)
+
+class Justimmo\Curl\CurlException extends Exception
+
+class Justimmo\Curl\CurlRequest implements Justimmo\Curl\CurlRequestInterface
+Justimmo\Curl\CurlRequest::protected $content
+Justimmo\Curl\CurlRequest::protected $error
+Justimmo\Curl\CurlRequest::protected $infos
+Justimmo\Curl\CurlRequest::protected $options
+Justimmo\Curl\CurlRequest::protected $url
+Justimmo\Curl\CurlRequest::public __construct($url = null, $options = [])
+Justimmo\Curl\CurlRequest::public clearOptions()
+Justimmo\Curl\CurlRequest::protected execute()
+Justimmo\Curl\CurlRequest::public get()
+Justimmo\Curl\CurlRequest::public getContent()
+Justimmo\Curl\CurlRequest::public getContentType()
+Justimmo\Curl\CurlRequest::public getError()
+Justimmo\Curl\CurlRequest::public getInfo($key)
+Justimmo\Curl\CurlRequest::public getInfos()
+Justimmo\Curl\CurlRequest::public getOption($key)
+Justimmo\Curl\CurlRequest::public getStatusCode()
+Justimmo\Curl\CurlRequest::public getUrl()
+Justimmo\Curl\CurlRequest::public post($parameters = null)
+Justimmo\Curl\CurlRequest::public put($parameters = null)
+Justimmo\Curl\CurlRequest::public removeOption($key)
+Justimmo\Curl\CurlRequest::public setOption($key, $value)
+Justimmo\Curl\CurlRequest::public setOptions($options)
+Justimmo\Curl\CurlRequest::public setParameters($v = [])
+Justimmo\Curl\CurlRequest::public setUrl($url)
+
+interface Justimmo\Curl\CurlRequestInterface
+Justimmo\Curl\CurlRequestInterface::abstract public get()
+Justimmo\Curl\CurlRequestInterface::abstract public getContent()
+Justimmo\Curl\CurlRequestInterface::abstract public getContentType()
+Justimmo\Curl\CurlRequestInterface::abstract public getError()
+Justimmo\Curl\CurlRequestInterface::abstract public getStatusCode()
+Justimmo\Curl\CurlRequestInterface::abstract public setOption(int $key, mixed $value)
+
+class Justimmo\Exception\AttachmentSizeNotFoundException extends Exception implements Justimmo\Exception\JustimmoException
+
+class Justimmo\Exception\AuthenticationException extends Justimmo\Exception\InvalidRequestException
+
+class Justimmo\Exception\ConnectionException extends InvalidArgumentException implements Justimmo\Exception\JustimmoException
+
+class Justimmo\Exception\InvalidFilterValueException extends InvalidArgumentException implements Justimmo\Exception\JustimmoException
+Justimmo\Exception\InvalidFilterValueException::public __construct(string $message, string $filter = '', mixed $value = null)
+Justimmo\Exception\InvalidFilterValueException::public getFilter(): string
+Justimmo\Exception\InvalidFilterValueException::public getValue(): mixed
+
+class Justimmo\Exception\InvalidRequestException extends Exception implements Justimmo\Exception\JustimmoException
+Justimmo\Exception\InvalidRequestException::protected handleViolations(array $violations): void
+Justimmo\Exception\InvalidRequestException::public setResponse(?string $response, ?string $contentType = null): void
+
+class Justimmo\Exception\InvalidResponseException extends UnexpectedValueException implements Justimmo\Exception\JustimmoException
+
+interface Justimmo\Exception\JustimmoException
+
+class Justimmo\Exception\MethodNotFoundException extends Exception implements Justimmo\Exception\JustimmoException
+
+class Justimmo\Exception\NotFoundException extends Justimmo\Exception\InvalidRequestException
+
+class Justimmo\Exception\StatusCodeException extends Exception implements Justimmo\Exception\JustimmoException
+
+class Justimmo\Exception\ValidationException extends Justimmo\Exception\InvalidRequestException
+Justimmo\Exception\ValidationException::public getViolations(): array
+Justimmo\Exception\ValidationException::protected handleViolations(array $violations): void
+
+class Justimmo\Model\AdditionalCosts
+Justimmo\Model\AdditionalCosts::protected $gross
+Justimmo\Model\AdditionalCosts::protected $name
+Justimmo\Model\AdditionalCosts::protected $net
+Justimmo\Model\AdditionalCosts::protected $optional
+Justimmo\Model\AdditionalCosts::protected $vat
+Justimmo\Model\AdditionalCosts::protected $vatInput
+Justimmo\Model\AdditionalCosts::protected $vatType
+Justimmo\Model\AdditionalCosts::protected $vatValue
+Justimmo\Model\AdditionalCosts::public __construct($name, $gross = null, $net = null, $vat = null, $vatType = 'percent', $vatValue = null, $vatInput = null, $optional = false)
+Justimmo\Model\AdditionalCosts::public getGross()
+Justimmo\Model\AdditionalCosts::public getName()
+Justimmo\Model\AdditionalCosts::public getNet()
+Justimmo\Model\AdditionalCosts::public getOptional()
+Justimmo\Model\AdditionalCosts::public getVat()
+Justimmo\Model\AdditionalCosts::public getVatInput()
+Justimmo\Model\AdditionalCosts::public getVatType()
+Justimmo\Model\AdditionalCosts::public getVatValue()
+Justimmo\Model\AdditionalCosts::public setGross($brutto)
+Justimmo\Model\AdditionalCosts::public setName($name)
+Justimmo\Model\AdditionalCosts::public setNet($value)
+Justimmo\Model\AdditionalCosts::public setOptional($value)
+Justimmo\Model\AdditionalCosts::public setVat($value)
+Justimmo\Model\AdditionalCosts::public setVatInput($value)
+Justimmo\Model\AdditionalCosts::public setVatType($value)
+Justimmo\Model\AdditionalCosts::public setVatValue($value)
+
+class Justimmo\Model\Attachment
+Justimmo\Model\Attachment::protected $data
+Justimmo\Model\Attachment::protected $description
+Justimmo\Model\Attachment::protected $extension
+Justimmo\Model\Attachment::protected $group
+Justimmo\Model\Attachment::protected static $linkGroups
+Justimmo\Model\Attachment::protected $originalFilename
+Justimmo\Model\Attachment::protected static $pictureExtensions
+Justimmo\Model\Attachment::protected $title
+Justimmo\Model\Attachment::protected $type
+Justimmo\Model\Attachment::protected static $videoExtensions
+Justimmo\Model\Attachment::public __construct($path, $type = null, $group = null)
+Justimmo\Model\Attachment::public addData($key, $value)
+Justimmo\Model\Attachment::public calculateUrl($size = 'orig')
+Justimmo\Model\Attachment::protected determineType()
+Justimmo\Model\Attachment::public getData()
+Justimmo\Model\Attachment::public getDescription()
+Justimmo\Model\Attachment::public getExtension()
+Justimmo\Model\Attachment::public getGroup()
+Justimmo\Model\Attachment::public getOriginalFilename()
+Justimmo\Model\Attachment::public getTitle()
+Justimmo\Model\Attachment::public getType()
+Justimmo\Model\Attachment::public getUrl($size = 'orig')
+Justimmo\Model\Attachment::public getUrlOrFail($size = 'orig')
+Justimmo\Model\Attachment::public getVideoPosterUrl($size = 'orig')
+Justimmo\Model\Attachment::public mergeData(array $data)
+Justimmo\Model\Attachment::public setData($data)
+Justimmo\Model\Attachment::public setDescription($description)
+Justimmo\Model\Attachment::public setExtension($extension)
+Justimmo\Model\Attachment::public setGroup($value)
+Justimmo\Model\Attachment::public setOriginalFilename($originalFilename)
+Justimmo\Model\Attachment::public setTitle($title)
+Justimmo\Model\Attachment::public setType($type)
+
+class Justimmo\Model\Employee implements Justimmo\Model\ModelInterface
+Justimmo\Model\Employee::protected $attachments
+Justimmo\Model\Employee::protected $biography
+Justimmo\Model\Employee::protected $category
+Justimmo\Model\Employee::protected $city
+Justimmo\Model\Employee::protected $company
+Justimmo\Model\Employee::protected $country
+Justimmo\Model\Employee::protected $email
+Justimmo\Model\Employee::protected $fax
+Justimmo\Model\Employee::protected $firstName
+Justimmo\Model\Employee::protected $id
+Justimmo\Model\Employee::protected $lastName
+Justimmo\Model\Employee::protected $mobile
+Justimmo\Model\Employee::protected $number
+Justimmo\Model\Employee::protected $phone
+Justimmo\Model\Employee::protected $position
+Justimmo\Model\Employee::protected $postal
+Justimmo\Model\Employee::protected $salutation
+Justimmo\Model\Employee::protected $street
+Justimmo\Model\Employee::protected $suffix
+Justimmo\Model\Employee::protected $title
+Justimmo\Model\Employee::protected $url
+Justimmo\Model\Employee::public addAttachment(Justimmo\Model\Attachment $attachment)
+Justimmo\Model\Employee::public getAttachments()
+Justimmo\Model\Employee::public getAttachmentsByType($type, $group = false)
+Justimmo\Model\Employee::public getBiography()
+Justimmo\Model\Employee::public getCategory()
+Justimmo\Model\Employee::public getCity()
+Justimmo\Model\Employee::public getCompany()
+Justimmo\Model\Employee::public getCountry()
+Justimmo\Model\Employee::public getDocuments($group = false)
+Justimmo\Model\Employee::public getEmail()
+Justimmo\Model\Employee::public getFax()
+Justimmo\Model\Employee::public getFirstName()
+Justimmo\Model\Employee::public getId()
+Justimmo\Model\Employee::public getLastName()
+Justimmo\Model\Employee::public getLinks($group = false)
+Justimmo\Model\Employee::public getMobile()
+Justimmo\Model\Employee::public getNumber()
+Justimmo\Model\Employee::public getPhone()
+Justimmo\Model\Employee::public getPictures($group = false)
+Justimmo\Model\Employee::public getPosition()
+Justimmo\Model\Employee::public getPostal()
+Justimmo\Model\Employee::public getProfilePicture()
+Justimmo\Model\Employee::public getSalutation()
+Justimmo\Model\Employee::public getStreet()
+Justimmo\Model\Employee::public getSuffix()
+Justimmo\Model\Employee::public getTitle()
+Justimmo\Model\Employee::public getUrl()
+Justimmo\Model\Employee::public getVideos($group = false)
+Justimmo\Model\Employee::public setAttachments($attachments)
+Justimmo\Model\Employee::public setBiography($biography)
+Justimmo\Model\Employee::public setCategory($category)
+Justimmo\Model\Employee::public setCity($city)
+Justimmo\Model\Employee::public setCompany($company)
+Justimmo\Model\Employee::public setCountry($country)
+Justimmo\Model\Employee::public setEmail($email)
+Justimmo\Model\Employee::public setFax($fax)
+Justimmo\Model\Employee::public setFirstName($vorname)
+Justimmo\Model\Employee::public setId($id)
+Justimmo\Model\Employee::public setLastName($nachname)
+Justimmo\Model\Employee::public setMobile($handy)
+Justimmo\Model\Employee::public setNumber($number)
+Justimmo\Model\Employee::public setPhone($tel)
+Justimmo\Model\Employee::public setPosition($position)
+Justimmo\Model\Employee::public setPostal($postal)
+Justimmo\Model\Employee::public setSalutation($salutation)
+Justimmo\Model\Employee::public setStreet($street)
+Justimmo\Model\Employee::public setSuffix($suffix)
+Justimmo\Model\Employee::public setTitle($title)
+Justimmo\Model\Employee::public setUrl($url)
+
+class Justimmo\Model\EmployeeQuery extends Justimmo\Model\Query\AbstractQuery
+Justimmo\Model\EmployeeQuery::public getDetailCall()
+Justimmo\Model\EmployeeQuery::public getIdsCall()
+Justimmo\Model\EmployeeQuery::public getListCall()
+
+class Justimmo\Model\EnergyPass
+Justimmo\Model\EnergyPass::protected $energyEfficiencyFactorClass
+Justimmo\Model\EnergyPass::protected $energyEfficiencyFactorValue
+Justimmo\Model\EnergyPass::protected $epart
+Justimmo\Model\EnergyPass::protected $finalEnergyDemandClass
+Justimmo\Model\EnergyPass::protected $finalEnergyDemandClassFossil
+Justimmo\Model\EnergyPass::protected $finalEnergyDemandValue
+Justimmo\Model\EnergyPass::protected $thermalHeatRequirementClass
+Justimmo\Model\EnergyPass::protected $thermalHeatRequirementValue
+Justimmo\Model\EnergyPass::protected $validUntil
+Justimmo\Model\EnergyPass::public getEnergyEfficiencyFactorClass()
+Justimmo\Model\EnergyPass::public getEnergyEfficiencyFactorValue()
+Justimmo\Model\EnergyPass::public getEpart()
+Justimmo\Model\EnergyPass::public getFinalEnergyDemandClass()
+Justimmo\Model\EnergyPass::public getFinalEnergyDemandClassFossil()
+Justimmo\Model\EnergyPass::public getFinalEnergyDemandClassWithFossilString()
+Justimmo\Model\EnergyPass::public getFinalEnergyDemandValue()
+Justimmo\Model\EnergyPass::public getThermalHeatRequirementClass()
+Justimmo\Model\EnergyPass::public getThermalHeatRequirementValue()
+Justimmo\Model\EnergyPass::public getValidUntil($format = 'Y-m-d')
+Justimmo\Model\EnergyPass::public setEnergyEfficiencyFactorClass($fgeeKlasse)
+Justimmo\Model\EnergyPass::public setEnergyEfficiencyFactorValue($fgeeWert)
+Justimmo\Model\EnergyPass::public setEpart($epart)
+Justimmo\Model\EnergyPass::public setFinalEnergyDemandClass($eebKlasse)
+Justimmo\Model\EnergyPass::public setFinalEnergyDemandClassFossil($fossil)
+Justimmo\Model\EnergyPass::public setFinalEnergyDemandValue($eebWert)
+Justimmo\Model\EnergyPass::public setThermalHeatRequirementClass($hwbKlasse)
+Justimmo\Model\EnergyPass::public setThermalHeatRequirementValue($hwbWert)
+Justimmo\Model\EnergyPass::public setValidUntil($gueltigBis)
+
+class Justimmo\Model\Garage
+Justimmo\Model\Garage::protected $gross
+Justimmo\Model\Garage::protected $marketingType
+Justimmo\Model\Garage::protected $name
+Justimmo\Model\Garage::protected $net
+Justimmo\Model\Garage::protected $quantity
+Justimmo\Model\Garage::protected $type
+Justimmo\Model\Garage::protected $vat
+Justimmo\Model\Garage::protected $vatType
+Justimmo\Model\Garage::protected $vatValue
+Justimmo\Model\Garage::public __construct($type, $name, $quantity = null, $marketingType = 'rent', $gross = null, $net = null, $vat = null, $vatType = 'percent', $vatValue = null)
+Justimmo\Model\Garage::public getGross()
+Justimmo\Model\Garage::public getMarketingType()
+Justimmo\Model\Garage::public getName()
+Justimmo\Model\Garage::public getNet()
+Justimmo\Model\Garage::public getQuantity()
+Justimmo\Model\Garage::public getType()
+Justimmo\Model\Garage::public getVat()
+Justimmo\Model\Garage::public getVatType()
+Justimmo\Model\Garage::public getVatValue()
+Justimmo\Model\Garage::public setGross($gross)
+Justimmo\Model\Garage::public setMarketingType($marketingType)
+Justimmo\Model\Garage::public setName($name)
+Justimmo\Model\Garage::public setNet($net)
+Justimmo\Model\Garage::public setQuantity($quantity)
+Justimmo\Model\Garage::public setType($type)
+Justimmo\Model\Garage::public setVat($vat)
+Justimmo\Model\Garage::public setVatType($vatType)
+Justimmo\Model\Garage::public setVatValue($vatValue)
+
+interface Justimmo\Model\Mapper\MapperInterface
+Justimmo\Model\Mapper\MapperInterface::abstract public getFilterPropertyName($modelPropertyName)
+Justimmo\Model\Mapper\MapperInterface::abstract public getProperty($apiPropertyName)
+Justimmo\Model\Mapper\MapperInterface::abstract public getSetter($apiPropertyName)
+Justimmo\Model\Mapper\MapperInterface::abstract public getType($apiPropertyName)
+
+class Justimmo\Model\Mapper\NullMapper implements Justimmo\Model\Mapper\MapperInterface
+Justimmo\Model\Mapper\NullMapper::public getFilterPropertyName($modelPropertyName)
+Justimmo\Model\Mapper\NullMapper::public getProperty($apiPropertyName)
+Justimmo\Model\Mapper\NullMapper::public getSetter($apiPropertyName)
+Justimmo\Model\Mapper\NullMapper::public getType($apiPropertyName)
+
+interface Justimmo\Model\Mapper\OrderMappingInterface
+Justimmo\Model\Mapper\OrderMappingInterface::abstract public getOrderPropertyName(string $column): string
+
+interface Justimmo\Model\Mapper\SupportedParametersInterface
+Justimmo\Model\Mapper\SupportedParametersInterface::abstract public getSpecVersion(): string
+Justimmo\Model\Mapper\SupportedParametersInterface::abstract public getSupportedFilters(string $call): array
+Justimmo\Model\Mapper\SupportedParametersInterface::abstract public getSupportedParameters(string $call): array
+
+abstract class Justimmo\Model\Mapper\V1\AbstractMapper implements Justimmo\Model\Mapper\MapperInterface, Justimmo\Model\Mapper\OrderMappingInterface, Justimmo\Model\Mapper\SupportedParametersInterface
+Justimmo\Model\Mapper\V1\AbstractMapper::abstract protected getFilterMapping()
+Justimmo\Model\Mapper\V1\AbstractMapper::public getFilterPropertyName($modelPropertyName)
+Justimmo\Model\Mapper\V1\AbstractMapper::abstract protected getMapping()
+Justimmo\Model\Mapper\V1\AbstractMapper::protected getOrderMapping(): array
+Justimmo\Model\Mapper\V1\AbstractMapper::public getOrderPropertyName(string $column): string
+Justimmo\Model\Mapper\V1\AbstractMapper::public getProperty($apiPropertyName)
+Justimmo\Model\Mapper\V1\AbstractMapper::public getSetter($apiPropertyName)
+Justimmo\Model\Mapper\V1\AbstractMapper::public getSpecVersion(): string
+Justimmo\Model\Mapper\V1\AbstractMapper::public getSupportedFilters(string $call): array
+Justimmo\Model\Mapper\V1\AbstractMapper::public getSupportedParameters(string $call): array
+Justimmo\Model\Mapper\V1\AbstractMapper::public getType($apiPropertyName)
+Justimmo\Model\Mapper\V1\AbstractMapper::protected getValues($apiPropertyName)
+
+class Justimmo\Model\Mapper\V1\BasicDataMapper extends Justimmo\Model\Mapper\V1\AbstractMapper
+Justimmo\Model\Mapper\V1\BasicDataMapper::protected getFilterMapping()
+Justimmo\Model\Mapper\V1\BasicDataMapper::protected getMapping()
+Justimmo\Model\Mapper\V1\BasicDataMapper::public getProperty($apiPropertyName)
+Justimmo\Model\Mapper\V1\BasicDataMapper::public getSetter($apiPropertyName)
+Justimmo\Model\Mapper\V1\BasicDataMapper::public getType($apiPropertyName)
+
+class Justimmo\Model\Mapper\V1\EmployeeMapper extends Justimmo\Model\Mapper\V1\AbstractMapper
+Justimmo\Model\Mapper\V1\EmployeeMapper::protected getFilterMapping()
+Justimmo\Model\Mapper\V1\EmployeeMapper::protected getMapping()
+
+class Justimmo\Model\Mapper\V1\ProjectMapper extends Justimmo\Model\Mapper\V1\AbstractMapper
+Justimmo\Model\Mapper\V1\ProjectMapper::protected getFilterMapping()
+Justimmo\Model\Mapper\V1\ProjectMapper::protected getMapping()
+Justimmo\Model\Mapper\V1\ProjectMapper::protected getOrderMapping(): array
+
+class Justimmo\Model\Mapper\V1\RealtyInquiryMapper extends Justimmo\Model\Mapper\V1\AbstractMapper
+Justimmo\Model\Mapper\V1\RealtyInquiryMapper::protected getFilterMapping()
+Justimmo\Model\Mapper\V1\RealtyInquiryMapper::protected getMapping()
+Justimmo\Model\Mapper\V1\RealtyInquiryMapper::public getProperty($apiPropertyName)
+Justimmo\Model\Mapper\V1\RealtyInquiryMapper::public getSetter($apiPropertyName)
+Justimmo\Model\Mapper\V1\RealtyInquiryMapper::public getType($apiPropertyName)
+
+class Justimmo\Model\Mapper\V1\RealtyMapper extends Justimmo\Model\Mapper\V1\AbstractMapper
+Justimmo\Model\Mapper\V1\RealtyMapper::protected getFilterMapping()
+Justimmo\Model\Mapper\V1\RealtyMapper::protected getMapping()
+Justimmo\Model\Mapper\V1\RealtyMapper::protected getOrderMapping(): array
+Justimmo\Model\Mapper\V1\RealtyMapper::public setOrientation(SimpleXMLElement $xml, Justimmo\Model\Realty $realty)
+
+final class Justimmo\Model\Mapper\V1\SupportedParameters
+Justimmo\Model\Mapper\V1\SupportedParameters::public const FILTERS
+Justimmo\Model\Mapper\V1\SupportedParameters::public const PARAMETERS
+Justimmo\Model\Mapper\V1\SupportedParameters::public const SPEC_HASH
+Justimmo\Model\Mapper\V1\SupportedParameters::public const SPEC_VERSION
+
+interface Justimmo\Model\ModelInterface
+
+final class Justimmo\Model\PoliticalDistrict
+Justimmo\Model\PoliticalDistrict::public readonly int $id
+Justimmo\Model\PoliticalDistrict::public readonly string $name
+Justimmo\Model\PoliticalDistrict::public __construct(int $id, string $name)
+
+class Justimmo\Model\Project implements Justimmo\Model\ModelInterface
+Justimmo\Model\Project::public const PROJECT_STATE_BUILDING
+Justimmo\Model\Project::public const PROJECT_STATE_FINISHED
+Justimmo\Model\Project::public const PROJECT_STATE_PLANNING
+Justimmo\Model\Project::protected $areaAssessment
+Justimmo\Model\Project::protected $areaFrom
+Justimmo\Model\Project::protected $areaTo
+Justimmo\Model\Project::protected $attachments
+Justimmo\Model\Project::protected $atticCount
+Justimmo\Model\Project::protected $availability
+Justimmo\Model\Project::protected $categories
+Justimmo\Model\Project::protected $completionDate
+Justimmo\Model\Project::protected $condition
+Justimmo\Model\Project::protected $contact
+Justimmo\Model\Project::protected $country
+Justimmo\Model\Project::protected $createdAt
+Justimmo\Model\Project::protected $description
+Justimmo\Model\Project::protected $epcEnergyEfficiencyFactor
+Justimmo\Model\Project::protected $epcEnergyEfficiencyFactorClass
+Justimmo\Model\Project::protected $epcHeatingDemand
+Justimmo\Model\Project::protected $epcHeatingDemandClass
+Justimmo\Model\Project::protected $epcValidUntil
+Justimmo\Model\Project::protected $federalState
+Justimmo\Model\Project::protected $freetext1
+Justimmo\Model\Project::protected $freetext2
+Justimmo\Model\Project::protected $freetext3
+Justimmo\Model\Project::protected $freetext4
+Justimmo\Model\Project::protected $garages
+Justimmo\Model\Project::protected $houseCondition
+Justimmo\Model\Project::protected $houseNumber
+Justimmo\Model\Project::protected $id
+Justimmo\Model\Project::protected $isReference
+Justimmo\Model\Project::protected $latitude
+Justimmo\Model\Project::protected $locality
+Justimmo\Model\Project::protected $longitude
+Justimmo\Model\Project::protected $miscellaneous
+Justimmo\Model\Project::protected $noiseLevel
+Justimmo\Model\Project::protected $occupancy
+Justimmo\Model\Project::protected $place
+Justimmo\Model\Project::protected $priceFrom
+Justimmo\Model\Project::protected $priceTo
+Justimmo\Model\Project::protected $projectNumber
+Justimmo\Model\Project::protected $projectState
+Justimmo\Model\Project::protected $projectStateSemantic
+Justimmo\Model\Project::protected $propertyAssessment
+Justimmo\Model\Project::protected $proximity
+Justimmo\Model\Project::protected $realties
+Justimmo\Model\Project::protected $realtyIds
+Justimmo\Model\Project::protected $roomsFrom
+Justimmo\Model\Project::protected $roomsTo
+Justimmo\Model\Project::protected $saleStart
+Justimmo\Model\Project::protected $street
+Justimmo\Model\Project::protected $styleOfBuildingId
+Justimmo\Model\Project::protected $subunitsAvailable
+Justimmo\Model\Project::protected $teaser
+Justimmo\Model\Project::protected $tierCount
+Justimmo\Model\Project::protected $title
+Justimmo\Model\Project::protected $underConstruction
+Justimmo\Model\Project::protected $url
+Justimmo\Model\Project::protected $yearOfConstruction
+Justimmo\Model\Project::protected $zipCode
+Justimmo\Model\Project::public addAttachment(Justimmo\Model\Attachment $attachment)
+Justimmo\Model\Project::public addCategory($id, $name)
+Justimmo\Model\Project::public addGarage($key, Justimmo\Model\Garage $stellplatz)
+Justimmo\Model\Project::public addRealty(Justimmo\Model\Realty $realty)
+Justimmo\Model\Project::public addRealtyId($id)
+Justimmo\Model\Project::public countRealties()
+Justimmo\Model\Project::public getAreaAssessment()
+Justimmo\Model\Project::public getAreaFrom()
+Justimmo\Model\Project::public getAreaTo()
+Justimmo\Model\Project::public getAttachments()
+Justimmo\Model\Project::public getAttachmentsByType($type, $group = false)
+Justimmo\Model\Project::public getAtticCount()
+Justimmo\Model\Project::public getAvailability()
+Justimmo\Model\Project::public getCategories()
+Justimmo\Model\Project::public getCompletionDate($format = 'Y-m-d')
+Justimmo\Model\Project::public getCondition()
+Justimmo\Model\Project::public getContact()
+Justimmo\Model\Project::public getCountry()
+Justimmo\Model\Project::public getCreatedAt($format = 'Y-m-d H:i:s')
+Justimmo\Model\Project::public getDescription()
+Justimmo\Model\Project::public getDocuments($group = false)
+Justimmo\Model\Project::public getEpcEnergyEfficiencyFactor()
+Justimmo\Model\Project::public getEpcEnergyEfficiencyFactorClass()
+Justimmo\Model\Project::public getEpcHeatingDemand()
+Justimmo\Model\Project::public getEpcHeatingDemandClass()
+Justimmo\Model\Project::public getEpcValidUntil($format = 'Y-m-d')
+Justimmo\Model\Project::public getFederalState()
+Justimmo\Model\Project::public getFreetext1()
+Justimmo\Model\Project::public getFreetext2()
+Justimmo\Model\Project::public getFreetext3()
+Justimmo\Model\Project::public getFreetext4()
+Justimmo\Model\Project::public getGarages()
+Justimmo\Model\Project::public getHouseCondition()
+Justimmo\Model\Project::public getHouseNumber()
+Justimmo\Model\Project::public getId()
+Justimmo\Model\Project::public getIsReference()
+Justimmo\Model\Project::public getLatitude()
+Justimmo\Model\Project::public getLinks($group = false)
+Justimmo\Model\Project::public getLocality()
+Justimmo\Model\Project::public getLongitude()
+Justimmo\Model\Project::public getMiscellaneous()
+Justimmo\Model\Project::public getNoiseLevel()
+Justimmo\Model\Project::public getOccupancy()
+Justimmo\Model\Project::public getPictures($group = false)
+Justimmo\Model\Project::public getPlace()
+Justimmo\Model\Project::public getPriceFrom()
+Justimmo\Model\Project::public getPriceTo()
+Justimmo\Model\Project::public getProjectNumber()
+Justimmo\Model\Project::public getProjectState()
+Justimmo\Model\Project::public getProjectStateSemantic()
+Justimmo\Model\Project::public getPropertyAssessment()
+Justimmo\Model\Project::public getProximity()
+Justimmo\Model\Project::public getRealties()
+Justimmo\Model\Project::public getRealtyIds()
+Justimmo\Model\Project::public getRoomsFrom()
+Justimmo\Model\Project::public getRoomsTo()
+Justimmo\Model\Project::public getSaleStart($format = 'Y-m-d')
+Justimmo\Model\Project::public getStreet()
+Justimmo\Model\Project::public getStyleOfBuildingId()
+Justimmo\Model\Project::public getSubunitsAvailable()
+Justimmo\Model\Project::public getTeaser()
+Justimmo\Model\Project::public getTierCount()
+Justimmo\Model\Project::public getTitle()
+Justimmo\Model\Project::public getUnderConstruction()
+Justimmo\Model\Project::public getUrl()
+Justimmo\Model\Project::public getVideos($group = false)
+Justimmo\Model\Project::public getYearOfConstruction()
+Justimmo\Model\Project::public getZipCode()
+Justimmo\Model\Project::public isStateBuilding()
+Justimmo\Model\Project::public isStateFinished()
+Justimmo\Model\Project::public isStatePlanning()
+Justimmo\Model\Project::public setAreaAssessment($areaAssessment)
+Justimmo\Model\Project::public setAreaFrom($areaFrom)
+Justimmo\Model\Project::public setAreaTo($areaTo)
+Justimmo\Model\Project::public setAttachments($value)
+Justimmo\Model\Project::public setAtticCount($atticCount)
+Justimmo\Model\Project::public setAvailability($availability)
+Justimmo\Model\Project::public setCategories($value)
+Justimmo\Model\Project::public setCompletionDate($completionDate)
+Justimmo\Model\Project::public setCondition($condition)
+Justimmo\Model\Project::public setContact($contact)
+Justimmo\Model\Project::public setCountry($country)
+Justimmo\Model\Project::public setCreatedAt($createdAt)
+Justimmo\Model\Project::public setDescription($description)
+Justimmo\Model\Project::public setEpcEnergyEfficiencyFactor($epcEnergyEfficiencyFactor)
+Justimmo\Model\Project::public setEpcEnergyEfficiencyFactorClass($epcEnergyEfficiencyFactorClass)
+Justimmo\Model\Project::public setEpcHeatingDemand($epcHeatingDemand)
+Justimmo\Model\Project::public setEpcHeatingDemandClass($epcHeatingDemandClass)
+Justimmo\Model\Project::public setEpcValidUntil($epcValidUntil)
+Justimmo\Model\Project::public setFederalState($federalState)
+Justimmo\Model\Project::public setFreetext1($freetext1)
+Justimmo\Model\Project::public setFreetext2($freetext2)
+Justimmo\Model\Project::public setFreetext3($freetext3)
+Justimmo\Model\Project::public setFreetext4($freetext4)
+Justimmo\Model\Project::public setGarages(array $stellplaetze)
+Justimmo\Model\Project::public setHouseCondition($houseCondition)
+Justimmo\Model\Project::public setHouseNumber($houseNumber)
+Justimmo\Model\Project::public setId($id)
+Justimmo\Model\Project::public setIsReference($isReference)
+Justimmo\Model\Project::public setLatitude($latitude)
+Justimmo\Model\Project::public setLocality($locality)
+Justimmo\Model\Project::public setLongitude($longitude)
+Justimmo\Model\Project::public setMiscellaneous($miscellaneous)
+Justimmo\Model\Project::public setNoiseLevel($noiseLevel)
+Justimmo\Model\Project::public setOccupancy($occupancy)
+Justimmo\Model\Project::public setPlace($value)
+Justimmo\Model\Project::public setPriceFrom($priceFrom)
+Justimmo\Model\Project::public setPriceTo($priceTo)
+Justimmo\Model\Project::public setProjectNumber($projectNumber)
+Justimmo\Model\Project::public setProjectState($projectState)
+Justimmo\Model\Project::public setProjectStateSemantic($projectStateSemantic)
+Justimmo\Model\Project::public setPropertyAssessment($propertyAssessment)
+Justimmo\Model\Project::public setProximity($proximity)
+Justimmo\Model\Project::public setRealties($value)
+Justimmo\Model\Project::public setRealtyIds($realtyIds)
+Justimmo\Model\Project::public setRoomsFrom($roomsFrom)
+Justimmo\Model\Project::public setRoomsTo($roomsTo)
+Justimmo\Model\Project::public setSaleStart($saleStart)
+Justimmo\Model\Project::public setStreet($street)
+Justimmo\Model\Project::public setStyleOfBuildingId($styleOfBuildingId)
+Justimmo\Model\Project::public setSubunitsAvailable($subunitsAvailable)
+Justimmo\Model\Project::public setTeaser($teaser)
+Justimmo\Model\Project::public setTierCount($tierCount)
+Justimmo\Model\Project::public setTitle($value)
+Justimmo\Model\Project::public setUrl($url)
+Justimmo\Model\Project::public setYearOfConstruction($yearOfConstruction)
+Justimmo\Model\Project::public setZipCode($zipCode)
+
+class Justimmo\Model\ProjectQuery extends Justimmo\Model\Query\AbstractQuery
+Justimmo\Model\ProjectQuery::public all($all = true)
+Justimmo\Model\ProjectQuery::public allProjectRealties($all = true)
+Justimmo\Model\ProjectQuery::public filterByArea($value)
+Justimmo\Model\ProjectQuery::public filterByBuy($value)
+Justimmo\Model\ProjectQuery::public filterByCompletionDate($value)
+Justimmo\Model\ProjectQuery::public filterByCountryIso2($value)
+Justimmo\Model\ProjectQuery::public filterByFederalStateId($value)
+Justimmo\Model\ProjectQuery::public filterByFloorArea($value)
+Justimmo\Model\ProjectQuery::public filterByIsReference($value)
+Justimmo\Model\ProjectQuery::public filterByKeyword($value)
+Justimmo\Model\ProjectQuery::public filterByLivingArea($value)
+Justimmo\Model\ProjectQuery::public filterByOwnerId($value)
+Justimmo\Model\ProjectQuery::public filterByPrice($value)
+Justimmo\Model\ProjectQuery::public filterByProjectPropertyNumber($value)
+Justimmo\Model\ProjectQuery::public filterByProjectState($value)
+Justimmo\Model\ProjectQuery::public filterByProjectTag($value)
+Justimmo\Model\ProjectQuery::public filterByPropertyNumber($value)
+Justimmo\Model\ProjectQuery::public filterByRealtyCategory($value)
+Justimmo\Model\ProjectQuery::public filterByRealtyTypeId($value)
+Justimmo\Model\ProjectQuery::public filterByRent($value)
+Justimmo\Model\ProjectQuery::public filterByRooms($value)
+Justimmo\Model\ProjectQuery::public filterBySaleStart($value)
+Justimmo\Model\ProjectQuery::public filterByStatusId($value)
+Justimmo\Model\ProjectQuery::public filterBySubRealtyTypeId($value)
+Justimmo\Model\ProjectQuery::public filterBySurfaceArea($value)
+Justimmo\Model\ProjectQuery::public filterByTag($value)
+Justimmo\Model\ProjectQuery::public filterByZipCode($value)
+Justimmo\Model\ProjectQuery::public getDetailCall()
+Justimmo\Model\ProjectQuery::protected getDetailParams(): array
+Justimmo\Model\ProjectQuery::public getIdsCall()
+Justimmo\Model\ProjectQuery::public getListCall()
+Justimmo\Model\ProjectQuery::public onlyRealtyIds($value = true)
+Justimmo\Model\ProjectQuery::public orderByCreatedAt($direction = 'asc')
+Justimmo\Model\ProjectQuery::public orderByUpdatedAt($direction = 'asc')
+
+abstract class Justimmo\Model\Query\AbstractQuery implements Justimmo\Model\Query\QueryInterface uses Justimmo\Model\Query\TriggersDeprecations
+Justimmo\Model\Query\AbstractQuery::protected const SORT_COLUMNS
+Justimmo\Model\Query\AbstractQuery::protected $api
+Justimmo\Model\Query\AbstractQuery::protected $mapper
+Justimmo\Model\Query\AbstractQuery::protected $params
+Justimmo\Model\Query\AbstractQuery::protected $pictureSizes
+Justimmo\Model\Query\AbstractQuery::protected $strict
+Justimmo\Model\Query\AbstractQuery::protected $wrapper
+Justimmo\Model\Query\AbstractQuery::public __call($method, $params)
+Justimmo\Model\Query\AbstractQuery::public __construct(Justimmo\Api\JustimmoApiInterface $api, Justimmo\Model\Wrapper\WrapperInterface $wrapper, Justimmo\Model\Mapper\MapperInterface $mapper)
+Justimmo\Model\Query\AbstractQuery::protected appendFilter(string $key, mixed $value): static
+Justimmo\Model\Query\AbstractQuery::protected applyFilter(mixed $key, mixed $value): static
+Justimmo\Model\Query\AbstractQuery::protected assertFilterIsSupported(string $key, string $called): void
+Justimmo\Model\Query\AbstractQuery::public clear()
+Justimmo\Model\Query\AbstractQuery::public filter($key, $value = null)
+Justimmo\Model\Query\AbstractQuery::protected filterThroughMapper(string $property, mixed $value, string $method): static
+Justimmo\Model\Query\AbstractQuery::public find()
+Justimmo\Model\Query\AbstractQuery::public findIds()
+Justimmo\Model\Query\AbstractQuery::public findOne()
+Justimmo\Model\Query\AbstractQuery::public findPk($pk)
+Justimmo\Model\Query\AbstractQuery::abstract public getDetailCall()
+Justimmo\Model\Query\AbstractQuery::protected getDetailParams(): array
+Justimmo\Model\Query\AbstractQuery::abstract public getIdsCall()
+Justimmo\Model\Query\AbstractQuery::abstract public getListCall()
+Justimmo\Model\Query\AbstractQuery::public getParams()
+Justimmo\Model\Query\AbstractQuery::public isStrict(): bool
+Justimmo\Model\Query\AbstractQuery::public order($column, $direction = 'asc')
+Justimmo\Model\Query\AbstractQuery::public orderBy($column, $direction = 'asc')
+Justimmo\Model\Query\AbstractQuery::protected orderThroughMapper(string $property, mixed $direction): static
+Justimmo\Model\Query\AbstractQuery::public paginate($page = 1, $maxPerPage = 10)
+Justimmo\Model\Query\AbstractQuery::public set($key, $value)
+Justimmo\Model\Query\AbstractQuery::public setCulture(string $culture): static
+Justimmo\Model\Query\AbstractQuery::public setLimit($limit)
+Justimmo\Model\Query\AbstractQuery::public setOffset($offset)
+Justimmo\Model\Query\AbstractQuery::protected setOrder(mixed $column, mixed $direction): static
+Justimmo\Model\Query\AbstractQuery::protected setParameter(mixed $key, mixed $value): static
+Justimmo\Model\Query\AbstractQuery::public setPicturesize($picturesize)
+Justimmo\Model\Query\AbstractQuery::public strict(bool $strict = true)
+Justimmo\Model\Query\AbstractQuery::protected triggerDeprecation(string $method, Closure|string $message): void
+
+class Justimmo\Model\Query\BasicDataQuery uses Justimmo\Model\Query\TriggersDeprecations
+Justimmo\Model\Query\BasicDataQuery::protected Justimmo\Api\JustimmoApiInterface $api
+Justimmo\Model\Query\BasicDataQuery::protected Justimmo\Model\Mapper\MapperInterface $mapper
+Justimmo\Model\Query\BasicDataQuery::protected array $params
+Justimmo\Model\Query\BasicDataQuery::protected Justimmo\Model\Wrapper\BasicDataWrapperInterface $wrapper
+Justimmo\Model\Query\BasicDataQuery::public __construct(Justimmo\Api\JustimmoApiInterface $api, Justimmo\Model\Wrapper\BasicDataWrapperInterface $wrapper, Justimmo\Model\Mapper\MapperInterface $mapper)
+Justimmo\Model\Query\BasicDataQuery::public all($value)
+Justimmo\Model\Query\BasicDataQuery::public clear()
+Justimmo\Model\Query\BasicDataQuery::public filterByCountry($value)
+Justimmo\Model\Query\BasicDataQuery::public filterByFederalState($value)
+Justimmo\Model\Query\BasicDataQuery::public findCountries()
+Justimmo\Model\Query\BasicDataQuery::public findFederalStates()
+Justimmo\Model\Query\BasicDataQuery::public findPoliticalDistricts(): array
+Justimmo\Model\Query\BasicDataQuery::public findRealtyCategories()
+Justimmo\Model\Query\BasicDataQuery::public findRealtyTypes()
+Justimmo\Model\Query\BasicDataQuery::public findRegions()
+Justimmo\Model\Query\BasicDataQuery::public findTenant()
+Justimmo\Model\Query\BasicDataQuery::public findZipCodes()
+Justimmo\Model\Query\BasicDataQuery::public getParams()
+Justimmo\Model\Query\BasicDataQuery::public set($key, $value)
+Justimmo\Model\Query\BasicDataQuery::protected setParameter(mixed $key, mixed $value): static
+Justimmo\Model\Query\BasicDataQuery::protected triggerDeprecation(string $method, Closure|string $message): void
+
+interface Justimmo\Model\Query\QueryInterface
+Justimmo\Model\Query\QueryInterface::abstract public clear()
+Justimmo\Model\Query\QueryInterface::abstract public find()
+Justimmo\Model\Query\QueryInterface::abstract public findOne()
+Justimmo\Model\Query\QueryInterface::abstract public findPk($pk)
+Justimmo\Model\Query\QueryInterface::abstract public paginate($page = 1, $maxPerPage = 10)
+
+trait Justimmo\Model\Query\TriggersDeprecations
+Justimmo\Model\Query\TriggersDeprecations::protected triggerDeprecation(string $method, Closure|string $message): void
+
+class Justimmo\Model\Realty implements Justimmo\Model\ModelInterface
+Justimmo\Model\Realty::public const ORIENTATION_EAST
+Justimmo\Model\Realty::public const ORIENTATION_EAST_WEST
+Justimmo\Model\Realty::public const ORIENTATION_NORTH
+Justimmo\Model\Realty::public const ORIENTATION_NORTH_EAST
+Justimmo\Model\Realty::public const ORIENTATION_NORTH_EAST_SOUTH
+Justimmo\Model\Realty::public const ORIENTATION_NORTH_EAST_WEST
+Justimmo\Model\Realty::public const ORIENTATION_NORTH_SOUTH
+Justimmo\Model\Realty::public const ORIENTATION_NORTH_WEST
+Justimmo\Model\Realty::public const ORIENTATION_SOUTH
+Justimmo\Model\Realty::public const ORIENTATION_SOUTH_EAST
+Justimmo\Model\Realty::public const ORIENTATION_SOUTH_EAST_WEST
+Justimmo\Model\Realty::public const ORIENTATION_SOUTH_WEST
+Justimmo\Model\Realty::public const ORIENTATION_SOUTH_WEST_NORTH
+Justimmo\Model\Realty::public const ORIENTATION_WEST
+Justimmo\Model\Realty::protected $additionalCharges
+Justimmo\Model\Realty::protected $additionalCosts
+Justimmo\Model\Realty::protected $age
+Justimmo\Model\Realty::protected $attachments
+Justimmo\Model\Realty::protected $availableFrom
+Justimmo\Model\Realty::protected $balconyArea
+Justimmo\Model\Realty::protected $balconyCount
+Justimmo\Model\Realty::protected $balconyTerraceArea
+Justimmo\Model\Realty::protected $balconyTerraceCount
+Justimmo\Model\Realty::protected $bathroomCount
+Justimmo\Model\Realty::protected $buildableArea
+Justimmo\Model\Realty::protected $buildingSubsidies
+Justimmo\Model\Realty::protected $buyOnRequest
+Justimmo\Model\Realty::protected $categories
+Justimmo\Model\Realty::protected $ceilingHeight
+Justimmo\Model\Realty::protected $cellarArea
+Justimmo\Model\Realty::protected $cellarCount
+Justimmo\Model\Realty::protected $commission
+Justimmo\Model\Realty::protected $compensation
+Justimmo\Model\Realty::protected $condition
+Justimmo\Model\Realty::protected $contact
+Justimmo\Model\Realty::protected $contractEstablishmentCosts
+Justimmo\Model\Realty::protected $costsExplanation
+Justimmo\Model\Realty::protected $country
+Justimmo\Model\Realty::protected $createdAt
+Justimmo\Model\Realty::protected $currency
+Justimmo\Model\Realty::protected $description
+Justimmo\Model\Realty::protected $district
+Justimmo\Model\Realty::protected $doorNumber
+Justimmo\Model\Realty::protected $energyPass
+Justimmo\Model\Realty::protected $equipment
+Justimmo\Model\Realty::protected $equipmentDescription
+Justimmo\Model\Realty::protected $federalState
+Justimmo\Model\Realty::protected $financialContribution
+Justimmo\Model\Realty::protected $floorArea
+Justimmo\Model\Realty::protected $floorAreaFrom
+Justimmo\Model\Realty::protected $freetext1
+Justimmo\Model\Realty::protected $freetext2
+Justimmo\Model\Realty::protected $freetext3
+Justimmo\Model\Realty::protected $freetext4
+Justimmo\Model\Realty::protected $garageArea
+Justimmo\Model\Realty::protected $garageCount
+Justimmo\Model\Realty::protected $garages
+Justimmo\Model\Realty::protected $gardenArea
+Justimmo\Model\Realty::protected $gardenCount
+Justimmo\Model\Realty::protected $hallHeight
+Justimmo\Model\Realty::protected $hallway
+Justimmo\Model\Realty::protected $heatingCosts
+Justimmo\Model\Realty::protected $houseNumber
+Justimmo\Model\Realty::protected $id
+Justimmo\Model\Realty::protected $infrastructureProvision
+Justimmo\Model\Realty::protected $isReference
+Justimmo\Model\Realty::protected $landParcel
+Justimmo\Model\Realty::protected $landRegistration
+Justimmo\Model\Realty::protected $latitude
+Justimmo\Model\Realty::protected $latitudeFuzzy
+Justimmo\Model\Realty::protected $latitudePrecise
+Justimmo\Model\Realty::protected $livingArea
+Justimmo\Model\Realty::protected $locality
+Justimmo\Model\Realty::protected $loggiaArea
+Justimmo\Model\Realty::protected $loggiaCount
+Justimmo\Model\Realty::protected $longitude
+Justimmo\Model\Realty::protected $longitudeFuzzy
+Justimmo\Model\Realty::protected $longitudePrecise
+Justimmo\Model\Realty::protected $marketingType
+Justimmo\Model\Realty::protected $monthlyCosts
+Justimmo\Model\Realty::protected $monthlyCostsVat
+Justimmo\Model\Realty::protected $netEarningMonthly
+Justimmo\Model\Realty::protected $netEarningYearly
+Justimmo\Model\Realty::protected $netRent
+Justimmo\Model\Realty::protected $occupancy
+Justimmo\Model\Realty::protected $officeArea
+Justimmo\Model\Realty::protected $operatingCostsPerSqm
+Justimmo\Model\Realty::protected $operatingCostsPerSqmFrom
+Justimmo\Model\Realty::protected $orientation
+Justimmo\Model\Realty::protected $otherInformation
+Justimmo\Model\Realty::protected $ownershipTypeId
+Justimmo\Model\Realty::protected $parentId
+Justimmo\Model\Realty::protected $parkingArea
+Justimmo\Model\Realty::protected $parkingCount
+Justimmo\Model\Realty::protected $place
+Justimmo\Model\Realty::protected $pois
+Justimmo\Model\Realty::protected ?Justimmo\Model\PoliticalDistrict $politicalDistrict
+Justimmo\Model\Realty::protected $procuredAt
+Justimmo\Model\Realty::protected $projectId
+Justimmo\Model\Realty::protected $propertyNumber
+Justimmo\Model\Realty::protected $proximity
+Justimmo\Model\Realty::protected $purchasePrice
+Justimmo\Model\Realty::protected $purchasePriceNet
+Justimmo\Model\Realty::protected $purchasePricePerSqm
+Justimmo\Model\Realty::protected $purchasePriceVat
+Justimmo\Model\Realty::protected $radiusFuzzy
+Justimmo\Model\Realty::protected $realtySystemType
+Justimmo\Model\Realty::protected $realtyType
+Justimmo\Model\Realty::protected $realtyTypeId
+Justimmo\Model\Realty::protected $realtyTypeName
+Justimmo\Model\Realty::protected $regionalAddition
+Justimmo\Model\Realty::protected $rentDuration
+Justimmo\Model\Realty::protected $rentDurationType
+Justimmo\Model\Realty::protected $rentGross
+Justimmo\Model\Realty::protected $rentNet
+Justimmo\Model\Realty::protected $rentPerSqm
+Justimmo\Model\Realty::protected $rentPerSqmFrom
+Justimmo\Model\Realty::protected $rentVat
+Justimmo\Model\Realty::protected $rentVatInput
+Justimmo\Model\Realty::protected $rentVatType
+Justimmo\Model\Realty::protected $rentVatValue
+Justimmo\Model\Realty::protected $rentWithPurchaseOption
+Justimmo\Model\Realty::protected $roomCount
+Justimmo\Model\Realty::protected $salesArea
+Justimmo\Model\Realty::protected $shortTermArea
+Justimmo\Model\Realty::protected $showInSearch
+Justimmo\Model\Realty::protected $stair
+Justimmo\Model\Realty::protected $status
+Justimmo\Model\Realty::protected $statusId
+Justimmo\Model\Realty::protected $storageArea
+Justimmo\Model\Realty::protected $storeRoomCount
+Justimmo\Model\Realty::protected $street
+Justimmo\Model\Realty::protected $styleOfBuildingId
+Justimmo\Model\Realty::protected $subRealtyType
+Justimmo\Model\Realty::protected $subRealtyTypeId
+Justimmo\Model\Realty::protected $subRealtyTypeName
+Justimmo\Model\Realty::protected $surety
+Justimmo\Model\Realty::protected $surety_text
+Justimmo\Model\Realty::protected $surfaceArea
+Justimmo\Model\Realty::protected $teaser
+Justimmo\Model\Realty::protected $terraceArea
+Justimmo\Model\Realty::protected $terraceCount
+Justimmo\Model\Realty::protected $tier
+Justimmo\Model\Realty::protected $tierCount
+Justimmo\Model\Realty::protected ?string $tierDescription
+Justimmo\Model\Realty::protected $title
+Justimmo\Model\Realty::protected $toiletRoomCount
+Justimmo\Model\Realty::protected $totalArea
+Justimmo\Model\Realty::protected $totalRent
+Justimmo\Model\Realty::protected $totalRentVat
+Justimmo\Model\Realty::protected $totalRentWithoutHeating
+Justimmo\Model\Realty::protected $transferTax
+Justimmo\Model\Realty::protected $undevelopedAtticArea
+Justimmo\Model\Realty::protected $updatedAt
+Justimmo\Model\Realty::protected $weightedArea
+Justimmo\Model\Realty::protected $yearBuilt
+Justimmo\Model\Realty::protected $yield
+Justimmo\Model\Realty::protected $zipCode
+Justimmo\Model\Realty::public addAdditionalCosts($key, Justimmo\Model\AdditionalCosts $zusatzkosten)
+Justimmo\Model\Realty::public addAttachment(Justimmo\Model\Attachment $attachment)
+Justimmo\Model\Realty::public addCategory($id, $name)
+Justimmo\Model\Realty::public addEquipment($key, $value)
+Justimmo\Model\Realty::public addGarage($key, Justimmo\Model\Garage $stellplatz)
+Justimmo\Model\Realty::public addPoi($group, $name, $distance)
+Justimmo\Model\Realty::public getAdditionalCharges()
+Justimmo\Model\Realty::public getAdditionalCosts()
+Justimmo\Model\Realty::public getAge()
+Justimmo\Model\Realty::public getAttachments()
+Justimmo\Model\Realty::public getAttachmentsByType($type, $group = false)
+Justimmo\Model\Realty::public getAvailableFrom()
+Justimmo\Model\Realty::public getBalconyArea()
+Justimmo\Model\Realty::public getBalconyCount()
+Justimmo\Model\Realty::public getBalconyTerraceArea()
+Justimmo\Model\Realty::public getBalconyTerraceCount()
+Justimmo\Model\Realty::public getBathroomCount()
+Justimmo\Model\Realty::public getBuildableArea()
+Justimmo\Model\Realty::public getBuildingSubsidies()
+Justimmo\Model\Realty::public getBuyOnRequest()
+Justimmo\Model\Realty::public getCategories()
+Justimmo\Model\Realty::public getCeilingHeight()
+Justimmo\Model\Realty::public getCellarArea()
+Justimmo\Model\Realty::public getCellarCount()
+Justimmo\Model\Realty::public getCommission()
+Justimmo\Model\Realty::public getCompensation()
+Justimmo\Model\Realty::public getCondition()
+Justimmo\Model\Realty::public getContact()
+Justimmo\Model\Realty::public getContractEstablishmentCosts()
+Justimmo\Model\Realty::public getCostsExplanation()
+Justimmo\Model\Realty::public getCountry()
+Justimmo\Model\Realty::public getCreatedAt($format = 'Y-m-d H:i:s')
+Justimmo\Model\Realty::public getCurrency()
+Justimmo\Model\Realty::public getDescription()
+Justimmo\Model\Realty::public getDistrict()
+Justimmo\Model\Realty::public getDocuments($group = false)
+Justimmo\Model\Realty::public getDoorNumber()
+Justimmo\Model\Realty::public getEnergyPass()
+Justimmo\Model\Realty::public getEquipment()
+Justimmo\Model\Realty::public getEquipmentDescription()
+Justimmo\Model\Realty::public getFederalState()
+Justimmo\Model\Realty::public getFinancialContribution()
+Justimmo\Model\Realty::public getFloorArea()
+Justimmo\Model\Realty::public getFloorAreaFrom()
+Justimmo\Model\Realty::public getFreetext1()
+Justimmo\Model\Realty::public getFreetext2()
+Justimmo\Model\Realty::public getFreetext3()
+Justimmo\Model\Realty::public getFreetext4()
+Justimmo\Model\Realty::public getGarageArea()
+Justimmo\Model\Realty::public getGarageCount()
+Justimmo\Model\Realty::public getGarages()
+Justimmo\Model\Realty::public getGardenArea()
+Justimmo\Model\Realty::public getGardenCount()
+Justimmo\Model\Realty::public getHallHeight()
+Justimmo\Model\Realty::public getHallway()
+Justimmo\Model\Realty::public getHeatingCosts()
+Justimmo\Model\Realty::public getHeatingCostsGross()
+Justimmo\Model\Realty::public getHeatingCostsNet()
+Justimmo\Model\Realty::public getHeatingCostsVat()
+Justimmo\Model\Realty::public getHouseNumber()
+Justimmo\Model\Realty::public getId()
+Justimmo\Model\Realty::public getInfrastructureProvision()
+Justimmo\Model\Realty::public getIsReference()
+Justimmo\Model\Realty::public getLandParcel()
+Justimmo\Model\Realty::public getLandRegistration()
+Justimmo\Model\Realty::public getLatitude()
+Justimmo\Model\Realty::public getLatitudeFuzzy()
+Justimmo\Model\Realty::public getLatitudePrecise()
+Justimmo\Model\Realty::public getLinks($group = false)
+Justimmo\Model\Realty::public getLivingArea()
+Justimmo\Model\Realty::public getLocality()
+Justimmo\Model\Realty::public getLoggiaArea()
+Justimmo\Model\Realty::public getLoggiaCount()
+Justimmo\Model\Realty::public getLongitude()
+Justimmo\Model\Realty::public getLongitudeFuzzy()
+Justimmo\Model\Realty::public getLongitudePrecise()
+Justimmo\Model\Realty::public getMarketingType()
+Justimmo\Model\Realty::public getMonthlyCosts()
+Justimmo\Model\Realty::public getMonthlyCostsVat()
+Justimmo\Model\Realty::public getNetEarningMonthly()
+Justimmo\Model\Realty::public getNetEarningYearly()
+Justimmo\Model\Realty::public getNetRent()
+Justimmo\Model\Realty::public getOccupancy()
+Justimmo\Model\Realty::public getOfficeArea()
+Justimmo\Model\Realty::public getOperatingCostsGross()
+Justimmo\Model\Realty::public getOperatingCostsNet()
+Justimmo\Model\Realty::public getOperatingCostsPerSqm()
+Justimmo\Model\Realty::public getOperatingCostsPerSqmFrom()
+Justimmo\Model\Realty::public getOperatingCostsVat()
+Justimmo\Model\Realty::public getOrientation()
+Justimmo\Model\Realty::public getOtherInformation()
+Justimmo\Model\Realty::public getOwnershipTypeId()
+Justimmo\Model\Realty::public getParentId()
+Justimmo\Model\Realty::public getParkingArea()
+Justimmo\Model\Realty::public getParkingCount()
+Justimmo\Model\Realty::public getPictures($group = false)
+Justimmo\Model\Realty::public getPlace()
+Justimmo\Model\Realty::public getPois()
+Justimmo\Model\Realty::public getPoliticalDistrict(): ?Justimmo\Model\PoliticalDistrict
+Justimmo\Model\Realty::public getProcuredAt($format = 'Y-m-d')
+Justimmo\Model\Realty::public getProjectId()
+Justimmo\Model\Realty::public getPropertyNumber()
+Justimmo\Model\Realty::public getProximity()
+Justimmo\Model\Realty::public getPurchasePrice()
+Justimmo\Model\Realty::public getPurchasePriceNet()
+Justimmo\Model\Realty::public getPurchasePricePerSqm()
+Justimmo\Model\Realty::public getPurchasePriceVat()
+Justimmo\Model\Realty::public getRadiusFuzzy()
+Justimmo\Model\Realty::public getRealtySystemType()
+Justimmo\Model\Realty::public getRealtyType()
+Justimmo\Model\Realty::public getRealtyTypeId()
+Justimmo\Model\Realty::public getRealtyTypeName()
+Justimmo\Model\Realty::public getRegionalAddition()
+Justimmo\Model\Realty::public getRentDuration()
+Justimmo\Model\Realty::public getRentDurationType()
+Justimmo\Model\Realty::public getRentGross()
+Justimmo\Model\Realty::public getRentNet()
+Justimmo\Model\Realty::public getRentPerSqm()
+Justimmo\Model\Realty::public getRentPerSqmFrom()
+Justimmo\Model\Realty::public getRentVat()
+Justimmo\Model\Realty::public getRentVatInput()
+Justimmo\Model\Realty::public getRentVatType()
+Justimmo\Model\Realty::public getRentVatValue()
+Justimmo\Model\Realty::public getRentWithPurchaseOption()
+Justimmo\Model\Realty::public getRoomCount()
+Justimmo\Model\Realty::public getSalesArea()
+Justimmo\Model\Realty::public getShortTermArea()
+Justimmo\Model\Realty::public getShowInSearch()
+Justimmo\Model\Realty::public getStair()
+Justimmo\Model\Realty::public getStatus()
+Justimmo\Model\Realty::public getStatusId()
+Justimmo\Model\Realty::public getStorageArea()
+Justimmo\Model\Realty::public getStoreRoomCount()
+Justimmo\Model\Realty::public getStreet()
+Justimmo\Model\Realty::public getStyleOfBuilding()
+Justimmo\Model\Realty::public getStyleOfBuildingId()
+Justimmo\Model\Realty::public getSubRealtyType()
+Justimmo\Model\Realty::public getSubRealtyTypeId()
+Justimmo\Model\Realty::public getSubRealtyTypeName()
+Justimmo\Model\Realty::public getSurety()
+Justimmo\Model\Realty::public getSuretyText()
+Justimmo\Model\Realty::public getSurfaceArea()
+Justimmo\Model\Realty::public getTeaser()
+Justimmo\Model\Realty::public getTerraceArea()
+Justimmo\Model\Realty::public getTerraceCount()
+Justimmo\Model\Realty::public getTier()
+Justimmo\Model\Realty::public getTierCount()
+Justimmo\Model\Realty::public getTierDescription(): ?string
+Justimmo\Model\Realty::public getTitle()
+Justimmo\Model\Realty::public getToiletRoomCount()
+Justimmo\Model\Realty::public getTotalArea()
+Justimmo\Model\Realty::public getTotalRent()
+Justimmo\Model\Realty::public getTotalRentVat()
+Justimmo\Model\Realty::public getTotalRentWithoutHeating()
+Justimmo\Model\Realty::public getTransferTax()
+Justimmo\Model\Realty::public getUndevelopedAtticArea()
+Justimmo\Model\Realty::public getUpdatedAt($format = 'Y-m-d H:i:s')
+Justimmo\Model\Realty::public getVideos($group = false)
+Justimmo\Model\Realty::public getWeightedArea()
+Justimmo\Model\Realty::public getYearBuilt()
+Justimmo\Model\Realty::public getYield()
+Justimmo\Model\Realty::public getZipCode()
+Justimmo\Model\Realty::public setAdditionalCharges($nebenkosten)
+Justimmo\Model\Realty::public setAdditionalCosts(array $zusatzkosten)
+Justimmo\Model\Realty::public setAge($alter)
+Justimmo\Model\Realty::public setAttachments($attachments)
+Justimmo\Model\Realty::public setAvailableFrom($value)
+Justimmo\Model\Realty::public setBalconyArea($balkonsFlaeche)
+Justimmo\Model\Realty::public setBalconyCount($anzahlBalkone)
+Justimmo\Model\Realty::public setBalconyTerraceArea($balkonTerrassenFlaeche)
+Justimmo\Model\Realty::public setBalconyTerraceCount($anzahlBalkonTerrassen)
+Justimmo\Model\Realty::public setBathroomCount($anzahlBadezimmer)
+Justimmo\Model\Realty::public setBuildableArea($buildableArea)
+Justimmo\Model\Realty::public setBuildingSubsidies($wohnbaufoerderung)
+Justimmo\Model\Realty::public setBuyOnRequest($buyOnRequest)
+Justimmo\Model\Realty::public setCategories($value)
+Justimmo\Model\Realty::public setCeilingHeight($ceilingHeight)
+Justimmo\Model\Realty::public setCellarArea($kellerflaeche)
+Justimmo\Model\Realty::public setCellarCount($anzahlKeller)
+Justimmo\Model\Realty::public setCommission($value)
+Justimmo\Model\Realty::public setCompensation($abstand)
+Justimmo\Model\Realty::public setCondition($zustand)
+Justimmo\Model\Realty::public setContact($value)
+Justimmo\Model\Realty::public setContractEstablishmentCosts($value)
+Justimmo\Model\Realty::public setCostsExplanation($costsExplanation)
+Justimmo\Model\Realty::public setCountry($land)
+Justimmo\Model\Realty::public setCreatedAt(?DateTime $createdAt = null)
+Justimmo\Model\Realty::public setCurrency($waehrung)
+Justimmo\Model\Realty::public setDescription($objektbeschreibung)
+Justimmo\Model\Realty::public setDistrict($gemarkung)
+Justimmo\Model\Realty::public setDoorNumber($tuernummer)
+Justimmo\Model\Realty::public setEnergyPass(Justimmo\Model\EnergyPass $v)
+Justimmo\Model\Realty::public setEquipment($ausstattung)
+Justimmo\Model\Realty::public setEquipmentDescription($ausstattBeschr)
+Justimmo\Model\Realty::public setFederalState($bundesland)
+Justimmo\Model\Realty::public setFinancialContribution($financialContribution)
+Justimmo\Model\Realty::public setFloorArea($nutzflaeche)
+Justimmo\Model\Realty::public setFloorAreaFrom($floorAreaFrom)
+Justimmo\Model\Realty::public setFreetext1($freetext1)
+Justimmo\Model\Realty::public setFreetext2($freetext2)
+Justimmo\Model\Realty::public setFreetext3($freetext3)
+Justimmo\Model\Realty::public setFreetext4($freetext4)
+Justimmo\Model\Realty::public setGarageArea($garagenFlaeche)
+Justimmo\Model\Realty::public setGarageCount($anzahlGaragen)
+Justimmo\Model\Realty::public setGarages(array $stellplaetze)
+Justimmo\Model\Realty::public setGardenArea($gartenflaeche)
+Justimmo\Model\Realty::public setGardenCount($anzahlGarten)
+Justimmo\Model\Realty::public setHallHeight($hallHeight)
+Justimmo\Model\Realty::public setHallway($flur)
+Justimmo\Model\Realty::public setHeatingCosts($heizkosten)
+Justimmo\Model\Realty::public setHouseNumber($hausnummer)
+Justimmo\Model\Realty::public setId($id)
+Justimmo\Model\Realty::public setInfrastructureProvision($erschließung)
+Justimmo\Model\Realty::public setIsReference($isReference)
+Justimmo\Model\Realty::public setLandParcel($flurstueck)
+Justimmo\Model\Realty::public setLandRegistration($grundbucheintragung)
+Justimmo\Model\Realty::public setLatitude($breitengrad)
+Justimmo\Model\Realty::public setLatitudeFuzzy($latitudeFuzzy)
+Justimmo\Model\Realty::public setLatitudePrecise($latitudePrecise)
+Justimmo\Model\Realty::public setLivingArea($wohnflaeche)
+Justimmo\Model\Realty::public setLocality($value)
+Justimmo\Model\Realty::public setLoggiaArea($loggiasFlaeche)
+Justimmo\Model\Realty::public setLoggiaCount($anzahlLoggias)
+Justimmo\Model\Realty::public setLongitude($laengengrad)
+Justimmo\Model\Realty::public setLongitudeFuzzy($longitudeFuzzy)
+Justimmo\Model\Realty::public setLongitudePrecise($longitudePrecise)
+Justimmo\Model\Realty::public setMarketingType($vermarktungsart)
+Justimmo\Model\Realty::public setMonthlyCosts($monthlyCosts)
+Justimmo\Model\Realty::public setMonthlyCostsVat($monthlyCostsVat)
+Justimmo\Model\Realty::public setNetEarningMonthly($nettoertragMonatlich)
+Justimmo\Model\Realty::public setNetEarningYearly($nettoertragJaehrlich)
+Justimmo\Model\Realty::public setNetRent($nettoKaltMiete)
+Justimmo\Model\Realty::public setOccupancy($nutzungsart)
+Justimmo\Model\Realty::public setOfficeArea($bueroflaeche)
+Justimmo\Model\Realty::public setOperatingCostsPerSqm($operatingCostsPerSqm)
+Justimmo\Model\Realty::public setOperatingCostsPerSqmFrom($operatingCostsPerSqmFrom)
+Justimmo\Model\Realty::public setOrientation($orientation)
+Justimmo\Model\Realty::public setOtherInformation($sonstige_angaben)
+Justimmo\Model\Realty::public setOwnershipTypeId($ownershipTypeId)
+Justimmo\Model\Realty::public setParentId($parentId)
+Justimmo\Model\Realty::public setParkingArea($stellplatzFlaeche)
+Justimmo\Model\Realty::public setParkingCount($anzahlStellplaetze)
+Justimmo\Model\Realty::public setPlace($ort)
+Justimmo\Model\Realty::public setPois($pois)
+Justimmo\Model\Realty::public setPoliticalDistrict(?Justimmo\Model\PoliticalDistrict $politicalDistrict): Justimmo\Model\Realty
+Justimmo\Model\Realty::public setProcuredAt(?DateTime $procuredAt = null)
+Justimmo\Model\Realty::public setProjectId($projectId)
+Justimmo\Model\Realty::public setPropertyNumber($objektnummer)
+Justimmo\Model\Realty::public setProximity($naehe)
+Justimmo\Model\Realty::public setPurchasePrice($kaufpreis)
+Justimmo\Model\Realty::public setPurchasePriceNet($kaufpreisnetto)
+Justimmo\Model\Realty::public setPurchasePricePerSqm($purchasePricePerSqm)
+Justimmo\Model\Realty::public setPurchasePriceVat($kaufpreisust)
+Justimmo\Model\Realty::public setRadiusFuzzy($radiusFuzzy)
+Justimmo\Model\Realty::public setRealtySystemType($realtySystemType)
+Justimmo\Model\Realty::public setRealtyType($objektart)
+Justimmo\Model\Realty::public setRealtyTypeId($realtyTypeId)
+Justimmo\Model\Realty::public setRealtyTypeName($realtyTypeName)
+Justimmo\Model\Realty::public setRegionalAddition($regionalerZusatz)
+Justimmo\Model\Realty::public setRentDuration($rentDuration)
+Justimmo\Model\Realty::public setRentDurationType($rentDurationType)
+Justimmo\Model\Realty::public setRentGross($rentGross)
+Justimmo\Model\Realty::public setRentNet($rentNet)
+Justimmo\Model\Realty::public setRentPerSqm($rentPerSqm)
+Justimmo\Model\Realty::public setRentPerSqmFrom($rentPerSqmFrom)
+Justimmo\Model\Realty::public setRentVat($rentVat)
+Justimmo\Model\Realty::public setRentVatInput($rentVatInput)
+Justimmo\Model\Realty::public setRentVatType($rentVatType)
+Justimmo\Model\Realty::public setRentVatValue($rentVatValue)
+Justimmo\Model\Realty::public setRentWithPurchaseOption($rentWithPurchaseOption)
+Justimmo\Model\Realty::public setRoomCount($anzahlZimmer)
+Justimmo\Model\Realty::public setSalesArea($salesArea)
+Justimmo\Model\Realty::public setShortTermArea($shortTermArea)
+Justimmo\Model\Realty::public setShowInSearch($showInSearch)
+Justimmo\Model\Realty::public setStair($stair)
+Justimmo\Model\Realty::public setStatus($status)
+Justimmo\Model\Realty::public setStatusId($statusId)
+Justimmo\Model\Realty::public setStorageArea($lagerflaeche)
+Justimmo\Model\Realty::public setStoreRoomCount($anzahlAbstellraum)
+Justimmo\Model\Realty::public setStreet($strasse)
+Justimmo\Model\Realty::public setStyleOfBuildingId($styleOfBuildingId)
+Justimmo\Model\Realty::public setSubRealtyType($subRealtyType)
+Justimmo\Model\Realty::public setSubRealtyTypeId($subRealtyTypeId)
+Justimmo\Model\Realty::public setSubRealtyTypeName($subRealtyTypeName)
+Justimmo\Model\Realty::public setSurety($kaution)
+Justimmo\Model\Realty::public setSuretyText($kautionText)
+Justimmo\Model\Realty::public setSurfaceArea($grundflaeche)
+Justimmo\Model\Realty::public setTeaser($dreizeiler)
+Justimmo\Model\Realty::public setTerraceArea($terrassenFlaeche)
+Justimmo\Model\Realty::public setTerraceCount($anzahlTerrassen)
+Justimmo\Model\Realty::public setTier($etage)
+Justimmo\Model\Realty::public setTierCount($anzahlEtagen)
+Justimmo\Model\Realty::public setTierDescription(?string $tierDescription): static
+Justimmo\Model\Realty::public setTitle($titel)
+Justimmo\Model\Realty::public setToiletRoomCount($anzahlSepWc)
+Justimmo\Model\Realty::public setTotalArea($gesamtflaeche)
+Justimmo\Model\Realty::public setTotalRent($gesamtmiete)
+Justimmo\Model\Realty::public setTotalRentVat($gesamtMieteUst)
+Justimmo\Model\Realty::public setTotalRentWithoutHeating($kaltmiete)
+Justimmo\Model\Realty::public setTransferTax($grunderwerbssteuer)
+Justimmo\Model\Realty::public setUndevelopedAtticArea($undevelopedAtticArea)
+Justimmo\Model\Realty::public setUpdatedAt(?DateTime $updatedAt = null)
+Justimmo\Model\Realty::public setWeightedArea($weightedArea)
+Justimmo\Model\Realty::public setYearBuilt($baujahr)
+Justimmo\Model\Realty::public setYield($rendite)
+Justimmo\Model\Realty::public setZipCode($plz)
+
+class Justimmo\Model\RealtyQuery extends Justimmo\Model\Query\AbstractQuery
+Justimmo\Model\RealtyQuery::protected const SORT_COLUMNS
+Justimmo\Model\RealtyQuery::public allProjectRealties($all = true)
+Justimmo\Model\RealtyQuery::public filterByArea($value)
+Justimmo\Model\RealtyQuery::public filterByBalconyCount($value)
+Justimmo\Model\RealtyQuery::public filterByBathRoomCount($value)
+Justimmo\Model\RealtyQuery::public filterByBuy($value)
+Justimmo\Model\RealtyQuery::public filterByCellarCount($value)
+Justimmo\Model\RealtyQuery::public filterByCondition($value)
+Justimmo\Model\RealtyQuery::public filterByCountryId($value)
+Justimmo\Model\RealtyQuery::public filterByCreatedAt($value)
+Justimmo\Model\RealtyQuery::public filterByDisabilityAccess($value)
+Justimmo\Model\RealtyQuery::public filterByEquipment($value)
+Justimmo\Model\RealtyQuery::public filterByFederalStateId($value)
+Justimmo\Model\RealtyQuery::public filterByFloorArea($value)
+Justimmo\Model\RealtyQuery::public filterByGarageCount($value)
+Justimmo\Model\RealtyQuery::public filterByGardenCount($value)
+Justimmo\Model\RealtyQuery::public filterByKeyword($value)
+Justimmo\Model\RealtyQuery::public filterByLivingArea($value)
+Justimmo\Model\RealtyQuery::public filterByLoggiaCount($value)
+Justimmo\Model\RealtyQuery::public filterByOwnerId($value)
+Justimmo\Model\RealtyQuery::public filterByParentId($value)
+Justimmo\Model\RealtyQuery::public filterByParkingCount($value)
+Justimmo\Model\RealtyQuery::public filterByPoliticalDistrictId($value)
+Justimmo\Model\RealtyQuery::public filterByPrice($value)
+Justimmo\Model\RealtyQuery::public filterByProjectId($value)
+Justimmo\Model\RealtyQuery::public filterByPropertyNumber($value)
+Justimmo\Model\RealtyQuery::public filterByRealtyCategory($value)
+Justimmo\Model\RealtyQuery::public filterByRealtySystemType($value)
+Justimmo\Model\RealtyQuery::public filterByRealtyTypeId($value)
+Justimmo\Model\RealtyQuery::public filterByRent($value)
+Justimmo\Model\RealtyQuery::public filterByRentPerSqm($value)
+Justimmo\Model\RealtyQuery::public filterByRentWithPurchaseOption($value)
+Justimmo\Model\RealtyQuery::public filterByRooms($value)
+Justimmo\Model\RealtyQuery::public filterByStatusId($value)
+Justimmo\Model\RealtyQuery::public filterByStoreRoomCount($value)
+Justimmo\Model\RealtyQuery::public filterByStyleOfBuildingId($value)
+Justimmo\Model\RealtyQuery::public filterBySubRealtyTypeId($value)
+Justimmo\Model\RealtyQuery::public filterBySurfaceArea($value)
+Justimmo\Model\RealtyQuery::public filterByTag($value)
+Justimmo\Model\RealtyQuery::public filterByTerraceCount($value)
+Justimmo\Model\RealtyQuery::public filterByToiletRoomCount($value)
+Justimmo\Model\RealtyQuery::public filterByUpdatedAt($value)
+Justimmo\Model\RealtyQuery::public filterByZipCode($value)
+Justimmo\Model\RealtyQuery::public getDetailCall()
+Justimmo\Model\RealtyQuery::public getIdsCall()
+Justimmo\Model\RealtyQuery::public getListCall()
+Justimmo\Model\RealtyQuery::public orderByCreatedAt($direction = 'asc')
+Justimmo\Model\RealtyQuery::public orderByPrice($direction = 'asc')
+Justimmo\Model\RealtyQuery::public orderByPropertyNumber($direction = 'asc')
+Justimmo\Model\RealtyQuery::public orderByPublishedAt($direction = 'asc')
+Justimmo\Model\RealtyQuery::public orderByUpdatedAt($direction = 'asc')
+Justimmo\Model\RealtyQuery::public orderByZipCode($direction = 'asc')
+Justimmo\Model\RealtyQuery::public preciseAreaSearch($all = true)
+
+interface Justimmo\Model\Wrapper\BasicDataWrapperInterface
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformCountries($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformFederalStates($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformPoliticalDistricts(mixed $data): array
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRealtyCategories($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRealtyTypes($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRegions($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformTenant($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformZipCodes($data)
+
+class Justimmo\Model\Wrapper\NullWrapper implements Justimmo\Model\Wrapper\WrapperInterface
+Justimmo\Model\Wrapper\NullWrapper::public transformList($data)
+Justimmo\Model\Wrapper\NullWrapper::public transformSingle($data)
+
+abstract class Justimmo\Model\Wrapper\V1\AbstractWrapper implements Justimmo\Model\Wrapper\WrapperInterface
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected $mapper
+Justimmo\Model\Wrapper\V1\AbstractWrapper::public __construct(Justimmo\Model\Mapper\MapperInterface $mapper)
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected attributesToArray(SimpleXMLElement $xml)
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected cast(SimpleXMLElement $xml, $type = 'string')
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected isSetByNode(object $model, string $setter): bool
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected map($mapping, SimpleXMLElement $xml, $objekt)
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected mapAttachmentGroup(SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected trimValues(array $values)
+
+class Justimmo\Model\Wrapper\V1\BasicDataWrapper implements Justimmo\Model\Wrapper\BasicDataWrapperInterface uses Justimmo\Model\Wrapper\V1\ParsesXml
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformCountries($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformFederalStates($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformPoliticalDistricts(mixed $data): array
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRealtyCategories($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRealtyTypes($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRegions($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformTenant($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformZipCodes($data)
+
+class Justimmo\Model\Wrapper\V1\EmployeeWrapper extends Justimmo\Model\Wrapper\V1\AbstractWrapper uses Justimmo\Model\Wrapper\V1\ParsesXml
+Justimmo\Model\Wrapper\V1\EmployeeWrapper::protected $simpleMapping
+Justimmo\Model\Wrapper\V1\EmployeeWrapper::protected mapAttachmentGroup(SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+Justimmo\Model\Wrapper\V1\EmployeeWrapper::public transformList($data)
+Justimmo\Model\Wrapper\V1\EmployeeWrapper::public transformSingle($data)
+
+trait Justimmo\Model\Wrapper\V1\ParsesXml
+
+class Justimmo\Model\Wrapper\V1\ProjectWrapper extends Justimmo\Model\Wrapper\V1\AbstractWrapper uses Justimmo\Model\Wrapper\V1\ParsesXml
+Justimmo\Model\Wrapper\V1\ProjectWrapper::protected $simpleMapping
+Justimmo\Model\Wrapper\V1\ProjectWrapper::public transformList($data)
+Justimmo\Model\Wrapper\V1\ProjectWrapper::public transformSingle($data)
+
+class Justimmo\Model\Wrapper\V1\RealtyWrapper extends Justimmo\Model\Wrapper\V1\AbstractWrapper uses Justimmo\Model\Wrapper\V1\ParsesXml
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $energyMapping
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $flaechenMapping
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $geoMapping
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $preisMapping
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $simpleMapping
+Justimmo\Model\Wrapper\V1\RealtyWrapper::protected mapSimpleField(SimpleXMLElement $simpleField, $model)
+Justimmo\Model\Wrapper\V1\RealtyWrapper::public transformList($data)
+Justimmo\Model\Wrapper\V1\RealtyWrapper::public transformSingle($data)
+
+interface Justimmo\Model\Wrapper\WrapperInterface
+Justimmo\Model\Wrapper\WrapperInterface::abstract public transformList($data)
+Justimmo\Model\Wrapper\WrapperInterface::abstract public transformSingle($data)
+
+class Justimmo\Pager\ListPager extends ArrayObject implements Justimmo\Pager\PagerInterface
+Justimmo\Pager\ListPager::protected $maxPerPage
+Justimmo\Pager\ListPager::protected $nbResults
+Justimmo\Pager\ListPager::protected $page
+Justimmo\Pager\ListPager::public getFirstPage()
+Justimmo\Pager\ListPager::public getLastPage()
+Justimmo\Pager\ListPager::public getLinks($nb_links = 5)
+Justimmo\Pager\ListPager::public getMaxPerPage()
+Justimmo\Pager\ListPager::public getNbResults()
+Justimmo\Pager\ListPager::public getPage()
+Justimmo\Pager\ListPager::public haveToPaginate()
+Justimmo\Pager\ListPager::public setMaxPerPage($maxPerPage)
+Justimmo\Pager\ListPager::public setNbResults($nbResults)
+Justimmo\Pager\ListPager::public setPage($page)
+Justimmo\Pager\ListPager::public toKeyValue($keyGetter, $valueGetter)
+
+interface Justimmo\Pager\PagerInterface extends ArrayAccess, Countable, IteratorAggregate, Traversable
+Justimmo\Pager\PagerInterface::abstract public getFirstPage()
+Justimmo\Pager\PagerInterface::abstract public getLastPage()
+Justimmo\Pager\PagerInterface::abstract public getLinks(int $nb_links = 5)
+Justimmo\Pager\PagerInterface::abstract public getMaxPerPage()
+Justimmo\Pager\PagerInterface::abstract public getNbResults()
+Justimmo\Pager\PagerInterface::abstract public getPage()
+Justimmo\Pager\PagerInterface::abstract public haveToPaginate()
+Justimmo\Pager\PagerInterface::abstract public setMaxPerPage(int $maxPerPage)
+Justimmo\Pager\PagerInterface::abstract public setNbResults(int $nbResults)
+Justimmo\Pager\PagerInterface::abstract public setPage(int $page)
+Justimmo\Pager\PagerInterface::abstract public toKeyValue(string $keyGetter, string $valueGetter)
+
+class Justimmo\Request\RealtyInquiryRequest implements Justimmo\Request\RequestInterface
+Justimmo\Request\RealtyInquiryRequest::protected $api
+Justimmo\Request\RealtyInquiryRequest::protected $category
+Justimmo\Request\RealtyInquiryRequest::protected $city
+Justimmo\Request\RealtyInquiryRequest::protected $company
+Justimmo\Request\RealtyInquiryRequest::protected $country
+Justimmo\Request\RealtyInquiryRequest::protected $doubleoptinCompleted
+Justimmo\Request\RealtyInquiryRequest::protected $email
+Justimmo\Request\RealtyInquiryRequest::protected $firstName
+Justimmo\Request\RealtyInquiryRequest::protected $fundingInquiry
+Justimmo\Request\RealtyInquiryRequest::protected $isRealtyOwner
+Justimmo\Request\RealtyInquiryRequest::protected $lastName
+Justimmo\Request\RealtyInquiryRequest::protected $mapper
+Justimmo\Request\RealtyInquiryRequest::protected $message
+Justimmo\Request\RealtyInquiryRequest::protected $newsletter
+Justimmo\Request\RealtyInquiryRequest::protected $phone
+Justimmo\Request\RealtyInquiryRequest::protected $realtyId
+Justimmo\Request\RealtyInquiryRequest::protected $realtyOwnerConsultationRequest
+Justimmo\Request\RealtyInquiryRequest::protected $salutationId
+Justimmo\Request\RealtyInquiryRequest::protected $street
+Justimmo\Request\RealtyInquiryRequest::protected $suffix
+Justimmo\Request\RealtyInquiryRequest::protected $title
+Justimmo\Request\RealtyInquiryRequest::protected $zipCode
+Justimmo\Request\RealtyInquiryRequest::public __construct(Justimmo\Api\JustimmoApiInterface $api, Justimmo\Model\Mapper\MapperInterface $mapper)
+Justimmo\Request\RealtyInquiryRequest::public getCategory()
+Justimmo\Request\RealtyInquiryRequest::public getCity()
+Justimmo\Request\RealtyInquiryRequest::public getCompany()
+Justimmo\Request\RealtyInquiryRequest::public getCountry()
+Justimmo\Request\RealtyInquiryRequest::public getEmail()
+Justimmo\Request\RealtyInquiryRequest::public getFirstName()
+Justimmo\Request\RealtyInquiryRequest::public getIsRealtyOwner()
+Justimmo\Request\RealtyInquiryRequest::public getLastName()
+Justimmo\Request\RealtyInquiryRequest::public getMessage()
+Justimmo\Request\RealtyInquiryRequest::public getPhone()
+Justimmo\Request\RealtyInquiryRequest::public getRealtyId()
+Justimmo\Request\RealtyInquiryRequest::public getRealtyOwnerConsultationRequest()
+Justimmo\Request\RealtyInquiryRequest::public getSalutationId()
+Justimmo\Request\RealtyInquiryRequest::public getStreet()
+Justimmo\Request\RealtyInquiryRequest::public getSuffix()
+Justimmo\Request\RealtyInquiryRequest::public getTitle()
+Justimmo\Request\RealtyInquiryRequest::public getZipCode()
+Justimmo\Request\RealtyInquiryRequest::public isFundingInquiry()
+Justimmo\Request\RealtyInquiryRequest::public registerForNewsletter(array $newsletter, bool $doubleoptinCompleted)
+Justimmo\Request\RealtyInquiryRequest::public send()
+Justimmo\Request\RealtyInquiryRequest::public setCategory($category)
+Justimmo\Request\RealtyInquiryRequest::public setCity($value)
+Justimmo\Request\RealtyInquiryRequest::public setCompany($company)
+Justimmo\Request\RealtyInquiryRequest::public setCountry($value)
+Justimmo\Request\RealtyInquiryRequest::public setEmail($value)
+Justimmo\Request\RealtyInquiryRequest::public setFirstName($value)
+Justimmo\Request\RealtyInquiryRequest::public setFundingInquiry($fundingInquiry)
+Justimmo\Request\RealtyInquiryRequest::public setIsRealtyOwner($isRealtyOwner)
+Justimmo\Request\RealtyInquiryRequest::public setLastName($value)
+Justimmo\Request\RealtyInquiryRequest::public setMessage($value)
+Justimmo\Request\RealtyInquiryRequest::public setPhone($value)
+Justimmo\Request\RealtyInquiryRequest::public setRealtyId($value)
+Justimmo\Request\RealtyInquiryRequest::public setRealtyOwnerConsultationRequest($realtyOwnerConsultationRequest)
+Justimmo\Request\RealtyInquiryRequest::public setSalutationId($salutationId)
+Justimmo\Request\RealtyInquiryRequest::public setStreet($value)
+Justimmo\Request\RealtyInquiryRequest::public setSuffix($suffix)
+Justimmo\Request\RealtyInquiryRequest::public setTitle($title)
+Justimmo\Request\RealtyInquiryRequest::public setZipCode($value)
+
+interface Justimmo\Request\RequestInterface
+Justimmo\Request\RequestInterface::abstract public send()
