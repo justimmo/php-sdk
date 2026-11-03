@@ -84,5 +84,13 @@ $query->filterByPrice(1000);                           // throws: the price filt
 $query->filterByPrice(['min' => 1000, 'max' => 1000]); // fine
 ```
 
-In 2.0.0, strict mode is always on. What strict mode rejects in 1.5.0, 2.0.0 will reject too, so
+In 2.0.0, strict mode is always on. What strict mode rejects today, 2.0.0 will reject too, so
 switching it on now shows what to change before the upgrade.
+
+Since 1.6.0, a request which strict mode would reject emits a deprecation notice
+(`E_USER_DEPRECATED`) while strict mode is off, and is sent as before. Your error log then shows
+what to change, even without switching strict mode on.
+
+Every exception the SDK throws for a call which fails, because the api does not answer, answers
+with an error status, or sends a body the SDK cannot read, implements
+`Justimmo\Exception\JustimmoException`. One `catch (JustimmoException $e)` catches them all.
