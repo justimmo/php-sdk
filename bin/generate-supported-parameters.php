@@ -89,7 +89,7 @@ function readInput(string $file): array
         fail("{$file} is not json");
     }
 
-    foreach (['schema_version', 'spec_version', 'spec_hash', 'endpoints'] as $key) {
+    foreach (['schema_version', 'spec_version', 'spec_hash', 'endpoints', 'user_defined_simplefields'] as $key) {
         if (!isset($document[$key])) {
             fail("{$file} has no {$key}");
         }
@@ -109,6 +109,15 @@ function readInput(string $file): array
             fail("{$file} has no {$endpoint}, which {$call} needs");
         }
     }
+
+    $names = $document['user_defined_simplefields'];
+    if (!is_array($names) || !array_is_list($names) || array_filter($names, 'is_string') !== $names) {
+        fail("{$file}: user_defined_simplefields is not a list of names");
+    }
+
+    // the generated docblock says the list is sorted, so the script sorts it, whatever order the api sends
+    sort($names, SORT_STRING);
+    $document['user_defined_simplefields'] = $names;
 
     return $document;
 }
@@ -177,11 +186,24 @@ final class SupportedParameters
      * here like any other parameter.
      */
     const PARAMETERS = %4$s;
+
+    /**
+     * The names of the user-defined simple fields the api sends: fields Justimmo adds to the
+     * OpenImmo standard, each sent with its name, sorted
+     */
+    const USER_DEFINED_SIMPLE_FIELDS = %5$s;
 }
 
 TEMPLATE;
 
-    return sprintf($template, $document['spec_version'], $document['spec_hash'], export($filters, 2), export($parameters, 2));
+    return sprintf(
+        $template,
+        $document['spec_version'],
+        $document['spec_hash'],
+        export($filters, 2),
+        export($parameters, 2),
+        export($document['user_defined_simplefields'], 2)
+    );
 }
 
 /**
