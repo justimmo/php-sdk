@@ -237,7 +237,7 @@ class SupportedParametersTest extends TestCase
         $this->assertSame(
             $document['spec_hash'],
             SupportedParameters::SPEC_HASH,
-            'SupportedParameters.php is stale. Run php bin/generate-supported-parameters.php'
+            'SupportedParameters.php is stale. Run make supported-parameters'
         );
         $this->assertSame($document['spec_version'], SupportedParameters::SPEC_VERSION);
 
@@ -248,6 +248,16 @@ class SupportedParametersTest extends TestCase
         $this->assertSame(
             $document['endpoints']['/projekt/list']['parameters'],
             SupportedParameters::PARAMETERS['callProjectList']
+        );
+
+        // the names come sorted from the generator; the json is sorted here too, so its order does not matter
+        $names = $document['user_defined_simplefields'];
+        sort($names, SORT_STRING);
+
+        $this->assertSame(
+            $names,
+            SupportedParameters::USER_DEFINED_SIMPLE_FIELDS,
+            'SupportedParameters.php is stale. Run make supported-parameters'
         );
     }
 }

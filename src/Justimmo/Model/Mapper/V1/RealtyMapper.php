@@ -27,434 +27,491 @@ class RealtyMapper extends AbstractMapper
         'SWN' => Realty::ORIENTATION_SOUTH_WEST_NORTH,
     ];
 
+    /**
+     * The standard fields: each arrives as an element of its own, for example the purchase price
+     *
+     * Maps the api's name to the property of Realty and its type. A name the api also sends as a
+     * user-defined simple field is in both lists, with the same entry.
+     */
+    private const STANDARD_FIELD_MAPPING = [
+        'id'                               => [
+            'type' => 'int',
+        ],
+        'objektnummer'                     => [
+            'property' => 'propertyNumber',
+        ],
+        'sonstige_angaben'                 => [
+            'property' => 'otherInformation',
+        ],
+        'titel'                            => [
+            'property' => 'title',
+        ],
+        'dreizeiler'                       => [
+            'property' => 'teaser',
+        ],
+        'naehe'                            => [
+            'property' => 'proximity',
+        ],
+        'objektbeschreibung'               => [
+            'property' => 'description',
+        ],
+        'etage'                            => [
+            'property' => 'tier',
+        ],
+        'stiege'                           => [
+            'property' => 'stair',
+        ],
+        'tuernummer'                       => [
+            'property' => 'doorNumber',
+        ],
+        'plz'                              => [
+            'property' => 'zipCode',
+        ],
+        'ort'                              => [
+            'property' => 'place',
+        ],
+        'kaufpreis'                        => [
+            'property' => 'purchasePrice',
+            'type'     => 'double',
+        ],
+        'kaufpreisnetto'                   => [
+            'property' => 'purchasePriceNet',
+            'type'     => 'double',
+        ],
+        'gesamtmiete'                      => [
+            'property' => 'totalRent',
+            'type'     => 'double',
+        ],
+        'kaufpreis_pro_qm'                 => [
+            'property' => 'purchasePricePerSqm',
+            'type'     => 'double',
+        ],
+        'mietpreis_pro_qm'                 => [
+            'property' => 'rentPerSqm',
+            'type'     => 'double',
+        ],
+        'betriebskosten_pro_qm'            => [
+            'property' => 'operatingCostsPerSqm',
+            'type'     => 'double',
+        ],
+        'freitext_preis'                   => [
+            'property' => 'costsExplanation',
+        ],
+        'nutzflaeche'                      => [
+            'property' => 'floorArea',
+            'type'     => 'double',
+        ],
+        'teilbar_ab'                       => [
+            'property' => 'floorAreaFrom',
+            'type'     => 'double',
+        ],
+        'grundflaeche'                     => [
+            'property' => 'surfaceArea',
+            'type'     => 'double',
+        ],
+        'verbaubare_flaeche'               => [
+            'property' => 'buildableArea',
+            'type'     => 'double',
+        ],
+        'verkaufsflaeche'                  => [
+            'property' => 'salesArea',
+            'type'     => 'double',
+        ],
+        'wohnflaeche'                      => [
+            'property' => 'livingArea',
+            'type'     => 'double',
+        ],
+        'gesamtflaeche'                    => [
+            'property' => 'totalArea',
+            'type'     => 'double',
+        ],
+        'projekt_id'                       => [
+            'property' => 'projectId',
+            'type'     => 'int',
+        ],
+        'regionaler_zusatz'                => [
+            'property' => 'regionalAddition',
+        ],
+        'gemarkung'                        => [
+            'property' => 'district',
+        ],
+        'flur'                             => [
+            'property' => 'hallway',
+        ],
+        'flurstueck'                       => [
+            'property' => 'landParcel',
+        ],
+        'bundesland'                       => [
+            'property' => 'federalState',
+        ],
+        'land'                             => [
+            'property' => 'country',
+        ],
+        'strasse'                          => [
+            'property' => 'street',
+        ],
+        'hausnummer'                       => [
+            'property' => 'houseNumber',
+        ],
+        'anzahl_etagen'                    => [
+            'property' => 'tierCount',
+            'type'     => 'int',
+        ],
+        'kaltmiete'                        => [
+            'property' => 'totalRentWithoutHeating',
+            'type'     => 'double',
+        ],
+        'nettokaltmiete'                   => [
+            'property' => 'netRent',
+            'type'     => 'double',
+        ],
+        'nebenkosten'                      => [
+            'property' => 'additionalCharges',
+            'type'     => 'double',
+        ],
+        'heizkosten'                       => [
+            'property' => 'heatingCosts',
+            'type'     => 'double',
+        ],
+        'wohnbaufoerderung'                => [
+            'property' => 'buildingSubsidies',
+            'type'     => 'double',
+        ],
+        'rendite'                          => [
+            'property' => 'yield',
+            'type'     => 'double',
+        ],
+        'nettoertrag_jaehrlich'            => [
+            'property' => 'netEarningYearly',
+            'type'     => 'double',
+        ],
+        'nettoertrag_monatlich'            => [
+            'property' => 'netEarningMonthly',
+            'type'     => 'double',
+        ],
+        'gesamtmiete_ust'                  => [
+            'property' => 'totalRentVat',
+            'type'     => 'double',
+        ],
+        'kaution'                          => [
+            'property' => 'surety',
+            'type'     => 'double',
+        ],
+        'kaution_text'                     => [
+            'property' => 'surety_text',
+            'type'     => 'string',
+        ],
+        'abstand'                          => [
+            'property' => 'compensation',
+            'type'     => 'double',
+        ],
+        'anzahl_zimmer'                    => [
+            'property' => 'roomCount',
+            'type'     => 'double',
+        ],
+        'anzahl_badezimmer'                => [
+            'property' => 'bathroomCount',
+            'type'     => 'int',
+        ],
+        'anzahl_sep_wc'                    => [
+            'property' => 'toiletRoomCount',
+            'type'     => 'int',
+        ],
+        'anzahl_balkon_terrassen'          => [
+            'property' => 'balconyTerraceCount',
+            'type'     => 'iny',
+        ],
+        'balkon_terrasse_flaeche'          => [
+            'property' => 'balconyTerraceArea',
+            'type'     => 'double',
+        ],
+        'anzahl_balkone'                   => [
+            'property' => 'balconyCount',
+            'type'     => 'int',
+        ],
+        'anzahl_balkons'                   => [
+            'property' => 'balconyCount',
+            'type'     => 'int',
+        ],
+        'anzahl_terrassen'                 => [
+            'property' => 'terraceCount',
+            'type'     => 'int',
+        ],
+        'anzahl_garten'                    => [
+            'property' => 'gardenCount',
+            'type'     => 'int',
+        ],
+        'gartenflaeche'                    => [
+            'property' => 'gardenArea',
+            'type'     => 'double',
+        ],
+        'anzahl_keller'                    => [
+            'property' => 'cellarCount',
+            'type'     => 'int',
+        ],
+        'kellerflaeche'                    => [
+            'property' => 'cellarArea',
+            'type'     => 'double',
+        ],
+        'bueroflaeche'                     => [
+            'property' => 'officeArea',
+            'type'     => 'double',
+        ],
+        'lagerflaeche'                     => [
+            'property' => 'storageArea',
+            'type'     => 'double',
+        ],
+        'anzahl_loggias'                   => [
+            'property' => 'loggiaCount',
+            'type'     => 'int',
+        ],
+        'loggias_flaeche'                  => [
+            'property' => 'loggiaArea',
+            'type'     => 'double',
+        ],
+        'balkons_flaeche'                  => [
+            'property' => 'balconyArea',
+            'type'     => 'double',
+        ],
+        'terrassen_flaeche'                => [
+            'property' => 'terraceArea',
+            'type'     => 'double',
+        ],
+        'anzahl_garagen'                   => [
+            'property' => 'garageCount',
+            'type'     => 'int',
+        ],
+        'garagen_flaeche'                  => [
+            'property' => 'garageArea',
+            'type'     => 'double',
+        ],
+        'anzahl_stellplaetze'              => [
+            'property' => 'parkingCount',
+            'type'     => 'int',
+        ],
+        'stellplatz_flaeche'               => [
+            'property' => 'parkingArea',
+            'type'     => 'double',
+        ],
+        'anzahl_abstellraum'               => [
+            'property' => 'storeRoomCount',
+            'type'     => 'int',
+        ],
+        'raumhoehe'                        => [
+            'property' => 'ceilingHeight',
+            'type'     => 'double',
+        ],
+        'justimmo_freitext1'               => [
+            'property' => 'freetext1',
+        ],
+        'justimmo_freitext2'               => [
+            'property' => 'freetext2',
+        ],
+        'justimmo_freitext3'               => [
+            'property' => 'freetext3',
+        ],
+        'justimmo_freitext4'               => [
+            'property' => 'freetext4',
+        ],
+        'lage'                             => [
+            'property' => 'locality',
+        ],
+        'aussen_courtage'                  => [
+            'property' => 'commission',
+        ],
+        'status_id'                        => [
+            'type' => 'int',
+        ],
+        'vermittelt_am'                    => [
+            'property' => 'procuredAt',
+            'type'     => 'datetime',
+        ],
+        'erstellt_am'                      => [
+            'property' => 'createdAt',
+            'type'     => 'datetime',
+        ],
+        'aktualisiert_am'                  => [
+            'property' => 'updatedAt',
+            'type'     => 'datetime',
+        ],
+        'erschliessungskosten'             => [
+            'property' => 'infrastructureProvision',
+            'type'     => 'double',
+        ],
+    ];
+
+    /**
+     * The user-defined simple fields: fields Justimmo adds to the standard, each sent with its name
+     *
+     * Maps the api's name to the property of Realty and its type. Every name here is one the api
+     * sends. UserDefinedSimpleFieldsTest compares this list with
+     * SupportedParameters::USER_DEFINED_SIMPLE_FIELDS and keeps the names the SDK leaves out.
+     */
+    private const USER_DEFINED_SIMPLE_FIELD_MAPPING = [
+        'etage'                            => [
+            'property' => 'tier',
+        ],
+        'stiege'                           => [
+            'property' => 'stair',
+        ],
+        'verbaubare_flaeche'               => [
+            'property' => 'buildableArea',
+            'type'     => 'double',
+        ],
+        'befristete_flaeche'               => [
+            'property' => 'shortTermArea',
+            'type'     => 'double',
+        ],
+        'gewichtete_flaeche'               => [
+            'property' => 'weightedArea',
+            'type'     => 'double',
+        ],
+        'rohdachboden_flaeche'             => [
+            'property' => 'undevelopedAtticArea',
+            'type'     => 'double',
+        ],
+        'wohnbaufoerderung'                => [
+            'property' => 'buildingSubsidies',
+            'type'     => 'double',
+        ],
+        'grunderwerbssteuer'               => [
+            'property' => 'transferTax',
+            'type'     => 'double',
+        ],
+        'grundbucheintragung'              => [
+            'property' => 'landRegistration',
+            'type'     => 'double',
+        ],
+        'vertragserrichtungsgebuehr'       => [
+            'property' => 'contractEstablishmentCosts',
+            'type'     => 'string',
+        ],
+        'anzahl_garagen'                   => [
+            'property' => 'garageCount',
+            'type'     => 'int',
+        ],
+        'raumhoehe'                        => [
+            'property' => 'ceilingHeight',
+            'type'     => 'double',
+        ],
+        'hallenhoehe'                      => [
+            'property' => 'hallHeight',
+            'type'     => 'double',
+        ],
+        'epass_hwbwert'                    => [
+            'property' => 'thermalHeatRequirementValue',
+            'type'     => 'double',
+        ],
+        'epass_hwbklasse'                  => [
+            'property' => 'thermalHeatRequirementClass',
+            'type'     => 'string',
+        ],
+        'epass_fgeewert'                   => [
+            'property' => 'energyEfficiencyFactorValue',
+            'type'     => 'double',
+        ],
+        'epass_fgeeklasse'                 => [
+            'property' => 'energyEfficiencyFactorClass',
+            'type'     => 'string',
+        ],
+        'objektart_id'                     => [
+            'property' => 'realtyTypeId',
+            'type'     => 'int',
+        ],
+        'objektart_name'                   => [
+            'property' => 'realtyTypeName',
+            'type'     => 'string',
+        ],
+        'sub_objektart_id'                 => [
+            'property' => 'subRealtyTypeId',
+            'type'     => 'int',
+        ],
+        'sub_objektart_name'               => [
+            'property' => 'subRealtyTypeName',
+            'type'     => 'string',
+        ],
+        'bauart_id'                        => [
+            'property' => 'styleOfBuildingId',
+            'type'     => 'int',
+        ],
+        'ji_eigentumsform_id'              => [
+            'property' => 'ownershipTypeId',
+            'type'     => 'int',
+        ],
+        'vermittelt_am'                    => [
+            'property' => 'procuredAt',
+            'type'     => 'datetime',
+        ],
+        'erstellt_am'                      => [
+            'property' => 'createdAt',
+            'type'     => 'datetime',
+        ],
+        'aktualisiert_am'                  => [
+            'property' => 'updatedAt',
+            'type'     => 'datetime',
+        ],
+        'geokoordinaten_laengengrad_exakt' => [
+            'property' => 'longitudePrecise',
+            'type'     => 'double',
+        ],
+        'geokoordinaten_breitengrad_exakt' => [
+            'property' => 'latitudePrecise',
+            'type'     => 'double',
+        ],
+        'ungenaue_verortung_laengengrad'   => [
+            'property' => 'longitudeFuzzy',
+            'type'     => 'double',
+        ],
+        'ungenaue_verortung_breitengrad'   => [
+            'property' => 'latitudeFuzzy',
+            'type'     => 'double',
+        ],
+        'ungenaue_verortung_radius'        => [
+            'property' => 'radiusFuzzy',
+            'type'     => 'int',
+        ],
+        'ausrichtung'                      => [
+            'property' => 'orientation',
+            'type'     => 'string',
+        ],
+        'parent_id'                        => [
+            'property' => 'parentId',
+            'type'     => 'int',
+        ],
+        'realty_system_type'               => [
+            'property' => 'realtySystemType',
+            'type'     => 'string',
+        ],
+        'ji_anzeige_in_suchergebnis'       => [
+            'property' => 'showInSearch',
+            'type'     => 'boolean',
+        ],
+        'ji_is_reference'                  => [
+            'property' => 'isReference',
+            'type'     => 'boolean',
+        ],
+        'monatlichekostenbrutto'           => [
+            'property' => 'monthlyCosts',
+            'type'     => 'double',
+        ],
+        'finanzierungsbeitrag'             => [
+            'property' => 'financialContribution',
+            'type'     => 'double',
+        ],
+        'mietkauf'                         => [
+            'property' => 'rentWithPurchaseOption',
+            'type'     => 'boolean',
+        ],
+    ];
+
+    /**
+     * Both lists in one, built once when the class loads. A name in both has the same entry in both
+     */
+    private const MAPPING = self::STANDARD_FIELD_MAPPING + self::USER_DEFINED_SIMPLE_FIELD_MAPPING;
+
     protected function getMapping()
     {
-        return [
-            'id'                               => [
-                'type' => 'int',
-            ],
-            'objektnummer'                     => [
-                'property' => 'propertyNumber',
-            ],
-            'sonstige_angaben'                 => [
-                'property' => 'otherInformation',
-            ],
-            'titel'                            => [
-                'property' => 'title',
-            ],
-            'dreizeiler'                       => [
-                'property' => 'teaser',
-            ],
-            'naehe'                            => [
-                'property' => 'proximity',
-            ],
-            'objektbeschreibung'               => [
-                'property' => 'description',
-            ],
-            'etage'                            => [
-                'property' => 'tier',
-            ],
-            'stiege'                           => [
-                'property' => 'stair',
-            ],
-            'tuernummer'                       => [
-                'property' => 'doorNumber',
-            ],
-            'plz'                              => [
-                'property' => 'zipCode',
-            ],
-            'ort'                              => [
-                'property' => 'place',
-            ],
-            'kaufpreis'                        => [
-                'property' => 'purchasePrice',
-                'type'     => 'double',
-            ],
-            'kaufpreisnetto'                   => [
-                'property' => 'purchasePriceNet',
-                'type'     => 'double',
-            ],
-            'gesamtmiete'                      => [
-                'property' => 'totalRent',
-                'type'     => 'double',
-            ],
-            'kaufpreis_pro_qm'                 => [
-                'property' => 'purchasePricePerSqm',
-                'type'     => 'double',
-            ],
-            'mietpreis_pro_qm'                 => [
-                'property' => 'rentPerSqm',
-                'type'     => 'double',
-            ],
-            'betriebskosten_pro_qm'            => [
-                'property' => 'operatingCostsPerSqm',
-                'type'     => 'double',
-            ],
-            'freitext_preis'                   => [
-                'property' => 'costsExplanation',
-            ],
-            'nutzflaeche'                      => [
-                'property' => 'floorArea',
-                'type'     => 'double',
-            ],
-            'teilbar_ab'                       => [
-                'property' => 'floorAreaFrom',
-                'type'     => 'double',
-            ],
-            'grundflaeche'                     => [
-                'property' => 'surfaceArea',
-                'type'     => 'double',
-            ],
-            'verbaubare_flaeche'               => [
-                'property' => 'buildableArea',
-                'type'     => 'double',
-            ],
-            'verkaufsflaeche'                  => [
-                'property' => 'salesArea',
-                'type'     => 'double',
-            ],
-            'befristete_flaeche'               => [
-                'property' => 'shortTermArea',
-                'type'     => 'double',
-            ],
-            'gewichtete_flaeche'               => [
-                'property' => 'weightedArea',
-                'type'     => 'double',
-            ],
-            'rohdachboden_flaeche'             => [
-                'property' => 'undevelopedAtticArea',
-                'type'     => 'double',
-            ],
-            'wohnflaeche'                      => [
-                'property' => 'livingArea',
-                'type'     => 'double',
-            ],
-            'gesamtflaeche'                    => [
-                'property' => 'totalArea',
-                'type'     => 'double',
-            ],
-            'projekt_id'                       => [
-                'property' => 'projectId',
-                'type'     => 'int',
-            ],
-            'regionaler_zusatz'                => [
-                'property' => 'regionalAddition',
-            ],
-            'gemarkung'                        => [
-                'property' => 'district',
-            ],
-            'flur'                             => [
-                'property' => 'hallway',
-            ],
-            'flurstueck'                       => [
-                'property' => 'landParcel',
-            ],
-            'bundesland'                       => [
-                'property' => 'federalState',
-            ],
-            'land'                             => [
-                'property' => 'country',
-            ],
-            'strasse'                          => [
-                'property' => 'street',
-            ],
-            'hausnummer'                       => [
-                'property' => 'houseNumber',
-            ],
-            'anzahl_etagen'                    => [
-                'property' => 'tierCount',
-                'type'     => 'int',
-            ],
-            'kaltmiete'                        => [
-                'property' => 'totalRentWithoutHeating',
-                'type'     => 'double',
-            ],
-            'nettokaltmiete'                   => [
-                'property' => 'netRent',
-                'type'     => 'double',
-            ],
-            'nebenkosten'                      => [
-                'property' => 'additionalCharges',
-                'type'     => 'double',
-            ],
-            'heizkosten'                       => [
-                'property' => 'heatingCosts',
-                'type'     => 'double',
-            ],
-            'wohnbaufoerderung'                => [
-                'property' => 'buildingSubsidies',
-                'type'     => 'double',
-            ],
-            'rendite'                          => [
-                'property' => 'yield',
-                'type'     => 'double',
-            ],
-            'nettoertrag_jaehrlich'            => [
-                'property' => 'netEarningYearly',
-                'type'     => 'double',
-            ],
-            'nettoertrag_monatlich'            => [
-                'property' => 'netEarningMonthly',
-                'type'     => 'double',
-            ],
-            'gesamtmiete_ust'                  => [
-                'property' => 'totalRentVat',
-                'type'     => 'double',
-            ],
-            'grunderwerbssteuer'               => [
-                'property' => 'transferTax',
-                'type'     => 'double',
-            ],
-            'grundbucheintragung'              => [
-                'property' => 'landRegistration',
-                'type'     => 'double',
-            ],
-            'vertragserrichtungsgebuehr'       => [
-                'property' => 'contractEstablishmentCosts',
-                'type'     => 'string',
-            ],
-            'kaution'                          => [
-                'property' => 'surety',
-                'type'     => 'double',
-            ],
-            'kaution_text'                     => [
-                'property' => 'surety_text',
-                'type'     => 'string',
-            ],
-            'abstand'                          => [
-                'property' => 'compensation',
-                'type'     => 'double',
-            ],
-            'anzahl_zimmer'                    => [
-                'property' => 'roomCount',
-                'type'     => 'double',
-            ],
-            'anzahl_badezimmer'                => [
-                'property' => 'bathroomCount',
-                'type'     => 'int',
-            ],
-            'anzahl_sep_wc'                    => [
-                'property' => 'toiletRoomCount',
-                'type'     => 'int',
-            ],
-            'anzahl_balkon_terrassen'          => [
-                'property' => 'balconyTerraceCount',
-                'type'     => 'iny',
-            ],
-            'balkon_terrasse_flaeche'          => [
-                'property' => 'balconyTerraceArea',
-                'type'     => 'double',
-            ],
-            'anzahl_balkone'                   => [
-                'property' => 'balconyCount',
-                'type'     => 'int',
-            ],
-            'anzahl_balkons'                   => [
-                'property' => 'balconyCount',
-                'type'     => 'int',
-            ],
-            'anzahl_terrassen'                 => [
-                'property' => 'terraceCount',
-                'type'     => 'int',
-            ],
-            'anzahl_garten'                    => [
-                'property' => 'gardenCount',
-                'type'     => 'int',
-            ],
-            'gartenflaeche'                    => [
-                'property' => 'gardenArea',
-                'type'     => 'double',
-            ],
-            'anzahl_keller'                    => [
-                'property' => 'cellarCount',
-                'type'     => 'int',
-            ],
-            'kellerflaeche'                    => [
-                'property' => 'cellarArea',
-                'type'     => 'double',
-            ],
-            'bueroflaeche'                     => [
-                'property' => 'officeArea',
-                'type'     => 'double',
-            ],
-            'lagerflaeche'                     => [
-                'property' => 'storageArea',
-                'type'     => 'double',
-            ],
-            'anzahl_loggias'                   => [
-                'property' => 'loggiaCount',
-                'type'     => 'int',
-            ],
-            'loggias_flaeche'                  => [
-                'property' => 'loggiaArea',
-                'type'     => 'double',
-            ],
-            'balkons_flaeche'                  => [
-                'property' => 'balconyArea',
-                'type'     => 'double',
-            ],
-            'terrassen_flaeche'                => [
-                'property' => 'terraceArea',
-                'type'     => 'double',
-            ],
-            'anzahl_garagen'                   => [
-                'property' => 'garageCount',
-                'type'     => 'int',
-            ],
-            'garagen_flaeche'                  => [
-                'property' => 'garageArea',
-                'type'     => 'double',
-            ],
-            'anzahl_stellplaetze'              => [
-                'property' => 'parkingCount',
-                'type'     => 'int',
-            ],
-            'stellplatz_flaeche'               => [
-                'property' => 'parkingArea',
-                'type'     => 'double',
-            ],
-            'anzahl_abstellraum'               => [
-                'property' => 'storeRoomCount',
-                'type'     => 'int',
-            ],
-            'raumhoehe'                        => [
-                'property' => 'ceilingHeight',
-                'type'     => 'double',
-            ],
-            'hallenhoehe'                      => [
-                'property' => 'hallHeight',
-                'type'     => 'double',
-            ],
-            'epass_hwbwert'                    => [
-                'property' => 'thermalHeatRequirementValue',
-                'type'     => 'double',
-            ],
-            'epass_hwbklasse'                  => [
-                'property' => 'thermalHeatRequirementClass',
-                'type'     => 'string',
-            ],
-            'epass_fgeewert'                   => [
-                'property' => 'energyEfficiencyFactorValue',
-                'type'     => 'double',
-            ],
-            'epass_fgeeklasse'                 => [
-                'property' => 'energyEfficiencyFactorClass',
-                'type'     => 'string',
-            ],
-            'justimmo_freitext1'               => [
-                'property' => 'freetext1',
-            ],
-            'justimmo_freitext2'               => [
-                'property' => 'freetext2',
-            ],
-            'justimmo_freitext3'               => [
-                'property' => 'freetext3',
-            ],
-            'justimmo_freitext4'               => [
-                'property' => 'freetext4',
-            ],
-            'lage'                             => [
-                'property' => 'locality',
-            ],
-            'aussen_courtage'                  => [
-                'property' => 'commission',
-            ],
-            'status_id'                        => [
-                'type' => 'int',
-            ],
-            'objektart_id'                     => [
-                'property' => 'realtyTypeId',
-                'type'     => 'int',
-            ],
-            'objektart_name'                   => [
-                'property' => 'realtyTypeName',
-                'type'     => 'string',
-            ],
-            'sub_objektart_id'                 => [
-                'property' => 'subRealtyTypeId',
-                'type'     => 'int',
-            ],
-            'sub_objektart_name'               => [
-                'property' => 'subRealtyTypeName',
-                'type'     => 'string',
-            ],
-            'bauart_id'                        => [
-                'property' => 'styleOfBuildingId',
-                'type'     => 'int',
-            ],
-            'ji_eigentumsform_id'              => [
-                'property' => 'ownershipTypeId',
-                'type'     => 'int',
-            ],
-            'vermittelt_am'                    => [
-                'property' => 'procuredAt',
-                'type'     => 'datetime',
-            ],
-            'erstellt_am'                      => [
-                'property' => 'createdAt',
-                'type'     => 'datetime',
-            ],
-            'aktualisiert_am'                  => [
-                'property' => 'updatedAt',
-                'type'     => 'datetime',
-            ],
-            'geokoordinaten_laengengrad_exakt' => [
-                'property' => 'longitudePrecise',
-                'type'     => 'double',
-            ],
-            'geokoordinaten_breitengrad_exakt' => [
-                'property' => 'latitudePrecise',
-                'type'     => 'double',
-            ],
-            'ungenaue_verortung_laengengrad'   => [
-                'property' => 'longitudeFuzzy',
-                'type'     => 'double',
-            ],
-            'ungenaue_verortung_breitengrad'   => [
-                'property' => 'latitudeFuzzy',
-                'type'     => 'double',
-            ],
-            'ungenaue_verortung_radius'        => [
-                'property' => 'radiusFuzzy',
-                'type'     => 'int',
-            ],
-            'ausrichtung'                      => [
-                'property' => 'orientation',
-                'type'     => 'string',
-            ],
-            'parent_id'                        => [
-                'property' => 'parentId',
-                'type'     => 'int',
-            ],
-            'realty_system_type'               => [
-                'property' => 'realtySystemType',
-                'type'     => 'string',
-            ],
-            'ji_anzeige_in_suchergebnis'       => [
-                'property' => 'showInSearch',
-                'type'     => 'boolean',
-            ],
-            'ji_is_reference'                  => [
-                'property' => 'isReference',
-                'type'     => 'boolean',
-            ],
-            'monatlichekostenbrutto'           => [
-                'property' => 'monthlyCosts',
-                'type'     => 'double',
-            ],
-            'finanzierungsbeitrag'             => [
-                'property' => 'financialContribution',
-                'type'     => 'double',
-            ],
-            'erschliessungskosten'             => [
-                'property' => 'infrastructureProvision',
-                'type'     => 'double',
-            ],
-            'mietkauf'                         => [
-                'property' => 'rentWithPurchaseOption',
-                'type'     => 'boolean',
-            ],
-        ];
+        return self::MAPPING;
     }
 
     /**

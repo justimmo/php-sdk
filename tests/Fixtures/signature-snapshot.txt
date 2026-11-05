@@ -450,6 +450,7 @@ Justimmo\Model\Mapper\V1\SupportedParameters::public const FILTERS
 Justimmo\Model\Mapper\V1\SupportedParameters::public const PARAMETERS
 Justimmo\Model\Mapper\V1\SupportedParameters::public const SPEC_HASH
 Justimmo\Model\Mapper\V1\SupportedParameters::public const SPEC_VERSION
+Justimmo\Model\Mapper\V1\SupportedParameters::public const USER_DEFINED_SIMPLE_FIELDS
 
 interface Justimmo\Model\ModelInterface
 
