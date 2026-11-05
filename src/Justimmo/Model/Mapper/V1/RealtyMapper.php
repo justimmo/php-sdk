@@ -502,6 +502,28 @@ class RealtyMapper extends AbstractMapper
             'property' => 'rentWithPurchaseOption',
             'type'     => 'boolean',
         ],
+        'erstauftraggeberprinzip'          => [
+            'property' => 'principleOfFirstInstruction',
+            'type'     => 'boolean',
+        ],
+        'belagsfertig'                     => [
+            'property' => 'readyForFinishing',
+            'type'     => 'boolean',
+        ],
+        'schluesselfertig'                 => [
+            'property' => 'turnkey',
+            'type'     => 'boolean',
+        ],
+        'url'                              => [
+            'property' => 'detailUrl',
+        ],
+        'ji_completion_date'               => [
+            'property' => 'completionDate',
+            'type'     => 'datetime',
+        ],
+        'projekt_url'                      => [
+            'property' => 'projectUrl',
+        ],
     ];
 
     /**

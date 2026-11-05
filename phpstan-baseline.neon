@@ -1855,6 +1855,18 @@ parameters:
 			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
 
 		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:mapSimpleField\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
+			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\AbstractWrapper\:\:mapSimpleField\(\) has parameter \$model with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Justimmo/Model/Wrapper/V1/AbstractWrapper.php
+
+		-
 			message: '#^Parameter \#1 \$description of method Justimmo\\Model\\Attachment\:\:setDescription\(\) expects null, DateTime\|float\|int\|string\|null given\.$#'
 			identifier: argument.type
 			count: 2
@@ -1979,18 +1991,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: src/Justimmo/Model/Wrapper/V1/ProjectWrapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:mapSimpleField\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
-
-		-
-			message: '#^Method Justimmo\\Model\\Wrapper\\V1\\RealtyWrapper\:\:mapSimpleField\(\) has parameter \$model with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/Justimmo/Model/Wrapper/V1/RealtyWrapper.php
 
 		-
 			message: '#^Parameter \#1 \$baujahr of method Justimmo\\Model\\Realty\:\:setYearBuilt\(\) expects int\|null, DateTime\|float\|int\|string\|null given\.$#'

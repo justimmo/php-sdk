@@ -512,27 +512,4 @@ class RealtyWrapper extends AbstractWrapper
 
         return $objekt;
     }
-
-    /**
-     * @param SimpleXMLElement $simpleField
-     * @param                   $model
-     */
-    protected function mapSimpleField(SimpleXMLElement $simpleField, $model)
-    {
-        $attributes = $this->attributesToArray($simpleField);
-        if (array_key_exists('feldname', $attributes)) {
-            $setter = $this->mapper->getSetter($attributes['feldname']);
-
-            if ($this->isSetByNode($model, $setter)) {
-                return;
-            }
-
-            if (method_exists($this->mapper, $setter)) {
-                $this->mapper->$setter($simpleField, $model);
-
-            } elseif (method_exists($model, $setter)) {
-                $model->$setter($this->cast($simpleField, $this->mapper->getType($attributes['feldname'])));
-            }
-        }
-    }
 }

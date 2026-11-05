@@ -2,6 +2,7 @@
 
 namespace Justimmo\Tests\Mapper\V1;
 
+use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Mapper\V1\SupportedParameters;
 use Justimmo\Tests\TestCase;
@@ -37,15 +38,6 @@ class UserDefinedSimpleFieldsTest extends TestCase
         'ji_kundennummer',                      // the tenant id of the account which asks
         'ji_acquisition_state',                 // only on acquisitions, which are not marketed
         'moeblierung',                          // only in the feed of a single customer
-        // a getter follows in this release
-        'erstauftraggeberprinzip',
-        'belagsfertig',
-        'schluesselfertig',
-        'url',
-        'ji_completion_date',
-        'projekt_url',
-        'immocard_id',
-        'immocard_firma_id',
     ];
 
     /**
@@ -79,28 +71,34 @@ class UserDefinedSimpleFieldsTest extends TestCase
      */
     public function testANameInBothListsHasTheSameEntry(): void
     {
-        $standard = self::constant('STANDARD_FIELD_MAPPING');
+        $standard = self::constant(RealtyMapper::class, 'STANDARD_FIELD_MAPPING');
+        $realty   = self::constant(RealtyMapper::class, 'USER_DEFINED_SIMPLE_FIELD_MAPPING');
 
-        foreach (array_intersect_key(self::mapping(), $standard) as $name => $entry) {
+        foreach (array_intersect_key($realty, $standard) as $name => $entry) {
             $this->assertSame($standard[$name], $entry, $name);
         }
     }
 
     /**
+     * The user-defined simple fields the SDK reads, of a realty and of a contact person
+     *
      * @return array<string, array<string, string>>
      */
     private static function mapping(): array
     {
-        return self::constant('USER_DEFINED_SIMPLE_FIELD_MAPPING');
+        return self::constant(RealtyMapper::class, 'USER_DEFINED_SIMPLE_FIELD_MAPPING')
+            + self::constant(EmployeeMapper::class, 'USER_DEFINED_SIMPLE_FIELD_MAPPING');
     }
 
     /**
-     * A private constant of RealtyMapper
+     * A private constant of a mapper
+     *
+     * @param class-string $class
      *
      * @return array<string, array<string, string>>
      */
-    private static function constant(string $name): array
+    private static function constant(string $class, string $name): array
     {
-        return (new \ReflectionClassConstant(RealtyMapper::class, $name))->getValue();
+        return (new \ReflectionClassConstant($class, $name))->getValue();
     }
 }

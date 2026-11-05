@@ -104,6 +104,12 @@ class EmployeeWrapper extends AbstractWrapper
             $this->mapAttachmentGroup($xml->anhaenge->anhang, $mitarbeiter);
         }
 
+        // the user-defined simple fields of a contact person. A field the standard fields have
+        // already filled is left alone, as for a realty
+        foreach ($xml->user_defined_simplefield as $simpleField) {
+            $this->mapSimpleField($simpleField, $mitarbeiter);
+        }
+
         return $mitarbeiter;
     }
 
