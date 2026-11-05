@@ -41,6 +41,18 @@ class Realty implements ModelInterface
 
     protected ?string $tierDescription = null;
 
+    protected ?bool $principleOfFirstInstruction = null;
+
+    protected ?bool $readyForFinishing = null;
+
+    protected ?bool $turnkey = null;
+
+    protected ?string $detailUrl = null;
+
+    protected ?\DateTime $completionDate = null;
+
+    protected ?string $projectUrl = null;
+
     protected $doorNumber;
 
     protected $zipCode;
@@ -798,6 +810,116 @@ class Realty implements ModelInterface
     public function getTierDescription(): ?string
     {
         return $this->tierDescription;
+    }
+
+    public function setPrincipleOfFirstInstruction(?bool $principleOfFirstInstruction): static
+    {
+        $this->principleOfFirstInstruction = $principleOfFirstInstruction;
+
+        return $this;
+    }
+
+    /**
+     * Whether the first-client principle applies: in Austria, the landlord who first instructed the
+     * agent pays the commission of a rental. Null when the realty does not say
+     *
+     * Source: the user-defined simple field erstauftraggeberprinzip
+     */
+    public function getPrincipleOfFirstInstruction(): ?bool
+    {
+        return $this->principleOfFirstInstruction;
+    }
+
+    public function setReadyForFinishing(?bool $readyForFinishing): static
+    {
+        $this->readyForFinishing = $readyForFinishing;
+
+        return $this;
+    }
+
+    /**
+     * Whether the realty is ready for finishing: the building work is done, but the floor coverings
+     * are still to be laid, usually chosen by the buyer. Null when the realty does not say
+     *
+     * Source: the user-defined simple field belagsfertig
+     */
+    public function getReadyForFinishing(): ?bool
+    {
+        return $this->readyForFinishing;
+    }
+
+    public function setTurnkey(?bool $turnkey): static
+    {
+        $this->turnkey = $turnkey;
+
+        return $this;
+    }
+
+    /**
+     * Whether the realty is handed over turnkey. Null when the realty does not say
+     *
+     * Source: the user-defined simple field schluesselfertig
+     */
+    public function getTurnkey(): ?bool
+    {
+        return $this->turnkey;
+    }
+
+    public function setDetailUrl(?string $detailUrl): static
+    {
+        $this->detailUrl = $detailUrl;
+
+        return $this;
+    }
+
+    /**
+     * The address of the realty's detail page on the website of the tenant, null when the tenant has
+     * none
+     *
+     * Source: the user-defined simple field url
+     */
+    public function getDetailUrl(): ?string
+    {
+        return $this->detailUrl;
+    }
+
+    public function setCompletionDate(?\DateTime $completionDate): static
+    {
+        $this->completionDate = $completionDate;
+
+        return $this;
+    }
+
+    /**
+     * The date the realty is completed, formatted with $format, or the DateTime itself when $format
+     * is null. Project::getCompletionDate() returns the same for a project
+     *
+     * Source: the user-defined simple field ji_completion_date
+     */
+    public function getCompletionDate(?string $format = 'Y-m-d'): \DateTime|string|null
+    {
+        if ($this->completionDate instanceof \DateTime && $format !== null) {
+            return $this->completionDate->format($format);
+        }
+
+        return $this->completionDate;
+    }
+
+    public function setProjectUrl(?string $projectUrl): static
+    {
+        $this->projectUrl = $projectUrl;
+
+        return $this;
+    }
+
+    /**
+     * The address of the project the realty belongs to: the first link of the type project url
+     *
+     * Source: the user-defined simple field projekt_url
+     */
+    public function getProjectUrl(): ?string
+    {
+        return $this->projectUrl;
     }
 
     /**

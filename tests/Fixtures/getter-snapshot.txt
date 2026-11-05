@@ -192,6 +192,7 @@ realty_detail.xml
     getCellarCount(): 330
     getCommission(): 'preise.aussen_courtage'
     getCompensation(): 1013.5
+    getCompletionDate(): '2027-05-11'
     getCondition(): 'TEIL_VOLLRENOVIERT'
     getContact(): Justimmo\Model\Employee
       getAttachments(): array(1)
@@ -220,6 +221,8 @@ realty_detail.xml
       getFax(): '+43 1 2010002'
       getFirstName(): 'kontaktperson.vorname'
       getId(): 2012
+      getImmobiliencardId(): 'udsf.immocard_id'
+      getImmobiliencardUid(): 'udsf.immocard_firma_id'
       getLastName(): 'kontaktperson.name'
       getLinks(): array(0)
       getMobile(): '+43 664 2010003'
@@ -270,6 +273,7 @@ realty_detail.xml
     getCreatedAt(): '2027-05-23 10:00:23'
     getCurrency(): 'CHF'
     getDescription(): '<p>freitexte.objektbeschreibung</p>'
+    getDetailUrl(): 'https://example.com/udsf/url'
     getDistrict(): null
     getDocuments(): array(1)
       [0]: Justimmo\Model\Attachment
@@ -554,8 +558,10 @@ realty_detail.xml
     getPoliticalDistrict(): Justimmo\Model\PoliticalDistrict
       $id: 108
       $name: 'udsf.politischer_bezirk'
+    getPrincipleOfFirstInstruction(): true
     getProcuredAt(): '2027-05-22'
     getProjectId(): 605
+    getProjectUrl(): 'https://example.com/udsf/projekt_url'
     getPropertyNumber(): 'verwaltung_techn.objektnr_extern'
     getProximity(): 'geo.regionaler_zusatz'
     getPurchasePrice(): 1001.5
@@ -563,6 +569,7 @@ realty_detail.xml
     getPurchasePricePerSqm(): 1015.5
     getPurchasePriceVat(): 1002.5
     getRadiusFuzzy(): 103
+    getReadyForFinishing(): true
     getRealtySystemType(): 'udsf.realty_system_type'
     getRealtyType(): 'haus'
     getRealtyTypeId(): 11
@@ -610,6 +617,7 @@ realty_detail.xml
     getTotalRentVat(): 1039.5
     getTotalRentWithoutHeating(): 1005.5
     getTransferTax(): 1028.5
+    getTurnkey(): true
     getUndevelopedAtticArea(): 324.5
     getUpdatedAt(): '2027-05-24 10:00:24'
     getVideos(): array(1)
@@ -685,6 +693,7 @@ realty_list.xml
       getCellarCount(): null
       getCommission(): null
       getCompensation(): null
+      getCompletionDate(): null
       getCondition(): null
       getContact(): null
       getContractEstablishmentCosts(): null
@@ -693,6 +702,7 @@ realty_list.xml
       getCreatedAt(): '2028-01-28 10:00:28'
       getCurrency(): null
       getDescription(): '<p>buy.objektbeschreibung</p>'
+      getDetailUrl(): null
       getDistrict(): null
       getDocuments(): array(0)
       getDoorNumber(): 'buy.tuernummer'
@@ -787,8 +797,10 @@ realty_list.xml
       getPlace(): 'buy.ort'
       getPois(): array(0)
       getPoliticalDistrict(): null
+      getPrincipleOfFirstInstruction(): null
       getProcuredAt(): '2028-01-27'
       getProjectId(): 8125
+      getProjectUrl(): null
       getPropertyNumber(): 'buy.objektnummer'
       getProximity(): 'buy.naehe'
       getPurchasePrice(): 8109.5
@@ -796,6 +808,7 @@ realty_list.xml
       getPurchasePricePerSqm(): null
       getPurchasePriceVat(): null
       getRadiusFuzzy(): null
+      getReadyForFinishing(): null
       getRealtySystemType(): null
       getRealtyType(): 'haus'
       getRealtyTypeId(): 8102
@@ -843,6 +856,7 @@ realty_list.xml
       getTotalRentVat(): null
       getTotalRentWithoutHeating(): null
       getTransferTax(): null
+      getTurnkey(): null
       getUndevelopedAtticArea(): null
       getUpdatedAt(): '2028-01-29 10:00:29'
       getVideos(): array(0)
@@ -896,6 +910,7 @@ realty_list.xml
       getCellarCount(): null
       getCommission(): null
       getCompensation(): null
+      getCompletionDate(): null
       getCondition(): null
       getContact(): null
       getContractEstablishmentCosts(): null
@@ -904,6 +919,7 @@ realty_list.xml
       getCreatedAt(): '2028-02-28 10:00:28'
       getCurrency(): null
       getDescription(): '<p>rent.objektbeschreibung</p>'
+      getDetailUrl(): null
       getDistrict(): null
       getDocuments(): array(0)
       getDoorNumber(): 'rent.tuernummer'
@@ -998,8 +1014,10 @@ realty_list.xml
       getPlace(): 'rent.ort'
       getPois(): array(0)
       getPoliticalDistrict(): null
+      getPrincipleOfFirstInstruction(): null
       getProcuredAt(): '2028-02-27'
       getProjectId(): 8225
+      getProjectUrl(): null
       getPropertyNumber(): 'rent.objektnummer'
       getProximity(): 'rent.naehe'
       getPurchasePrice(): null
@@ -1007,6 +1025,7 @@ realty_list.xml
       getPurchasePricePerSqm(): null
       getPurchasePriceVat(): null
       getRadiusFuzzy(): null
+      getReadyForFinishing(): null
       getRealtySystemType(): null
       getRealtyType(): 'buero_praxen'
       getRealtyTypeId(): 8202
@@ -1054,6 +1073,7 @@ realty_list.xml
       getTotalRentVat(): null
       getTotalRentWithoutHeating(): null
       getTransferTax(): null
+      getTurnkey(): null
       getUndevelopedAtticArea(): null
       getUpdatedAt(): '2028-02-29 10:00:29'
       getVideos(): array(0)
@@ -1234,6 +1254,8 @@ project_detail.xml
       getFax(): '+43 1 9372'
       getFirstName(): 'kontaktperson.vorname'
       getId(): 9370
+      getImmobiliencardId(): 'kontaktperson.udsf.immocard_id'
+      getImmobiliencardUid(): null
       getLastName(): 'kontaktperson.name'
       getLinks(): array(0)
       getMobile(): '+43 664 9373'
@@ -1503,6 +1525,7 @@ project_detail.xml
         getCellarCount(): null
         getCommission(): null
         getCompensation(): null
+        getCompletionDate(): null
         getCondition(): null
         getContact(): null
         getContractEstablishmentCosts(): null
@@ -1511,6 +1534,7 @@ project_detail.xml
         getCreatedAt(): '2029-11-17 10:00:02'
         getCurrency(): null
         getDescription(): '<p>projekt.u1.objektbeschreibung</p>'
+        getDetailUrl(): null
         getDistrict(): null
         getDocuments(): array(0)
         getDoorNumber(): 'projekt.u1.tuernummer'
@@ -1605,8 +1629,10 @@ project_detail.xml
         getPlace(): 'projekt.u1.ort'
         getPois(): array(0)
         getPoliticalDistrict(): null
+        getPrincipleOfFirstInstruction(): null
         getProcuredAt(): '2029-11-17'
         getProjectId(): 9301
+        getProjectUrl(): null
         getPropertyNumber(): 'projekt.u1.objektnummer'
         getProximity(): 'projekt.u1.naehe'
         getPurchasePrice(): 9409.5
@@ -1614,6 +1640,7 @@ project_detail.xml
         getPurchasePricePerSqm(): null
         getPurchasePriceVat(): null
         getRadiusFuzzy(): null
+        getReadyForFinishing(): null
         getRealtySystemType(): null
         getRealtyType(): 'wohnung'
         getRealtyTypeId(): 9402
@@ -1661,6 +1688,7 @@ project_detail.xml
         getTotalRentVat(): null
         getTotalRentWithoutHeating(): null
         getTransferTax(): null
+        getTurnkey(): null
         getUndevelopedAtticArea(): null
         getUpdatedAt(): '2029-11-17 10:00:03'
         getVideos(): array(0)
@@ -1714,6 +1742,7 @@ project_detail.xml
         getCellarCount(): null
         getCommission(): null
         getCompensation(): null
+        getCompletionDate(): null
         getCondition(): null
         getContact(): null
         getContractEstablishmentCosts(): null
@@ -1722,6 +1751,7 @@ project_detail.xml
         getCreatedAt(): '2029-11-20 10:00:02'
         getCurrency(): null
         getDescription(): '<p>projekt.u2.objektbeschreibung</p>'
+        getDetailUrl(): null
         getDistrict(): null
         getDocuments(): array(0)
         getDoorNumber(): 'projekt.u2.tuernummer'
@@ -1816,8 +1846,10 @@ project_detail.xml
         getPlace(): 'projekt.u2.ort'
         getPois(): array(0)
         getPoliticalDistrict(): null
+        getPrincipleOfFirstInstruction(): null
         getProcuredAt(): '2029-11-20'
         getProjectId(): 9301
+        getProjectUrl(): null
         getPropertyNumber(): 'projekt.u2.objektnummer'
         getProximity(): 'projekt.u2.naehe'
         getPurchasePrice(): null
@@ -1825,6 +1857,7 @@ project_detail.xml
         getPurchasePricePerSqm(): null
         getPurchasePriceVat(): null
         getRadiusFuzzy(): null
+        getReadyForFinishing(): null
         getRealtySystemType(): null
         getRealtyType(): 'wohnung'
         getRealtyTypeId(): 9432
@@ -1872,6 +1905,7 @@ project_detail.xml
         getTotalRentVat(): null
         getTotalRentWithoutHeating(): null
         getTransferTax(): null
+        getTurnkey(): null
         getUndevelopedAtticArea(): null
         getUpdatedAt(): '2029-11-20 10:00:03'
         getVideos(): array(0)
@@ -2037,6 +2071,7 @@ project_list.xml
           getCellarCount(): null
           getCommission(): null
           getCompensation(): null
+          getCompletionDate(): null
           getCondition(): null
           getContact(): null
           getContractEstablishmentCosts(): null
@@ -2045,6 +2080,7 @@ project_list.xml
           getCreatedAt(): '2029-08-18 10:00:02'
           getCurrency(): null
           getDescription(): '<p>p1.u1.objektbeschreibung</p>'
+          getDetailUrl(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p1.u1.tuernummer'
@@ -2139,8 +2175,10 @@ project_list.xml
           getPlace(): 'p1.u1.ort'
           getPois(): array(0)
           getPoliticalDistrict(): null
+          getPrincipleOfFirstInstruction(): null
           getProcuredAt(): '2029-08-18'
           getProjectId(): 9101
+          getProjectUrl(): null
           getPropertyNumber(): 'p1.u1.objektnummer'
           getProximity(): 'p1.u1.naehe'
           getPurchasePrice(): 9139.5
@@ -2148,6 +2186,7 @@ project_list.xml
           getPurchasePricePerSqm(): null
           getPurchasePriceVat(): null
           getRadiusFuzzy(): null
+          getReadyForFinishing(): null
           getRealtySystemType(): null
           getRealtyType(): 'wohnung'
           getRealtyTypeId(): 9132
@@ -2195,6 +2234,7 @@ project_list.xml
           getTotalRentVat(): null
           getTotalRentWithoutHeating(): null
           getTransferTax(): null
+          getTurnkey(): null
           getUndevelopedAtticArea(): null
           getUpdatedAt(): '2029-08-18 10:00:03'
           getVideos(): array(0)
@@ -2248,6 +2288,7 @@ project_list.xml
           getCellarCount(): null
           getCommission(): null
           getCompensation(): null
+          getCompletionDate(): null
           getCondition(): null
           getContact(): null
           getContractEstablishmentCosts(): null
@@ -2256,6 +2297,7 @@ project_list.xml
           getCreatedAt(): '2029-08-21 10:00:02'
           getCurrency(): null
           getDescription(): '<p>p1.u2.objektbeschreibung</p>'
+          getDetailUrl(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p1.u2.tuernummer'
@@ -2350,8 +2392,10 @@ project_list.xml
           getPlace(): 'p1.u2.ort'
           getPois(): array(0)
           getPoliticalDistrict(): null
+          getPrincipleOfFirstInstruction(): null
           getProcuredAt(): '2029-08-21'
           getProjectId(): 9101
+          getProjectUrl(): null
           getPropertyNumber(): 'p1.u2.objektnummer'
           getProximity(): 'p1.u2.naehe'
           getPurchasePrice(): null
@@ -2359,6 +2403,7 @@ project_list.xml
           getPurchasePricePerSqm(): null
           getPurchasePriceVat(): null
           getRadiusFuzzy(): null
+          getReadyForFinishing(): null
           getRealtySystemType(): null
           getRealtyType(): 'wohnung'
           getRealtyTypeId(): 9162
@@ -2406,6 +2451,7 @@ project_list.xml
           getTotalRentVat(): null
           getTotalRentWithoutHeating(): null
           getTransferTax(): null
+          getTurnkey(): null
           getUndevelopedAtticArea(): null
           getUpdatedAt(): '2029-08-21 10:00:03'
           getVideos(): array(0)
@@ -2550,6 +2596,7 @@ project_list.xml
           getCellarCount(): null
           getCommission(): null
           getCompensation(): null
+          getCompletionDate(): null
           getCondition(): null
           getContact(): null
           getContractEstablishmentCosts(): null
@@ -2558,6 +2605,7 @@ project_list.xml
           getCreatedAt(): '2029-09-28 10:00:02'
           getCurrency(): null
           getDescription(): '<p>p2.u1.objektbeschreibung</p>'
+          getDetailUrl(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p2.u1.tuernummer'
@@ -2652,8 +2700,10 @@ project_list.xml
           getPlace(): 'p2.u1.ort'
           getPois(): array(0)
           getPoliticalDistrict(): null
+          getPrincipleOfFirstInstruction(): null
           getProcuredAt(): '2029-09-28'
           getProjectId(): 9201
+          getProjectUrl(): null
           getPropertyNumber(): 'p2.u1.objektnummer'
           getProximity(): 'p2.u1.naehe'
           getPurchasePrice(): 9239.5
@@ -2661,6 +2711,7 @@ project_list.xml
           getPurchasePricePerSqm(): null
           getPurchasePriceVat(): null
           getRadiusFuzzy(): null
+          getReadyForFinishing(): null
           getRealtySystemType(): null
           getRealtyType(): 'haus'
           getRealtyTypeId(): 9232
@@ -2708,6 +2759,7 @@ project_list.xml
           getTotalRentVat(): null
           getTotalRentWithoutHeating(): null
           getTransferTax(): null
+          getTurnkey(): null
           getUndevelopedAtticArea(): null
           getUpdatedAt(): '2029-09-28 10:00:03'
           getVideos(): array(0)
@@ -2959,6 +3011,8 @@ employee_detail.xml
     getFax(): '+43 1 9604'
     getFirstName(): 'mitarbeiter.vorname'
     getId(): 9601
+    getImmobiliencardId(): null
+    getImmobiliencardUid(): null
     getLastName(): 'mitarbeiter.nachname'
     getLinks(): array(2)
       [0]: Justimmo\Model\Attachment
@@ -3210,6 +3264,8 @@ employee_list.xml
       getFax(): '+43 1 9514'
       getFirstName(): 'm1.vorname'
       getId(): 9511
+      getImmobiliencardId(): null
+      getImmobiliencardUid(): null
       getLastName(): 'm1.nachname'
       getLinks(): array(2)
         [0]: Justimmo\Model\Attachment
@@ -3452,6 +3508,8 @@ employee_list.xml
       getFax(): '+43 1 9524'
       getFirstName(): 'm2.vorname'
       getId(): 9521
+      getImmobiliencardId(): null
+      getImmobiliencardUid(): null
       getLastName(): 'm2.nachname'
       getLinks(): array(0)
       getMobile(): '+43 664 9522'
@@ -3596,6 +3654,8 @@ employee_list.xml
       getFax(): '+43 1 9534'
       getFirstName(): 'm3.vorname'
       getId(): 9531
+      getImmobiliencardId(): null
+      getImmobiliencardUid(): null
       getLastName(): 'm3.nachname'
       getLinks(): array(1)
         [0]: Justimmo\Model\Attachment

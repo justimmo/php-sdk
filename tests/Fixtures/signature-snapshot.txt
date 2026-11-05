@@ -256,6 +256,8 @@ Justimmo\Model\Employee::protected $email
 Justimmo\Model\Employee::protected $fax
 Justimmo\Model\Employee::protected $firstName
 Justimmo\Model\Employee::protected $id
+Justimmo\Model\Employee::protected ?string $immobiliencardId
+Justimmo\Model\Employee::protected ?string $immobiliencardUid
 Justimmo\Model\Employee::protected $lastName
 Justimmo\Model\Employee::protected $mobile
 Justimmo\Model\Employee::protected $number
@@ -280,6 +282,8 @@ Justimmo\Model\Employee::public getEmail()
 Justimmo\Model\Employee::public getFax()
 Justimmo\Model\Employee::public getFirstName()
 Justimmo\Model\Employee::public getId()
+Justimmo\Model\Employee::public getImmobiliencardId(): ?string
+Justimmo\Model\Employee::public getImmobiliencardUid(): ?string
 Justimmo\Model\Employee::public getLastName()
 Justimmo\Model\Employee::public getLinks($group = false)
 Justimmo\Model\Employee::public getMobile()
@@ -305,6 +309,8 @@ Justimmo\Model\Employee::public setEmail($email)
 Justimmo\Model\Employee::public setFax($fax)
 Justimmo\Model\Employee::public setFirstName($vorname)
 Justimmo\Model\Employee::public setId($id)
+Justimmo\Model\Employee::public setImmobiliencardId(?string $immobiliencardId): static
+Justimmo\Model\Employee::public setImmobiliencardUid(?string $immobiliencardUid): static
 Justimmo\Model\Employee::public setLastName($nachname)
 Justimmo\Model\Employee::public setMobile($handy)
 Justimmo\Model\Employee::public setNumber($number)
@@ -791,6 +797,7 @@ Justimmo\Model\Realty::protected $cellarArea
 Justimmo\Model\Realty::protected $cellarCount
 Justimmo\Model\Realty::protected $commission
 Justimmo\Model\Realty::protected $compensation
+Justimmo\Model\Realty::protected ?DateTime $completionDate
 Justimmo\Model\Realty::protected $condition
 Justimmo\Model\Realty::protected $contact
 Justimmo\Model\Realty::protected $contractEstablishmentCosts
@@ -799,6 +806,7 @@ Justimmo\Model\Realty::protected $country
 Justimmo\Model\Realty::protected $createdAt
 Justimmo\Model\Realty::protected $currency
 Justimmo\Model\Realty::protected $description
+Justimmo\Model\Realty::protected ?string $detailUrl
 Justimmo\Model\Realty::protected $district
 Justimmo\Model\Realty::protected $doorNumber
 Justimmo\Model\Realty::protected $energyPass
@@ -855,8 +863,10 @@ Justimmo\Model\Realty::protected $parkingCount
 Justimmo\Model\Realty::protected $place
 Justimmo\Model\Realty::protected $pois
 Justimmo\Model\Realty::protected ?Justimmo\Model\PoliticalDistrict $politicalDistrict
+Justimmo\Model\Realty::protected ?bool $principleOfFirstInstruction
 Justimmo\Model\Realty::protected $procuredAt
 Justimmo\Model\Realty::protected $projectId
+Justimmo\Model\Realty::protected ?string $projectUrl
 Justimmo\Model\Realty::protected $propertyNumber
 Justimmo\Model\Realty::protected $proximity
 Justimmo\Model\Realty::protected $purchasePrice
@@ -864,6 +874,7 @@ Justimmo\Model\Realty::protected $purchasePriceNet
 Justimmo\Model\Realty::protected $purchasePricePerSqm
 Justimmo\Model\Realty::protected $purchasePriceVat
 Justimmo\Model\Realty::protected $radiusFuzzy
+Justimmo\Model\Realty::protected ?bool $readyForFinishing
 Justimmo\Model\Realty::protected $realtySystemType
 Justimmo\Model\Realty::protected $realtyType
 Justimmo\Model\Realty::protected $realtyTypeId
@@ -910,6 +921,7 @@ Justimmo\Model\Realty::protected $totalRent
 Justimmo\Model\Realty::protected $totalRentVat
 Justimmo\Model\Realty::protected $totalRentWithoutHeating
 Justimmo\Model\Realty::protected $transferTax
+Justimmo\Model\Realty::protected ?bool $turnkey
 Justimmo\Model\Realty::protected $undevelopedAtticArea
 Justimmo\Model\Realty::protected $updatedAt
 Justimmo\Model\Realty::protected $weightedArea
@@ -942,6 +954,7 @@ Justimmo\Model\Realty::public getCellarArea()
 Justimmo\Model\Realty::public getCellarCount()
 Justimmo\Model\Realty::public getCommission()
 Justimmo\Model\Realty::public getCompensation()
+Justimmo\Model\Realty::public getCompletionDate(?string $format = 'Y-m-d'): DateTime|null|string
 Justimmo\Model\Realty::public getCondition()
 Justimmo\Model\Realty::public getContact()
 Justimmo\Model\Realty::public getContractEstablishmentCosts()
@@ -950,6 +963,7 @@ Justimmo\Model\Realty::public getCountry()
 Justimmo\Model\Realty::public getCreatedAt($format = 'Y-m-d H:i:s')
 Justimmo\Model\Realty::public getCurrency()
 Justimmo\Model\Realty::public getDescription()
+Justimmo\Model\Realty::public getDetailUrl(): ?string
 Justimmo\Model\Realty::public getDistrict()
 Justimmo\Model\Realty::public getDocuments($group = false)
 Justimmo\Model\Realty::public getDoorNumber()
@@ -1015,8 +1029,10 @@ Justimmo\Model\Realty::public getPictures($group = false)
 Justimmo\Model\Realty::public getPlace()
 Justimmo\Model\Realty::public getPois()
 Justimmo\Model\Realty::public getPoliticalDistrict(): ?Justimmo\Model\PoliticalDistrict
+Justimmo\Model\Realty::public getPrincipleOfFirstInstruction(): ?bool
 Justimmo\Model\Realty::public getProcuredAt($format = 'Y-m-d')
 Justimmo\Model\Realty::public getProjectId()
+Justimmo\Model\Realty::public getProjectUrl(): ?string
 Justimmo\Model\Realty::public getPropertyNumber()
 Justimmo\Model\Realty::public getProximity()
 Justimmo\Model\Realty::public getPurchasePrice()
@@ -1024,6 +1040,7 @@ Justimmo\Model\Realty::public getPurchasePriceNet()
 Justimmo\Model\Realty::public getPurchasePricePerSqm()
 Justimmo\Model\Realty::public getPurchasePriceVat()
 Justimmo\Model\Realty::public getRadiusFuzzy()
+Justimmo\Model\Realty::public getReadyForFinishing(): ?bool
 Justimmo\Model\Realty::public getRealtySystemType()
 Justimmo\Model\Realty::public getRealtyType()
 Justimmo\Model\Realty::public getRealtyTypeId()
@@ -1071,6 +1088,7 @@ Justimmo\Model\Realty::public getTotalRent()
 Justimmo\Model\Realty::public getTotalRentVat()
 Justimmo\Model\Realty::public getTotalRentWithoutHeating()
 Justimmo\Model\Realty::public getTransferTax()
+Justimmo\Model\Realty::public getTurnkey(): ?bool
 Justimmo\Model\Realty::public getUndevelopedAtticArea()
 Justimmo\Model\Realty::public getUpdatedAt($format = 'Y-m-d H:i:s')
 Justimmo\Model\Realty::public getVideos($group = false)
@@ -1097,6 +1115,7 @@ Justimmo\Model\Realty::public setCellarArea($kellerflaeche)
 Justimmo\Model\Realty::public setCellarCount($anzahlKeller)
 Justimmo\Model\Realty::public setCommission($value)
 Justimmo\Model\Realty::public setCompensation($abstand)
+Justimmo\Model\Realty::public setCompletionDate(?DateTime $completionDate): static
 Justimmo\Model\Realty::public setCondition($zustand)
 Justimmo\Model\Realty::public setContact($value)
 Justimmo\Model\Realty::public setContractEstablishmentCosts($value)
@@ -1105,6 +1124,7 @@ Justimmo\Model\Realty::public setCountry($land)
 Justimmo\Model\Realty::public setCreatedAt(?DateTime $createdAt = null)
 Justimmo\Model\Realty::public setCurrency($waehrung)
 Justimmo\Model\Realty::public setDescription($objektbeschreibung)
+Justimmo\Model\Realty::public setDetailUrl(?string $detailUrl): static
 Justimmo\Model\Realty::public setDistrict($gemarkung)
 Justimmo\Model\Realty::public setDoorNumber($tuernummer)
 Justimmo\Model\Realty::public setEnergyPass(Justimmo\Model\EnergyPass $v)
@@ -1161,8 +1181,10 @@ Justimmo\Model\Realty::public setParkingCount($anzahlStellplaetze)
 Justimmo\Model\Realty::public setPlace($ort)
 Justimmo\Model\Realty::public setPois($pois)
 Justimmo\Model\Realty::public setPoliticalDistrict(?Justimmo\Model\PoliticalDistrict $politicalDistrict): Justimmo\Model\Realty
+Justimmo\Model\Realty::public setPrincipleOfFirstInstruction(?bool $principleOfFirstInstruction): static
 Justimmo\Model\Realty::public setProcuredAt(?DateTime $procuredAt = null)
 Justimmo\Model\Realty::public setProjectId($projectId)
+Justimmo\Model\Realty::public setProjectUrl(?string $projectUrl): static
 Justimmo\Model\Realty::public setPropertyNumber($objektnummer)
 Justimmo\Model\Realty::public setProximity($naehe)
 Justimmo\Model\Realty::public setPurchasePrice($kaufpreis)
@@ -1170,6 +1192,7 @@ Justimmo\Model\Realty::public setPurchasePriceNet($kaufpreisnetto)
 Justimmo\Model\Realty::public setPurchasePricePerSqm($purchasePricePerSqm)
 Justimmo\Model\Realty::public setPurchasePriceVat($kaufpreisust)
 Justimmo\Model\Realty::public setRadiusFuzzy($radiusFuzzy)
+Justimmo\Model\Realty::public setReadyForFinishing(?bool $readyForFinishing): static
 Justimmo\Model\Realty::public setRealtySystemType($realtySystemType)
 Justimmo\Model\Realty::public setRealtyType($objektart)
 Justimmo\Model\Realty::public setRealtyTypeId($realtyTypeId)
@@ -1216,6 +1239,7 @@ Justimmo\Model\Realty::public setTotalRent($gesamtmiete)
 Justimmo\Model\Realty::public setTotalRentVat($gesamtMieteUst)
 Justimmo\Model\Realty::public setTotalRentWithoutHeating($kaltmiete)
 Justimmo\Model\Realty::public setTransferTax($grunderwerbssteuer)
+Justimmo\Model\Realty::public setTurnkey(?bool $turnkey): static
 Justimmo\Model\Realty::public setUndevelopedAtticArea($undevelopedAtticArea)
 Justimmo\Model\Realty::public setUpdatedAt(?DateTime $updatedAt = null)
 Justimmo\Model\Realty::public setWeightedArea($weightedArea)
@@ -1300,6 +1324,7 @@ Justimmo\Model\Wrapper\V1\AbstractWrapper::protected cast(SimpleXMLElement $xml,
 Justimmo\Model\Wrapper\V1\AbstractWrapper::protected isSetByNode(object $model, string $setter): bool
 Justimmo\Model\Wrapper\V1\AbstractWrapper::protected map($mapping, SimpleXMLElement $xml, $objekt)
 Justimmo\Model\Wrapper\V1\AbstractWrapper::protected mapAttachmentGroup(SimpleXMLElement $xml, $attachmentAware, $type = null, $forceGroup = null)
+Justimmo\Model\Wrapper\V1\AbstractWrapper::protected mapSimpleField(SimpleXMLElement $simpleField, $model)
 Justimmo\Model\Wrapper\V1\AbstractWrapper::protected trimValues(array $values)
 
 class Justimmo\Model\Wrapper\V1\BasicDataWrapper implements Justimmo\Model\Wrapper\BasicDataWrapperInterface uses Justimmo\Model\Wrapper\V1\ParsesXml
@@ -1331,7 +1356,6 @@ Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $flaechenMapping
 Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $geoMapping
 Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $preisMapping
 Justimmo\Model\Wrapper\V1\RealtyWrapper::protected $simpleMapping
-Justimmo\Model\Wrapper\V1\RealtyWrapper::protected mapSimpleField(SimpleXMLElement $simpleField, $model)
 Justimmo\Model\Wrapper\V1\RealtyWrapper::public transformList($data)
 Justimmo\Model\Wrapper\V1\RealtyWrapper::public transformSingle($data)
 
