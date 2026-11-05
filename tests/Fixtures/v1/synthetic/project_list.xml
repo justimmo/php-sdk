@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic projekt/list answer: every element a project entry can write is filled.
+  Two projects; the first has two realties (a buy and a rent), the second one. The count is higher than
+  the number of entries, as on a paged answer.
+
+  Every free value is unique within the file. Texts name their place ("p1.titel", "p1.u2.ort");
+  numbers are unique per place. Exception: projekt_id inside a realty equals the id of its project, as
+  in a real answer.
+
+  Each realty has the shape of an objekt/list entry without showDetails.
+  Not in it: <immobilien_ids> (the ids-only variant replaces <immobilien>), and the reduced address
+  of the other address rules (strasse, hausnummer, plz or ort written empty).
+-->
+<justimmo>
+    <query-result>
+        <count>7</count>
+    </query-result>
+    <projekt>
+        <id>9101</id>
+        <objektnummer>p1.objektnummer</objektnummer>
+        <titel>p1.titel</titel>
+        <beschreibung>&lt;p&gt;p1.beschreibung&lt;/p&gt;</beschreibung>
+        <dreizeiler>p1.dreizeiler</dreizeiler>
+        <strasse>p1.strasse</strasse>
+        <hausnummer>p1.hausnummer</hausnummer>
+        <plz>9102</plz>
+        <ort>p1.ort</ort>
+        <in_bau>1</in_bau>
+        <status>p1.status</status>
+        <referenz>1</referenz>
+        <sonstige_angaben>&lt;p&gt;p1.sonstige_angaben&lt;/p&gt;</sonstige_angaben>
+        <lage>p1.lage</lage>
+        <freitext_1>p1.freitext_1</freitext_1>
+        <fertigstellung>2030-08-03</fertigstellung>
+        <verkaufsstart>2030-08-04</verkaufsstart>
+        <beziehbar>05.08.2030</beziehbar>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+            <user_defined_anyfield>
+                <ji_kategorie id="9106">p1.ji_kategorie.9106</ji_kategorie>
+                <ji_kategorie id="9107">p1.ji_kategorie.9107</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <url>https://example.com/p1/url</url>
+        <residential_aggregation_data>
+            <area_from>9110.5</area_from>
+            <area_to>9111.5</area_to>
+            <price_from>9112.5</price_from>
+            <price_to>9113.5</price_to>
+            <rooms_from>9114</rooms_from>
+            <rooms_to>9115</rooms_to>
+            <available>9116</available>
+        </residential_aggregation_data>
+        <immobilien>
+            <immobilie>
+                <id>9131</id>
+                <objektnummer>p1.u1.objektnummer</objektnummer>
+                <objektkategorie>
+                    <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+                    <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                    <objektart>
+                        <wohnung wohnungtyp="ETAGE"/>
+                    </objektart>
+                    <user_defined_simplefield feldname="objektart_id">9132</user_defined_simplefield>
+                    <user_defined_simplefield feldname="objektart_name">p1.u1.udsf.objektart_name</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_id">9133</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_name">p1.u1.udsf.sub_objektart_name</user_defined_simplefield>
+                    <user_defined_anyfield>
+                        <ji_kategorie id="9134">p1.u1.ji_kategorie.9134</ji_kategorie>
+                        <ji_kategorie id="9135">p1.u1.ji_kategorie.9135</ji_kategorie>
+                    </user_defined_anyfield>
+                </objektkategorie>
+                <titel>p1.u1.titel</titel>
+                <dreizeiler>p1.u1.dreizeiler</dreizeiler>
+                <naehe>p1.u1.naehe</naehe>
+                <objektbeschreibung>&lt;p&gt;p1.u1.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>9136.5</anzahl_zimmer>
+                <etage>p1.u1.etage</etage>
+                <tuernummer>p1.u1.tuernummer</tuernummer>
+                <stiege>p1.u1.stiege</stiege>
+                <hausnummer>p1.u1.hausnummer</hausnummer>
+                <strasse>p1.u1.strasse</strasse>
+                <ort>p1.u1.ort</ort>
+                <plz>9137</plz>
+                <preis>9138.5</preis>
+                <kaufpreis>9139.5</kaufpreis>
+                <mietkauf>1</mietkauf>
+                <wohnbaufoerderung>9140.5</wohnbaufoerderung>
+                <wohnflaeche>9141.5</wohnflaeche>
+                <nutzflaeche>9142.5</nutzflaeche>
+                <grundflaeche>9143.5</grundflaeche>
+                <gesamtflaeche>9144.5</gesamtflaeche>
+                <bueroflaeche>9145.5</bueroflaeche>
+                <lagerflaeche>9146.5</lagerflaeche>
+                <verkaufsflaeche>9147.5</verkaufsflaeche>
+                <anzahl_loggias>9148</anzahl_loggias>
+                <loggias_flaeche>9149.5</loggias_flaeche>
+                <anzahl_balkons>9150</anzahl_balkons>
+                <balkons_flaeche>9151.5</balkons_flaeche>
+                <anzahl_terrassen>9152</anzahl_terrassen>
+                <terrassen_flaeche>9153.5</terrassen_flaeche>
+                <gartenflaeche>9154.5</gartenflaeche>
+                <erstes_bild>https://files.example.com/p1.u1/erstes_bild/medium.jpg</erstes_bild>
+                <erstes_bild_beschreibung>p1.u1.erstes_bild_beschreibung</erstes_bild_beschreibung>
+                <zweites_bild>https://files.example.com/p1.u1/zweites_bild/medium.jpg</zweites_bild>
+                <zweites_bild_beschreibung>p1.u1.zweites_bild_beschreibung</zweites_bild_beschreibung>
+                <projekt_id>9101</projekt_id>
+                <status>p1.u1.status</status>
+                <status_id>9155</status_id>
+                <vermittelt_am>2029-08-18 10:00:01</vermittelt_am>
+                <erstellt_am>2029-08-18 10:00:02</erstellt_am>
+                <aktualisiert_am>2029-08-18 10:00:03</aktualisiert_am>
+            </immobilie>
+            <immobilie>
+                <id>9161</id>
+                <objektnummer>p1.u2.objektnummer</objektnummer>
+                <objektkategorie>
+                    <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0"/>
+                    <vermarktungsart KAUF="0" MIETE_PACHT="1"/>
+                    <objektart>
+                        <wohnung wohnungtyp="DACHGESCHOSS"/>
+                    </objektart>
+                    <user_defined_simplefield feldname="objektart_id">9162</user_defined_simplefield>
+                    <user_defined_simplefield feldname="objektart_name">p1.u2.udsf.objektart_name</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_id">9163</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_name">p1.u2.udsf.sub_objektart_name</user_defined_simplefield>
+                    <user_defined_anyfield>
+                        <ji_kategorie id="9164">p1.u2.ji_kategorie.9164</ji_kategorie>
+                        <ji_kategorie id="9165">p1.u2.ji_kategorie.9165</ji_kategorie>
+                    </user_defined_anyfield>
+                </objektkategorie>
+                <titel>p1.u2.titel</titel>
+                <dreizeiler>p1.u2.dreizeiler</dreizeiler>
+                <naehe>p1.u2.naehe</naehe>
+                <objektbeschreibung>&lt;p&gt;p1.u2.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>9166.5</anzahl_zimmer>
+                <etage>p1.u2.etage</etage>
+                <tuernummer>p1.u2.tuernummer</tuernummer>
+                <stiege>p1.u2.stiege</stiege>
+                <hausnummer>p1.u2.hausnummer</hausnummer>
+                <strasse>p1.u2.strasse</strasse>
+                <ort>p1.u2.ort</ort>
+                <plz>9167</plz>
+                <preis>9168.5</preis>
+                <gesamtmiete>9169.5</gesamtmiete>
+                <mietkauf>0</mietkauf>
+                <wohnbaufoerderung>9170.5</wohnbaufoerderung>
+                <wohnflaeche>9171.5</wohnflaeche>
+                <nutzflaeche>9172.5</nutzflaeche>
+                <grundflaeche>9173.5</grundflaeche>
+                <gesamtflaeche>9174.5</gesamtflaeche>
+                <bueroflaeche>9175.5</bueroflaeche>
+                <lagerflaeche>9176.5</lagerflaeche>
+                <verkaufsflaeche>9177.5</verkaufsflaeche>
+                <anzahl_loggias>9178</anzahl_loggias>
+                <loggias_flaeche>9179.5</loggias_flaeche>
+                <anzahl_balkons>9180</anzahl_balkons>
+                <balkons_flaeche>9181.5</balkons_flaeche>
+                <anzahl_terrassen>9182</anzahl_terrassen>
+                <terrassen_flaeche>9183.5</terrassen_flaeche>
+                <gartenflaeche>9184.5</gartenflaeche>
+                <erstes_bild>https://files.example.com/p1.u2/erstes_bild/medium.jpg</erstes_bild>
+                <erstes_bild_beschreibung>p1.u2.erstes_bild_beschreibung</erstes_bild_beschreibung>
+                <zweites_bild>https://files.example.com/p1.u2/zweites_bild/medium.jpg</zweites_bild>
+                <zweites_bild_beschreibung>p1.u2.zweites_bild_beschreibung</zweites_bild_beschreibung>
+                <projekt_id>9101</projekt_id>
+                <status>p1.u2.status</status>
+                <status_id>9185</status_id>
+                <vermittelt_am>2029-08-21 10:00:01</vermittelt_am>
+                <erstellt_am>2029-08-21 10:00:02</erstellt_am>
+                <aktualisiert_am>2029-08-21 10:00:03</aktualisiert_am>
+            </immobilie>
+        </immobilien>
+        <erstes_bild>https://files.example.com/p1/erstes_bild/medium.jpg</erstes_bild>
+        <erstes_bild_beschreibung>p1.erstes_bild_beschreibung</erstes_bild_beschreibung>
+    </projekt>
+    <projekt>
+        <id>9201</id>
+        <objektnummer>p2.objektnummer</objektnummer>
+        <titel>p2.titel</titel>
+        <beschreibung>&lt;p&gt;p2.beschreibung&lt;/p&gt;</beschreibung>
+        <dreizeiler>p2.dreizeiler</dreizeiler>
+        <strasse>p2.strasse</strasse>
+        <hausnummer>p2.hausnummer</hausnummer>
+        <plz>9202</plz>
+        <ort>p2.ort</ort>
+        <in_bau>1</in_bau>
+        <status>p2.status</status>
+        <referenz>1</referenz>
+        <sonstige_angaben>&lt;p&gt;p2.sonstige_angaben&lt;/p&gt;</sonstige_angaben>
+        <lage>p2.lage</lage>
+        <freitext_1>p2.freitext_1</freitext_1>
+        <fertigstellung>2030-09-03</fertigstellung>
+        <verkaufsstart>2030-09-04</verkaufsstart>
+        <beziehbar>05.09.2030</beziehbar>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+            <user_defined_anyfield>
+                <ji_kategorie id="9206">p2.ji_kategorie.9206</ji_kategorie>
+                <ji_kategorie id="9207">p2.ji_kategorie.9207</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <url>https://example.com/p2/url</url>
+        <residential_aggregation_data>
+            <area_from>9210.5</area_from>
+            <area_to>9211.5</area_to>
+            <price_from>9212.5</price_from>
+            <price_to>9213.5</price_to>
+            <rooms_from>9214</rooms_from>
+            <rooms_to>9215</rooms_to>
+            <available>9216</available>
+        </residential_aggregation_data>
+        <immobilien>
+            <immobilie>
+                <id>9231</id>
+                <objektnummer>p2.u1.objektnummer</objektnummer>
+                <objektkategorie>
+                    <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+                    <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                    <objektart>
+                        <haus haustyp="REIHENHAUS"/>
+                    </objektart>
+                    <user_defined_simplefield feldname="objektart_id">9232</user_defined_simplefield>
+                    <user_defined_simplefield feldname="objektart_name">p2.u1.udsf.objektart_name</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_id">9233</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_name">p2.u1.udsf.sub_objektart_name</user_defined_simplefield>
+                    <user_defined_anyfield>
+                        <ji_kategorie id="9234">p2.u1.ji_kategorie.9234</ji_kategorie>
+                        <ji_kategorie id="9235">p2.u1.ji_kategorie.9235</ji_kategorie>
+                    </user_defined_anyfield>
+                </objektkategorie>
+                <titel>p2.u1.titel</titel>
+                <dreizeiler>p2.u1.dreizeiler</dreizeiler>
+                <naehe>p2.u1.naehe</naehe>
+                <objektbeschreibung>&lt;p&gt;p2.u1.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>9236.5</anzahl_zimmer>
+                <etage>p2.u1.etage</etage>
+                <tuernummer>p2.u1.tuernummer</tuernummer>
+                <stiege>p2.u1.stiege</stiege>
+                <hausnummer>p2.u1.hausnummer</hausnummer>
+                <strasse>p2.u1.strasse</strasse>
+                <ort>p2.u1.ort</ort>
+                <plz>9237</plz>
+                <preis>9238.5</preis>
+                <kaufpreis>9239.5</kaufpreis>
+                <mietkauf>1</mietkauf>
+                <wohnbaufoerderung>9240.5</wohnbaufoerderung>
+                <wohnflaeche>9241.5</wohnflaeche>
+                <nutzflaeche>9242.5</nutzflaeche>
+                <grundflaeche>9243.5</grundflaeche>
+                <gesamtflaeche>9244.5</gesamtflaeche>
+                <bueroflaeche>9245.5</bueroflaeche>
+                <lagerflaeche>9246.5</lagerflaeche>
+                <verkaufsflaeche>9247.5</verkaufsflaeche>
+                <anzahl_loggias>9248</anzahl_loggias>
+                <loggias_flaeche>9249.5</loggias_flaeche>
+                <anzahl_balkons>9250</anzahl_balkons>
+                <balkons_flaeche>9251.5</balkons_flaeche>
+                <anzahl_terrassen>9252</anzahl_terrassen>
+                <terrassen_flaeche>9253.5</terrassen_flaeche>
+                <gartenflaeche>9254.5</gartenflaeche>
+                <erstes_bild>https://files.example.com/p2.u1/erstes_bild/medium.jpg</erstes_bild>
+                <erstes_bild_beschreibung>p2.u1.erstes_bild_beschreibung</erstes_bild_beschreibung>
+                <zweites_bild>https://files.example.com/p2.u1/zweites_bild/medium.jpg</zweites_bild>
+                <zweites_bild_beschreibung>p2.u1.zweites_bild_beschreibung</zweites_bild_beschreibung>
+                <projekt_id>9201</projekt_id>
+                <status>p2.u1.status</status>
+                <status_id>9255</status_id>
+                <vermittelt_am>2029-09-28 10:00:01</vermittelt_am>
+                <erstellt_am>2029-09-28 10:00:02</erstellt_am>
+                <aktualisiert_am>2029-09-28 10:00:03</aktualisiert_am>
+            </immobilie>
+        </immobilien>
+        <erstes_bild>https://files.example.com/p2/erstes_bild/medium.jpg</erstes_bild>
+        <erstes_bild_beschreibung>p2.erstes_bild_beschreibung</erstes_bild_beschreibung>
+    </projekt>
+</justimmo>
