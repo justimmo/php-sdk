@@ -16,7 +16,7 @@ use Justimmo\Model\Wrapper\NullWrapper;
  * Records the url that find() requests from the api for unusual filter and sort input
  *
  * Strict mode is off in every case. Example line:
- * realty: filter(name:null, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de | <notices>
+ * realty: filter(name:null, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de&sdk=<version> | <notices>
  *
  * The fixture holds one line per case: the url find() requested, and the exception it ended in. It
  * was recorded with 1.4.2 and differs from it only where a release changed a request on purpose.
@@ -95,6 +95,9 @@ class WireSnapshotTest extends TestCase
 
             protected function createRequest($url)
             {
+                // the version depends on the checkout (a tag, a branch), so the fixture holds a placeholder
+                $url = preg_replace('#([?&])sdk=[^&]*$#', '$1sdk=<version>', $url);
+
                 $this->urls[] = urldecode(preg_replace('#^.*?/v1/#', '', $url));
 
                 return new MockCurlRequest('<?xml version="1.0"?><justimmo/>', 200);

@@ -1,3 +1,6 @@
+## 1.7.0
+* Every request carries the version of the SDK in the url, as the last parameter `sdk`, for example `…&culture=de&sdk=1.7.0`. It tells Justimmo support which version a site runs, also when the site replaces the request and with it the version header. A value the caller sets for `sdk` is replaced. The cache key leaves `sdk` out, so the answers cached before the upgrade stay valid
+
 ## 1.6.0
 * Upgrading from 1.5 needs no change for most sites. The lines marked [BC] below concern
     * code which shows `getTier()` of a realty: it now returns the floor alone, for example "5. Etage". The floor with its comment, which it returned before, is in `getTierDescription()`

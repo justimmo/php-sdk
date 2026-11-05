@@ -336,12 +336,23 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
             $params['culture'] = $this->culture;
         }
 
+        // the value of sdk has to be the sdk's own to be trusted in the api's log, so a caller's
+        // sdk is dropped
+        unset($params['sdk']);
+
+        // the cache key is built from the url without sdk. The api ignores sdk, so an answer stays
+        // valid across versions, and an upgrade of the sdk does not fetch every cached url again
+        $key = $this->cache->generateCacheKey($this->generateUrl($call, $params));
+
+        // the version goes last into the url. The api's access log keeps the url, so the version
+        // reaches it even when a site replaces createRequest() and with it the version header
+        $params['sdk'] = self::getSdkVersion();
+
         $url = $this->generateUrl($call, $params);
         $this->logger->debug('call start', [
             'url'      => $url,
         ]);
 
-        $key = $this->cache->generateCacheKey($url);
         $content = $this->cache->get($key);
         if ($content !== false) {
             $this->logger->debug('call end', [
