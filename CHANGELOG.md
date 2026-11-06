@@ -1,7 +1,14 @@
 ## 1.7.0
+* Upgrading from 1.6 needs no change for most sites. The line marked [BC] below concerns code which reads an employee's Facebook, Twitter, XING, LinkedIn or Instagram link with `getDocuments()`: use `getLinks()`
 * Every request carries the version of the SDK in the url, as the last parameter `sdk`, for example `…&culture=de&sdk=1.7.0`. It tells Justimmo support which version a site runs, also when the site replaces the request and with it the version header. A value the caller sets for `sdk` is replaced. The cache key leaves `sdk` out, so the answers cached before the upgrade stay valid
 * `SupportedParameters::USER_DEFINED_SIMPLE_FIELDS` is added: the names of the user-defined simple fields the api sends. A test keeps the SDK's realty mapping in line with it, so a field the api adds is no longer lost unseen
 * New getters for fields the api already sent, which the SDK did not read: `Realty::getPrincipleOfFirstInstruction()`, `getReadyForFinishing()`, `getTurnkey()`, `getDetailUrl()`, `getCompletionDate()` and `getProjectUrl()`. On the contact person of a realty or a project, `Employee::getImmobiliencardId()` and `getImmobiliencardUid()`
+* `Realty::getInfrastructureProvisionCosts()` is added: the costs of connecting the plot to roads and utilities. `getInfrastructureProvision()` is unchanged: it returns the state of the connection, for example "VOLLERSCHLOSSEN", and the costs only when no state is set
+* `Realty::getBalconyTerraceCount()` returns an integer. It returned the raw XML element
+* The realties of a project now return their street, house number, sales area and rent with purchase option: `getStreet()`, `getHouseNumber()`, `getSalesArea()` and `getRentWithPurchaseOption()` were `null` there
+* The second picture of a realty in a project keeps its description
+* The pager of `ProjectQuery::paginate()` counts all matching projects, not only the ones on the page. `getNbResults()`, `haveToPaginate()` and `getLastPage()` were wrong when there was more than one page
+* [BC] The links of an employee to Facebook, Twitter, XING, LinkedIn and Instagram are links: they come from `getLinks()`. They came from `getDocuments()`, which now no longer returns them
 
 ## 1.6.0
 * Upgrading from 1.5 needs no change for most sites. The lines marked [BC] below concern

@@ -218,7 +218,11 @@ class ProjectWrapper extends AbstractWrapper
         if ($list->count() > 0) {
             $list->setMaxPerPage($list->count());
         }
-        $list->setNbResults($list->count());
+        if (isset($xml->{'query-result'}->count)) {
+            $list->setNbResults((int) $xml->{'query-result'}->count);
+        } else {
+            $list->setNbResults($list->count());
+        }
 
         return $list;
     }

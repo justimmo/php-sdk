@@ -219,7 +219,7 @@ class RealtyMapper extends AbstractMapper
         ],
         'anzahl_balkon_terrassen'          => [
             'property' => 'balconyTerraceCount',
-            'type'     => 'iny',
+            'type'     => 'int',
         ],
         'balkon_terrasse_flaeche'          => [
             'property' => 'balconyTerraceArea',
@@ -337,6 +337,10 @@ class RealtyMapper extends AbstractMapper
         'erschliessungskosten'             => [
             'property' => 'infrastructureProvision',
             'type'     => 'double',
+        ],
+        'mietkauf'                         => [
+            'property' => 'rentWithPurchaseOption',
+            'type'     => 'boolean',
         ],
     ];
 

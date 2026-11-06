@@ -831,6 +831,7 @@ Justimmo\Model\Realty::protected $heatingCosts
 Justimmo\Model\Realty::protected $houseNumber
 Justimmo\Model\Realty::protected $id
 Justimmo\Model\Realty::protected $infrastructureProvision
+Justimmo\Model\Realty::protected ?float $infrastructureProvisionCosts
 Justimmo\Model\Realty::protected $isReference
 Justimmo\Model\Realty::protected $landParcel
 Justimmo\Model\Realty::protected $landRegistration
@@ -992,6 +993,7 @@ Justimmo\Model\Realty::public getHeatingCostsVat()
 Justimmo\Model\Realty::public getHouseNumber()
 Justimmo\Model\Realty::public getId()
 Justimmo\Model\Realty::public getInfrastructureProvision()
+Justimmo\Model\Realty::public getInfrastructureProvisionCosts(): ?float
 Justimmo\Model\Realty::public getIsReference()
 Justimmo\Model\Realty::public getLandParcel()
 Justimmo\Model\Realty::public getLandRegistration()
@@ -1149,6 +1151,7 @@ Justimmo\Model\Realty::public setHeatingCosts($heizkosten)
 Justimmo\Model\Realty::public setHouseNumber($hausnummer)
 Justimmo\Model\Realty::public setId($id)
 Justimmo\Model\Realty::public setInfrastructureProvision($erschließung)
+Justimmo\Model\Realty::public setInfrastructureProvisionCosts(?float $infrastructureProvisionCosts): static
 Justimmo\Model\Realty::public setIsReference($isReference)
 Justimmo\Model\Realty::public setLandParcel($flurstueck)
 Justimmo\Model\Realty::public setLandRegistration($grundbucheintragung)

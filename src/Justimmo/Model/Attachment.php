@@ -18,7 +18,7 @@ class Attachment
 
     protected static $pictureExtensions = ['jpg', 'gif', 'png', 'jpeg', 'webp'];
     protected static $videoExtensions = ['avi', 'mp4', 'mpg', 'wmv'];
-    protected static $linkGroups = ['LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL'];
+    protected static $linkGroups = ['LINKS', 'FILMLINK', 'RUNDGANG', 'PROJEKTURL', 'FACEBOOK', 'TWITTER', 'XING', 'LINKEDIN', 'INSTAGRAM'];
 
 
     public function __construct($path, $type = null, $group = null)

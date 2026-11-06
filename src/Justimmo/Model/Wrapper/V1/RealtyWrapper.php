@@ -32,16 +32,20 @@ class RealtyWrapper extends AbstractWrapper
         'stiege',
         'etage',
         'tuernummer',
+        'strasse',
+        'hausnummer',
         'plz',
         'ort',
         'kaufpreis',
         'gesamtmiete',
+        'mietkauf',
         'nutzflaeche',
         'grundflaeche',
         'gesamtflaeche',
         'wohnflaeche',
         'bueroflaeche',
         'lagerflaeche',
+        'verkaufsflaeche',
         'projekt_id',
         'status',
         'status_id',
@@ -198,7 +202,7 @@ class RealtyWrapper extends AbstractWrapper
             if (isset($xml->zweites_bild_beschreibung) && (((string) $xml->zweites_bild_beschreibung) != '')) {
                 $attachment->setDescription((string) $xml->zweites_bild_beschreibung);
             }
-            $objekt->addAttachment(new Attachment($this->cast($xml->zweites_bild)));
+            $objekt->addAttachment($attachment);
         }
 
         //detailed attributes from detail view, OpenImmo
@@ -355,6 +359,12 @@ class RealtyWrapper extends AbstractWrapper
 
             if (isset($xml->preise->kaufpreisnetto) && isset($xml->preise->kaufpreisnetto['kaufpreisust'])) {
                 $objekt->setPurchasePriceVat($this->cast($xml->preise->kaufpreisnetto['kaufpreisust'], 'double'));
+            }
+
+            // an empty element says nothing, so the costs stay null, not 0
+            $infrastructureProvisionCosts = trim((string) $xml->preise->erschliessungskosten);
+            if ($infrastructureProvisionCosts !== '') {
+                $objekt->setInfrastructureProvisionCosts((float) $infrastructureProvisionCosts);
             }
 
             if (isset($xml->preise->waehrung)) {
