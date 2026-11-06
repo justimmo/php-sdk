@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic team/list answer: every element an employee entry can write is filled.
+  Two categories, three employees. The link groups are spread over the employees, so all seven appear.
+
+  Every free value is unique within the file. Texts name their place ("m1.vorname", "m2.link.xing");
+  numbers are unique per place. Picture sizes are the defaults (no picturesize in the request). In a
+  real answer the extra size element repeats the url of <pfad> (user_small, big); here it differs.
+-->
+<justimmo>
+    <kategorie name="team.kategorie.1">
+        <mitarbeiter>
+            <id>9511</id>
+            <bild>
+                <pfad>https://files.example.com/m1/bild/user_small.jpg</pfad>
+                <pfad_medium>https://files.example.com/m1/bild/user_medium.jpg</pfad_medium>
+                <user_small>https://files.example.com/m1/bild/size-user_small.jpg</user_small>
+            </bild>
+            <personennummer>m1.personennummer</personennummer>
+            <vorname>m1.vorname</vorname>
+            <nachname>m1.nachname</nachname>
+            <anrede>m1.anrede</anrede>
+            <titel>m1.titel</titel>
+            <suffix>m1.suffix</suffix>
+            <position>m1.position</position>
+            <bio>m1.bio</bio>
+            <handy>+43 664 9512</handy>
+            <tel>+43 1 9513</tel>
+            <fax>+43 1 9514</fax>
+            <email>m1.email@example.com</email>
+            <strasse>m1.strasse</strasse>
+            <plz>9515</plz>
+            <ort>m1.ort</ort>
+            <url>https://example.com/m1/url</url>
+            <anhaenge>
+                <anhang location="REMOTE">
+                    <anhangtitel>m1.anhang.1.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m1/anhang/1/big.jpg</pfad>
+                        <big>https://files.example.com/m1/anhang/1/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE">
+                    <anhangtitel>m1.anhang.2.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m1/anhang/2/big.jpg</pfad>
+                        <big>https://files.example.com/m1/anhang/2/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="LINKS">
+                    <anhangtitel>m1.link.links.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m1/link/links</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="FILMLINK">
+                    <anhangtitel>m1.link.filmlink.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m1/link/filmlink</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="FACEBOOK">
+                    <anhangtitel>m1.link.facebook.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m1/link/facebook</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="TWITTER">
+                    <anhangtitel>m1.link.twitter.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m1/link/twitter</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+        </mitarbeiter>
+        <mitarbeiter>
+            <id>9521</id>
+            <bild>
+                <pfad>https://files.example.com/m2/bild/user_small.jpg</pfad>
+                <pfad_medium>https://files.example.com/m2/bild/user_medium.jpg</pfad_medium>
+                <user_small>https://files.example.com/m2/bild/size-user_small.jpg</user_small>
+            </bild>
+            <personennummer>m2.personennummer</personennummer>
+            <vorname>m2.vorname</vorname>
+            <nachname>m2.nachname</nachname>
+            <anrede>m2.anrede</anrede>
+            <titel>m2.titel</titel>
+            <suffix>m2.suffix</suffix>
+            <position>m2.position</position>
+            <bio>m2.bio</bio>
+            <handy>+43 664 9522</handy>
+            <tel>+43 1 9523</tel>
+            <fax>+43 1 9524</fax>
+            <email>m2.email@example.com</email>
+            <strasse>m2.strasse</strasse>
+            <plz>9525</plz>
+            <ort>m2.ort</ort>
+            <url>https://example.com/m2/url</url>
+            <anhaenge>
+                <anhang location="REMOTE">
+                    <anhangtitel>m2.anhang.1.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m2/anhang/1/big.jpg</pfad>
+                        <big>https://files.example.com/m2/anhang/1/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE">
+                    <anhangtitel>m2.anhang.2.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m2/anhang/2/big.jpg</pfad>
+                        <big>https://files.example.com/m2/anhang/2/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="XING">
+                    <anhangtitel>m2.link.xing.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m2/link/xing</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="LINKEDIN">
+                    <anhangtitel>m2.link.linkedin.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m2/link/linkedin</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="INSTAGRAM">
+                    <anhangtitel>m2.link.instagram.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m2/link/instagram</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+        </mitarbeiter>
+    </kategorie>
+    <kategorie name="team.kategorie.2">
+        <mitarbeiter>
+            <id>9531</id>
+            <bild>
+                <pfad>https://files.example.com/m3/bild/user_small.jpg</pfad>
+                <pfad_medium>https://files.example.com/m3/bild/user_medium.jpg</pfad_medium>
+                <user_small>https://files.example.com/m3/bild/size-user_small.jpg</user_small>
+            </bild>
+            <personennummer>m3.personennummer</personennummer>
+            <vorname>m3.vorname</vorname>
+            <nachname>m3.nachname</nachname>
+            <anrede>m3.anrede</anrede>
+            <titel>m3.titel</titel>
+            <suffix>m3.suffix</suffix>
+            <position>m3.position</position>
+            <bio>m3.bio</bio>
+            <handy>+43 664 9532</handy>
+            <tel>+43 1 9533</tel>
+            <fax>+43 1 9534</fax>
+            <email>m3.email@example.com</email>
+            <strasse>m3.strasse</strasse>
+            <plz>9535</plz>
+            <ort>m3.ort</ort>
+            <url>https://example.com/m3/url</url>
+            <anhaenge>
+                <anhang location="REMOTE">
+                    <anhangtitel>m3.anhang.1.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m3/anhang/1/big.jpg</pfad>
+                        <big>https://files.example.com/m3/anhang/1/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE">
+                    <anhangtitel>m3.anhang.2.anhangtitel</anhangtitel>
+                    <format>.jpg</format>
+                    <daten>
+                        <pfad>https://files.example.com/m3/anhang/2/big.jpg</pfad>
+                        <big>https://files.example.com/m3/anhang/2/size-big.jpg</big>
+                    </daten>
+                </anhang>
+                <anhang location="REMOTE" gruppe="LINKS">
+                    <anhangtitel>m3.link.links.anhangtitel</anhangtitel>
+                    <format></format>
+                    <daten>
+                        <pfad>https://example.com/m3/link/links</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+        </mitarbeiter>
+    </kategorie>
+</justimmo>

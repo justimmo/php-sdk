@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic projekt/detail answer: every element a project detail can write is filled.
+  The project has two realties, a buy and a rent, each in the shape of an objekt/list entry without
+  showDetails.
+
+  Every free value is unique within the file. Texts name their place ("projekt.titel",
+  "projekt.u1.ort"); numbers are unique per place. Exception: projekt_id inside a realty equals the
+  project id, as in a real answer.
+
+  Not in it: <immobilien_ids> (the ids-only variant replaces <immobilien>), and the reduced address of
+  the other address rules (land, bundesland, ort, plz, strasse or hausnummer left out).
+-->
+<justimmo>
+    <projekt>
+        <id>9301</id>
+        <nummer>projekt.nummer</nummer>
+        <titel>projekt.titel</titel>
+        <lage>projekt.lage</lage>
+        <beschreibung>&lt;p&gt;projekt.beschreibung&lt;/p&gt;</beschreibung>
+        <dreizeiler>projekt.dreizeiler</dreizeiler>
+        <sonstige_angaben>&lt;p&gt;projekt.sonstige_angaben&lt;/p&gt;</sonstige_angaben>
+        <freitext_1>projekt.freitext_1</freitext_1>
+        <freitext_2>projekt.freitext_2</freitext_2>
+        <freitext_3>projekt.freitext_3</freitext_3>
+        <freitext_4>projekt.freitext_4</freitext_4>
+        <geokoordinaten breitengrad="48.9302" laengengrad="16.9302"/>
+        <land>DEU</land>
+        <bundesland>projekt.bundesland</bundesland>
+        <ort>projekt.ort</ort>
+        <plz>9303</plz>
+        <strasse>projekt.strasse</strasse>
+        <hausnummer>projekt.hausnummer</hausnummer>
+        <naehe>projekt.naehe</naehe>
+        <anzahl_etagen>9304</anzahl_etagen>
+        <anzahl_dachgeschosse>9305</anzahl_dachgeschosse>
+        <bauart_id>9306</bauart_id>
+        <baujahr>1907</baujahr>
+        <laermpegel>projekt.laermpegel</laermpegel>
+        <beziehbar>08.09.2030</beziehbar>
+        <ea_gueltig_bis>2031-09-09</ea_gueltig_bis>
+        <ea_hwb>9310.5</ea_hwb>
+        <ea_hwb_klasse>A</ea_hwb_klasse>
+        <ea_fgee>0.9311</ea_fgee>
+        <ea_fgee_klasse>B</ea_fgee_klasse>
+        <zustand>projekt.zustand</zustand>
+        <haus_zustand>projekt.haus_zustand</haus_zustand>
+        <lagebewertung>projekt.lagebewertung</lagebewertung>
+        <zustandsbewertung>projekt.zustandsbewertung</zustandsbewertung>
+        <nutzungsart wohnen="1" gewerbe="0" anlage="1"/>
+        <in_bau>1</in_bau>
+        <status semantic="projekt.status.semantic">projekt.status</status>
+        <referenz>1</referenz>
+        <fertigstellung>2030-09-12</fertigstellung>
+        <verkaufsstart>2030-09-13</verkaufsstart>
+        <objektkategorie>
+            <nutzungsart WOHNEN="0" GEWERBE="1" ANLAGE="0"/>
+            <user_defined_anyfield>
+                <ji_kategorie id="9314">projekt.ji_kategorie.9314</ji_kategorie>
+                <ji_kategorie id="9315">projekt.ji_kategorie.9315</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <url>https://example.com/projekt/url</url>
+        <erstellt_am>2030-09-16 10:00:16</erstellt_am>
+        <residential_aggregation_data>
+            <area_from>9320.5</area_from>
+            <area_to>9321.5</area_to>
+            <price_from>9322.5</price_from>
+            <price_to>9323.5</price_to>
+            <rooms_from>9324</rooms_from>
+            <rooms_to>9325</rooms_to>
+            <available>9326</available>
+        </residential_aggregation_data>
+        <stellplaetze>
+            <stellplatz>
+                <art>garage</art>
+                <name>projekt.stellplaetze.1.name</name>
+                <anzahl>9330</anzahl>
+                <vermarktungsart>rent</vermarktungsart>
+                <netto>9331.5</netto>
+                <brutto>9332.5</brutto>
+                <ust>9333.5</ust>
+                <ust_typ>projekt.stellplaetze.1.ust_typ</ust_typ>
+                <ust_wert>9334.5</ust_wert>
+            </stellplatz>
+            <stellplatz>
+                <art>carport</art>
+                <name>projekt.stellplaetze.2.name</name>
+                <anzahl>9340</anzahl>
+                <vermarktungsart>buy</vermarktungsart>
+                <netto>9341.5</netto>
+                <brutto>9342.5</brutto>
+                <ust>9343.5</ust>
+                <ust_typ>projekt.stellplaetze.2.ust_typ</ust_typ>
+                <ust_wert>9344.5</ust_wert>
+            </stellplatz>
+        </stellplaetze>
+        <immobilien>
+            <immobilie>
+                <id>9401</id>
+                <objektnummer>projekt.u1.objektnummer</objektnummer>
+                <objektkategorie>
+                    <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+                    <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                    <objektart>
+                        <wohnung wohnungtyp="ETAGE"/>
+                    </objektart>
+                    <user_defined_simplefield feldname="objektart_id">9402</user_defined_simplefield>
+                    <user_defined_simplefield feldname="objektart_name">projekt.u1.udsf.objektart_name</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_id">9403</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_name">projekt.u1.udsf.sub_objektart_name</user_defined_simplefield>
+                    <user_defined_anyfield>
+                        <ji_kategorie id="9404">projekt.u1.ji_kategorie.9404</ji_kategorie>
+                        <ji_kategorie id="9405">projekt.u1.ji_kategorie.9405</ji_kategorie>
+                    </user_defined_anyfield>
+                </objektkategorie>
+                <titel>projekt.u1.titel</titel>
+                <dreizeiler>projekt.u1.dreizeiler</dreizeiler>
+                <naehe>projekt.u1.naehe</naehe>
+                <objektbeschreibung>&lt;p&gt;projekt.u1.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>9406.5</anzahl_zimmer>
+                <etage>projekt.u1.etage</etage>
+                <tuernummer>projekt.u1.tuernummer</tuernummer>
+                <stiege>projekt.u1.stiege</stiege>
+                <hausnummer>projekt.u1.hausnummer</hausnummer>
+                <strasse>projekt.u1.strasse</strasse>
+                <ort>projekt.u1.ort</ort>
+                <plz>9407</plz>
+                <preis>9408.5</preis>
+                <kaufpreis>9409.5</kaufpreis>
+                <mietkauf>1</mietkauf>
+                <wohnbaufoerderung>9410.5</wohnbaufoerderung>
+                <wohnflaeche>9411.5</wohnflaeche>
+                <nutzflaeche>9412.5</nutzflaeche>
+                <grundflaeche>9413.5</grundflaeche>
+                <gesamtflaeche>9414.5</gesamtflaeche>
+                <bueroflaeche>9415.5</bueroflaeche>
+                <lagerflaeche>9416.5</lagerflaeche>
+                <verkaufsflaeche>9417.5</verkaufsflaeche>
+                <anzahl_loggias>9418</anzahl_loggias>
+                <loggias_flaeche>9419.5</loggias_flaeche>
+                <anzahl_balkons>9420</anzahl_balkons>
+                <balkons_flaeche>9421.5</balkons_flaeche>
+                <anzahl_terrassen>9422</anzahl_terrassen>
+                <terrassen_flaeche>9423.5</terrassen_flaeche>
+                <gartenflaeche>9424.5</gartenflaeche>
+                <erstes_bild>https://files.example.com/projekt.u1/erstes_bild/medium.jpg</erstes_bild>
+                <erstes_bild_beschreibung>projekt.u1.erstes_bild_beschreibung</erstes_bild_beschreibung>
+                <zweites_bild>https://files.example.com/projekt.u1/zweites_bild/medium.jpg</zweites_bild>
+                <zweites_bild_beschreibung>projekt.u1.zweites_bild_beschreibung</zweites_bild_beschreibung>
+                <projekt_id>9301</projekt_id>
+                <status>projekt.u1.status</status>
+                <status_id>9425</status_id>
+                <vermittelt_am>2029-11-17 10:00:01</vermittelt_am>
+                <erstellt_am>2029-11-17 10:00:02</erstellt_am>
+                <aktualisiert_am>2029-11-17 10:00:03</aktualisiert_am>
+            </immobilie>
+            <immobilie>
+                <id>9431</id>
+                <objektnummer>projekt.u2.objektnummer</objektnummer>
+                <objektkategorie>
+                    <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="0"/>
+                    <vermarktungsart KAUF="0" MIETE_PACHT="1"/>
+                    <objektart>
+                        <wohnung wohnungtyp="MAISONETTE"/>
+                    </objektart>
+                    <user_defined_simplefield feldname="objektart_id">9432</user_defined_simplefield>
+                    <user_defined_simplefield feldname="objektart_name">projekt.u2.udsf.objektart_name</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_id">9433</user_defined_simplefield>
+                    <user_defined_simplefield feldname="sub_objektart_name">projekt.u2.udsf.sub_objektart_name</user_defined_simplefield>
+                    <user_defined_anyfield>
+                        <ji_kategorie id="9434">projekt.u2.ji_kategorie.9434</ji_kategorie>
+                        <ji_kategorie id="9435">projekt.u2.ji_kategorie.9435</ji_kategorie>
+                    </user_defined_anyfield>
+                </objektkategorie>
+                <titel>projekt.u2.titel</titel>
+                <dreizeiler>projekt.u2.dreizeiler</dreizeiler>
+                <naehe>projekt.u2.naehe</naehe>
+                <objektbeschreibung>&lt;p&gt;projekt.u2.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+                <anzahl_zimmer>9436.5</anzahl_zimmer>
+                <etage>projekt.u2.etage</etage>
+                <tuernummer>projekt.u2.tuernummer</tuernummer>
+                <stiege>projekt.u2.stiege</stiege>
+                <hausnummer>projekt.u2.hausnummer</hausnummer>
+                <strasse>projekt.u2.strasse</strasse>
+                <ort>projekt.u2.ort</ort>
+                <plz>9437</plz>
+                <preis>9438.5</preis>
+                <gesamtmiete>9439.5</gesamtmiete>
+                <mietkauf>0</mietkauf>
+                <wohnbaufoerderung>9440.5</wohnbaufoerderung>
+                <wohnflaeche>9441.5</wohnflaeche>
+                <nutzflaeche>9442.5</nutzflaeche>
+                <grundflaeche>9443.5</grundflaeche>
+                <gesamtflaeche>9444.5</gesamtflaeche>
+                <bueroflaeche>9445.5</bueroflaeche>
+                <lagerflaeche>9446.5</lagerflaeche>
+                <verkaufsflaeche>9447.5</verkaufsflaeche>
+                <anzahl_loggias>9448</anzahl_loggias>
+                <loggias_flaeche>9449.5</loggias_flaeche>
+                <anzahl_balkons>9450</anzahl_balkons>
+                <balkons_flaeche>9451.5</balkons_flaeche>
+                <anzahl_terrassen>9452</anzahl_terrassen>
+                <terrassen_flaeche>9453.5</terrassen_flaeche>
+                <gartenflaeche>9454.5</gartenflaeche>
+                <erstes_bild>https://files.example.com/projekt.u2/erstes_bild/medium.jpg</erstes_bild>
+                <erstes_bild_beschreibung>projekt.u2.erstes_bild_beschreibung</erstes_bild_beschreibung>
+                <zweites_bild>https://files.example.com/projekt.u2/zweites_bild/medium.jpg</zweites_bild>
+                <zweites_bild_beschreibung>projekt.u2.zweites_bild_beschreibung</zweites_bild_beschreibung>
+                <projekt_id>9301</projekt_id>
+                <status>projekt.u2.status</status>
+                <status_id>9455</status_id>
+                <vermittelt_am>2029-11-20 10:00:01</vermittelt_am>
+                <erstellt_am>2029-11-20 10:00:02</erstellt_am>
+                <aktualisiert_am>2029-11-20 10:00:03</aktualisiert_am>
+            </immobilie>
+        </immobilien>
+        <dokumente>
+            <dokument>
+                <titel>projekt.dokument.titel</titel>
+                <anhang_beschreibung>projekt.dokument.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/dokument/orig.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+        </dokumente>
+        <bilder>
+            <bild>
+                <titel>projekt.bilder.1.titel</titel>
+                <anhang_beschreibung>projekt.bilder.1.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/bilder/1/medium.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>projekt.bilder.2.titel</titel>
+                <anhang_beschreibung>projekt.bilder.2.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/bilder/2/medium.jpg</pfad>
+            </bild>
+        </bilder>
+        <plaene>
+            <bild>
+                <titel>projekt.plaene.1.titel</titel>
+                <anhang_beschreibung>projekt.plaene.1.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/plaene/1/medium.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>projekt.plaene.2.titel</titel>
+                <anhang_beschreibung>projekt.plaene.2.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/plaene/2/medium.jpg</pfad>
+            </bild>
+        </plaene>
+        <bilder360>
+            <bild>
+                <titel>projekt.bilder360.1.titel</titel>
+                <anhang_beschreibung>projekt.bilder360.1.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/bilder360/1/landscape.jpg</pfad>
+            </bild>
+            <bild>
+                <titel>projekt.bilder360.2.titel</titel>
+                <anhang_beschreibung>projekt.bilder360.2.anhang_beschreibung</anhang_beschreibung>
+                <pfad>https://files.example.com/projekt/bilder360/2/landscape.jpg</pfad>
+            </bild>
+        </bilder360>
+        <videos>
+            <video>
+                <id>player_video_9360</id>
+                <pfad>https://files.example.com/projekt/video/default.mp4</pfad>
+                <bild_klein>https://files.example.com/projekt/video/fm_small.jpg</bild_klein>
+                <bild_gross>https://files.example.com/projekt/video/medium.jpg</bild_gross>
+                <titel>projekt.video.titel</titel>
+                <anhang_beschreibung>projekt.video.anhang_beschreibung</anhang_beschreibung>
+            </video>
+        </videos>
+        <links>
+            <link>
+                <titel>projekt.link.links.titel</titel>
+                <pfad>https://example.com/projekt/link/links</pfad>
+                <gruppe>links</gruppe>
+            </link>
+            <link>
+                <titel>projekt.link.filmlink.titel</titel>
+                <pfad>https://example.com/projekt/link/filmlink</pfad>
+                <gruppe>filmlink</gruppe>
+            </link>
+            <link>
+                <titel>projekt.link.rundgang.titel</titel>
+                <pfad>https://example.com/projekt/link/rundgang</pfad>
+                <gruppe>rundgang</gruppe>
+            </link>
+        </links>
+        <kontaktperson>
+            <id>9370</id>
+            <email_direkt>kontaktperson.email_direkt@example.com</email_direkt>
+            <tel_zentrale>+43 1 9371</tel_zentrale>
+            <tel_fax>+43 1 9372</tel_fax>
+            <tel_handy>+43 664 9373</tel_handy>
+            <name>kontaktperson.name</name>
+            <vorname>kontaktperson.vorname</vorname>
+            <anrede>kontaktperson.anrede</anrede>
+            <titel>kontaktperson.titel</titel>
+            <firma>kontaktperson.firma</firma>
+            <position>kontaktperson.position</position>
+            <strasse>kontaktperson.strasse</strasse>
+            <plz>9374</plz>
+            <ort>kontaktperson.ort</ort>
+            <land iso_land="CHE"/>
+            <url>kontaktperson.url.example.com</url>
+            <personennummer>kontaktperson.personennummer</personennummer>
+            <bild>
+                <small>https://files.example.com/kontaktperson/bild/small.jpg</small>
+                <medium>https://files.example.com/kontaktperson/bild/medium.jpg</medium>
+                <big>https://files.example.com/kontaktperson/bild/big.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">kontaktperson.udsf.immocard_id</user_defined_simplefield>
+        </kontaktperson>
+    </projekt>
+</justimmo>

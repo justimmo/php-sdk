@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic team/detail answer: every element an employee can write is filled, with all seven link
+  groups.
+
+  Every free value is unique within the file. Texts name their place ("mitarbeiter.vorname");
+  numbers are unique per place. Picture sizes are the defaults (no picturesize in the request). In a
+  real answer the extra size element repeats the url of <pfad> (user_small, big); here it differs.
+-->
+<justimmo>
+    <id>9601</id>
+    <bild>
+        <pfad>https://files.example.com/mitarbeiter/bild/user_small.jpg</pfad>
+        <pfad_medium>https://files.example.com/mitarbeiter/bild/user_medium.jpg</pfad_medium>
+        <user_small>https://files.example.com/mitarbeiter/bild/size-user_small.jpg</user_small>
+    </bild>
+    <personennummer>mitarbeiter.personennummer</personennummer>
+    <vorname>mitarbeiter.vorname</vorname>
+    <nachname>mitarbeiter.nachname</nachname>
+    <anrede>mitarbeiter.anrede</anrede>
+    <titel>mitarbeiter.titel</titel>
+    <suffix>mitarbeiter.suffix</suffix>
+    <position>mitarbeiter.position</position>
+    <bio>mitarbeiter.bio</bio>
+    <handy>+43 664 9602</handy>
+    <tel>+43 1 9603</tel>
+    <fax>+43 1 9604</fax>
+    <email>mitarbeiter.email@example.com</email>
+    <strasse>mitarbeiter.strasse</strasse>
+    <plz>9605</plz>
+    <ort>mitarbeiter.ort</ort>
+    <url>https://example.com/mitarbeiter/url</url>
+    <anhaenge>
+        <anhang location="REMOTE">
+            <anhangtitel>mitarbeiter.anhang.1.anhangtitel</anhangtitel>
+            <format>.jpg</format>
+            <daten>
+                <pfad>https://files.example.com/mitarbeiter/anhang/1/big.jpg</pfad>
+                <big>https://files.example.com/mitarbeiter/anhang/1/size-big.jpg</big>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE">
+            <anhangtitel>mitarbeiter.anhang.2.anhangtitel</anhangtitel>
+            <format>.jpg</format>
+            <daten>
+                <pfad>https://files.example.com/mitarbeiter/anhang/2/big.jpg</pfad>
+                <big>https://files.example.com/mitarbeiter/anhang/2/size-big.jpg</big>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="LINKS">
+            <anhangtitel>mitarbeiter.link.links.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/links</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="FILMLINK">
+            <anhangtitel>mitarbeiter.link.filmlink.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/filmlink</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="FACEBOOK">
+            <anhangtitel>mitarbeiter.link.facebook.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/facebook</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="TWITTER">
+            <anhangtitel>mitarbeiter.link.twitter.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/twitter</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="XING">
+            <anhangtitel>mitarbeiter.link.xing.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/xing</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="LINKEDIN">
+            <anhangtitel>mitarbeiter.link.linkedin.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/linkedin</pfad>
+            </daten>
+        </anhang>
+        <anhang location="REMOTE" gruppe="INSTAGRAM">
+            <anhangtitel>mitarbeiter.link.instagram.anhangtitel</anhangtitel>
+            <format></format>
+            <daten>
+                <pfad>https://example.com/mitarbeiter/link/instagram</pfad>
+            </daten>
+        </anhang>
+    </anhaenge>
+</justimmo>
