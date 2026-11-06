@@ -284,6 +284,8 @@ class Realty implements ModelInterface
 
     protected $infrastructureProvision;
 
+    protected ?float $infrastructureProvisionCosts = null;
+
     protected $condition;
 
     protected $equipment = [];
@@ -2140,6 +2142,26 @@ class Realty implements ModelInterface
     public function getInfrastructureProvision()
     {
         return $this->infrastructureProvision;
+    }
+
+    public function setInfrastructureProvisionCosts(?float $infrastructureProvisionCosts): static
+    {
+        $this->infrastructureProvisionCosts = $infrastructureProvisionCosts;
+
+        return $this;
+    }
+
+    /**
+     * The costs of connecting the plot to roads and utilities. Null when the realty does not say
+     *
+     * getInfrastructureProvision() returns the state of the connection instead, and returns these
+     * costs only when no state is set.
+     *
+     * Source: the element erschliessungskosten in preise
+     */
+    public function getInfrastructureProvisionCosts(): ?float
+    {
+        return $this->infrastructureProvisionCosts;
     }
 
     /**

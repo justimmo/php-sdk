@@ -458,6 +458,75 @@ class RealtyWrapperTest extends TestCase
         $this->assertSame(300000.0, $list[1]->getPurchasePrice());
     }
 
+    public function testTheBalconyTerraceCountIsAnInteger(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<flaechen><anzahl_balkon_terrassen>3</anzahl_balkon_terrassen></flaechen>'
+        ));
+
+        $this->assertSame(3, $objekt->getBalconyTerraceCount());
+    }
+
+    /**
+     * The realties of a project come in the short shape, without the OpenImmo blocks
+     */
+    public function testTheShortShapeReadsTheAddressTheSalesAreaAndTheRentWithPurchaseOption(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<strasse>Hauptstraße</strasse><hausnummer>12a</hausnummer>'
+            . '<verkaufsflaeche>80.5</verkaufsflaeche><mietkauf>1</mietkauf>'
+        ));
+
+        $this->assertSame('Hauptstraße', $objekt->getStreet());
+        $this->assertSame('12a', $objekt->getHouseNumber());
+        $this->assertSame(80.5, $objekt->getSalesArea());
+        $this->assertTrue($objekt->getRentWithPurchaseOption());
+    }
+
+    public function testBothPicturesOfTheShortShapeKeepTheirDescription(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<erstes_bild>https://example.com/1.jpg</erstes_bild><erstes_bild_beschreibung>first</erstes_bild_beschreibung>'
+            . '<zweites_bild>https://example.com/2.jpg</zweites_bild><zweites_bild_beschreibung>second</zweites_bild_beschreibung>'
+        ));
+
+        $attachments = $objekt->getAttachments();
+
+        $this->assertCount(2, $attachments);
+        $this->assertSame('first', $attachments[0]->getDescription());
+        $this->assertSame('second', $attachments[1]->getDescription());
+    }
+
+    public function testTheInfrastructureProvisionCostsStayNextToTheState(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<preise><erschliessungskosten>12000.5</erschliessungskosten></preise>'
+            . '<zustand_angaben><erschliessung erschl_attr="VOLLERSCHLOSSEN"/></zustand_angaben>'
+        ));
+
+        $this->assertSame(12000.5, $objekt->getInfrastructureProvisionCosts());
+        $this->assertSame('VOLLERSCHLOSSEN', $objekt->getInfrastructureProvision());
+    }
+
+    public function testWithoutAStateTheInfrastructureProvisionStillReturnsTheCostsAsBefore(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<preise><erschliessungskosten>12000.5</erschliessungskosten></preise>'
+        ));
+
+        $this->assertSame(12000.5, $objekt->getInfrastructureProvisionCosts());
+        $this->assertSame(12000.5, $objekt->getInfrastructureProvision());
+    }
+
+    public function testEmptyInfrastructureProvisionCostsAreNull(): void
+    {
+        $objekt = $this->wrapper->transformSingle(self::realty(
+            '<preise><erschliessungskosten> </erschliessungskosten></preise>'
+        ));
+
+        $this->assertNull($objekt->getInfrastructureProvisionCosts());
+    }
+
     private static function realty(string $blocks): string
     {
         return '<?xml version="1.0"?><justimmo><immobilie>' . $blocks . '</immobilie></justimmo>';
