@@ -104,4 +104,23 @@ XML
         $this->assertEquals('Muster Immobilien GmbH', $employee->getCompany());
         $this->assertEquals('AUT', $employee->getCountry());
     }
+
+    public function testTheSocialLinksAreLinks(): void
+    {
+        $groups   = ['FACEBOOK', 'TWITTER', 'XING', 'LINKEDIN', 'INSTAGRAM'];
+        $anhaenge = '';
+        foreach ($groups as $group) {
+            $anhaenge .= '<anhang location="REMOTE" gruppe="' . $group . '"><daten><pfad>https://example.com/' . $group . '</pfad></daten></anhang>';
+        }
+
+        $wrapper  = new EmployeeWrapper(new EmployeeMapper());
+        $employee = $wrapper->transformSingle(
+            '<?xml version="1.0"?><justimmo><mitarbeiter><id>1</id><anhaenge>' . $anhaenge . '</anhaenge></mitarbeiter></justimmo>'
+        );
+
+        $links = $employee->getLinks();
+
+        $this->assertSame($groups, array_map(fn ($link) => $link->getGroup(), $links));
+        $this->assertSame([], $employee->getDocuments());
+    }
 }

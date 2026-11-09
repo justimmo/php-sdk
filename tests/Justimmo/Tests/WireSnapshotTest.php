@@ -13,7 +13,10 @@ use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
 
 /**
- * What find() sends for odd input, with strict mode off
+ * Records the url that find() requests from the api for unusual filter and sort input
+ *
+ * Strict mode is off in every case. Example line:
+ * realty: filter(name:null, min-max) => objekt/list?filter[_von]=1&filter[_bis]=2&showDetails=1&culture=de&sdk=<version> | <notices>
  *
  * The fixture holds one line per case: the url find() requested, and the exception it ended in. It
  * was recorded with 1.4.2 and differs from it only where a release changed a request on purpose.
@@ -24,8 +27,8 @@ use Justimmo\Model\Wrapper\NullWrapper;
  * The deprecation notices of the SDK are recorded after the url. The warnings of PHP itself are not,
  * because they differ between PHP versions.
  *
- * WIRE_SNAPSHOT_UPDATE=1 writes the fixture instead of comparing against it. Review the diff before
- * committing it: every changed line is a request, an exception or a notice which changed.
+ * WIRE_SNAPSHOT_UPDATE=1, or make snapshots for all three snapshot tests, writes the fixture
+ * instead of comparing against it. Review the diff before committing it: every changed line is a request, an exception or a notice which changed.
  */
 class WireSnapshotTest extends TestCase
 {
@@ -39,7 +42,11 @@ class WireSnapshotTest extends TestCase
             $this->markTestSkipped('The fixture was written. Review its diff.');
         }
 
-        $this->assertSame($this->getFixtures('wire-snapshot.txt'), $snapshot);
+        $this->assertSame(
+            $this->getFixtures('wire-snapshot.txt'),
+            $snapshot,
+            'A request, an exception or a notice changed. If that is intended, run make snapshots and review the diff of tests/Fixtures/wire-snapshot.txt'
+        );
     }
 
     /**
@@ -88,6 +95,9 @@ class WireSnapshotTest extends TestCase
 
             protected function createRequest($url)
             {
+                // the version depends on the checkout (a tag, a branch), so the fixture holds a placeholder
+                $url = preg_replace('#([?&])sdk=[^&]*$#', '$1sdk=<version>', $url);
+
                 $this->urls[] = urldecode(preg_replace('#^.*?/v1/#', '', $url));
 
                 return new MockCurlRequest('<?xml version="1.0"?><justimmo/>', 200);

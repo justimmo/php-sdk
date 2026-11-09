@@ -3,12 +3,15 @@
 namespace Justimmo\Tests;
 
 /**
- * The public and protected signatures of the SDK
+ * Records the first line of every method, constant and property that code outside the SDK can see
  *
- * A subclass of an SDK class, or a class implementing one of its interfaces, is built on these
- * signatures. When one changes, such a class can stop loading with a fatal error. No other test
- * sees that, because no test has such a class. This test cannot see them either. It makes every
- * change to the SDK's side visible, so the review decides whether it needs a [BC] line.
+ * Example line: Justimmo\Model\Query\AbstractQuery::public paginate($page = 1, $maxPerPage = 10)
+ *
+ * A site that extends an SDK class, overrides one of its methods or implements one of its
+ * interfaces depends on these lines. When one changes, PHP can refuse to load that site's class,
+ * and the site stops with a fatal error. No other test sees that, because no test has such a class.
+ * This test cannot see the site's classes either. It makes every change on the SDK's side visible,
+ * so the review decides whether it needs a [BC] line.
  *
  * The fixture holds every class, interface and trait in src/Justimmo: one line for its form, then
  * one line per public or protected constant, property and method it declares itself. Inherited
@@ -17,7 +20,8 @@ namespace Justimmo\Tests;
  * constants and properties are not recorded. The lines are built here and not taken from PHP's own
  * text form of a method, because that differs between PHP versions.
  *
- * SIGNATURE_SNAPSHOT_UPDATE=1 writes the fixture instead of comparing against it. Review the diff
+ * SIGNATURE_SNAPSHOT_UPDATE=1, or make snapshots for all three snapshot tests, writes the fixture
+ * instead of comparing against it. Review the diff
  * before committing it: every changed line is a signature a subclass may depend on.
  */
 class SignatureSnapshotTest extends TestCase
@@ -35,7 +39,11 @@ class SignatureSnapshotTest extends TestCase
             $this->markTestSkipped('The fixture was written. Review its diff.');
         }
 
-        $this->assertSame($this->getFixtures('signature-snapshot.txt'), $snapshot);
+        $this->assertSame(
+            $this->getFixtures('signature-snapshot.txt'),
+            $snapshot,
+            'A public signature changed. If that is intended, run make snapshots and review the diff of tests/Fixtures/signature-snapshot.txt'
+        );
     }
 
     /**

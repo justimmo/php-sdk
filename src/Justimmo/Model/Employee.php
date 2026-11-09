@@ -109,6 +109,10 @@ class Employee implements ModelInterface
      */
     protected $country = null;
 
+    protected ?string $immobiliencardId = null;
+
+    protected ?string $immobiliencardUid = null;
+
     /**
      * @param array $attachments
      *
@@ -613,5 +617,41 @@ class Employee implements ModelInterface
         $this->country = $country;
 
         return $this;
+    }
+
+    public function setImmobiliencardId(?string $immobiliencardId): static
+    {
+        $this->immobiliencardId = $immobiliencardId;
+
+        return $this;
+    }
+
+    /**
+     * The id of the contact person's Immobiliencard, the Austrian card for real estate agents. The
+     * contact person of a realty or a project carries it
+     *
+     * Source: the user-defined simple field immocard_id
+     */
+    public function getImmobiliencardId(): ?string
+    {
+        return $this->immobiliencardId;
+    }
+
+    public function setImmobiliencardUid(?string $immobiliencardUid): static
+    {
+        $this->immobiliencardUid = $immobiliencardUid;
+
+        return $this;
+    }
+
+    /**
+     * The company id on the contact person's Immobiliencard, only together with
+     * getImmobiliencardId()
+     *
+     * Source: the user-defined simple field immocard_firma_id
+     */
+    public function getImmobiliencardUid(): ?string
+    {
+        return $this->immobiliencardUid;
     }
 }

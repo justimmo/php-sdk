@@ -3,6 +3,7 @@ namespace Justimmo\Tests;
 
 use Composer\InstalledVersions;
 use Justimmo\Api\JustimmoApi;
+use Justimmo\Cache\CacheInterface;
 use Justimmo\Cache\NullCache;
 use Justimmo\Exception\AuthenticationException;
 use Justimmo\Exception\ConnectionException;
@@ -564,6 +565,116 @@ class ApiTest extends TestCase
             'https://api.justimmo.at/rest/v1/objekt/ids',
             $this->api->generateUrl('objekt/ids', ['filter' => []])
         );
+    }
+
+    /**
+     * The url carries the version as its last parameter, so the api's access log shows it
+     */
+    public function testTheVersionIsTheLastParameterOfTheUrl(): void
+    {
+        $urls = $this->recordUrls();
+
+        $this->api->callRealtyList(['culture' => 'en']);
+
+        $this->assertSame(
+            'https://api.justimmo.at/rest/v1/objekt/list?culture=en&showDetails=1&' . self::versionParameter(),
+            $urls[0]
+        );
+    }
+
+    /**
+     * A call without culture, such as the ids calls, carries the version too
+     */
+    public function testACallWithoutCultureCarriesTheVersion(): void
+    {
+        $urls = $this->recordUrls();
+
+        $this->api->callRealtyIds();
+
+        $this->assertSame('https://api.justimmo.at/rest/v1/objekt/ids?' . self::versionParameter(), $urls[0]);
+    }
+
+    /**
+     * A caller's own sdk is replaced, so the value in the log is always the sdk's
+     */
+    public function testACallersSdkIsReplacedByTheVersion(): void
+    {
+        $urls = $this->recordUrls();
+
+        $this->api->call('objekt/list', ['sdk' => 'mine', 'culture' => 'de']);
+
+        $this->assertSame(
+            'https://api.justimmo.at/rest/v1/objekt/list?culture=de&' . self::versionParameter(),
+            $urls[0]
+        );
+    }
+
+    /**
+     * The cache key is built from the url without the version, the same key as before 1.7.0
+     */
+    public function testTheCacheKeyLeavesTheVersionOut(): void
+    {
+        $cache = new class implements CacheInterface {
+            /**
+             * @var array<int, string>
+             */
+            public array $keyUrls = [];
+
+            public function get(mixed $key): mixed
+            {
+                return false;
+            }
+
+            public function set(mixed $key, mixed $value): void
+            {
+            }
+
+            public function remove(mixed $key): void
+            {
+            }
+
+            public function generateCacheKey(mixed $url): string
+            {
+                $this->keyUrls[] = $url;
+
+                return md5($url);
+            }
+        };
+
+        $api = $this->getMockBuilder(JustimmoApi::class)
+            ->setConstructorArgs(['username', 'password', new NullLogger(), $cache])
+            ->onlyMethods(['createRequest'])
+            ->getMock();
+        $api->method('createRequest')->willReturn(new MockCurlRequest('<justimmo/>', 200));
+
+        $api->call('objekt/list', ['sdk' => 'mine', 'culture' => 'de']);
+
+        $this->assertSame(['https://api.justimmo.at/rest/v1/objekt/list?culture=de'], $cache->keyUrls);
+    }
+
+    /**
+     * Records the url of every request the api of the test makes
+     *
+     * @return \ArrayObject<int, string>
+     */
+    private function recordUrls(): \ArrayObject
+    {
+        $urls = new \ArrayObject();
+        $this->api->method('createRequest')->willReturnCallback(function ($url) use ($urls) {
+            $urls[] = $url;
+
+            return new MockCurlRequest('<justimmo/>', 200);
+        });
+
+        return $urls;
+    }
+
+    /**
+     * The version parameter as the url carries it
+     */
+    private static function versionParameter(): string
+    {
+        return http_build_query(['sdk' => InstalledVersions::getPrettyVersion('justimmo/php-sdk')]);
     }
 
     public function testGenerateUrl()

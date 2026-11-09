@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic objekt/list answer without showDetails: every element the short list can write is filled.
+  Two realties, a buy and a rent. The count is higher than the number of entries, as on a paged answer.
+
+  Every free value is unique within the file. Texts name their place ("buy.titel", "rent.ort"); numbers
+  are unique per place. In a real answer, preis equals kaufpreis (buy) or gesamtmiete (rent); here they
+  differ on purpose, so a comparison shows which one a getter reads.
+
+  Not in it: the reduced address of the other address rules (only ort, or ort "keine Angabe").
+-->
+<justimmo>
+    <query-result>
+        <count>9</count>
+    </query-result>
+    <immobilie>
+        <id>8101</id>
+        <objektnummer>buy.objektnummer</objektnummer>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+            <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+            <objektart>
+                <haus haustyp="EINFAMILIENHAUS"/>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">8102</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">buy.udsf.objektart_name</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">8103</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">buy.udsf.sub_objektart_name</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_kategorie id="8104">buy.ji_kategorie.8104</ji_kategorie>
+                <ji_kategorie id="8105">buy.ji_kategorie.8105</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <titel>buy.titel</titel>
+        <dreizeiler>buy.dreizeiler</dreizeiler>
+        <naehe>buy.naehe</naehe>
+        <objektbeschreibung>&lt;p&gt;buy.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+        <anzahl_zimmer>8106.5</anzahl_zimmer>
+        <etage>buy.etage</etage>
+        <tuernummer>buy.tuernummer</tuernummer>
+        <stiege>buy.stiege</stiege>
+        <hausnummer>buy.hausnummer</hausnummer>
+        <strasse>buy.strasse</strasse>
+        <ort>buy.ort</ort>
+        <plz>8107</plz>
+        <preis>8108.5</preis>
+        <kaufpreis>8109.5</kaufpreis>
+        <mietkauf>1</mietkauf>
+        <wohnbaufoerderung>8110.5</wohnbaufoerderung>
+        <wohnflaeche>8111.5</wohnflaeche>
+        <nutzflaeche>8112.5</nutzflaeche>
+        <grundflaeche>8113.5</grundflaeche>
+        <gesamtflaeche>8114.5</gesamtflaeche>
+        <bueroflaeche>8115.5</bueroflaeche>
+        <lagerflaeche>8116.5</lagerflaeche>
+        <verkaufsflaeche>8117.5</verkaufsflaeche>
+        <anzahl_loggias>8118</anzahl_loggias>
+        <loggias_flaeche>8119.5</loggias_flaeche>
+        <anzahl_balkons>8120</anzahl_balkons>
+        <balkons_flaeche>8121.5</balkons_flaeche>
+        <anzahl_terrassen>8122</anzahl_terrassen>
+        <terrassen_flaeche>8123.5</terrassen_flaeche>
+        <gartenflaeche>8124.5</gartenflaeche>
+        <erstes_bild>https://files.example.com/buy/erstes_bild/medium.jpg</erstes_bild>
+        <erstes_bild_beschreibung>buy.erstes_bild_beschreibung</erstes_bild_beschreibung>
+        <zweites_bild>https://files.example.com/buy/zweites_bild/medium.jpg</zweites_bild>
+        <zweites_bild_beschreibung>buy.zweites_bild_beschreibung</zweites_bild_beschreibung>
+        <projekt_id>8125</projekt_id>
+        <status>buy.status</status>
+        <status_id>8126</status_id>
+        <vermittelt_am>2028-01-27 10:00:27</vermittelt_am>
+        <erstellt_am>2028-01-28 10:00:28</erstellt_am>
+        <aktualisiert_am>2028-01-29 10:00:29</aktualisiert_am>
+    </immobilie>
+    <immobilie>
+        <id>8201</id>
+        <objektnummer>rent.objektnummer</objektnummer>
+        <objektkategorie>
+            <nutzungsart WOHNEN="0" GEWERBE="1" ANLAGE="0"/>
+            <vermarktungsart KAUF="0" MIETE_PACHT="1"/>
+            <objektart>
+                <buero_praxen buero_typ="BUEROFLAECHE"/>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">8202</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">rent.udsf.objektart_name</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">8203</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">rent.udsf.sub_objektart_name</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_kategorie id="8204">rent.ji_kategorie.8204</ji_kategorie>
+                <ji_kategorie id="8205">rent.ji_kategorie.8205</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <titel>rent.titel</titel>
+        <dreizeiler>rent.dreizeiler</dreizeiler>
+        <naehe>rent.naehe</naehe>
+        <objektbeschreibung>&lt;p&gt;rent.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+        <anzahl_zimmer>8206.5</anzahl_zimmer>
+        <etage>rent.etage</etage>
+        <tuernummer>rent.tuernummer</tuernummer>
+        <stiege>rent.stiege</stiege>
+        <hausnummer>rent.hausnummer</hausnummer>
+        <strasse>rent.strasse</strasse>
+        <ort>rent.ort</ort>
+        <plz>8207</plz>
+        <preis>8208.5</preis>
+        <gesamtmiete>8209.5</gesamtmiete>
+        <mietkauf>0</mietkauf>
+        <wohnbaufoerderung>8210.5</wohnbaufoerderung>
+        <wohnflaeche>8211.5</wohnflaeche>
+        <nutzflaeche>8212.5</nutzflaeche>
+        <grundflaeche>8213.5</grundflaeche>
+        <gesamtflaeche>8214.5</gesamtflaeche>
+        <bueroflaeche>8215.5</bueroflaeche>
+        <lagerflaeche>8216.5</lagerflaeche>
+        <verkaufsflaeche>8217.5</verkaufsflaeche>
+        <anzahl_loggias>8218</anzahl_loggias>
+        <loggias_flaeche>8219.5</loggias_flaeche>
+        <anzahl_balkons>8220</anzahl_balkons>
+        <balkons_flaeche>8221.5</balkons_flaeche>
+        <anzahl_terrassen>8222</anzahl_terrassen>
+        <terrassen_flaeche>8223.5</terrassen_flaeche>
+        <gartenflaeche>8224.5</gartenflaeche>
+        <erstes_bild>https://files.example.com/rent/erstes_bild/medium.jpg</erstes_bild>
+        <erstes_bild_beschreibung>rent.erstes_bild_beschreibung</erstes_bild_beschreibung>
+        <zweites_bild>https://files.example.com/rent/zweites_bild/medium.jpg</zweites_bild>
+        <zweites_bild_beschreibung>rent.zweites_bild_beschreibung</zweites_bild_beschreibung>
+        <projekt_id>8225</projekt_id>
+        <status>rent.status</status>
+        <status_id>8226</status_id>
+        <vermittelt_am>2028-02-27 10:00:27</vermittelt_am>
+        <erstellt_am>2028-02-28 10:00:28</erstellt_am>
+        <aktualisiert_am>2028-02-29 10:00:29</aktualisiert_am>
+    </immobilie>
+</justimmo>

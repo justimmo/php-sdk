@@ -270,4 +270,26 @@ class ProjectWrapperTest extends TestCase
         ], $entry->getRealtyIds());
     }
 
+    /**
+     * The count is the total of the matching projects, not of this page
+     */
+    public function testThePagerCountsAllMatchingProjects(): void
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+        $list    = $wrapper->transformList($this->getFixtures('v1/synthetic/project_list.xml'));
+
+        $this->assertSame(2, $list->count());
+        $this->assertSame(7, $list->getNbResults());
+        $this->assertTrue($list->haveToPaginate());
+    }
+
+    public function testWithoutACountThePagerCountsThePage(): void
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+        $list    = $wrapper->transformList('<?xml version="1.0"?><justimmo><projekt><id>1</id></projekt><projekt><id>2</id></projekt></justimmo>');
+
+        $this->assertSame(2, $list->getNbResults());
+        $this->assertFalse($list->haveToPaginate());
+    }
+
 }

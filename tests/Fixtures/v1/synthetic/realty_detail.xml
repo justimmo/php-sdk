@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic objekt/detail answer in which every element, attribute and UDSF the api can write is filled,
+  in the api's element order.
+
+  It combines variants no single real answer has at once:
+  - buy and rent (KAUF and MIETE_PACHT both 1)
+  - the optional equipment elements in <ausstattung> (UDSF moeblierung, ji_ausstattung)
+  - media descriptions, 360° pictures and points of interest
+  Alternatives one answer cannot hold are not in it: kaufpreis auf_anfrage="1" (then the value is 0),
+  max_mietdauer in MONAT or "unbefristet".
+
+  Every free value is unique, so a comparison shows which place a getter reads. Texts name their place
+  ("geo.ort", "udsf.etage"); numbers are unique per place. Where the api always writes the same value
+  twice (tuernummer/wohnungsnr, anzahl_balkone/anzahl_balkons, anzahl_logia/anzahl_loggias,
+  projekt_id/UDSF parent_id, official node/UDSF of the same name), the two places get different
+  values on purpose. A difference there is a feature of the fixture, not of the api.
+-->
+<justimmo>
+    <immobilie>
+        <objektkategorie>
+            <nutzungsart WOHNEN="1" GEWERBE="0" ANLAGE="1"/>
+            <vermarktungsart KAUF="1" MIETE_PACHT="1"/>
+            <objektart>
+                <haus haustyp="EINFAMILIENHAUS"/>
+                <subobjektart>objektkategorie.subobjektart</subobjektart>
+            </objektart>
+            <user_defined_simplefield feldname="objektart_id">11</user_defined_simplefield>
+            <user_defined_simplefield feldname="objektart_name">udsf.objektart_name</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_id">12</user_defined_simplefield>
+            <user_defined_simplefield feldname="sub_objektart_name">udsf.sub_objektart_name</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_kategorie id="13">objektkategorie.ji_kategorie.13</ji_kategorie>
+                <ji_kategorie id="14">objektkategorie.ji_kategorie.14</ji_kategorie>
+            </user_defined_anyfield>
+        </objektkategorie>
+        <geo>
+            <plz>1101</plz>
+            <ort>geo.ort</ort>
+            <geokoordinaten breitengrad="48.1101" laengengrad="16.1101"/>
+            <strasse>geo.strasse</strasse>
+            <hausnummer>geo.hausnummer</hausnummer>
+            <bundesland>geo.bundesland</bundesland>
+            <land iso_land="DEU"/>
+            <etage>geo.etage</etage>
+            <anzahl_etagen>102</anzahl_etagen>
+            <wohnungsnr>geo.wohnungsnr</wohnungsnr>
+            <regionaler_zusatz>geo.regionaler_zusatz</regionaler_zusatz>
+            <user_defined_simplefield feldname="geokoordinaten_laengengrad">16.1102</user_defined_simplefield>
+            <user_defined_simplefield feldname="geokoordinaten_breitengrad">48.1102</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_laengengrad">16.1103</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_breitengrad">48.1103</user_defined_simplefield>
+            <user_defined_simplefield feldname="ungenaue_verortung_radius">103</user_defined_simplefield>
+            <user_defined_simplefield feldname="etage">udsf.etage / udsf.etage_kommentar</user_defined_simplefield>
+            <user_defined_simplefield feldname="stiege">udsf.stiege</user_defined_simplefield>
+            <user_defined_simplefield feldname="politischer_bezirk">udsf.politischer_bezirk</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_point_of_interest_distance>
+                    <distance type="SUPERMARKET" group="SHOPPING">104</distance>
+                    <distance type="PHARMACY" group="HEALTH">105</distance>
+                    <distance type="SCHOOL" group="EDUCATION">106</distance>
+                </ji_point_of_interest_distance>
+            </user_defined_anyfield>
+            <tuernummer>geo.tuernummer</tuernummer>
+            <stiege>geo.stiege</stiege>
+            <user_defined_simplefield feldname="geokoordinaten_laengengrad_exakt">16.1107</user_defined_simplefield>
+            <user_defined_simplefield feldname="geokoordinaten_breitengrad_exakt">48.1107</user_defined_simplefield>
+            <user_defined_simplefield feldname="ausrichtung">SW</user_defined_simplefield>
+            <user_defined_simplefield feldname="politischer_bezirk_id">108</user_defined_simplefield>
+        </geo>
+        <kontaktperson>
+            <email_direkt>kontaktperson.email_direkt@example.com</email_direkt>
+            <tel_zentrale>+43 1 2010001</tel_zentrale>
+            <tel_fax>+43 1 2010002</tel_fax>
+            <tel_handy>+43 664 2010003</tel_handy>
+            <name>kontaktperson.name</name>
+            <vorname>kontaktperson.vorname</vorname>
+            <titel>kontaktperson.titel</titel>
+            <anrede>kontaktperson.anrede</anrede>
+            <position>kontaktperson.position</position>
+            <firma>kontaktperson.firma</firma>
+            <strasse>kontaktperson.strasse</strasse>
+            <plz>2011</plz>
+            <ort>kontaktperson.ort</ort>
+            <land iso_land="CHE"/>
+            <email_feedback>kontaktperson.email_feedback@example.com</email_feedback>
+            <url>kontaktperson.url.example.com</url>
+            <personennummer>kontaktperson.personennummer</personennummer>
+            <bild>
+                <small>https://files.example.com/kontaktperson/bild/small.jpg</small>
+                <medium>https://files.example.com/kontaktperson/bild/medium.jpg</medium>
+                <big>https://files.example.com/kontaktperson/bild/big.jpg</big>
+            </bild>
+            <user_defined_simplefield feldname="immocard_id">udsf.immocard_id</user_defined_simplefield>
+            <user_defined_simplefield feldname="immocard_firma_id">udsf.immocard_firma_id</user_defined_simplefield>
+            <user_defined_anyfield>
+                <anhang location="REMOTE" gruppe="BILD">
+                    <anhangtitel>kontaktperson.anhang.anhangtitel</anhangtitel>
+                    <format>png</format>
+                    <daten>
+                        <pfad>https://files.example.com/kontaktperson/anhang/user_big.png</pfad>
+                    </daten>
+                </anhang>
+            </user_defined_anyfield>
+            <id>2012</id>
+            <suffix>kontaktperson.suffix</suffix>
+            <bio>kontaktperson.bio</bio>
+        </kontaktperson>
+        <preise>
+            <kaufpreis>1001.5</kaufpreis>
+            <kaufpreisnetto kaufpreisust="1002.5">1003.5</kaufpreisnetto>
+            <nettokaltmiete>1004.5</nettokaltmiete>
+            <kaltmiete>1005.5</kaltmiete>
+            <warmmiete>1006.5</warmmiete>
+            <nebenkosten>1007.5</nebenkosten>
+            <heizkosten>1008.5</heizkosten>
+            <zzg_mehrwertsteuer>1</zzg_mehrwertsteuer>
+            <nebenkostenprom2von nebenkostenprom2bis="1009.5">1010.5</nebenkostenprom2von>
+            <nettomieteprom2von nettomieteprom2bis="1011.5">1012.5</nettomieteprom2von>
+            <abstand>1013.5</abstand>
+            <mietpreis_pro_qm>1014.5</mietpreis_pro_qm>
+            <kaufpreis_pro_qm>1015.5</kaufpreis_pro_qm>
+            <provisionspflichtig>1</provisionspflichtig>
+            <aussen_courtage>preise.aussen_courtage</aussen_courtage>
+            <waehrung iso_waehrung="CHF"/>
+            <freitext_preis>preise.freitext_preis</freitext_preis>
+            <erschliessungskosten>1016.5</erschliessungskosten>
+            <kaution>1017.5</kaution>
+            <kaution_text>preise.kaution_text</kaution_text>
+            <stp_freiplatz anzahl="1018" stellplatzmiete="1019.5"/>
+            <stp_garage anzahl="1020" stellplatzmiete="1021.5"/>
+            <stp_sonstige platzart="GARAGE" anzahl="1022" stellplatzmiete="1023.5"/>
+            <stp_sonstige platzart="CARPORT" anzahl="1024" stellplatzkaufpreis="1025.5"/>
+            <user_defined_simplefield feldname="monatlichekostenbrutto">1026.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="finanzierungsbeitrag">1027.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grunderwerbssteuer">1028.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="grundbucheintragung">1029.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="vertragserrichtungsgebuehr">udsf.vertragserrichtungsgebuehr</user_defined_simplefield>
+            <user_defined_simplefield feldname="wohnbaufoerderung">1030.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="erstauftraggeberprinzip">1</user_defined_simplefield>
+            <user_defined_simplefield feldname="monatliche_reparaturruecklage_netto">1031.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="monatliche_reparaturruecklage_ust">1032.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="monatliche_reparaturruecklage_brutto">1033.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="mietkauf">1</user_defined_simplefield>
+            <user_defined_anyfield>
+                <mwst_gesamt>1034.5</mwst_gesamt>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <sonstige_kosten>1035.5</sonstige_kosten>
+            </user_defined_anyfield>
+            <wohnbaufoerderung>1036.5</wohnbaufoerderung>
+            <rendite>1037.5</rendite>
+            <nettoertrag_jaehrlich>1038.5</nettoertrag_jaehrlich>
+            <gesamtmiete_ust>1039.5</gesamtmiete_ust>
+            <miete>
+                <netto>1040.5</netto>
+                <brutto>1041.5</brutto>
+                <ust>1042.5</ust>
+                <ust_wert>1043.5</ust_wert>
+                <ust_berechneter_wert>1044.5</ust_berechneter_wert>
+                <ust_typ>preise.miete.ust_typ</ust_typ>
+            </miete>
+            <zusatzkosten>
+                <betriebskosten>
+                    <name>preise.zusatzkosten.betriebskosten.name</name>
+                    <netto>1045.5</netto>
+                    <brutto>1046.5</brutto>
+                    <ust>1047.5</ust>
+                    <ust_wert>1048.5</ust_wert>
+                    <ust_berechneter_wert>1049.5</ust_berechneter_wert>
+                    <ust_typ>preise.zusatzkosten.betriebskosten.ust_typ</ust_typ>
+                </betriebskosten>
+                <heizkosten>
+                    <name>preise.zusatzkosten.heizkosten.name</name>
+                    <netto>1050.5</netto>
+                    <brutto>1051.5</brutto>
+                    <ust>1052.5</ust>
+                    <ust_wert>1053.5</ust_wert>
+                    <ust_berechneter_wert>1054.5</ust_berechneter_wert>
+                    <ust_typ>preise.zusatzkosten.heizkosten.ust_typ</ust_typ>
+                </heizkosten>
+                <zusatzkosten_1>
+                    <name>preise.zusatzkosten.zusatzkosten_1.name</name>
+                    <netto>1055.5</netto>
+                    <brutto>1056.5</brutto>
+                    <ust>1057.5</ust>
+                    <ust_wert>1058.5</ust_wert>
+                    <ust_berechneter_wert>1059.5</ust_berechneter_wert>
+                    <ust_typ>preise.zusatzkosten.zusatzkosten_1.ust_typ</ust_typ>
+                    <optional>true</optional>
+                    <gruppe>preise.zusatzkosten.zusatzkosten_1.gruppe</gruppe>
+                </zusatzkosten_1>
+                <zusatzkosten_2>
+                    <name>preise.zusatzkosten.zusatzkosten_2.name</name>
+                    <netto>1060.5</netto>
+                    <brutto>1061.5</brutto>
+                    <ust>1062.5</ust>
+                    <ust_wert>1063.5</ust_wert>
+                    <ust_berechneter_wert>1064.5</ust_berechneter_wert>
+                    <ust_typ>preise.zusatzkosten.zusatzkosten_2.ust_typ</ust_typ>
+                    <optional>false</optional>
+                    <gruppe>preise.zusatzkosten.zusatzkosten_2.gruppe</gruppe>
+                </zusatzkosten_2>
+            </zusatzkosten>
+            <betriebskosten_pro_qm>1065.5</betriebskosten_pro_qm>
+            <user_defined_simplefield feldname="miete_ust">1066.5</user_defined_simplefield>
+            <stellplaetze>
+                <stellplatz>
+                    <art>garage</art>
+                    <name>preise.stellplaetze.1.name</name>
+                    <anzahl>1067</anzahl>
+                    <vermarktungsart>rent</vermarktungsart>
+                    <netto>1068.5</netto>
+                    <brutto>1069.5</brutto>
+                    <ust>1070.5</ust>
+                    <ust_typ>preise.stellplaetze.1.ust_typ</ust_typ>
+                    <ust_wert>1071.5</ust_wert>
+                </stellplatz>
+                <stellplatz>
+                    <art>carport</art>
+                    <name>preise.stellplaetze.2.name</name>
+                    <anzahl>1072</anzahl>
+                    <vermarktungsart>buy</vermarktungsart>
+                    <netto>1073.5</netto>
+                    <brutto>1074.5</brutto>
+                    <ust>1075.5</ust>
+                    <ust_typ>preise.stellplaetze.2.ust_typ</ust_typ>
+                    <ust_wert>1076.5</ust_wert>
+                </stellplatz>
+            </stellplaetze>
+        </preise>
+        <flaechen>
+            <wohnflaeche>301.5</wohnflaeche>
+            <nutzflaeche>302.5</nutzflaeche>
+            <gesamtflaeche>303.5</gesamtflaeche>
+            <lagerflaeche>304.5</lagerflaeche>
+            <verkaufsflaeche>305.5</verkaufsflaeche>
+            <freiflaeche>306.5</freiflaeche>
+            <bueroflaeche>307.5</bueroflaeche>
+            <grundstuecksflaeche>308.5</grundstuecksflaeche>
+            <anzahl_zimmer>309.5</anzahl_zimmer>
+            <anzahl_badezimmer>310</anzahl_badezimmer>
+            <anzahl_sep_wc>311</anzahl_sep_wc>
+            <anzahl_balkone>312</anzahl_balkone>
+            <anzahl_terrassen>313</anzahl_terrassen>
+            <anzahl_logia>314</anzahl_logia>
+            <balkon_terrasse_flaeche>315.5</balkon_terrasse_flaeche>
+            <gartenflaeche>316.5</gartenflaeche>
+            <kellerflaeche>317.5</kellerflaeche>
+            <teilbar_ab>318.5</teilbar_ab>
+            <flaechevon>319.5</flaechevon>
+            <flaechebis>320.5</flaechebis>
+            <user_defined_simplefield feldname="verbaubare_flaeche">321.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="befristete_flaeche">322.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="gewichtete_flaeche">323.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="rohdachboden_flaeche">324.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="hallenhoehe">325.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="raumhoehe">326.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="anzahl_garagen">327</user_defined_simplefield>
+            <verbaubare_flaeche>328.5</verbaubare_flaeche>
+            <anzahl_balkon_terrassen>329</anzahl_balkon_terrassen>
+            <anzahl_keller>330</anzahl_keller>
+            <anzahl_garten>331</anzahl_garten>
+            <anzahl_loggias>332</anzahl_loggias>
+            <loggias_flaeche>333.5</loggias_flaeche>
+            <anzahl_balkons>334</anzahl_balkons>
+            <balkons_flaeche>335.5</balkons_flaeche>
+            <terrassen_flaeche>336.5</terrassen_flaeche>
+            <anzahl_garagen>337</anzahl_garagen>
+            <garagen_flaeche>338.5</garagen_flaeche>
+            <anzahl_stellplaetze>339</anzahl_stellplaetze>
+            <stellplatz_flaeche>340.5</stellplatz_flaeche>
+            <anzahl_abstellraum>341</anzahl_abstellraum>
+            <raumhoehe>342.5</raumhoehe>
+        </flaechen>
+        <ausstattung>
+            <bad DUSCHE="1" WANNE="1" FENSTER="1"/>
+            <kueche EBK="1" OFFEN="1"/>
+            <boden PARKETT="1" FLIESEN="1"/>
+            <kamin>1</kamin>
+            <heizungsart ZENTRAL="1" FUSSBODEN="1"/>
+            <befeuerung GAS="1" FERN="1"/>
+            <klimatisiert>1</klimatisiert>
+            <fahrstuhl PERSONEN="1"/>
+            <stellplatzart GARAGE="1" TIEFGARAGE="1"/>
+            <gartennutzung>1</gartennutzung>
+            <ausricht_balkon_terrasse SUED="1" WEST="1"/>
+            <moebliert moeb="TEIL"/>
+            <kabel_sat_tv>1</kabel_sat_tv>
+            <barrierefrei>1</barrierefrei>
+            <sauna>1</sauna>
+            <swimmingpool>1</swimmingpool>
+            <wintergarten>1</wintergarten>
+            <serviceleistungen BETREUTES_WOHNEN="1"/>
+            <breitband_zugang art="DSL" speed="401"/>
+            <sicherheitstechnik ALARMANLAGE="1" KAMERA="1"/>
+            <unterkellert keller="JA"/>
+            <abstellraum>1</abstellraum>
+            <fahrradraum>1</fahrradraum>
+            <rolladen>1</rolladen>
+            <dachform SATTELDACH="1"/>
+            <bauweise MASSIV="1"/>
+            <energietyp PASSIVHAUS="1"/>
+            <gaestewc>1</gaestewc>
+            <user_defined_anyfield>
+                <ji_heizungsart NAHWAERME="1" INFRAROTHEIZUNG="1"/>
+                <ji_serviceleistungen HAUSVERWALTUNG_SMARTPHONE_APP="1"/>
+                <ji_extras PAKETEMPFANGSBOX="1"/>
+                <ji_elektrik E_LADESTATION_FUER_KFZ="1" PHOTOVOLTAIK_ANLAGE="1" SMART_HOME_SYSTEM="1"/>
+                <ji_gebaeudezertifikate KLIMAAKTIV="1"/>
+            </user_defined_anyfield>
+            <user_defined_simplefield feldname="moeblierung">udsf.moeblierung</user_defined_simplefield>
+            <user_defined_anyfield>
+                <ji_ausstattung id="402" grp_id="403" grp_name="ausstattung.ji_ausstattung.grp_name">ausstattung.ji_ausstattung</ji_ausstattung>
+            </user_defined_anyfield>
+        </ausstattung>
+        <zustand_angaben>
+            <baujahr>1904</baujahr>
+            <letztemodernisierung>zustand_angaben.letztemodernisierung</letztemodernisierung>
+            <zustand zustand_art="TEIL_VOLLRENOVIERT">zustand_angaben.zustand</zustand>
+            <alter alter_attr="NEUBAU">zustand_angaben.alter</alter>
+            <erschliessung erschl_attr="VOLLERSCHLOSSEN">zustand_angaben.erschliessung</erschliessung>
+            <energiepass>
+                <epart>BEDARF</epart>
+                <gueltig_bis>2031-04-05</gueltig_bis>
+                <hwbwert>406.5</hwbwert>
+                <hwbklasse>A</hwbklasse>
+                <fgeewert>0.407</fgeewert>
+                <fgeeklasse>B</fgeeklasse>
+                <eebwert>408.5</eebwert>
+                <eebklasse fossil="1">C</eebklasse>
+            </energiepass>
+            <user_defined_simplefield feldname="epass_hwbwert">409.5</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_hwbklasse">D</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeewert">0.410</user_defined_simplefield>
+            <user_defined_simplefield feldname="epass_fgeeklasse">E</user_defined_simplefield>
+            <hwbwert>411.5</hwbwert>
+            <fgeewert>0.412</fgeewert>
+        </zustand_angaben>
+        <freitexte>
+            <objekttitel>freitexte.objekttitel</objekttitel>
+            <dreizeiler>freitexte.dreizeiler</dreizeiler>
+            <lage>freitexte.lage</lage>
+            <objektbeschreibung>&lt;p&gt;freitexte.objektbeschreibung&lt;/p&gt;</objektbeschreibung>
+            <sonstige_angaben>&lt;p&gt;freitexte.sonstige_angaben&lt;/p&gt;</sonstige_angaben>
+            <ausstatt_beschr>freitexte.ausstatt_beschr</ausstatt_beschr>
+            <objektbeschreibung_intern>freitexte.objektbeschreibung_intern</objektbeschreibung_intern>
+            <user_defined_anyfield>
+                <justimmo_freitext1>freitexte.justimmo_freitext1</justimmo_freitext1>
+                <justimmo_freitext2>freitexte.justimmo_freitext2</justimmo_freitext2>
+                <justimmo_freitext3>freitexte.justimmo_freitext3</justimmo_freitext3>
+                <justimmo_freitext4>freitexte.justimmo_freitext4</justimmo_freitext4>
+                <justimmo_moeblierung>freitexte.justimmo_moeblierung</justimmo_moeblierung>
+            </user_defined_anyfield>
+        </freitexte>
+        <anhaenge>
+            <anhang location="REMOTE" gruppe="TITELBILD">
+                <anhangtitel>anhaenge.titelbild.anhangtitel</anhangtitel>
+                <format>jpg</format>
+                <check ctype="DATETIME">2026-01-01T10:00:01</check>
+                <daten>
+                    <pfad>https://files.example.com/anhaenge/titelbild/big.jpg</pfad>
+                    <big>https://files.example.com/anhaenge/titelbild/big.jpg</big>
+                    <small>https://files.example.com/anhaenge/titelbild/small.jpg</small>
+                    <medium>https://files.example.com/anhaenge/titelbild/medium.jpg</medium>
+                    <big2>https://files.example.com/anhaenge/titelbild/big2.jpg</big2>
+                    <s220x155>https://files.example.com/anhaenge/titelbild/s220x155.jpg</s220x155>
+                    <fullhd>https://files.example.com/anhaenge/titelbild/fullhd.jpg</fullhd>
+                </daten>
+                <anhang_beschreibung>anhaenge.titelbild.anhang_beschreibung</anhang_beschreibung>
+                <original_dateiname>anhaenge.titelbild.original_dateiname.jpg</original_dateiname>
+            </anhang>
+            <anhang location="REMOTE">
+                <anhangtitel>anhaenge.bild.anhangtitel</anhangtitel>
+                <format>jpg</format>
+                <check ctype="DATETIME">2026-01-01T10:00:02</check>
+                <daten>
+                    <pfad>https://files.example.com/anhaenge/bild/big.jpg</pfad>
+                    <big>https://files.example.com/anhaenge/bild/big.jpg</big>
+                    <small>https://files.example.com/anhaenge/bild/small.jpg</small>
+                    <medium>https://files.example.com/anhaenge/bild/medium.jpg</medium>
+                    <big2>https://files.example.com/anhaenge/bild/big2.jpg</big2>
+                    <s220x155>https://files.example.com/anhaenge/bild/s220x155.jpg</s220x155>
+                    <fullhd>https://files.example.com/anhaenge/bild/fullhd.jpg</fullhd>
+                </daten>
+                <anhang_beschreibung>anhaenge.bild.anhang_beschreibung</anhang_beschreibung>
+                <original_dateiname>anhaenge.bild.original_dateiname.jpg</original_dateiname>
+            </anhang>
+            <anhang location="REMOTE" gruppe="GRUNDRISS">
+                <anhangtitel>anhaenge.grundriss.anhangtitel</anhangtitel>
+                <format>png</format>
+                <check ctype="DATETIME">2026-01-01T10:00:03</check>
+                <daten>
+                    <pfad>https://files.example.com/anhaenge/grundriss/big.png</pfad>
+                    <big>https://files.example.com/anhaenge/grundriss/big.png</big>
+                    <small>https://files.example.com/anhaenge/grundriss/small.png</small>
+                    <medium>https://files.example.com/anhaenge/grundriss/medium.png</medium>
+                    <big2>https://files.example.com/anhaenge/grundriss/big2.png</big2>
+                    <s220x155>https://files.example.com/anhaenge/grundriss/s220x155.png</s220x155>
+                    <fullhd>https://files.example.com/anhaenge/grundriss/fullhd.png</fullhd>
+                </daten>
+                <anhang_beschreibung>anhaenge.grundriss.anhang_beschreibung</anhang_beschreibung>
+                <original_dateiname>anhaenge.grundriss.original_dateiname.png</original_dateiname>
+            </anhang>
+            <anhang location="REMOTE" gruppe="PANORAMA">
+                <anhangtitel>anhaenge.panorama.anhangtitel</anhangtitel>
+                <format>jpg</format>
+                <check ctype="DATETIME">2026-01-01T10:00:04</check>
+                <daten>
+                    <pfad>https://files.example.com/anhaenge/panorama/big.jpg</pfad>
+                </daten>
+                <anhang_beschreibung>anhaenge.panorama.anhang_beschreibung</anhang_beschreibung>
+                <original_dateiname>anhaenge.panorama.original_dateiname.jpg</original_dateiname>
+            </anhang>
+            <anhang location="REMOTE" gruppe="DOKUMENTE">
+                <anhangtitel>anhaenge.dokumente.anhangtitel</anhangtitel>
+                <format>pdf</format>
+                <check ctype="DATETIME">2026-01-01T10:00:05</check>
+                <daten>
+                    <pfad>https://files.example.com/anhaenge/dokumente/orig.pdf</pfad>
+                </daten>
+                <anhang_beschreibung>anhaenge.dokumente.anhang_beschreibung</anhang_beschreibung>
+                <original_dateiname>anhaenge.dokumente.original_dateiname.pdf</original_dateiname>
+            </anhang>
+            <anhang location="REMOTE" gruppe="LINKS">
+                <anhangtitel>anhaenge.links.anhangtitel</anhangtitel>
+                <format></format>
+                <daten>
+                    <pfad>https://example.com/anhaenge/links</pfad>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="FILMLINK">
+                <anhangtitel>anhaenge.filmlink.anhangtitel</anhangtitel>
+                <format></format>
+                <daten>
+                    <pfad>https://example.com/anhaenge/filmlink</pfad>
+                </daten>
+            </anhang>
+            <anhang location="REMOTE" gruppe="RUNDGANG">
+                <anhangtitel>anhaenge.rundgang.anhangtitel</anhangtitel>
+                <format></format>
+                <daten>
+                    <pfad>https://example.com/anhaenge/rundgang</pfad>
+                </daten>
+            </anhang>
+            <user_defined_anyfield>
+                <ji_metadaten>
+                    <ji_anhang>
+                        <pfad>https://example.com/anhaenge/ji_metadaten/rundgang</pfad>
+                        <rundgang>1</rundgang>
+                    </ji_anhang>
+                </ji_metadaten>
+            </user_defined_anyfield>
+            <user_defined_anyfield>
+                <ji_metadaten>
+                    <ji_anhang>
+                        <pfad>https://files.example.com/anhaenge/ji_metadaten/bild.jpg</pfad>
+                        <beschreibung>anhaenge.ji_metadaten.bild.beschreibung</beschreibung>
+                    </ji_anhang>
+                    <ji_anhang>
+                        <pfad>https://files.example.com/anhaenge/ji_metadaten/dokument.pdf</pfad>
+                        <beschreibung>anhaenge.ji_metadaten.dokument.beschreibung</beschreibung>
+                    </ji_anhang>
+                </ji_metadaten>
+            </user_defined_anyfield>
+        </anhaenge>
+        <verwaltung_objekt>
+            <objektadresse_freigeben>1</objektadresse_freigeben>
+            <verfuegbar_ab>06.05.2027</verfuegbar_ab>
+            <abdatum>2027-05-07</abdatum>
+            <max_mietdauer max_dauer="JAHR">508</max_mietdauer>
+            <als_ferien>1</als_ferien>
+            <user_defined_simplefield feldname="ji_objektstatus">udsf.ji_objektstatus</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_objektstatus_id">509</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_acquisition_state">udsf.ji_acquisition_state</user_defined_simplefield>
+            <user_defined_simplefield feldname="bauart_id">510</user_defined_simplefield>
+            <user_defined_simplefield feldname="url">https://example.com/udsf/url</user_defined_simplefield>
+            <user_defined_simplefield feldname="projekt_url">https://example.com/udsf/projekt_url</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_is_reference">1</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_projekt_status">udsf.ji_projekt_status</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_completion_date">2027-05-11</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_sale_start">2027-05-12</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_eigentumsform_id">513</user_defined_simplefield>
+            <user_defined_simplefield feldname="belagsfertig">udsf.belagsfertig</user_defined_simplefield>
+            <user_defined_simplefield feldname="schluesselfertig">udsf.schluesselfertig</user_defined_simplefield>
+            <user_defined_anyfield>
+                <residential_aggregation_data>
+                    <area_from>514.5</area_from>
+                    <area_to>515.5</area_to>
+                    <price_from>516.5</price_from>
+                    <price_to>517.5</price_to>
+                    <rooms_from>518</rooms_from>
+                    <rooms_to>519</rooms_to>
+                    <available>520</available>
+                </residential_aggregation_data>
+            </user_defined_anyfield>
+            <status>verwaltung_objekt.status</status>
+            <status_id>521</status_id>
+            <user_defined_simplefield feldname="vermittelt_am">2027-05-22 10:00:22</user_defined_simplefield>
+            <user_defined_simplefield feldname="erstellt_am">2027-05-23 10:00:23</user_defined_simplefield>
+            <user_defined_simplefield feldname="aktualisiert_am">2027-05-24 10:00:24</user_defined_simplefield>
+        </verwaltung_objekt>
+        <verwaltung_techn>
+            <objektnr_intern>601</objektnr_intern>
+            <objektnr_extern>verwaltung_techn.objektnr_extern</objektnr_extern>
+            <aktion aktionart="CHANGE"/>
+            <openimmo_obid>verwaltung_techn.openimmo_obid</openimmo_obid>
+            <stand_vom>2027-06-02</stand_vom>
+            <gruppen_kennung>verwaltung_techn.gruppen_kennung</gruppen_kennung>
+            <master visible="true">verwaltung_techn.master</master>
+            <sprache>de-DE</sprache>
+            <user_defined_simplefield feldname="ji_anzeige_in_suchergebnis">1</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_kundennummer">603</user_defined_simplefield>
+            <user_defined_simplefield feldname="ji_stand_vom">2027-06-04 10:00:04</user_defined_simplefield>
+            <projekt_id>605</projekt_id>
+            <user_defined_simplefield feldname="realty_system_type">udsf.realty_system_type</user_defined_simplefield>
+            <user_defined_simplefield feldname="parent_id">606</user_defined_simplefield>
+        </verwaltung_techn>
+        <dokumente>
+            <dokument>
+                <titel>dokumente.titel</titel>
+                <pfad>https://files.example.com/dokumente/orig.pdf</pfad>
+                <format>pdf</format>
+            </dokument>
+        </dokumente>
+        <videos>
+            <video>
+                <id>player_video_701</id>
+                <vorschaubild>https://files.example.com/videos/video_default.jpg</vorschaubild>
+                <pfad>https://files.example.com/videos/1080p.mp4</pfad>
+            </video>
+        </videos>
+        <bilder360>
+            <pfad>https://files.example.com/bilder360/landscape-1.jpg</pfad>
+            <pfad>https://files.example.com/bilder360/landscape-2.jpg</pfad>
+        </bilder360>
+        <links>
+            <link>
+                <titel>links.titel</titel>
+                <pfad>https://example.com/links</pfad>
+                <gruppe>links</gruppe>
+            </link>
+        </links>
+    </immobilie>
+</justimmo>
