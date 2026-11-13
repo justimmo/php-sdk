@@ -11,6 +11,7 @@ use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Mapper\OrderMappingInterface;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
+use Justimmo\Model\TriggersDeprecations;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface

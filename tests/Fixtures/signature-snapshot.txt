@@ -690,7 +690,7 @@ Justimmo\Model\ProjectQuery::public onlyRealtyIds($value = true)
 Justimmo\Model\ProjectQuery::public orderByCreatedAt($direction = 'asc')
 Justimmo\Model\ProjectQuery::public orderByUpdatedAt($direction = 'asc')
 
-abstract class Justimmo\Model\Query\AbstractQuery implements Justimmo\Model\Query\QueryInterface uses Justimmo\Model\Query\TriggersDeprecations
+abstract class Justimmo\Model\Query\AbstractQuery implements Justimmo\Model\Query\QueryInterface uses Justimmo\Model\TriggersDeprecations
 Justimmo\Model\Query\AbstractQuery::protected const SORT_COLUMNS
 Justimmo\Model\Query\AbstractQuery::protected $api
 Justimmo\Model\Query\AbstractQuery::protected $mapper
@@ -728,9 +728,9 @@ Justimmo\Model\Query\AbstractQuery::protected setOrder(mixed $column, mixed $dir
 Justimmo\Model\Query\AbstractQuery::protected setParameter(mixed $key, mixed $value): static
 Justimmo\Model\Query\AbstractQuery::public setPicturesize($picturesize)
 Justimmo\Model\Query\AbstractQuery::public strict(bool $strict = true)
-Justimmo\Model\Query\AbstractQuery::protected triggerDeprecation(string $method, Closure|string $message): void
+Justimmo\Model\Query\AbstractQuery::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
-class Justimmo\Model\Query\BasicDataQuery uses Justimmo\Model\Query\TriggersDeprecations
+class Justimmo\Model\Query\BasicDataQuery uses Justimmo\Model\TriggersDeprecations
 Justimmo\Model\Query\BasicDataQuery::protected Justimmo\Api\JustimmoApiInterface $api
 Justimmo\Model\Query\BasicDataQuery::protected Justimmo\Model\Mapper\MapperInterface $mapper
 Justimmo\Model\Query\BasicDataQuery::protected array $params
@@ -751,7 +751,7 @@ Justimmo\Model\Query\BasicDataQuery::public findZipCodes()
 Justimmo\Model\Query\BasicDataQuery::public getParams()
 Justimmo\Model\Query\BasicDataQuery::public set($key, $value)
 Justimmo\Model\Query\BasicDataQuery::protected setParameter(mixed $key, mixed $value): static
-Justimmo\Model\Query\BasicDataQuery::protected triggerDeprecation(string $method, Closure|string $message): void
+Justimmo\Model\Query\BasicDataQuery::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
 interface Justimmo\Model\Query\QueryInterface
 Justimmo\Model\Query\QueryInterface::abstract public clear()
@@ -759,9 +759,6 @@ Justimmo\Model\Query\QueryInterface::abstract public find()
 Justimmo\Model\Query\QueryInterface::abstract public findOne()
 Justimmo\Model\Query\QueryInterface::abstract public findPk($pk)
 Justimmo\Model\Query\QueryInterface::abstract public paginate($page = 1, $maxPerPage = 10)
-
-trait Justimmo\Model\Query\TriggersDeprecations
-Justimmo\Model\Query\TriggersDeprecations::protected triggerDeprecation(string $method, Closure|string $message): void
 
 class Justimmo\Model\Realty implements Justimmo\Model\ModelInterface
 Justimmo\Model\Realty::public const ORIENTATION_EAST
@@ -1304,6 +1301,9 @@ Justimmo\Model\RealtyQuery::public orderByPublishedAt($direction = 'asc')
 Justimmo\Model\RealtyQuery::public orderByUpdatedAt($direction = 'asc')
 Justimmo\Model\RealtyQuery::public orderByZipCode($direction = 'asc')
 Justimmo\Model\RealtyQuery::public preciseAreaSearch($all = true)
+
+trait Justimmo\Model\TriggersDeprecations
+Justimmo\Model\TriggersDeprecations::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
 interface Justimmo\Model\Wrapper\BasicDataWrapperInterface
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformCountries($data)

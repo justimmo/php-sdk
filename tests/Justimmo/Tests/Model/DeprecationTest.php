@@ -274,6 +274,21 @@ class DeprecationTest extends TestCase
     }
 
     /**
+     * A method deprecated after 1.6.0 names its own version in the notice
+     */
+    public function testTheNoticeNamesTheVersionGiven(): void
+    {
+        $model = new DeprecatingModel();
+
+        $notices = $this->notices(fn () => $model->getOld());
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.8.0: DeprecatingModel::getOld() is deprecated and is removed in 2.0.0. Use getNew().'],
+            $notices
+        );
+    }
+
+    /**
      * The methods which keep working call the code of set(), filter() and order() themselves
      */
     public function testTheMethodsWhichStayEmitNone(): void

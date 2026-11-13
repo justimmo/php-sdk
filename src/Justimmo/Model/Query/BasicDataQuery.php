@@ -4,6 +4,7 @@ namespace Justimmo\Model\Query;
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\PoliticalDistrict;
+use Justimmo\Model\TriggersDeprecations;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
 
 /**
