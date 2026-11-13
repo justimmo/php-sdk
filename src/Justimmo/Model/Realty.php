@@ -4,6 +4,8 @@ namespace Justimmo\Model;
 
 class Realty implements ModelInterface
 {
+    use TriggersDeprecations;
+
     /**
      * Orientation constants and their english identifiers.
      * Beware: These are not primarily cardinal directions but orientation of windowed facades (e.g. east-west, north-east-south).
@@ -282,9 +284,9 @@ class Realty implements ModelInterface
 
     protected $age;
 
-    protected $infrastructureProvision;
+    protected ?string $developmentState = null;
 
-    protected ?float $infrastructureProvisionCosts = null;
+    protected ?float $developmentCosts = null;
 
     protected $condition;
 
@@ -2125,28 +2127,19 @@ class Realty implements ModelInterface
     }
 
     /**
-     * @param string|null $erschließung
+     * The state of the connection of the plot to roads and utilities, like VOLLERSCHLOSSEN. Null
+     * when the realty does not say
      *
-     * @return $this
+     * Source: the attribute erschl_attr of erschliessung in zustand_angaben
      */
-    public function setInfrastructureProvision($erschließung)
+    public function getDevelopmentState(): ?string
     {
-        $this->infrastructureProvision = $erschließung;
-
-        return $this;
+        return $this->developmentState;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getInfrastructureProvision()
+    public function setDevelopmentState(?string $developmentState): static
     {
-        return $this->infrastructureProvision;
-    }
-
-    public function setInfrastructureProvisionCosts(?float $infrastructureProvisionCosts): static
-    {
-        $this->infrastructureProvisionCosts = $infrastructureProvisionCosts;
+        $this->developmentState = $developmentState;
 
         return $this;
     }
@@ -2154,14 +2147,73 @@ class Realty implements ModelInterface
     /**
      * The costs of connecting the plot to roads and utilities. Null when the realty does not say
      *
-     * getInfrastructureProvision() returns the state of the connection instead, and returns these
-     * costs only when no state is set.
-     *
      * Source: the element erschliessungskosten in preise
+     */
+    public function getDevelopmentCosts(): ?float
+    {
+        return $this->developmentCosts;
+    }
+
+    public function setDevelopmentCosts(?float $developmentCosts): static
+    {
+        $this->developmentCosts = $developmentCosts;
+
+        return $this;
+    }
+
+    /**
+     * @deprecated Use setDevelopmentState(). Removed in 2.x
+     *
+     * @param string|null $erschließung
+     *
+     * @return $this
+     */
+    public function setInfrastructureProvision($erschließung)
+    {
+        $this->triggerDeprecation('setInfrastructureProvision', 'setInfrastructureProvision() is deprecated and is removed in 2.0.0. Use setDevelopmentState().', '1.8.0');
+
+        $this->developmentState = $erschließung;
+
+        return $this;
+    }
+
+    /**
+     * The state of the connection, or the costs when the realty has no state
+     *
+     * @deprecated Use getDevelopmentState() for the state and getDevelopmentCosts() for the costs.
+     *             Removed in 2.x
+     *
+     * @return string|float|null
+     */
+    public function getInfrastructureProvision()
+    {
+        $this->triggerDeprecation('getInfrastructureProvision', 'getInfrastructureProvision() is deprecated and is removed in 2.0.0. Use getDevelopmentState() for the state and getDevelopmentCosts() for the costs.', '1.8.0');
+
+        return $this->developmentState ?? $this->developmentCosts;
+    }
+
+    /**
+     * @deprecated Use setDevelopmentCosts(). Removed in 2.x
+     */
+    public function setInfrastructureProvisionCosts(?float $infrastructureProvisionCosts): static
+    {
+        $this->triggerDeprecation('setInfrastructureProvisionCosts', 'setInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use setDevelopmentCosts().', '1.8.0');
+
+        $this->developmentCosts = $infrastructureProvisionCosts;
+
+        return $this;
+    }
+
+    /**
+     * The costs of connecting the plot to roads and utilities. Null when the realty does not say
+     *
+     * @deprecated Use getDevelopmentCosts(). Removed in 2.x
      */
     public function getInfrastructureProvisionCosts(): ?float
     {
-        return $this->infrastructureProvisionCosts;
+        $this->triggerDeprecation('getInfrastructureProvisionCosts', 'getInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use getDevelopmentCosts().', '1.8.0');
+
+        return $this->developmentCosts;
     }
 
     /**

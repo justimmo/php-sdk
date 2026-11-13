@@ -7,21 +7,26 @@ use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\V1\BasicDataMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\Project;
 use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\Realty;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
 
 /**
- * What 2.0.0 makes protected or removes emits a deprecation notice in 1.6.0, and only a call from
+ * What 2.0.0 makes protected or removes emits a deprecation notice in 1.6.0 or 1.8.0, and only a call from
  * outside the SDK does. A method which keeps working stays silent, including where the SDK calls
  * a deprecated one's code itself.
  */
 class DeprecationTest extends TestCase
 {
-    const SINCE = 'Since justimmo/php-sdk 1.6.0: ';
+    const SINCE     = 'Since justimmo/php-sdk 1.6.0: ';
+    const SINCE_1_8 = 'Since justimmo/php-sdk 1.8.0: ';
 
     protected function setUp(): void
     {
@@ -271,6 +276,69 @@ class DeprecationTest extends TestCase
             [self::SINCE . 'BasicDataQuery::set() is deprecated and is protected in 2.0.0. Use all(), filterByCountry() or filterByFederalState().'],
             $this->notices(fn () => $this->basicData()->set('alle', 1))
         );
+    }
+
+    public function testTheDeprecatedModelMethodsEmitANotice(): void
+    {
+        $realty  = new Realty();
+        $project = new Project();
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'Realty::setInfrastructureProvision() is deprecated and is removed in 2.0.0. Use setDevelopmentState().',
+                self::SINCE_1_8 . 'Realty::setInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use setDevelopmentCosts().',
+                self::SINCE_1_8 . 'Realty::getInfrastructureProvision() is deprecated and is removed in 2.0.0. Use getDevelopmentState() for the state and getDevelopmentCosts() for the costs.',
+                self::SINCE_1_8 . 'Realty::getInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use getDevelopmentCosts().',
+                self::SINCE_1_8 . 'Project::getUnderConstruction() is deprecated and is removed in 2.0.0. Use isStateBuilding() or getProjectState().',
+            ],
+            $this->notices(function () use ($realty, $project) {
+                $realty->setInfrastructureProvision('VOLLERSCHLOSSEN');
+                $realty->setInfrastructureProvisionCosts(12000.5);
+                $realty->getInfrastructureProvision();
+                $realty->getInfrastructureProvisionCosts();
+                $project->getUnderConstruction();
+            })
+        );
+    }
+
+    /**
+     * The old getters return what they returned in 1.7.0: the state, or the costs when there is no
+     * state; and the costs
+     */
+    public function testTheDeprecatedRealtyGettersKeepTheirResult(): void
+    {
+        $realty = new Realty();
+        $realty->setDevelopmentCosts(12000.5);
+
+        $this->notices(function () use ($realty) {
+            $this->assertSame(12000.5, $realty->getInfrastructureProvision());
+            $this->assertSame(12000.5, $realty->getInfrastructureProvisionCosts());
+
+            $realty->setDevelopmentState('VOLLERSCHLOSSEN');
+            $this->assertSame('VOLLERSCHLOSSEN', $realty->getInfrastructureProvision());
+            $this->assertSame(12000.5, $realty->getInfrastructureProvisionCosts());
+
+            // the old setters write what the new getters read
+            $realty->setInfrastructureProvision('TEILERSCHLOSSEN');
+            $realty->setInfrastructureProvisionCosts(500.0);
+            $this->assertSame('TEILERSCHLOSSEN', $realty->getDevelopmentState());
+            $this->assertSame(500.0, $realty->getDevelopmentCosts());
+        });
+    }
+
+    /**
+     * The SDK reads an answer without calling a deprecated method, so a site sees only the notices
+     * of its own calls
+     */
+    public function testReadingAnAnswerEmitsNone(): void
+    {
+        $realtyWrapper  = new RealtyWrapper(new RealtyMapper());
+        $projectWrapper = new ProjectWrapper(new ProjectMapper());
+
+        $this->assertSame([], $this->notices(function () use ($realtyWrapper, $projectWrapper) {
+            $realtyWrapper->transformSingle($this->getFixtures('v1/synthetic/realty_detail.xml'));
+            $projectWrapper->transformSingle($this->getFixtures('v1/synthetic/project_detail.xml'));
+        }));
     }
 
     /**

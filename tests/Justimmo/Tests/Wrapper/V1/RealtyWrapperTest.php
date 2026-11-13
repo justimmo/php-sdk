@@ -177,7 +177,7 @@ class RealtyWrapperTest extends TestCase
         $this->assertEquals(2, $objekt->getOperatingCostsPerSqmFrom());
         $this->assertEquals(3, $objekt->getOperatingCostsPerSqm());
         $this->assertEquals(40000, $objekt->getFinancialContribution());
-        $this->assertEquals(12000, $objekt->getInfrastructureProvision());
+        $this->assertEquals(12000, $objekt->getDevelopmentCosts());
         $this->assertEquals(906.6, $objekt->getMonthlyCosts());
 
         $costs = $objekt->getAdditionalCosts();
@@ -497,34 +497,34 @@ class RealtyWrapperTest extends TestCase
         $this->assertSame('second', $attachments[1]->getDescription());
     }
 
-    public function testTheInfrastructureProvisionCostsStayNextToTheState(): void
+    public function testTheDevelopmentStateAndCostsAreReadApart(): void
     {
         $objekt = $this->wrapper->transformSingle(self::realty(
             '<preise><erschliessungskosten>12000.5</erschliessungskosten></preise>'
             . '<zustand_angaben><erschliessung erschl_attr="VOLLERSCHLOSSEN"/></zustand_angaben>'
         ));
 
-        $this->assertSame(12000.5, $objekt->getInfrastructureProvisionCosts());
-        $this->assertSame('VOLLERSCHLOSSEN', $objekt->getInfrastructureProvision());
+        $this->assertSame(12000.5, $objekt->getDevelopmentCosts());
+        $this->assertSame('VOLLERSCHLOSSEN', $objekt->getDevelopmentState());
     }
 
-    public function testWithoutAStateTheInfrastructureProvisionStillReturnsTheCostsAsBefore(): void
+    public function testWithoutAStateTheDevelopmentStateIsNull(): void
     {
         $objekt = $this->wrapper->transformSingle(self::realty(
             '<preise><erschliessungskosten>12000.5</erschliessungskosten></preise>'
         ));
 
-        $this->assertSame(12000.5, $objekt->getInfrastructureProvisionCosts());
-        $this->assertSame(12000.5, $objekt->getInfrastructureProvision());
+        $this->assertSame(12000.5, $objekt->getDevelopmentCosts());
+        $this->assertNull($objekt->getDevelopmentState());
     }
 
-    public function testEmptyInfrastructureProvisionCostsAreNull(): void
+    public function testEmptyDevelopmentCostsAreNull(): void
     {
         $objekt = $this->wrapper->transformSingle(self::realty(
             '<preise><erschliessungskosten> </erschliessungskosten></preise>'
         ));
 
-        $this->assertNull($objekt->getInfrastructureProvisionCosts());
+        $this->assertNull($objekt->getDevelopmentCosts());
     }
 
     private static function realty(string $blocks): string

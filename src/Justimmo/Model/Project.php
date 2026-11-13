@@ -4,6 +4,8 @@ namespace Justimmo\Model;
 
 class Project implements ModelInterface
 {
+    use TriggersDeprecations;
+
     const PROJECT_STATE_PLANNING = 'planning';
     const PROJECT_STATE_BUILDING = 'building';
     const PROJECT_STATE_FINISHED = 'finished';
@@ -1361,12 +1363,14 @@ class Project implements ModelInterface
     }
 
     /**
-     * @deprecated use getProjectState or isStateBuilding
+     * @deprecated Use isStateBuilding() or getProjectState(). Removed in 2.x
      *
      * @return boolean
      */
     public function getUnderConstruction()
     {
+        $this->triggerDeprecation('getUnderConstruction', 'getUnderConstruction() is deprecated and is removed in 2.0.0. Use isStateBuilding() or getProjectState().', '1.8.0');
+
         return $this->underConstruction;
     }
 

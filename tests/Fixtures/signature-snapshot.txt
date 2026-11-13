@@ -465,7 +465,7 @@ Justimmo\Model\PoliticalDistrict::public readonly int $id
 Justimmo\Model\PoliticalDistrict::public readonly string $name
 Justimmo\Model\PoliticalDistrict::public __construct(int $id, string $name)
 
-class Justimmo\Model\Project implements Justimmo\Model\ModelInterface
+class Justimmo\Model\Project implements Justimmo\Model\ModelInterface uses Justimmo\Model\TriggersDeprecations
 Justimmo\Model\Project::public const PROJECT_STATE_BUILDING
 Justimmo\Model\Project::public const PROJECT_STATE_FINISHED
 Justimmo\Model\Project::public const PROJECT_STATE_PLANNING
@@ -653,6 +653,7 @@ Justimmo\Model\Project::public setTitle($value)
 Justimmo\Model\Project::public setUrl($url)
 Justimmo\Model\Project::public setYearOfConstruction($yearOfConstruction)
 Justimmo\Model\Project::public setZipCode($zipCode)
+Justimmo\Model\Project::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
 class Justimmo\Model\ProjectQuery extends Justimmo\Model\Query\AbstractQuery
 Justimmo\Model\ProjectQuery::public all($all = true)
@@ -760,7 +761,7 @@ Justimmo\Model\Query\QueryInterface::abstract public findOne()
 Justimmo\Model\Query\QueryInterface::abstract public findPk($pk)
 Justimmo\Model\Query\QueryInterface::abstract public paginate($page = 1, $maxPerPage = 10)
 
-class Justimmo\Model\Realty implements Justimmo\Model\ModelInterface
+class Justimmo\Model\Realty implements Justimmo\Model\ModelInterface uses Justimmo\Model\TriggersDeprecations
 Justimmo\Model\Realty::public const ORIENTATION_EAST
 Justimmo\Model\Realty::public const ORIENTATION_EAST_WEST
 Justimmo\Model\Realty::public const ORIENTATION_NORTH
@@ -804,6 +805,8 @@ Justimmo\Model\Realty::protected $createdAt
 Justimmo\Model\Realty::protected $currency
 Justimmo\Model\Realty::protected $description
 Justimmo\Model\Realty::protected ?string $detailUrl
+Justimmo\Model\Realty::protected ?float $developmentCosts
+Justimmo\Model\Realty::protected ?string $developmentState
 Justimmo\Model\Realty::protected $district
 Justimmo\Model\Realty::protected $doorNumber
 Justimmo\Model\Realty::protected $energyPass
@@ -827,8 +830,6 @@ Justimmo\Model\Realty::protected $hallway
 Justimmo\Model\Realty::protected $heatingCosts
 Justimmo\Model\Realty::protected $houseNumber
 Justimmo\Model\Realty::protected $id
-Justimmo\Model\Realty::protected $infrastructureProvision
-Justimmo\Model\Realty::protected ?float $infrastructureProvisionCosts
 Justimmo\Model\Realty::protected $isReference
 Justimmo\Model\Realty::protected $landParcel
 Justimmo\Model\Realty::protected $landRegistration
@@ -962,6 +963,8 @@ Justimmo\Model\Realty::public getCreatedAt($format = 'Y-m-d H:i:s')
 Justimmo\Model\Realty::public getCurrency()
 Justimmo\Model\Realty::public getDescription()
 Justimmo\Model\Realty::public getDetailUrl(): ?string
+Justimmo\Model\Realty::public getDevelopmentCosts(): ?float
+Justimmo\Model\Realty::public getDevelopmentState(): ?string
 Justimmo\Model\Realty::public getDistrict()
 Justimmo\Model\Realty::public getDocuments($group = false)
 Justimmo\Model\Realty::public getDoorNumber()
@@ -1124,6 +1127,8 @@ Justimmo\Model\Realty::public setCreatedAt(?DateTime $createdAt = null)
 Justimmo\Model\Realty::public setCurrency($waehrung)
 Justimmo\Model\Realty::public setDescription($objektbeschreibung)
 Justimmo\Model\Realty::public setDetailUrl(?string $detailUrl): static
+Justimmo\Model\Realty::public setDevelopmentCosts(?float $developmentCosts): static
+Justimmo\Model\Realty::public setDevelopmentState(?string $developmentState): static
 Justimmo\Model\Realty::public setDistrict($gemarkung)
 Justimmo\Model\Realty::public setDoorNumber($tuernummer)
 Justimmo\Model\Realty::public setEnergyPass(Justimmo\Model\EnergyPass $v)
@@ -1246,6 +1251,7 @@ Justimmo\Model\Realty::public setWeightedArea($weightedArea)
 Justimmo\Model\Realty::public setYearBuilt($baujahr)
 Justimmo\Model\Realty::public setYield($rendite)
 Justimmo\Model\Realty::public setZipCode($plz)
+Justimmo\Model\Realty::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
 class Justimmo\Model\RealtyQuery extends Justimmo\Model\Query\AbstractQuery
 Justimmo\Model\RealtyQuery::protected const SORT_COLUMNS

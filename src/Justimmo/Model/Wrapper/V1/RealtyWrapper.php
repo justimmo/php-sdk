@@ -361,10 +361,10 @@ class RealtyWrapper extends AbstractWrapper
                 $objekt->setPurchasePriceVat($this->cast($xml->preise->kaufpreisnetto['kaufpreisust'], 'double'));
             }
 
-            // an empty element says nothing, so the costs stay null, not 0
-            $infrastructureProvisionCosts = trim((string) $xml->preise->erschliessungskosten);
-            if ($infrastructureProvisionCosts !== '') {
-                $objekt->setInfrastructureProvisionCosts((float) $infrastructureProvisionCosts);
+            // an empty element says nothing, so the costs are null, not the 0 which map() cast it to
+            if (isset($xml->preise->erschliessungskosten)) {
+                $developmentCosts = trim((string) $xml->preise->erschliessungskosten);
+                $objekt->setDevelopmentCosts($developmentCosts !== '' ? (float) $developmentCosts : null);
             }
 
             if (isset($xml->preise->waehrung)) {
@@ -460,7 +460,7 @@ class RealtyWrapper extends AbstractWrapper
 
             $data = $this->attributesToArray($xml->zustand_angaben->erschliessung);
             if (array_key_exists('erschl_attr', $data)) {
-                $objekt->setInfrastructureProvision($data['erschl_attr']);
+                $objekt->setDevelopmentState($data['erschl_attr']);
             }
 
             if (isset($xml->zustand_angaben->energiepass)) {

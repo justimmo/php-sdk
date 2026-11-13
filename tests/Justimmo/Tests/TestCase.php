@@ -2,8 +2,10 @@
 
 namespace Justimmo\Tests;
 
+use Justimmo\Model\Project;
 use Justimmo\Model\Query\AbstractQuery;
 use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\Realty;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 abstract class TestCase extends PHPUnitTestCase
@@ -19,7 +21,7 @@ abstract class TestCase extends PHPUnitTestCase
      */
     protected static function forgetTheDeprecationNotices(): void
     {
-        foreach ([AbstractQuery::class, BasicDataQuery::class] as $class) {
+        foreach ([AbstractQuery::class, BasicDataQuery::class, Realty::class, Project::class] as $class) {
             $notices = new \ReflectionProperty($class, 'deprecationsTriggered');
             $notices->setValue(null, []);
         }

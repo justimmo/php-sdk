@@ -1507,12 +1507,6 @@ parameters:
 			path: src/Justimmo/Model/Realty.php
 
 		-
-			message: '#^Property Justimmo\\Model\\Realty\:\:\$infrastructureProvision has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/Justimmo/Model/Realty.php
-
-		-
 			message: '#^Property Justimmo\\Model\\Realty\:\:\$landParcel has no type specified\.$#'
 			identifier: missingType.property
 			count: 1

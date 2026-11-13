@@ -274,6 +274,8 @@ realty_detail.xml
     getCurrency(): 'CHF'
     getDescription(): '<p>freitexte.objektbeschreibung</p>'
     getDetailUrl(): 'https://example.com/udsf/url'
+    getDevelopmentCosts(): 1016.5
+    getDevelopmentState(): 'VOLLERSCHLOSSEN'
     getDistrict(): null
     getDocuments(): array(1)
       [0]: Justimmo\Model\Attachment
@@ -704,6 +706,8 @@ realty_list.xml
       getCurrency(): null
       getDescription(): '<p>buy.objektbeschreibung</p>'
       getDetailUrl(): null
+      getDevelopmentCosts(): null
+      getDevelopmentState(): null
       getDistrict(): null
       getDocuments(): array(0)
       getDoorNumber(): 'buy.tuernummer'
@@ -922,6 +926,8 @@ realty_list.xml
       getCurrency(): null
       getDescription(): '<p>rent.objektbeschreibung</p>'
       getDetailUrl(): null
+      getDevelopmentCosts(): null
+      getDevelopmentState(): null
       getDistrict(): null
       getDocuments(): array(0)
       getDoorNumber(): 'rent.tuernummer'
@@ -1538,6 +1544,8 @@ project_detail.xml
         getCurrency(): null
         getDescription(): '<p>projekt.u1.objektbeschreibung</p>'
         getDetailUrl(): null
+        getDevelopmentCosts(): null
+        getDevelopmentState(): null
         getDistrict(): null
         getDocuments(): array(0)
         getDoorNumber(): 'projekt.u1.tuernummer'
@@ -1756,6 +1764,8 @@ project_detail.xml
         getCurrency(): null
         getDescription(): '<p>projekt.u2.objektbeschreibung</p>'
         getDetailUrl(): null
+        getDevelopmentCosts(): null
+        getDevelopmentState(): null
         getDistrict(): null
         getDocuments(): array(0)
         getDoorNumber(): 'projekt.u2.tuernummer'
@@ -2086,6 +2096,8 @@ project_list.xml
           getCurrency(): null
           getDescription(): '<p>p1.u1.objektbeschreibung</p>'
           getDetailUrl(): null
+          getDevelopmentCosts(): null
+          getDevelopmentState(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p1.u1.tuernummer'
@@ -2304,6 +2316,8 @@ project_list.xml
           getCurrency(): null
           getDescription(): '<p>p1.u2.objektbeschreibung</p>'
           getDetailUrl(): null
+          getDevelopmentCosts(): null
+          getDevelopmentState(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p1.u2.tuernummer'
@@ -2613,6 +2627,8 @@ project_list.xml
           getCurrency(): null
           getDescription(): '<p>p2.u1.objektbeschreibung</p>'
           getDetailUrl(): null
+          getDevelopmentCosts(): null
+          getDevelopmentState(): null
           getDistrict(): null
           getDocuments(): array(0)
           getDoorNumber(): 'p2.u1.tuernummer'

@@ -335,7 +335,7 @@ class RealtyMapper extends AbstractMapper
             'type'     => 'datetime',
         ],
         'erschliessungskosten'             => [
-            'property' => 'infrastructureProvision',
+            'property' => 'developmentCosts',
             'type'     => 'double',
         ],
         'mietkauf'                         => [

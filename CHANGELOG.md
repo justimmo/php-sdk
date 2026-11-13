@@ -1,3 +1,10 @@
+## 1.8.0
+* `Realty::getDevelopmentState()` and `getDevelopmentCosts()` are added, with their setters. The state is how far the plot is connected to roads and utilities, for example "VOLLERSCHLOSSEN"; the costs are what that connection costs. Each returns its own value, or `null` when the realty has none
+* Deprecated, with a notice in the error log, and removed in 2.0.0: `Realty::getInfrastructureProvision()` (use `getDevelopmentState()` for the state and `getDevelopmentCosts()` for the costs), `getInfrastructureProvisionCosts()` (use `getDevelopmentCosts()`), `setInfrastructureProvision()` and `setInfrastructureProvisionCosts()`. For a realty read from the api, they return what they returned in 1.7.0. The old setters write the new properties, so `getInfrastructureProvision()` after `setInfrastructureProvisionCosts()` returns the costs, where it returned `null`
+* `Project::getUnderConstruction()`, deprecated since 2017, now emits a notice too, and is removed in 2.0.0. Use `isStateBuilding()` or `getProjectState()`
+* `getInfrastructureProvision()` returns `null` for a realty whose `erschliessungskosten` is empty and which has no state. It returned `0`
+* [BC] A subclass of `Realty` which reads the protected properties `$infrastructureProvision` or `$infrastructureProvisionCosts`: they are gone. Read `$developmentState` and `$developmentCosts`
+
 ## 1.7.0
 * Upgrading from 1.6 needs no change for most sites. The line marked [BC] below concerns code which reads an employee's Facebook, Twitter, XING, LinkedIn or Instagram link with `getDocuments()`: use `getLinks()`
 * Every request carries the version of the SDK in the url, as the last parameter `sdk`, for example `…&culture=de&sdk=1.7.0`. It tells Justimmo support which version a site runs, also when the site replaces the request and with it the version header. A value the caller sets for `sdk` is replaced. The cache key leaves `sdk` out, so the answers cached before the upgrade stay valid
