@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <query-result>
+        <count>3</count>
+    </query-result>
+    <projekt>
+        <id>101</id>
+        <titel>Wohnen am Park</titel>
+    </projekt>
+    <projekt>
+        <id>102</id>
+        <titel>Stadtvillen Süd</titel>
+    </projekt>
+    <projekt>
+        <id>205</id>
+        <titel> Neubau Bahnhofstraße </titel>
+    </projekt>
+</justimmo>

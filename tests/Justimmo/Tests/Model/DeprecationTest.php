@@ -2,7 +2,9 @@
 
 namespace Justimmo\Tests\Model;
 
+use Justimmo\Api\JustimmoApi;
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Cache\CacheInterface;
 use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\V1\BasicDataMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
@@ -17,6 +19,7 @@ use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
+use Psr\Log\NullLogger;
 
 /**
  * What 2.0.0 makes protected or removes emits a deprecation notice in 1.6.0 or 1.8.0, and only a call from
@@ -327,6 +330,44 @@ class DeprecationTest extends TestCase
     }
 
     /**
+     * The zip code and region calls of the api are deprecated, like their finders
+     */
+    public function testTheZipCodeAndRegionCallsEmitANotice(): void
+    {
+        $api = $this->answeringApi();
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'JustimmoApi::callZipCodes() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().',
+                self::SINCE_1_8 . 'JustimmoApi::callRegions() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().',
+            ],
+            $this->notices(function () use ($api) {
+                $api->callZipCodes();
+                $api->callRegions();
+            })
+        );
+    }
+
+    /**
+     * A site which calls a finder gets the finder's notice only, not the api call's as well
+     */
+    public function testTheZipCodeAndRegionFindersEmitOneNoticeEach(): void
+    {
+        $query = new BasicDataQuery($this->answeringApi(), new BasicDataWrapper(), new BasicDataMapper());
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'BasicDataQuery::findZipCodes() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().',
+                self::SINCE_1_8 . 'BasicDataQuery::findRegions() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().',
+            ],
+            $this->notices(function () use ($query) {
+                $query->findZipCodes();
+                $query->findRegions();
+            })
+        );
+    }
+
+    /**
      * The SDK reads an answer without calling a deprecated method, so a site sees only the notices
      * of its own calls
      */
@@ -388,7 +429,8 @@ class DeprecationTest extends TestCase
             $this->basicData()
                 ->all(true)
                 ->filterByCountry(1)
-                ->filterByFederalState(2);
+                ->filterByFederalState(2)
+                ->filterByFeatureGroupId(3);
         }));
     }
 
@@ -429,6 +471,19 @@ class DeprecationTest extends TestCase
     private function project(): ProjectQuery
     {
         return new ProjectQuery(new JustimmoNullApi(), new NullWrapper(), new ProjectMapper());
+    }
+
+    /**
+     * A real JustimmoApi, so the notice names it, which answers every call with an empty list
+     * from its cache
+     */
+    private function answeringApi(): JustimmoApi
+    {
+        $cache = $this->createMock(CacheInterface::class);
+        $cache->method('generateCacheKey')->willReturn('key');
+        $cache->method('get')->willReturn('<justimmo></justimmo>');
+
+        return new JustimmoApi('username', 'password', new NullLogger(), $cache);
     }
 
     private function basicData(): BasicDataQuery

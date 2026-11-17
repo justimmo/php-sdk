@@ -15,6 +15,8 @@ use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
 use Justimmo\Exception\StatusCodeException;
 use Justimmo\Exception\ValidationException;
+use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\TriggersDeprecations;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -26,6 +28,8 @@ use Psr\Log\NullLogger;
  */
 class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
+    use TriggersDeprecations;
+
     /**
      * Calls which the culture is not sent to
      *
@@ -200,6 +204,14 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * @inheritdoc
      */
+    public function callProjectShortList(array $params = []): string
+    {
+        return $this->call('projekt/projektList', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function callCountries(array $params = [])
     {
         return $this->call('objekt/laender', $params);
@@ -215,19 +227,25 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 
     /**
      * @inheritdoc
+     *
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
      */
     public function callZipCodes(array $params = [])
     {
+        $this->deprecateUnlessTheFinderCalls(__FUNCTION__, 'findZipCodes', 'Use callPoliticalDistricts().');
+
         return $this->call('objekt/plzsUndOrte', $params);
     }
 
     /**
      * @inheritdoc
      *
-     * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
      */
     public function callRegions(array $params = [])
     {
+        $this->deprecateUnlessTheFinderCalls(__FUNCTION__, 'findRegions', 'Use callPoliticalDistricts().');
+
         return $this->call('objekt/regionen', $params);
     }
 
@@ -253,6 +271,14 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     public function callRealtyCategories(array $params = [])
     {
         return $this->call('objekt/kategorien', $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function callRealtyFeatures(array $params = []): string
+    {
+        return $this->call('referenz/ausstattungen', $params);
     }
 
     /**
@@ -293,6 +319,28 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     public function callProjectIds(array $params = [])
     {
         return $this->call('projekt/ids', $params);
+    }
+
+    /**
+     * The notice of a deprecated call, unless BasicDataQuery's finder of the same data calls it
+     *
+     * The finder emits a notice of its own, and a site which calls the finder gets one notice,
+     * not two.
+     *
+     * @param string $method      the deprecated method of this class, like callRegions
+     * @param string $finder      the finder of BasicDataQuery which calls it, like findRegions
+     * @param string $replacement what to use instead, like "Use callPoliticalDistricts()."
+     */
+    private function deprecateUnlessTheFinderCalls(string $method, string $finder, string $replacement): void
+    {
+        // 0 is this method, 1 the deprecated one, 2 its caller
+        $caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3)[2] ?? [];
+
+        if (($caller['function'] ?? null) === $finder && is_a($caller['class'] ?? '', BasicDataQuery::class, true)) {
+            return;
+        }
+
+        $this->triggerDeprecation($method, $method . '() is deprecated and is removed in 2.0.0. ' . $replacement, '1.8.0');
     }
 
     /**

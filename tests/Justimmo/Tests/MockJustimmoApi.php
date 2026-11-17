@@ -76,6 +76,11 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('projectList');
     }
 
+    public function callProjectShortList(array $params = []): string
+    {
+        return $this->getReturnValue('projectShortList');
+    }
+
     public function callProjectDetail($pk, array $params = [])
     {
         return $this->getReturnValue('projectDetail');
@@ -119,6 +124,11 @@ class MockJustimmoApi implements JustimmoApiInterface
     public function callRealtyCategories(array $params = [])
     {
         return $this->getReturnValue('realtyCategories');
+    }
+
+    public function callRealtyFeatures(array $params = []): string
+    {
+        return $this->getReturnValue('realtyFeatures');
     }
 
     public function callExpose($pk, $type = 'Default')

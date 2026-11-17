@@ -1,4 +1,4 @@
-class Justimmo\Api\JustimmoApi implements Justimmo\Api\JustimmoApiInterface, Justimmo\Api\StrictModeInterface
+class Justimmo\Api\JustimmoApi implements Justimmo\Api\JustimmoApiInterface, Justimmo\Api\StrictModeInterface uses Justimmo\Model\TriggersDeprecations
 Justimmo\Api\JustimmoApi::protected $baseUrl
 Justimmo\Api\JustimmoApi::protected $cache
 Justimmo\Api\JustimmoApi::protected $culture
@@ -22,8 +22,10 @@ Justimmo\Api\JustimmoApi::public callPoliticalDistricts(array $params = []): str
 Justimmo\Api\JustimmoApi::public callProjectDetail($pk, array $params = [])
 Justimmo\Api\JustimmoApi::public callProjectIds(array $params = [])
 Justimmo\Api\JustimmoApi::public callProjectList(array $params = [])
+Justimmo\Api\JustimmoApi::public callProjectShortList(array $params = []): string
 Justimmo\Api\JustimmoApi::public callRealtyCategories(array $params = [])
 Justimmo\Api\JustimmoApi::public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApi::public callRealtyFeatures(array $params = []): string
 Justimmo\Api\JustimmoApi::public callRealtyIds(array $params = [])
 Justimmo\Api\JustimmoApi::public callRealtyList(array $params = [])
 Justimmo\Api\JustimmoApi::public callRealtyTypes(array $params = [])
@@ -52,6 +54,7 @@ Justimmo\Api\JustimmoApi::public setStrict(bool $strict = true): static
 Justimmo\Api\JustimmoApi::public setUsername($username)
 Justimmo\Api\JustimmoApi::public setVersion($version)
 Justimmo\Api\JustimmoApi::protected throwError($message, $exceptionClass = '\\InvalidArgumentException')
+Justimmo\Api\JustimmoApi::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
 interface Justimmo\Api\JustimmoApiInterface
 Justimmo\Api\JustimmoApiInterface::abstract public callCountries(array $params = [])
@@ -64,8 +67,10 @@ Justimmo\Api\JustimmoApiInterface::abstract public callPoliticalDistricts(array 
 Justimmo\Api\JustimmoApiInterface::abstract public callProjectDetail($pk, array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callProjectIds(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callProjectList(array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callProjectShortList(array $params = []): string
 Justimmo\Api\JustimmoApiInterface::abstract public callRealtyCategories(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoApiInterface::abstract public callRealtyFeatures(array $params = []): string
 Justimmo\Api\JustimmoApiInterface::abstract public callRealtyIds(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callRealtyList(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callRealtyTypes(array $params = [])
@@ -85,8 +90,10 @@ Justimmo\Api\JustimmoNullApi::public callPoliticalDistricts(array $params = []):
 Justimmo\Api\JustimmoNullApi::public callProjectDetail($pk, array $params = [])
 Justimmo\Api\JustimmoNullApi::public callProjectIds(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callProjectList(array $params = [])
+Justimmo\Api\JustimmoNullApi::public callProjectShortList(array $params = []): string
 Justimmo\Api\JustimmoNullApi::public callRealtyCategories(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callRealtyDetail($pk, array $params = [])
+Justimmo\Api\JustimmoNullApi::public callRealtyFeatures(array $params = []): string
 Justimmo\Api\JustimmoNullApi::public callRealtyIds(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callRealtyList(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callRealtyTypes(array $params = [])
@@ -683,6 +690,7 @@ Justimmo\Model\ProjectQuery::public filterBySubRealtyTypeId($value)
 Justimmo\Model\ProjectQuery::public filterBySurfaceArea($value)
 Justimmo\Model\ProjectQuery::public filterByTag($value)
 Justimmo\Model\ProjectQuery::public filterByZipCode($value)
+Justimmo\Model\ProjectQuery::public findShortList(): array
 Justimmo\Model\ProjectQuery::public getDetailCall()
 Justimmo\Model\ProjectQuery::protected getDetailParams(): array
 Justimmo\Model\ProjectQuery::public getIdsCall()
@@ -740,11 +748,13 @@ Justimmo\Model\Query\BasicDataQuery::public __construct(Justimmo\Api\JustimmoApi
 Justimmo\Model\Query\BasicDataQuery::public all($value)
 Justimmo\Model\Query\BasicDataQuery::public clear()
 Justimmo\Model\Query\BasicDataQuery::public filterByCountry($value)
+Justimmo\Model\Query\BasicDataQuery::public filterByFeatureGroupId(int $value): static
 Justimmo\Model\Query\BasicDataQuery::public filterByFederalState($value)
 Justimmo\Model\Query\BasicDataQuery::public findCountries()
 Justimmo\Model\Query\BasicDataQuery::public findFederalStates()
 Justimmo\Model\Query\BasicDataQuery::public findPoliticalDistricts(): array
 Justimmo\Model\Query\BasicDataQuery::public findRealtyCategories()
+Justimmo\Model\Query\BasicDataQuery::public findRealtyFeatures(): array
 Justimmo\Model\Query\BasicDataQuery::public findRealtyTypes()
 Justimmo\Model\Query\BasicDataQuery::public findRegions()
 Justimmo\Model\Query\BasicDataQuery::public findTenant()
@@ -1253,6 +1263,15 @@ Justimmo\Model\Realty::public setYield($rendite)
 Justimmo\Model\Realty::public setZipCode($plz)
 Justimmo\Model\Realty::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void
 
+final class Justimmo\Model\RealtyFeature
+Justimmo\Model\RealtyFeature::public readonly string $code
+Justimmo\Model\RealtyFeature::public readonly string $groupCode
+Justimmo\Model\RealtyFeature::public readonly int $groupId
+Justimmo\Model\RealtyFeature::public readonly string $groupName
+Justimmo\Model\RealtyFeature::public readonly int $id
+Justimmo\Model\RealtyFeature::public readonly string $name
+Justimmo\Model\RealtyFeature::public __construct(int $id, string $name, string $code, int $groupId, string $groupName, string $groupCode)
+
 class Justimmo\Model\RealtyQuery extends Justimmo\Model\Query\AbstractQuery
 Justimmo\Model\RealtyQuery::protected const SORT_COLUMNS
 Justimmo\Model\RealtyQuery::public allProjectRealties($all = true)
@@ -1316,6 +1335,7 @@ Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformCount
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformFederalStates($data)
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformPoliticalDistricts(mixed $data): array
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRealtyCategories($data)
+Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRealtyFeatures(?string $data): array
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRealtyTypes($data)
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformRegions($data)
 Justimmo\Model\Wrapper\BasicDataWrapperInterface::abstract public transformTenant($data)
@@ -1341,6 +1361,7 @@ Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformCountries($data)
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformFederalStates($data)
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformPoliticalDistricts(mixed $data): array
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRealtyCategories($data)
+Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRealtyFeatures(?string $data): array
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRealtyTypes($data)
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformRegions($data)
 Justimmo\Model\Wrapper\V1\BasicDataWrapper::public transformTenant($data)
@@ -1357,6 +1378,7 @@ trait Justimmo\Model\Wrapper\V1\ParsesXml
 class Justimmo\Model\Wrapper\V1\ProjectWrapper extends Justimmo\Model\Wrapper\V1\AbstractWrapper uses Justimmo\Model\Wrapper\V1\ParsesXml
 Justimmo\Model\Wrapper\V1\ProjectWrapper::protected $simpleMapping
 Justimmo\Model\Wrapper\V1\ProjectWrapper::public transformList($data)
+Justimmo\Model\Wrapper\V1\ProjectWrapper::public transformShortList(?string $data): array
 Justimmo\Model\Wrapper\V1\ProjectWrapper::public transformSingle($data)
 
 class Justimmo\Model\Wrapper\V1\RealtyWrapper extends Justimmo\Model\Wrapper\V1\AbstractWrapper uses Justimmo\Model\Wrapper\V1\ParsesXml

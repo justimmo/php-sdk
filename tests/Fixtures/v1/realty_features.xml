@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<justimmo>
+    <ausstattung>
+        <id>12</id>
+        <gruppeid>3</gruppeid>
+        <gruppename>Heizungsart</gruppename>
+        <name>Fußbodenheizung</name>
+        <gruppencode>heizungsart</gruppencode>
+        <code>FUSSBODEN</code>
+    </ausstattung>
+    <ausstattung>
+        <id>13</id>
+        <gruppeid>3</gruppeid>
+        <gruppename>Heizungsart</gruppename>
+        <name>Zentralheizung</name>
+        <gruppencode>heizungsart</gruppencode>
+        <code>ZENTRAL</code>
+    </ausstattung>
+    <ausstattung>
+        <id>904</id>
+        <gruppeid>3</gruppeid>
+        <gruppename>Heizungsart</gruppename>
+        <name>Wärmepumpe im Keller</name>
+        <gruppencode>heizungsart</gruppencode>
+        <code></code>
+    </ausstattung>
+</justimmo>

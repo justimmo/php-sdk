@@ -16,6 +16,7 @@ class BasicDataMapper extends AbstractMapper
             'all'     => 'alle',
             'country' => 'land',
             'federalState' => 'bundesland',
+            'featureGroupId' => 'gruppe',
         ];
     }
 

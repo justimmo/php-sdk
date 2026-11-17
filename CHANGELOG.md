@@ -4,6 +4,11 @@
 * `Project::getUnderConstruction()`, deprecated since 2017, now emits a notice too, and is removed in 2.0.0. Use `isStateBuilding()` or `getProjectState()`
 * `getInfrastructureProvision()` returns `null` for a realty whose `erschliessungskosten` is empty and which has no state. It returned `0`
 * [BC] A subclass of `Realty` which reads the protected properties `$infrastructureProvision` or `$infrastructureProvisionCosts`: they are gone. Read `$developmentState` and `$developmentCosts`
+* `BasicDataQuery::findRealtyFeatures()` is added. It returns the features a realty can have, like a floor heating, with the account's own ones, as `RealtyFeature` objects keyed by the feature id. `filterByFeatureGroupId()` limits it to one feature group
+* `ProjectQuery::findShortList()` is added. It returns the title of every project, keyed by the project id, in one request
+* Deprecated, with a notice in the error log, and removed in 2.0.0: `BasicDataQuery::findZipCodes()` and `findRegions()`, and `JustimmoApi::callZipCodes()` and `callRegions()`. Use `findPoliticalDistricts()` and `callPoliticalDistricts()`. A site which calls a finder gets the finder's notice only
+* [BC] A class which implements `JustimmoApiInterface` itself, instead of extending `JustimmoApi`, needs the two new methods `callProjectShortList()` and `callRealtyFeatures()`
+* [BC] A class which implements `BasicDataWrapperInterface` itself, instead of extending `BasicDataWrapper`, needs the new method `transformRealtyFeatures()`
 
 ## 1.7.0
 * Upgrading from 1.6 needs no change for most sites. The line marked [BC] below concerns code which reads an employee's Facebook, Twitter, XING, LinkedIn or Instagram link with `getDocuments()`: use `getLinks()`

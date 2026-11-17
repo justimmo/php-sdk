@@ -3,6 +3,7 @@
 namespace Justimmo\Model\Wrapper;
 
 use Justimmo\Model\PoliticalDistrict;
+use Justimmo\Model\RealtyFeature;
 
 interface BasicDataWrapperInterface
 {
@@ -27,6 +28,8 @@ interface BasicDataWrapperInterface
     /**
      * Transforms the zip code list into a list of zip code and place pairs.
      *
+     * @deprecated since 1.8.0, removed in 2.0.0, with findZipCodes()
+     *
      * @param string $data the raw response of the api call
      *
      * @return array<int, array<string, mixed>>
@@ -34,7 +37,7 @@ interface BasicDataWrapperInterface
     public function transformZipCodes($data);
 
     /**
-     * @deprecated
+     * @deprecated since 1.8.0, removed in 2.0.0, with findRegions()
      *
      * @param string $data the raw response of the api call
      * @return array<int, string>
@@ -63,6 +66,15 @@ interface BasicDataWrapperInterface
      * @return array<int, array<string, mixed>>
      */
     public function transformRealtyCategories($data);
+
+    /**
+     * Transforms the realty feature list into RealtyFeature objects keyed by the feature id.
+     *
+     * @param ?string $data the raw response of the api call
+     *
+     * @return array<int, RealtyFeature>
+     */
+    public function transformRealtyFeatures(?string $data): array;
 
     /**
      * Transforms the tenant call into an array of its properties.

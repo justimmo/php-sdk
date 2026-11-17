@@ -3,6 +3,7 @@
 namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 
 /**
  * Class ProjectQuery
@@ -36,6 +37,24 @@ class ProjectQuery extends AbstractQuery
     public function getIdsCall()
     {
         return 'callProjectIds';
+    }
+
+    /**
+     * The title of every project, keyed by the project id
+     *
+     * One request answers every project, with no paging. The filters of the query do not apply,
+     * and stay set for the next call.
+     *
+     * @return array<int, string>
+     */
+    public function findShortList(): array
+    {
+        $response = $this->api->callProjectShortList();
+
+        // a query built with a wrapper of its own still reads the list
+        $wrapper = $this->wrapper instanceof ProjectWrapper ? $this->wrapper : new ProjectWrapper($this->mapper);
+
+        return $wrapper->transformShortList($response);
     }
 
     /**

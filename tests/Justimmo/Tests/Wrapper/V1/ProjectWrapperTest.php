@@ -9,6 +9,19 @@ use Justimmo\Tests\TestCase;
 class ProjectWrapperTest extends TestCase
 {
 
+    /**
+     * The short list answers only the id and the title of every project
+     */
+    public function testTransformShortList(): void
+    {
+        $wrapper = new ProjectWrapper(new ProjectMapper());
+
+        $this->assertSame(
+            [101 => 'Wohnen am Park', 102 => 'Stadtvillen Süd', 205 => 'Neubau Bahnhofstraße'],
+            $wrapper->transformShortList($this->getFixtures('v1/project_short_list.xml'))
+        );
+    }
+
     public function testTransformList()
     {
         $wrapper = new ProjectWrapper(new ProjectMapper());

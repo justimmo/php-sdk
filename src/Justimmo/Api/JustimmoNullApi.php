@@ -62,6 +62,14 @@ class JustimmoNullApi implements JustimmoApiInterface
     /**
      * {@inheritdoc}
      */
+    public function callProjectShortList(array $params = []): string
+    {
+        return '<?xml version="1.0" encoding="UTF-8"?><justimmo><query-result><count>0</count></query-result></justimmo>';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function callProjectDetail($pk, array $params = [])
     {
         return $this->emptyXML();
@@ -124,6 +132,14 @@ class JustimmoNullApi implements JustimmoApiInterface
      * {@inheritdoc}
      */
     public function callRealtyCategories(array $params = [])
+    {
+        return $this->emptyXML();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function callRealtyFeatures(array $params = []): string
     {
         return $this->emptyXML();
     }
