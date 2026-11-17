@@ -7,6 +7,7 @@
 * `BasicDataQuery::findRealtyFeatures()` is added. It returns the features a realty can have, like a floor heating, with the account's own ones, as `RealtyFeature` objects keyed by the feature id. `filterByFeatureGroupId()` limits it to one feature group
 * `ProjectQuery::findShortList()` is added. It returns the title of every project, keyed by the project id, in one request
 * Deprecated, with a notice in the error log, and removed in 2.0.0: `BasicDataQuery::findZipCodes()` and `findRegions()`, and `JustimmoApi::callZipCodes()` and `callRegions()`. Use `findPoliticalDistricts()` and `callPoliticalDistricts()`. A site which calls a finder gets the finder's notice only
+* The culture goes only to the endpoints which are translated: the realty list, detail and expose, the project list and detail, the realty types and the realty features. The other calls, like the countries or the employees, no longer send it. The api documents no culture for them. A culture the caller passes is still sent, and a path which `JustimmoApi::call()` does not know keeps it
 * [BC] A class which implements `JustimmoApiInterface` itself, instead of extending `JustimmoApi`, needs the two new methods `callProjectShortList()` and `callRealtyFeatures()`
 * [BC] A class which implements `BasicDataWrapperInterface` itself, instead of extending `BasicDataWrapper`, needs the new method `transformRealtyFeatures()`
 

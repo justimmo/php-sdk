@@ -15,6 +15,7 @@ use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
 use Justimmo\Exception\StatusCodeException;
 use Justimmo\Exception\ValidationException;
+use Justimmo\Model\Mapper\V1\SupportedParameters;
 use Justimmo\Model\Query\BasicDataQuery;
 use Justimmo\Model\TriggersDeprecations;
 use Psr\Log\LoggerInterface;
@@ -29,16 +30,6 @@ use Psr\Log\NullLogger;
 class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
     use TriggersDeprecations;
-
-    /**
-     * Calls which the culture is not sent to
-     *
-     * None of the three documents the parameter, and none of them could use it: an ids call
-     * answers with a plain array of ids, which carries no translatable text at all.
-     *
-     * @var array<int, string>
-     */
-    private const CALLS_WITHOUT_CULTURE = ['objekt/ids', 'projekt/ids', 'team/ids'];
 
     /**
      * The endpoint each method sends its request to, written as data/sdk-supported-parameters.json
@@ -430,7 +421,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     {
         $startTime = microtime(true);
 
-        if (!array_key_exists('culture', $params) && !in_array($call, self::CALLS_WITHOUT_CULTURE, true)) {
+        if (!array_key_exists('culture', $params) && self::takesTheCulture($call)) {
             $params['culture'] = $this->culture;
         }
 
@@ -503,6 +494,24 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
         ]);
 
         return $response;
+    }
+
+    /**
+     * Whether the endpoint takes the culture, so the SDK sends its own when the caller sent none
+     *
+     * The contract, data/sdk-supported-parameters.json, says which endpoints are translated. A path
+     * which is not in ENDPOINTS keeps the culture, as every call did before 1.8.0.
+     *
+     * @param string $call the path, like objekt/list
+     */
+    private static function takesTheCulture(string $call): bool
+    {
+        $method = array_search('/' . ltrim($call, '/'), self::ENDPOINTS, true);
+        if ($method === false) {
+            return true;
+        }
+
+        return isset(SupportedParameters::PARAMETERS[$method]['culture']);
     }
 
     /**
