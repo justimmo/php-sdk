@@ -28,7 +28,7 @@ final class SupportedParameters
     /**
      * Changes when the accepted parameters change, not when a description is reworded
      */
-    const SPEC_HASH = 'sha256:8f0aece704444b0b35120a435f3a8a6f225c6c9bdb10cea433617db03a9eed83';
+    const SPEC_HASH = 'sha256:2a07461b13c5d2c33ca47a12a50cc9bc6d05c844fbb212ec909e3bf296d24769';
 
     /**
      * The filters each call accepts, keyed by the api filter name without brackets and without a
@@ -1068,12 +1068,6 @@ final class SupportedParameters
                     'orig',
                 ],
                 'default' => 'orig',
-            ],
-            'showDetails' => [
-                'in' => 'path',
-                'type' => 'integer',
-                'enum' => [0, 1],
-                'default' => 0,
             ],
         ],
         'callProjectShortList' => [],

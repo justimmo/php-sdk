@@ -1,8 +1,8 @@
 {
     "schema_version": 1,
     "spec_version": "1.2.21",
-    "spec_hash": "sha256:8f0aece704444b0b35120a435f3a8a6f225c6c9bdb10cea433617db03a9eed83",
-    "generated_at": "2026-11-17T15:26:43+01:00",
+    "spec_hash": "sha256:2a07461b13c5d2c33ca47a12a50cc9bc6d05c844fbb212ec909e3bf296d24769",
+    "generated_at": "2026-11-17T19:20:59+01:00",
     "endpoints": {
         "/main/tenant": {
             "filters": {},
@@ -1660,15 +1660,6 @@
                         "orig"
                     ],
                     "default": "orig"
-                },
-                "showDetails": {
-                    "in": "path",
-                    "type": "integer",
-                    "enum": [
-                        0,
-                        1
-                    ],
-                    "default": 0
                 }
             }
         },

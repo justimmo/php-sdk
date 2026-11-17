@@ -30,6 +30,14 @@ class RealtyQueryTest extends TestCase
         $this->assertEquals(['alleProjektObjekte' => 0], $query->getParams());
     }
 
+    public function testShowDetails(): void
+    {
+        $query = $this->getQuery();
+
+        $this->assertSame([], $query->getParams());
+        $this->assertSame(['showDetails' => 1], $query->showDetails()->getParams());
+    }
+
     public function testFilterByUpdatedAt()
     {
         $query = $this->getQuery();

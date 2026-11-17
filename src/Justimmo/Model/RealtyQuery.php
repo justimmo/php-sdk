@@ -588,6 +588,18 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
+     * Asks for the full record of each realty in the list, the parameter showDetails
+     *
+     * Without it the api answers with its default, the short record: the list fields, without the
+     * attachments, the contact person and the other details. 1.x still asks for the full record on
+     * every list, and 2.0.0 sends showDetails only when this method is called.
+     */
+    public function showDetails(): static
+    {
+        return $this->setParameter('showDetails', 1);
+    }
+
+    /**
      * The api accepts a list here, and filterByRealtyCategory() builds the same wire filter, so
      * both calls add to it instead of the second discarding the first
      *

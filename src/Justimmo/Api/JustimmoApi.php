@@ -169,9 +169,21 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 
     /**
      * @inheritdoc
+     *
+     * 1.x always sends showDetails=1, so every list carries the full record. 2.0.0 sends what the
+     * caller passed, and the api's default is the short record. A call without showDetails=1 gets
+     * a notice now.
      */
     public function callRealtyList(array $params = [])
     {
+        if ((int) ($params['showDetails'] ?? 0) !== 1) {
+            $this->triggerDeprecation(
+                __FUNCTION__,
+                __FUNCTION__ . '() without showDetails=1 gets the full record of each realty in 1.x only. 2.0.0 sends the api\'s default, the short record, without the attachments or the contact person. Call RealtyQuery::showDetails(), or pass showDetails=1.',
+                '1.8.0'
+            );
+        }
+
         $params['showDetails'] = 1;
 
         return $this->callEndpoint(__FUNCTION__, $params);

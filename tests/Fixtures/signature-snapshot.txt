@@ -1328,6 +1328,7 @@ Justimmo\Model\RealtyQuery::public orderByPublishedAt($direction = 'asc')
 Justimmo\Model\RealtyQuery::public orderByUpdatedAt($direction = 'asc')
 Justimmo\Model\RealtyQuery::public orderByZipCode($direction = 'asc')
 Justimmo\Model\RealtyQuery::public preciseAreaSearch($all = true)
+Justimmo\Model\RealtyQuery::public showDetails(): static
 
 trait Justimmo\Model\TriggersDeprecations
 Justimmo\Model\TriggersDeprecations::protected triggerDeprecation(string $method, Closure|string $message, string $version = '1.6.0'): void

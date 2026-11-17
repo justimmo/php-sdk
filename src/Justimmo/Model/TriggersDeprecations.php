@@ -35,6 +35,12 @@ trait TriggersDeprecations
         $this->emitDeprecation($method, function () use ($message) {
             $class = new \ReflectionClass($this);
 
+            // an anonymous class has no name of its own, only PHP's internal one with a file path
+            // in it, so the notice names the class it extends
+            while ($class->isAnonymous() && $class->getParentClass() !== false) {
+                $class = $class->getParentClass();
+            }
+
             if ($message instanceof \Closure) {
                 $message = $message();
             }

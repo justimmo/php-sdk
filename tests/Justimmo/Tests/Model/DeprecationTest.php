@@ -368,6 +368,62 @@ class DeprecationTest extends TestCase
     }
 
     /**
+     * 2.0.0 sends showDetails only when it is asked for, so a realty list without it is warned now
+     */
+    public function testARealtyListWithoutShowDetailsEmitsANotice(): void
+    {
+        $query = new RealtyQuery($this->answeringApi(), new RealtyWrapper($mapper = new RealtyMapper()), $mapper);
+
+        $this->assertSame(
+            [self::SINCE_1_8 . 'JustimmoApi::callRealtyList() without showDetails=1 gets the full record of each realty in 1.x only. 2.0.0 sends the api\'s default, the short record, without the attachments or the contact person. Call RealtyQuery::showDetails(), or pass showDetails=1.'],
+            $this->notices(function () use ($query) {
+                $query->find();
+            })
+        );
+    }
+
+    /**
+     * An explicit 0 is still sent as 1 in 1.x, and 2.0.0 sends it as it is, so it is warned too
+     */
+    public function testARealtyListWithShowDetailsZeroEmitsANotice(): void
+    {
+        $api = $this->answeringApi();
+
+        $this->assertCount(1, $this->notices(function () use ($api) {
+            $api->callRealtyList(['showDetails' => 0]);
+        }));
+    }
+
+    /**
+     * PHP names an anonymous class with a NUL byte and the file path, which a log must not carry
+     */
+    public function testANoticeOfAnAnonymousSubclassNamesTheClassItExtends(): void
+    {
+        $cache = $this->createMock(CacheInterface::class);
+        $cache->method('generateCacheKey')->willReturn('key');
+        $cache->method('get')->willReturn('<justimmo></justimmo>');
+
+        $api = new class ('username', 'password', new NullLogger(), $cache) extends JustimmoApi {
+        };
+
+        $this->assertSame(
+            [self::SINCE_1_8 . 'JustimmoApi::callZipCodes() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().'],
+            $this->notices(function () use ($api) {
+                $api->callZipCodes();
+            })
+        );
+    }
+
+    public function testARealtyListWithShowDetailsEmitsNone(): void
+    {
+        $query = new RealtyQuery($this->answeringApi(), new RealtyWrapper($mapper = new RealtyMapper()), $mapper);
+
+        $this->assertSame([], $this->notices(function () use ($query) {
+            $query->showDetails()->find();
+        }));
+    }
+
+    /**
      * The SDK reads an answer without calling a deprecated method, so a site sees only the notices
      * of its own calls
      */

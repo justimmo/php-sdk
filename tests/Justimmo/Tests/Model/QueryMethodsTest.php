@@ -241,7 +241,13 @@ class QueryMethodsTest extends TestCase
     {
         $filters    = $mapper->getSupportedFilters($query->getListCall());
         $reflection = new \ReflectionClass($query);
-        $shortName  = $reflection->getShortName();
+
+        // a notice of an anonymous class names the class it extends, like the made-up query of
+        // testTheDeprecatedFilterCheckFindsAMethodWhichDoesNotFollow()
+        while ($reflection->isAnonymous() && $reflection->getParentClass() !== false) {
+            $reflection = $reflection->getParentClass();
+        }
+        $shortName = $reflection->getShortName();
 
         $problems = [];
         foreach ($this->methods($query, 'filterBy') as $property) {
