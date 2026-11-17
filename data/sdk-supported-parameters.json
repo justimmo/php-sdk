@@ -1,9 +1,13 @@
 {
     "schema_version": 1,
-    "spec_version": "1.2.20",
-    "spec_hash": "sha256:9a639e6a2f9ccbbb5adf24fecea625baf40d4a53784e3a7fd3d488be74e05a79",
-    "generated_at": "2026-11-04T16:33:13+01:00",
+    "spec_version": "1.2.21",
+    "spec_hash": "sha256:8f0aece704444b0b35120a435f3a8a6f225c6c9bdb10cea433617db03a9eed83",
+    "generated_at": "2026-11-17T15:26:43+01:00",
     "endpoints": {
+        "/main/tenant": {
+            "filters": {},
+            "parameters": {}
+        },
         "/objekt/anfrage": {
             "filters": {},
             "parameters": {
@@ -995,6 +999,11 @@
                         1
                     ],
                     "default": 0
+                },
+                "culture": {
+                    "in": "operation",
+                    "type": "string",
+                    "default": "de"
                 }
             }
         },
@@ -1026,7 +1035,8 @@
                         "string"
                     ]
                 }
-            }
+            },
+            "deprecated": true
         },
         "/objekt/politischeBezirke": {
             "filters": {},
@@ -1082,7 +1092,8 @@
                         "string"
                     ]
                 }
-            }
+            },
+            "deprecated": true
         },
         "/projekt/detail": {
             "filters": {},
@@ -1665,6 +1676,20 @@
             "filters": {},
             "parameters": {}
         },
+        "/referenz/ausstattungen": {
+            "filters": {},
+            "parameters": {
+                "culture": {
+                    "in": "operation",
+                    "type": "string",
+                    "default": "de"
+                },
+                "gruppe": {
+                    "in": "operation",
+                    "type": "integer"
+                }
+            }
+        },
         "/team/detail": {
             "filters": {},
             "parameters": {
@@ -1681,6 +1706,20 @@
         "/team/list": {
             "filters": {},
             "parameters": {}
+        }
+    },
+    "undocumented_endpoints": {
+        "/objekt/detail/objekt_id/{realtyIdPath}": {
+            "alias_of": "/objekt/detail"
+        },
+        "/objekt/expose/objekt_id/{realtyIdPath}": {
+            "alias_of": "/objekt/expose"
+        },
+        "/projekt/detail/id/{idPath}": {
+            "alias_of": "/projekt/detail"
+        },
+        "/team/detail/id/{id}": {
+            "alias_of": "/team/detail"
         }
     },
     "user_defined_simplefields": [

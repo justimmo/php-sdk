@@ -1,4 +1,5 @@
 class Justimmo\Api\JustimmoApi implements Justimmo\Api\JustimmoApiInterface, Justimmo\Api\StrictModeInterface uses Justimmo\Model\TriggersDeprecations
+Justimmo\Api\JustimmoApi::public const ENDPOINTS
 Justimmo\Api\JustimmoApi::protected $baseUrl
 Justimmo\Api\JustimmoApi::protected $cache
 Justimmo\Api\JustimmoApi::protected $culture
@@ -459,6 +460,7 @@ Justimmo\Model\Mapper\V1\RealtyMapper::protected getOrderMapping(): array
 Justimmo\Model\Mapper\V1\RealtyMapper::public setOrientation(SimpleXMLElement $xml, Justimmo\Model\Realty $realty)
 
 final class Justimmo\Model\Mapper\V1\SupportedParameters
+Justimmo\Model\Mapper\V1\SupportedParameters::public const DEPRECATED_CALLS
 Justimmo\Model\Mapper\V1\SupportedParameters::public const FILTERS
 Justimmo\Model\Mapper\V1\SupportedParameters::public const PARAMETERS
 Justimmo\Model\Mapper\V1\SupportedParameters::public const SPEC_HASH

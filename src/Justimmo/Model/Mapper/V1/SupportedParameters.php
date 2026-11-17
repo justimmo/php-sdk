@@ -3,7 +3,7 @@
 /*
  * This file is generated. Do not edit it.
  *
- * Source:    data/sdk-supported-parameters.json, spec 1.2.20
+ * Source:    data/sdk-supported-parameters.json, spec 1.2.21
  * Generator: bin/generate-supported-parameters.php
  *
  * Run `php bin/generate-supported-parameters.php --check` to find out whether the two have drifted.
@@ -14,7 +14,7 @@ namespace Justimmo\Model\Mapper\V1;
 /**
  * Class SupportedParameters
  *
- * What the Website API officially accepts, per query call. Data only, no behaviour
+ * What the Website API officially accepts, per SDK method of JustimmoApi. Data only, no behaviour
  *
  * @package Justimmo\Model\Mapper\V1
  */
@@ -23,12 +23,12 @@ final class SupportedParameters
     /**
      * The spec version this data was generated from
      */
-    const SPEC_VERSION = '1.2.20';
+    const SPEC_VERSION = '1.2.21';
 
     /**
      * Changes when the accepted parameters change, not when a description is reworded
      */
-    const SPEC_HASH = 'sha256:9a639e6a2f9ccbbb5adf24fecea625baf40d4a53784e3a7fd3d488be74e05a79';
+    const SPEC_HASH = 'sha256:8f0aece704444b0b35120a435f3a8a6f225c6c9bdb10cea433617db03a9eed83';
 
     /**
      * The filters each call accepts, keyed by the api filter name without brackets and without a
@@ -256,7 +256,6 @@ final class SupportedParameters
                 'type' => 'integer',
             ],
         ],
-        'callRealtyDetail' => [],
         'callRealtyIds' => [
             'aktualisiert_am' => [
                 'forms' => ['range'],
@@ -473,7 +472,140 @@ final class SupportedParameters
                 'type' => 'integer',
             ],
         ],
+        'callRealtyDetail' => [],
+        'callExpose' => [],
+        'postRealtyInquiry' => [],
         'callProjectList' => [
+            'bundesland_id' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'list' => true,
+            ],
+            'fertigstellung' => [
+                'forms' => ['range'],
+                'level' => 'project',
+                'type' => 'string',
+            ],
+            'flaeche' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+            'grundflaeche' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+            'kauf' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'enum' => [0, 1],
+            ],
+            'miete' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'enum' => [0, 1],
+            ],
+            'nutzflaeche' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+            'objekt_status_id' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'list' => true,
+            ],
+            'objektart_id' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'list' => true,
+            ],
+            'objektnummer' => [
+                'forms' => ['plain', 'range'],
+                'level' => 'realty',
+                'type' => 'string',
+            ],
+            'owner_id' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+            ],
+            'plz' => [
+                'forms' => ['plain', 'range'],
+                'level' => 'realty',
+                'type' => 'string',
+                'list' => true,
+            ],
+            'preis' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+            'project_tag_name' => [
+                'forms' => ['plain'],
+                'level' => 'project',
+                'type' => 'string',
+                'list' => true,
+            ],
+            'projekt_objektnummer' => [
+                'forms' => ['plain'],
+                'level' => 'project',
+                'type' => 'string',
+            ],
+            'projekt_status' => [
+                'forms' => ['plain'],
+                'level' => 'project',
+                'type' => 'string',
+                'list' => true,
+                'enum' => ['planning', 'building', 'finished'],
+            ],
+            'referenz' => [
+                'forms' => ['plain'],
+                'level' => 'project',
+                'type' => 'integer',
+                'enum' => [0, 1],
+            ],
+            'stichwort' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'string',
+            ],
+            'subobjektart_id' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'integer',
+                'list' => true,
+            ],
+            'tag_name' => [
+                'forms' => ['plain'],
+                'level' => 'realty',
+                'type' => 'string',
+                'list' => true,
+            ],
+            'verkaufsstart' => [
+                'forms' => ['range'],
+                'level' => 'project',
+                'type' => 'string',
+            ],
+            'wohnflaeche' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+            'zimmer' => [
+                'forms' => ['range'],
+                'level' => 'realty',
+                'type' => 'number',
+            ],
+        ],
+        'callProjectShortList' => [],
+        'callProjectIds' => [
             'bundesland_id' => [
                 'forms' => ['plain'],
                 'level' => 'realty',
@@ -603,138 +735,18 @@ final class SupportedParameters
             ],
         ],
         'callProjectDetail' => [],
-        'callProjectIds' => [
-            'bundesland_id' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'list' => true,
-            ],
-            'fertigstellung' => [
-                'forms' => ['range'],
-                'level' => 'project',
-                'type' => 'string',
-            ],
-            'flaeche' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-            'grundflaeche' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-            'kauf' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'enum' => [0, 1],
-            ],
-            'miete' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'enum' => [0, 1],
-            ],
-            'nutzflaeche' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-            'objekt_status_id' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'list' => true,
-            ],
-            'objektart_id' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'list' => true,
-            ],
-            'objektnummer' => [
-                'forms' => ['plain', 'range'],
-                'level' => 'realty',
-                'type' => 'string',
-            ],
-            'owner_id' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-            ],
-            'plz' => [
-                'forms' => ['plain', 'range'],
-                'level' => 'realty',
-                'type' => 'string',
-                'list' => true,
-            ],
-            'preis' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-            'project_tag_name' => [
-                'forms' => ['plain'],
-                'level' => 'project',
-                'type' => 'string',
-                'list' => true,
-            ],
-            'projekt_objektnummer' => [
-                'forms' => ['plain'],
-                'level' => 'project',
-                'type' => 'string',
-            ],
-            'projekt_status' => [
-                'forms' => ['plain'],
-                'level' => 'project',
-                'type' => 'string',
-                'list' => true,
-                'enum' => ['planning', 'building', 'finished'],
-            ],
-            'referenz' => [
-                'forms' => ['plain'],
-                'level' => 'project',
-                'type' => 'integer',
-                'enum' => [0, 1],
-            ],
-            'stichwort' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'string',
-            ],
-            'subobjektart_id' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'integer',
-                'list' => true,
-            ],
-            'tag_name' => [
-                'forms' => ['plain'],
-                'level' => 'realty',
-                'type' => 'string',
-                'list' => true,
-            ],
-            'verkaufsstart' => [
-                'forms' => ['range'],
-                'level' => 'project',
-                'type' => 'string',
-            ],
-            'wohnflaeche' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-            'zimmer' => [
-                'forms' => ['range'],
-                'level' => 'realty',
-                'type' => 'number',
-            ],
-        ],
+        'callCountries' => [],
+        'callFederalStates' => [],
+        'callPoliticalDistricts' => [],
+        'callRealtyTypes' => [],
+        'callRealtyCategories' => [],
+        'callRealtyFeatures' => [],
+        'callZipCodes' => [],
+        'callRegions' => [],
         'callEmployeeList' => [],
-        'callEmployeeDetail' => [],
         'callEmployeeIds' => [],
+        'callEmployeeDetail' => [],
+        'callTenant' => [],
     ];
 
     /**
@@ -817,6 +829,32 @@ final class SupportedParameters
                 'default' => 0,
             ],
         ],
+        'callRealtyIds' => [
+            'alleProjektObjekte' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'orderby' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'enum' => ['created_at', 'objektnummer', 'plz', 'preis', 'published_at', 'updated_at'],
+            ],
+            'ordertype' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'enum' => ['asc', 'desc'],
+                'default' => 'asc',
+                'case_insensitive' => true,
+            ],
+            'preciseAreaSearch' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+        ],
         'callRealtyDetail' => [
             'culture' => [
                 'in' => 'operation',
@@ -854,30 +892,109 @@ final class SupportedParameters
                 'default' => 'orig',
             ],
         ],
-        'callRealtyIds' => [
-            'alleProjektObjekte' => [
+        'callExpose' => [
+            'culture' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'default' => 'de',
+            ],
+            'expose' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'default' => 'Default',
+            ],
+            'objekt_id' => [
+                'in' => 'operation',
+                'type' => 'integer',
+            ],
+        ],
+        'postRealtyInquiry' => [
+            'anrede_id' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [1, 2],
+            ],
+            'doubleoptin_completed' => [
                 'in' => 'operation',
                 'type' => 'integer',
                 'enum' => [0, 1],
-                'default' => 0,
             ],
-            'orderby' => [
+            'email' => [
                 'in' => 'operation',
                 'type' => 'string',
-                'enum' => ['created_at', 'objektnummer', 'plz', 'preis', 'published_at', 'updated_at'],
             ],
-            'ordertype' => [
+            'firma' => [
                 'in' => 'operation',
                 'type' => 'string',
-                'enum' => ['asc', 'desc'],
-                'default' => 'asc',
-                'case_insensitive' => true,
             ],
-            'preciseAreaSearch' => [
+            'funding_inquiry' => [
                 'in' => 'operation',
                 'type' => 'integer',
                 'enum' => [0, 1],
-                'default' => 0,
+            ],
+            'is_realty_owner' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+            ],
+            'kategorie' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'land' => [
+                'in' => 'operation',
+                'type' => 'integer',
+            ],
+            'message' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'nachname' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'newsletter' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'list' => true,
+                'list_only' => true,
+            ],
+            'objekt_id' => [
+                'in' => 'operation',
+                'type' => 'integer',
+            ],
+            'ort' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'plz' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'realty_owner_consultation_request' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+            ],
+            'strasse' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'suffix' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'tel' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'titel' => [
+                'in' => 'operation',
+                'type' => 'string',
+            ],
+            'vorname' => [
+                'in' => 'operation',
+                'type' => 'string',
             ],
         ],
         'callProjectList' => [
@@ -959,6 +1076,33 @@ final class SupportedParameters
                 'default' => 0,
             ],
         ],
+        'callProjectShortList' => [],
+        'callProjectIds' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'alleProjektObjekte' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'orderby' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'enum' => ['created_at', 'updated_at'],
+            ],
+            'ordertype' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'enum' => ['asc', 'desc'],
+                'default' => 'asc',
+                'case_insensitive' => true,
+            ],
+        ],
         'callProjectDetail' => [
             'alleProjektObjekte' => [
                 'in' => 'operation',
@@ -1008,40 +1152,122 @@ final class SupportedParameters
                 'default' => 'orig',
             ],
         ],
-        'callProjectIds' => [
+        'callCountries' => [
             'alle' => [
                 'in' => 'operation',
                 'type' => 'integer',
                 'enum' => [0, 1],
                 'default' => 0,
             ],
-            'alleProjektObjekte' => [
+        ],
+        'callFederalStates' => [
+            'alle' => [
                 'in' => 'operation',
                 'type' => 'integer',
                 'enum' => [0, 1],
                 'default' => 0,
             ],
-            'orderby' => [
+            'land' => [
                 'in' => 'operation',
-                'type' => 'string',
-                'enum' => ['created_at', 'updated_at'],
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
             ],
-            'ordertype' => [
+        ],
+        'callPoliticalDistricts' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'bundesland' => [
+                'in' => 'operation',
+                'type' => 'integer',
+            ],
+            'land' => [
                 'in' => 'operation',
                 'type' => 'string',
-                'enum' => ['asc', 'desc'],
-                'default' => 'asc',
-                'case_insensitive' => true,
+                'enum' => ['AT'],
+                'default' => 'AT',
+            ],
+        ],
+        'callRealtyTypes' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'culture' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'default' => 'de',
+            ],
+        ],
+        'callRealtyCategories' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+        ],
+        'callRealtyFeatures' => [
+            'culture' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'default' => 'de',
+            ],
+            'gruppe' => [
+                'in' => 'operation',
+                'type' => 'integer',
+            ],
+        ],
+        'callZipCodes' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'bundesland' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
+            ],
+            'land' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
+            ],
+        ],
+        'callRegions' => [
+            'alle' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'enum' => [0, 1],
+                'default' => 0,
+            ],
+            'bundesland' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
+            ],
+            'land' => [
+                'in' => 'operation',
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
             ],
         ],
         'callEmployeeList' => [],
+        'callEmployeeIds' => [],
         'callEmployeeDetail' => [
             'id' => [
                 'in' => 'operation',
                 'type' => 'integer',
             ],
         ],
-        'callEmployeeIds' => [],
+        'callTenant' => [],
     ];
 
     /**
@@ -1113,4 +1339,10 @@ final class SupportedParameters
         'vertragserrichtungsgebuehr',
         'wohnbaufoerderung',
     ];
+
+    /**
+     * The SDK methods whose endpoint the api marks deprecated, sorted. Each is deprecated in the SDK
+     * too, with a notice
+     */
+    const DEPRECATED_CALLS = ['callRegions', 'callZipCodes'];
 }

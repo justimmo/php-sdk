@@ -17,6 +17,17 @@ abstract class TestCase extends PHPUnitTestCase
     }
 
     /**
+     * A failure message for the contract tests: what is wrong, the items, what to do, and the
+     * section of CONTRIBUTING.md which explains it
+     *
+     * @param array<int, string> $items
+     */
+    protected static function explain(string $what, array $items, string $todo, string $section): string
+    {
+        return $what . ":\n  - " . implode("\n  - ", $items) . "\n" . $todo . "\nSee CONTRIBUTING.md, \"" . $section . '".';
+    }
+
+    /**
      * The SDK emits each deprecation notice once per request, so a test which expects one starts
      * from none
      */
