@@ -269,13 +269,16 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * The team endpoints take no parameters at all
+     * The team endpoints take no filters. The list and the detail take only the picture size, the
+     * ids nothing
      */
-    public function testEmployeeCallsAreEmpty(): void
+    public function testTheTeamEndpointsTakeOnlyThePictureSize(): void
     {
         $this->assertSame([], SupportedParameters::FILTERS['callEmployeeList']);
-        $this->assertSame([], SupportedParameters::PARAMETERS['callEmployeeList']);
+        $this->assertSame(['picturesize'], array_keys(SupportedParameters::PARAMETERS['callEmployeeList']));
+        $this->assertSame(['id', 'picturesize'], array_keys(SupportedParameters::PARAMETERS['callEmployeeDetail']));
         $this->assertSame([], SupportedParameters::FILTERS['callEmployeeIds']);
+        $this->assertSame([], SupportedParameters::PARAMETERS['callEmployeeIds']);
     }
 
     public function testMappersExposeTheData(): void

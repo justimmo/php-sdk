@@ -61,7 +61,7 @@ class BasicDataQuery
 
     /**
      *
-     * @param mixed $value
+     * @param int|string $value
      *
      * @return $this
      */
@@ -72,7 +72,7 @@ class BasicDataQuery
 
     /**
      *
-     * @param mixed $value
+     * @param int $value
      *
      * @return $this
      */

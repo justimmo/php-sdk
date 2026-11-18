@@ -203,9 +203,10 @@ abstract class AbstractQuery implements QueryInterface
         $page       = max(1, (int) $page);
         $maxPerPage = max(1, (int) $maxPerPage);
 
-        $this
-            ->setLimit($maxPerPage)
-            ->setOffset(($page - 1) * $maxPerPage);
+        // $this->, so a subclass which overrides them is followed. EmployeeQuery, which deprecates
+        // them, mutes its notice while paginate() runs
+        $this->setLimit($maxPerPage);
+        $this->setOffset(($page - 1) * $maxPerPage);
 
         $pager = $this->find();
         $pager->setPage($page);
@@ -248,10 +249,12 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function findOne()
     {
+        // $this-> for the same reason as in paginate()
         $this->setLimit(1);
         $pager = $this->find();
 
-        return $pager->offsetGet(0);
+        // an empty answer has no key 0. Read with offsetGet(), it gave null with a PHP warning
+        return $pager[0] ?? null;
     }
 
     /**
@@ -290,9 +293,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * The parameters findPk() carries into the detail call
      *
-     * Only picturesize and culture are carried over, and ProjectQuery widens this. Without a
-     * culture on the query, the api client adds its own. JustimmoApi::callEmployeeDetail() takes
-     * no parameters, so it sends none of them to team/detail.
+     * Only picturesize and culture are carried over, ProjectQuery widens this and EmployeeQuery
+     * narrows it. Without a culture on the query, the api client adds its own where the detail call
+     * takes one.
      *
      * @return array<int, string>
      */

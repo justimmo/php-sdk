@@ -10,15 +10,18 @@ use Justimmo\Model\EmployeeQuery;
 use Justimmo\Model\Mapper\V1\BasicDataMapper;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
+use Justimmo\Model\Mapper\V1\RealtyInquiryMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
 use Justimmo\Model\Mapper\V1\SupportedParameters;
 use Justimmo\Model\ProjectQuery;
+use Justimmo\Model\Query\AbstractQuery;
 use Justimmo\Model\Query\BasicDataQuery;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 use Justimmo\Model\Wrapper\V1\EmployeeWrapper;
 use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 use Justimmo\Model\Wrapper\V1\RealtyWrapper;
+use Justimmo\Request\RealtyInquiryRequest;
 use Psr\Log\NullLogger;
 
 /**
@@ -31,14 +34,26 @@ use Psr\Log\NullLogger;
 class ContractTest extends TestCase
 {
     /**
-     * Methods of BasicDataQuery which set no parameter
+     * Public methods which set no parameter of their own, keyed by class
      */
-    const BASIC_DATA_NOT_A_PARAMETER = ['__construct', 'clear', 'getParams', 'set'];
+    const NOT_A_PARAMETER = [
+        RealtyQuery::class          => ['__call', '__construct', 'clear', 'filter', 'getDetailCall', 'getIdsCall', 'getListCall', 'getParams', 'isStrict', 'order', 'orderBy', 'set', 'strict'],
+        ProjectQuery::class         => ['__call', '__construct', 'clear', 'filter', 'getDetailCall', 'getIdsCall', 'getListCall', 'getParams', 'isStrict', 'order', 'orderBy', 'set', 'strict'],
+        EmployeeQuery::class        => ['__call', '__construct', 'clear', 'filter', 'getDetailCall', 'getIdsCall', 'getListCall', 'getParams', 'isStrict', 'order', 'orderBy', 'set', 'strict'],
+        BasicDataQuery::class       => ['__construct', 'clear', 'getParams', 'set'],
+        RealtyInquiryRequest::class => ['__construct', 'getCategory', 'getCity', 'getCompany', 'getCountry', 'getEmail', 'getFirstName', 'getIsRealtyOwner', 'getLastName', 'getMessage', 'getPhone', 'getRealtyId', 'getRealtyOwnerConsultationRequest', 'getSalutationId', 'getStreet', 'getSuffix', 'getTitle', 'getZipCode', 'isFundingInquiry'],
+    ];
 
     /**
      * The query classes whose find…() methods call the api
      */
     const QUERIES = [RealtyQuery::class, ProjectQuery::class, EmployeeQuery::class, BasicDataQuery::class];
+
+    /**
+     * Every class whose methods set the parameters of a call: the queries, and the inquiry, which
+     * send() posts
+     */
+    const SENDERS = [...self::QUERIES, RealtyInquiryRequest::class];
 
     protected function setUp(): void
     {
@@ -181,7 +196,7 @@ class ContractTest extends TestCase
                         $missing[] = $shortName . '::' . $finder . '() has no @deprecated';
                     }
 
-                    $query     = self::query($class, new JustimmoNullApi());
+                    $query     = self::instance($class, new JustimmoNullApi());
                     $arguments = self::finderArguments($class, $finder);
                     $notices   = $this->notices(fn () => self::callWithoutTheAnswer(fn () => $query->$finder(...$arguments)));
                     if (!self::namesTheMethod($notices, $shortName, $finder)) {
@@ -200,62 +215,172 @@ class ContractTest extends TestCase
     }
 
     /**
-     * Every parameter of a basic-data endpoint has a method on BasicDataQuery, and every method
-     * sends a parameter one of them accepts
+     * @return array<string, array{0: class-string}>
      */
-    public function testEveryBasicDataParameterHasAMethod(): void
+    public function senders(): array
     {
-        $methods = [];
-        foreach ($this->finders(BasicDataQuery::class) as $called) {
-            $methods = [...$methods, ...$called];
+        $senders = [];
+        foreach (self::SENDERS as $class) {
+            $reflection = new \ReflectionClass($class);
+            $senders[$reflection->getShortName()] = [$class];
         }
 
+        return $senders;
+    }
+
+    /**
+     * Every parameter of the endpoints a class calls has a method on the class, and every method
+     * sends a parameter one of them accepts
+     *
+     * @dataProvider senders
+     *
+     * @param class-string $class
+     */
+    public function testEveryParameterHasAMethod(string $class): void
+    {
+        $reflection = new \ReflectionClass($class);
+        $shortName  = $reflection->getShortName();
+
+        $methods = [];
+        foreach ($this->finders($class) as $called) {
+            $methods = [...$methods, ...$called];
+        }
+        $methods = array_values(array_unique($methods));
+
         $documented = [];
-        foreach (array_unique($methods) as $method) {
+        foreach ($methods as $method) {
             $documented = [...$documented, ...array_keys(SupportedParameters::PARAMETERS[$method] ?? [])];
         }
         $documented = array_values(array_unique($documented));
 
-        $sent = self::basicDataParametersSent();
+        $sent = $this->parametersSent($class);
 
         // what the api sends by itself counts too, like the culture of JustimmoApi::setCulture()
         $onTheWire = [];
-        foreach (array_unique($methods) as $method) {
+        foreach ($methods as $method) {
             $onTheWire = [...$onTheWire, ...$this->parametersOnTheWire($method)];
         }
 
         $missing = array_values(array_diff($documented, array_keys($sent), $onTheWire));
         $this->assertSame([], $missing, self::explain(
-            'The api documents these basic-data parameters, but BasicDataQuery has no method for them',
+            'The api documents these parameters of ' . implode(', ', $methods) . ', but ' . $shortName . ' has no method for them',
             $missing,
-            'Add a method to BasicDataQuery which sets the parameter.',
+            'Add a method to ' . $shortName . ' which sets the parameter.',
             'The api adds a filter or a parameter'
         ));
 
         $unknown = [];
-        foreach ($sent as $parameter => $method) {
-            if (!in_array($parameter, $documented, true)) {
+        foreach ($sent as $parameter => $senders) {
+            if (in_array($parameter, $documented, true)) {
+                continue;
+            }
+
+            foreach ($senders as $method) {
+                // a method on its way out may still send it: tagged @deprecated, with its notice
+                if (self::isTaggedDeprecated($class, $method) && $this->warns($class, $method)) {
+                    continue;
+                }
+
                 $unknown[] = $method . '() sends ' . $parameter;
             }
         }
         $this->assertSame([], $unknown, self::explain(
-            'These BasicDataQuery methods send a parameter which no basic-data endpoint accepts',
+            'These ' . $shortName . ' methods send a parameter which none of ' . implode(', ', $methods) . ' accepts',
             $unknown,
-            'If the api dropped the parameter, deprecate the method in a 1.x release and remove it in the next major.',
+            'If the api dropped the parameter, deprecate the method in a 1.x release and remove it in the next major. A deprecated method needs its @deprecated tag and its notice.',
             'The api drops a filter or a parameter'
         ));
     }
 
     /**
-     * A basic-data parameter whose form the api deprecates has a deprecated method, which warns when
-     * that form is used and stays quiet for the others
+     * Every parameter an endpoint documents reaches it: set with its method, then sent by the
+     * finder which calls the endpoint, through JustimmoApi up to the url
+     *
+     * @dataProvider senders
+     *
+     * @param class-string $class
      */
-    public function testADeprecatedBasicDataParameterHasADeprecatedMethod(): void
+    public function testEveryFinderSendsTheDocumentedParameters(string $class): void
     {
-        $problems = $this->deprecatedBasicDataParameterProblems(SupportedParameters::PARAMETERS);
+        $reflection = new \ReflectionClass($class);
+        $shortName  = $reflection->getShortName();
+        $lost       = $this->lostParameters($class);
+
+        $this->assertSame([], $lost, self::explain(
+            'These ' . $shortName . ' finders do not send a parameter the endpoint documents, although a method sets it',
+            $lost,
+            'Carry the parameter into the call, in the finder and in its JustimmoApi method, like getDetailParams() does for findPk().',
+            'The api adds a filter or a parameter'
+        ));
+    }
+
+    /**
+     * The check above, run against a JustimmoApi whose callEmployeeDetail() drops its parameters,
+     * as it did before 1.8.0, finds the picture size which findPk() then loses
+     */
+    public function testTheFinderCheckFindsALostParameter(): void
+    {
+        $this->assertSame(
+            ['findPk() does not send picturesize to callEmployeeDetail'],
+            $this->lostParameters(EmployeeQuery::class, ['callEmployeeDetail'])
+        );
+    }
+
+    /**
+     * A finder which drops the culture still sends one: the api client adds its own. The check
+     * sees that the value set did not arrive
+     */
+    public function testTheFinderCheckFindsALostCulture(): void
+    {
+        $this->assertContains(
+            'findPk() does not send culture to callProjectDetail',
+            $this->lostParameters(ProjectQuery::class, ['callProjectDetail'])
+        );
+    }
+
+    /**
+     * An endpoint which no query or request calls, like /objekt/expose, is sent by its JustimmoApi
+     * method alone, so the method's arguments carry every parameter of it
+     */
+    public function testAnEndpointWithoutAQuerySendsEveryParameter(): void
+    {
+        $reached = [];
+        foreach (self::SENDERS as $class) {
+            foreach ($this->finders($class) as $calls) {
+                $reached = [...$reached, ...$calls];
+            }
+        }
+
+        $missing = [];
+        foreach (array_keys(JustimmoApi::ENDPOINTS) as $method) {
+            if (in_array($method, $reached, true)) {
+                continue;
+            }
+
+            $documented = array_keys(SupportedParameters::PARAMETERS[$method] ?? []);
+            foreach (array_diff($documented, $this->parametersOnTheWire($method)) as $parameter) {
+                $missing[] = 'JustimmoApi::' . $method . '() does not send ' . $parameter;
+            }
+        }
+
+        $this->assertSame([], $missing, self::explain(
+            'No query calls these endpoints, and their JustimmoApi method does not send every parameter',
+            $missing,
+            'Give the JustimmoApi method an argument for the parameter, or give a query a method which sets it and calls the endpoint.',
+            'The api adds a filter or a parameter'
+        ));
+    }
+
+    /**
+     * A parameter whose form the api deprecates has a deprecated method, which warns when that form
+     * is used and stays quiet for the others
+     */
+    public function testADeprecatedParameterHasADeprecatedMethod(): void
+    {
+        $problems = $this->deprecatedParameterProblems(SupportedParameters::PARAMETERS);
 
         $this->assertSame([], $problems, self::explain(
-            'The api deprecates these basic-data parameters, but their methods do not follow',
+            'The api deprecates these parameters, but their methods do not follow',
             $problems,
             'Tag the method @deprecated with the replacement, and call $this->triggerDeprecation() with the version of the release. If only the list form is deprecated, warn only when a list is given.',
             'The api deprecates a parameter'
@@ -263,18 +388,21 @@ class ContractTest extends TestCase
     }
 
     /**
-     * The json has no deprecated parameter yet, so the check runs against a made-up one: gruppe of
-     * the realty features
+     * The json has no deprecated parameter yet, so the check runs against made-up ones: gruppe of
+     * the realty features, and preciseAreaSearch of the realty list
      */
     public function testTheDeprecatedParameterCheckFindsAMethodWhichDoesNotWarn(): void
     {
         $parameters = SupportedParameters::PARAMETERS;
-        $parameters['callRealtyFeatures']['gruppe']['deprecated'] = ['plain'];
+        $parameters['callRealtyFeatures']['gruppe']['deprecated']         = ['plain'];
+        $parameters['callRealtyList']['preciseAreaSearch']['deprecated'] = ['plain'];
 
         $this->assertSame([
-            'filterByFeatureGroupId() emits no notice for the plain form',
-            'filterByFeatureGroupId() has no @deprecated',
-        ], $this->deprecatedBasicDataParameterProblems($parameters));
+            'BasicDataQuery::filterByFeatureGroupId() emits no notice for the plain form',
+            'BasicDataQuery::filterByFeatureGroupId() has no @deprecated',
+            'RealtyQuery::preciseAreaSearch() emits no notice for the plain form',
+            'RealtyQuery::preciseAreaSearch() has no @deprecated',
+        ], $this->deprecatedParameterProblems($parameters));
     }
 
     /**
@@ -298,17 +426,125 @@ class ContractTest extends TestCase
     }
 
     /**
+     * The documented parameters which a method of the class sets and a finder does not send to the
+     * endpoint it calls, as "findPk() does not send picturesize to callEmployeeDetail"
+     *
+     * @param class-string       $class
+     * @param array<int, string> $dropping see wireApi()
+     *
+     * @return array<int, string>
+     */
+    private function lostParameters(string $class, array $dropping = []): array
+    {
+        $sent = $this->parametersSent($class);
+
+        $lost = [];
+        foreach ($this->finders($class) as $finder => $calls) {
+            foreach ($calls as $call) {
+                $byItself = $this->valuesOnTheWire($call);
+
+                foreach (array_keys(SupportedParameters::PARAMETERS[$call] ?? []) as $parameter) {
+                    // a parameter without a method fails testEveryParameterHasAMethod
+                    if (!isset($sent[$parameter])) {
+                        continue;
+                    }
+
+                    // one the api client sends by itself, like the culture, must arrive with the
+                    // value the method set, not with the client's own
+                    if (!$this->reaches($class, $sent[$parameter], $finder, $parameter, $dropping, $byItself[$parameter] ?? null)) {
+                        $lost[] = $finder . '() does not send ' . $parameter . ' to ' . $call;
+                    }
+                }
+            }
+        }
+
+        return $lost;
+    }
+
+    /**
+     * Whether the parameter is in the url of a request the finder sends, after one of the methods
+     * set it. Each method is tried on a new instance, with the values valueFor() gives
+     *
+     * @param class-string       $class
+     * @param array<int, string> $methods  the methods which set the parameter
+     * @param array<int, string> $dropping see wireApi()
+     * @param string|null        $byItself the value the api client sends for the parameter by
+     *                                     itself. Then the url must carry the value the method set
+     */
+    private function reaches(string $class, array $methods, string $finder, string $parameter, array $dropping = [], ?string $byItself = null): bool
+    {
+        foreach ($methods as $method) {
+            $urls     = [];
+            $api      = $this->wireApi($urls, $dropping);
+            $instance = self::instance($class, $api);
+            $setter   = new \ReflectionMethod($class, $method);
+            $values   = array_map([self::class, 'valueFor'], $setter->getParameters());
+            $finding  = self::finderArguments($class, $finder);
+
+            // the notices, like the one for a picture size the api does not know, are not what is
+            // checked here. A request the method sends itself, like paginate() does, is not the finder's
+            $set = null;
+            $this->notices(function () use ($instance, $method, $values, $finder, $finding, $parameter, &$urls, &$set) {
+                self::callWithoutTheAnswer(fn () => $instance->$method(...$values));
+                $set  = method_exists($instance, 'getParams') ? ($instance->getParams()[$parameter] ?? null) : null;
+                $urls = [];
+                self::callWithoutTheAnswer(fn () => $instance->$finder(...$finding));
+            });
+
+            foreach ($urls as $url) {
+                parse_str((string) parse_url($url, PHP_URL_QUERY), $sent);
+                if (array_key_exists($parameter, $sent) && self::carriesTheValueSet($sent[$parameter], $set, $byItself)) {
+                    self::forgetTheDeprecationNotices();
+
+                    return true;
+                }
+            }
+        }
+
+        self::forgetTheDeprecationNotices();
+
+        return false;
+    }
+
+    /**
+     * Whether the value on the wire is the one the method set. Only checked for a parameter the api
+     * client sends by itself, like the culture: its own value must not pass for the one set
+     */
+    private static function carriesTheValueSet(mixed $onTheWire, mixed $set, ?string $byItself): bool
+    {
+        if ($byItself === null) {
+            return true;
+        }
+
+        if (is_scalar($set)) {
+            return $onTheWire === (string) $set;
+        }
+
+        return $onTheWire !== $byItself;
+    }
+
+    /**
      * The parameters the method puts on the wire by itself, like the culture, without sdk
      *
      * @return array<int, string>
      */
     private function parametersOnTheWire(string $method): array
     {
+        return array_keys($this->valuesOnTheWire($method));
+    }
+
+    /**
+     * The parameters the method puts on the wire by itself, with their values, without sdk
+     *
+     * @return array<string, mixed>
+     */
+    private function valuesOnTheWire(string $method): array
+    {
         $query = (string) parse_url($this->urlSentBy($method), PHP_URL_QUERY);
         parse_str($query, $parameters);
         unset($parameters['sdk']);
 
-        return array_keys($parameters);
+        return $parameters;
     }
 
     /**
@@ -316,22 +552,43 @@ class ContractTest extends TestCase
      */
     private function urlSentBy(string $method): string
     {
-        $url = '';
-        $api = $this->getMockBuilder(JustimmoApi::class)
-            ->setConstructorArgs(['username', 'password', new NullLogger(), new NullCache()])
-            ->onlyMethods(['createRequest'])
-            ->getMock();
-
-        $api->method('createRequest')->willReturnCallback(function ($requested) use (&$url) {
-            $url = $requested;
-
-            return new MockCurlRequest('{}', 200, 'application/json');
-        });
+        $urls = [];
+        $api  = $this->wireApi($urls);
 
         // the fake request answers null, which a method with a return type rejects after the url was built
         self::callWithoutTheAnswer(fn () => $api->$method(...self::arguments($method)));
 
-        return $url;
+        return $urls[array_key_last($urls)] ?? '';
+    }
+
+    /**
+     * A JustimmoApi which builds its urls as a site's does and adds each to $urls, without a
+     * request leaving the machine
+     *
+     * @param array<int, string> $urls
+     * @param array<int, string> $dropping detail calls, like callEmployeeDetail, which send their
+     *                                     id only and drop the parameters they are given. Only the
+     *                                     test of the check itself passes them
+     */
+    private function wireApi(array &$urls, array $dropping = []): JustimmoApi
+    {
+        $api = $this->getMockBuilder(JustimmoApi::class)
+            ->setConstructorArgs(['username', 'password', new NullLogger(), new NullCache()])
+            ->onlyMethods(['createRequest', ...$dropping])
+            ->getMock();
+
+        $api->method('createRequest')->willReturnCallback(function ($requested) use (&$urls) {
+            $urls[] = $requested;
+
+            return new MockCurlRequest('{}', 200, 'application/json');
+        });
+
+        foreach ($dropping as $method) {
+            $original = new \ReflectionMethod(JustimmoApi::class, $method);
+            $api->method($method)->willReturnCallback(fn ($pk) => $original->invoke($api, $pk));
+        }
+
+        return $api;
     }
 
     private function api(): JustimmoApi
@@ -360,7 +617,8 @@ class ContractTest extends TestCase
     }
 
     /**
-     * Which JustimmoApi methods each find…() method of the query class calls, keyed by the finder
+     * Which JustimmoApi methods each method of the class which calls the api calls, keyed by that
+     * method: the find…() methods of a query, send() of a request
      *
      * @param class-string $class
      *
@@ -371,13 +629,13 @@ class ContractTest extends TestCase
         $finders = [];
         $reflection = new \ReflectionClass($class);
         foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-            if (!str_starts_with($method->getName(), 'find')) {
+            if (!self::callsTheApi($method->getName())) {
                 continue;
             }
 
             $called    = [];
             $api       = $this->recordingApi($called);
-            $query     = self::query($class, $api);
+            $query     = self::instance($class, $api);
             $name      = $method->getName();
             $arguments = self::finderArguments($class, $name);
 
@@ -411,11 +669,13 @@ class ContractTest extends TestCase
     }
 
     /**
-     * An api which answers as the null api and adds the name of each method called to $called
+     * An api which answers as the null api. It adds the name of each method called to $called, and
+     * the parameters the method received to $received
      *
-     * @param array<int, string> $called
+     * @param array<int, string>               $called
+     * @param array<int, array<string, mixed>> $received
      */
-    private function recordingApi(array &$called): JustimmoApiInterface
+    private function recordingApi(array &$called, array &$received = []): JustimmoApiInterface
     {
         $null = new JustimmoNullApi();
         $api  = $this->createMock(JustimmoApiInterface::class);
@@ -424,8 +684,12 @@ class ContractTest extends TestCase
         foreach ($interface->getMethods() as $method) {
             $name = $method->getName();
 
-            $api->method($name)->willReturnCallback(function (...$arguments) use ($name, $null, &$called) {
+            $api->method($name)->willReturnCallback(function (...$arguments) use ($name, $null, &$called, &$received) {
                 $called[] = $name;
+
+                // the parameters are the array argument; a detail call takes the id first
+                $lists      = array_values(array_filter($arguments, 'is_array'));
+                $received[] = $lists[0] ?? [];
 
                 return $null->$name(...$arguments);
             });
@@ -435,82 +699,199 @@ class ContractTest extends TestCase
     }
 
     /**
-     * The parameter each method of BasicDataQuery sets, keyed by the parameter
-     *
-     * @return array<string, string>
+     * Whether the method of a query or a request sends a request to the api
      */
-    private static function basicDataParametersSent(): array
+    private static function callsTheApi(string $method): bool
     {
-        $sent = [];
-        $reflection = new \ReflectionClass(BasicDataQuery::class);
+        return str_starts_with($method, 'find') || $method === 'send';
+    }
+
+    /**
+     * The parameter each public method of the class sets, keyed by the parameter
+     *
+     * Each method is called on a new instance, with the values valueFor() gives. A parameter counts
+     * as set by the method when the method changed it: the inquiry sends every parameter, with an
+     * empty value too. Several methods can set one parameter, like setLimit() and paginate().
+     *
+     * @param class-string $class
+     *
+     * @return array<string, array<int, string>>
+     */
+    private function parametersSent(string $class): array
+    {
+        $sent   = [];
+        $before = $this->parametersOf($class, null, []);
+
+        $reflection = new \ReflectionClass($class);
         foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             $name = $method->getName();
-            if (str_starts_with($name, 'find') || in_array($name, self::BASIC_DATA_NOT_A_PARAMETER, true)) {
+            if (self::callsTheApi($name) || in_array($name, self::NOT_A_PARAMETER[$class], true)) {
                 continue;
             }
 
-            $query = self::basicDataQuery(new JustimmoNullApi());
-            $query->$name(1);
+            // the filters of a list query go into filter[…], and QueryMethodsTest checks them
+            if (is_subclass_of($class, AbstractQuery::class) && str_starts_with($name, 'filterBy')) {
+                continue;
+            }
 
-            foreach (array_keys($query->getParams()) as $parameter) {
-                $sent[$parameter] = $name;
+            $after = $this->parametersOf($class, $name, array_map([self::class, 'valueFor'], $method->getParameters()));
+
+            foreach ($after as $parameter => $value) {
+                if (!array_key_exists($parameter, $before) || $before[$parameter] !== $value) {
+                    $sent[$parameter][] = $name;
+                }
             }
         }
+
+        self::forgetTheDeprecationNotices();
 
         return $sent;
     }
 
     /**
-     * What the methods of deprecated basic-data parameters do wrong, sorted. Each form the parameter
-     * takes is used once: a deprecated form must bring the method's notice, any other form must not
+     * The parameters a new instance of the class sends after the method was called with the
+     * arguments, without the filters. A method which sent a request, like paginate(), is read from
+     * what reached the api, since find() empties the query afterwards. Any other method of a query
+     * is read with getParams(), the inquiry from what send() posts
+     *
+     * @param class-string       $class
+     * @param array<int, mixed>  $arguments
+     *
+     * @return array<string, mixed>
+     */
+    private function parametersOf(string $class, ?string $method, array $arguments): array
+    {
+        $called   = [];
+        $received = [];
+        $api      = $this->recordingApi($called, $received);
+        $instance = self::instance($class, $api);
+
+        // a notice the method emits, like the one for a picture size the api does not know, is not
+        // what is checked here
+        $this->notices(function () use ($instance, $method, $arguments) {
+            if ($method !== null) {
+                self::callWithoutTheAnswer(fn () => $instance->$method(...$arguments));
+            }
+        });
+
+        if ($instance instanceof RealtyInquiryRequest) {
+            $instance->send();
+
+            return $received[array_key_last($received)] ?? [];
+        }
+
+        $parameters = $received === [] ? $instance->getParams() : $received[array_key_last($received)];
+        unset($parameters['filter']);
+
+        return $parameters;
+    }
+
+    /**
+     * The value the test passes for one argument: its default when it has one, else a value of the
+     * type it declares, natively or in its @param tag
+     */
+    private static function valueFor(\ReflectionParameter $parameter): mixed
+    {
+        if ($parameter->isDefaultValueAvailable()) {
+            return $parameter->getDefaultValue();
+        }
+
+        $type = self::documentedType($parameter);
+
+        return match ($type) {
+            'int'            => 1,
+            'float'          => 1.5,
+            'bool'           => true,
+            // not de, the culture the api client sends by itself, so the finder check sees the value set
+            'string'         => 'en',
+            'array', 'int[]' => [1],
+            default          => throw new \LogicException(
+                $parameter->getDeclaringClass()?->getShortName() . '::' . $parameter->getDeclaringFunction()->getName()
+                . '() declares $' . $parameter->getName() . ' as "' . $type . '", and ContractTest::valueFor() has no value for it. Give the parameter a type, or a @param tag with one of int, float, bool, string, array or int[].'
+            ),
+        };
+    }
+
+    /**
+     * The first type the parameter declares: the native one, else the one of its @param tag. Null
+     * is skipped, a method is never called with it here
+     */
+    private static function documentedType(\ReflectionParameter $parameter): string
+    {
+        $type = $parameter->getType();
+        if ($type !== null) {
+            $declared = (string) $type;
+        } else {
+            $comment = (string) $parameter->getDeclaringFunction()->getDocComment();
+            $pattern = '/@param\s+(\S+)\s+(?:\.\.\.)?\$' . preg_quote($parameter->getName(), '/') . '\b/';
+            $declared = preg_match($pattern, $comment, $match) === 1 ? $match[1] : '';
+        }
+
+        $types = array_values(array_diff(explode('|', ltrim($declared, '?')), ['null']));
+
+        return $types[0] ?? $declared;
+    }
+
+    /**
+     * What the methods of deprecated parameters do wrong, sorted. Each form the parameter takes is
+     * used once: a deprecated form must bring the method's notice, any other form must not
      *
      * @param array<string, array<string, array<string, mixed>>> $parameters the parameters of each call, as in SupportedParameters::PARAMETERS
      *
      * @return array<int, string>
      */
-    private function deprecatedBasicDataParameterProblems(array $parameters): array
+    private function deprecatedParameterProblems(array $parameters): array
     {
-        $sent = self::basicDataParametersSent();
-
         $problems = [];
-        foreach ($this->finders(BasicDataQuery::class) as $calls) {
-            foreach ($calls as $call) {
-                foreach ($parameters[$call] ?? [] as $name => $parameter) {
-                    $deprecated = $parameter['deprecated'] ?? [];
+        foreach (self::SENDERS as $class) {
+            $reflection = new \ReflectionClass($class);
+            $shortName  = $reflection->getShortName();
+            $sent       = $this->parametersSent($class);
 
-                    // a parameter without a method fails testEveryBasicDataParameterHasAMethod
-                    if ($deprecated === [] || !isset($sent[$name])) {
-                        continue;
-                    }
+            foreach ($this->finders($class) as $calls) {
+                foreach ($calls as $call) {
+                    foreach ($parameters[$call] ?? [] as $name => $parameter) {
+                        $deprecated = $parameter['deprecated'] ?? [];
 
-                    $method = $sent[$name];
-                    if (!self::isTaggedDeprecated(BasicDataQuery::class, $method)) {
-                        $problems[] = $method . '() has no @deprecated';
-                    }
-
-                    $values = ['plain' => 1];
-                    if (($parameter['list'] ?? false) === true) {
-                        $values['list'] = [1];
-                    }
-
-                    foreach ($values as $form => $value) {
-                        self::forgetTheDeprecationNotices();
-                        $query   = self::basicDataQuery(new JustimmoNullApi());
-                        $notices = $this->notices(fn () => self::callWithoutTheAnswer(fn () => $query->$method($value)));
-
-                        $isDeprecated = in_array($form, $deprecated, true);
-                        $warns        = self::namesTheMethod($notices, 'BasicDataQuery', $method);
-
-                        if ($isDeprecated && !$warns) {
-                            $problems[] = $method . '() emits no notice for the ' . $form . ' form';
+                        // a parameter without a method fails testEveryParameterHasAMethod
+                        if ($deprecated === [] || !isset($sent[$name])) {
+                            continue;
                         }
-                        if (!$isDeprecated && $warns) {
-                            $problems[] = $method . '() emits a notice for the ' . $form . ' form, which is not deprecated';
+
+                        foreach ($sent[$name] as $method) {
+                            if (!self::isTaggedDeprecated($class, $method)) {
+                                $problems[] = $shortName . '::' . $method . '() has no @deprecated';
+                            }
+
+                            $setter    = new \ReflectionMethod($class, $method);
+                            $arguments = array_map([self::class, 'valueFor'], $setter->getParameters());
+                            $forms     = ['plain' => $arguments];
+                            if (($parameter['list'] ?? false) === true && $arguments !== []) {
+                                $forms['list'] = [[$arguments[0]], ...array_slice($arguments, 1)];
+                            }
+
+                            foreach ($forms as $form => $values) {
+                                self::forgetTheDeprecationNotices();
+                                $instance = self::instance($class, new JustimmoNullApi());
+                                $notices  = $this->notices(fn () => self::callWithoutTheAnswer(fn () => $instance->$method(...$values)));
+
+                                $isDeprecated = in_array($form, $deprecated, true);
+                                $warns        = self::namesTheMethod($notices, $shortName, $method);
+
+                                if ($isDeprecated && !$warns) {
+                                    $problems[] = $shortName . '::' . $method . '() emits no notice for the ' . $form . ' form';
+                                }
+                                if (!$isDeprecated && $warns) {
+                                    $problems[] = $shortName . '::' . $method . '() emits a notice for the ' . $form . ' form, which is not deprecated';
+                                }
+                            }
                         }
                     }
                 }
             }
         }
+
+        self::forgetTheDeprecationNotices();
 
         $problems = array_values(array_unique($problems));
         sort($problems, SORT_STRING);
@@ -531,18 +912,42 @@ class ContractTest extends TestCase
         return $named !== [];
     }
 
+    /**
+     * Whether a call of the method on a new instance emits a notice which names it
+     *
+     * @param class-string $class
+     */
+    private function warns(string $class, string $method): bool
+    {
+        $reflection = new \ReflectionClass($class);
+        $setter     = new \ReflectionMethod($class, $method);
+        $arguments  = array_map([self::class, 'valueFor'], $setter->getParameters());
+        $instance   = self::instance($class, new JustimmoNullApi());
+
+        // a notice is emitted once per process, so one emitted by an earlier test is forgotten first
+        self::forgetTheDeprecationNotices();
+        $notices = $this->notices(fn () => self::callWithoutTheAnswer(fn () => $instance->$method(...$arguments)));
+        self::forgetTheDeprecationNotices();
+
+        return self::namesTheMethod($notices, $reflection->getShortName(), $method);
+    }
+
     private static function basicDataQuery(JustimmoApiInterface $api): BasicDataQuery
     {
         return new BasicDataQuery($api, new BasicDataWrapper(), new BasicDataMapper());
     }
 
     /**
-     * A query of the class, with the wrapper and mapper a site gets from it
+     * A query or request of the class, with the wrapper and mapper a site gets from it
      *
      * @param class-string $class
      */
-    private static function query(string $class, JustimmoApiInterface $api): RealtyQuery|ProjectQuery|EmployeeQuery|BasicDataQuery
+    private static function instance(string $class, JustimmoApiInterface $api): RealtyQuery|ProjectQuery|EmployeeQuery|BasicDataQuery|RealtyInquiryRequest
     {
+        if ($class === RealtyInquiryRequest::class) {
+            return new RealtyInquiryRequest($api, new RealtyInquiryMapper());
+        }
+
         if ($class === BasicDataQuery::class) {
             return self::basicDataQuery($api);
         }

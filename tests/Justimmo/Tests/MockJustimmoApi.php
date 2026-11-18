@@ -66,7 +66,7 @@ class MockJustimmoApi implements JustimmoApiInterface
         return $this->getReturnValue('employeeList');
     }
 
-    public function callEmployeeDetail($pk)
+    public function callEmployeeDetail($pk, array $params = [])
     {
         return $this->getReturnValue('employeeDetail');
     }

@@ -28,7 +28,7 @@ final class SupportedParameters
     /**
      * Changes when the accepted parameters change, not when a description is reworded
      */
-    const SPEC_HASH = 'sha256:2a07461b13c5d2c33ca47a12a50cc9bc6d05c844fbb212ec909e3bf296d24769';
+    const SPEC_HASH = 'sha256:d20b3e5642880910b75ac7165757604cf171cd845c6fd4d7a363d444c6488a7c';
 
     /**
      * The filters each call accepts, keyed by the api filter name without brackets and without a
@@ -1253,12 +1253,67 @@ final class SupportedParameters
                 'types' => ['integer', 'string'],
             ],
         ],
-        'callEmployeeList' => [],
+        'callEmployeeList' => [
+            'picturesize' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'list' => true,
+                'enum' => [
+                    'user_small',
+                    'user_medium',
+                    'small',
+                    's220x155',
+                    's312x208',
+                    'medium',
+                    'medium_unbranded',
+                    'big',
+                    'big_unbranded',
+                    'big2',
+                    'big2_unbranded',
+                    'fullhd',
+                    'fullhd_unbranded',
+                    'fullhd_downscale',
+                    'fullhd_unbranded_downscale',
+                    'uhd',
+                    'uhd_unbranded',
+                    'uhd_downscale',
+                    'uhd_unbranded_downscale',
+                    'orig',
+                ],
+            ],
+        ],
         'callEmployeeIds' => [],
         'callEmployeeDetail' => [
             'id' => [
                 'in' => 'operation',
                 'type' => 'integer',
+            ],
+            'picturesize' => [
+                'in' => 'operation',
+                'type' => 'string',
+                'list' => true,
+                'enum' => [
+                    'user_small',
+                    'user_medium',
+                    'small',
+                    's220x155',
+                    's312x208',
+                    'medium',
+                    'medium_unbranded',
+                    'big',
+                    'big_unbranded',
+                    'big2',
+                    'big2_unbranded',
+                    'fullhd',
+                    'fullhd_unbranded',
+                    'fullhd_downscale',
+                    'fullhd_unbranded_downscale',
+                    'uhd',
+                    'uhd_unbranded',
+                    'uhd_downscale',
+                    'uhd_unbranded_downscale',
+                    'orig',
+                ],
             ],
         ],
         'callTenant' => [],

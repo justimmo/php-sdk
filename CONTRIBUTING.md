@@ -13,8 +13,10 @@ The SDK's side is written by hand:
 
 - `JustimmoApi::ENDPOINTS` says which SDK method sends which endpoint. It is the only place that
   says so;
-- every filter, sort and basic-data parameter has a real method, like `filterByPrice()`. A real
-  method can be marked `@deprecated` and can emit a notice; a magic one cannot.
+- every filter, sort and parameter of every endpoint has a real method, like `filterByPrice()` or
+  `setLimit()`. A real method can be marked `@deprecated` and can emit a notice; a magic one cannot.
+  A public method which sets no parameter, like `getParams()`, is listed in
+  `ContractTest::NOT_A_PARAMETER`.
 
 `make supported-parameters` turns the json into `src/Justimmo/Model/Mapper/V1/SupportedParameters.php`,
 keyed by the SDK methods of `JustimmoApi::ENDPOINTS`. The SDK never reads the json at runtime.
@@ -81,15 +83,28 @@ calls it:
 ## The api adds a filter or a parameter
 
 1. Add a real method to the query: `filterBy…()` calls `$this->applyFilter()`, `orderBy…()` calls
-   `$this->setOrder()`, a basic-data method calls `$this->setParameter()`.
+   `$this->setOrder()`, any other parameter calls `$this->setParameter()`. A parameter of the
+   inquiry gets a setter on `RealtyInquiryRequest`, and `send()` posts it.
 2. Add the name to the query's mapper.
-3. A parameter the SDK sends by itself, like the culture, needs no method.
+3. Give each argument of the method a type, natively or in its `@param` tag: `ContractTest` calls the
+   method with a value of that type.
+4. The finder carries the parameter to the endpoint: `findPk()` carries what `getDetailParams()`
+   lists, and the `JustimmoApi` method sends what it is given. `ContractTest` follows each parameter
+   from its method up to the url.
+5. A parameter the SDK sends by itself, like the culture, needs no method. An endpoint which no query
+   calls, like the expose, takes its parameters as arguments of its `JustimmoApi` method.
 
 ## The api drops a filter or a parameter
 
 The method stays until the next major version. In a 1.x release, tag it `@deprecated` and call
 `$this->triggerDeprecation()`, as in "The api deprecates an endpoint". The next major version
-removes it.
+removes it. `ContractTest` accepts a method which sends a parameter the endpoints do not list only
+when it has both, the tag and the notice.
+
+A method inherited from `AbstractQuery` is deprecated on one query by overriding it there, as
+`EmployeeQuery::setLimit()` is. Where `AbstractQuery` calls the method itself, like `findOne()` calls
+`setLimit()`, the query mutes its notice while that call runs, as `EmployeeQuery` does with
+`$sdkCall`, so a site gets no notice for a call it did not make.
 
 ## The api deprecates a filter
 
@@ -106,4 +121,4 @@ checks it.
 The json marks the deprecated forms of the parameter: `["plain"]` for the parameter itself, `["list"]`
 for its array notation only. Deprecate the method which sets it as in "The api deprecates an
 endpoint", and emit the notice only when a deprecated form is used. `ContractTest` checks it for
-basic data.
+every query and for the inquiry.

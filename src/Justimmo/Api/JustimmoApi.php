@@ -210,9 +210,11 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     /**
      * @inheritdoc
      */
-    public function callEmployeeDetail($pk)
+    public function callEmployeeDetail($pk, array $params = [])
     {
-        return $this->callEndpoint(__FUNCTION__, ['id' => $pk]);
+        $params['id'] = $pk;
+
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**

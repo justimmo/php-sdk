@@ -14,7 +14,7 @@ Justimmo\Api\JustimmoApi::public __construct($username, $password, ?Psr\Log\Logg
 Justimmo\Api\JustimmoApi::protected static appendSdkAgent(string $ownAgent): string
 Justimmo\Api\JustimmoApi::public call($call, array $params = [])
 Justimmo\Api\JustimmoApi::public callCountries(array $params = [])
-Justimmo\Api\JustimmoApi::public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoApi::public callEmployeeDetail($pk, array $params = [])
 Justimmo\Api\JustimmoApi::public callEmployeeIds(array $params = [])
 Justimmo\Api\JustimmoApi::public callEmployeeList(array $params = [])
 Justimmo\Api\JustimmoApi::public callExpose($pk, $type = 'Default')
@@ -59,7 +59,7 @@ Justimmo\Api\JustimmoApi::protected triggerDeprecation(string $method, Closure|s
 
 interface Justimmo\Api\JustimmoApiInterface
 Justimmo\Api\JustimmoApiInterface::abstract public callCountries(array $params = [])
-Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeDetail($pk, array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeIds(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callEmployeeList(array $params = [])
 Justimmo\Api\JustimmoApiInterface::abstract public callExpose($pk, $type = 'Default')
@@ -82,7 +82,7 @@ Justimmo\Api\JustimmoApiInterface::abstract public postRealtyInquiry(array $para
 
 class Justimmo\Api\JustimmoNullApi implements Justimmo\Api\JustimmoApiInterface
 Justimmo\Api\JustimmoNullApi::public callCountries(array $params = [])
-Justimmo\Api\JustimmoNullApi::public callEmployeeDetail($pk)
+Justimmo\Api\JustimmoNullApi::public callEmployeeDetail($pk, array $params = [])
 Justimmo\Api\JustimmoNullApi::public callEmployeeIds(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callEmployeeList(array $params = [])
 Justimmo\Api\JustimmoNullApi::public callExpose($pk, $type = 'Default')
@@ -332,9 +332,15 @@ Justimmo\Model\Employee::public setTitle($title)
 Justimmo\Model\Employee::public setUrl($url)
 
 class Justimmo\Model\EmployeeQuery extends Justimmo\Model\Query\AbstractQuery
+Justimmo\Model\EmployeeQuery::public findOne()
 Justimmo\Model\EmployeeQuery::public getDetailCall()
+Justimmo\Model\EmployeeQuery::protected getDetailParams(): array
 Justimmo\Model\EmployeeQuery::public getIdsCall()
 Justimmo\Model\EmployeeQuery::public getListCall()
+Justimmo\Model\EmployeeQuery::public paginate($page = 1, $maxPerPage = 10)
+Justimmo\Model\EmployeeQuery::public setCulture(string $culture): static
+Justimmo\Model\EmployeeQuery::public setLimit($limit)
+Justimmo\Model\EmployeeQuery::public setOffset($offset)
 
 class Justimmo\Model\EnergyPass
 Justimmo\Model\EnergyPass::protected $energyEfficiencyFactorClass

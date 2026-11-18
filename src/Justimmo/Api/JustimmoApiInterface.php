@@ -44,10 +44,11 @@ interface JustimmoApiInterface
      * calls the detail information of a single employee
      *
      * @param int $pk
+     * @param array<string, mixed> $params
      *
      * @return string
      */
-    public function callEmployeeDetail($pk);
+    public function callEmployeeDetail($pk, array $params = []);
 
     /**
      * Make a call to the employee ids with a set of given params

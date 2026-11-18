@@ -46,7 +46,7 @@ class JustimmoNullApi implements JustimmoApiInterface
     /**
      * {@inheritdoc}
      */
-    public function callEmployeeDetail($pk)
+    public function callEmployeeDetail($pk, array $params = [])
     {
         return $this->emptyXML();
     }

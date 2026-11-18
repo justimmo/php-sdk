@@ -390,6 +390,33 @@ class QueryTest extends TestCase
         ];
     }
 
+    /**
+     * A site's subclass which overrides setLimit() or setOffset() is followed by paginate() and
+     * findOne(), as in 1.7.0
+     */
+    public function testPaginateAndFindOneFollowASubclassOverride(): void
+    {
+        $query = new class ($this->api, new RealtyWrapper(new RealtyMapper()), new RealtyMapper()) extends RealtyQuery {
+            public function setLimit($limit)
+            {
+                return parent::setLimit((int) $limit * 2);
+            }
+
+            public function setOffset($offset)
+            {
+                return parent::setOffset((int) $offset + 100);
+            }
+        };
+
+        $query->paginate(2, 5);
+        $params = $this->api->getLastParams();
+        $this->assertSame(10, $params['limit']);
+        $this->assertSame(105, $params['offset']);
+
+        $query->findOne();
+        $this->assertSame(2, $this->api->getLastParams()['limit']);
+    }
+
     public function testPaginateDefaults()
     {
         $pager  = $this->pagerQuery->paginate();
