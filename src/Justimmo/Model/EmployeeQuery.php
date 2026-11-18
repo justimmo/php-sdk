@@ -43,8 +43,8 @@ class EmployeeQuery extends AbstractQuery
     }
 
     /**
-     * The team detail takes the picture size only. The culture of a query is not carried over,
-     * since the api documents none for it
+     * Read only with a mapper which has no api json. The team detail takes the picture size only.
+     * The culture of a query is not carried over, since the api documents none for it
      *
      * @return array<int, string>
      */

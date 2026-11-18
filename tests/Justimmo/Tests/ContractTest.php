@@ -309,7 +309,7 @@ class ContractTest extends TestCase
         $this->assertSame([], $lost, self::explain(
             'These ' . $shortName . ' finders do not send a parameter the endpoint documents, although a method sets it',
             $lost,
-            'Carry the parameter into the call, in the finder and in its JustimmoApi method, like getDetailParams() does for findPk().',
+            'Carry the parameter into the call, in the finder and in its JustimmoApi method. findPk() and findIds() carry what the json documents for their endpoint.',
             'The api adds a filter or a parameter'
         ));
     }

@@ -28,7 +28,7 @@ final class SupportedParameters
     /**
      * Changes when the accepted parameters change, not when a description is reworded
      */
-    const SPEC_HASH = 'sha256:d20b3e5642880910b75ac7165757604cf171cd845c6fd4d7a363d444c6488a7c';
+    const SPEC_HASH = 'sha256:f1e068cf2b4f564de34902e866daae5c55e9fb303aff6c9290232fed57367849';
 
     /**
      * The filters each call accepts, keyed by the api filter name without brackets and without a
@@ -814,7 +814,7 @@ final class SupportedParameters
                     'uhd_unbranded_downscale',
                     'orig',
                 ],
-                'default' => 'orig',
+                'default' => 'small',
             ],
             'preciseAreaSearch' => [
                 'in' => 'operation',
@@ -889,7 +889,7 @@ final class SupportedParameters
                     'uhd_unbranded_downscale',
                     'orig',
                 ],
-                'default' => 'orig',
+                'default' => 'big',
             ],
         ],
         'callExpose' => [
@@ -1067,7 +1067,7 @@ final class SupportedParameters
                     'uhd_unbranded_downscale',
                     'orig',
                 ],
-                'default' => 'orig',
+                'default' => 'medium',
             ],
         ],
         'callProjectShortList' => [],
@@ -1143,7 +1143,7 @@ final class SupportedParameters
                     'uhd_unbranded_downscale',
                     'orig',
                 ],
-                'default' => 'orig',
+                'default' => 'medium',
             ],
         ],
         'callCountries' => [

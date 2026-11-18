@@ -88,9 +88,9 @@ calls it:
 2. Add the name to the query's mapper.
 3. Give each argument of the method a type, natively or in its `@param` tag: `ContractTest` calls the
    method with a value of that type.
-4. The finder carries the parameter to the endpoint: `findPk()` carries what `getDetailParams()`
-   lists, and the `JustimmoApi` method sends what it is given. `ContractTest` follows each parameter
-   from its method up to the url.
+4. The finder carries the parameter to the endpoint: `findPk()` and `findIds()` carry what their
+   endpoint documents in the json, and the `JustimmoApi` method sends what it is given.
+   `ContractTest` follows each parameter from its method up to the url.
 5. A parameter the SDK sends by itself, like the culture, needs no method. An endpoint which no query
    calls, like the expose, takes its parameters as arguments of its `JustimmoApi` method.
 

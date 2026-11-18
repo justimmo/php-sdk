@@ -249,7 +249,7 @@ class SupportedParametersTest extends TestCase
         $this->assertContains('orig', $picturesize['enum']);
         $this->assertContains('medium', $picturesize['enum']);
         $this->assertNotContains('thumb', $picturesize['enum'], 'a size the api does not know');
-        $this->assertSame('orig', $picturesize['default']);
+        $this->assertSame('small', $picturesize['default'], 'the realty list default, corrected by the api team on 2026-11-18');
     }
 
     /**

@@ -3,6 +3,7 @@ namespace Justimmo\Tests;
 
 use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Model\EmployeeQuery;
+use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
@@ -371,6 +372,76 @@ class QueryTest extends TestCase
             ['limit' => 10, 'offset' => 20, 'filter' => ['plz' => '1010']],
             $query->getParams()
         );
+    }
+
+    /**
+     * findIds() sends only what the ids call documents, and the filters. The picture size, the
+     * culture and showDetails have no meaning for a list of ids
+     */
+    public function testFindIdsSendsOnlyWhatTheIdsCallDocuments(): void
+    {
+        $api   = $this->recordingNullApi();
+        $query = new RealtyQuery($api, new NullWrapper(), new RealtyMapper());
+
+        $query->setPicturesize('big')->setCulture('en')->showDetails()->filterByZipCode('1010')->orderByPrice('desc')->findIds();
+
+        $this->assertSame(['filter' => ['plz' => '1010'], 'orderby' => 'preis', 'ordertype' => 'desc'], $api->received['callRealtyIds']);
+    }
+
+    /**
+     * findPk() sends only what the detail call documents, and no filter
+     */
+    public function testFindPkSendsOnlyWhatTheDetailCallDocuments(): void
+    {
+        $api   = $this->recordingNullApi();
+        $query = new RealtyQuery($api, new NullWrapper(), new RealtyMapper());
+
+        $query->setLimit(10)->filterByZipCode('1010')->setPicturesize('big')->setCulture('en')->showDetails()->findPk(5);
+
+        $this->assertSame(['picturesize' => ['big'], 'culture' => 'en'], $api->received['callRealtyDetail']);
+    }
+
+    /**
+     * A mapper without the api's json, like one a site wrote itself, gets what it got before 1.8.0:
+     * findIds() drops only limit and offset, findPk() carries what getDetailParams() lists
+     */
+    public function testAMapperWithoutTheJsonKeepsTheOldParameters(): void
+    {
+        $api   = $this->recordingNullApi();
+        $query = new RealtyQuery($api, new NullWrapper(), new NullMapper());
+
+        $query->setLimit(10)->setPicturesize('big')->setCulture('en')->findIds();
+        $this->assertSame(['picturesize' => ['big'], 'culture' => 'en'], $api->received['callRealtyIds']);
+
+        $query->setLimit(10)->setPicturesize('big')->setCulture('en')->findPk(5);
+        $this->assertSame(['picturesize' => ['big'], 'culture' => 'en'], $api->received['callRealtyDetail']);
+    }
+
+    /**
+     * A null api which keeps the parameters each realty call received, keyed by the call
+     */
+    private function recordingNullApi(): JustimmoNullApi
+    {
+        return new class extends JustimmoNullApi {
+            /**
+             * @var array<string, array<string, mixed>>
+             */
+            public array $received = [];
+
+            public function callRealtyIds(array $params = []): string
+            {
+                $this->received['callRealtyIds'] = $params;
+
+                return '[]';
+            }
+
+            public function callRealtyDetail($pk, array $params = [])
+            {
+                $this->received['callRealtyDetail'] = $params;
+
+                return parent::callRealtyDetail($pk, $params);
+            }
+        };
     }
 
     public function paginateProvider()

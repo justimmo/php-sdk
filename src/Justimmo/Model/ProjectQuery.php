@@ -348,8 +348,8 @@ class ProjectQuery extends AbstractQuery
     /**
      * {@inheritdoc}
      *
-     * projekt/detail is the only detail call which documents alleProjektObjekte and objektIds, so
-     * it is the only one which still receives them
+     * Read only with a mapper which has no api json. projekt/detail is the only detail call which
+     * documents alleProjektObjekte and objektIds, so it is the only one which still receives them
      */
     protected function getDetailParams(): array
     {

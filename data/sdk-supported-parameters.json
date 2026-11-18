@@ -1,8 +1,8 @@
 {
     "schema_version": 1,
     "spec_version": "1.2.21",
-    "spec_hash": "sha256:d20b3e5642880910b75ac7165757604cf171cd845c6fd4d7a363d444c6488a7c",
-    "generated_at": "2026-11-18T14:27:51+01:00",
+    "spec_hash": "sha256:f1e068cf2b4f564de34902e866daae5c55e9fb303aff6c9290232fed57367849",
+    "generated_at": "2026-11-18T19:55:07+01:00",
     "endpoints": {
         "/main/tenant": {
             "filters": {},
@@ -173,7 +173,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "big"
                 }
             }
         },
@@ -966,7 +966,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "small"
                 },
                 "preciseAreaSearch": {
                     "in": "operation",
@@ -1149,7 +1149,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "medium"
                 }
             }
         },
@@ -1659,7 +1659,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "medium"
                 }
             }
         },
