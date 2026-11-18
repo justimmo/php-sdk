@@ -22,14 +22,6 @@ use Justimmo\Tests\TestCase;
 class QueryMethodsTest extends TestCase
 {
     /**
-     * Documented filters which have no method of their own, with the reason
-     */
-    const WITHOUT_A_METHOD = [
-        // the same column as filter[sort_flaeche], which filterByArea() sends
-        RealtyQuery::class => ['flaeche'],
-    ];
-
-    /**
      * @return array<string, array{0: AbstractQuery, 1: AbstractMapper}>
      */
     public function queries(): array
@@ -54,14 +46,13 @@ class QueryMethodsTest extends TestCase
 
         $missing = array_diff(
             array_keys($mapper->getSupportedFilters($query->getListCall())),
-            $sent,
-            self::WITHOUT_A_METHOD[$query::class] ?? []
+            $sent
         );
 
         $this->assertSame([], array_values($missing), self::explain(
             'The api documents these ' . $query->getListCall() . ' filters, but ' . (new \ReflectionClass($query))->getShortName() . ' has no filterBy…() method for them',
             array_values($missing),
-            'Add a real filterBy…() method which calls $this->applyFilter(), and the name to the mapper. If it must have none, list it in QueryMethodsTest::WITHOUT_A_METHOD with the reason.',
+            'Add a real filterBy…() method which calls $this->applyFilter(), and the name to the mapper.',
             'The api adds a filter or a parameter'
         ));
     }

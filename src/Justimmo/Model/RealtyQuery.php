@@ -129,7 +129,7 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * Filters by the area, filter[sort_flaeche_von] and filter[sort_flaeche_bis]
+     * Filters by the area, filter[flaeche_von] and filter[flaeche_bis]
      *
      * @param array{min?: int|float, max?: int|float} $value
      *
@@ -138,6 +138,20 @@ class RealtyQuery extends AbstractQuery
     public function filterByArea($value)
     {
         return $this->filterThroughMapper('Area', $value, 'filterByArea');
+    }
+
+    /**
+     * Filters by the area, filter[sort_flaeche_von] and filter[sort_flaeche_bis]
+     *
+     * The api filters the same area as with filterByArea()
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterBySortArea($value)
+    {
+        return $this->filterThroughMapper('SortArea', $value, 'filterBySortArea');
     }
 
     /**

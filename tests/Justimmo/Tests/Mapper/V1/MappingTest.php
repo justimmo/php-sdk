@@ -31,23 +31,6 @@ class MappingTest extends TestCase
     ];
 
     /**
-     * Filters the api documents which no method reaches. flaeche is a second name for
-     * sort_flaeche on an objekt call, and filterByArea() already sends that
-     */
-    const FILTERS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => ['flaeche'],
-        'callProjectList' => [],
-    ];
-
-    /**
-     * Columns the spec documents which no method reaches
-     */
-    const SORTS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => [],
-        'callProjectList' => [],
-    ];
-
-    /**
      * @return array<string, array{0: string, 1: string}>
      */
     public function queryCallProvider(): array
@@ -81,7 +64,7 @@ class MappingTest extends TestCase
     public function testEveryFilterTheApiHasCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
-            self::FILTERS_WITHOUT_A_METHOD[$call],
+            [],
             array_diff(array_keys(SupportedParameters::FILTERS[$call]), $this->filterNames($mapper)),
             $call . ': the api documents these filters and no method sends them'
         );
@@ -113,7 +96,7 @@ class MappingTest extends TestCase
     public function testEveryDocumentedSortColumnCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
-            self::SORTS_WITHOUT_A_METHOD[$call],
+            [],
             array_diff($this->sortColumnsOfTheApi($call), $this->sortColumns($mapper)),
             $call . ': the spec documents these sort columns and no method reaches them'
         );
@@ -148,8 +131,8 @@ class MappingTest extends TestCase
     }
 
     /**
-     * The range filters of the projekt endpoint. flaeche is projekt's name for the column objekt
-     * calls sort_flaeche, so filterByArea means the same thing on both queries
+     * The range filters of the projekt endpoint. filterByArea() sends flaeche here, as it does on
+     * the objekt endpoint
      */
     public function testTheProjectRangeFiltersReachTheWire(): void
     {
@@ -187,13 +170,43 @@ class MappingTest extends TestCase
     }
 
     /**
+     * The api documents two names for the area of a realty, flaeche and sort_flaeche, with the same
+     * result. filterByArea() sends flaeche, as on a project, and filterBySortArea() sends
+     * sort_flaeche
+     */
+    public function testBothAreaFiltersReachTheWire(): void
+    {
+        $this->assertSame(
+            ['filter' => ['flaeche_von' => 1, 'flaeche_bis' => 2]],
+            $this->realtyQuery()->filterByArea(['min' => 1, 'max' => 2])->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['sort_flaeche_von' => 1, 'sort_flaeche_bis' => 2]],
+            $this->realtyQuery()->filterBySortArea(['min' => 1, 'max' => 2])->getParams()
+        );
+    }
+
+    /**
+     * The deprecated magic orderByArea() sorted by sort_flaeche through the filter mapping. The
+     * filter is flaeche now, and the sort keeps its column
+     */
+    public function testTheAreaSortKeepsItsColumn(): void
+    {
+        $mapper = new RealtyMapper();
+
+        $this->assertSame('flaeche', $mapper->getFilterPropertyName('Area'));
+        $this->assertSame('sort_flaeche', $mapper->getOrderPropertyName('Area'));
+    }
+
+    /**
      * The sort mapping overrides the filter mapping only where the api spells the two differently
      */
     public function testSortingOverridesTheFilterMappingWhereTheyDiffer(): void
     {
         $mapper = new RealtyMapper();
 
-        // the one name which differs
+        // a name which differs
         $this->assertSame('aktualisiert_am', $mapper->getFilterPropertyName('UpdatedAt'));
         $this->assertSame('updated_at', $mapper->getOrderPropertyName('UpdatedAt'));
 

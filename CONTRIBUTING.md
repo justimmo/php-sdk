@@ -83,8 +83,7 @@ calls it:
 1. Add a real method to the query: `filterBy…()` calls `$this->applyFilter()`, `orderBy…()` calls
    `$this->setOrder()`, a basic-data method calls `$this->setParameter()`.
 2. Add the name to the query's mapper.
-3. If the parameter must have no method, list it with the reason: `QueryMethodsTest::WITHOUT_A_METHOD`
-   for a filter. A parameter the SDK sends by itself, like the culture, needs no method.
+3. A parameter the SDK sends by itself, like the culture, needs no method.
 
 ## The api drops a filter or a parameter
 

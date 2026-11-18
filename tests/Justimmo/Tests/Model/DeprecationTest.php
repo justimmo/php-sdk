@@ -93,7 +93,7 @@ class DeprecationTest extends TestCase
                 self::SINCE . 'RealtyQuery::filterBypreis() is deprecated and is removed in 2.0.0. Use filterByPrice().',
                 self::SINCE . 'RealtyQuery::orderBypreis() is deprecated and is removed in 2.0.0. Use orderByPrice().',
                 self::SINCE . 'RealtyQuery::filterBytag_name() is deprecated and is removed in 2.0.0. Use filterByTag().',
-                self::SINCE . 'RealtyQuery::filterByflaeche() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.',
+                self::SINCE . 'RealtyQuery::filterByflaeche() is deprecated and is removed in 2.0.0. Use filterByArea().',
             ],
             $this->notices(fn () => $this->realty()
                 ->filterBypreis(['min' => 100])
@@ -116,14 +116,9 @@ class DeprecationTest extends TestCase
         $cases = [];
 
         foreach (['realty' => new RealtyMapper(), 'project' => new ProjectMapper()] as $label => $mapper) {
-            $query   = $this->query($label);
-            $without = QueryMethodsTest::WITHOUT_A_METHOD[$query::class] ?? [];
+            $query = $this->query($label);
 
             foreach ($mapper->getSupportedFilters($query->getListCall()) as $name => $filter) {
-                if (in_array($name, $without, true)) {
-                    continue;
-                }
-
                 $wireNames = [];
                 if (in_array('plain', $filter['forms'], true)) {
                     $wireNames[] = $name;
