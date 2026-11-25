@@ -96,7 +96,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether the project is a reference, filter[referenz]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -144,7 +144,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether a realty of the project is for sale, filter[kauf]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -156,7 +156,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether a realty of the project is for rent, filter[miete]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */

@@ -393,7 +393,8 @@ abstract class AbstractQuery implements QueryInterface
      * The comparison happens before the cast on purpose. `(int) -0.5` is `0`, so casting first
      * would let a negative fraction slip through as a limit of zero
      *
-     * @param int|float|string $limit
+     * @param int|float|numeric-string $limit
+     * @phpstan-param int|float|string $limit any other string is passed on, the api answers it with a 422
      *
      * @return $this
      */
@@ -415,7 +416,8 @@ abstract class AbstractQuery implements QueryInterface
      *
      * Compared before the cast for the same reason as in setLimit()
      *
-     * @param int|float|string $offset
+     * @param int|float|numeric-string $offset
+     * @phpstan-param int|float|string $offset any other string is passed on, the api answers it with a 422
      *
      * @return $this
      */
@@ -1131,10 +1133,17 @@ abstract class AbstractQuery implements QueryInterface
      * This runs before the min/max handling of filter(), so a range with one empty bound sends only
      * the bound which has a value.
      *
+     * A bool becomes 1 or 0, the value the api documents for a yes or a no. The request is the
+     * same as before, the query string rendered a bool so; getParams() now shows what is sent.
+     *
      * @return mixed null when nothing usable is left
      */
     private function normaliseFilterValue(mixed $value): mixed
     {
+        if (is_bool($value)) {
+            return $value ? 1 : 0;
+        }
+
         // an object is serialised by its public properties, which produces parameters the api has
         // never heard of under a filter name it knows, so only one which is stringable is kept
         if (is_object($value)) {
@@ -1397,7 +1406,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param string|array $picturesize
+     * @param string|array<int, string> $picturesize one size or a list of sizes
      *
      * @return $this
      * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the api has no such size

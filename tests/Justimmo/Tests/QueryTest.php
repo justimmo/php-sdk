@@ -207,7 +207,7 @@ class QueryTest extends TestCase
         return [
             'zero'        => [0, 0],
             'string zero' => ['0', '0'],
-            'false'       => [false, false],
+            'false'       => [false, 0],
         ];
     }
 

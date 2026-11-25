@@ -54,7 +54,7 @@ class EmployeeQuery extends AbstractQuery
     }
 
     /**
-     * @param int|float|string $limit
+     * @param int|float|numeric-string $limit
      *
      * @return $this
      *
@@ -70,7 +70,7 @@ class EmployeeQuery extends AbstractQuery
     }
 
     /**
-     * @param int|float|string $offset
+     * @param int|float|numeric-string $offset
      *
      * @return $this
      *

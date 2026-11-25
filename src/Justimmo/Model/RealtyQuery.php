@@ -313,7 +313,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by disability access, filter[barrierefrei]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -373,7 +373,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by whether the realty is for rent, filter[miete]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -385,7 +385,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by whether the realty is for sale, filter[kauf]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -445,7 +445,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by a rent with a purchase option, filter[rent_with_purchase_option]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -667,7 +667,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * The api requires a list here and rejects a scalar with a 422, so a single value is wrapped
      *
-     * @param string|int|array<int, string|int> $value
+     * @param int|array<int, int> $value one id or a list of ids
      *
      * @return $this
      */

@@ -94,6 +94,23 @@ calls it:
 5. A parameter the SDK sends by itself, like the culture, needs no method. An endpoint which no query
    calls, like the expose, takes its parameters as arguments of its `JustimmoApi` method.
 
+## The api changes the type of a filter or a parameter
+
+The json gives each filter and parameter a `type` (`integer`, `number` or `string`) and its forms: a
+single value, a list (`"list": true`; nothing but a list with `"list_only": true`) and, for a
+filter, a range. The `@param` of the method says the same:
+
+1. Every form the json allows is in the `@param`: a single value `T`, a list `array<int, T>`, a range
+   `array{min?: T, max?: T}`. A filter with `list_only` may take a single value too: the query sends
+   it as a list of one.
+2. For every type the `@param` names, the method sends a value of the json's type. The type is judged
+   on what is sent, so a method may take another type when it converts it, like a `bool` it sends
+   as `1` or `0`. A number given as text is a `numeric-string`.
+
+`QueryMethodsTest` checks the filters, `ContractTest` the parameters. When the api changes a type,
+the `@param` follows. A type which sites pass and which no longer works is deprecated, as in "The
+api deprecates a filter".
+
 ## The api drops a filter or a parameter
 
 The method stays until the next major version. In a 1.x release, tag it `@deprecated` and call

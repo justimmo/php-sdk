@@ -144,15 +144,16 @@ class BasicDataQueryTest extends TestCase
     }
 
     /**
-     * all() compares with === true, so only the boolean switches it on
+     * all() compares with === true, so only the boolean switches it on. It sends 1 or 0, the value
+     * the api documents
      */
     public function testAll(): void
     {
         $query = $this->getQuery()->all(true);
-        $this->assertSame(['alle' => true], $query->getParams());
+        $this->assertSame(['alle' => 1], $query->getParams());
 
         $query = $this->getQuery()->all(false);
-        $this->assertSame(['alle' => false], $query->getParams());
+        $this->assertSame(['alle' => 0], $query->getParams());
     }
 
     /**

@@ -250,7 +250,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param int $value
+     * @param string $value the ISO 3166-1 alpha-2 code of the country, like AT. findCountries() gives it as iso2
      *
      * @return $this
      */

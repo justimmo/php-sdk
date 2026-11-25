@@ -12,6 +12,7 @@ use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\Query\AbstractQuery;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
+use Justimmo\Tests\DocumentedTypes;
 use Justimmo\Tests\TestCase;
 
 /**
@@ -21,6 +22,8 @@ use Justimmo\Tests\TestCase;
  */
 class QueryMethodsTest extends TestCase
 {
+    use DocumentedTypes;
+
     /**
      * @return array<string, array{0: AbstractQuery, 1: AbstractMapper}>
      */
@@ -168,6 +171,48 @@ class QueryMethodsTest extends TestCase
     }
 
     /**
+     * Every filter method matches its filter in the json: its @param offers each form the json
+     * allows, and for each type the @param names, the method sends a value of the json's type
+     *
+     * @dataProvider queries
+     */
+    public function testEveryFilterMethodMatchesTheTypeOfItsFilter(AbstractQuery $query, AbstractMapper $mapper): void
+    {
+        $problems = $this->filterTypeProblems($query, $mapper);
+
+        $this->assertSame([], $problems, self::explain(
+            'These ' . (new \ReflectionClass($query))->getShortName() . ' filter methods do not match the type of their filter in the json',
+            $problems,
+            'Make the @param say every form the json allows. Where a method sends a type the json does not have, change the @param, or convert the value before it is sent.',
+            'The api changes the type of a filter or a parameter'
+        ));
+    }
+
+    /**
+     * The check above, run against a json in which miete takes a string and objektart_id a range,
+     * finds filterByRent(), which sends 1 for true, and filterByRealtyTypeId(), which offers no range
+     */
+    public function testTheFilterTypeCheckFindsAMethodWhichDoesNotMatch(): void
+    {
+        $mapper = new class () extends RealtyMapper {
+            public function getSupportedFilters(string $call): array
+            {
+                $filters = parent::getSupportedFilters($call);
+
+                $filters['miete']['type']         = 'string';
+                $filters['objektart_id']['forms'] = ['plain', 'range'];
+
+                return $filters;
+            }
+        };
+
+        $problems = $this->filterTypeProblems(new RealtyQuery(new JustimmoNullApi(), new NullWrapper(), $mapper), $mapper);
+
+        $this->assertContains('RealtyQuery::filterByRent() with true sends filter[miete] = 1, the json says string', $problems);
+        $this->assertContains('RealtyQuery::filterByRealtyTypeId() does not offer the range form of filter[objektart_id] in its @param', $problems);
+    }
+
+    /**
      * Every orderBy…() method treats the direction alike: a missing one falls back to asc, any
      * other is passed on as written
      *
@@ -295,6 +340,99 @@ class QueryMethodsTest extends TestCase
         }
 
         return $values;
+    }
+
+    /**
+     * What the filter methods of the query do not match in the json, sorted. A method whose filter
+     * the json does not have is left to testEveryMethodIsDocumentedOrDeprecated()
+     *
+     * @return array<int, string>
+     */
+    private function filterTypeProblems(AbstractQuery $query, AbstractMapper $mapper): array
+    {
+        $shortName = (new \ReflectionClass($query))->getShortName();
+        $filters   = $mapper->getSupportedFilters($query->getListCall());
+
+        $problems = [];
+        foreach ($this->methods($query, 'filterBy') as $property) {
+            $key = $mapper->getFilterPropertyName($property);
+            if (!isset($filters[$key])) {
+                continue;
+            }
+
+            $filter    = $filters[$key];
+            $method    = 'filterBy' . $property;
+            $name      = $shortName . '::' . $method . '()';
+            $arguments = (new \ReflectionMethod($query, $method))->getParameters();
+            if ($arguments === []) {
+                $problems[] = $name . ' takes no value';
+                continue;
+            }
+
+            $offered = self::offeredForms(self::declaredType($arguments[0]));
+
+            foreach (self::documentedForms($filter) as $form) {
+                if (!isset($offered[$form])) {
+                    $problems[] = $name . ' does not offer the ' . $form . ' form of filter[' . $key . '] in its @param';
+                }
+            }
+
+            foreach ($offered as $form => $types) {
+                foreach ($types as $type) {
+                    $sample = self::sampleOf($type, $filter);
+                    if ($sample === null) {
+                        $problems[] = $name . ' names ' . self::unclearType($form, $type) . ' in its @param, which does not say what it sends';
+                        continue;
+                    }
+
+                    $value = self::valueOfForm($form, $sample);
+                    $sent  = $this->filterSent($query, $method, $value, $key);
+                    if ($sent === []) {
+                        $problems[] = $name . ' with ' . self::describe($value) . ' sends no filter[' . $key . ']';
+                        continue;
+                    }
+
+                    foreach ($sent as $sentKey => $sentValue) {
+                        $problem = self::sentProblem($sentValue, $filter, $sentKey !== $key);
+                        if ($problem !== null) {
+                            $problems[] = $name . ' with ' . self::describe($value) . ' sends filter[' . $sentKey . '] = ' . self::describe($sentValue) . ', ' . $problem;
+                        }
+                    }
+                }
+            }
+        }
+
+        $problems = array_values(array_unique($problems));
+        sort($problems, SORT_STRING);
+
+        return $problems;
+    }
+
+    /**
+     * What the method puts into filter[key], filter[key_von] and filter[key_bis], called on the
+     * emptied query. A notice it emits, or an exception it throws, is not what is checked here
+     *
+     * @return array<string, mixed>
+     */
+    private function filterSent(AbstractQuery $query, string $method, mixed $value, string $key): array
+    {
+        self::forgetTheDeprecationNotices();
+        $query->clear();
+
+        set_error_handler(fn () => true, E_USER_DEPRECATED);
+        try {
+            $query->$method($value);
+        } catch (\Throwable) {
+            // what was set before it threw is still read
+        } finally {
+            restore_error_handler();
+        }
+        self::forgetTheDeprecationNotices();
+
+        $filters = $query->getParams()['filter'] ?? [];
+        $query->clear();
+
+        return array_intersect_key($filters, array_flip([$key, $key . '_von', $key . '_bis']));
     }
 
     /**

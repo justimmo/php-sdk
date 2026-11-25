@@ -3,7 +3,7 @@
 /*
  * This file is generated. Do not edit it.
  *
- * Source:    data/sdk-supported-parameters.json, spec 1.2.21
+ * Source:    data/sdk-supported-parameters.json, spec 1.2.22
  * Generator: bin/generate-supported-parameters.php
  *
  * Run `php bin/generate-supported-parameters.php --check` to find out whether the two have drifted.
@@ -23,12 +23,12 @@ final class SupportedParameters
     /**
      * The spec version this data was generated from
      */
-    const SPEC_VERSION = '1.2.21';
+    const SPEC_VERSION = '1.2.22';
 
     /**
      * Changes when the accepted parameters change, not when a description is reworded
      */
-    const SPEC_HASH = 'sha256:f1e068cf2b4f564de34902e866daae5c55e9fb303aff6c9290232fed57367849';
+    const SPEC_HASH = 'sha256:404f3e78b87408afc79b316f0956ab145c01a3a9daac74f892d0b4378a803bd1';
 
     /**
      * The filters each call accepts, keyed by the api filter name without brackets and without a
@@ -943,7 +943,7 @@ final class SupportedParameters
             ],
             'land' => [
                 'in' => 'operation',
-                'type' => 'integer',
+                'type' => 'string',
             ],
             'message' => [
                 'in' => 'operation',
@@ -1180,8 +1180,9 @@ final class SupportedParameters
             ],
             'land' => [
                 'in' => 'operation',
-                'type' => 'string',
-                'enum' => ['AT'],
+                'type' => 'integer',
+                'types' => ['integer', 'string'],
+                'enum' => [17, 'AT'],
                 'default' => 'AT',
             ],
         ],
@@ -1258,6 +1259,7 @@ final class SupportedParameters
                 'in' => 'operation',
                 'type' => 'string',
                 'list' => true,
+                'list_only' => true,
                 'enum' => [
                     'user_small',
                     'user_medium',
@@ -1292,6 +1294,7 @@ final class SupportedParameters
                 'in' => 'operation',
                 'type' => 'string',
                 'list' => true,
+                'list_only' => true,
                 'enum' => [
                     'user_small',
                     'user_medium',

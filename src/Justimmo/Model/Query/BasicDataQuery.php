@@ -56,7 +56,8 @@ class BasicDataQuery
      */
     public function all($value)
     {
-        return $this->setParameter($this->mapper->getFilterPropertyName('all'), $value === true);
+        // 1 or 0, the value the api documents. Only the boolean true switches it on, as always
+        return $this->setParameter($this->mapper->getFilterPropertyName('all'), $value === true ? 1 : 0);
     }
 
     /**

@@ -1,8 +1,8 @@
 {
     "schema_version": 1,
-    "spec_version": "1.2.21",
-    "spec_hash": "sha256:f1e068cf2b4f564de34902e866daae5c55e9fb303aff6c9290232fed57367849",
-    "generated_at": "2026-11-18T19:55:07+01:00",
+    "spec_version": "1.2.22",
+    "spec_hash": "sha256:404f3e78b87408afc79b316f0956ab145c01a3a9daac74f892d0b4378a803bd1",
+    "generated_at": "2026-11-25T13:08:53+01:00",
     "endpoints": {
         "/main/tenant": {
             "filters": {},
@@ -57,7 +57,7 @@
                 },
                 "land": {
                     "in": "operation",
-                    "type": "integer"
+                    "type": "string"
                 },
                 "message": {
                     "in": "operation",
@@ -1056,8 +1056,13 @@
                 },
                 "land": {
                     "in": "operation",
-                    "type": "string",
+                    "type": "integer",
+                    "types": [
+                        "integer",
+                        "string"
+                    ],
                     "enum": [
+                        17,
                         "AT"
                     ],
                     "default": "AT"
@@ -1692,6 +1697,7 @@
                     "in": "operation",
                     "type": "string",
                     "list": true,
+                    "list_only": true,
                     "enum": [
                         "user_small",
                         "user_medium",
@@ -1728,6 +1734,7 @@
                     "in": "operation",
                     "type": "string",
                     "list": true,
+                    "list_only": true,
                     "enum": [
                         "user_small",
                         "user_medium",

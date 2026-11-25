@@ -33,6 +33,8 @@ use Psr\Log\NullLogger;
  */
 class ContractTest extends TestCase
 {
+    use DocumentedTypes;
+
     /**
      * Public methods which set no parameter of their own, keyed by class
      */
@@ -403,6 +405,44 @@ class ContractTest extends TestCase
             'RealtyQuery::preciseAreaSearch() emits no notice for the plain form',
             'RealtyQuery::preciseAreaSearch() has no @deprecated',
         ], $this->deprecatedParameterProblems($parameters));
+    }
+
+    /**
+     * Every method which sets a parameter matches the parameter in the json: the @param of the
+     * argument which carries it offers each form the json allows, and for each type the @param tags
+     * name, the method sends a value of the json's type
+     *
+     * @dataProvider senders
+     *
+     * @param class-string $class
+     */
+    public function testEveryParameterMethodMatchesTheTypeOfItsParameter(string $class): void
+    {
+        $reflection = new \ReflectionClass($class);
+        $problems   = $this->parameterTypeProblems($class, SupportedParameters::PARAMETERS);
+
+        $this->assertSame([], $problems, self::explain(
+            'These ' . $reflection->getShortName() . ' methods do not match the type of their parameter in the json',
+            $problems,
+            'Make the @param say every form the json allows. Where a method sends a type the json does not have, change the @param, or convert the value before it is sent.',
+            'The api changes the type of a filter or a parameter'
+        ));
+    }
+
+    /**
+     * The check above, run against a json in which preciseAreaSearch takes a string and limit a
+     * list, finds preciseAreaSearch(), which sends an integer, and setLimit(), which offers no list
+     */
+    public function testTheParameterTypeCheckFindsAMethodWhichDoesNotMatch(): void
+    {
+        $parameters = SupportedParameters::PARAMETERS;
+        $parameters['callRealtyList']['preciseAreaSearch']['type'] = 'string';
+        $parameters['callRealtyList']['limit']['list']             = true;
+
+        $problems = $this->parameterTypeProblems(RealtyQuery::class, $parameters);
+
+        $this->assertContains('RealtyQuery::preciseAreaSearch() with true sends preciseAreaSearch = 1, callRealtyList says string', $problems);
+        $this->assertContains('RealtyQuery::setLimit() does not offer the list form of limit of callRealtyList in its @param', $problems);
     }
 
     /**
@@ -787,6 +827,116 @@ class ContractTest extends TestCase
     }
 
     /**
+     * What the methods of the class which set a parameter do not match in the json, sorted. Each
+     * argument is called with a value of each type its @param names, the others with valueFor().
+     * The forms are read from the argument which carries the parameter: the only one, or the one
+     * of the parameter's name, like $newsletter of registerForNewsletter(). paginate() has none,
+     * its page is not a parameter
+     *
+     * @param class-string                                       $class
+     * @param array<string, array<string, array<string, mixed>>> $contract the parameters of each call, as in SupportedParameters::PARAMETERS
+     *
+     * @return array<int, string>
+     */
+    private function parameterTypeProblems(string $class, array $contract): array
+    {
+        $reflection = new \ReflectionClass($class);
+        $shortName  = $reflection->getShortName();
+
+        $calls = [];
+        foreach ($this->finders($class) as $called) {
+            $calls = [...$calls, ...$called];
+        }
+        $calls = array_values(array_unique($calls));
+
+        $problems = [];
+        foreach ($this->parametersSent($class) as $parameter => $methods) {
+            foreach (array_unique($methods) as $method) {
+                $name      = $shortName . '::' . $method . '()';
+                $arguments = (new \ReflectionMethod($class, $method))->getParameters();
+                $carrier   = self::carrierOf($arguments, $parameter);
+
+                foreach ($calls as $call) {
+                    $entry = $contract[$call][$parameter] ?? null;
+                    if ($entry === null) {
+                        continue;
+                    }
+
+                    if ($carrier !== null) {
+                        $offered = self::offeredForms(self::declaredType($carrier));
+                        foreach (self::documentedForms($entry) as $form) {
+                            if (!isset($offered[$form])) {
+                                $problems[] = $name . ' does not offer the ' . $form . ' form of ' . $parameter . ' of ' . $call . ' in its @param';
+                            }
+                        }
+                    }
+
+                    // a method without an argument, like showDetails(), sends a value of its own
+                    $tries = $arguments === [] ? [[null, []]] : [];
+                    foreach ($arguments as $position => $argument) {
+                        foreach (self::offeredForms(self::declaredType($argument)) as $form => $types) {
+                            foreach ($types as $type) {
+                                $sample = self::sampleOf($type, $argument === $carrier ? $entry : []);
+                                if ($sample === null) {
+                                    $problems[] = $name . ' names ' . self::unclearType($form, $type) . ' in the @param of $' . $argument->getName() . ', which does not say what it sends';
+                                    continue;
+                                }
+
+                                $values            = array_map([self::class, 'valueFor'], $arguments);
+                                $values[$position] = self::valueOfForm($form, $sample);
+                                $tries[]           = [$values[$position], $values];
+                            }
+                        }
+                    }
+
+                    foreach ($tries as [$value, $values]) {
+                        $with = $arguments === [] ? '' : ' with ' . self::describe($value);
+                        $sent = $this->parametersOf($class, $method, $values);
+                        if (!array_key_exists($parameter, $sent) || $sent[$parameter] === null) {
+                            $problems[] = $name . $with . ' sends no ' . $parameter;
+                            continue;
+                        }
+
+                        $problem = self::sentProblem($sent[$parameter], $entry, false);
+                        if ($problem !== null) {
+                            $problems[] = $name . $with . ' sends ' . $parameter . ' = ' . self::describe($sent[$parameter]) . ', ' . str_replace('the json says', $call . ' says', str_replace('the json allows', $call . ' allows', $problem));
+                        }
+                    }
+                }
+            }
+        }
+
+        self::forgetTheDeprecationNotices();
+
+        $problems = array_values(array_unique($problems));
+        sort($problems, SORT_STRING);
+
+        return $problems;
+    }
+
+    /**
+     * The argument which carries the parameter: the only one, or the one of the parameter's name,
+     * compared without case and underscores
+     *
+     * @param array<int, \ReflectionParameter> $arguments
+     */
+    private static function carrierOf(array $arguments, string $parameter): ?\ReflectionParameter
+    {
+        if (count($arguments) === 1) {
+            return $arguments[0];
+        }
+
+        $wanted = strtolower(str_replace('_', '', $parameter));
+        foreach ($arguments as $argument) {
+            if (strtolower($argument->getName()) === $wanted) {
+                return $argument;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * The value the test passes for one argument: its default when it has one, else a value of the
      * type it declares, natively or in its @param tag
      */
@@ -813,21 +963,13 @@ class ContractTest extends TestCase
     }
 
     /**
-     * The first type the parameter declares: the native one, else the one of its @param tag. Null
-     * is skipped, a method is never called with it here
+     * The first type the parameter declares, read as declaredType() reads it: its @param tag, else
+     * its native type. Null is skipped, a method is never called with it here
      */
     private static function documentedType(\ReflectionParameter $parameter): string
     {
-        $type = $parameter->getType();
-        if ($type !== null) {
-            $declared = (string) $type;
-        } else {
-            $comment = (string) $parameter->getDeclaringFunction()->getDocComment();
-            $pattern = '/@param\s+(\S+)\s+(?:\.\.\.)?\$' . preg_quote($parameter->getName(), '/') . '\b/';
-            $declared = preg_match($pattern, $comment, $match) === 1 ? $match[1] : '';
-        }
-
-        $types = array_values(array_diff(explode('|', ltrim($declared, '?')), ['null']));
+        $declared = self::declaredType($parameter);
+        $types    = array_values(array_diff(self::splitTopLevel(ltrim($declared, '?'), '|'), ['null']));
 
         return $types[0] ?? $declared;
     }

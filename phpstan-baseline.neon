@@ -1105,12 +1105,6 @@ parameters:
 			path: src/Justimmo/Model/Query/AbstractQuery.php
 
 		-
-			message: '#^Method Justimmo\\Model\\Query\\AbstractQuery\:\:setPicturesize\(\) has parameter \$picturesize with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Justimmo/Model/Query/AbstractQuery.php
-
-		-
 			message: '#^Property Justimmo\\Model\\Query\\AbstractQuery\:\:\$params type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
