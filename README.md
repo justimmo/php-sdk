@@ -38,7 +38,7 @@ require_once 'path_to_extraction/src/autoload.php';
 
 Documentation
 -------------
-<a href="http://justimmo.github.io/php-sdk/index.html" target="_blank">Read the full documentation</a>
+<a href="https://api-docs.justimmo.at/website-api#tag/php_sdk_basics" target="_blank">Read the full documentation</a>
 
 Usage Example
 -------------
