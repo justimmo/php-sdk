@@ -260,13 +260,14 @@ class StrictModeTest extends TestCase
     }
 
     /**
-     * An enum is matched as the wire renders it, so true, 1 and "1" are one and the same request
+     * An enum is matched as the wire renders it, so true, 1 and "1" are one and the same request. A
+     * bool is stored as 1 or 0, the value the api documents
      */
     public function testAnEnumIsMatchedTheWayTheRequestIsSent(): void
     {
-        $this->assertSame(['filter' => ['miete' => true]], $this->query()->strict()->filterByRent(true)->getParams());
+        $this->assertSame(['filter' => ['miete' => 1]], $this->query()->strict()->filterByRent(true)->getParams());
         $this->assertSame(['filter' => ['miete' => '1']], $this->query()->strict()->filterByRent('1')->getParams());
-        $this->assertSame(['filter' => ['miete' => false]], $this->query()->strict()->filterByRent(false)->getParams());
+        $this->assertSame(['filter' => ['miete' => 0]], $this->query()->strict()->filterByRent(false)->getParams());
     }
 
     /**

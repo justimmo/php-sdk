@@ -5,6 +5,7 @@ namespace Justimmo\Tests\Wrapper\V1;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 use Justimmo\Tests\TestCase;
 use Justimmo\Model\PoliticalDistrict;
+use Justimmo\Model\RealtyFeature;
 use function count;
 
 final class BasicDataWrapperTest extends TestCase
@@ -101,6 +102,22 @@ final class BasicDataWrapperTest extends TestCase
         $this->assertInstanceOf(PoliticalDistrict::class, $entry);
         $this->assertSame(20, $entry->id);
         $this->assertSame('Krems an der Donau', $entry->name);
+    }
+
+    /**
+     * A feature the account defined itself may have no code
+     */
+    public function testRealtyFeatures(): void
+    {
+        $list = $this->wrapper->transformRealtyFeatures($this->getFixtures('v1/realty_features.xml'));
+
+        $this->assertCount(3, $list);
+        $this->assertEquals(
+            new RealtyFeature(12, 'Fußbodenheizung', 'FUSSBODEN', 3, 'Heizungsart', 'heizungsart'),
+            $list[12]
+        );
+        $this->assertSame('Wärmepumpe im Keller', $list[904]->name);
+        $this->assertSame('', $list[904]->code);
     }
 
     public function testRealtyTypes()

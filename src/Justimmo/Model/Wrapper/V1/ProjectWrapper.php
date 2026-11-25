@@ -226,4 +226,23 @@ class ProjectWrapper extends AbstractWrapper
 
         return $list;
     }
+
+    /**
+     * Transforms the short list of every project into its titles, keyed by the project id.
+     *
+     * @param ?string $data the raw response of the api call
+     *
+     * @return array<int, string>
+     */
+    public function transformShortList(?string $data): array
+    {
+        $xml = $this->parseXml($data);
+
+        $return = [];
+        foreach ($xml->projekt as $projekt) {
+            $return[(int) $projekt->id] = trim((string) $projekt->titel);
+        }
+
+        return $return;
+    }
 }

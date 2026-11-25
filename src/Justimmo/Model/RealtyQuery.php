@@ -129,7 +129,7 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
-     * Filters by the area, filter[sort_flaeche_von] and filter[sort_flaeche_bis]
+     * Filters by the area, filter[flaeche_von] and filter[flaeche_bis]
      *
      * @param array{min?: int|float, max?: int|float} $value
      *
@@ -138,6 +138,20 @@ class RealtyQuery extends AbstractQuery
     public function filterByArea($value)
     {
         return $this->filterThroughMapper('Area', $value, 'filterByArea');
+    }
+
+    /**
+     * Filters by the area, filter[sort_flaeche_von] and filter[sort_flaeche_bis]
+     *
+     * The api filters the same area as with filterByArea()
+     *
+     * @param array{min?: int|float, max?: int|float} $value
+     *
+     * @return $this
+     */
+    public function filterBySortArea($value)
+    {
+        return $this->filterThroughMapper('SortArea', $value, 'filterBySortArea');
     }
 
     /**
@@ -299,7 +313,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by disability access, filter[barrierefrei]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -359,7 +373,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by whether the realty is for rent, filter[miete]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -371,7 +385,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by whether the realty is for sale, filter[kauf]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -431,7 +445,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * Filters by a rent with a purchase option, filter[rent_with_purchase_option]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -588,6 +602,18 @@ class RealtyQuery extends AbstractQuery
     }
 
     /**
+     * Asks for the full record of each realty in the list, the parameter showDetails
+     *
+     * Without it the api answers with its default, the short record: the list fields, without the
+     * attachments, the contact person and the other details. 1.x still asks for the full record on
+     * every list, and 2.0.0 sends showDetails only when this method is called.
+     */
+    public function showDetails(): static
+    {
+        return $this->setParameter('showDetails', 1);
+    }
+
+    /**
      * The api accepts a list here, and filterByRealtyCategory() builds the same wire filter, so
      * both calls add to it instead of the second discarding the first
      *
@@ -641,7 +667,7 @@ class RealtyQuery extends AbstractQuery
     /**
      * The api requires a list here and rejects a scalar with a 422, so a single value is wrapped
      *
-     * @param string|int|array<int, string|int> $value
+     * @param int|array<int, int> $value one id or a list of ids
      *
      * @return $this
      */

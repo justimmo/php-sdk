@@ -335,7 +335,7 @@ class RealtyMapper extends AbstractMapper
             'type'     => 'datetime',
         ],
         'erschliessungskosten'             => [
-            'property' => 'infrastructureProvision',
+            'property' => 'developmentCosts',
             'type'     => 'double',
         ],
         'mietkauf'                         => [
@@ -560,7 +560,8 @@ class RealtyMapper extends AbstractMapper
             'Rooms'                  => 'zimmer',
             'PropertyNumber'         => 'objektnummer',
             'ProjectId'              => 'projekt_id',
-            'Area'                   => 'sort_flaeche',
+            'Area'                   => 'flaeche',
+            'SortArea'               => 'sort_flaeche',
             'LivingArea'             => 'wohnflaeche',
             'FloorArea'              => 'nutzflaeche',
             'SurfaceArea'            => 'grundflaeche',
@@ -606,6 +607,8 @@ class RealtyMapper extends AbstractMapper
             'UpdatedAt'   => 'updated_at',
             // sortable, and not a filter at all
             'PublishedAt' => 'published_at',
+            // the deprecated magic orderByArea() keeps the column it sorted by; the filter is flaeche
+            'Area'        => 'sort_flaeche',
         ] + $this->getFilterMapping();
     }
 

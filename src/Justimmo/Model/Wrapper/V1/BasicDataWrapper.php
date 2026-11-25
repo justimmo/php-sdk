@@ -3,6 +3,7 @@
 namespace Justimmo\Model\Wrapper\V1;
 
 use Justimmo\Model\PoliticalDistrict;
+use Justimmo\Model\RealtyFeature;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
 use function trim;
 
@@ -59,6 +60,8 @@ class BasicDataWrapper implements BasicDataWrapperInterface
     /**
      * Transforms the zip code list into a list of zip code and place pairs.
      *
+     * @deprecated since 1.8.0, removed in 2.0.0, with findZipCodes()
+     *
      * @param string $data the raw response of the api call
      *
      * @return array<int, array<string, mixed>>
@@ -83,7 +86,7 @@ class BasicDataWrapper implements BasicDataWrapperInterface
     }
 
     /**
-     * @deprecated
+     * @deprecated since 1.8.0, removed in 2.0.0, with findRegions()
      *
      * @param string $data the raw response of the api call
      * @return array<int, string>
@@ -156,6 +159,29 @@ class BasicDataWrapper implements BasicDataWrapperInterface
                 'name'         => (string) $objektkategorie->name,
                 'sortableRank' => (int) $objektkategorie->sortablerank,
             ];
+        }
+
+        return $return;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function transformRealtyFeatures(?string $data): array
+    {
+        $xml = $this->parseXml($data);
+
+        $return = [];
+        foreach ($xml->ausstattung as $feature) {
+            $id          = (int) $feature->id;
+            $return[$id] = new RealtyFeature(
+                $id,
+                trim((string) $feature->name),
+                trim((string) $feature->code),
+                (int) $feature->gruppeid,
+                trim((string) $feature->gruppename),
+                trim((string) $feature->gruppencode),
+            );
         }
 
         return $return;

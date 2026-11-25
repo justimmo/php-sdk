@@ -3,9 +3,15 @@
 /**
  * Generates the supported parameter data the SDK validates against.
  *
- * Reads data/sdk-supported-parameters.json, which is generated from the API specification, and
- * writes src/Justimmo/Model/Mapper/V1/SupportedParameters.php. The output is committed. The SDK
- * never reads the json at runtime.
+ * Reads data/sdk-supported-parameters.json, the api's contract, and writes
+ * src/Justimmo/Model/Mapper/V1/SupportedParameters.php: the filters and parameters each SDK method
+ * may send, the SDK methods whose endpoint the api deprecates, and the names of the user-defined
+ * simple fields. The output is committed. The SDK never reads the json at runtime.
+ *
+ * The json says which endpoints exist. Which SDK method sends which endpoint comes from
+ * JustimmoApi::ENDPOINTS, so this script keeps no list of its own and needs composer install for
+ * the autoloader. An endpoint of the json that no method sends gets a warning, and the file is
+ * still written; ContractTest then fails and says what to add. CONTRIBUTING.md has the steps.
  *
  * The shape of the input is versioned by SCHEMA_VERSION. A json of another version is refused.
  *
@@ -15,30 +21,20 @@
  * no longer matches the committed json, which is the drift check.
  */
 
+use Justimmo\Api\JustimmoApi;
+
+require __DIR__ . '/../vendor/autoload.php';
+
 const INPUT          = __DIR__ . '/../data/sdk-supported-parameters.json';
 const OUTPUT         = __DIR__ . '/../src/Justimmo/Model/Mapper/V1/SupportedParameters.php';
 const SCHEMA_VERSION = 1;
 
-/**
- * which endpoint each query call talks to
- *
- * The queries already return these names from getListCall(), getDetailCall() and getIdsCall(), so a
- * query passes what it has and no endpoint path has to be threaded through the SDK.
- */
-const CALLS = [
-    'callRealtyList'     => '/objekt/list',
-    'callRealtyDetail'   => '/objekt/detail',
-    'callRealtyIds'      => '/objekt/ids',
-    'callProjectList'    => '/projekt/list',
-    'callProjectDetail'  => '/projekt/detail',
-    'callProjectIds'     => '/projekt/ids',
-    'callEmployeeList'   => '/team/list',
-    'callEmployeeDetail' => '/team/detail',
-    'callEmployeeIds'    => '/team/ids',
-];
-
 $document = readInput(INPUT);
 $php      = render($document);
+
+foreach (endpointsWithoutAMethod($document) as $endpoint) {
+    fwrite(STDERR, "generate-supported-parameters: warning: {$endpoint} has no SDK method in JustimmoApi::ENDPOINTS. See CONTRIBUTING.md, \"The api adds an endpoint\"\n");
+}
 
 if (in_array('--check', array_slice($argv, 1), true)) {
     check($php, $document);
@@ -50,7 +46,7 @@ if (file_put_contents(OUTPUT, $php) === false) {
 
 printf(
     "SupportedParameters.php: %d calls, spec %s, %s\n",
-    count(CALLS),
+    count(JustimmoApi::ENDPOINTS),
     $document['spec_version'],
     $document['spec_hash']
 );
@@ -104,9 +100,9 @@ function readInput(string $file): array
         ));
     }
 
-    foreach (CALLS as $call => $endpoint) {
+    foreach (JustimmoApi::ENDPOINTS as $call => $endpoint) {
         if (!isset($document['endpoints'][$endpoint])) {
-            fail("{$file} has no {$endpoint}, which {$call} needs");
+            fail("{$file} has no {$endpoint}, which {$call} sends. Ask the api team to put it back, marked deprecated. See CONTRIBUTING.md, \"The api drops an endpoint\"");
         }
     }
 
@@ -129,11 +125,18 @@ function render(array $document): string
 {
     $filters    = [];
     $parameters = [];
+    $deprecated = [];
 
-    foreach (CALLS as $call => $endpoint) {
+    foreach (JustimmoApi::ENDPOINTS as $call => $endpoint) {
         $filters[$call]    = $document['endpoints'][$endpoint]['filters'] ?? [];
         $parameters[$call] = $document['endpoints'][$endpoint]['parameters'] ?? [];
+
+        if (($document['endpoints'][$endpoint]['deprecated'] ?? false) === true) {
+            $deprecated[] = $call;
+        }
     }
+
+    sort($deprecated, SORT_STRING);
 
     $template = <<<'TEMPLATE'
 <?php
@@ -152,7 +155,7 @@ namespace Justimmo\Model\Mapper\V1;
 /**
  * Class SupportedParameters
  *
- * What the Website API officially accepts, per query call. Data only, no behaviour
+ * What the Website API officially accepts, per SDK method of JustimmoApi. Data only, no behaviour
  *
  * @package Justimmo\Model\Mapper\V1
  */
@@ -192,6 +195,12 @@ final class SupportedParameters
      * OpenImmo standard, each sent with its name, sorted
      */
     const USER_DEFINED_SIMPLE_FIELDS = %5$s;
+
+    /**
+     * The SDK methods whose endpoint the api marks deprecated, sorted. Each is deprecated in the SDK
+     * too, with a notice
+     */
+    const DEPRECATED_CALLS = %6$s;
 }
 
 TEMPLATE;
@@ -202,8 +211,24 @@ TEMPLATE;
         $document['spec_hash'],
         export($filters, 2),
         export($parameters, 2),
-        export($document['user_defined_simplefields'], 2)
+        export($document['user_defined_simplefields'], 2),
+        export($deprecated, 2)
     );
+}
+
+/**
+ * The endpoints of the json which no SDK method sends, apart from the ones the api lists as
+ * undocumented
+ *
+ * @return array<int, string>
+ */
+function endpointsWithoutAMethod(array $document): array
+{
+    return array_values(array_diff(
+        array_keys($document['endpoints']),
+        JustimmoApi::ENDPOINTS,
+        array_keys($document['undocumented_endpoints'] ?? [])
+    ));
 }
 
 /**

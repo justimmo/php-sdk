@@ -6,6 +6,7 @@ use Justimmo\Api\JustimmoNullApi;
 use Justimmo\Cache\NullCache;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\Mapper\V1\SupportedParameters;
 use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\Query\AbstractQuery;
 use Justimmo\Model\RealtyQuery;
@@ -20,45 +21,50 @@ use Psr\Log\NullLogger;
 class EndpointParametersTest extends TestCase
 {
     /**
-     * The ids endpoints answer with a plain array of ids. There is no text in that response for a
-     * culture to translate, and none of the three documents the parameter
-     *
-     * @return array<int, array{0: string}>
+     * The SDK sends its culture to the endpoints which are translated, the ones the contract
+     * documents culture for, and to no other
      */
-    public function idsCallProvider(): array
+    public function testACallSendsTheCultureWhereTheContractDocumentsIt(): void
     {
-        return [
-            ['callRealtyIds'],
-            ['callProjectIds'],
-            ['callEmployeeIds'],
-        ];
+        $expected = [];
+        $sent     = [];
+        foreach (JustimmoApi::ENDPOINTS as $method => $endpoint) {
+            $reflection = new \ReflectionMethod(JustimmoApi::class, $method);
+            $arguments  = array_fill(0, $reflection->getNumberOfRequiredParameters(), 1);
+
+            $url = $this->urlOf(function (JustimmoApi $api) use ($method, $arguments): void {
+                // a deprecated call, like callZipCodes(), emits its notice; it is not what this checks
+                set_error_handler(fn () => true, E_USER_DEPRECATED);
+
+                try {
+                    $api->$method(...$arguments);
+                } catch (\Throwable) {
+                    // the fake answer may be rejected after the url was built
+                } finally {
+                    restore_error_handler();
+                }
+            });
+
+            $expected[$endpoint] = isset(SupportedParameters::PARAMETERS[$method]['culture']);
+            $sent[$endpoint]     = str_contains($url, 'culture=de');
+        }
+
+        $this->assertSame($expected, $sent);
+        $this->assertContains(true, $sent, 'no call sends the culture');
+        $this->assertContains(false, $sent, 'every call sends the culture');
     }
 
     /**
-     * @dataProvider idsCallProvider
+     * A path the SDK does not know is not in the contract either, so it keeps the culture, as
+     * every call did before 1.8.0
      */
-    public function testAnIdsCallDoesNotSendTheCulture(string $call): void
+    public function testACallToAnUnknownPathKeepsTheCulture(): void
     {
-        $url = $this->urlOf(function (JustimmoApi $api) use ($call): void {
-            $api->$call();
+        $url = $this->urlOf(function (JustimmoApi $api): void {
+            $api->call('objekt/unknown');
         });
 
-        $this->assertStringNotContainsString('culture', $url, $call);
-    }
-
-    public function testEveryOtherCallStillSendsTheCulture(): void
-    {
-        $this->assertStringContainsString('culture=de', $this->urlOf(function (JustimmoApi $api): void {
-            $api->callRealtyList();
-        }));
-
-        $this->assertStringContainsString('culture=de', $this->urlOf(function (JustimmoApi $api): void {
-            $api->callRealtyDetail(1);
-        }));
-
-        $this->assertStringContainsString('culture=de', $this->urlOf(function (JustimmoApi $api): void {
-            $api->callEmployeeList();
-        }));
+        $this->assertStringContainsString('culture=de', $url);
     }
 
     /**

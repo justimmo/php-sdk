@@ -3,6 +3,7 @@
 namespace Justimmo\Model;
 
 use Justimmo\Model\Query\AbstractQuery;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
 
 /**
  * Class ProjectQuery
@@ -36,6 +37,24 @@ class ProjectQuery extends AbstractQuery
     public function getIdsCall()
     {
         return 'callProjectIds';
+    }
+
+    /**
+     * The title of every project, keyed by the project id
+     *
+     * One request answers every project, with no paging. The filters of the query do not apply,
+     * and stay set for the next call.
+     *
+     * @return array<int, string>
+     */
+    public function findShortList(): array
+    {
+        $response = $this->api->callProjectShortList();
+
+        // a query built with a wrapper of its own still reads the list
+        $wrapper = $this->wrapper instanceof ProjectWrapper ? $this->wrapper : new ProjectWrapper($this->mapper);
+
+        return $wrapper->transformShortList($response);
     }
 
     /**
@@ -77,7 +96,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether the project is a reference, filter[referenz]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -125,7 +144,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether a realty of the project is for sale, filter[kauf]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -137,7 +156,7 @@ class ProjectQuery extends AbstractQuery
     /**
      * Filters by whether a realty of the project is for rent, filter[miete]
      *
-     * @param int|bool $value 1 or true for yes, 0 or false for no
+     * @param bool $value true for yes, false for no
      *
      * @return $this
      */
@@ -329,8 +348,8 @@ class ProjectQuery extends AbstractQuery
     /**
      * {@inheritdoc}
      *
-     * projekt/detail is the only detail call which documents alleProjektObjekte and objektIds, so
-     * it is the only one which still receives them
+     * Read only with a mapper which has no api json. projekt/detail is the only detail call which
+     * documents alleProjektObjekte and objektIds, so it is the only one which still receives them
      */
     protected function getDetailParams(): array
     {

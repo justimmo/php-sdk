@@ -4,6 +4,8 @@ namespace Justimmo\Model\Query;
 use Justimmo\Api\JustimmoApiInterface;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\PoliticalDistrict;
+use Justimmo\Model\RealtyFeature;
+use Justimmo\Model\TriggersDeprecations;
 use Justimmo\Model\Wrapper\BasicDataWrapperInterface;
 
 /**
@@ -54,12 +56,13 @@ class BasicDataQuery
      */
     public function all($value)
     {
-        return $this->setParameter($this->mapper->getFilterPropertyName('all'), $value === true);
+        // 1 or 0, the value the api documents. Only the boolean true switches it on, as always
+        return $this->setParameter($this->mapper->getFilterPropertyName('all'), $value === true ? 1 : 0);
     }
 
     /**
      *
-     * @param mixed $value
+     * @param int|string $value
      *
      * @return $this
      */
@@ -70,13 +73,23 @@ class BasicDataQuery
 
     /**
      *
-     * @param mixed $value
+     * @param int $value
      *
      * @return $this
      */
     public function filterByFederalState($value)
     {
         return $this->setParameter($this->mapper->getFilterPropertyName('federalState'), $value);
+    }
+
+    /**
+     * Filters the realty features by their group, the parameter gruppe
+     *
+     * @param int $value the id of the feature group
+     */
+    public function filterByFeatureGroupId(int $value): static
+    {
+        return $this->setParameter($this->mapper->getFilterPropertyName('featureGroupId'), $value);
     }
 
     /**
@@ -109,9 +122,13 @@ class BasicDataQuery
 
     /**
      * @return array
+     *
+     * @deprecated since 1.8.0, removed in 2.0.0. Use findPoliticalDistricts()
      */
     public function findZipCodes()
     {
+        $this->triggerDeprecation('findZipCodes', 'findZipCodes() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().', '1.8.0');
+
         $response = $this->api->callZipCodes($this->params);
 
         $return = $this->wrapper->transformZipCodes($response);
@@ -124,10 +141,12 @@ class BasicDataQuery
     /**
      * @return array
      *
-     * @deprecated This call is deprecated and will be removed in 2.x. Use findPoliticalDistricts instead.
+     * @deprecated since 1.8.0, removed in 2.0.0. Use findPoliticalDistricts()
      */
     public function findRegions()
     {
+        $this->triggerDeprecation('findRegions', 'findRegions() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().', '1.8.0');
+
         $response = $this->api->callRegions($this->params);
 
         $return = $this->wrapper->transformRegions($response);
@@ -173,6 +192,22 @@ class BasicDataQuery
         $response = $this->api->callRealtyCategories($this->params);
 
         $return = $this->wrapper->transformRealtyCategories($response);
+
+        $this->clear();
+
+        return $return;
+    }
+
+    /**
+     * The features a realty can have, with the account's own ones
+     *
+     * @return array<int, RealtyFeature>
+     */
+    public function findRealtyFeatures(): array
+    {
+        $response = $this->api->callRealtyFeatures($this->params);
+
+        $return = $this->wrapper->transformRealtyFeatures($response);
 
         $this->clear();
 

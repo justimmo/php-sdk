@@ -15,7 +15,7 @@ use Justimmo\Pager\ListPager;
  *
  * Example lines, for the realty of realty_detail.xml:
  *   Justimmo\Model\Realty
- *     getInfrastructureProvision(): 'VOLLERSCHLOSSEN'
+ *     getDevelopmentState(): 'VOLLERSCHLOSSEN'
  *     getPurchasePrice(): 1001.5
  *
  * The synthetic answers in tests/Fixtures/v1/synthetic/ fill every element the api can write for

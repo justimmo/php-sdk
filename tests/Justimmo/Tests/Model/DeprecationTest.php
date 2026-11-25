@@ -2,26 +2,34 @@
 
 namespace Justimmo\Tests\Model;
 
+use Justimmo\Api\JustimmoApi;
 use Justimmo\Api\JustimmoNullApi;
+use Justimmo\Cache\CacheInterface;
 use Justimmo\Model\Mapper\NullMapper;
 use Justimmo\Model\Mapper\V1\BasicDataMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
 use Justimmo\Model\Mapper\V1\RealtyMapper;
+use Justimmo\Model\Project;
 use Justimmo\Model\ProjectQuery;
 use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\Realty;
 use Justimmo\Model\RealtyQuery;
 use Justimmo\Model\Wrapper\NullWrapper;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
+use Justimmo\Model\Wrapper\V1\ProjectWrapper;
+use Justimmo\Model\Wrapper\V1\RealtyWrapper;
 use Justimmo\Tests\TestCase;
+use Psr\Log\NullLogger;
 
 /**
- * What 2.0.0 makes protected or removes emits a deprecation notice in 1.6.0, and only a call from
+ * What 2.0.0 makes protected or removes emits a deprecation notice in 1.6.0 or 1.8.0, and only a call from
  * outside the SDK does. A method which keeps working stays silent, including where the SDK calls
  * a deprecated one's code itself.
  */
 class DeprecationTest extends TestCase
 {
-    const SINCE = 'Since justimmo/php-sdk 1.6.0: ';
+    const SINCE     = 'Since justimmo/php-sdk 1.6.0: ';
+    const SINCE_1_8 = 'Since justimmo/php-sdk 1.8.0: ';
 
     protected function setUp(): void
     {
@@ -85,7 +93,7 @@ class DeprecationTest extends TestCase
                 self::SINCE . 'RealtyQuery::filterBypreis() is deprecated and is removed in 2.0.0. Use filterByPrice().',
                 self::SINCE . 'RealtyQuery::orderBypreis() is deprecated and is removed in 2.0.0. Use orderByPrice().',
                 self::SINCE . 'RealtyQuery::filterBytag_name() is deprecated and is removed in 2.0.0. Use filterByTag().',
-                self::SINCE . 'RealtyQuery::filterByflaeche() is deprecated and is removed in 2.0.0. The SDK has no method for this filter.',
+                self::SINCE . 'RealtyQuery::filterByflaeche() is deprecated and is removed in 2.0.0. Use filterByArea().',
             ],
             $this->notices(fn () => $this->realty()
                 ->filterBypreis(['min' => 100])
@@ -108,14 +116,9 @@ class DeprecationTest extends TestCase
         $cases = [];
 
         foreach (['realty' => new RealtyMapper(), 'project' => new ProjectMapper()] as $label => $mapper) {
-            $query   = $this->query($label);
-            $without = QueryMethodsTest::WITHOUT_A_METHOD[$query::class] ?? [];
+            $query = $this->query($label);
 
             foreach ($mapper->getSupportedFilters($query->getListCall()) as $name => $filter) {
-                if (in_array($name, $without, true)) {
-                    continue;
-                }
-
                 $wireNames = [];
                 if (in_array('plain', $filter['forms'], true)) {
                     $wireNames[] = $name;
@@ -273,6 +276,178 @@ class DeprecationTest extends TestCase
         );
     }
 
+    public function testTheDeprecatedModelMethodsEmitANotice(): void
+    {
+        $realty  = new Realty();
+        $project = new Project();
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'Realty::setInfrastructureProvision() is deprecated and is removed in 2.0.0. Use setDevelopmentState().',
+                self::SINCE_1_8 . 'Realty::setInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use setDevelopmentCosts().',
+                self::SINCE_1_8 . 'Realty::getInfrastructureProvision() is deprecated and is removed in 2.0.0. Use getDevelopmentState() for the state and getDevelopmentCosts() for the costs.',
+                self::SINCE_1_8 . 'Realty::getInfrastructureProvisionCosts() is deprecated and is removed in 2.0.0. Use getDevelopmentCosts().',
+                self::SINCE_1_8 . 'Project::getUnderConstruction() is deprecated and is removed in 2.0.0. Use isStateBuilding() or getProjectState().',
+            ],
+            $this->notices(function () use ($realty, $project) {
+                $realty->setInfrastructureProvision('VOLLERSCHLOSSEN');
+                $realty->setInfrastructureProvisionCosts(12000.5);
+                $realty->getInfrastructureProvision();
+                $realty->getInfrastructureProvisionCosts();
+                $project->getUnderConstruction();
+            })
+        );
+    }
+
+    /**
+     * The old getters return what they returned in 1.7.0: the state, or the costs when there is no
+     * state; and the costs
+     */
+    public function testTheDeprecatedRealtyGettersKeepTheirResult(): void
+    {
+        $realty = new Realty();
+        $realty->setDevelopmentCosts(12000.5);
+
+        $this->notices(function () use ($realty) {
+            $this->assertSame(12000.5, $realty->getInfrastructureProvision());
+            $this->assertSame(12000.5, $realty->getInfrastructureProvisionCosts());
+
+            $realty->setDevelopmentState('VOLLERSCHLOSSEN');
+            $this->assertSame('VOLLERSCHLOSSEN', $realty->getInfrastructureProvision());
+            $this->assertSame(12000.5, $realty->getInfrastructureProvisionCosts());
+
+            // the old setters write what the new getters read
+            $realty->setInfrastructureProvision('TEILERSCHLOSSEN');
+            $realty->setInfrastructureProvisionCosts(500.0);
+            $this->assertSame('TEILERSCHLOSSEN', $realty->getDevelopmentState());
+            $this->assertSame(500.0, $realty->getDevelopmentCosts());
+        });
+    }
+
+    /**
+     * The zip code and region calls of the api are deprecated, like their finders
+     */
+    public function testTheZipCodeAndRegionCallsEmitANotice(): void
+    {
+        $api = $this->answeringApi();
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'JustimmoApi::callZipCodes() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().',
+                self::SINCE_1_8 . 'JustimmoApi::callRegions() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().',
+            ],
+            $this->notices(function () use ($api) {
+                $api->callZipCodes();
+                $api->callRegions();
+            })
+        );
+    }
+
+    /**
+     * A site which calls a finder gets the finder's notice only, not the api call's as well
+     */
+    public function testTheZipCodeAndRegionFindersEmitOneNoticeEach(): void
+    {
+        $query = new BasicDataQuery($this->answeringApi(), new BasicDataWrapper(), new BasicDataMapper());
+
+        $this->assertSame(
+            [
+                self::SINCE_1_8 . 'BasicDataQuery::findZipCodes() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().',
+                self::SINCE_1_8 . 'BasicDataQuery::findRegions() is deprecated and is removed in 2.0.0. Use findPoliticalDistricts().',
+            ],
+            $this->notices(function () use ($query) {
+                $query->findZipCodes();
+                $query->findRegions();
+            })
+        );
+    }
+
+    /**
+     * 2.0.0 sends showDetails only when it is asked for, so a realty list without it is warned now
+     */
+    public function testARealtyListWithoutShowDetailsEmitsANotice(): void
+    {
+        $query = new RealtyQuery($this->answeringApi(), new RealtyWrapper($mapper = new RealtyMapper()), $mapper);
+
+        $this->assertSame(
+            [self::SINCE_1_8 . 'JustimmoApi::callRealtyList() without showDetails=1 gets the full record of each realty in 1.x only. 2.0.0 sends the api\'s default, the short record, without the attachments or the contact person. Call RealtyQuery::showDetails(), or pass showDetails=1.'],
+            $this->notices(function () use ($query) {
+                $query->find();
+            })
+        );
+    }
+
+    /**
+     * An explicit 0 is still sent as 1 in 1.x, and 2.0.0 sends it as it is, so it is warned too
+     */
+    public function testARealtyListWithShowDetailsZeroEmitsANotice(): void
+    {
+        $api = $this->answeringApi();
+
+        $this->assertCount(1, $this->notices(function () use ($api) {
+            $api->callRealtyList(['showDetails' => 0]);
+        }));
+    }
+
+    /**
+     * PHP names an anonymous class with a NUL byte and the file path, which a log must not carry
+     */
+    public function testANoticeOfAnAnonymousSubclassNamesTheClassItExtends(): void
+    {
+        $cache = $this->createMock(CacheInterface::class);
+        $cache->method('generateCacheKey')->willReturn('key');
+        $cache->method('get')->willReturn('<justimmo></justimmo>');
+
+        $api = new class ('username', 'password', new NullLogger(), $cache) extends JustimmoApi {
+        };
+
+        $this->assertSame(
+            [self::SINCE_1_8 . 'JustimmoApi::callZipCodes() is deprecated and is removed in 2.0.0. Use callPoliticalDistricts().'],
+            $this->notices(function () use ($api) {
+                $api->callZipCodes();
+            })
+        );
+    }
+
+    public function testARealtyListWithShowDetailsEmitsNone(): void
+    {
+        $query = new RealtyQuery($this->answeringApi(), new RealtyWrapper($mapper = new RealtyMapper()), $mapper);
+
+        $this->assertSame([], $this->notices(function () use ($query) {
+            $query->showDetails()->find();
+        }));
+    }
+
+    /**
+     * The SDK reads an answer without calling a deprecated method, so a site sees only the notices
+     * of its own calls
+     */
+    public function testReadingAnAnswerEmitsNone(): void
+    {
+        $realtyWrapper  = new RealtyWrapper(new RealtyMapper());
+        $projectWrapper = new ProjectWrapper(new ProjectMapper());
+
+        $this->assertSame([], $this->notices(function () use ($realtyWrapper, $projectWrapper) {
+            $realtyWrapper->transformSingle($this->getFixtures('v1/synthetic/realty_detail.xml'));
+            $projectWrapper->transformSingle($this->getFixtures('v1/synthetic/project_detail.xml'));
+        }));
+    }
+
+    /**
+     * A method deprecated after 1.6.0 names its own version in the notice
+     */
+    public function testTheNoticeNamesTheVersionGiven(): void
+    {
+        $model = new DeprecatingModel();
+
+        $notices = $this->notices(fn () => $model->getOld());
+
+        $this->assertSame(
+            ['Since justimmo/php-sdk 1.8.0: DeprecatingModel::getOld() is deprecated and is removed in 2.0.0. Use getNew().'],
+            $notices
+        );
+    }
+
     /**
      * The methods which keep working call the code of set(), filter() and order() themselves
      */
@@ -305,7 +480,8 @@ class DeprecationTest extends TestCase
             $this->basicData()
                 ->all(true)
                 ->filterByCountry(1)
-                ->filterByFederalState(2);
+                ->filterByFederalState(2)
+                ->filterByFeatureGroupId(3);
         }));
     }
 
@@ -346,6 +522,19 @@ class DeprecationTest extends TestCase
     private function project(): ProjectQuery
     {
         return new ProjectQuery(new JustimmoNullApi(), new NullWrapper(), new ProjectMapper());
+    }
+
+    /**
+     * A real JustimmoApi, so the notice names it, which answers every call with an empty list
+     * from its cache
+     */
+    private function answeringApi(): JustimmoApi
+    {
+        $cache = $this->createMock(CacheInterface::class);
+        $cache->method('generateCacheKey')->willReturn('key');
+        $cache->method('get')->willReturn('<justimmo></justimmo>');
+
+        return new JustimmoApi('username', 'password', new NullLogger(), $cache);
     }
 
     private function basicData(): BasicDataQuery

@@ -82,7 +82,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -102,7 +102,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -122,7 +122,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -142,7 +142,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -162,7 +162,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -182,7 +182,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param mixed $value
+     * @param int $value
      *
      * @return $this
      */
@@ -210,7 +210,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -230,7 +230,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -250,7 +250,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value the ISO 3166-1 alpha-2 code of the country, like AT. findCountries() gives it as iso2
      *
      * @return $this
      */
@@ -270,7 +270,7 @@ class RealtyInquiryRequest implements RequestInterface
     }
 
     /**
-     * @param null $value
+     * @param string $value
      *
      * @return $this
      */
@@ -450,7 +450,8 @@ class RealtyInquiryRequest implements RequestInterface
      */
     public function registerForNewsletter(array $newsletter, bool $doubleoptinCompleted)
     {
-        $this->newsletter = $newsletter;
+        $this->newsletter           = $newsletter;
+        $this->doubleoptinCompleted = $doubleoptinCompleted;
     }
 
     /**

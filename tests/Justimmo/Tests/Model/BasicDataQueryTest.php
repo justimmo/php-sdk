@@ -5,6 +5,7 @@ namespace Justimmo\Tests\Model;
 use Justimmo\Model\Mapper\V1\BasicDataMapper;
 use Justimmo\Model\PoliticalDistrict;
 use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\RealtyFeature;
 use Justimmo\Model\Wrapper\V1\BasicDataWrapper;
 use Justimmo\Tests\MockJustimmoApi;
 use Justimmo\Tests\TestCase;
@@ -29,6 +30,7 @@ class BasicDataQueryTest extends TestCase
             'politicalDistricts' => $this->getFixtures('v1/political_districts.xml'),
             'realtyTypes'        => $this->getFixtures('v1/realty_types.xml'),
             'realtyCategories'   => $this->getFixtures('v1/categories.xml'),
+            'realtyFeatures'     => $this->getFixtures('v1/realty_features.xml'),
             'tenant'             => $this->getFixtures('v1/tenant.xml'),
         ]);
 
@@ -95,6 +97,15 @@ class BasicDataQueryTest extends TestCase
         $this->assertSame('Luxusobjekte', $categories[3140]['name']);
     }
 
+    public function testFindRealtyFeatures(): void
+    {
+        $features = $this->getQuery()->findRealtyFeatures();
+
+        $this->assertCount(3, $features);
+        $this->assertInstanceOf(RealtyFeature::class, $features[12]);
+        $this->assertSame('Fußbodenheizung', $features[12]->name);
+    }
+
     /**
      * transformTenant() casts the xml element into an array instead of mapping it field by
      * field like every other transform of the wrapper, so all of its values are strings,
@@ -125,16 +136,24 @@ class BasicDataQueryTest extends TestCase
         $this->assertSame(['bundesland' => 130], $query->getParams());
     }
 
+    public function testFilterByFeatureGroupId(): void
+    {
+        $query = $this->getQuery()->filterByFeatureGroupId(3);
+
+        $this->assertSame(['gruppe' => 3], $query->getParams());
+    }
+
     /**
-     * all() compares with === true, so only the boolean switches it on
+     * all() compares with === true, so only the boolean switches it on. It sends 1 or 0, the value
+     * the api documents
      */
     public function testAll(): void
     {
         $query = $this->getQuery()->all(true);
-        $this->assertSame(['alle' => true], $query->getParams());
+        $this->assertSame(['alle' => 1], $query->getParams());
 
         $query = $this->getQuery()->all(false);
-        $this->assertSame(['alle' => false], $query->getParams());
+        $this->assertSame(['alle' => 0], $query->getParams());
     }
 
     /**

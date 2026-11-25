@@ -1,9 +1,13 @@
 {
     "schema_version": 1,
-    "spec_version": "1.2.20",
-    "spec_hash": "sha256:9a639e6a2f9ccbbb5adf24fecea625baf40d4a53784e3a7fd3d488be74e05a79",
-    "generated_at": "2026-11-04T16:33:13+01:00",
+    "spec_version": "1.2.22",
+    "spec_hash": "sha256:404f3e78b87408afc79b316f0956ab145c01a3a9daac74f892d0b4378a803bd1",
+    "generated_at": "2026-11-25T13:08:53+01:00",
     "endpoints": {
+        "/main/tenant": {
+            "filters": {},
+            "parameters": {}
+        },
         "/objekt/anfrage": {
             "filters": {},
             "parameters": {
@@ -53,7 +57,7 @@
                 },
                 "land": {
                     "in": "operation",
-                    "type": "integer"
+                    "type": "string"
                 },
                 "message": {
                     "in": "operation",
@@ -169,7 +173,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "big"
                 }
             }
         },
@@ -962,7 +966,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "small"
                 },
                 "preciseAreaSearch": {
                     "in": "operation",
@@ -995,6 +999,11 @@
                         1
                     ],
                     "default": 0
+                },
+                "culture": {
+                    "in": "operation",
+                    "type": "string",
+                    "default": "de"
                 }
             }
         },
@@ -1026,7 +1035,8 @@
                         "string"
                     ]
                 }
-            }
+            },
+            "deprecated": true
         },
         "/objekt/politischeBezirke": {
             "filters": {},
@@ -1046,8 +1056,13 @@
                 },
                 "land": {
                     "in": "operation",
-                    "type": "string",
+                    "type": "integer",
+                    "types": [
+                        "integer",
+                        "string"
+                    ],
                     "enum": [
+                        17,
                         "AT"
                     ],
                     "default": "AT"
@@ -1082,7 +1097,8 @@
                         "string"
                     ]
                 }
-            }
+            },
+            "deprecated": true
         },
         "/projekt/detail": {
             "filters": {},
@@ -1138,7 +1154,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
+                    "default": "medium"
                 }
             }
         },
@@ -1648,16 +1664,7 @@
                         "uhd_unbranded_downscale",
                         "orig"
                     ],
-                    "default": "orig"
-                },
-                "showDetails": {
-                    "in": "path",
-                    "type": "integer",
-                    "enum": [
-                        0,
-                        1
-                    ],
-                    "default": 0
+                    "default": "medium"
                 }
             }
         },
@@ -1665,12 +1672,54 @@
             "filters": {},
             "parameters": {}
         },
+        "/referenz/ausstattungen": {
+            "filters": {},
+            "parameters": {
+                "culture": {
+                    "in": "operation",
+                    "type": "string",
+                    "default": "de"
+                },
+                "gruppe": {
+                    "in": "operation",
+                    "type": "integer"
+                }
+            }
+        },
         "/team/detail": {
             "filters": {},
             "parameters": {
                 "id": {
                     "in": "operation",
                     "type": "integer"
+                },
+                "picturesize": {
+                    "in": "operation",
+                    "type": "string",
+                    "list": true,
+                    "list_only": true,
+                    "enum": [
+                        "user_small",
+                        "user_medium",
+                        "small",
+                        "s220x155",
+                        "s312x208",
+                        "medium",
+                        "medium_unbranded",
+                        "big",
+                        "big_unbranded",
+                        "big2",
+                        "big2_unbranded",
+                        "fullhd",
+                        "fullhd_unbranded",
+                        "fullhd_downscale",
+                        "fullhd_unbranded_downscale",
+                        "uhd",
+                        "uhd_unbranded",
+                        "uhd_downscale",
+                        "uhd_unbranded_downscale",
+                        "orig"
+                    ]
                 }
             }
         },
@@ -1680,7 +1729,50 @@
         },
         "/team/list": {
             "filters": {},
-            "parameters": {}
+            "parameters": {
+                "picturesize": {
+                    "in": "operation",
+                    "type": "string",
+                    "list": true,
+                    "list_only": true,
+                    "enum": [
+                        "user_small",
+                        "user_medium",
+                        "small",
+                        "s220x155",
+                        "s312x208",
+                        "medium",
+                        "medium_unbranded",
+                        "big",
+                        "big_unbranded",
+                        "big2",
+                        "big2_unbranded",
+                        "fullhd",
+                        "fullhd_unbranded",
+                        "fullhd_downscale",
+                        "fullhd_unbranded_downscale",
+                        "uhd",
+                        "uhd_unbranded",
+                        "uhd_downscale",
+                        "uhd_unbranded_downscale",
+                        "orig"
+                    ]
+                }
+            }
+        }
+    },
+    "undocumented_endpoints": {
+        "/objekt/detail/objekt_id/{realtyIdPath}": {
+            "alias_of": "/objekt/detail"
+        },
+        "/objekt/expose/objekt_id/{realtyIdPath}": {
+            "alias_of": "/objekt/expose"
+        },
+        "/projekt/detail/id/{idPath}": {
+            "alias_of": "/projekt/detail"
+        },
+        "/team/detail/id/{id}": {
+            "alias_of": "/team/detail"
         }
     },
     "user_defined_simplefields": [

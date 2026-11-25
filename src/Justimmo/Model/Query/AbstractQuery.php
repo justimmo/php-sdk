@@ -11,6 +11,7 @@ use Justimmo\Exception\MethodNotFoundException;
 use Justimmo\Model\Mapper\MapperInterface;
 use Justimmo\Model\Mapper\OrderMappingInterface;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
+use Justimmo\Model\TriggersDeprecations;
 use Justimmo\Model\Wrapper\WrapperInterface;
 
 abstract class AbstractQuery implements QueryInterface
@@ -50,8 +51,8 @@ abstract class AbstractQuery implements QueryInterface
     private array $quietNames = [];
 
     /**
-     * @deprecated No longer consulted. The api validates the picture size itself and ignores one it
-     *             does not know, so this copy of its enum only drifted. Removed in 2.x
+     * @deprecated No longer consulted: the sizes come from the api's json, per endpoint, so this
+     *             copy only drifted. Removed in 2.x
      *
      * @var array<int, string>
      */
@@ -202,9 +203,10 @@ abstract class AbstractQuery implements QueryInterface
         $page       = max(1, (int) $page);
         $maxPerPage = max(1, (int) $maxPerPage);
 
-        $this
-            ->setLimit($maxPerPage)
-            ->setOffset(($page - 1) * $maxPerPage);
+        // $this->, so a subclass which overrides them is followed. EmployeeQuery, which deprecates
+        // them, mutes its notice while paginate() runs
+        $this->setLimit($maxPerPage);
+        $this->setOffset(($page - 1) * $maxPerPage);
 
         $pager = $this->find();
         $pager->setPage($page);
@@ -247,10 +249,12 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function findOne()
     {
+        // $this-> for the same reason as in paginate()
         $this->setLimit(1);
         $pager = $this->find();
 
-        return $pager->offsetGet(0);
+        // an empty answer has no key 0. Read with offsetGet(), it gave null with a PHP warning
+        return $pager[0] ?? null;
     }
 
     /**
@@ -269,14 +273,19 @@ abstract class AbstractQuery implements QueryInterface
         // judged, against what the detail call documents
         $this->judge(fn () => $this->assertTheStoredPictureSizeIsSupported($this->getDetailCall()));
 
-        $params = [];
-        foreach ($this->getDetailParams() as $name) {
-            if (isset($this->params[$name])) {
-                $params[$name] = $this->params[$name];
+        $method = $this->getDetailCall();
+        $params = $this->paramsDocumentedBy($method, false);
+
+        // a mapper without the api's json carries what getDetailParams() lists, as before 1.8.0
+        if ($params === null) {
+            $params = [];
+            foreach ($this->getDetailParams() as $name) {
+                if (isset($this->params[$name])) {
+                    $params[$name] = $this->params[$name];
+                }
             }
         }
 
-        $method   = $this->getDetailCall();
         $response = $this->api->$method($pk, $params);
 
         $return = $this->wrapper->transformSingle($response);
@@ -287,11 +296,12 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * The parameters findPk() carries into the detail call
+     * The parameters findPk() carries into the detail call when the mapper has no api json
      *
-     * Only picturesize and culture are carried over, and ProjectQuery widens this. Without a
-     * culture on the query, the api client adds its own. JustimmoApi::callEmployeeDetail() takes
-     * no parameters, so it sends none of them to team/detail.
+     * With the SDK's own mappers, findPk() carries what the detail call documents in the json, and
+     * this list is not read. It stays for a mapper which does not implement
+     * SupportedParametersInterface. Only picturesize and culture are carried over, ProjectQuery
+     * widens this and EmployeeQuery narrows it.
      *
      * @return array<int, string>
      */
@@ -315,13 +325,17 @@ abstract class AbstractQuery implements QueryInterface
     {
         $this->assertTheRequestIsSupported();
 
-        $params = $this->params;
+        $method = $this->getIdsCall();
+        $params = $this->paramsDocumentedBy($method, true);
 
-        // the ids endpoints document neither, and sending limit made findIds() return every id
-        // instead of the first few, so a setLimit() before it was silently ignored
-        unset($params['limit'], $params['offset']);
+        // a mapper without the api's json drops limit and offset only, as before 1.8.0. The ids
+        // endpoints document neither, and sending limit made findIds() return every id instead of
+        // the first few
+        if ($params === null) {
+            $params = $this->params;
+            unset($params['limit'], $params['offset']);
+        }
 
-        $method   = $this->getIdsCall();
         $response = $this->api->$method($params);
 
         // a body which is not json used to come back as null, as if the api had found nothing
@@ -341,6 +355,33 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * The parameters of this query which the call documents in the api's json, in the order they
+     * were set
+     *
+     * A parameter the call does not document stays out, like the limit or the picture size of an
+     * ids call. The query keeps it for the next call.
+     *
+     * @param bool $withFilters whether filter[…] goes along. The ids call takes the filters, the
+     *                          detail call none
+     *
+     * @return array<array-key, mixed>|null null when the mapper has no api json
+     */
+    private function paramsDocumentedBy(string $call, bool $withFilters): ?array
+    {
+        if (!$this->mapper instanceof SupportedParametersInterface) {
+            return null;
+        }
+
+        $documented = $this->mapper->getSupportedParameters($call);
+
+        return array_filter(
+            $this->params,
+            fn ($name) => isset($documented[$name]) || ($withFilters && $name === 'filter'),
+            ARRAY_FILTER_USE_KEY
+        );
+    }
+
+    /**
      * sets the limit parameter
      *
      * A negative limit can only be a bug and is clamped, which is the same mistake that produced
@@ -352,7 +393,8 @@ abstract class AbstractQuery implements QueryInterface
      * The comparison happens before the cast on purpose. `(int) -0.5` is `0`, so casting first
      * would let a negative fraction slip through as a limit of zero
      *
-     * @param int|float|string $limit
+     * @param int|float|numeric-string $limit
+     * @phpstan-param int|float|string $limit any other string is passed on, the api answers it with a 422
      *
      * @return $this
      */
@@ -374,7 +416,8 @@ abstract class AbstractQuery implements QueryInterface
      *
      * Compared before the cast for the same reason as in setLimit()
      *
-     * @param int|float|string $offset
+     * @param int|float|numeric-string $offset
+     * @phpstan-param int|float|string $offset any other string is passed on, the api answers it with a 422
      *
      * @return $this
      */
@@ -1090,10 +1133,17 @@ abstract class AbstractQuery implements QueryInterface
      * This runs before the min/max handling of filter(), so a range with one empty bound sends only
      * the bound which has a value.
      *
+     * A bool becomes 1 or 0, the value the api documents for a yes or a no. The request is the
+     * same as before, the query string rendered a bool so; getParams() now shows what is sent.
+     *
      * @return mixed null when nothing usable is left
      */
     private function normaliseFilterValue(mixed $value): mixed
     {
+        if (is_bool($value)) {
+            return $value ? 1 : 0;
+        }
+
         // an object is serialised by its public properties, which produces parameters the api has
         // never heard of under a filter name it knows, so only one which is stringable is kept
         if (is_object($value)) {
@@ -1356,7 +1406,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param string|array $picturesize
+     * @param string|array<int, string> $picturesize one size or a list of sizes
      *
      * @return $this
      * @throws \Justimmo\Exception\InvalidFilterValueException in strict mode, when the api has no such size
@@ -1391,7 +1441,7 @@ abstract class AbstractQuery implements QueryInterface
      * response says which size was served.
      *
      * The sizes are read per endpoint from the spec, so a query whose endpoint documents none -
-     * the team calls - and a mapper from outside the SDK leave nothing to compare against.
+     * the ids calls - and a mapper from outside the SDK leave nothing to compare against.
      *
      * @param array<int, mixed> $sizes
      * @param string            $call  the api call whose sizes are compared against

@@ -59,6 +59,7 @@ final class InvalidResponseTest extends TestCase
             ['realty', 'transformSingle'],
             ['project', 'transformList'],
             ['project', 'transformSingle'],
+            ['project', 'transformShortList'],
             ['employee', 'transformList'],
             ['employee', 'transformSingle'],
             ['basicData', 'transformCountries'],
@@ -68,6 +69,7 @@ final class InvalidResponseTest extends TestCase
             ['basicData', 'transformPoliticalDistricts'],
             ['basicData', 'transformRealtyTypes'],
             ['basicData', 'transformRealtyCategories'],
+            ['basicData', 'transformRealtyFeatures'],
             ['basicData', 'transformTenant'],
         ];
 

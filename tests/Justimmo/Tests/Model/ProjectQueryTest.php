@@ -18,6 +18,18 @@ class ProjectQueryTest extends TestCase
         return new ProjectQuery($api ?: new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper);
     }
 
+    /**
+     * The short list sends no filter, and leaves the filters set for the next call
+     */
+    public function testFindShortList(): void
+    {
+        $api   = new MockJustimmoApi(['projectShortList' => $this->getFixtures('v1/project_short_list.xml')]);
+        $query = $this->getQuery($api)->filterByKeyword('Park');
+
+        $this->assertSame([101 => 'Wohnen am Park', 102 => 'Stadtvillen Süd', 205 => 'Neubau Bahnhofstraße'], $query->findShortList());
+        $this->assertSame(['filter' => ['stichwort' => 'Park']], $query->getParams());
+    }
+
     public function testProjectState()
     {
         $query = $this->getQuery();

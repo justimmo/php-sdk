@@ -1,6 +1,7 @@
 <?php
 namespace Justimmo\Tests\Mapper\V1;
 
+use Justimmo\Api\JustimmoApi;
 use Justimmo\Model\Mapper\SupportedParametersInterface;
 use Justimmo\Model\Mapper\V1\EmployeeMapper;
 use Justimmo\Model\Mapper\V1\ProjectMapper;
@@ -11,29 +12,19 @@ use Justimmo\Tests\TestCase;
 class SupportedParametersTest extends TestCase
 {
     /**
-     * The calls the generator is configured to emit
+     * The generator writes an entry for every method of JustimmoApi::ENDPOINTS, and nothing else
      */
-    const CALLS = [
-        'callRealtyList',
-        'callRealtyDetail',
-        'callRealtyIds',
-        'callProjectList',
-        'callProjectDetail',
-        'callProjectIds',
-        'callEmployeeList',
-        'callEmployeeDetail',
-        'callEmployeeIds',
-    ];
-
     public function testEveryCallIsPresent(): void
     {
-        foreach (self::CALLS as $call) {
-            $this->assertArrayHasKey($call, SupportedParameters::FILTERS, $call . ' has no filters entry');
-            $this->assertArrayHasKey($call, SupportedParameters::PARAMETERS, $call . ' has no parameters entry');
+        $calls = array_keys(JustimmoApi::ENDPOINTS);
+
+        foreach ($calls as $call) {
+            $this->assertArrayHasKey($call, SupportedParameters::FILTERS, $call . ' has no filters entry. Run make supported-parameters');
+            $this->assertArrayHasKey($call, SupportedParameters::PARAMETERS, $call . ' has no parameters entry. Run make supported-parameters');
         }
 
-        $this->assertCount(count(self::CALLS), SupportedParameters::FILTERS);
-        $this->assertCount(count(self::CALLS), SupportedParameters::PARAMETERS);
+        $this->assertCount(count($calls), SupportedParameters::FILTERS);
+        $this->assertCount(count($calls), SupportedParameters::PARAMETERS);
     }
 
     /**
@@ -57,6 +48,8 @@ class SupportedParametersTest extends TestCase
                 if (isset($filter['list_only'])) {
                     $this->assertArrayHasKey('list', $filter, $where . ' is list only but takes no list');
                 }
+
+                $this->assertSame([], self::deprecationProblems($where, $filter, $filter['forms']));
 
                 $this->assertStringNotContainsString('filter[', $name, $where . ' is not a bare filter name');
                 $this->assertSame(
@@ -92,8 +85,96 @@ class SupportedParametersTest extends TestCase
                 $this->assertArrayHasKey('type', $parameter, $where);
                 $this->assertContains($parameter['in'], ['path', 'operation'], $where);
                 $this->assertStringNotContainsString('filter[', $name, $where . ' belongs in FILTERS');
+
+                // a parameter has no range form
+                $this->assertSame([], self::deprecationProblems($where, $parameter, ['plain']));
             }
         }
+    }
+
+    /**
+     * The json has no deprecated filter or parameter yet, so the shape check runs against made-up
+     * entries
+     */
+    public function testTheDeprecationShapeCheckFindsWrongForms(): void
+    {
+        $range    = ['forms' => ['range'], 'level' => 'realty', 'type' => 'number'];
+        $both     = ['forms' => ['plain', 'range'], 'level' => 'realty', 'type' => 'string', 'list' => true];
+        $listOnly = ['forms' => ['plain'], 'level' => 'realty', 'type' => 'integer', 'list' => true, 'list_only' => true];
+        $scalar   = ['in' => 'operation', 'type' => 'integer'];
+        $list     = ['in' => 'path', 'type' => 'string', 'list' => true];
+
+        $problems = [
+            ...self::deprecationProblems('a range filter', [...$range, 'deprecated' => ['plain']], $range['forms']),
+            ...self::deprecationProblems('a range filter', [...$range, 'deprecated' => ['list']], $range['forms']),
+            ...self::deprecationProblems('a filter with both forms', [...$both, 'deprecated' => ['range', 'plain']], $both['forms']),
+            ...self::deprecationProblems('a filter with both forms', [...$both, 'deprecated' => []], $both['forms']),
+            ...self::deprecationProblems('a list-only filter', [...$listOnly, 'deprecated' => ['list']], $listOnly['forms']),
+            ...self::deprecationProblems('a scalar parameter', [...$scalar, 'deprecated' => ['list']], ['plain']),
+            ...self::deprecationProblems('a scalar parameter', [...$scalar, 'deprecated' => ['range']], ['plain']),
+        ];
+
+        $this->assertSame([
+            'a range filter: deprecated names plain, a form it does not take',
+            'a range filter: deprecated names list, a form it does not take',
+            'a filter with both forms: deprecated is not sorted, or repeats a form',
+            'a filter with both forms: deprecated is not a list of forms',
+            'a list-only filter: only the whole filter can be deprecated, ["list", "plain"]',
+            'a scalar parameter: deprecated names list, a form it does not take',
+            'a scalar parameter: deprecated names range, a form it does not take',
+        ], $problems);
+
+        // what the api may send
+        $this->assertSame([], [
+            ...self::deprecationProblems('a range filter', [...$range, 'deprecated' => ['range']], $range['forms']),
+            ...self::deprecationProblems('a filter with both forms', [...$both, 'deprecated' => ['list', 'plain', 'range']], $both['forms']),
+            ...self::deprecationProblems('a list-only filter', [...$listOnly, 'deprecated' => ['list', 'plain']], $listOnly['forms']),
+            ...self::deprecationProblems('a scalar parameter', [...$scalar, 'deprecated' => ['plain']], ['plain']),
+            ...self::deprecationProblems('a list parameter', [...$list, 'deprecated' => ['list']], ['plain']),
+        ]);
+    }
+
+    /**
+     * What is wrong with an entry's deprecated forms. They are a sorted, non-empty list of the forms
+     * the entry takes: its forms, and list when it has "list": true. A list-only filter is deprecated
+     * only as a whole
+     *
+     * @param array<string, mixed> $entry
+     * @param array<int, string>   $forms the forms the entry takes, without list
+     *
+     * @return array<int, string>
+     */
+    private static function deprecationProblems(string $where, array $entry, array $forms): array
+    {
+        if (!array_key_exists('deprecated', $entry)) {
+            return [];
+        }
+
+        $deprecated = $entry['deprecated'];
+        if (!is_array($deprecated) || $deprecated === [] || !array_is_list($deprecated)) {
+            return [$where . ': deprecated is not a list of forms'];
+        }
+
+        $problems = [];
+
+        $sorted = array_values(array_unique($deprecated));
+        sort($sorted, SORT_STRING);
+        if ($sorted !== $deprecated) {
+            $problems[] = $where . ': deprecated is not sorted, or repeats a form';
+        }
+
+        if (($entry['list'] ?? false) === true) {
+            $forms[] = 'list';
+        }
+        foreach (array_diff($deprecated, $forms) as $form) {
+            $problems[] = $where . ': deprecated names ' . $form . ', a form it does not take';
+        }
+
+        if (($entry['list_only'] ?? false) === true && $deprecated !== ['list', 'plain']) {
+            $problems[] = $where . ': only the whole filter can be deprecated, ["list", "plain"]';
+        }
+
+        return $problems;
     }
 
     /**
@@ -168,7 +249,7 @@ class SupportedParametersTest extends TestCase
         $this->assertContains('orig', $picturesize['enum']);
         $this->assertContains('medium', $picturesize['enum']);
         $this->assertNotContains('thumb', $picturesize['enum'], 'a size the api does not know');
-        $this->assertSame('orig', $picturesize['default']);
+        $this->assertSame('small', $picturesize['default'], 'the realty list default, corrected by the api team on 2026-11-18');
     }
 
     /**
@@ -188,13 +269,16 @@ class SupportedParametersTest extends TestCase
     }
 
     /**
-     * The team endpoints take no parameters at all
+     * The team endpoints take no filters. The list and the detail take only the picture size, the
+     * ids nothing
      */
-    public function testEmployeeCallsAreEmpty(): void
+    public function testTheTeamEndpointsTakeOnlyThePictureSize(): void
     {
         $this->assertSame([], SupportedParameters::FILTERS['callEmployeeList']);
-        $this->assertSame([], SupportedParameters::PARAMETERS['callEmployeeList']);
+        $this->assertSame(['picturesize'], array_keys(SupportedParameters::PARAMETERS['callEmployeeList']));
+        $this->assertSame(['id', 'picturesize'], array_keys(SupportedParameters::PARAMETERS['callEmployeeDetail']));
         $this->assertSame([], SupportedParameters::FILTERS['callEmployeeIds']);
+        $this->assertSame([], SupportedParameters::PARAMETERS['callEmployeeIds']);
     }
 
     public function testMappersExposeTheData(): void
@@ -248,6 +332,20 @@ class SupportedParametersTest extends TestCase
         $this->assertSame(
             $document['endpoints']['/projekt/list']['parameters'],
             SupportedParameters::PARAMETERS['callProjectList']
+        );
+
+        $deprecated = [];
+        foreach (JustimmoApi::ENDPOINTS as $call => $endpoint) {
+            if (($document['endpoints'][$endpoint]['deprecated'] ?? false) === true) {
+                $deprecated[] = $call;
+            }
+        }
+        sort($deprecated, SORT_STRING);
+
+        $this->assertSame(
+            $deprecated,
+            SupportedParameters::DEPRECATED_CALLS,
+            'SupportedParameters.php is stale. Run make supported-parameters'
         );
 
         // the names come sorted from the generator; the json is sorted here too, so its order does not matter

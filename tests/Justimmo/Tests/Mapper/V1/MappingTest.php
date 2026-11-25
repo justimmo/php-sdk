@@ -22,32 +22,6 @@ use ReflectionMethod;
 class MappingTest extends TestCase
 {
     /**
-     * Filters a mapper sends which the api does not have. created_at is the only one and it is
-     * deprecated in this release
-     */
-    const FILTERS_THE_API_DOES_NOT_HAVE = [
-        'callRealtyList'  => ['created_at'],
-        'callProjectList' => [],
-    ];
-
-    /**
-     * Filters the api documents which no method reaches. flaeche is a second name for
-     * sort_flaeche on an objekt call, and filterByArea() already sends that
-     */
-    const FILTERS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => ['flaeche'],
-        'callProjectList' => [],
-    ];
-
-    /**
-     * Columns the spec documents which no method reaches
-     */
-    const SORTS_WITHOUT_A_METHOD = [
-        'callRealtyList'  => [],
-        'callProjectList' => [],
-    ];
-
-    /**
      * @return array<string, array{0: string, 1: string}>
      */
     public function queryCallProvider(): array
@@ -59,17 +33,36 @@ class MappingTest extends TestCase
     }
 
     /**
-     * Nothing may be added to a mapper which the api does not accept
+     * Nothing may be added to a mapper which the api does not accept. A filter on its way out may
+     * stay until the next major version, like created_at: its filterBy…() method is tagged
+     * @deprecated and emits its notice
      *
      * @dataProvider queryCallProvider
      */
     public function testNoMethodSendsAFilterTheApiDoesNotHave(string $call, string $mapper): void
     {
-        $this->assertKnownDifference(
-            self::FILTERS_THE_API_DOES_NOT_HAVE[$call],
-            array_diff($this->filterNames($mapper), array_keys(SupportedParameters::FILTERS[$call])),
-            $call . ': these filters are sent and the api has no such parameter'
+        $this->assertSame(
+            [],
+            $this->filtersWithoutADeprecatedMethod($call, new $mapper()),
+            $call . ': these filters are sent and the api has no such parameter, and no deprecated filterBy…() method with a notice sends them.'
+            . ' Remove them from the mapper, or deprecate the method in a 1.x release. See CONTRIBUTING.md, "The api drops a filter or a parameter".'
         );
+    }
+
+    /**
+     * The check above finds a filter the api does not have, when no deprecated method stands
+     * behind it
+     */
+    public function testTheFilterCheckFindsAFilterWithoutADeprecatedMethod(): void
+    {
+        $mapper = new class extends RealtyMapper {
+            protected function getFilterMapping(): array
+            {
+                return ['Foo' => 'foo'] + parent::getFilterMapping();
+            }
+        };
+
+        $this->assertSame(['foo (filterByFoo())'], $this->filtersWithoutADeprecatedMethod('callRealtyList', $mapper));
     }
 
     /**
@@ -81,7 +74,7 @@ class MappingTest extends TestCase
     public function testEveryFilterTheApiHasCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
-            self::FILTERS_WITHOUT_A_METHOD[$call],
+            [],
             array_diff(array_keys(SupportedParameters::FILTERS[$call]), $this->filterNames($mapper)),
             $call . ': the api documents these filters and no method sends them'
         );
@@ -113,7 +106,7 @@ class MappingTest extends TestCase
     public function testEveryDocumentedSortColumnCanBeReached(string $call, string $mapper): void
     {
         $this->assertKnownDifference(
-            self::SORTS_WITHOUT_A_METHOD[$call],
+            [],
             array_diff($this->sortColumnsOfTheApi($call), $this->sortColumns($mapper)),
             $call . ': the spec documents these sort columns and no method reaches them'
         );
@@ -148,8 +141,8 @@ class MappingTest extends TestCase
     }
 
     /**
-     * The range filters of the projekt endpoint. flaeche is projekt's name for the column objekt
-     * calls sort_flaeche, so filterByArea means the same thing on both queries
+     * The range filters of the projekt endpoint. filterByArea() sends flaeche here, as it does on
+     * the objekt endpoint
      */
     public function testTheProjectRangeFiltersReachTheWire(): void
     {
@@ -187,13 +180,43 @@ class MappingTest extends TestCase
     }
 
     /**
+     * The api documents two names for the area of a realty, flaeche and sort_flaeche, with the same
+     * result. filterByArea() sends flaeche, as on a project, and filterBySortArea() sends
+     * sort_flaeche
+     */
+    public function testBothAreaFiltersReachTheWire(): void
+    {
+        $this->assertSame(
+            ['filter' => ['flaeche_von' => 1, 'flaeche_bis' => 2]],
+            $this->realtyQuery()->filterByArea(['min' => 1, 'max' => 2])->getParams()
+        );
+
+        $this->assertSame(
+            ['filter' => ['sort_flaeche_von' => 1, 'sort_flaeche_bis' => 2]],
+            $this->realtyQuery()->filterBySortArea(['min' => 1, 'max' => 2])->getParams()
+        );
+    }
+
+    /**
+     * The deprecated magic orderByArea() sorted by sort_flaeche through the filter mapping. The
+     * filter is flaeche now, and the sort keeps its column
+     */
+    public function testTheAreaSortKeepsItsColumn(): void
+    {
+        $mapper = new RealtyMapper();
+
+        $this->assertSame('flaeche', $mapper->getFilterPropertyName('Area'));
+        $this->assertSame('sort_flaeche', $mapper->getOrderPropertyName('Area'));
+    }
+
+    /**
      * The sort mapping overrides the filter mapping only where the api spells the two differently
      */
     public function testSortingOverridesTheFilterMappingWhereTheyDiffer(): void
     {
         $mapper = new RealtyMapper();
 
-        // the one name which differs
+        // a name which differs
         $this->assertSame('aktualisiert_am', $mapper->getFilterPropertyName('UpdatedAt'));
         $this->assertSame('updated_at', $mapper->getOrderPropertyName('UpdatedAt'));
 
@@ -406,6 +429,76 @@ class MappingTest extends TestCase
      *
      * @return array<string, string>
      */
+    /**
+     * The filters the mapper sends which the call does not have, unless the filterBy…() method of
+     * the query which sends one is tagged @deprecated and emits its notice, as
+     * "created_at (filterByCreatedAt())"
+     *
+     * @return array<int, string>
+     */
+    private function filtersWithoutADeprecatedMethod(string $call, RealtyMapper|ProjectMapper $mapper): array
+    {
+        $reflection = new ReflectionMethod($mapper, 'getFilterMapping');
+        /** @var array<string, string> $mapping */
+        $mapping = $reflection->invoke($mapper);
+
+        $found = [];
+        foreach (array_diff(array_unique($mapping), array_keys(SupportedParameters::FILTERS[$call])) as $filter) {
+            foreach (array_keys($mapping, $filter, true) as $property) {
+                $method = 'filterBy' . $property;
+                if (!$this->isOnItsWayOut($mapper, $method)) {
+                    $found[] = $filter . ' (' . $method . '())';
+                }
+            }
+        }
+        sort($found);
+
+        return $found;
+    }
+
+    /**
+     * Whether the query of the mapper has the method, tagged @deprecated, and a call of it emits a
+     * notice which names it
+     */
+    private function isOnItsWayOut(RealtyMapper|ProjectMapper $mapper, string $method): bool
+    {
+        $query = $mapper instanceof ProjectMapper
+            ? new ProjectQuery(new JustimmoNullApi(), new ProjectWrapper($mapper), $mapper)
+            : new RealtyQuery(new JustimmoNullApi(), new RealtyWrapper($mapper), $mapper);
+
+        if (!method_exists($query, $method)) {
+            return false;
+        }
+
+        $reflection = new ReflectionMethod($query, $method);
+        if (!str_contains((string) $reflection->getDocComment(), '@deprecated')) {
+            return false;
+        }
+
+        $notices = [];
+        self::forgetTheDeprecationNotices();
+        set_error_handler(function (int $level, string $message) use (&$notices) {
+            $notices[] = $message;
+
+            return true;
+        }, E_USER_DEPRECATED);
+
+        try {
+            $query->$method('1');
+        } finally {
+            restore_error_handler();
+            self::forgetTheDeprecationNotices();
+        }
+
+        foreach ($notices as $notice) {
+            if (str_contains($notice, '::' . $method . '() ')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private function mappingOf(string $mapper, string $method): array
     {
         /** @var array<string, string> $mapping */

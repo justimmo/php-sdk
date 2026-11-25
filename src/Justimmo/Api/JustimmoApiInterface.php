@@ -44,10 +44,11 @@ interface JustimmoApiInterface
      * calls the detail information of a single employee
      *
      * @param int $pk
+     * @param array<string, mixed> $params
      *
      * @return string
      */
-    public function callEmployeeDetail($pk);
+    public function callEmployeeDetail($pk, array $params = []);
 
     /**
      * Make a call to the employee ids with a set of given params
@@ -66,6 +67,15 @@ interface JustimmoApiInterface
      * @return mixed
      */
     public function callProjectList(array $params = []);
+
+    /**
+     * make a call to the project short list with a set of given params
+     *
+     * @param array<string, scalar> $params
+     *
+     * @return string
+     */
+    public function callProjectShortList(array $params = []): string;
 
     /**
      * calls the detail information of a single project
@@ -107,7 +117,7 @@ interface JustimmoApiInterface
     /**
      * retrieve a zip code list
      *
-     * @deprecated
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
      *
      * @param array $params
      *
@@ -118,7 +128,7 @@ interface JustimmoApiInterface
     /**
      * retrieve a region list
      *
-     * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
      *
      * @param array $params
      *
@@ -161,6 +171,15 @@ interface JustimmoApiInterface
      * @return string
      */
     public function callRealtyCategories(array $params = []);
+
+    /**
+     * retrieve a realty features list
+     *
+     * @param array<string, scalar> $params
+     *
+     * @return string
+     */
+    public function callRealtyFeatures(array $params = []): string;
 
     /**
      * retrieves the expose for a realty

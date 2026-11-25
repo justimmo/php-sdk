@@ -15,6 +15,9 @@ use Justimmo\Exception\JustimmoException;
 use Justimmo\Exception\NotFoundException;
 use Justimmo\Exception\StatusCodeException;
 use Justimmo\Exception\ValidationException;
+use Justimmo\Model\Mapper\V1\SupportedParameters;
+use Justimmo\Model\Query\BasicDataQuery;
+use Justimmo\Model\TriggersDeprecations;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -26,15 +29,44 @@ use Psr\Log\NullLogger;
  */
 class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 {
+    use TriggersDeprecations;
+
     /**
-     * Calls which the culture is not sent to
+     * The endpoint each method sends its request to, written as data/sdk-supported-parameters.json
+     * writes it
      *
-     * None of the three documents the parameter, and none of them could use it: an ids call
-     * answers with a plain array of ids, which carries no translatable text at all.
+     * The one place the SDK says which method talks to which endpoint. The methods below send to
+     * these paths, the generator keys the supported parameters of the json by these methods, and a
+     * test compares both sides with the json.
      *
-     * @var array<int, string>
+     * @var array<string, string>
      */
-    private const CALLS_WITHOUT_CULTURE = ['objekt/ids', 'projekt/ids', 'team/ids'];
+    public const ENDPOINTS = [
+        'callRealtyList'         => '/objekt/list',
+        'callRealtyIds'          => '/objekt/ids',
+        'callRealtyDetail'       => '/objekt/detail',
+        'callExpose'             => '/objekt/expose',
+        'postRealtyInquiry'      => '/objekt/anfrage',
+
+        'callProjectList'        => '/projekt/list',
+        'callProjectShortList'   => '/projekt/projektList',
+        'callProjectIds'         => '/projekt/ids',
+        'callProjectDetail'      => '/projekt/detail',
+
+        'callCountries'          => '/objekt/laender',
+        'callFederalStates'      => '/objekt/bundeslaender',
+        'callPoliticalDistricts' => '/objekt/politischeBezirke',
+        'callRealtyTypes'        => '/objekt/objektarten',
+        'callRealtyCategories'   => '/objekt/kategorien',
+        'callRealtyFeatures'     => '/referenz/ausstattungen',
+        'callZipCodes'           => '/objekt/plzsUndOrte',
+        'callRegions'            => '/objekt/regionen',
+
+        'callEmployeeList'       => '/team/list',
+        'callEmployeeIds'        => '/team/ids',
+        'callEmployeeDetail'     => '/team/detail',
+        'callTenant'             => '/main/tenant',
+    ];
 
     /**
      * api versions supported
@@ -137,12 +169,24 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
 
     /**
      * @inheritdoc
+     *
+     * 1.x always sends showDetails=1, so every list carries the full record. 2.0.0 sends what the
+     * caller passed, and the api's default is the short record. A call without showDetails=1 gets
+     * a notice now.
      */
     public function callRealtyList(array $params = [])
     {
+        if ((int) ($params['showDetails'] ?? 0) !== 1) {
+            $this->triggerDeprecation(
+                __FUNCTION__,
+                __FUNCTION__ . '() without showDetails=1 gets the full record of each realty in 1.x only. 2.0.0 sends the api\'s default, the short record, without the attachments or the contact person. Call RealtyQuery::showDetails(), or pass showDetails=1.',
+                '1.8.0'
+            );
+        }
+
         $params['showDetails'] = 1;
 
-        return $this->call('objekt/list', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -150,7 +194,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callRealtyIds(array $params = [])
     {
-        return $this->call('objekt/ids', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -160,15 +204,17 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     {
         $params['objekt_id'] = $pk;
 
-        return $this->call('objekt/detail', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
      * @inheritdoc
      */
-    public function callEmployeeDetail($pk)
+    public function callEmployeeDetail($pk, array $params = [])
     {
-        return $this->call('team/detail', ['id' => $pk]);
+        $params['id'] = $pk;
+
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -178,7 +224,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     {
         $params['id'] = $pk;
 
-        return $this->call('projekt/detail', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -186,7 +232,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callEmployeeList(array $params = [])
     {
-        return $this->call('team/list', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -194,7 +240,15 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callProjectList(array $params = [])
     {
-        return $this->call('projekt/list', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function callProjectShortList(array $params = []): string
+    {
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -202,7 +256,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callCountries(array $params = [])
     {
-        return $this->call('objekt/laender', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -210,25 +264,31 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callFederalStates(array $params = [])
     {
-        return $this->call('objekt/bundeslaender', $params);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function callZipCodes(array $params = [])
-    {
-        return $this->call('objekt/plzsUndOrte', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
      * @inheritdoc
      *
-     * @deprecated - This call is deprecated and will be removed in 2.x. Use callPoliticalDistricts instead.
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
+     */
+    public function callZipCodes(array $params = [])
+    {
+        $this->deprecateUnlessTheFinderCalls(__FUNCTION__, 'findZipCodes', 'Use callPoliticalDistricts().');
+
+        return $this->callEndpoint(__FUNCTION__, $params);
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @deprecated since 1.8.0, removed in 2.0.0. Use callPoliticalDistricts()
      */
     public function callRegions(array $params = [])
     {
-        return $this->call('objekt/regionen', $params);
+        $this->deprecateUnlessTheFinderCalls(__FUNCTION__, 'findRegions', 'Use callPoliticalDistricts().');
+
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -236,7 +296,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callPoliticalDistricts(array $params = []): string
     {
-        return $this->call('objekt/politischeBezirke', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -244,7 +304,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callRealtyTypes(array $params = [])
     {
-        return $this->call('objekt/objektarten', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -252,7 +312,15 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callRealtyCategories(array $params = [])
     {
-        return $this->call('objekt/kategorien', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function callRealtyFeatures(array $params = []): string
+    {
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -260,7 +328,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callTenant(array $params = [])
     {
-        return $this->call('main/tenant', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -268,7 +336,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callExpose($pk, $type = 'Default')
     {
-        return $this->call('objekt/expose', ['objekt_id' => $pk, 'expose' => $type]);
+        return $this->callEndpoint(__FUNCTION__, ['objekt_id' => $pk, 'expose' => $type]);
     }
 
     /**
@@ -276,7 +344,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function postRealtyInquiry(array $params = [])
     {
-        return $this->call('objekt/anfrage', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -284,7 +352,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callEmployeeIds(array $params = [])
     {
-        return $this->call('team/ids', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
     }
 
     /**
@@ -292,7 +360,42 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
      */
     public function callProjectIds(array $params = [])
     {
-        return $this->call('projekt/ids', $params);
+        return $this->callEndpoint(__FUNCTION__, $params);
+    }
+
+    /**
+     * Sends the request of one method to its endpoint in ENDPOINTS
+     *
+     * @param string               $method the method of this class, like callRealtyList
+     * @param array<string, mixed> $params
+     *
+     * @return mixed the body of the answer
+     */
+    private function callEndpoint(string $method, array $params): mixed
+    {
+        return $this->call(ltrim(self::ENDPOINTS[$method], '/'), $params);
+    }
+
+    /**
+     * The notice of a deprecated call, unless BasicDataQuery's finder of the same data calls it
+     *
+     * The finder emits a notice of its own, and a site which calls the finder gets one notice,
+     * not two.
+     *
+     * @param string $method      the deprecated method of this class, like callRegions
+     * @param string $finder      the finder of BasicDataQuery which calls it, like findRegions
+     * @param string $replacement what to use instead, like "Use callPoliticalDistricts()."
+     */
+    private function deprecateUnlessTheFinderCalls(string $method, string $finder, string $replacement): void
+    {
+        // 0 is this method, 1 the deprecated one, 2 its caller
+        $caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3)[2] ?? [];
+
+        if (($caller['function'] ?? null) === $finder && is_a($caller['class'] ?? '', BasicDataQuery::class, true)) {
+            return;
+        }
+
+        $this->triggerDeprecation($method, $method . '() is deprecated and is removed in 2.0.0. ' . $replacement, '1.8.0');
     }
 
     /**
@@ -332,7 +435,7 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
     {
         $startTime = microtime(true);
 
-        if (!array_key_exists('culture', $params) && !in_array($call, self::CALLS_WITHOUT_CULTURE, true)) {
+        if (!array_key_exists('culture', $params) && self::takesTheCulture($call)) {
             $params['culture'] = $this->culture;
         }
 
@@ -405,6 +508,24 @@ class JustimmoApi implements JustimmoApiInterface, StrictModeInterface
         ]);
 
         return $response;
+    }
+
+    /**
+     * Whether the endpoint takes the culture, so the SDK sends its own when the caller sent none
+     *
+     * The contract, data/sdk-supported-parameters.json, says which endpoints are translated. A path
+     * which is not in ENDPOINTS keeps the culture, as every call did before 1.8.0.
+     *
+     * @param string $call the path, like objekt/list
+     */
+    private static function takesTheCulture(string $call): bool
+    {
+        $method = array_search('/' . ltrim($call, '/'), self::ENDPOINTS, true);
+        if ($method === false) {
+            return true;
+        }
+
+        return isset(SupportedParameters::PARAMETERS[$method]['culture']);
     }
 
     /**
